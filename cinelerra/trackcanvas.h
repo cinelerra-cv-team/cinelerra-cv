@@ -92,7 +92,7 @@ public:
 		int center_pixel, 
 		int zoom_track,
 		int color);
-	void draw_floatauto(Auto *current, 
+	void draw_floatauto(FloatAuto *current, 
 		int x, 
 		int y, 
 		int in_x,
@@ -387,6 +387,16 @@ public:
 
 
 private:
+	void draw_floatauto_ctrlpoint(
+	int x, 
+	int y, 
+	int cp_x, 
+	int cp_y, 
+	int center_pixel, 
+	int zoom_track,
+	int color);
+
+
 	int end_translation();
 
 // ====================================== cursor selection type
