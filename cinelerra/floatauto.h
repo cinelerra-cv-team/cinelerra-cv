@@ -70,6 +70,7 @@ public:
 
 	t_mode tangent_mode;
 	void change_tangent_mode(t_mode); // recalculates tangents as well
+	void toggle_tangent_mode();       // cycles through all modes (e.g. by ctrl-click)
 	
 
 // Control values (y coords of bézier control point), relative to value
@@ -92,9 +93,11 @@ private:
 	void adjust_tangents();             // recalc. ctrk in and out points, if automatic tangent mode (SMOOTH or LINEAR)
 	void adjust_ctrl_positions(FloatAuto *p=0, FloatAuto *n=0); // recalc. x location of ctrl points, notify neighbours
 	void set_ctrl_positions(FloatAuto*, FloatAuto*);
+	void calculate_slope(FloatAuto* a1, FloatAuto* a2, float& dvdx, float& dx);
 	void check_pos()                    { if(position != pos_valid) adjust_ctrl_positions(); }
 	void tangent_dirty()                { pos_valid=-1; }
-	static bool is_floatauto_node(Auto *kandidate); // check is member of FloatAutos-Collection
+	static bool is_floatauto_node(Auto *candidate); // check is member of FloatAutos-Collection
+	void handle_automatic_tangent_after_copy();	
 
 // Control values are relative to value
 	float value, control_in_value, control_out_value;

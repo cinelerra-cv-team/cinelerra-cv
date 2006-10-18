@@ -69,10 +69,10 @@ int FloatAuto::operator==(FloatAuto &that)
 
 
 inline 
-bool FloatAuto::is_floatauto_node(Auto *kandidate)
+bool FloatAuto::is_floatauto_node(Auto *candidate)
 {
-	return (kandidate && kandidate->autos &&
-		AUTOMATION_TYPE_FLOAT == kandidate->autos->get_type());
+	return (candidate && candidate->autos &&
+		AUTOMATION_TYPE_FLOAT == candidate->autos->get_type());
 }
 
 
@@ -146,6 +146,21 @@ void FloatAuto::copy_from(FloatAuto *that)
 // note: literate copy, no recalculations    
 }
 
+inline
+void FloatAuto::handle_automatic_tangent_after_copy()
+// in most cases, we don't want to use the manual tangent modes
+// of the left neighbour used as a template for interpolation.
+// Rather, we (re)set to automatically smoothed tangents. Note
+// auto generated nodes (while tweaking values) indeed are
+// inserted by using this "interpolation" approach, thus making 
+// this defaulting to auto-smooth tangents very important.
+{
+	if(tangent_mode == FREE || tangent_mode == TFREE)
+	{
+		this->tangent_mode = SMOOTH;
+	}
+}
+
 
 int FloatAuto::interpolate_from(Auto *a1, Auto *a2, int64_t pos, Auto *templ)
 // bézier interpolates this->value and tangents for the given position
@@ -160,6 +175,7 @@ int FloatAuto::interpolate_from(Auto *a1, Auto *a2, int64_t pos, Auto *templ)
 	if(!a1) a1 = previous;
 	if(!a2) a2 = next;
 	Auto::interpolate_from(a1, a2, pos, templ);
+	handle_automatic_tangent_after_copy();
 	
 	// set this->value using bézier interpolation if possible
 	if(is_floatauto_node(a1) && is_floatauto_node(a2) &&
@@ -170,7 +186,7 @@ int FloatAuto::interpolate_from(Auto *a1, Auto *a2, int64_t pos, Auto *templ)
 		float new_value = FloatAutos::calculate_bezier(left, right, pos);
 		float new_slope = FloatAutos::calculate_bezier_derivation(left, right, pos);
 		
-		this->adjust_to_new_coordinates(pos, new_value); // this may trigger smoothing (not yet implemented at this stage)
+		this->adjust_to_new_coordinates(pos, new_value); // this may trigger smoothing
 		
 		this->set_control_in_value(new_slope * control_in_position);
 		this->set_control_out_value(new_slope * control_out_position);
@@ -191,6 +207,16 @@ void FloatAuto::change_tangent_mode(t_mode new_mode)
 
 	tangent_mode = new_mode;
 	adjust_tangents();
+}
+
+void FloatAuto::toggle_tangent_mode()
+{
+	switch (tangent_mode) {
+		case SMOOTH:	change_tangent_mode(TFREE);  break;
+		case LINEAR:	change_tangent_mode(FREE);   break;
+		case TFREE :	change_tangent_mode(LINEAR); break;
+		case FREE  :	change_tangent_mode(SMOOTH); break;
+	}
 }
 
 
@@ -224,6 +250,17 @@ void FloatAuto::set_control_out_value(float newvalue)
 
 
 
+inline int sgn(float value) { return (value == 0)?  0 : (value < 0) ? -1 : 1; }
+
+inline float weighted_mean(float v1, float v2, float w1, float w2){
+	if(0.000001 > fabs(w1 + w2))
+		return 0;
+	else
+		return (w1 * v1 + w2 * v2) / (w1 + w2);
+}
+
+
+
 
 void FloatAuto::adjust_tangents()
 // recalculates tangents if current mode 
@@ -231,8 +268,72 @@ void FloatAuto::adjust_tangents()
 {
 	if(!autos) return;
 
-  //
-  // TODO: add here code to do the actual smoothing and adjusting of tangents
+	if(tangent_mode == SMOOTH)
+	{
+		// normally, one would use the slope of chord between the neighbours.
+		// but this could cause the curve to overshot extremal automation nodes.
+		// (e.g when setting a fade node at zero, the curve could go negative)
+		// we can interpret the slope of chord as a weighted mean value, where
+		// the length of the interval is used as weight; we just use other 
+		// weights: intervall length /and/ reciprocal of slope. So, if the
+		// connection to one of the neighbours has very low slope this will
+		// dominate the calculated tangent slope at this automation node.
+		// if the slope goes beyond the zero line, e.g if left connection
+		// has positive and right connection has negative slope, then
+		// we force the calculated tangent to be horizontal.
+		float s, dxl, dxr, sl, sr;
+		calculate_slope((FloatAuto*) previous, this, sl, dxl);
+		calculate_slope(this, (FloatAuto*) next, sr, dxr);
+		
+		if(0 < sgn(sl) * sgn(sr))
+		{
+			float wl = fabs(dxl) * (fabs(1.0/sl) + 1);
+			float wr = fabs(dxr) * (fabs(1.0/sr) + 1);
+			s = weighted_mean(sl, sr, wl, wr);
+		}
+		else s = 0; // fixed hoizontal tangent
+		
+		control_in_value = s * control_in_position;
+		control_out_value = s * control_out_position;
+	}
+	
+	else
+	if(tangent_mode == LINEAR)
+ 	{
+		float g, dx;
+		if(previous)
+		{
+			calculate_slope(this, (FloatAuto*)previous, g, dx);
+			control_in_value = g * dx / 3;
+		}
+		if(next)
+		{
+			calculate_slope(this, (FloatAuto*)next, g, dx);
+			control_out_value = g * dx / 3;
+	}	}
+	
+	else
+	if(tangent_mode == TFREE && control_in_position && control_out_position)
+ 	{
+		float gl = control_in_value / control_in_position;
+		float gr = control_out_value / control_out_position;
+		float wl = fabs(control_in_value);
+		float wr = fabs(control_out_value);
+		float g = weighted_mean(gl, gr, wl, wr);
+		
+		control_in_value = g * control_in_position;
+		control_out_value = g * control_out_position;
+	}
+}
+
+inline void FloatAuto::calculate_slope(FloatAuto *left, FloatAuto *right, float &dvdx, float &dx)
+{
+	dvdx=0; dx=0;
+	if(!left || !right) return;
+
+	dx = right->position - left->position;
+	float dv = right->value - left->value;
+	dvdx = (dx == 0) ? 0 : dv/dx;
 }
 
 
