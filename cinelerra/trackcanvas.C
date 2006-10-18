@@ -2559,7 +2559,7 @@ void TrackCanvas::draw_floatline(int center_pixel,
 	for(int x = x1; x < x2; x++)
 	{
 		int64_t position = (int64_t)(unit_start + x * zoom_units);
-		float value = autos->get_value(position, PLAY_FORWARD, previous1, next1);
+		float value = autos->get_value(position, previous1, next1);
 		AUTOMATIONCLAMPS(value, autogrouptype);
 
 		int y = center_pixel + 
@@ -2603,7 +2603,7 @@ void TrackCanvas::synchronize_autos(float change,
 				double position = skip->from_units(fauto->position);
 				FloatAuto *previous = 0, *next = 0;
 
-				float init_value = fade_autos->get_value(fauto->position, PLAY_FORWARD, previous, next);
+				float init_value = fade_autos->get_value(fauto->position, previous, next);
 				FloatAuto *keyframe;
 				keyframe = (FloatAuto*)fade_autos->get_auto_at_position(position);
 				
@@ -2611,14 +2611,13 @@ void TrackCanvas::synchronize_autos(float change,
 				{
 // create keyframe on neighbouring track at the point in time given by fauto
 					keyframe = (FloatAuto*)fade_autos->insert_auto(fauto->position);
-					keyframe->set_value(init_value+change);
+					keyframe->set_value(init_value + change);
 				} 
 				else
 				{ 
 // keyframe exists, just change it
-					keyframe->set_value(keyframe->get_value() + change);
+					keyframe->adjust_to_new_coordinates(fauto->position, keyframe->get_value() + change);
 // need to (re)set the position, as the existing node could be on a "equivalent" position (within half a frame)
-					keyframe->position = fauto->position;
 				} 
 
 				mwindow->session->drag_auto_gang->append((Auto *)keyframe);
@@ -2637,8 +2636,7 @@ void TrackCanvas::synchronize_autos(float change,
 			CLAMP(new_value, 
 			      mwindow->edl->local_session->automation_mins[keyframe->autos->autogrouptype],
 			      mwindow->edl->local_session->automation_maxs[keyframe->autos->autogrouptype]);
-			keyframe->position = fauto->position;
-			keyframe->set_value(new_value);
+			keyframe->adjust_to_new_coordinates(fauto->position, new_value);
 		} 
 
 	} 
@@ -2678,7 +2676,7 @@ int TrackCanvas::test_floatline(int center_pixel,
 	int64_t position = (int64_t)(unit_start + cursor_x * zoom_units);
 // Call by reference fails for some reason here
 	FloatAuto *previous = 0, *next = 0;
-	float value = autos->get_value(position, PLAY_FORWARD, previous, next);
+	float value = autos->get_value(position, previous, next);
 	AUTOMATIONCLAMPS(value,autogrouptype);
 	int y = center_pixel + 
 		(int)(((value - automation_min) / automation_range - 0.5) * -yscale);
@@ -3738,13 +3736,13 @@ int TrackCanvas::update_drag_floatauto(int cursor_x, int cursor_y)
 					distance2 = fabs(value - value2);
 					if(!current->previous || distance2 < distance1)
 					{
-						current->set_value( value2 );
+						current->set_value(value2);
 					}
 				}
 
 				if(!current->previous && !current->next)
 				{
-					current->set_value( ((FloatAutos*)current->autos)->default_ );
+					current->set_value( ((FloatAutos*)current->autos)->default_);
 				}
 				value = current->get_value();
 			}
@@ -3758,8 +3756,7 @@ int TrackCanvas::update_drag_floatauto(int cursor_x, int cursor_y)
 			{
 				result = 1;
 				float change = value - old_value;		
-				current->set_value(value);
-				current->position = position;
+				current->adjust_to_new_coordinates(position, value);
 				synchronize_autos(change, current->autos->track, current, 0);
 
 				char string[BCTEXTLEN], string2[BCTEXTLEN];
@@ -3785,7 +3782,6 @@ int TrackCanvas::update_drag_floatauto(int cursor_x, int cursor_y)
 			{
 				result = 1;
 				current->set_control_in_value(value);
-				current->control_in_position = position;
 				synchronize_autos(0, current->autos->track, current, 0);
 
 				char string[BCTEXTLEN], string2[BCTEXTLEN];
@@ -3812,7 +3808,6 @@ int TrackCanvas::update_drag_floatauto(int cursor_x, int cursor_y)
 			{
 				result = 1;
 				current->set_control_out_value(value);
-				current->control_out_position = position;
 				synchronize_autos(0, current->autos->track, current, 0);
 
 				char string[BCTEXTLEN], string2[BCTEXTLEN];

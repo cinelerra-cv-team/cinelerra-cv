@@ -626,7 +626,7 @@ void CWindowCameraGUI::handle_event()
 				1);
 			if(x_auto)
 			{
-				x_auto->set_value( atof(x->get_text()) );
+				x_auto->set_value(atof(x->get_text()));
 				update_preview();
 			}
 		}
@@ -638,7 +638,7 @@ void CWindowCameraGUI::handle_event()
 				1);
 			if(y_auto)
 			{
-				y_auto->set_value( atof(y->get_text()) );
+				y_auto->set_value(atof(y->get_text()));
 				update_preview();
 			}
 		}
@@ -744,7 +744,7 @@ int CWindowCameraLeft::handle_event()
 		{
 			x_auto->set_value(
 				(double)track->track_w / z_auto->get_value() / 2 - 
-				(double)w/2);
+				(double)w / 2);
 			gui->update();
 			gui->update_preview();
 		}
@@ -815,8 +815,8 @@ int CWindowCameraRight::handle_event()
 
 		if(w && h)
 		{
-			x_auto->set_value( -((double)track->track_w / z_auto->get_value() / 2 
-				- (double)w / 2));
+			x_auto->set_value( -((double)track->track_w / z_auto->get_value() / 2 - 
+				(double)w / 2));
 			gui->update();
 			gui->update_preview();
 		}
@@ -860,8 +860,8 @@ int CWindowCameraTop::handle_event()
 
 		if(w && h)
 		{
-			y_auto->set_value(
-				(double)track->track_h / z_auto->get_value() / 2 - (double)h/2);
+			y_auto->set_value((double)track->track_h / z_auto->get_value() / 2 - 
+				(double)h / 2);
 			gui->update();
 			gui->update_preview();
 		}
@@ -931,8 +931,8 @@ int CWindowCameraBottom::handle_event()
 
 		if(w && h)
 		{
-			y_auto->set_value(
-				-((double)track->track_h / z_auto->get_value() / 2 - (double)h/2));
+			y_auto->set_value(-((double)track->track_h / z_auto->get_value() / 2 - 
+				(double)h / 2));
 			gui->update();
 			gui->update_preview();
 		}
@@ -1065,7 +1065,7 @@ void CWindowProjectorGUI::handle_event()
 				1);
 			if(x_auto)
 			{
-				x_auto->set_value( atof(x->get_text()) );
+				x_auto->set_value( atof(x->get_text()));
 				update_preview();
 			}
 		}
@@ -1077,7 +1077,7 @@ void CWindowProjectorGUI::handle_event()
 				1);
 			if(y_auto)
 			{
-				y_auto->set_value( atof(y->get_text()) );
+				y_auto->set_value( atof(y->get_text()));
 				update_preview();
 			}
 		}
@@ -1369,7 +1369,7 @@ int CWindowProjectorBottom::handle_event()
 	if(y_auto && z_auto)
 	{
 		y_auto->set_value( -((double)track->track_h * z_auto->get_value() / 2 - 
-			(double)mwindow->edl->session->output_h / 2) );
+			(double)mwindow->edl->session->output_h / 2));
 		gui->update();
 		gui->update_preview();
 	}

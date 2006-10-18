@@ -2329,8 +2329,8 @@ int CWindowCanvas::test_bezier(int button_press,
 				float new_z = gui->center_z + 
 					(cursor_y - gui->y_origin) / 128;
 
-				if( new_z < 0 ) new_z = 0;
-				if(!EQUIV(last_center_z, new_z) )
+				if(new_z < 0) new_z = 0;
+				if(!EQUIV(last_center_z, new_z))
 				{
 					gui->affected_z->set_value(new_z);
 					rerender = 1;
@@ -2342,9 +2342,9 @@ int CWindowCanvas::test_bezier(int button_press,
 			{
 				float new_x = gui->center_x + cursor_x - gui->x_origin;
 				float new_y = gui->center_y + cursor_y - gui->y_origin;
-				
+
 				if(!EQUIV(last_center_x, new_x) ||
-				   	!EQUIV(last_center_y, new_y))
+				   !EQUIV(last_center_y, new_y))
 				{
 					gui->affected_x->set_value(new_x);
 					gui->affected_y->set_value(new_y);

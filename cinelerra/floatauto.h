@@ -42,6 +42,7 @@ public:
 	int identical(FloatAuto *src);
 	void copy_from(Auto *that);
 	void copy_from(FloatAuto *that);
+	int interpolate_from(Auto *a1, Auto *a2, int64_t pos, Auto *templ=0); // bezier interpolation
 	void copy(int64_t start, int64_t end, FileXML *file, int default_only);
 	void load(FileXML *xml);
 
@@ -72,17 +73,28 @@ public:
 	
 
 // Control values (y coords of bézier control point), relative to value
-	float get_control_in_value()            { return this->control_in_value;}
-	float get_control_out_value()           { return this->control_out_value;}
+	float get_control_in_value()            {check_pos(); return this->control_in_value;}
+	float get_control_out_value()           {check_pos(); return this->control_out_value;}
 	void set_control_in_value(float newval);
 	void set_control_out_value(float newval);
 	
 // get calculated x-position of control points for drawing, 
 // relative to auto position, in native units of the track.
-	int64_t get_control_in_position()       { return this->control_in_position;}
-	int64_t get_control_out_position()      { return this->control_out_position;}
-    
+	int64_t get_control_in_position()       {check_pos(); return this->control_in_position;}
+	int64_t get_control_out_position()      {check_pos(); return this->control_out_position;}
+	
+// define new position and value, re-adjust ctrl point, notify neighbours
+	void adjust_to_new_coordinates(int64_t position, float value);
 
+
+
+private:
+	void adjust_tangents();             // recalc. ctrk in and out points, if automatic tangent mode (SMOOTH or LINEAR)
+	void adjust_ctrl_positions(FloatAuto *p=0, FloatAuto *n=0); // recalc. x location of ctrl points, notify neighbours
+	void set_ctrl_positions(FloatAuto*, FloatAuto*);
+	void check_pos()                    { if(position != pos_valid) adjust_ctrl_positions(); }
+	void tangent_dirty()                { pos_valid=-1; }
+	static bool is_floatauto_node(Auto *kandidate); // check is member of FloatAutos-Collection
 
 // Control values are relative to value
 	float value, control_in_value, control_out_value;
@@ -90,7 +102,7 @@ public:
 // In native units of the track.
 	int64_t control_in_position, control_out_position;
 
-private:
+	int64_t pos_valid;                  // 'dirty flag' to recalculate ctrl point positions on demand
 	int value_to_str(char *string, float value);
 };
 

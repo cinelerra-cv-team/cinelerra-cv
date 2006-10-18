@@ -60,14 +60,14 @@ void FloatAutos::straighten(int64_t start, int64_t end)
 			if(previous_auto && previous_auto->position >= start)
 			{
 				float previous_value = previous_auto->get_value();
-				current->set_control_in_value( (previous_value - current_value) / 3.0 );
+				current->set_control_in_value((previous_value - current_value) / 3.0);
 			}
 
 // Determine whether to set the control out point
 			if(next_auto && next_auto->position < end)
 			{
 				float next_value = next_auto->get_value();
-				current->set_control_out_value( (next_value - current_value) / 3.0 );
+				current->set_control_out_value( (next_value - current_value) / 3.0);
 			}
 		}
 		current = (FloatAuto*)NEXT;
@@ -88,9 +88,7 @@ Auto* FloatAutos::add_auto(int64_t position, float value)
 	FloatAuto* result;
 	
 	insert_before(current, result = (FloatAuto*)new_auto());
-
-	result->position = position;
-	result->set_value(value);
+	result->adjust_to_new_coordinates(position,value);
 	
 	return result;
 }
@@ -254,19 +252,14 @@ double FloatAutos::get_automation_constant(int64_t start, int64_t end)
 
 
 float FloatAutos::get_value(int64_t position, 
-	int direction, 
 	FloatAuto* &previous, 
 	FloatAuto* &next)
 {
-	double slope;
-	double intercept;
-	int64_t slope_len;
 // Calculate bezier equation at position
-	float y0, y1, y2, y3;
- 	float t;
+// prev and next will be used to shorten the search, if given
 
-	previous = (FloatAuto*)get_prev_auto(position, direction, (Auto* &)previous, 0);
-	next = (FloatAuto*)get_next_auto(position, direction, (Auto* &)next, 0);
+	previous = (FloatAuto*)get_prev_auto(position, PLAY_FORWARD, (Auto* &)previous, 0);
+	next     = (FloatAuto*)get_next_auto(position, PLAY_FORWARD, (Auto* &)next, 0);
 
 // Constant
 	if(!next && !previous)
@@ -284,52 +277,38 @@ float FloatAutos::get_value(int64_t position,
 		return previous->get_value();
 	}
 	else
-	if(next == previous)
+	if(next == previous || next->position == previous->position)
 	{
 		return previous->get_value();
 	}
 	else
 	{
-		if(direction == PLAY_FORWARD &&
-			EQUIV(previous->get_value(), next->get_value()) &&
-			EQUIV(previous->get_control_out_value(), 0) &&
-			EQUIV(next->get_control_in_value(), 0))
-		{
-			return previous->get_value();
-		}
-		else
-		if(direction == PLAY_REVERSE &&
-			EQUIV(previous->get_value(), next->get_value()) &&
-			EQUIV(previous->get_control_in_value(), 0) &&
-			EQUIV(next->get_control_out_value(), 0))
+		if(EQUIV(previous->get_value(), next->get_value()) &&
+		   EQUIV(previous->get_control_out_value(), 0) &&
+		   EQUIV(next->get_control_in_value(), 0))
 		{
 			return previous->get_value();
 		}
 	}
+	
+// at this point: previous and next not NULL, positions differ, value not constant.
+
+	return calculate_bezier(previous, next, position);
+}
 
 
-// Interpolate
-	y0 = previous->get_value();
-	y3 = next->get_value();
+float FloatAutos::calculate_bezier(FloatAuto *previous, FloatAuto *next, int64_t position)
+{
+	if(next->position - previous->position == 0) return previous->get_value();
 
-	if(direction == PLAY_FORWARD)
-	{
-		y1 = previous->get_value() + previous->get_control_out_value();
-		y2 = next->get_value() + next->get_control_in_value();
-		t = (double)(position - previous->position) / 
+	float y0 = previous->get_value();
+	float y3 = next->get_value();
+
+// control points
+	float y1 = previous->get_value() + previous->get_control_out_value();
+	float y2 = next->get_value() + next->get_control_in_value();
+	float t = (float)(position - previous->position) / 
 			(next->position - previous->position);
-// division by 0
-		if(next->position - previous->position == 0) return previous->get_value();
-	}
-	else
-	{
-		y1 = previous->get_value() + previous->get_control_in_value();
-		y2 = next->get_value() + next->get_control_in_value();
-		t = (double)(previous->position - position) / 
-			(previous->position - next->position);
-// division by 0
-		if(previous->position - next->position == 0) return previous->get_value();
-	}
 
  	float tpow2 = t * t;
 	float tpow3 = t * t * t;
@@ -344,16 +323,41 @@ float FloatAutos::get_value(int64_t position,
 //printf("FloatAutos::get_value(t=%5.3f)->%6.2f   (prev,pos,next)=(%d,%d,%d)\n", t, result, previous->position, position, next->position);
 
 	return result;
+}
 
 
-
-// 	get_fade_automation(slope,
-// 		intercept,
-// 		position,
-// 		slope_len,
-// 		PLAY_FORWARD);
-// 
-// 	return (float)intercept;
+float FloatAutos::calculate_bezier_derivation(FloatAuto *previous, FloatAuto *next, int64_t position)
+// calculate the slope of the interpolating bezier function at given position.
+// computed slope is based on the actual position scale (in frames or samples)
+{
+	float scale = next->position - previous->position;
+	if(scale == 0)
+		if(previous->get_control_out_position() != 0)
+			return previous->get_control_out_value() / previous->get_control_out_position();
+		else
+			return 0;
+	
+	float y0 = previous->get_value();
+	float y3 = next->get_value();
+	
+// control points
+	float y1 = previous->get_value() + previous->get_control_out_value();
+	float y2 = next->get_value() + next->get_control_in_value();
+// normalized scale	
+	float t = (float)(position - previous->position) / scale; 
+	
+ 	float tpow2 = t * t;
+	float invt = 1 - t;
+	float invtpow2 = invt * invt;
+	
+	float slope = 3 * (
+		- invtpow2              * y0
+		- invt * ( 2*t - invt ) * y1
+		+ t    * ( 2*invt - t ) * y2 
+		+ tpow2                 * y3
+		);
+	
+	return slope / scale;
 }
 
 
@@ -424,10 +428,7 @@ void FloatAutos::get_extents(float *min,
 		position < unit_end; 
 		position += unit_step)
 	{
-		float value = get_value(position,
-			PLAY_FORWARD,
-			prev,
-			next);
+		float value = get_value(position,prev,next);
 		if(*coords_undefined)
 		{
 			*min = *max = value;

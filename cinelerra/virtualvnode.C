@@ -339,7 +339,6 @@ int VirtualVNode::render_fade(VFrame *output,
 		printf("  VirtualVNode::render_fade title=%s\n", track->title);
 
 	intercept = ((FloatAutos*)autos)->get_value(start_position_project, 
-		direction,
 		previous,
 		next);
 

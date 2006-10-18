@@ -109,7 +109,6 @@ int VPatchGUI::update(int x, int y)
 			unit_position = vtrack->to_units(unit_position, 0);
 			int value = (int)((FloatAutos*)vtrack->automation->autos[AUTOMATION_FADE])->get_value(
 				(int64_t)unit_position,
-				PLAY_FORWARD, 
 				previous, 
 				next);
 			fade->update(fade->get_w(),

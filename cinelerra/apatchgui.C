@@ -117,7 +117,6 @@ int APatchGUI::update(int x, int y)
 			FloatAutos *ptr = (FloatAutos*)atrack->automation->autos[AUTOMATION_FADE];
 			float value = ptr->get_value(
 				(long)unit_position,
-				PLAY_FORWARD, 
 				previous, 
 				next);
 			fade->update(fade->get_w(),

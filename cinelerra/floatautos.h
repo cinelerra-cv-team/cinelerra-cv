@@ -50,14 +50,11 @@ public:
 // Get value at a specific point.  This needs previous and next stores
 // because it is used for every pixel in the drawing function.
 	float get_value(int64_t position, 
-		int direction,
 		FloatAuto* &previous,
 		FloatAuto* &next);
-	void get_fade_automation(double &slope,
-		double &intercept,
-		int64_t input_position,
-		int64_t &slope_len,
-		int direction);
+// Helper: just calc the bezier function without doing any lookup of nodes
+ 	static float calculate_bezier(FloatAuto *previous, FloatAuto *next, int64_t position);
+ 	static float calculate_bezier_derivation(FloatAuto *previous, FloatAuto *next, int64_t position);
 	void get_extents(float *min, 
 		float *max,
 		int *coords_undefined,
