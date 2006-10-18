@@ -2291,12 +2291,12 @@ void TrackCanvas::draw_floatauto(FloatAuto *current,
 // floatauto doesn't adjust it's tangents automatically
 	if(current->tangent_mode != FloatAuto::FREE &&
 	   current->tangent_mode != FloatAuto::TFREE)
-	    return;
-	
-	if(in_x!=x)
-		draw_floatauto_ctrlpoint(x,y,in_x,in_y,center_pixel,zoom_track,color);
-	if(out_x!=x)
-		draw_floatauto_ctrlpoint(x,y,out_x,out_y,center_pixel,zoom_track,color);
+		return;
+
+	if(in_x != x)
+		draw_floatauto_ctrlpoint(x, y, in_x, in_y, center_pixel, zoom_track, color);
+	if(out_x != x)
+		draw_floatauto_ctrlpoint(x, y, out_x, out_y, center_pixel, zoom_track, color);
 }
 
 inline int quantize(float f) { return (int)floor(f + 0.5); }

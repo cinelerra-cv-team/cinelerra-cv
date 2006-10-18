@@ -29,11 +29,13 @@
 #include "plugindialog.inc"
 #include "keyframe.inc"
 #include "automation.h" 
+#include "floatauto.h"
 
 
 class KeyframePopupDelete;
 class KeyframePopupShow;
 class KeyframePopupCopy;
+class KeyframePopupTangentMode;
  
  
 class KeyframePopup : public BC_PopupMenu
@@ -54,12 +56,17 @@ public:
 	Autos *keyframe_autos;
 	Automation *keyframe_automation;
 	Auto *keyframe_auto;
-	
+	bool tangent_mode_displayed;
 
-	
+
+private:	
 	KeyframePopupDelete *key_delete;
 	KeyframePopupShow *key_show;
 	KeyframePopupCopy *key_copy;
+	KeyframePopupTangentMode *tan_smooth, *tan_linear, *tan_free_t, *tan_free;
+	BC_MenuItem * __hline__;
+	
+	void handle_tangent_mode(Autos *autos, Auto *auto_keyframe);
 };
 
 class KeyframePopupDelete : public BC_MenuItem
@@ -95,6 +102,21 @@ public:
 	KeyframePopup *popup;
 };
 
+class KeyframePopupTangentMode : public BC_MenuItem
+{
+public:
+	KeyframePopupTangentMode(MWindow *mwindow, KeyframePopup *popup, int tangent_mode);
+	~KeyframePopupTangentMode();
+	int handle_event();
 
+private:
+	MWindow *mwindow;
+	KeyframePopup *popup;
+	int tangent_mode;
+	char* get_labeltext(int);
+	void toggle_mode(FloatAuto*);
+    
+friend class KeyframePopup;
+};
 
  #endif
