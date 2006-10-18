@@ -555,7 +555,7 @@ void CWindowCameraGUI::create_objects()
 	this->x = new CWindowCoord(this, 
 		x, 
 		y, 
-		x_auto ? x_auto->value : (float)0);
+		x_auto ? x_auto->get_value() : (float)0);
 	this->x->create_objects();
 	y += 30;
 	x = 10;
@@ -564,7 +564,7 @@ void CWindowCameraGUI::create_objects()
 	this->y = new CWindowCoord(this, 
 		x, 
 		y, 
-		y_auto ? y_auto->value : (float)0);
+		y_auto ? y_auto->get_value() : (float)0);
 	this->y->create_objects();
 	y += 30;
 	x = 10;
@@ -573,7 +573,7 @@ void CWindowCameraGUI::create_objects()
 	this->z = new CWindowCoord(this, 
 		x, 
 		y, 
-		z_auto ? z_auto->value : (float)1,
+		z_auto ? z_auto->get_value() : (float)1,
 		1);
 	this->z->create_objects();
 	this->z->set_boundaries((float).0001, (float)256.0);
@@ -626,7 +626,7 @@ void CWindowCameraGUI::handle_event()
 				1);
 			if(x_auto)
 			{
-				x_auto->value = atof(x->get_text());
+				x_auto->set_value( atof(x->get_text()) );
 				update_preview();
 			}
 		}
@@ -638,7 +638,7 @@ void CWindowCameraGUI::handle_event()
 				1);
 			if(y_auto)
 			{
-				y_auto->value = atof(y->get_text());
+				y_auto->set_value( atof(y->get_text()) );
 				update_preview();
 			}
 		}
@@ -658,7 +658,7 @@ void CWindowCameraGUI::handle_event()
 	// 		if(zoom != atof(z->get_text())) 
 	// 			z->update(zoom);
 
-				z_auto->value = zoom;
+				z_auto->set_value(zoom);
 				mwindow->gui->lock_window("CWindowCameraGUI::handle_event");
 				mwindow->gui->canvas->draw_overlays();
 				mwindow->gui->canvas->flash();
@@ -689,11 +689,11 @@ void CWindowCameraGUI::update()
 	}
 
 	if(x_auto)
-		x->update(x_auto->value);
+		x->update(x_auto->get_value());
 	if(y_auto)
-		y->update(y_auto->value);
+		y->update(y_auto->get_value());
 	if(z_auto)
-		z->update(z_auto->value);
+		z->update(z_auto->get_value());
 }
 
 // BezierAuto* CWindowCameraGUI::get_keyframe()
@@ -742,9 +742,9 @@ int CWindowCameraLeft::handle_event()
 
 		if(w && h)
 		{
-			x_auto->value = 
-				(double)track->track_w / z_auto->value / 2 - 
-				(double)w / 2;
+			x_auto->set_value(
+				(double)track->track_w / z_auto->get_value() / 2 - 
+				(double)w/2);
 			gui->update();
 			gui->update_preview();
 		}
@@ -772,7 +772,7 @@ int CWindowCameraCenter::handle_event()
 
 	if(x_auto)
 	{
-		x_auto->value = 0;
+		x_auto->set_value(0);
 		gui->update();
 		gui->update_preview();
 	}
@@ -815,8 +815,8 @@ int CWindowCameraRight::handle_event()
 
 		if(w && h)
 		{
-			x_auto->value = -((double)track->track_w / z_auto->value / 2 - 
-				(double)w / 2);
+			x_auto->set_value( -((double)track->track_w / z_auto->get_value() / 2 
+				- (double)w / 2));
 			gui->update();
 			gui->update_preview();
 		}
@@ -860,8 +860,8 @@ int CWindowCameraTop::handle_event()
 
 		if(w && h)
 		{
-			y_auto->value = (double)track->track_h / z_auto->value / 2 - 
-				(double)h / 2;
+			y_auto->set_value(
+				(double)track->track_h / z_auto->get_value() / 2 - (double)h/2);
 			gui->update();
 			gui->update_preview();
 		}
@@ -888,7 +888,7 @@ int CWindowCameraMiddle::handle_event()
 
 	if(y_auto)
 	{
-		y_auto->value = 0;
+		y_auto->set_value(0);
 		gui->update();
 		gui->update_preview();
 	}
@@ -931,8 +931,8 @@ int CWindowCameraBottom::handle_event()
 
 		if(w && h)
 		{
-			y_auto->value = -((double)track->track_h / z_auto->value / 2 - 
-				(double)h / 2);
+			y_auto->set_value(
+				-((double)track->track_h / z_auto->get_value() / 2 - (double)h/2));
 			gui->update();
 			gui->update_preview();
 		}
@@ -995,7 +995,7 @@ void CWindowProjectorGUI::create_objects()
 	this->x = new CWindowCoord(this, 
 		x, 
 		y, 
-		x_auto ? x_auto->value : (float)0);
+		x_auto ? x_auto->get_value() : (float)0);
 	this->x->create_objects();
 	y += 30;
 	x = 10;
@@ -1004,7 +1004,7 @@ void CWindowProjectorGUI::create_objects()
 	this->y = new CWindowCoord(this, 
 		x, 
 		y, 
-		y_auto ? y_auto->value : (float)0);
+		y_auto ? y_auto->get_value() : (float)0);
 	this->y->create_objects();
 	y += 30;
 	x = 10;
@@ -1013,7 +1013,7 @@ void CWindowProjectorGUI::create_objects()
 	this->z = new CWindowCoord(this, 
 		x, 
 		y, 
-		z_auto ? z_auto->value : (float)1,
+		z_auto ? z_auto->get_value() : (float)1,
 		1);
 	this->z->create_objects();
 	this->z->set_boundaries((float).0001, (float)256.0);
@@ -1065,7 +1065,7 @@ void CWindowProjectorGUI::handle_event()
 				1);
 			if(x_auto)
 			{
-				x_auto->value = atof(x->get_text());
+				x_auto->set_value( atof(x->get_text()) );
 				update_preview();
 			}
 		}
@@ -1077,7 +1077,7 @@ void CWindowProjectorGUI::handle_event()
 				1);
 			if(y_auto)
 			{
-				y_auto->value = atof(y->get_text());
+				y_auto->set_value( atof(y->get_text()) );
 				update_preview();
 			}
 		}
@@ -1095,7 +1095,7 @@ void CWindowProjectorGUI::handle_event()
 				if(zoom < 0) zoom = 0;
 // 			if (zoom != atof(z->get_text())) 
 // 				z->update(zoom);
-				z_auto->value = zoom;
+				z_auto->set_value(zoom);
 
 				mwindow->gui->lock_window("CWindowProjectorGUI::handle_event");
 				mwindow->gui->canvas->draw_overlays();
@@ -1128,11 +1128,11 @@ void CWindowProjectorGUI::update()
 	}
 
 	if(x_auto)
-		x->update(x_auto->value);
+		x->update(x_auto->get_value());
 	if(y_auto)
-		y->update(y_auto->value);
+		y->update(y_auto->get_value());
 	if(z_auto)
-		z->update(z_auto->value);
+		z->update(z_auto->get_value());
 }
 
 // BezierAuto* CWindowProjectorGUI::get_keyframe()
@@ -1207,8 +1207,8 @@ int CWindowProjectorLeft::handle_event()
 	}
 	if(x_auto && z_auto)
 	{
-		x_auto->value = (double)track->track_w * z_auto->value / 2 - 
-			(double)mwindow->edl->session->output_w / 2;
+		x_auto->set_value( (double)track->track_w * z_auto->get_value() / 2 - 
+			(double)mwindow->edl->session->output_w / 2 );
 		gui->update();
 		gui->update_preview();
 	}
@@ -1235,7 +1235,7 @@ int CWindowProjectorCenter::handle_event()
 
 	if(x_auto)
 	{
-		x_auto->value = 0;
+		x_auto->set_value(0);
 		gui->update();
 		gui->update_preview();
 	}
@@ -1270,8 +1270,8 @@ int CWindowProjectorRight::handle_event()
 
 	if(x_auto && z_auto)
 	{
-		x_auto->value = -((double)track->track_w * z_auto->value / 2 - 
-			(double)mwindow->edl->session->output_w / 2);
+		x_auto->set_value( -((double)track->track_w * z_auto->get_value() / 2 - 
+			(double)mwindow->edl->session->output_w / 2));
 		gui->update();
 		gui->update_preview();
 	}
@@ -1306,8 +1306,8 @@ int CWindowProjectorTop::handle_event()
 
 	if(y_auto && z_auto)
 	{
-		y_auto->value = (double)track->track_h * z_auto->value / 2 - 
-			(double)mwindow->edl->session->output_h / 2;
+		y_auto->set_value( (double)track->track_h * z_auto->get_value() / 2 - 
+			(double)mwindow->edl->session->output_h / 2 );
 		gui->update();
 		gui->update_preview();
 	}
@@ -1333,7 +1333,7 @@ int CWindowProjectorMiddle::handle_event()
 
 	if(y_auto)
 	{
-		y_auto->value = 0;
+		y_auto->set_value(0);
 		gui->update();
 		gui->update_preview();
 	}
@@ -1368,8 +1368,8 @@ int CWindowProjectorBottom::handle_event()
 
 	if(y_auto && z_auto)
 	{
-		y_auto->value = -((double)track->track_h * z_auto->value / 2 - 
-			(double)mwindow->edl->session->output_h / 2);
+		y_auto->set_value( -((double)track->track_h * z_auto->get_value() / 2 - 
+			(double)mwindow->edl->session->output_h / 2) );
 		gui->update();
 		gui->update_preview();
 	}

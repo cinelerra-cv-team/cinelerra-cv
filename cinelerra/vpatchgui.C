@@ -190,7 +190,7 @@ VFadePatch::VFadePatch(MWindow *mwindow, VPatchGUI *patch, int x, int y, int w)
 			w, 
 			mwindow->edl->local_session->automation_mins[AUTOGROUPTYPE_VIDEO_FADE],
 			mwindow->edl->local_session->automation_maxs[AUTOGROUPTYPE_VIDEO_FADE], 
-			(int64_t)get_keyframe(mwindow, patch)->value)
+			(int64_t)get_keyframe(mwindow, patch)->get_value())
 {
 	this->mwindow = mwindow;
 	this->patch = patch;
@@ -206,8 +206,8 @@ float VFadePatch::update_edl()
 
 	current = (FloatAuto*)fade_autos->get_auto_for_editing(position);
 
-	float result = get_value() - current->value;
-	current->value = get_value();
+	float result = get_value() - current->get_value();
+	current->set_value(get_value());
 
 	mwindow->undo->update_undo(_("fade"), LOAD_AUTOMATION, need_undo ? 0 : this);
 
