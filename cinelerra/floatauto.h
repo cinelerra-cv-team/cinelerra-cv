@@ -46,13 +46,6 @@ public:
 	void copy(int64_t start, int64_t end, FileXML *file, int default_only);
 	void load(FileXML *xml);
 
- 	float value_to_percentage();
- 	float invalue_to_percentage();
- 	float outvalue_to_percentage();
-/* 	float percentage_to_value(float percentage);
- * 	float percentage_to_invalue(float percentage);
- * 	float percentage_to_outvalue(float percentage);
- */
 
 // "the value" (=payload of this keyframe)
 	float get_value() {return this->value;}

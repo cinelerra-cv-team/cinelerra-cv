@@ -42,7 +42,6 @@ public:
 	int identical(IntAuto *that);
 	void load(FileXML *file);
 	void copy(int64_t start, int64_t end, FileXML *file, int default_only);
-	float value_to_percentage();
 	int percentage_to_value(float percentage);
 
 	int value;

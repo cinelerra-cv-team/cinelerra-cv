@@ -54,10 +54,6 @@ public:
 
 	virtual void get_caption(char *string) {};
 
- 	virtual float value_to_percentage();
- 	virtual float invalue_to_percentage();
- 	virtual float outvalue_to_percentage();
-
 
 	int skip;       // if added by selection event for moves
 	EDL *edl;

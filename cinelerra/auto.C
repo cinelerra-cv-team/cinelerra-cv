@@ -89,19 +89,3 @@ void Auto::load(FileXML *xml)
 }
 
 
-
-float Auto::value_to_percentage()
-{
-	return 0;
-}
-
-float Auto::invalue_to_percentage()
-{
-	return 0;
-}
-
-float Auto::outvalue_to_percentage()
-{
-	return 0;
-}
-
