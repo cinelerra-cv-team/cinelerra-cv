@@ -2287,6 +2287,12 @@ void TrackCanvas::draw_floatauto(FloatAuto *current,
 		draw_box(x1, y1, x2 - x1, y2 - y1);
 	}
 
+// show bezier control points (only) if this 
+// floatauto doesn't adjust it's tangents automatically
+	if(current->tangent_mode != FloatAuto::FREE &&
+	   current->tangent_mode != FloatAuto::TFREE)
+	    return;
+	
 	if(in_x!=x)
 		draw_floatauto_ctrlpoint(x,y,in_x,in_y,center_pixel,zoom_track,color);
 	if(out_x!=x)
@@ -2390,7 +2396,7 @@ int TrackCanvas::test_auto(Auto *current,
 	return result;
 }
 
-int TrackCanvas::test_floatauto(Auto *current, 
+int TrackCanvas::test_floatauto(FloatAuto *current, 
 	int x, 
 	int y, 
 	int in_x,
@@ -2461,8 +2467,13 @@ int TrackCanvas::test_floatauto(Auto *current,
 		cursor_x < in_x2 && 
 		cursor_y >= in_y1 && 
 		cursor_y < in_y2 &&
-		current->position > 0)
-	{
+		current->position > 0 &&
+		(in_x!=x &&
+			(FloatAuto::FREE == current->tangent_mode ||
+			 FloatAuto::TFREE == current->tangent_mode)))
+// act on in control handle only if
+// tangent is significant and is editable (not automatically choosen)
+{
 		if(buttonpress && (buttonpress != 3))
 		{
 			mwindow->session->drag_auto = current;
@@ -2482,7 +2493,11 @@ int TrackCanvas::test_floatauto(Auto *current,
 		cursor_x >= out_x1 && 
 		cursor_x < out_x2 && 
 		cursor_y >= out_y1 && 
-		cursor_y < out_y2)
+		cursor_y < out_y2 &&
+		(out_x!=x &&
+			(FloatAuto::FREE == current->tangent_mode ||
+			 FloatAuto::TFREE == current->tangent_mode)))
+// act on out control only if tangent is significant and is editable
 	{
 		if(buttonpress && (buttonpress != 3))
 		{
@@ -3026,7 +3041,7 @@ int TrackCanvas::do_float_autos(Track *track,
 
 
 
-// Draw handle
+// Draw or test handle
 		if(current && !result)
 		{
 			if(current != autos->default_auto)
@@ -3034,7 +3049,7 @@ int TrackCanvas::do_float_autos(Track *track,
 				if(!draw)
 				{
 					if(track->record)
-						result = test_floatauto(current, 
+						result = test_floatauto((FloatAuto*)current, 
 							(int)ax2, 
 							(int)ay2, 
 							(int)in_x2,
@@ -3068,7 +3083,7 @@ int TrackCanvas::do_float_autos(Track *track,
 
 
 
-// Draw joining line
+// Draw or test joining line
 		if(!draw)
 		{
 			if(!result)

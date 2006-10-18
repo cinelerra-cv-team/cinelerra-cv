@@ -60,7 +60,7 @@ void FloatAutos::straighten(int64_t start, int64_t end)
 			if(previous_auto && previous_auto->position >= start)
 			{
 				float previous_value = previous_auto->value;
-				current->control_in_value = (previous_value - current_value) / 6.0;
+				current->control_in_value = (previous_value - current_value) / 3.0;
 				if(!current->control_in_position)
 					current->control_in_position = -track->to_units(1.0, 0);
 			}
@@ -69,7 +69,7 @@ void FloatAutos::straighten(int64_t start, int64_t end)
 			if(next_auto && next_auto->position < end)
 			{
 				float next_value = next_auto->value;
-				current->control_out_value = (next_value - current_value) / 6.0;
+				current->control_out_value = (next_value - current_value) / 3.0;
 				if(!current->control_out_position)
 					current->control_out_position = track->to_units(1.0, 0);
 			}
@@ -318,8 +318,8 @@ float FloatAutos::get_value(int64_t position,
 
 	if(direction == PLAY_FORWARD)
 	{
-		y1 = previous->value + previous->control_out_value * 2;
-		y2 = next->value + next->control_in_value * 2;
+		y1 = previous->value + previous->control_out_value;
+		y2 = next->value + next->control_in_value;
 		t = (double)(position - previous->position) / 
 			(next->position - previous->position);
 // division by 0
@@ -327,8 +327,8 @@ float FloatAutos::get_value(int64_t position,
 	}
 	else
 	{
-		y1 = previous->value + previous->control_in_value * 2;
-		y2 = next->value + next->control_out_value * 2;
+		y1 = previous->value + previous->control_in_value;
+		y2 = next->value + next->control_out_value;
 		t = (double)(previous->position - position) / 
 			(previous->position - next->position);
 // division by 0
@@ -518,6 +518,9 @@ void FloatAutos::dump()
 			((FloatAuto*)current)->control_in_value,
 			((FloatAuto*)current)->control_out_value,
 			((FloatAuto*)current)->control_in_position,
-			((FloatAuto*)current)->control_out_position);
+			((FloatAuto*)current)->control_out_position,
+			((FloatAuto*)current)->tangent_mode == FloatAuto::SMOOTH ? "smooth" :
+			((FloatAuto*)current)->tangent_mode == FloatAuto::LINEAR ? "linear" : ""
+			);
 	}
 }
