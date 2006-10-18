@@ -90,12 +90,11 @@ int FloatAuto::identical(FloatAuto *src)
  * 
 float FloatAuto::value_to_percentage()
 {
-
-float FloatAuto::invalue_to_percentage()
+}
+float FloatAuto::value_to_percentage()
 {
 }
-
-float FloatAuto::outvalue_to_percentage()
+float FloatAuto::value_to_percentage()
 {
 }
 */
@@ -205,8 +204,7 @@ void FloatAuto::set_control_in_value(float newvalue)
 	switch(tangent_mode) {
 		case TFREE:	control_out_value = control_out_position*newvalue / control_in_position;
 		case FREE:	control_in_value = newvalue;
-		default:	control_in_value = newvalue;
-//		default:	return;	///////////////////TODO: don't set the outvalue, if it's actually computed automatically
+		default:	return; // otherwise calculated automatically...
 	}
 }
 
@@ -215,8 +213,7 @@ void FloatAuto::set_control_out_value(float newvalue)
 	switch(tangent_mode) {
 		case TFREE:	control_in_value = control_in_position*newvalue / control_out_position;
 		case FREE:	control_out_value=newvalue;
-		default:	control_out_value=newvalue;
-//		default:	return;	///////////////////TODO: don't set the outvalue, if it's actually computed automatically
+		default:	return;
 	}
 }
 

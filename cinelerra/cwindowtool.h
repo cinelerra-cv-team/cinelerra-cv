@@ -31,6 +31,7 @@
 
 class CWindowToolGUI;
 class CWindowCoord;
+class CWindowTangentToggle;
 
 
 // This common thread supports all the tool GUI's.
@@ -263,6 +264,9 @@ public:
 	void handle_event();
 //	BezierAuto* get_keyframe();
 	CWindowCoord *x, *y, *z;
+private:
+// Toggles for keyframe tangent mode (for camera automation only)
+	CWindowTangentToggle *t_smooth, *t_linear;
 };
 
 class CWindowCameraLeft : public BC_Button
@@ -330,6 +334,9 @@ public:
 	void handle_event();
 //	BezierAuto* get_keyframe();
 	CWindowCoord *x, *y, *z;
+private:
+// Toggles for keyframe tangent mode (projector automation only)
+	CWindowTangentToggle *t_smooth, *t_linear;
 };
 
 class CWindowProjectorLeft : public BC_Button

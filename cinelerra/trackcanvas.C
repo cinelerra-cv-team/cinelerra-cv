@@ -2305,11 +2305,11 @@ void TrackCanvas::draw_floatauto(FloatAuto *current,
 inline int quantize(float f) { return (int)floor(f + 0.5); }
 
 inline void TrackCanvas::draw_floatauto_ctrlpoint(
-	int x, 
-	int y, 
-	int cp_x, 
-	int cp_y, 
-	int center_pixel, 
+	int x,
+	int y,
+	int cp_x,
+	int cp_y,
+	int center_pixel,
 	int zoom_track,
 	int color)
 // draw the tangent and a handle for given bézier ctrl point
@@ -2577,16 +2577,16 @@ int TrackCanvas::test_floatauto(FloatAuto *current,
 					result = 1;
 					if(buttonpress && (buttonpress != 3))
 					{
-						if(lever == 0.0) lever=1.0; // we entered by dragging the handle... 					
+						if(lever == 0.0) lever=1.0; // we entered by dragging the handle...
 						mwindow->session->drag_handle = 1;
 						float new_invalue = current->get_value() + lever * current->get_control_in_value();
 						INIT_DRAG(current->position + (int64_t)(lever * current->get_control_in_position()),
 						          value_to_percentage(new_invalue, autogrouptype))
 				}	}
 			}
-			
+
 // Test out control
-			if(out_x! = x &&
+			if(out_x != x &&
 				(FloatAuto::FREE == current->tangent_mode ||
 				 FloatAuto::TFREE == current->tangent_mode))
 // act on out control only if tangent is significant and is editable
@@ -2598,7 +2598,7 @@ int TrackCanvas::test_floatauto(FloatAuto *current,
 					result = 1;
 					if(buttonpress && (buttonpress != 3))
 					{
-						if ( lever==0.0 ) lever=1.0;
+						if(lever == 0.0) lever=1.0;
 						mwindow->session->drag_handle = 2;
 						float new_outvalue = current->get_value() + lever * current->get_control_out_value();
 						INIT_DRAG(current->position + (int64_t)(lever * current->get_control_out_position()),

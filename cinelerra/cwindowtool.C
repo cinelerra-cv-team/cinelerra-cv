@@ -510,6 +510,103 @@ void CWindowEyedropGUI::update()
 
 
 
+/* Buttons to control Keyframe-Tangent-Mode for Projector or Camera */
+	
+// Configuration for all possible Keyframe Tangent Mode toggles
+struct _TGD {
+	FloatAuto::t_mode mode;
+	bool use_camera;
+	char* icon_id;
+	char* tooltip;
+};
+	
+const _TGD Camera_Tan_Smooth =
+	{	FloatAuto::SMOOTH,
+		true,
+		"tan_smooth",
+		_("\"smooth\" Tangent on current Camera Keyframes")
+	};
+const _TGD Camera_Tan_Linear =
+	{	FloatAuto::LINEAR,
+		true,
+		"tan_linear",
+		_("\"linear\" Tangent on current Camera Keyframes")
+	};
+const _TGD Projector_Tan_Smooth =
+	{	FloatAuto::SMOOTH,
+		false,
+		"tan_smooth",
+		_("\"smooth\" Tangent on current Projector Keyframes")
+	};
+const _TGD Projector_Tan_Linear =
+	{	FloatAuto::LINEAR,
+		false,
+		"tan_linear",
+		_("\"linear\" Tangent on current Projector Keyframes")
+	};
+	
+	
+// Implementation Class für Keyframe Tangent Mode buttons
+//
+// This button reflects the state of the "current" keyframe
+// (the nearest keyframe on the left) for all three automation
+// lines together. Clicking on this button (re)sets the tangent
+// mode for the three "current" keyframes simultanously, but
+// never creates a new keyframe.
+//
+class CWindowTangentToggle : public BC_Toggle
+{
+public:
+	CWindowTangentToggle(_TGD mode, MWindow *mwindow, CWindowToolGUI *gui, int x, int y);
+	void check_toggle_state(FloatAuto *x, FloatAuto *y, FloatAuto *z);
+	int handle_event();
+private:
+	_TGD cfg;	
+	MWindow *mwindow;
+	CWindowToolGUI *gui;
+};
+	
+	
+CWindowTangentToggle::CWindowTangentToggle(_TGD mode, MWindow *mwindow, CWindowToolGUI *gui, int x, int y)
+ : BC_Toggle(x, y, mwindow->theme->get_image_set(mode.icon_id), false),
+   cfg(mode)
+{
+	this->gui = gui;
+	this->mwindow = mwindow;
+	set_tooltip(cfg.tooltip);
+}
+	
+void CWindowTangentToggle::check_toggle_state(FloatAuto *x, FloatAuto *y, FloatAuto *z)
+{
+// the toggle state is only set to ON if all
+// three automation lines have the same tangent mode.
+// For mixed states the toggle stays off.
+	set_value( x->tangent_mode == this->cfg.mode &&
+	           y->tangent_mode == this->cfg.mode &&
+	           z->tangent_mode == this->cfg.mode
+	         ,true // redraw to show new state 
+	         );
+}
+	
+int CWindowTangentToggle::handle_event()
+{
+	FloatAuto *x=0, *y=0, *z=0;
+	Track *track = mwindow->cwindow->calculate_affected_track();
+	
+	if(track)
+	{	mwindow->cwindow->calculate_affected_autos(&x, &y, &z,
+			track, cfg.use_camera, 0,0,0); // don't create new keyframe
+		
+		if(x)	x->change_tangent_mode(cfg.mode);
+		if(y)	y->change_tangent_mode(cfg.mode);
+		if(z)	z->change_tangent_mode(cfg.mode);
+		
+		gui->update();
+		gui->update_preview();
+	}
+	
+	return 1;
+}
 
 
 
@@ -555,7 +652,7 @@ void CWindowCameraGUI::create_objects()
 	this->x = new CWindowCoord(this, 
 		x, 
 		y, 
-		x_auto ? x_auto->get_value() : (float)0);
+		(float)0);
 	this->x->create_objects();
 	y += 30;
 	x = 10;
@@ -564,7 +661,7 @@ void CWindowCameraGUI::create_objects()
 	this->y = new CWindowCoord(this, 
 		x, 
 		y, 
-		y_auto ? y_auto->get_value() : (float)0);
+		(float)0);
 	this->y->create_objects();
 	y += 30;
 	x = 10;
@@ -573,7 +670,7 @@ void CWindowCameraGUI::create_objects()
 	this->z = new CWindowCoord(this, 
 		x, 
 		y, 
-		z_auto ? z_auto->get_value() : (float)1,
+		(float)1,
 		1);
 	this->z->create_objects();
 	this->z->set_boundaries((float).0001, (float)256.0);
@@ -593,7 +690,15 @@ void CWindowCameraGUI::create_objects()
 	add_subwindow(button = new CWindowCameraMiddle(mwindow, this, x1, y));
 	x1 += button->get_w();
 	add_subwindow(button = new CWindowCameraBottom(mwindow, this, x1, y));
-
+	
+// additional Buttons to control the tangent mode of the "current" keyframe
+	x1 += button->get_w() + 15;	 
+	add_subwindow(this->t_smooth = new CWindowTangentToggle(Camera_Tan_Smooth, mwindow, this, x1, y));
+	x1 += button->get_w();
+	add_subwindow(this->t_linear = new CWindowTangentToggle(Camera_Tan_Linear, mwindow, this, x1, y));
+	
+// fill in current auto keyframe values, set toggle states.
+	this->update();
 }
 
 void CWindowCameraGUI::update_preview()
@@ -605,6 +710,11 @@ void CWindowCameraGUI::update_preview()
 			CHANGE_NONE,
 			mwindow->edl,
 			1);
+	// TODO: do we really need to lock the main window??
+	mwindow->gui->lock_window("CWindowCameraGUI::update_preview");
+	mwindow->gui->canvas->draw_overlays();
+	mwindow->gui->canvas->flash();
+	mwindow->gui->unlock_window();
 	mwindow->cwindow->gui->lock_window("CWindowCameraGUI::update_preview");
 	mwindow->cwindow->gui->canvas->draw_refresh();
 	mwindow->cwindow->gui->unlock_window();
@@ -627,6 +737,7 @@ void CWindowCameraGUI::handle_event()
 			if(x_auto)
 			{
 				x_auto->set_value(atof(x->get_text()));
+				update();
 				update_preview();
 			}
 		}
@@ -639,6 +750,7 @@ void CWindowCameraGUI::handle_event()
 			if(y_auto)
 			{
 				y_auto->set_value(atof(y->get_text()));
+				update();
 				update_preview();
 			}
 		}
@@ -663,6 +775,7 @@ void CWindowCameraGUI::handle_event()
 				mwindow->gui->canvas->draw_overlays();
 				mwindow->gui->canvas->flash();
 				mwindow->gui->unlock_window();
+				update();
 				update_preview();
 			}
 		}
@@ -694,17 +807,14 @@ void CWindowCameraGUI::update()
 		y->update(y_auto->get_value());
 	if(z_auto)
 		z->update(z_auto->get_value());
+	
+	if( x_auto && y_auto && z_auto )
+	{
+		t_smooth->check_toggle_state(x_auto, y_auto, z_auto);
+		t_linear->check_toggle_state(x_auto, y_auto, z_auto);
+	}
 }
 
-// BezierAuto* CWindowCameraGUI::get_keyframe()
-// {
-// 	BezierAuto *keyframe = 0;
-// 	Track *track = mwindow->cwindow->calculate_affected_track();
-// 	if(track)
-// 		keyframe = (BezierAuto*)mwindow->cwindow->calculate_affected_auto(
-// 			track->automation->autos[AUTOMATION_CAMERA]);
-// 	return keyframe;
-// }
 
 
 
@@ -995,7 +1105,7 @@ void CWindowProjectorGUI::create_objects()
 	this->x = new CWindowCoord(this, 
 		x, 
 		y, 
-		x_auto ? x_auto->get_value() : (float)0);
+		(float)0);
 	this->x->create_objects();
 	y += 30;
 	x = 10;
@@ -1004,7 +1114,7 @@ void CWindowProjectorGUI::create_objects()
 	this->y = new CWindowCoord(this, 
 		x, 
 		y, 
-		y_auto ? y_auto->get_value() : (float)0);
+		(float)0);
 	this->y->create_objects();
 	y += 30;
 	x = 10;
@@ -1013,7 +1123,7 @@ void CWindowProjectorGUI::create_objects()
 	this->z = new CWindowCoord(this, 
 		x, 
 		y, 
-		z_auto ? z_auto->get_value() : (float)1,
+		(float)1,
 		1);
 	this->z->create_objects();
 	this->z->set_boundaries((float).0001, (float)256.0);
@@ -1033,7 +1143,15 @@ void CWindowProjectorGUI::create_objects()
 	add_subwindow(button = new CWindowProjectorMiddle(mwindow, this, x1, y));
 	x1 += button->get_w();
 	add_subwindow(button = new CWindowProjectorBottom(mwindow, this, x1, y));
-
+	
+// additional Buttons to control the tangent mode of the "current" keyframe
+	x1 += button->get_w() + 15;
+	add_subwindow(this->t_smooth = new CWindowTangentToggle(Projector_Tan_Smooth, mwindow, this, x1, y));
+	x1 += button->get_w();
+	add_subwindow(this->t_linear = new CWindowTangentToggle(Projector_Tan_Linear, mwindow, this, x1, y));
+	
+// fill in current auto keyframe values, set toggle states.	
+	this->update();
 }
 
 void CWindowProjectorGUI::update_preview()
@@ -1044,6 +1162,11 @@ void CWindowProjectorGUI::update_preview()
 			CHANGE_NONE,
 			mwindow->edl,
 			1);
+	// TODO: really need to lock the main window??
+	mwindow->gui->lock_window("CWindowProjectorGUI::update_preview");
+	mwindow->gui->canvas->draw_overlays();
+	mwindow->gui->canvas->flash();
+	mwindow->gui->unlock_window();
 	mwindow->cwindow->gui->lock_window("CWindowProjectorGUI::update_preview");
 	mwindow->cwindow->gui->canvas->draw_refresh();
 	mwindow->cwindow->gui->unlock_window();
@@ -1065,7 +1188,8 @@ void CWindowProjectorGUI::handle_event()
 				1);
 			if(x_auto)
 			{
-				x_auto->set_value( atof(x->get_text()));
+				x_auto->set_value(atof(x->get_text()));
+				update();
 				update_preview();
 			}
 		}
@@ -1077,7 +1201,8 @@ void CWindowProjectorGUI::handle_event()
 				1);
 			if(y_auto)
 			{
-				y_auto->set_value( atof(y->get_text()));
+				y_auto->set_value(atof(y->get_text()));
+				update();
 				update_preview();
 			}
 		}
@@ -1102,6 +1227,7 @@ void CWindowProjectorGUI::handle_event()
 				mwindow->gui->canvas->flash();
 				mwindow->gui->unlock_window();
 
+				update();
 				update_preview();
 			}
 		}
@@ -1133,17 +1259,14 @@ void CWindowProjectorGUI::update()
 		y->update(y_auto->get_value());
 	if(z_auto)
 		z->update(z_auto->get_value());
+	
+	if( x_auto && y_auto && z_auto )
+	{	
+		t_smooth->check_toggle_state(x_auto, y_auto, z_auto);
+		t_linear->check_toggle_state(x_auto, y_auto, z_auto);
+	}
 }
 
-// BezierAuto* CWindowProjectorGUI::get_keyframe()
-// {
-// 	BezierAuto *keyframe = 0;
-// 	Track *track = mwindow->cwindow->calculate_affected_track();
-// 	if(track)
-// 		keyframe = (BezierAuto*)mwindow->cwindow->calculate_affected_auto(
-// 			track->automation->autos[AUTOMATION_PROJECTOR]);
-// 	return keyframe;
-// }
 
 
 
