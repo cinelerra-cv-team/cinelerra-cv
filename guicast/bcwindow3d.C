@@ -98,12 +98,12 @@ void BC_WindowBase::put_shader(unsigned int handle, char *source)
 	get_resources()->get_synchronous()->put_shader(handle, source);
 }
 
-
-
-
-
-
-
-
-
-
+int BC_WindowBase::get_opengl_server_version()
+{
+#ifdef HAVE_GL
+	int maj, min;
+	if(glXQueryVersion(get_display(), &maj, &min))
+		return 100 * maj + min;
+#endif
+	return 0;
+}
