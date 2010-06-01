@@ -60,7 +60,7 @@ public:
 // Return 1 if querying the kernel returned a realtime policy
 	static int calculate_realtime();    
 	int get_synchronous();
-	int get_tid();
+	pthread_t get_tid();
 
 private:
 	int synchronous;         // set to 1 to force join() to end
