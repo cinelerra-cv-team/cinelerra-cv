@@ -65,7 +65,16 @@ libquicktimehv_la_SOURCES = \
 	raw.c \
 	rawaudio.c \
 	rle.c \
-													smhd.c stbl.c stco.c stsc.c stsd.c stsdtable.c stss.c stsz.c stts.c \
+	smhd.c \
+	sowt.c \
+	stbl.c \
+	stco.c \
+	stsc.c \
+	stsd.c \
+	stsdtable.c \
+	stss.c \
+	stsz.c \
+	stts.c \
 													tkhd.c trak.c twos.c udta.c ulaw.c util.c v308.c v408.c v410.c vmhd.c \
 	vbraudio.c \
 													vorbis.c workarounds.c yuv2.c yuv4.c yv12.c wmx2.c \
@@ -102,6 +111,7 @@ noinst_HEADERS = cmodel_permutation.h \
 	rle.h \
 	rtjpeg.h \
 	rtjpeg_core.h \
+	sowt.h \
 	twos.h \
 	ulaw.h \
 	v308.h \
