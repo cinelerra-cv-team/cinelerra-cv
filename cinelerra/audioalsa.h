@@ -51,7 +51,7 @@ private:
 	int close_output();
 	void translate_name(char *output, char *input);
 	snd_pcm_format_t translate_format(int format);
-	void set_params(snd_pcm_t *dsp, 
+	int set_params(snd_pcm_t *dsp, 
 		int channels, 
 		int bits,
 		int samplerate,
