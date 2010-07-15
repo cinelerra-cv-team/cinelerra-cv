@@ -404,7 +404,7 @@ int CaptureLengthTumbler::handle_down_event()
 
 
 RecordSoftwareTimer::RecordSoftwareTimer(PreferencesWindow *pwindow, int value, int x, int y)
- : BC_CheckBox(x, y, value, _("Use software for positioning information"))
+ : BC_CheckBox(x, y, value, _("Disable hardware synchronization"))
 {
 	this->pwindow = pwindow; 
 }

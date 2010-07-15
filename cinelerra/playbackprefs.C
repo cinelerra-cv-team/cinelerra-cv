@@ -340,7 +340,7 @@ int PlaybackViewFollows::handle_event()
 
 
 PlaybackSoftwareTimer::PlaybackSoftwareTimer(PreferencesWindow *pwindow, int value, int y)
- : BC_CheckBox(10, y, value, _("Use software for positioning information"))
+ : BC_CheckBox(10, y, value, _("Disable hardware synchronization"))
 { 
 	this->pwindow = pwindow; 
 }
