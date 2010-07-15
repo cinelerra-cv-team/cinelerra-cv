@@ -28,6 +28,7 @@
 #include "playbackconfig.h"
 #include "preferences.h"
 #include "recordconfig.h"
+#include "mutex.h"
 
 #include <string.h>
 
@@ -54,6 +55,13 @@ OSSThread::OSSThread(AudioOSS *device)
 	output_lock = new Condition(1, "OSSThread::output_lock");
 	read_lock = new Condition(0, "OSSThread::read_lock");
 	write_lock = new Condition(0, "OSSThread::write_lock");
+
+	// delay / timing
+	bytes_written = 0;
+	timer = new Timer;
+	delay = 0;
+	timer_lock = new Mutex("OSSThread::timer_lock");
+	timer->update();
 }
 
 OSSThread::~OSSThread()
@@ -65,6 +73,8 @@ OSSThread::~OSSThread()
 	delete output_lock;
 	delete read_lock;
 	delete write_lock;
+	delete timer_lock;
+	delete timer;
 }
 
 void OSSThread::run()
@@ -84,7 +94,27 @@ void OSSThread::run()
 
 
 			Thread::enable_cancel();
-			write(fd, data, bytes);
+			int written = write(fd, data, bytes);
+
+// quoth the OSS documentation re. SNDCTL_DSP_GETOPTR:
+// "This ioctl call should only be used when using mmap().
+// In normal applications it's practically useless."
+// As it does in fact seem to interact badly with at least ALSA emulation,
+// go to the more complex GETODELAY route, which does seem to work.
+// Long ago GETODELAY wasn't supported everywhere...
+
+			if(written)
+			{
+				// Update timing
+				int delay = 0;
+				timer_lock->lock("OSSThread::write_buffer");
+				if(!ioctl(fd, SNDCTL_DSP_GETODELAY, &delay))
+					this->delay = delay;
+				timer->update();
+				bytes_written += written;
+				timer_lock->unlock();
+			}
+
 			Thread::disable_cancel();
 
 
@@ -127,6 +157,15 @@ void OSSThread::wait_write()
 	write_lock->lock("OSSThread::wait_write");
 }
 
+
+// bytes not samples
+int64_t OSSThread::device_position()
+{
+	timer_lock->lock("OSSThread::device_position");
+	int64_t ret = bytes_written - delay;
+	timer_lock->unlock();
+	return ret;
+}
 
 
 
@@ -281,7 +320,9 @@ int AudioOSS::open_duplex()
 int AudioOSS::sizetofrag(int samples, int channels, int bits)
 {
 	int testfrag = 2, fragsize = 1;
-	samples *= channels * bits / 8;
+	samples *= channels * bits / 8
+		// we want four fragments totalling this size
+		/ 4;
 	while(testfrag < samples)
 	{
 		fragsize++;
@@ -346,19 +387,13 @@ int AudioOSS::set_cloexec_flag(int desc, int value)
 
 int64_t AudioOSS::device_position()
 {
-	count_info info;
-	if(!ioctl(get_output(0), SNDCTL_DSP_GETOPTR, &info))
+	for (int i = 0, in_channel = 0; i < MAXDEVICES; i++)
 	{
-//printf("AudioOSS::device_position %d %d %d\n", info.bytes, device->get_obits(), device->get_ochannels());
-// workaround for ALSA OSS emulation driver's bug
-// the problem is that if the first write to sound device was not full lenght fragment then 
-// _GETOPTR returns insanely large numbers at first moments of play
-		if (info.bytes > 2100000000) 
-			return 0;
-		else
-			return info.bytes / 
-				(device->get_obits() / 8) / 
-				device->get_ochannels();
+		if (thread[i])
+			return thread[i]->device_position() /
+				device->get_ochannels() /
+				(device->get_obits()/8) +
+				thread[i]->timer->get_scaled_difference(device->out_samplerate);
 	}
 	return 0;
 }
