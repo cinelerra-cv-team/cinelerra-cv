@@ -178,17 +178,12 @@ int FFMPEG::convert_cmodel(VFrame *frame_in,  VFrame *frame_out) {
 			return 1;
 		}
 
-		result = sws_scale(convert_ctx, 
-				picture_in.data, picture_in.linesize,
-				frame_in->get_w(), frame_in->get_h(),
-				picture_out.data, picture_out.linesize);
+		sws_scale(convert_ctx,
+			  picture_in.data, picture_in.linesize,
+			  0, frame_in->get_h(),
+			  picture_out.data, picture_out.linesize);
 
-	
 		sws_freeContext(convert_ctx);
-
-		if(result){
-			printf("FFMPEG::convert_cmodel sws_scale() failed\n");
-		}
 #endif
 		return result;
 	}
