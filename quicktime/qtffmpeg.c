@@ -225,7 +225,7 @@ static int get_chroma_factor(quicktime_ffmpeg_t *ffmpeg, int current_field)
 		case PIX_FMT_YUV420P:
 			return 4;
 			break;
-		case PIX_FMT_YUV422:
+		case PIX_FMT_YUYV422:
 			return 2;
 			break;
 		case PIX_FMT_YUV422P:
@@ -424,7 +424,7 @@ int quicktime_ffmpeg_decode(quicktime_ffmpeg_t *ffmpeg,
 		case PIX_FMT_YUV420P:
 			input_cmodel = BC_YUV420P;
 			break;
-		case PIX_FMT_YUV422:
+		case PIX_FMT_YUYV422:
 			input_cmodel = BC_YUV422;
 			break;
 		case PIX_FMT_YUV422P:
