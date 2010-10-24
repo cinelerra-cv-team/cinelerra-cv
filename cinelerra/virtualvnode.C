@@ -317,6 +317,7 @@ int VirtualVNode::render_as_module(VFrame *video_out,
 	return 0;
 }
 
+#define EPSILON 1e-6
 int VirtualVNode::render_fade(VFrame *output,        
 // start of input fragment in project if forward / end of input fragment if reverse
 // relative to requested frame rate
@@ -332,7 +333,7 @@ int VirtualVNode::render_fade(VFrame *output,
 	double edl_rate = renderengine->edl->session->frame_rate;
 	int64_t start_position_project = (int64_t)(start_position * 
 		edl_rate /
-		frame_rate);
+		frame_rate+EPSILON);
 
 	if(vconsole->debug_tree) 
 		printf("  VirtualVNode::render_fade title=%s\n", track->title);
