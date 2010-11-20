@@ -65,7 +65,7 @@ int AboutPrefs::create_objects()
 	y += get_text_height(LARGEFONT);
 	char license2[BCTEXTLEN];
 	sprintf(license2, "%s%s%s%s", 
-		_("(C) 2006 Heroine Virtual Ltd.\n\n"),
+		_("(C) 2010 Heroine Virtual Ltd.\n\n"),
 		REPOABOUTPREFTXT,
 		_("\nBuild date: "), 
 		BUILDDATE);
@@ -126,6 +126,18 @@ mpeg3_release());
 
 );
 	draw_text(x, y, credits);
+
+	int x_indented;
+	x_indented = x + get_text_width(MEDIUMFONT, "Pierre Marc Dumuid") + 20;
+
+	char credits_cont1[BCTEXTLEN];
+	sprintf(credits_cont1,
+
+"Einar Rünkaru\n"
+"Monty Montgomery\n"
+
+);
+	draw_text(x_indented, y, credits_cont1);
 
 	y = get_h() - 135;
 
