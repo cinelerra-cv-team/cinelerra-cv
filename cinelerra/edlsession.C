@@ -58,7 +58,7 @@ EDLSession::EDLSession(EDL *edl)
 	strcpy(default_atransition, "");
 	strcpy(default_vtransition, "");
 	default_transition_length = 1.0;
-	folderlist_format = ASSETS_ICONS;
+	folderlist_format = ASSETS_TEXT;
 	frame_rate = 25; // just has to be something by default
 	autos_follow_edits = 1; // this is needed for predictability
 	labels_follow_edits = 1;
@@ -175,7 +175,7 @@ int EDLSession::load_defaults(BC_Hash *defaults)
 	auto_conf->load_defaults(defaults);
 	autos_follow_edits = defaults->get("AUTOS_FOLLOW_EDITS", 1);
 	brender_start = defaults->get("BRENDER_START", brender_start);
-	cmodel_to_text(string, BC_RGBA8888);
+	cmodel_to_text(string, BC_YUVA8888);
 	color_model = cmodel_from_text(defaults->get("COLOR_MODEL", string));
 	ilacemode_to_xmltext(string, BC_ILACE_MODE_NOTINTERLACED);
 	interlace_mode = ilacemode_from_xmltext(defaults->get("INTERLACE_MODE",string), BC_ILACE_MODE_NOTINTERLACED);
@@ -190,7 +190,7 @@ int EDLSession::load_defaults(BC_Hash *defaults)
 	cwindow_mask = defaults->get("CWINDOW_MASK", 0);
 	cwindow_meter = defaults->get("CWINDOW_METER", 1);
 	cwindow_operation = defaults->get("CWINDOW_OPERATION", 0);
-	cwindow_scrollbars = defaults->get("CWINDOW_SCROLLBARS", 1);
+	cwindow_scrollbars = defaults->get("CWINDOW_SCROLLBARS", 0);
 	cwindow_xscroll = defaults->get("CWINDOW_XSCROLL", 0);
 	cwindow_yscroll = defaults->get("CWINDOW_YSCROLL", 0);
 	cwindow_zoom = defaults->get("CWINDOW_ZOOM", (float)1);
@@ -204,7 +204,7 @@ int EDLSession::load_defaults(BC_Hash *defaults)
 	edit_handle_mode[2] = defaults->get("EDIT_HANDLE_MODE2", MOVE_NO_EDITS);
 	editing_mode = defaults->get("EDITING_MODE", EDITING_IBEAM);
 	enable_duplex = defaults->get("ENABLE_DUPLEX", 1);
-	folderlist_format = defaults->get("FOLDERLIST_FORMAT", FOLDERS_ICONS);
+	folderlist_format = defaults->get("FOLDERLIST_FORMAT", ASSETS_TEXT);
 	frame_rate = defaults->get("FRAMERATE", (double)30000.0/1001);
 	frames_per_foot = defaults->get("FRAMES_PER_FOOT", (float)16);
 	interpolation_type = defaults->get("INTERPOLATION_TYPE", interpolation_type);
@@ -241,13 +241,13 @@ int EDLSession::load_defaults(BC_Hash *defaults)
 	safe_regions = defaults->get("SAFE_REGIONS", 1);
 	sample_rate = defaults->get("SAMPLERATE", 48000);
 	scrub_speed = defaults->get("SCRUB_SPEED", (float)2);
-	si_useduration = defaults->get("SI_USEDURATION",0);
-	si_duration = defaults->get("SI_DURATION",5);
+	si_useduration = defaults->get("SI_USEDURATION",1);
+	si_duration = defaults->get("SI_DURATION",3);
 	
 	show_assets = defaults->get("SHOW_ASSETS", 1);
 	show_titles = defaults->get("SHOW_TITLES", 1);
 //	test_playback_edits = defaults->get("TEST_PLAYBACK_EDITS", 1);
-	time_format = defaults->get("TIME_FORMAT", TIME_HMS);
+	time_format = defaults->get("TIME_FORMAT", TIME_HMSF);
 	for(int i = 0; i < 4; i++)
 	{
 		sprintf(string, "TIMECODE_OFFSET_%d", i);
@@ -265,7 +265,7 @@ int EDLSession::load_defaults(BC_Hash *defaults)
 		vchannel_y[i] = defaults->get(string, 0);
 	}
 	video_channels = defaults->get("VCHANNELS", 1);
-	video_every_frame = defaults->get("VIDEO_EVERY_FRAME", 1);
+	video_every_frame = defaults->get("VIDEO_EVERY_FRAME", 0);
 	video_asynchronous = defaults->get("VIDEO_ASYNCHRONOUS", 0);
 	video_tracks = defaults->get("VTRACKS", 1);
 	video_write_length = defaults->get("VIDEO_WRITE_LENGTH", 30);

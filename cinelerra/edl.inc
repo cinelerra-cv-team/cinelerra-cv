@@ -72,8 +72,6 @@ class EDL;
 // Modes for AWindow views
 #define ASSETS_TEXT 0
 #define ASSETS_ICONS 1
-#define FOLDERS_TEXT 0
-#define FOLDERS_ICONS 1
 
 #define ASSET_COLUMNS 2
 
@@ -103,6 +101,7 @@ class EDL;
 // Inclusive limits for zoom panel
 #define MIN_ZOOM_TIME 1
 #define MAX_ZOOM_TIME 0x100000
+#define DEFAULT_ZOOM_TIME 1024
 #define MIN_AMP_ZOOM 8
 #define MAX_AMP_ZOOM 262144
 #define MIN_TRACK_ZOOM 32
