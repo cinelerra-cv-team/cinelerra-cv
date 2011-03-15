@@ -104,6 +104,12 @@
 #include "zoombar.h"
 #include "exportedl.h"
 
+#include "defaultformats.h"
+#include "ntsczones.h"
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <string.h>
 
 
@@ -217,8 +223,74 @@ void MWindow::create_defaults_path(char *string)
 	}
 
 // load the defaults
-	strcat(string, "Cinelerra_rc");
+	strcat(string, CONFIG_FILE);
 }
+const char *MWindow::default_std()
+{
+	int fd, i, l = 0;
+	char buf[BCTEXTLEN];
+        char *p;
+
+	if((fd = open(TIMEZONE_NAME, O_RDONLY)) >= 0)
+	{
+		l = read(fd, buf, BCTEXTLEN);
+		close(fd);
+		if(l > 0)
+		{
+			buf[l] = 0;
+			if(buf[l - 1] == '\n')
+				buf[--l] = 0;
+		}
+		p = buf;
+	}
+	if(l < 1)
+	{
+		if((l = readlink(LOCALTIME_LINK, buf, BCTEXTLEN)) > 0)
+		{
+			buf[l] = 0;
+			if(p = strstr(buf, ZONEINFO_STR))
+			{
+				p += strlen(ZONEINFO_STR);
+				l = strlen(p);
+			}
+			else
+				l = 0;
+		}
+	}
+	if(l)
+	{
+		for(i = 0; ntsc_zones[i]; i++)
+		if(strcmp(ntsc_zones[i], p) == 0)
+			return "NTSC";
+	}
+	return "PAL";
+}
+
+void MWindow::fill_preset_defaults(const char *preset, EDLSession *session)
+{
+	struct formatpresets *fpr;
+
+	for(fpr = &format_presets[0]; fpr->name; fpr++)
+	{
+		if(strcmp(fpr->name, preset) == 0)
+		{
+			session->audio_channels = fpr->audio_channels;
+			session->audio_tracks = fpr->audio_tracks;
+			session->sample_rate = fpr->sample_rate;
+			session->video_channels = fpr->video_channels;
+			session->video_tracks = fpr->video_tracks;
+			session->frame_rate = fpr->frame_rate;
+			session->output_w = fpr->output_w;
+			session->output_h = fpr->output_h;
+			session->aspect_w = fpr->aspect_w;
+			session->aspect_h = fpr->aspect_h;
+			session->interlace_mode = fpr->interlace_mode;
+			session->color_model = fpr->color_model;
+			return;
+		}
+	}
+}
+
 
 void MWindow::init_defaults(BC_Hash* &defaults, char *config_path)
 {
@@ -630,6 +702,7 @@ void MWindow::init_edl()
 {
 	edl = new EDL;
 	edl->create_objects();
+	fill_preset_defaults(default_standard, edl->session);
     edl->load_defaults(defaults);
 	edl->create_default_tracks();
 	edl->tracks->update_y_pixels(theme);
@@ -1306,6 +1379,7 @@ void MWindow::create_objects(int want_gui,
 SET_TRACE
 
 	init_defaults(defaults, config_path);
+	default_standard = default_std();
 SET_TRACE
 	init_preferences();
 SET_TRACE

@@ -123,6 +123,7 @@ cinelerra_SOURCES = aattachmentpoint.C \
 		    cwindowgui.C \
 		    cwindowtool.C \
 		    dcoffset.C \
+		    defaultformats.h \
 		    dcraw.c \
 		    deleteallindexes.C \
 		    devicedvbinput.C \
@@ -532,6 +533,7 @@ noinst_HEADERS = aattachmentpoint.h \
 		 newfolder.h \
 		 new.h \
 		 newpresets.h \
+		 ntsczones.h \
 		 overlayframe.h \
 		 packagedispatcher.h \
 		 packagerenderer.h \

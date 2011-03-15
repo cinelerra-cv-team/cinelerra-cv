@@ -38,6 +38,7 @@
 #include "devicedvbinput.inc"
 #include "edit.inc"
 #include "edl.inc"
+#include "edlsession.inc"
 #include "exportedl.inc"
 #include "filesystem.inc"
 #include "filexml.inc"
@@ -444,6 +445,7 @@ public:
 	MainIndexes *mainindexes;
 	MainProgress *mainprogress;
 	BRender *brender;
+	const char *default_standard;
 
 // Menu items
 	ArrayList<ColormodelItem*> colormodels;
@@ -528,6 +530,8 @@ public:
 	void init_error();
 	static void init_defaults(BC_Hash* &defaults, 
 		char *config_path);
+	const char *default_std();
+	void fill_preset_defaults(const char *preset, EDLSession *session);
 	void init_edl();
 	void init_awindow();
 	void init_gwindow();
