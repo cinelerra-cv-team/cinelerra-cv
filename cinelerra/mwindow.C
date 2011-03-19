@@ -291,6 +291,13 @@ void MWindow::fill_preset_defaults(const char *preset, EDLSession *session)
 	}
 }
 
+char *MWindow::get_preset_name(int index)
+{
+	if(index >= MAX_NUM_PRESETS || index < 0)
+		return 0;
+	return (char*)format_presets[index].name;
+}
+
 
 void MWindow::init_defaults(BC_Hash* &defaults, char *config_path)
 {

@@ -216,6 +216,7 @@ void SetFormatThread::update()
 	window->aspect_w->update(new_settings->session->aspect_w);
 	window->aspect_h->update(new_settings->session->aspect_h);
 	window->interlace_pulldown->update(new_settings->session->interlace_mode);
+	window->color_model->update_value(new_settings->session->color_model);
 
 	window->canvas->draw();
 }
@@ -465,14 +466,14 @@ void SetFormatWindow::create_objects()
 		y, 
 		_("Color model:")));
 	x = mwindow->theme->setformat_x4;
-	add_subwindow(color_model = new BC_TextBox(x, 
+	add_subwindow(textbox = new BC_TextBox(x, 
 		y, 
 		100, 
 		1, 
 		""));
-	x += color_model->get_w();
-	add_subwindow(new ColormodelPulldown(mwindow, 
-		color_model, 
+	x += textbox->get_w();
+	add_subwindow(color_model = new ColormodelPulldown(mwindow, 
+		textbox,
 		&thread->new_settings->session->color_model,
 		x, 
 		y));

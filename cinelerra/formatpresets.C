@@ -19,9 +19,11 @@
  * 
  */
 
+#include "clip.h"
 #include "edl.h"
 #include "edlsession.h"
 #include "formatpresets.h"
+#include "mwindow.h"
 #include "new.h"
 #include "setformat.h"
 #include "interlacemodes.h"
@@ -57,205 +59,16 @@ void FormatPresets::create_objects()
 {
 // Create preset items
 	FormatPresetItem *item;
-	item = new FormatPresetItem(mwindow, this, _("User Defined"));
-	preset_items.append(item);
+	int i;
+	char *p;
+	preset_items.append(new FormatPresetItem(mwindow, this, _("User Defined")));
 
-	item = new FormatPresetItem(mwindow, this, _("NTSC"));
-	item->edl->session->audio_channels = 2;
-	item->edl->session->audio_tracks = 2;
-	item->edl->session->sample_rate = 48000;
-	item->edl->session->video_channels = 1;
-	item->edl->session->video_tracks = 1;
-	item->edl->session->frame_rate = (double)30000.0 / 1001;
-	item->edl->session->output_w = 720;
-	item->edl->session->output_h = 480;
-	item->edl->session->aspect_w = 4;
-	item->edl->session->aspect_h = 3;
-	item->edl->session->interlace_mode = BC_ILACE_MODE_BOTTOM_FIRST;
-	preset_items.append(item);
-
-	item = new FormatPresetItem(mwindow, this, _("NTSC Half"));
-	item->edl->session->audio_channels = 2;
-	item->edl->session->audio_tracks = 2;
-	item->edl->session->sample_rate = 48000;
-	item->edl->session->video_channels = 1;
-	item->edl->session->video_tracks = 1;
-	item->edl->session->frame_rate = (double)30000.0 / 1001;
-	item->edl->session->output_w = 360;
-	item->edl->session->output_h = 240;
-	item->edl->session->aspect_w = 4;
-	item->edl->session->aspect_h = 3;
-	item->edl->session->interlace_mode = BC_ILACE_MODE_NOTINTERLACED;
-	preset_items.append(item);
-
-	item = new FormatPresetItem(mwindow, this, _("NTSC Progressive"));
-	item->edl->session->audio_channels = 2;
-	item->edl->session->audio_tracks = 2;
-	item->edl->session->sample_rate = 48000;
-	item->edl->session->video_channels = 1;
-	item->edl->session->video_tracks = 1;
-	item->edl->session->frame_rate = (double)60000.0 / 1001;
-	item->edl->session->output_w = 720;
-	item->edl->session->output_h = 480;
-	item->edl->session->aspect_w = 4;
-	item->edl->session->aspect_h = 3;
-	item->edl->session->interlace_mode = BC_ILACE_MODE_NOTINTERLACED;
-	preset_items.append(item);
-
-
-	item = new FormatPresetItem(mwindow, this, _("PAL"));
-  	item->edl->session->audio_channels = 2;
-  	item->edl->session->audio_tracks = 2;
-  	item->edl->session->sample_rate = 48000;
-  	item->edl->session->video_channels = 1;
-  	item->edl->session->video_tracks = 1;
-	item->edl->session->frame_rate = 25;
-	item->edl->session->output_w = 720;
-	item->edl->session->output_h = 576;
-	item->edl->session->aspect_w = 4;
-	item->edl->session->aspect_h = 3;
-	item->edl->session->interlace_mode = BC_ILACE_MODE_BOTTOM_FIRST;
-	preset_items.append(item);
-
-
-
-	item = new FormatPresetItem(mwindow, this, _("PAL Half"));
-	item->edl->session->audio_channels = 2;
-	item->edl->session->audio_tracks = 2;
-	item->edl->session->sample_rate = 48000;
-	item->edl->session->video_channels = 1;
-	item->edl->session->video_tracks = 1;
-	item->edl->session->frame_rate = 25;
-	item->edl->session->output_w = 360;
-	item->edl->session->output_h = 288;
-	item->edl->session->aspect_w = 4;
-	item->edl->session->aspect_h = 3;
-	item->edl->session->interlace_mode = BC_ILACE_MODE_NOTINTERLACED;
-	preset_items.append(item);
-
-
-
-	item = new FormatPresetItem(mwindow, this, _("PAL Progressive"));
-  	item->edl->session->audio_channels = 2;
-  	item->edl->session->audio_tracks = 2;
-  	item->edl->session->sample_rate = 48000;
-  	item->edl->session->video_channels = 1;
-  	item->edl->session->video_tracks = 1;
-	item->edl->session->frame_rate = 50;
-	item->edl->session->output_w = 720;
-	item->edl->session->output_h = 576;
-	item->edl->session->aspect_w = 4;
-	item->edl->session->aspect_h = 3;
-	item->edl->session->interlace_mode = BC_ILACE_MODE_NOTINTERLACED;
-	preset_items.append(item);
-
-
-	item = new FormatPresetItem(mwindow, this, _("1080P/60"));
-	item->edl->session->audio_channels = 2;
-	item->edl->session->audio_tracks = 2;
-	item->edl->session->sample_rate = 48000;
-	item->edl->session->video_channels = 1;
-	item->edl->session->video_tracks = 1;
-	item->edl->session->frame_rate = (double)60000.0 / 1001;
-// 	item->edl->session->track_w = 1920;
-// 	item->edl->session->track_h = 1080;
-	item->edl->session->output_w = 1920;
-	item->edl->session->output_h = 1080;
-	item->edl->session->aspect_w = 16;
-	item->edl->session->aspect_h = 9;
-	item->edl->session->interlace_mode = BC_ILACE_MODE_NOTINTERLACED;
-	preset_items.append(item);
-
-	item = new FormatPresetItem(mwindow, this, _("1080P/24"));
-	item->edl->session->audio_channels = 2;
-	item->edl->session->audio_tracks = 2;
-	item->edl->session->sample_rate = 48000;
-	item->edl->session->video_channels = 1;
-	item->edl->session->video_tracks = 1;
-	item->edl->session->frame_rate = 24;
-// 	item->edl->session->track_w = 1920;
-// 	item->edl->session->track_h = 1080;
-	item->edl->session->output_w = 1920;
-	item->edl->session->output_h = 1080;
-	item->edl->session->aspect_w = 16;
-	item->edl->session->aspect_h = 9;
-	item->edl->session->interlace_mode = BC_ILACE_MODE_NOTINTERLACED;
-	preset_items.append(item);
-
-	item = new FormatPresetItem(mwindow, this, _("1080I"));
-	item->edl->session->audio_channels = 2;
-	item->edl->session->audio_tracks = 2;
-	item->edl->session->sample_rate = 48000;
-	item->edl->session->video_channels = 1;
-	item->edl->session->video_tracks = 1;
-	item->edl->session->frame_rate = (double)30000.0 / 1001;
-// 	item->edl->session->track_w = 1920;
-// 	item->edl->session->track_h = 1080;
-	item->edl->session->output_w = 1920;
-	item->edl->session->output_h = 1080;
-	item->edl->session->aspect_w = 16;
-	item->edl->session->aspect_h = 9;
-	item->edl->session->interlace_mode = BC_ILACE_MODE_BOTTOM_FIRST;
-	preset_items.append(item);
-
-	item = new FormatPresetItem(mwindow, this, _("720P/60"));
-	item->edl->session->audio_channels = 2;
-	item->edl->session->audio_tracks = 2;
-	item->edl->session->sample_rate = 48000;
-	item->edl->session->video_channels = 1;
-	item->edl->session->video_tracks = 1;
-	item->edl->session->frame_rate = (double)60000.0 / 1001;
-	item->edl->session->output_w = 1280;
-	item->edl->session->output_h = 720;
-	item->edl->session->aspect_w = 16;
-	item->edl->session->aspect_h = 9;
-	item->edl->session->interlace_mode = BC_ILACE_MODE_NOTINTERLACED;	
-	preset_items.append(item);
-
-
-
-
-	item = new FormatPresetItem(mwindow, this, _("Internet"));
-	item->edl->session->audio_channels = 1;
-	item->edl->session->audio_tracks = 1;
-	item->edl->session->sample_rate = 22050;
-	item->edl->session->video_channels = 1;
-	item->edl->session->video_tracks = 1;
-	item->edl->session->frame_rate = 15;
-	item->edl->session->output_w = 320;
-	item->edl->session->output_h = 240;
-	item->edl->session->aspect_w = 4;
-	item->edl->session->aspect_h = 3;
-	item->edl->session->interlace_mode = BC_ILACE_MODE_NOTINTERLACED;
-	preset_items.append(item);
-
-	item = new FormatPresetItem(mwindow, this, _("CD Audio"));
-	item->edl->session->audio_channels = 2;
-	item->edl->session->audio_tracks = 2;
-	item->edl->session->sample_rate = 44100;
-	item->edl->session->video_channels = 1;
-	item->edl->session->video_tracks = 0;
-	item->edl->session->frame_rate = (double)30000.0 / 1001;
-	item->edl->session->output_w = 720;
-	item->edl->session->output_h = 480;
-	item->edl->session->aspect_w = 4;
-	item->edl->session->aspect_h = 3;
-	item->edl->session->interlace_mode = BC_ILACE_MODE_NOTINTERLACED;
-	preset_items.append(item);
-
-	item = new FormatPresetItem(mwindow, this, _("DAT Audio"));
-	item->edl->session->audio_channels = 2;
-	item->edl->session->audio_tracks = 2;
-	item->edl->session->sample_rate = 48000;
-	item->edl->session->video_channels = 1;
-	item->edl->session->video_tracks = 0;
-	item->edl->session->frame_rate = (double)30000.0 / 1001;
-	item->edl->session->output_w = 720;
-	item->edl->session->output_h = 480;
-	item->edl->session->aspect_w = 4;
-	item->edl->session->aspect_h = 3;
-	item->edl->session->interlace_mode = BC_ILACE_MODE_NOTINTERLACED;
-	preset_items.append(item);
+	for(i = 0; p = mwindow->get_preset_name(i); i++)
+	{
+		item = new FormatPresetItem(mwindow, this, p);
+		mwindow->fill_preset_defaults(p, item->edl->session);
+		preset_items.append(item);
+	}
 
 
 
@@ -285,12 +98,13 @@ FormatPresetItem* FormatPresets::find_preset(EDL *edl)
 			edl->session->audio_channels == preset->edl->session->audio_channels &&
 			edl->session->sample_rate == preset->edl->session->sample_rate &&
 			edl->session->video_tracks == preset->edl->session->video_tracks &&
-			edl->session->frame_rate == preset->edl->session->frame_rate &&
+			EQUIV(edl->session->frame_rate, preset->edl->session->frame_rate) &&
 			edl->session->output_w == preset->edl->session->output_w &&
 			edl->session->output_h == preset->edl->session->output_h &&
-			edl->session->aspect_w == preset->edl->session->aspect_w &&
-			edl->session->aspect_h == preset->edl->session->aspect_h && 
-			edl->session->interlace_mode == preset->edl->session->interlace_mode)
+			EQUIV(edl->session->aspect_w, preset->edl->session->aspect_w) &&
+			EQUIV(edl->session->aspect_h, preset->edl->session->aspect_h) &&
+			edl->session->interlace_mode == preset->edl->session->interlace_mode &&
+			edl->session->color_model == preset->edl->session->color_model)
 		{
 			return preset;
 		}
@@ -301,7 +115,7 @@ FormatPresetItem* FormatPresets::find_preset(EDL *edl)
 char* FormatPresets::get_preset_text(EDL *edl)
 {
 	FormatPresetItem *item = find_preset(edl);
-	if(item) 
+	if(item)
 		return item->get_text();
 	else
 		return "User Defined";

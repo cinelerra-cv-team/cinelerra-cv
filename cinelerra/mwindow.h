@@ -532,6 +532,7 @@ public:
 		char *config_path);
 	const char *default_std();
 	void fill_preset_defaults(const char *preset, EDLSession *session);
+	char *get_preset_name(int index);
 	void init_edl();
 	void init_awindow();
 	void init_gwindow();
