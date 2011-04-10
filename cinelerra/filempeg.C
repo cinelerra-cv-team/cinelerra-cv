@@ -36,6 +36,7 @@
 #include "language.h"
 #include "mainerror.h"
 #include "mwindow.inc"
+#include "pipe.h"
 #include "preferences.h"
 #include "vframe.h"
 #include "videodevice.inc"
@@ -48,7 +49,7 @@
 #define MPEG_YUV422 1
 
 
-#define MJPEG_EXE PLUGIN_DIR "/mpeg2enc.plugin"
+#define MJPEG_EXE "mpeg2enc"
 
 
 
@@ -321,6 +322,12 @@ SET_TRACE
 			char string[BCTEXTLEN];
 			sprintf(mjpeg_command, MJPEG_EXE);
 
+			if(Pipe::search_executable(MJPEG_EXE, mjpeg_command) == 0)
+			{
+				eprintf("Could not find encoder " MJPEG_EXE);
+				return 1;
+			}
+
 // Must disable interlacing if MPEG-1
 			switch (asset->vmpeg_preset)
 			{
@@ -329,7 +336,8 @@ SET_TRACE
 				case 2: asset->vmpeg_progressive = 1; break;
 			}
 
-
+// Be quiet
+			strcat(mjpeg_command, " -v0");
 
 // The current usage of mpeg2enc requires bitrate of 0 when quantization is fixed and
 // quantization of 1 when bitrate is fixed.  Perfectly intuitive.
@@ -434,6 +442,7 @@ SET_TRACE
 			if(!(mjpeg_out = popen(mjpeg_command, "w")))
 			{
 				eprintf("Error while opening \"%s\" for writing. \n%m\n", mjpeg_command);
+				return 1;
 			}
 
 			video_out = new FileMPEGVideo(this);
