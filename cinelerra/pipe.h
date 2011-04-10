@@ -37,6 +37,7 @@ class Pipe {
 	int open_read() ;
 	int open_write() ;
 	void close() ;
+	static char *search_executable(const char *name, char *exepath);
 
 	int fd;
  private:
