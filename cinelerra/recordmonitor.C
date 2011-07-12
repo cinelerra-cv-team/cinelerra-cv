@@ -772,9 +772,10 @@ void RecordMonitorCanvas::reset_translation()
 
 int RecordMonitorCanvas::keypress_event()
 {
-	int result = 0;
-	switch(get_canvas() && get_canvas()->get_keypress())
+	if(get_canvas())
 	{
+		switch(get_canvas()->get_keypress())
+		{
 		case LEFT:
 			record->set_translation(--record->video_x, record->video_y);
 			break;
@@ -787,8 +788,9 @@ int RecordMonitorCanvas::keypress_event()
 		case DOWN:
 			record->set_translation(record->video_x, ++record->video_y);
 			break;
+		}
 	}
-	return result;
+	return 0;
 }
 
 
