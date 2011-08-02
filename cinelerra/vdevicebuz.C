@@ -40,18 +40,17 @@
 #include "vframe.h"
 #include "videoconfig.h"
 #include "videodevice.h"
+#include "videodev.h"
 
 #include <errno.h>
 #include <stdint.h>
 #include <linux/kernel.h>
-//#include <linux/videodev2.h>
-#include <linux/videodev.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <sys/mman.h>
 #include <unistd.h>
 
-
+#define BASE_VIDIOCPRIVATE	192	
 
 #define READ_TIMEOUT 5000000
 
