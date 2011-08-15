@@ -654,10 +654,6 @@ void MWindow::init_theme()
 {
 	theme = 0;
 
-// Replace blond theme with SUV since it doesn't work
-	if(!strcasecmp(preferences->theme, "Blond"))
-		strcpy(preferences->theme, DEFAULT_THEME);
-
 	for(int i = 0; i < plugindb->total; i++)
 	{
 		if(plugindb->values[i]->theme &&
@@ -671,10 +667,28 @@ void MWindow::init_theme()
 			plugin.close_plugin();
 		}
 	}
-
 	if(!theme)
 	{
-		fprintf(stderr, _("MWindow::init_theme: theme %s not found.\n"), preferences->theme);
+	// Theme load fails, cinelerra now tries again to replace theme with DEFAULT_THEME - Akirad
+		strcpy(preferences->theme, DEFAULT_THEME);
+		for(int i = 0; i < plugindb->total; i++)
+		{
+			if(plugindb->values[i]->theme &&
+				!strcasecmp(preferences->theme, plugindb->values[i]->title))
+			{
+				PluginServer plugin = *plugindb->values[i];
+				plugin.open_plugin(0, preferences, 0, 0, -1);
+				theme = plugin.new_theme();
+				theme->mwindow = this;
+				strcpy(theme->path, plugin.path);
+				plugin.close_plugin();
+			}
+		}
+	}
+	// Theme load fails again, something went wrong on install - Akirad
+	if(!theme)
+	{
+		fprintf(stderr, _("MWindow::init_theme: Default theme %s not exists.\nMaybe an install problem\n"), DEFAULT_THEME);
 		exit(1);
 	}
 
