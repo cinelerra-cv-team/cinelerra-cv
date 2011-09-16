@@ -30,6 +30,7 @@
 #include "edithandles.inc"
 #include "floatauto.inc"
 #include "floatautos.inc"
+#include "intauto.inc"
 #include "guicast.h"
 #include "keyframe.inc"
 #include "mwindow.inc"
@@ -42,7 +43,6 @@
 #include "tracks.inc"
 #include "transitionhandles.inc"
 #include "keyframe.inc"
-#include "floatauto.inc"
 
 class TrackCanvas : public BC_SubWindow
 {
@@ -92,7 +92,7 @@ public:
 		int center_pixel, 
 		int zoom_track,
 		int color);
-	void draw_floatauto(Auto *current, 
+	void draw_floatauto(FloatAuto *current, 
 		int x, 
 		int y, 
 		int in_x,
@@ -110,7 +110,7 @@ public:
 		int cursor_x, 
 		int cursor_y, 
 		int buttonpress);
-	int test_floatauto(Auto *current, 
+	int test_floatauto(FloatAuto *current, 
 		int x, 
 		int y, 
 		int in_x,
@@ -121,7 +121,8 @@ public:
 		int zoom_track, 
 		int cursor_x, 
 		int cursor_y, 
-		int buttonpress);
+		int buttonpress,
+		int autogrouptype);
 	void draw_floatline(int center_pixel, 
 		FloatAuto *previous,
 		FloatAuto *current,
@@ -387,6 +388,19 @@ public:
 
 
 private:
+	void draw_floatauto_ctrlpoint(
+	int x,
+	int y,
+	int cp_x,
+	int cp_y,
+	int center_pixel,
+	int zoom_track,
+	int color);
+
+	float value_to_percentage(float auto_value, int autogrouptype);
+	// transforms automation value into current display coords
+	// dependant on current automation display range for given kind of automation
+
 	int end_translation();
 
 // ====================================== cursor selection type

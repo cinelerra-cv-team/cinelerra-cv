@@ -1837,9 +1837,9 @@ void CWindowCanvas::reset_keyframe(int do_camera)
 			1,
 			1);
 
-		x_keyframe->value = 0;
-		y_keyframe->value = 0;
-		z_keyframe->value = 1;
+		x_keyframe->set_value(0);
+		y_keyframe->set_value(0);
+		z_keyframe->set_value(1);
 
 		mwindow->sync_parameters(CHANGE_PARAMS);
 		gui->update_tool();
@@ -2264,9 +2264,6 @@ int CWindowCanvas::test_bezier(int button_press,
 				FloatAutos *affected_y_autos;
 				FloatAutos *affected_z_autos;
 				if(!gui->affected_track) return 0;
-				double position = mwindow->edl->local_session->get_selectionstart(1);
-				int64_t track_position = gui->affected_track->to_units(position, 0);
-
 				if(mwindow->edl->session->cwindow_operation == CWINDOW_CAMERA)
 				{
 					affected_x_autos = (FloatAutos*)gui->affected_track->automation->autos[AUTOMATION_CAMERA_X];
@@ -2283,78 +2280,33 @@ int CWindowCanvas::test_bezier(int button_press,
 
 				if(gui->translating_zoom)
 				{
-					FloatAuto *previous = 0;
-					FloatAuto *next = 0;
-					float new_z = affected_z_autos->get_value(
-						track_position, 
-						PLAY_FORWARD,
-						previous,
-						next);
 					gui->affected_z = 
 						(FloatAuto*)gui->cwindow->calculate_affected_auto(
 							affected_z_autos, 1, &created, 0);
-					if(created) 
-					{
-						gui->affected_z->value = new_z;
-						gui->affected_z->control_in_value = 0;
-						gui->affected_z->control_out_value = 0;
-						gui->affected_z->control_in_position = 0;
-						gui->affected_z->control_out_position = 0;
-						redraw_canvas = 1;
-					}
+					if(created) redraw_canvas = 1;
 				}
 				else
 				{
-					FloatAuto *previous = 0;
-					FloatAuto *next = 0;
-					float new_x = affected_x_autos->get_value(
-						track_position, 
-						PLAY_FORWARD,
-						previous,
-						next);
-					previous = 0;
-					next = 0;
-					float new_y = affected_y_autos->get_value(
-						track_position, 
-						PLAY_FORWARD,
-						previous,
-						next);
 					gui->affected_x = 
 						(FloatAuto*)gui->cwindow->calculate_affected_auto(
 							affected_x_autos, 1, &created, 0);
-					if(created) 
-					{
-						gui->affected_x->value = new_x;
-						gui->affected_x->control_in_value = 0;
-						gui->affected_x->control_out_value = 0;
-						gui->affected_x->control_in_position = 0;
-						gui->affected_x->control_out_position = 0;
-						redraw_canvas = 1;
-					}
+					if(created) redraw_canvas = 1;
 					gui->affected_y = 
 						(FloatAuto*)gui->cwindow->calculate_affected_auto(
 							affected_y_autos, 1, &created, 0);
-					if(created) 
-					{
-						gui->affected_y->value = new_y;
-						gui->affected_y->control_in_value = 0;
-						gui->affected_y->control_out_value = 0;
-						gui->affected_y->control_in_position = 0;
-						gui->affected_y->control_out_position = 0;
-						redraw_canvas = 1;
-					}
+					if(created) redraw_canvas = 1;
 				}
 
 				calculate_origin();
 
 				if(gui->translating_zoom)
 				{
-					gui->center_z = gui->affected_z->value;
+					gui->center_z = gui->affected_z->get_value();
 				}
 				else
 				{
-					gui->center_x = gui->affected_x->value;
-					gui->center_y = gui->affected_y->value;
+					gui->center_x = gui->affected_x->get_value();
+					gui->center_y = gui->affected_y->get_value();
 				}
 
 				rerender = 1;
@@ -2364,22 +2316,23 @@ int CWindowCanvas::test_bezier(int button_press,
 
 			if(gui->translating_zoom)
 			{
-				last_center_z = gui->affected_z->value;
+				last_center_z = gui->affected_z->get_value();
 			}
 			else
 			{
-				last_center_x = gui->affected_x->value;
-				last_center_y = gui->affected_y->value;
+				last_center_x = gui->affected_x->get_value();
+				last_center_y = gui->affected_y->get_value();
 			}
 
 			if(gui->translating_zoom)
 			{
-				gui->affected_z->value = gui->center_z + 
+				float new_z = gui->center_z + 
 					(cursor_y - gui->y_origin) / 128;
 
-				if(gui->affected_z->value < 0) gui->affected_z->value = 0;
-				if(!EQUIV(last_center_z, gui->affected_z->value))
+				if(new_z < 0) new_z = 0;
+				if(!EQUIV(last_center_z, new_z))
 				{
+					gui->affected_z->set_value(new_z);
 					rerender = 1;
 					redraw = 1;
 					redraw_canvas = 1;
@@ -2387,11 +2340,14 @@ int CWindowCanvas::test_bezier(int button_press,
 			}
 			else
 			{
-				gui->affected_x->value = gui->center_x + cursor_x - gui->x_origin;
-				gui->affected_y->value = gui->center_y + cursor_y - gui->y_origin;
-				if(!EQUIV(last_center_x,  gui->affected_x->value) ||
-				   	!EQUIV(last_center_y, gui->affected_y->value))
+				float new_x = gui->center_x + cursor_x - gui->x_origin;
+				float new_y = gui->center_y + cursor_y - gui->y_origin;
+
+				if(!EQUIV(last_center_x, new_x) ||
+				   !EQUIV(last_center_y, new_y))
 				{
+					gui->affected_x->set_value(new_x);
+					gui->affected_y->set_value(new_y);
 					rerender = 1;
 					redraw = 1;
 					redraw_canvas = 1;

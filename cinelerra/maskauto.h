@@ -71,7 +71,7 @@ public:
 	void load(FileXML *file);
 	void copy(int64_t start, int64_t end, FileXML *file, int default_auto);
 	void copy_from(Auto *src);
-	int interpolate_from(Auto *a1, Auto *a2, int64_t position); 
+	int interpolate_from(Auto *a1, Auto *a2, int64_t position, Auto *templ=0); 
 	void copy_from(MaskAuto *src);
 
 	void dump();

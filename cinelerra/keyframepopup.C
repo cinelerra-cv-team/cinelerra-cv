@@ -39,7 +39,8 @@
 #include "bcwindowbase.h"
 #include "filexml.h"
 #include "edlsession.h"
-#include "autoconf.h"
+#include "autos.h"
+//include "autoconf.h"
 
 KeyframePopup::KeyframePopup(MWindow *mwindow, MWindowGUI *gui)
  : BC_PopupMenu(0, 
@@ -53,17 +54,33 @@ KeyframePopup::KeyframePopup(MWindow *mwindow, MWindowGUI *gui)
 	key_show = 0;
 	key_delete = 0;
 	key_copy = 0;
+	tan_smooth=tan_linear=tan_free = 0;
+	tangent_mode_displayed = false;
 }
 
 KeyframePopup::~KeyframePopup()
 {
-}
+	if(!tangent_mode_displayed)
+	{
+		delete tan_smooth;
+		delete tan_linear;
+		delete tan_free_t;
+		delete tan_free  ;
+		delete __hline__ ;
+	}
+}	// if they are currently displayed, the menu class will delete them automatically
 
 void KeyframePopup::create_objects()
 {
-//	add_item(key_show = new KeyframePopupShow(mwindow, this));
+	add_item(key_show = new KeyframePopupShow(mwindow, this));
 	add_item(key_delete = new KeyframePopupDelete(mwindow, this));
 	add_item(key_copy = new KeyframePopupCopy(mwindow, this));
+	
+    __hline__  = new BC_MenuItem("-");
+    tan_smooth = new KeyframePopupTangentMode(mwindow, this, FloatAuto::SMOOTH);
+    tan_linear = new KeyframePopupTangentMode(mwindow, this, FloatAuto::LINEAR);
+    tan_free_t = new KeyframePopupTangentMode(mwindow, this, FloatAuto::TFREE );
+    tan_free   = new KeyframePopupTangentMode(mwindow, this, FloatAuto::FREE  );
 }
 
 int KeyframePopup::update(Plugin *plugin, KeyFrame *keyframe)
@@ -72,6 +89,7 @@ int KeyframePopup::update(Plugin *plugin, KeyFrame *keyframe)
 	this->keyframe_auto = keyframe;
 	this->keyframe_autos = 0;
 	this->keyframe_automation = 0;
+	handle_tangent_mode(0, 0);
 	return 0;
 }
 
@@ -81,6 +99,7 @@ int KeyframePopup::update(Automation *automation, Autos *autos, Auto *auto_keyfr
 	this->keyframe_automation = automation;
 	this->keyframe_autos = autos;
 	this->keyframe_auto = auto_keyframe;
+	handle_tangent_mode(autos, auto_keyframe);
 
 	/* snap to cursor */
 	double current_position = mwindow->edl->local_session->get_selectionstart(1);
@@ -96,6 +115,37 @@ int KeyframePopup::update(Automation *automation, Autos *autos, Auto *auto_keyfr
 		mwindow->gui->unlock_window();
 	}
 	return 0;
+}
+
+void KeyframePopup::handle_tangent_mode(Autos *autos, Auto *auto_keyframe)
+// determines the type of automation node. if floatauto, adds
+// menu entries showing the tangent mode of the node
+{
+	if(!tangent_mode_displayed && autos && autos->get_type() == AUTOMATION_TYPE_FLOAT)
+	{ // append additional menu entries showing the tangent-mode
+		add_item(__hline__);
+		add_item(tan_smooth);
+		add_item(tan_linear);
+		add_item(tan_free_t);
+		add_item(tan_free  );
+		tangent_mode_displayed = true;
+	}
+	if(tangent_mode_displayed && (!autos || autos->get_type() != AUTOMATION_TYPE_FLOAT))
+	{ // remove additional menu entries
+		remove_item(tan_free  );
+		remove_item(tan_free_t);
+		remove_item(tan_linear);
+		remove_item(tan_smooth);
+		remove_item(__hline__ );
+		tangent_mode_displayed = false;
+	}
+	if(tangent_mode_displayed && auto_keyframe)
+	{ // set checkmarks to display current mode
+		tan_smooth->toggle_mode((FloatAuto*)auto_keyframe);
+		tan_linear->toggle_mode((FloatAuto*)auto_keyframe);
+		tan_free_t->toggle_mode((FloatAuto*)auto_keyframe);
+		tan_free  ->toggle_mode((FloatAuto*)auto_keyframe);
+	}
 }
 
 KeyframePopupDelete::KeyframePopupDelete(MWindow *mwindow, KeyframePopup *popup)
@@ -355,3 +405,56 @@ int KeyframePopupCopy::handle_event()
 
 
 
+KeyframePopupTangentMode::KeyframePopupTangentMode(
+	MWindow *mwindow, 
+	KeyframePopup *popup, 
+	int tangent_mode)
+ : BC_MenuItem( get_labeltext(tangent_mode))
+{
+    this->tangent_mode = tangent_mode;
+    this->mwindow = mwindow;
+    this->popup = popup;
+}
+
+KeyframePopupTangentMode::~KeyframePopupTangentMode() { }
+
+
+char* KeyframePopupTangentMode::get_labeltext(int mode)
+{
+	switch(mode)
+	{   case FloatAuto::SMOOTH: return _("smooth curve");
+	    case FloatAuto::LINEAR: return _("linear segments");
+	    case FloatAuto::TFREE:  return _("tangent edit");
+	    case FloatAuto::FREE:   return _("disjoint edit");
+	}
+	return "misconfigured";
+}
+
+
+void KeyframePopupTangentMode::toggle_mode(FloatAuto *keyframe)
+{
+	set_checked(tangent_mode == keyframe->tangent_mode);
+}
+
+
+int KeyframePopupTangentMode::handle_event()
+{
+	if (popup->keyframe_autos && 
+	    popup->keyframe_autos->get_type() == AUTOMATION_TYPE_FLOAT)
+	{
+		((FloatAuto*)popup->keyframe_auto)->
+			change_tangent_mode((FloatAuto::t_mode)tangent_mode);
+		
+		// if we switched to some "auto" mode, this may imply a
+		// real change to parameters, so this needs to be undoable...
+		mwindow->save_backup();
+		mwindow->undo->update_undo(_("change keyframe tangent mode"), LOAD_ALL);
+		
+		mwindow->gui->update(0, 1, 0,0,0,0,0); // incremental redraw for canvas
+		mwindow->cwindow->update(0,0, 1, 0,0); // redraw tool window in compositor
+		mwindow->update_plugin_guis();
+		mwindow->restart_brender();
+		mwindow->sync_parameters(CHANGE_EDL);
+	}
+	return 1;
+}

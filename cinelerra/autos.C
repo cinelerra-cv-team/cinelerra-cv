@@ -183,8 +183,8 @@ void Autos::insert_track(Autos *automation,
 	if(replace_default) default_auto->copy_from(automation->default_auto);
 	for(Auto *current = automation->first; current; current = NEXT)
 	{
-		Auto *new_auto = insert_auto(start_unit + current->position);
-		new_auto->copy_from(current);
+// fill new auto with values from current (template), interpolate values if possible		
+		Auto *new_auto = insert_auto(start_unit + current->position, current);
 // Override copy_from
 		new_auto->position = current->position + start_unit;
 	}
@@ -300,7 +300,7 @@ Auto* Autos::get_auto_for_editing(double position)
 
 	if(edl->session->auto_keyframes)
 	{
-		result = insert_auto_for_editing(track->to_units(position, 0));
+		result = insert_auto(track->to_units(position, 0));
 	}
 	else
 		result = get_prev_auto(track->to_units(position, 0), 
@@ -355,7 +355,7 @@ Auto* Autos::get_next_auto(int64_t position, int direction, Auto* &current, int 
 	return current;
 }
 
-Auto* Autos::insert_auto(int64_t position)
+Auto* Autos::insert_auto(int64_t position, Auto *templ)
 {
 	Auto *current, *result;
 
@@ -381,7 +381,6 @@ Auto* Autos::insert_auto(int64_t position)
 		if(current)
 		{
 			insert_after(current, result = new_auto());
-			result->copy_from(current);
 		}
 		else
 		{
@@ -389,59 +388,10 @@ Auto* Autos::insert_auto(int64_t position)
 			if(!current) current = default_auto;
 
 			insert_before(first, result = new_auto());
-			if(current) result->copy_from(current);
 		}
 
-		result->position = position;
-	}
-	else
-	{
-		result = current;
-	}
-
-	return result;
-}
-
-Auto* Autos::insert_auto_for_editing(int64_t position)
-{
-	Auto *current, *result;
-
-// Test for existence
-	for(current = first; 
-		current && !edl->equivalent(current->position, position); 
-		current = NEXT)
-	{
-		;
-	}
-
-//printf("Autos::insert_auto_for_editing %p\n", current);
-// Insert new
-	if(!current)
-	{
-// Get first one on or before as a template
-		for(current = last; 
-			current && current->position > position; 
-			current = PREVIOUS)
-		{
-			;
-		}
-
-		if(current)
-		{
-			Auto *next = NEXT;
-			insert_after(current, result = new_auto());
-			result->interpolate_from(current, next, position);
-		}
-		else
-		{
-			current = first;
-			if(!current) current = default_auto;
-
-			insert_before(first, result = new_auto());
-			if(current) result->copy_from(current);
-		}
-
-		result->position = position;
+// interpolate if possible, else copy from template
+		result->interpolate_from(0, 0, position, templ);
 	}
 	else
 	{

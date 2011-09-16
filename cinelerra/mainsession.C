@@ -60,6 +60,7 @@ MainSession::MainSession(MWindow *mwindow)
 	gwindow_y = 0;
 	show_gwindow = 0;
 	current_tip = 0;
+	drag_handle = 0;
 	cwindow_fullscreen = 0;
 	rwindow_fullscreen = 0;
 	vwindow_fullscreen = 0;

@@ -69,9 +69,17 @@ void Auto::copy_from(Auto *that)
 	this->position = that->position;
 }
 
-int Auto::interpolate_from(Auto *a1, Auto *a2, int64_t position)
+int Auto::interpolate_from(Auto *a1, Auto *a2, int64_t new_position, Auto *templ)
 {
-	copy_from(a1);
+	if(!templ) 
+		templ = a1;
+	if(!templ) 
+		templ = previous;
+	if(!templ && this->autos)
+		templ = this->autos->default_auto;
+	if(templ)
+		copy_from(templ);
+	position = new_position;
 	return 0;
 }
 
@@ -80,20 +88,4 @@ void Auto::load(FileXML *xml)
 	printf("Auto::load\n");
 }
 
-
-
-float Auto::value_to_percentage()
-{
-	return 0;
-}
-
-float Auto::invalue_to_percentage()
-{
-	return 0;
-}
-
-float Auto::outvalue_to_percentage()
-{
-	return 0;
-}
 

@@ -45,18 +45,14 @@ public:
 	virtual Auto& operator=(Auto &that);
 	virtual int operator==(Auto &that);
 	virtual void copy_from(Auto *that);
-	/* for interpolation creation */
-	/* if not possible, copy from a1 and return 0*/ 	
-	virtual int interpolate_from(Auto *a1, Auto *a2, int64_t position); 
+	/* create an interpolation using a1 and a2, (defaulting to previous and next)  */
+	/* if not possible, just fill from a1 (or from template if given) and return 0  */ 	
+	virtual int interpolate_from(Auto *a1, Auto *a2, int64_t new_position, Auto *templ=0);
 	virtual void copy(int64_t start, int64_t end, FileXML *file, int default_only);
 
 	virtual void load(FileXML *file);
 
 	virtual void get_caption(char *string) {};
-
- 	virtual float value_to_percentage();
- 	virtual float invalue_to_percentage();
- 	virtual float outvalue_to_percentage();
 
 
 	int skip;       // if added by selection event for moves

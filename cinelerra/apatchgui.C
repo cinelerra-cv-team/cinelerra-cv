@@ -117,7 +117,6 @@ int APatchGUI::update(int x, int y)
 			FloatAutos *ptr = (FloatAutos*)atrack->automation->autos[AUTOMATION_FADE];
 			float value = ptr->get_value(
 				(long)unit_position,
-				PLAY_FORWARD, 
 				previous, 
 				next);
 			fade->update(fade->get_w(),
@@ -229,7 +228,7 @@ AFadePatch::AFadePatch(MWindow *mwindow, APatchGUI *patch, int x, int y, int w)
 			w, 
 			mwindow->edl->local_session->automation_mins[AUTOGROUPTYPE_AUDIO_FADE], 
 			mwindow->edl->local_session->automation_maxs[AUTOGROUPTYPE_AUDIO_FADE], 
-			get_keyframe(mwindow, patch)->value)
+			get_keyframe(mwindow, patch)->get_value())
 {
 	this->mwindow = mwindow;
 	this->patch = patch;
@@ -244,8 +243,8 @@ float AFadePatch::update_edl()
 
 	current = (FloatAuto*)fade_autos->get_auto_for_editing(position);
 
-	float result = get_value() - current->value;
-	current->value = get_value();
+	float result = get_value() - current->get_value();
+	current->set_value(this->get_value());
 
 	mwindow->undo->update_undo(_("fade"), 
 		LOAD_AUTOMATION, 

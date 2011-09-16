@@ -406,7 +406,6 @@ int VirtualANode::render_fade(double *buffer,
 				sample_rate;
 
 			fade_value = ((FloatAutos*)autos)->get_value(input_position_project, 
-				direction,
 				previous,
 				next);
 
