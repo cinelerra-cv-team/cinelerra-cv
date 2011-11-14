@@ -38,9 +38,9 @@ GammaWindow::GammaWindow(GammaMain *client, int x, int y)
  : BC_Window(client->gui_string, x,
  	y,
 	400, 
-	350, 
+	390,
 	400, 
-	350, 
+	390,
 	0, 
 	0)
 { 
@@ -53,7 +53,7 @@ int GammaWindow::create_objects()
 	add_subwindow(histogram = new BC_SubWindow(x, 
 		y, 
 		get_w() - x * 2, 
-		get_h() - 150, 
+		get_h() - 180,
 		WHITE));
 	y += histogram->get_h() + 10;
 
