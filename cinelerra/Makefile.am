@@ -677,7 +677,9 @@ cinelerra_LDADD = \
 	$(XIPH_LIBS) \
 	$(A52DEC_LIBS) \
 	$(OPENEXR_LIBS) \
+	$(OPENGL_LIBS) \
 	-lsndfile \
+	-lmp3lame \
 	-lpng -ljpeg -ltiff -lz \
 	$(SOUND_LDFLAGS) \
 	$(FIREWIRE_LDFLAGS) \
