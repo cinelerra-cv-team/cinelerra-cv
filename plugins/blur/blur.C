@@ -79,9 +79,9 @@ void BlurConfig::interpolate(BlurConfig &prev,
 
 
 //printf("BlurConfig::interpolate %d %d %d\n", prev_frame, next_frame, current_frame);
-	this->vertical = (int)(prev.vertical * prev_scale + next.vertical * next_scale);
-	this->horizontal = (int)(prev.horizontal * prev_scale + next.horizontal * next_scale);
-	this->radius = (int)(prev.radius * prev_scale + next.radius * next_scale);
+	this->vertical = prev.vertical;
+	this->horizontal = prev.horizontal;
+	this->radius = round(prev.radius * prev_scale + next.radius * next_scale);
 	a = prev.a;
 	r = prev.r;
 	g = prev.g;
