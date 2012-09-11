@@ -456,11 +456,7 @@ int FileSystem::update(char *new_dir)
 			else
 			{
 //printf("FileSystem::update 3 %s\n", full_path);
-				printf("FileSystem::update %s: %s\n",
-					full_path,
-					strerror(errno));
 				include_this = 0;
-				result = 1;
 			}
 
 // add to list
