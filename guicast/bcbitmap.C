@@ -171,8 +171,8 @@ int BC_Bitmap::allocate_data()
 // Create the shared memory
 				shm_info.shmid = shmget(IPC_PRIVATE, 
 					xv_image[0]->data_size * ring_buffers + 4, 
-					IPC_CREAT | 0777);
-				if(shm_info.shmid < 0) perror("BC_Bitmap::allocate_data shmget");
+					IPC_CREAT | 0600);
+				if(shm_info.shmid == -1) perror("BC_Bitmap::allocate_data shmget");
 				data[0] = (unsigned char *)shmat(shm_info.shmid, NULL, 0);
 // setting ximage->data stops BadValue
 				xv_image[0]->data = shm_info.shmaddr = (char*)data[0];
@@ -226,8 +226,8 @@ int BC_Bitmap::allocate_data()
 // Create shared memory
 				shm_info.shmid = shmget(IPC_PRIVATE, 
 					h * ximage[0]->bytes_per_line * ring_buffers + 4, 
-					IPC_CREAT | 0777);
-				if(shm_info.shmid < 0) 
+					IPC_CREAT | 0600);
+				if(shm_info.shmid == -1)
 					perror("BC_Bitmap::allocate_data shmget");
 				data[0] = (unsigned char *)shmat(shm_info.shmid, NULL, 0);
 				ximage[0]->data = shm_info.shmaddr = (char*)data[0];  // setting ximage->data stops BadValue
