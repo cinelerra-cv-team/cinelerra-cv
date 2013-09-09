@@ -44,6 +44,7 @@
 
 #include <errno.h>
 #include <stdint.h>
+#include <string.h>
 #include <linux/kernel.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
