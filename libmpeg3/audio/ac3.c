@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <a52dec/a52.h>
 #include "mpeg3private.h"
