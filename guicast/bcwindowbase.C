@@ -361,7 +361,7 @@ int BC_WindowBase::create_window(BC_WindowBase *parent_window,
 		vis = DefaultVisual(display, screen);
 		default_depth = DefaultDepth(display, screen);
 
-		client_byte_order = (*(u_int32_t*)"a   ") & 0x00000001;
+		client_byte_order = (*(const u_int32_t*)"a   ") & 0x00000001;
 		server_byte_order = (XImageByteOrder(display) == MSBFirst) ? 0 : 1;
 
 
