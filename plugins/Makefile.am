@@ -14,6 +14,7 @@ SUBDIRS= \
 	bandslide \
 	bandwipe \
 	blur \
+	bluebanana \
 	brightness \
 	burn \
 	cdripper \
