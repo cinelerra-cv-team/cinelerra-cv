@@ -24,7 +24,7 @@
 #include <stdio.h>
 #include <string.h>
 
-StringFile::StringFile(long length)
+StringFile::StringFile(size_t length)
 {
 	pointer = 0;
 	if(length == 0)
@@ -100,12 +100,12 @@ int StringFile::read_from_string(char *string)
 	return 0;
 }
 
-long StringFile::get_length()
+size_t StringFile::get_length()
 {
 	return strlen(string);
 }
 
-long StringFile::get_pointer()
+size_t StringFile::get_pointer()
 {
 	return pointer;
 }
@@ -219,7 +219,7 @@ int StringFile::writeline(char *arg1, int indent)
 	int i;
 	
 // reallocate the string
-	if(pointer + strlen(arg1) > available)
+	if(strlen(arg1) + indent > available - pointer)
 	{
 		char *newstring = new char[available * 2];
 		strcpy(newstring, string);
@@ -237,8 +237,6 @@ int StringFile::writeline(char *arg1, int indent)
 
 int StringFile::writeline(char *arg1, char *arg2, int indent)
 {
-	int i;
-	
 	sprintf(string1, "%s %s\n", arg1, arg2);
 	writeline(string1, indent);
 	return 0;
