@@ -2,7 +2,7 @@
 # Made with the aid of debmake, by Christoph Lameter,
 # based on the sample debian/rules file for GNU hello by Ian Jackson.
 
-package=hvirtual
+package=cinelerra-cv
 export DH_COMPAT=4
 
 CONFFLAGS=
