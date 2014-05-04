@@ -1,7 +1,7 @@
-Source: hvirtual
+Source: cinelerra-cv
 Section: graphics
 Priority: optional
-Maintainer: Cinelerra-CV mailing list <cinelerra@skolelinux.no>
+Maintainer: Cinelerra-CV mailing list <cinelerra@lists.cinelerra-cv.org>
 Standards-Version: 3.5.9
 Build-Depends: debhelper (>> 4), automake, dpatch (>= 1.11),
  libasound2-dev (>= 1.0.4), libdv4-dev (>= 1.0.0), 
@@ -25,7 +25,7 @@ Architecture: any
 Depends: ${shlibs:Depends}, libguicast (= ${Source-Version}),
  libquicktimehv (= ${Source-Version}), libmpeg3hv (= ${Source-Version})
 Description: An audio/video authoring tool
- Cinelerra is a complete audio and video authoring
+ Cinelerra-CV is a complete audio and video authoring
  tool. It understands a lot of multimedia formats
  (quicktime, avi, ogg) and audio/video compression
  codecs (divx, xvid, mpeg1/2, ...)
