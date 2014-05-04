@@ -1,3 +1,9 @@
+cinelerra-cv (1:2.2.0-1git20140502) unstable; urgency=low
+
+  * GIT of 2014-05-02 from cinelerra-CV master git.
+
+ -- Nicola <nicola@bomboloni.mit.edu>  Fri, 02 May 2014 15:31:04 -0400
+
 hvirtual (1:2.1.0-1svn20060912) unstable; urgency=low
 
   * SVN of 2006-09-12, non-debug build, merge with Adam's 2.1 version
