@@ -1,88 +1,107 @@
 #!/usr/bin/make -f
 # Made with the aid of debmake, by Christoph Lameter,
 # based on the sample debian/rules file for GNU hello by Ian Jackson.
+# Modified by Nicola Ferralis <feranick@hotmail.com> for version 2.2CV.
 
 package=cinelerra-cv
-export DH_COMPAT=4
 
 CONFFLAGS=
-#since we are building from .svn
-+export DH_ALWAYS_EXCLUDE=.svn
 
 ifneq ($(DEB_HOST_ARCH),powerpc)
-	CFLAGS=-ffast-math -O3 -mmmx -march=pentium4 -msse -msse2 -minline-all-stringops -fprefetch-loop-arrays -funroll-loops
-	# CFLAGS=-ffast-math -g -mmmx -march=pentium-mmx
+	CONFFLAGS+=--enable-opengl
+	CFLAGS=-ffast-math -minline-all-stringops -funroll-loops
 	CXXFLAGS=$(CFLAGS) -fno-check-new
-	CONFFLAGS+=--enable-mmx --enable-x86 --without-pic
+endif
+
+ifeq ($(DEB_HOST_ARCH),amd64)
+	CFLAGS=-ffast-math -minline-all-stringops -funroll-loops -fPIC
+	CXXFLAGS=$(CFLAGS) -fno-check-new
 endif
 
 ifneq (, $(findstring smp2,$(DEB_BUILD_OPTIONS)))
-	MAKEFLAGS=-j2
+	MAKEFLAGS=-j3
 endif
 
-config.status: configure 
-	$(checkdir)
-	@if [ -z "$(CFLAGS)" ] ; then CFLAGS="$(CFLAGS)" ; fi ;
-	@if [ -z "$(CXXFLAGS)" ] ; then CXXFLAGS="$(CXXFLAGS)" ; fi ;
-	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" \
-					./configure --prefix=/usr $(CONFFLAGS)
-	
+# Enable this to activate hardening, when the source is fixed
+#CFLAGS += $(shell dpkg-buildflags --get CFLAGS)
+#CXXFLAGS += $(shell dpkg-buildflags --get CXXFLAGS)
+#LDFLAGS += $(shell dpkg-buildflags --get LDFLAGS)
+
 build: build-stamp
-build-stamp: config.status
-	$(checkdir)
+build-stamp: debian/cinelerra-cv.1 debian/mplexhi.1 debian/mplexlo.1
+	dh_testdir
+	@if [ ! -e configure ] ; then ./autogen.sh; fi
+	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" LDFLAGS="$(LDFLAGS)" \
+		./configure --enable-opengl --prefix=/usr $(CONFFLAGS)
 	$(MAKE) $(MAKEFLAGS)
-	docbook-to-man debian/cinelerra.sgml > debian/cinelerra.1
-	docbook-to-man debian/mplexhi.sgml > debian/mplexhi.1
-	docbook-to-man debian/mplexlo.sgml > debian/mplexlo.1
 	touch build-stamp
 
-clean: 
-	$(checkdir)
-	-$(MAKE) -i distclean
+debian/cinelerra-cv.1: debian/cinelerra-cv.sgml
+	docbook-to-man debian/cinelerra-cv.sgml > debian/cinelerra-cv.1
+debian/mplexhi.1: debian/mplexhi.sgml
+	docbook-to-man debian/mplexhi.sgml > debian/mplexhi.1
+debian/mplexlo.1: debian/mplexlo.sgml
+	docbook-to-man debian/mplexlo.sgml > debian/mplexlo.1
+
+clean:
+	dh_testdir
+	dh_testroot
+	[ ! -f Makefile ] || $(MAKE) clean
+	[ ! -f Makefile ] || $(MAKE) distclean
 	dh_clean -a
-	-rm -f debian/cinelerra.1
+	-rm -f debian/cinelerra-cv.1
 	-rm -f debian/mplexhi.1
 	-rm -f debian/mplexlo.1
 	-rm -f build-stamp
 
-binary-indep: checkroot build-stamp
-binary-arch: checkroot build-stamp
+install: build
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
+
+	# .la files are not used in Debian, remove them
+	find debian/tmp -name '*.la'|xargs rm
+
+	install -D -m644 debian/cinelerra-cv.sysctl.d debian/cinelerra-cv/etc/sysctl.d/cinelerra-cv.conf
+
 	chmod -x debian/tmp/usr/lib/cinelerra/*
 	chmod +x debian/tmp/usr/lib/cinelerra/fonts
 	chmod -x debian/tmp/usr/lib/cinelerra/fonts/*
-	dh_install --sourcedir=debian/tmp --autodest
+	chmod +x debian/tmp/usr/lib/cinelerra/shapewipe
+	-ln -s /usr/bin/mpeg2enc debian/tmp/usr/lib/cinelerra/mpeg2enc.plugin
+
+binary-indep: build install
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_install
 	dh_installdocs -XCVS
 	dh_installchangelogs -a
 	dh_installman
 	dh_installmenu
-
-	dh_fixperms -a
-	dh_compress -a
-	# Since Cinelerra is far from stable, I prefer leaving the debug info
+	dh_link -a
+	dh_icons -a
 	dh_strip -a
-	strip -x -s -R .comment -R .note debian/cinelerra/usr/lib/cinelerra/*.so
-
-# AFAIK bootstraping should be gone now -- minmax
-
-# Rename defaulttheme to blondtheme
-#	guicast/bootstrap debian/cinelerra/usr/lib/cinelerra/blondtheme.so plugins/defaulttheme/data/*.png
-# Add bluedottheme
-#	guicast/bootstrap debian/cinelerra/usr/lib/cinelerra/bluedottheme.so plugins/bluedottheme/data/*.png
-#	guicast/bootstrap debian/cinelerra/usr/bin/cinelerra cinelerra/data/mode_*.png
-# not present anymore?
-#	guicast/bootstrap debian/cinelerra/usr/lib/cinelerra/microtheme.so plugins/microtheme/data/*.png
-
-	dh_makeshlibs -V -a
-	dh_shlibdeps -a
-
+	strip -x -s -R .comment -R .note debian/$(package)/usr/lib/cinelerra/*.so
+	dh_compress -a
+	dh_fixperms -a
+	dh_makeshlibs -a
+	dh_shlibdeps -a -v
+	dh_installdeb -a
 	dh_gencontrol 
-	dh_builddeb 
-	
+	dh_builddeb -a
 
 binary: binary-indep binary-arch
 
-checkroot: 
-	dh_testroot
-
-
+get-upstream-source:
+	set -e; branch=master; \
+	  date=$$(date +%Y%m%d); \
+	  packagever=cinelerra-cv-2.2; \
+	  git clone -b $${branch} git://git.cinelerra-cv.org/CinelerraCV.git $${packagever}; \
+	  tag=$$(cd $${packagever}; git rev-list $${branch} -n 1 | cut -c 1-7); \
+	  (cd $${packagever}; git archive HEAD --prefix=$$packagever/) | bzip2 > ../cinelerra-cv_2.2.git.$${date}.$${tag}.orig.tar.bz2; \
+	  echo "created ../cinelerra-cv_2.2.git.$${date}.$${tag}.orig.tar.bz2"; \
+	  rm -rf $${packagever}

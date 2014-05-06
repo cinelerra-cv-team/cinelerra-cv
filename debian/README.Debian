@@ -1,4 +1,10 @@
 Cinelerra for Debian
 --------------------
 
-Profound words to come here, some time...
+Builds are based on the Community version of Cinelerra:
+
+http://www.cinelerra-cv.org
+
+The source code is the current stable in git:
+
+git://git.cinelerra-cv.org/CinelerraCV.git

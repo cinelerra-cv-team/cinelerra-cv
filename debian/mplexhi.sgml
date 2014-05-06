@@ -15,7 +15,7 @@ manpage.1: manpage.sgml
   <!ENTITY dhsection   "<manvolnum>1</manvolnum>">
   <!ENTITY dhemail     "<email>sylvain.joyeux@m4x.org</email>">
   <!ENTITY dhusername  "Sylvain Joyeux">
-  <!ENTITY dhucpackage "<refentrytitle>CINELERRA</refentrytitle>">
+  <!ENTITY dhucpackage "<refentrytitle>CINELERRA-CV</refentrytitle>">
   <!ENTITY dhpackage   "mplexhi">
 
   <!ENTITY debian      "<productname>Debian GNU/Linux</productname>">

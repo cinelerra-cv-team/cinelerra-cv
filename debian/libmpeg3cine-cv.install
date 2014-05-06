@@ -1,0 +1,3 @@
+usr/lib/libmpeg3hv-*.so*	usr/lib
+usr/bin/mpeg*			usr/bin
+usr/lib/libav*.so.*		usr/lib

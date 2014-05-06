@@ -3,6 +3,9 @@ originally written by Heroine Virtual Ltd.
 
 Cinelerra-CV is maintained through a community effort: http://cinelerra-cv.org.
 
+This package was put together using sources obtained from:
+git://git.cinelerra-cv.org/CinelerraCV.git
+
 Copyright (c) 1996-2006 Heroine Virtual Ltd.
 Copyright (c) 2006-2014 Cinelerra-CV community
 

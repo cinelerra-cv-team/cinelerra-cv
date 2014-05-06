@@ -1,8 +1,23 @@
-cinelerra-cv (1:2.2.0-1git20140502) unstable; urgency=low
+cinelerra-cv (1:2.2.git.20140428.9154825-1) UNRELEASED; urgency=low
 
+  [ Nicola Ferralis ]
   * GIT of 2014-05-02 from cinelerra-CV master git.
+  * Update maintainer contact address to the new mailing list on
+    lists.cinelerra-cv.org.
+  * Rename source and binary package to cinelerra-cv.
+  * Update build dependencies to use the packages currently available in
+    Debian and Ubuntu.
+  * Update copyright file.
 
- -- Nicola <nicola@bomboloni.mit.edu>  Fri, 02 May 2014 15:31:04 -0400
+  [ Petter Reinholdtsen ]
+  * Move to debhelper compat level 9.
+  * Add homepage URL to cinelerra-cv.org.
+  * Updated Debian build rules based on PPA build rules from
+    Nicola Ferralis.  Complete package renaming and add menu file.
+  * Provide /etc/sysctl.d/cinelerra-cv file to adjust the default
+    kernel.shmmax value.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Sun, 27 Apr 2014 21:57:48 +0200
 
 hvirtual (1:2.1.0-1svn20060912) unstable; urgency=low
 
