@@ -89,7 +89,7 @@ public:
 // required for all realtime plugins
 	int process_realtime(VFrame *input_ptr, VFrame *output_ptr);
 	int is_realtime();
-	char* plugin_title();
+	const char* plugin_title();
 	int start_realtime();
 	int stop_realtime();
 	int show_gui();

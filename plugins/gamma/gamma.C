@@ -396,7 +396,7 @@ GammaMain::~GammaMain()
 	delete engine;
 }
 
-char* GammaMain::plugin_title() { return N_("Gamma"); }
+const char* GammaMain::plugin_title() { return N_("Gamma"); }
 int GammaMain::is_realtime() { return 1; }
 
 

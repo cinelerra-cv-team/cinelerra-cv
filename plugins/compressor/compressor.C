@@ -113,7 +113,7 @@ void CompressorEffect::reset()
 	current_value = 1.0;
 }
 
-char* CompressorEffect::plugin_title() { return N_("Compressor"); }
+const char* CompressorEffect::plugin_title() { return N_("Compressor"); }
 int CompressorEffect::is_realtime() { return 1; }
 int CompressorEffect::is_multichannel() { return 1; }
 

@@ -906,7 +906,7 @@ int ChromaKeyHSV::process_buffer(VFrame *frame,
 	return 0;
 }
 
-char* ChromaKeyHSV::plugin_title() { return N_("Chroma key (HSV)"); }
+const char* ChromaKeyHSV::plugin_title() { return N_("Chroma key (HSV)"); }
 int ChromaKeyHSV::is_realtime() { return 1; }
 
 NEW_PICON_MACRO(ChromaKeyHSV)

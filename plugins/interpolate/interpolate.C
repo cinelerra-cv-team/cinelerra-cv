@@ -176,7 +176,7 @@ InterpolatePixelsMain::~InterpolatePixelsMain()
 	delete engine;
 }
 
-char* InterpolatePixelsMain::plugin_title() { return N_("Interpolate Pixels"); }
+const char* InterpolatePixelsMain::plugin_title() { return N_("Interpolate Pixels"); }
 int InterpolatePixelsMain::is_realtime() { return 1; }
 
 

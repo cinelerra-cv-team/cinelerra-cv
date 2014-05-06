@@ -96,7 +96,7 @@ Reverb::~Reverb()
 	}
 }
 
-char* Reverb::plugin_title() { return N_("Heroine College Concert Hall"); }
+const char* Reverb::plugin_title() { return N_("Heroine College Concert Hall"); }
 int Reverb::is_realtime() { return 1; }
 int Reverb::is_multichannel() { return 1; }
 int Reverb::is_synthesis() { return 1; }

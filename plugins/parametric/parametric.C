@@ -653,7 +653,7 @@ SET_STRING_MACRO(ParametricEQ)
 LOAD_CONFIGURATION_MACRO(ParametricEQ, ParametricConfig)
 
 
-char* ParametricEQ::plugin_title() { return N_("EQ Parametric"); }
+const char* ParametricEQ::plugin_title() { return N_("EQ Parametric"); }
 int ParametricEQ::is_realtime() { return 1; }
 
 void ParametricEQ::read_data(KeyFrame *keyframe)

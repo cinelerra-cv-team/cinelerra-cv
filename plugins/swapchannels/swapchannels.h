@@ -118,7 +118,7 @@ public:
 	int process_realtime(VFrame *input_ptr, VFrame *output_ptr);
 	int is_realtime();
 	int is_synthesis();
-	char* plugin_title();
+	const char* plugin_title();
 	VFrame* new_picon();
 	int show_gui();
 	void raise_window();

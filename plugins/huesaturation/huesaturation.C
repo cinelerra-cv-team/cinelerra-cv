@@ -143,7 +143,7 @@ public:
 		int64_t start_position,
 		double frame_rate);
 	int is_realtime();
-	char* plugin_title();
+	const char* plugin_title();
 	VFrame* new_picon();
 	int load_configuration();
 	int load_defaults();
@@ -590,7 +590,7 @@ int HueEffect::process_buffer(VFrame *frame,
 	return 0;
 }
 
-char* HueEffect::plugin_title() { return N_("Hue saturation"); }
+const char* HueEffect::plugin_title() { return N_("Hue saturation"); }
 int HueEffect::is_realtime() { return 1; }
 
 NEW_PICON_MACRO(HueEffect)

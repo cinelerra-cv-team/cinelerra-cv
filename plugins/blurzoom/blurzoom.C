@@ -77,7 +77,7 @@ BlurZoomMain::~BlurZoomMain()
 	if(defaults) delete defaults;
 }
 
-char* BlurZoomMain::plugin_title() { return N_("RadioacTV"); }
+const char* BlurZoomMain::plugin_title() { return N_("RadioacTV"); }
 int BlurZoomMain::is_realtime() { return 1; }
 
 VFrame* BlurZoomMain::new_picon()

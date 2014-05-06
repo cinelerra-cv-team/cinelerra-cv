@@ -276,7 +276,7 @@ int BC_WindowBase::initialize()
 			
 
 int BC_WindowBase::create_window(BC_WindowBase *parent_window,
-				char *title, 
+				const char *title, 
 				int x,
 				int y,
 				int w, 

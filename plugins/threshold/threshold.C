@@ -133,7 +133,7 @@ int ThresholdMain::is_realtime()
 	return 1;
 }
 
-char* ThresholdMain::plugin_title() 
+const char* ThresholdMain::plugin_title() 
 { 
 	return N_("Threshold"); 
 }

@@ -88,7 +88,7 @@ public:
 	void render_stop();
 
 // queries
-	void set_title(char *string);
+	void set_title(const char *string);
 // Generate title for display
 	void generate_display_title(char *string);
 // Get keyframes for configuration.  Position is always relative to EDL rate.

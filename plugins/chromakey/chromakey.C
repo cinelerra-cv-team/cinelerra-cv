@@ -579,7 +579,7 @@ SET_TRACE
 	return 1;
 }
 
-char* ChromaKey::plugin_title() { return N_("Chroma key"); }
+const char* ChromaKey::plugin_title() { return N_("Chroma key"); }
 int ChromaKey::is_realtime() { return 1; }
 
 NEW_PICON_MACRO(ChromaKey)

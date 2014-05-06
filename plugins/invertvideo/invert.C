@@ -84,7 +84,7 @@ public:
 		int64_t start_position,
 		double frame_rate);
 	int is_realtime();
-	char* plugin_title();
+	const char* plugin_title();
 	VFrame* new_picon();
 	int load_defaults();
 	int save_defaults();
@@ -223,7 +223,7 @@ InvertVideoEffect::~InvertVideoEffect()
 	PLUGIN_DESTRUCTOR_MACRO
 }
 
-char* InvertVideoEffect::plugin_title() { return N_("Invert Video"); }
+const char* InvertVideoEffect::plugin_title() { return N_("Invert Video"); }
 int InvertVideoEffect::is_realtime() { return 1; }
 
 NEW_PICON_MACRO(InvertVideoEffect)

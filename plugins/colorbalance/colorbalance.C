@@ -372,7 +372,7 @@ ColorBalanceMain::~ColorBalanceMain()
 	}
 }
 
-char* ColorBalanceMain::plugin_title() { return N_("Color Balance"); }
+const char* ColorBalanceMain::plugin_title() { return N_("Color Balance"); }
 int ColorBalanceMain::is_realtime() { return 1; }
 
 

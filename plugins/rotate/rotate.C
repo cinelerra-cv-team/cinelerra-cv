@@ -192,7 +192,7 @@ public:
 		int64_t start_position,
 		double frame_rate);
 	int is_realtime();
-	char* plugin_title();
+	const char* plugin_title();
 	VFrame* new_picon();
 	int show_gui();
 	void raise_window();
@@ -626,7 +626,7 @@ RotateEffect::~RotateEffect()
 
 
 
-char* RotateEffect::plugin_title() { return N_("Rotate"); }
+const char* RotateEffect::plugin_title() { return N_("Rotate"); }
 int RotateEffect::is_realtime() { return 1; }
 
 NEW_PICON_MACRO(RotateEffect)

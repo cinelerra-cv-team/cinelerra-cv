@@ -49,7 +49,7 @@ public:
 	MicroThemeMain(PluginServer *server);
 	~MicroThemeMain();
 
-	char* plugin_title();
+	const char* plugin_title();
 	Theme* new_theme();
 	
 	MicroTheme *theme;

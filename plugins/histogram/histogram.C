@@ -100,7 +100,7 @@ HistogramMain::~HistogramMain()
 	delete engine;
 }
 
-char* HistogramMain::plugin_title() { return N_("Histogram"); }
+const char* HistogramMain::plugin_title() { return N_("Histogram"); }
 int HistogramMain::is_realtime() { return 1; }
 
 

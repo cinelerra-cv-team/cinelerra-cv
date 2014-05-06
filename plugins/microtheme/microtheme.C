@@ -49,7 +49,7 @@ MicroThemeMain::~MicroThemeMain()
 }
 
 
-char* MicroThemeMain::plugin_title() 
+const char* MicroThemeMain::plugin_title() 
 {
 	return "Microscopic"; 
 }

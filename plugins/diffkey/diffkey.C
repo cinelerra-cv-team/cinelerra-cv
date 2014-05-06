@@ -343,7 +343,7 @@ SET_STRING_MACRO(DiffKey)
 NEW_PICON_MACRO(DiffKey)
 LOAD_CONFIGURATION_MACRO(DiffKey, DiffKeyConfig)
 
-char* DiffKey::plugin_title() { return N_("Difference key"); }
+const char* DiffKey::plugin_title() { return N_("Difference key"); }
 int DiffKey::is_realtime() { return 1; }
 int DiffKey::is_multichannel() { return 1; }
 

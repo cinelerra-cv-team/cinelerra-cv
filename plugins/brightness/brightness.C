@@ -95,7 +95,7 @@ BrightnessMain::~BrightnessMain()
 	if(engine) delete engine;
 }
 
-char* BrightnessMain::plugin_title() { return N_("Brightness/Contrast"); }
+const char* BrightnessMain::plugin_title() { return N_("Brightness/Contrast"); }
 int BrightnessMain::is_realtime() { return 1; }
 
 NEW_PICON_MACRO(BrightnessMain)	

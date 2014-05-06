@@ -711,7 +711,7 @@ int Overlay::handle_opengl()
 }
 
 
-char* Overlay::plugin_title() { return N_("Overlay"); }
+const char* Overlay::plugin_title() { return N_("Overlay"); }
 int Overlay::is_realtime() { return 1; }
 int Overlay::is_multichannel() { return 1; }
 int Overlay::is_synthesis() { return 1; }
