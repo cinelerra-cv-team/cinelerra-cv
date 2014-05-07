@@ -679,16 +679,4 @@ int RenderEngine::start_video()
 }
 
 
-int64_t RenderEngine::get_correction_factor(int reset)
-{
-	if(!every_frame)
-	{
-		int64_t x;
-//		x = playbackengine->correction_factor;
-//		if(reset) playbackengine->correction_factor = 0;
-		return x;
-	}
-	else
-		return 0;
-}
 

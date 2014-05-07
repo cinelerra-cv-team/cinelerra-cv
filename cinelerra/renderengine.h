@@ -185,8 +185,6 @@ public:
 			int output_w,
 			int output_h);
 
-	int64_t get_correction_factor(int reset);     // calling it resets the correction factor
-
 // start video since vrender is the master
 	int start_video();
 
