@@ -31,7 +31,7 @@ class StringFile
 {
 public:
 	StringFile(size_t length = 0);
-	StringFile(char *filename);
+	StringFile(const char *filename);
 	virtual ~StringFile();
 
 	int readline();   // read next line from string
@@ -55,8 +55,8 @@ public:
 
 	size_t get_length();
 	size_t get_pointer();
-	int write_to_file(char *filename);
-	int read_from_string(char *string);
+	int write_to_file(const char *filename);
+	int read_from_string(const char *string);
 
 	char *string;
 	size_t pointer, length, available;
