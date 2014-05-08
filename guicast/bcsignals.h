@@ -47,8 +47,8 @@
 typedef struct 
 {
 	void *ptr;
-	char *title;
-	char *location;
+	const char *title;
+	const char *location;
 	int is_owner;
 	int id;
 } bc_locktrace_t;
@@ -141,7 +141,7 @@ public:
 
 
 
-	static int set_lock(void *ptr, char *title, char *location);
+	static int set_lock(void *ptr, const char *title, const char *location);
 	static void set_lock2(int table_id);
 	static void set_lock2_condition(int table_id);
 	static void unset_lock2(int table_id);
@@ -149,13 +149,13 @@ public:
 // Used in lock destructors so takes away all references
 	static void unset_all_locks(void *ptr);
 
-	static void new_trace(char *text);
+	static void new_trace(const char *text);
 	static void new_trace(const char *file, const char *function, int line);
 	static void delete_traces();
 
 	static void enable_memory();
 	static void disable_memory();
-	static void set_buffer(int size, void *ptr, char* location);
+	static void set_buffer(int size, void *ptr, const char* location);
 // This one returns 1 if the buffer wasn't found.
 	static int unset_buffer(void *ptr);
 
@@ -164,7 +164,7 @@ public:
 	static void dump_buffers();
 
 // Convert signum to text
-	static char* sig_to_str(int number);
+	static const char* sig_to_str(int number);
 
 	static BC_Signals *global_signals;
 };
