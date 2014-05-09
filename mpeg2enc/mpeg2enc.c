@@ -340,8 +340,7 @@ static void init()
 void error(text)
 char *text;
 {
-  fprintf(stderr,text);
-  putc('\n',stderr);
+  fprintf(stderr, "%s\n", text);
   exit(1);
 }
 

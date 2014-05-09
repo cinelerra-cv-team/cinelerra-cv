@@ -230,7 +230,7 @@ int StringFile::writeline(char *arg1, int indent)
 	}
 	
 	for(i = 0; i < indent; i++, pointer++) string[pointer] = ' ';
-	sprintf(&string[pointer], arg1);
+	strcpy(&string[pointer], arg1);
 	pointer += strlen(arg1);
 	return 0;
 }

@@ -1205,7 +1205,7 @@ void mpeg3_stop_toc(mpeg3_t *file)
 
 // Store file information
 	PUT_INT32(FILE_INFO);
-	fprintf(file->toc_fd, file->fs->path);
+	fputs(file->fs->path, file->toc_fd);
 	for(j = strlen(file->fs->path); j < MPEG3_STRLEN; j++)
 			fputc(0, file->toc_fd);
 	PUT_INT64(file->source_date);
@@ -1236,7 +1236,7 @@ void mpeg3_stop_toc(mpeg3_t *file)
 // Path
 		PUT_INT32(TITLE_PATH);
 
-		fprintf(file->toc_fd, title->fs->path);
+		fputs(title->fs->path, file->toc_fd);
 
 // Pad path with 0
 		for(j = strlen(title->fs->path); j < MPEG3_STRLEN; j++)
