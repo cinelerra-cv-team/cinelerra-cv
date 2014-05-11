@@ -92,7 +92,7 @@ MenuEffectPacket::~MenuEffectPacket()
 MenuEffectThread::MenuEffectThread(MWindow *mwindow)
 {
 	this->mwindow = mwindow;
-	sprintf(title, "");
+	title[0] = 0;
 }
 
 MenuEffectThread::~MenuEffectThread()

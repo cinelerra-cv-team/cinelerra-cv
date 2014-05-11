@@ -90,7 +90,7 @@ int BC_RecentList::load_items(const char *prefix) {
 		char save[BCTEXTLEN];
 		char text[BCTEXTLEN];
 		sprintf(save, "RECENT_%s_%s_%d", prefix, type, count);
-		sprintf(text, "");
+		text[0] = 0;
 		defaults->get(save, text);
 		if (strlen(text) == 0) break;
 		items.append(new BC_ListBoxItem(text));

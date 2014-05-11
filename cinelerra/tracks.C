@@ -191,7 +191,7 @@ int Tracks::load(FileXML *xml, int &track_offset, uint32_t load_flags)
 // add the appropriate type of track
 	char string[BCTEXTLEN];
 	Track *track = 0;
-	sprintf(string, "");
+	string[0] = 0;
 	
 	xml->tag.get_property("TYPE", string);
 

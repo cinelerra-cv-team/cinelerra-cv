@@ -46,7 +46,7 @@ AudioInConfig::AudioInConfig()
 	firewire_port = 0;
 	firewire_channel = 63;
 	strcpy(firewire_path, "/dev/dv1394");
-	sprintf(esound_in_server, "");
+	esound_in_server[0] = 0;
 	esound_in_port = 0;
 
 	sprintf(alsa_in_device, "default");
@@ -184,7 +184,7 @@ VideoInConfig::VideoInConfig()
 	sprintf(v4l2jpeg_in_device, "/dev/video0");
 	sprintf(lml_in_device, "/dev/mvideo/stream");
 	sprintf(buz_in_device, "/dev/video0");
-	sprintf(screencapture_display, "");
+	screencapture_display[0] = 0;
 
 
 // DVB

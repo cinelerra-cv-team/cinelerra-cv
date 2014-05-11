@@ -519,7 +519,7 @@ char* VDriverMenu::driver_to_string(int driver)
 			break;
 #endif
 		default:
-			sprintf(string, "");
+			string[0] = 0;
 	}
 	return string;
 }

@@ -84,7 +84,7 @@ char* AudioESound::translate_device_string(char *server, int port)
 	if(port > 0 && strlen(server))
 		sprintf(device_string, "%s:%d", server, port);
 	else
-		sprintf(device_string, "");
+		device_string[0] = 0;
 	return device_string;
 }
 
