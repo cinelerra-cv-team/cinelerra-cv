@@ -6,7 +6,7 @@ lame_la_SOURCES = get_audio.c lametime.c main.c parse.c portableio.c timestatus.
 AM_CFLAGS = 
 AM_CXXFLAGS = 
 
-INCLUDES = -I$(top_srcdir)/guicast -I$(top_srcdir)/cinelerra -I$(top_srcdir)/quicktime -I/usr/include/lame
+AM_CPPFLAGS = -I$(top_srcdir)/guicast -I$(top_srcdir)/cinelerra -I$(top_srcdir)/quicktime -I/usr/include/lame
 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool $(LTCXX_FLAGS)
 

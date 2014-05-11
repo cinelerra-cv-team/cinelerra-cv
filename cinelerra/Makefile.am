@@ -334,7 +334,7 @@ cinelerra_SOURCES = aattachmentpoint.C \
 	$(firewire_SOURCES)
 
 # guicast must come first, to pick up correct workarounds.h
-INCLUDES = \
+AM_CPPFLAGS = \
 	-I$(top_srcdir)/guicast \
 	-I$(top_srcdir)/quicktime \
 	-I$(top_srcdir)/libmpeg3

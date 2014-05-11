@@ -4,7 +4,7 @@ parametric_la_LIBADD = $(top_builddir)/plugins/libfourier/libfourier.la
 parametric_la_SOURCES = parametric.C 
 AM_CXXFLAGS = $(LARGEFILE_CFLAGS)
 
-INCLUDES = -I$(top_srcdir)/guicast -I$(top_srcdir)/cinelerra -I$(top_srcdir)/quicktime -I$(top_srcdir)/plugins/libfourier
+AM_CPPFLAGS = -I$(top_srcdir)/guicast -I$(top_srcdir)/cinelerra -I$(top_srcdir)/quicktime -I$(top_srcdir)/plugins/libfourier
 LIBTOOL = $(SHELL) $(top_builddir)/libtool $(LTCXX_FLAGS)
 
 noinst_HEADERS = parametric.h picon_png.h 
