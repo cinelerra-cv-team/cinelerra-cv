@@ -28,7 +28,7 @@
 #include <stdio.h>
 #include <sys/time.h>
 
-Condition::Condition(int init_value, char *title, int is_binary)
+Condition::Condition(int init_value, const char *title, int is_binary)
 {
 	this->is_binary = is_binary;
 	this->title = title;
@@ -55,7 +55,7 @@ void Condition::reset()
 	value = init_value;
 }
 
-void Condition::lock(char *location)
+void Condition::lock(const char *location)
 {
 #ifndef NO_GUICAST
 	SET_LOCK(this, title, location);
@@ -87,7 +87,7 @@ void Condition::unlock()
     pthread_mutex_unlock(&mutex);
 }
 
-int Condition::timed_lock(int microseconds, char *location)
+int Condition::timed_lock(int microseconds, const char *location)
 {
     struct timeval now;
     struct timespec timeout;
