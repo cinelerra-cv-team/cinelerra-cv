@@ -1,4 +1,8 @@
 #include "surfscan.h"
+
+// Needed with OpenCV version 2.4.8 
+#include "opencv2/legacy/compat.hpp"
+
 #include "opencv2/calib3d/calib3d.hpp"
 #include "opencv2/objdetect/objdetect.hpp"
 #include "opencv2/features2d/features2d.hpp"

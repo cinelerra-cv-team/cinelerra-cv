@@ -18,6 +18,7 @@ Build-Depends: debhelper (>= 9), automake,
  libsndfile1-dev, libiec61883-dev (>= 1.0.0), libx264-dev,
  libfaac-dev (>= 1.24), libx11-dev, libxext-dev, libxft-dev,
  libxv-dev, libxxf86vm-dev, libfftw3-dev, libglu1-mesa-dev
+ , libopencv-core-dev, libopencv-objdetect-dev, libopencv-legacy-dev
 Homepage: http://www.cinelerra-cv.org/
 
 Package: cinelerra-cv

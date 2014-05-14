@@ -249,6 +249,17 @@ AC_ARG_ENABLE(freetype2,
 	[ 
 	  [freetype2=yes] ],
 	[ PKG_CHECK_MODULES(FREETYPE,freetype2,[freetype2=yes],:) ])
+
+# OpenCV is used by the findobj plugin.  Check if the needed libraries
+# exist.  The functions to look for are picked by random from the
+# libraries, and might not be the exact ones the findobj plugin need.
+AC_CHECK_HEADER(opencv2/legacy/legacy.hpp)
+AC_CHECK_HEADER(opencv2/legacy/compat.hpp)
+AC_CHECK_HEADER(opencv2/core/core_c.h, [opencvh=yes])
+AC_CHECK_LIB(opencv_legacy, cvChangeDetection)
+AC_CHECK_LIB(opencv_objdetect, cvLoadLatentSvmDetector)
+AC_CHECK_LIB(opencv_video, cvCamShift)
+AC_CHECK_LIB(opencv_core, cvReleaseMemStorage, [opencv=yes])
 ############## END OF MISC LIBRARIES
 
 LARGEFILE_CFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64"
@@ -625,6 +636,7 @@ AC_OUTPUT(Makefile cinelerra-cvs-current.spec po/Makefile.in \
 					plugins/denoisemjpeg/Makefile \
 					plugins/despike/Makefile plugins/dissolve/Makefile plugins/dot/Makefile \
 					plugins/fieldframe/Makefile plugins/flip/Makefile plugins/framefield/Makefile \
+	plugins/findobject/Makefile \
 					plugins/freeverb/Makefile plugins/freezeframe/Makefile plugins/gain/Makefile \
 	plugins/gamma/Makefile \
 					plugins/holo/Makefile plugins/huesaturation/Makefile \
@@ -718,6 +730,8 @@ RPT(libfaac,libfaac libraries)
 RPT(libfaach,libfaac headers)
 RPT(libfaad,libfaad libraries)
 RPT(libfaadh,libfaad headers)
+RPT(opencv,opencv libraries)
+RPT(opencvh,opencv headers)
 mandatory="$succeeded"
 
 echo

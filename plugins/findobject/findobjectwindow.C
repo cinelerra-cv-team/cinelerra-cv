@@ -26,14 +26,19 @@
 #include "findobjectwindow.h"
 #include "theme.h"
 
+WINDOW_CLOSE_EVENT(FindObjectWindow)
 
-FindObjectWindow::FindObjectWindow(FindObjectMain *plugin)
- : PluginClientWindow(plugin,
+FindObjectWindow::FindObjectWindow(FindObjectMain *plugin, int x, int y)
+ : BC_Window(plugin->get_gui_string(),
+	x,
+	y,
  	300, 
 	550, 
 	300,
 	550,
-	0)
+	0,
+	0,
+	1)
 {
 	this->plugin = plugin; 
 }
