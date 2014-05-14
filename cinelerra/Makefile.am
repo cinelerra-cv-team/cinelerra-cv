@@ -98,6 +98,7 @@ cinelerra_SOURCES = aattachmentpoint.C \
 		    cachebase.C \
 		    canvas.C \
 		    canvastools.C \
+		    cicolors.C \
 		    channel.C \
 		    channeldb.C \
 		    channeledit.C \
@@ -405,6 +406,7 @@ noinst_HEADERS = aattachmentpoint.h \
 		 cameraauto.h \
 		 canvas.h \
 		 canvastools.h \
+		 cicolors.h \
 		 channeledit.h \
 		 channel.h \
 		 channeldb.h \
