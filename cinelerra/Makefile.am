@@ -59,6 +59,7 @@ cinelerra_SOURCES = aattachmentpoint.C \
 		    adeviceprefs.C \
 		    aedit.C \
 		    aedits.C \
+		    affine.C \
 		    amodule.C \
 		    apatchgui.C \
 		    apluginarray.C \
@@ -359,6 +360,7 @@ noinst_HEADERS = aattachmentpoint.h \
 		 adeviceprefs.h \
 		 aedit.h \
 		 aedits.h \
+		 affine.h \
 		 amodule.h \
 		 apatchgui.h \
 		 apluginarray.h \
