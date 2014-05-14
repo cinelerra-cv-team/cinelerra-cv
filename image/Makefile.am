@@ -1,8 +1,8 @@
 desktopdir = $(datadir)/applications
-desktop_DATA = cinelerra.desktop
+desktop_DATA = cinelerra-cv.desktop
 
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = cinelerra.xpm
 
 EXTRA_DIST = \
-        cinelerra.desktop cinelerra.xpm
+        cinelerra-cv.desktop cinelerra.xpm
