@@ -109,6 +109,11 @@ int KeyFrame::operator==(KeyFrame &that)
 }
 
 
+char* KeyFrame::get_data()
+{
+	return data;
+}
+
 void KeyFrame::dump()
 {
 	printf("     position: %lld\n", position);

@@ -45,6 +45,7 @@ public:
 	int operator==(KeyFrame &that);
 	void dump();
 	int identical(KeyFrame *src);
+	char* get_data();
 
 	char data[MESSAGESIZE];
 };
