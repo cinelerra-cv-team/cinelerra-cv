@@ -60,6 +60,8 @@
 Theme::Theme()
  : BC_Theme()
 {
+	window_border = 10;
+	widget_border = 5;
 	this->mwindow = 0;
 	theme_title = DEFAULT_THEME;
 	data_buffer = 0;
