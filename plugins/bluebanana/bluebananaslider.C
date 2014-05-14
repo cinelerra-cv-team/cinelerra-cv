@@ -471,7 +471,7 @@ void BluebananaSlider::update(){
   int nty = Z1+1;
 
   if(!trough){
-    trough = new VFrame(NULL,ntw,nth);
+    trough = new VFrame((unsigned char*)NULL,ntw,nth);
   }
 
   if(!trough){
@@ -1506,7 +1506,7 @@ void BluebananaSliderChannel::update(){
   /* the trough in the three-part hist slider is slightly smaller than
      the full slider range, and cut into three sections */
   if(!trough){
-    trough = new VFrame(NULL,ntw,nth);
+    trough = new VFrame((unsigned char*)0, ntw,nth);
   }
 
   if(!trough){
@@ -1961,7 +1961,7 @@ void BluebananaSliderFill::update(){
   /* the trough in the two-part contour slider is slightly smaller than
      the full slider range, and cut into two sections */
   if(!trough){
-    trough = new VFrame(NULL,ntw,nth);
+    trough = new VFrame((unsigned char*)0, ntw,nth);
   }
 
   /* Unlike the hist slider, we just drop the three pixel columns in the center */

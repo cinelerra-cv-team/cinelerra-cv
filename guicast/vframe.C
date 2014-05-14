@@ -75,6 +75,23 @@ VFrame::VFrame(VFrame &frame)
 	copy_stacks(&frame);
 }
 
+VFrame::VFrame(int w, 
+	int h, 
+	int color_model)
+ {
+	reset_parameters(1);
+	params = new BC_Hash;
+	allocate_data(data, 
+	      /* shmid = -1, */
+		0, 
+		0, 
+		0, 
+		w, 
+		h, 
+		color_model, 
+		-1);
+}
+
 VFrame::VFrame(unsigned char *data, 
 	int w, 
 	int h, 

@@ -44,6 +44,10 @@ class VFrame
 public:
 // Create new frame with shared data if *data is nonzero.
 // Pass 0 to *data if private data is desired.
+	VFrame(int w, 
+		int h, 
+		int color_model);
+
 	VFrame(unsigned char *data, 
 		int w, 
 		int h, 
