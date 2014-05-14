@@ -44,6 +44,7 @@
 #include "bcbutton.inc"
 #include "bccapture.inc"
 #include "bcclipboard.inc"
+#include "bccmodels.inc"
 #include "bcdragwindow.inc"
 #include "bcfilebox.inc"
 #include "bclistbox.inc"

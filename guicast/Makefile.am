@@ -8,6 +8,11 @@ libguicast_la_SOURCES = \
 	bcbitmap.C \
 	bcbutton.C \
 	bccapture.C \
+	bccmodels.C \
+	bccmodel_float.C \
+	bccmodel_yuv420p.C \
+	bccmodel_yuv422.C \
+	bccmodel_default.C \
 	bcclipboard.C \
 	bcdelete.C \
 	bcdialog.C \
@@ -79,6 +84,9 @@ noinst_HEADERS = \
 	bcbutton.inc \
 	bccapture.h \
 	bccapture.inc \
+	bccmodel_permutation.h \
+	bccmodels.h \
+	bccmodels.inc \
 	bcclipboard.h \
 	bcclipboard.inc \
 	bcdelete.h \
