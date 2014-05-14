@@ -29,6 +29,8 @@
 #ifndef FINDOBJECT_H
 #define FINDOBJECT_H
 
+#include "config.h"
+
 #include <math.h>
 #include <stdint.h>
 #include <string.h>
@@ -83,7 +85,9 @@ using namespace cv;
 
 
 #define NO_ALGORITHM 0
+#if HAVE_OPENCV_SURF
 #define ALGORITHM_SURF 1
+#endif
 #define ALGORITHM_CAMSHIFT 2
 #define ALGORITHM_BLOB 3
 

@@ -260,6 +260,30 @@ AC_CHECK_LIB(opencv_legacy, cvChangeDetection)
 AC_CHECK_LIB(opencv_objdetect, cvLoadLatentSvmDetector)
 AC_CHECK_LIB(opencv_video, cvCamShift)
 AC_CHECK_LIB(opencv_core, cvReleaseMemStorage, [opencv=yes])
+AC_MSG_CHECKING(for SURF support in opencv)
+AC_TRY_LINK([#include "opencv2/legacy/legacy.hpp"
+#include "opencv2/legacy/compat.hpp"],
+[try  {
+cvExtractSURF(object_image, 
+	0, 
+	&object_keypoints, 
+	&object_descriptors, 
+	storage, 
+	params,
+	0);
+} catch (cv::Exception e) {
+  return 1;
+}
+return 0;],
+	[HAVE_OPENCV_SURF=yes],[HAVE_OPENCV_SURF=no])
+AC_MSG_RESULT([$HAVE_OPENCV_SURF])
+if test yes = "$HAVE_OPENCV_SURF" ; then
+	HAVE_OPENCV_SURF=1
+else
+	HAVE_OPENCV_SURF=0
+fi
+AC_DEFINE_UNQUOTED(HAVE_OPENCV_SURF, $HAVE_OPENCV_SURF,
+	[define if SURF support is compiled into opencv])
 ############## END OF MISC LIBRARIES
 
 LARGEFILE_CFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64"
