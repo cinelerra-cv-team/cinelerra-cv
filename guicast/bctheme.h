@@ -46,62 +46,62 @@ public:
 // Compose widgets using standard images.
 // The arguments are copied into new VFrames for a new image set.
 // The image set is put in the image table only if the title is nonzero.
-	VFrame** new_button(char *overlay_path, 
-		char *up_path, 
-		char *hi_path, 
-		char *dn_path,
-		char *title = 0);
-	VFrame** new_button4(char *overlay_path, 
-		char *up_path, 
-		char *hi_path, 
-		char *dn_path,
-		char *disabled_path,
-		char *title = 0);
-	VFrame** new_button(char *overlay_path,
+	VFrame** new_button(const char *overlay_path, 
+		const char *up_path, 
+		const char *hi_path, 
+		const char *dn_path,
+		const char *title = 0);
+	VFrame** new_button4(const char *overlay_path, 
+		const char *up_path, 
+		const char *hi_path, 
+		const char *dn_path,
+		const char *disabled_path,
+		const char *title = 0);
+	VFrame** new_button(const char *overlay_path,
 		VFrame *up,
 		VFrame *hi,
 		VFrame *dn,
-		char *title = 0);
-	VFrame** new_toggle(char *overlay_path,
-		char *up_path,
-		char *hi_path,
-		char *checked_path,
-		char *dn_path,
-		char *checkedhi_path,
-		char *title = 0);
-	VFrame** new_toggle(char *overlay_path,
+		const char *title = 0);
+	VFrame** new_toggle(const char *overlay_path,
+		const char *up_path,
+		const char *hi_path,
+		const char *checked_path,
+		const char *dn_path,
+		const char *checkedhi_path,
+		const char *title = 0);
+	VFrame** new_toggle(const char *overlay_path,
 		VFrame *up,
 		VFrame *hi,
 		VFrame *checked,
 		VFrame *dn,
 		VFrame *checkedhi,
-		char *title = 0);
+		const char *title = 0);
 
 
 // The two main routines for creating images are new_image_set and new_image.
 // If the title already exists in the table, the existing entry is returned.
 // These create image sets which are stored in the set table.
 // Takes comma delimited char* pointers to filenames.
-	VFrame** new_image_set(char *title, int total, va_list *args);
-	VFrame** new_image_set(char *title, int total, ...);
+	VFrame** new_image_set(const char *title, int total, va_list *args);
+	VFrame** new_image_set(const char *title, int total, ...);
 	VFrame** new_image_set(int total, ...);
 // Creates an image set from VFrame pointers.
 // The images are considered not references and deleted with the image set.
 // If the title already exists, the existing entry is deleted and overridden.
-	VFrame** new_image_set_images(char *title, int total, ...);
+	VFrame** new_image_set_images(const char *title, int total, ...);
 
 // Decompresses image and puts on images table before returning it.
-	VFrame* new_image(char *title, char *path);
-	VFrame* new_image(char *path);
+	VFrame* new_image(const char *title, const char *path);
+	VFrame* new_image(const char *path);
 
 
 // These retrieve images based on case sensitive title
-	VFrame* get_image(char *title, int use_default = 1);
-	VFrame** get_image_set(char *title, int use_default = 1);
-	BC_ThemeSet* get_image_set_object(char *title);
+	VFrame* get_image(const char *title, int use_default = 1);
+	VFrame** get_image_set(const char *title, int use_default = 1);
+	BC_ThemeSet* get_image_set_object(const char *title);
 
 // Loads compressed data into temporary
-	unsigned char* get_image_data(char *title);
+	unsigned char* get_image_data(const char *title);
 
 // Verify all images have been used after initialization.
 	void check_used();
@@ -133,7 +133,7 @@ class BC_ThemeSet
 {
 public:
 // Set is_reference if the images are going to be created by new_image
-	BC_ThemeSet(int total, int is_reference, char *title);
+	BC_ThemeSet(int total, int is_reference, const char *title);
 	~BC_ThemeSet();
 
 	VFrame **data;
