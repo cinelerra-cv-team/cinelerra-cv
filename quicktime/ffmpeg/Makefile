@@ -343,3 +343,13 @@ tests/seek_test$(EXESUF): tests/seek_test.c $(FF_DEP_LIBS)
 .PHONY: lib videohook documentation *test regtest-* swscale-error
 
 -include $(VHOOK_DEPS)
+
+# Dummy targets to fix 'make distcheck'
+dvi:
+check:
+installcheck:
+distuninstallcheck:
+
+distdir:
+	echo warning: faking 'make dist' in subpackage using tar + make distclean
+	tar cf - .|(cd $(distdir); tar xf -; make distclean)

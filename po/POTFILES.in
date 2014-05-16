@@ -65,7 +65,7 @@ cinelerra/mainmenu.C
 cinelerra/mainprogress.C
 cinelerra/manualgoto.C
 cinelerra/menueffects.C
-cinelerra/messages.C
+#cinelerra/messages.C
 cinelerra/meterpanel.C
 cinelerra/mwindow.C
 cinelerra/mwindowedit.C
@@ -135,8 +135,8 @@ plugins/bandslide/bandslide.C
 plugins/bandwipe/bandwipe.C
 plugins/blur/blur.C
 plugins/blur/blurwindow.C
-plugins/blurzoom/blurzoom.C
-plugins/blurzoom/blurzoomwindow.C
+#plugins/blurzoom/blurzoom.C
+#plugins/blurzoom/blurzoomwindow.C
 plugins/brightness/brightness.C
 plugins/brightness/brightnesswindow.C
 plugins/burn/burn.C
@@ -187,10 +187,10 @@ plugins/huesaturation/huesaturation.C
 # plugins/huesaturation/huewindow.C
 plugins/interpolate/interpolate.C
 plugins/interpolatevideo/interpolatevideo.C
-plugins/interpolateall/interpolateall.C
+#plugins/interpolateall/interpolateall.C
 plugins/invertaudio/invert.C
 plugins/invertvideo/invert.C
-plugins/invertvideo/invertwindow.C
+#plugins/invertvideo/invertwindow.C
 plugins/irissquare/irissquare.C
 plugins/ivtc/ivtc.C
 plugins/ivtc/ivtc.h
@@ -211,8 +211,8 @@ plugins/perspective/perspective.C
 plugins/pitch/pitch.C
 plugins/polar/polar.C
 # plugins/polar/polarwindow.C
-plugins/quark/quark.C
-plugins/quark/quarkwindow.C
+#plugins/quark/quark.C
+#plugins/quark/quarkwindow.C
 plugins/radialblur/radialblur.C
 plugins/reframe/reframe.C
 plugins/reframert/reframert.C

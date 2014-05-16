@@ -636,6 +636,7 @@ noinst_HEADERS = aattachmentpoint.h \
 		 vedits.h \
 		 video1394.h \
 		 videoconfig.h \
+		 videodev.h \
 		 videodevfix.h \
 		 videodevice.h \
 		 videowindowgui.h \
@@ -688,3 +689,6 @@ cinelerra_LDADD = \
 	$(MJPEG_LIBS)
 
 EXTRA_DIST = gen-feather-h
+
+clean-local:
+	$(RM) versioninfo.h

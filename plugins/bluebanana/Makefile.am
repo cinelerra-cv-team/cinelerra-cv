@@ -10,5 +10,6 @@ LIBTOOL = $(SHELL) $(top_builddir)/libtool $(LTCXX_FLAGS)
 
 noinst_HEADERS = \
 	bluebanana.h bluebananaconfig.h bluebananaslider.h \
+	bluebananacolor.c \
 	bluebananawindow.h picon_png.h
 EXTRA_DIST = picon.png
