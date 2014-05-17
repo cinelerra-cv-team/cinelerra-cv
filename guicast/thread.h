@@ -43,7 +43,7 @@ public:
 	int end(pthread_t tid);           // end another thread
 	int end();    // end this thread
 	int cancel();    // end this thread
-	int join();   // join this thread
+	void join();   // join this thread
 	int suspend_thread();   // suspend this thread
 	int continue_thread();     // continue this thread
 	int exit_thread();   // exit this thread

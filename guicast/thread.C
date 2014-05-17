@@ -133,7 +133,7 @@ int Thread::cancel()
 	return 0;
 }
 
-int Thread::join()   // join this thread
+void Thread::join()   // join this thread
 {
 	int result = 0;
 	if(tid_valid)
@@ -146,7 +146,6 @@ int Thread::join()   // join this thread
 
 // Don't execute anything after this.
 	if(autodelete && synchronous) delete this;
-	return 0;
 }
 
 int Thread::enable_cancel()
