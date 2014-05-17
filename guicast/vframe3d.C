@@ -550,7 +550,8 @@ SET_TRACE
 	}
 
 //printf("VFrame::make_shader\n%s\n", complete_program);
-	delete [] complete_program;
+	free(complete_program);
+	complete_program = NULL;
 
 #endif
 	return result;
