@@ -287,7 +287,7 @@ int BC_WindowBase::create_window(BC_WindowBase *parent_window,
 				int private_color, 
 				int hide,
 				int bg_color,
-				char *display_name,
+				const char *display_name,
 				int window_type,
 				BC_Pixmap *bg_pixmap,
 				int group_it)
@@ -579,7 +579,7 @@ int BC_WindowBase::create_window(BC_WindowBase *parent_window,
 	return 0;
 }
 
-Display* BC_WindowBase::init_display(char *display_name)
+Display* BC_WindowBase::init_display(const char *display_name)
 {
 	Display* display;
 
@@ -1428,7 +1428,7 @@ int BC_WindowBase::hide_tooltip()
 	return 0;
 }
 
-int BC_WindowBase::set_tooltip(char *text)
+int BC_WindowBase::set_tooltip(const char *text)
 {
 	strcpy(this->tooltip_text, text);
 // Update existing tooltip if it is visible

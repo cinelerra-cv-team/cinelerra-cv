@@ -35,7 +35,7 @@ public:
 	BC_Toggle(int x, int y, 
 		VFrame **data,
 		int value, 
-		char *caption = "",
+		const char *caption = "",
 		int bottom_justify = 0,
 		int font = MEDIUMFONT,
 		int color = -1);
@@ -119,7 +119,7 @@ public:
 	BC_Radial(int x, 
 		int y, 
 		int value, 
-		char *caption = "", 
+		const char *caption = "", 
 		int font = MEDIUMFONT,
 		int color = -1);
 };
@@ -130,13 +130,13 @@ public:
 	BC_CheckBox(int x, 
 		int y, 
 		int value, 
-		char *caption = "", 
+		const char *caption = "", 
 		int font = MEDIUMFONT,
 		int color = -1);
 	BC_CheckBox(int x, 
 		int y, 
 		int *value, 
-		char *caption = "", 
+		const char *caption = "", 
 		int font = MEDIUMFONT,
 		int color = -1);
 	virtual int handle_event();

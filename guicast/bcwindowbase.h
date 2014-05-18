@@ -537,7 +537,7 @@ public:
 	int set_repeat(int64_t duration);
 // Stop a repeat event from being dispatched.
 	int unset_repeat(int64_t duration);
-	int set_tooltip(char *text);
+	int set_tooltip(const char *text);
 	int show_tooltip(int w = -1, int h = -1);
 	int hide_tooltip();
 	int set_icon(VFrame *data);
@@ -569,12 +569,12 @@ private:
 				int private_color, 
 				int hide,
 				int bg_color,
-				char *display_name,
+				const char *display_name,
 				int window_type,
 				BC_Pixmap *bg_pixmap,
 				int group_it);
 
-	static Display* init_display(char *display_name);
+	static Display* init_display(const char *display_name);
 // Get display from top level
 	Display* get_display();
 	int get_screen();
