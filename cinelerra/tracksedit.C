@@ -185,14 +185,16 @@ int Tracks::delete_tracks()
 	{
 		done = 1;
 		for (Track* current = first;
-			current && done;
+			current;
 			current = NEXT)
 		{
 			if(current->record)
 			{
 				delete_track(current);
+				current = NULL;
 				total_deleted++;
 				done = 0;
+				break;
 			}
 		}
 	}
