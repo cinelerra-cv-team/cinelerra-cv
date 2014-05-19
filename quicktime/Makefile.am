@@ -135,6 +135,3 @@ pkgincludedir=$(includedir)/quicktime
 pkginclude_HEADERS=quicktime.h qtprivate.h
 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool $(LTC_FLAGS)
-
-dist-hook:
-	-rm -rf $(distdir)/docs/CVS

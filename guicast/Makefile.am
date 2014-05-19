@@ -209,7 +209,3 @@ bootstrap.$(OBJEXT): bootstrap.c
 	$(CC) $(BOOTSTRAP_CFLAGS) -c $<
 
 EXTRA_DIST = images pngtoh.c
-
-dist-hook:
-	-rm -rf $(distdir)/images/CVS
-	-rm -rf $(distdir)/images/7seg_small/CVS
