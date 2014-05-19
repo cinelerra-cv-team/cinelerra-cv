@@ -17,6 +17,29 @@ AC_LANG_CPLUSPLUS
 AC_LANG_C
 AC_PROG_CXX
 
+dnl
+dnl GREP_CXXFLAGS(flag, cmd_if_missing, cmd_if_present)
+dnl
+AC_DEFUN([GREP_CXXFLAGS],
+[case "$CXXFLAGS" in
+"$1" | "$1 "* | *" $1" | *" $1 "* )
+  ifelse($#, 3, [$3], [:])
+  ;;
+*)
+  $2
+  ;;
+esac
+])
+
+if eval "test x$GCC = xyes"; then
+  for flag in \
+      -Wformat \
+      -Werror=format-security
+  do
+    GREP_CXXFLAGS($flag, [ CXXFLAGS="$CXXFLAGS $flag" ])
+  done
+fi
+
 AC_ENABLE_SHARED
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
