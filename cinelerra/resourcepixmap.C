@@ -787,7 +787,7 @@ void ResourcePixmap::draw_video_resource(Edit *edit,
 void ResourcePixmap::dump()
 {
 	printf("ResourcePixmap %p\n", this);
-	printf(" edit %x edit_x %d pixmap_x %d pixmap_w %d visible %d\n", edit_id, edit_x, pixmap_x, pixmap_w, visible);
+	printf(" edit %jx edit_x %jd pixmap_x %jd pixmap_w %jd visible %d\n", edit_id, edit_x, pixmap_x, pixmap_w, visible);
 }
 
 

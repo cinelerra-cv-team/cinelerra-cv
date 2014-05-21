@@ -146,7 +146,7 @@ int InterfacePrefs::create_objects()
 		_("Size of index file:"), 
 		MEDIUMFONT, 
 		resources->text_default));
-	sprintf(string, "%ld", pwindow->thread->preferences->index_size);
+	sprintf(string, "%jd", pwindow->thread->preferences->index_size);
 	add_subwindow(isize = new IndexSize(x + 230, y, pwindow, string));
 	y += 30;
 	add_subwindow(new BC_Title(x, y + 5, _("Number of index files to keep:"), MEDIUMFONT, resources->text_default));

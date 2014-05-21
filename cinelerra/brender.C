@@ -278,7 +278,7 @@ int BRender::set_video_map(int64_t position, int value)
 	else
 // Obsolete EDL
 	{
-		printf(_("BRender::set_video_map %d: attempt to set beyond end of map %d.\n"),
+		printf(_("BRender::set_video_map %jd: attempt to set beyond end of map %jd.\n"),
 			position,
 			map_size);
 	}
@@ -577,7 +577,7 @@ void BRenderThread::start()
 		if(end_frame < start_frame) end_frame = start_frame;
 
 
-printf("BRenderThread::start 1 map=%d equivalent=%d brender_start=%d result=%d end=%d\n", 
+printf("BRenderThread::start 1 map=%d equivalent=%d brender_start=%d result=%d end=%jd\n", 
 last_contiguous, 
 last_good, 
 brender_start, 

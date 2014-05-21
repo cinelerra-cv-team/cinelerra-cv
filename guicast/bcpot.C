@@ -523,7 +523,7 @@ int BC_IPot::decrease_value()
 
 const char* BC_IPot::get_caption()
 {
-	sprintf(caption, "%ld", value);
+	sprintf(caption, "%jd", value);
 	return caption;
 }
 

@@ -597,7 +597,7 @@ void ReverbConfig::interpolate(ReverbConfig &prev,
 
 void ReverbConfig::dump()
 {
-	printf("ReverbConfig::dump %f %d %f %f %d %d %d %d\n", 
+	printf("ReverbConfig::dump %f %jd %f %f %jd %jd %jd %jd\n", 
 	level_init,
 	delay_init, 
 	ref_level1, 

@@ -1445,7 +1445,7 @@ int BC_WindowBase::set_repeat(int64_t duration)
 {
 	if(duration <= 0)
 	{
-		printf("BC_WindowBase::set_repeat duration=%d\n", duration);
+		printf("BC_WindowBase::set_repeat duration=%jd\n", duration);
 		return 0;
 	}
 	if(window_type != MAIN_WINDOW) return top_level->set_repeat(duration);

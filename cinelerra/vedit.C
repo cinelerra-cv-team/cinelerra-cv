@@ -106,8 +106,8 @@ int VEdit::copy_properties_derived(FileXML *xml, int64_t length_in_selection)
 int VEdit::dump_derived()
 {
 	printf("	VEdit::dump_derived\n");
-	printf("		startproject %ld\n", startproject);
-	printf("		length %ld\n", length);
+	printf("		startproject %jd\n", startproject);
+	printf("		length %jd\n", length);
 }
 
 int64_t VEdit::get_source_end(int64_t default_)

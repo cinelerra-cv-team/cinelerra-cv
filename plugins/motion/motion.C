@@ -2050,7 +2050,7 @@ void MotionScan::scan_frame(VFrame *previous_frame,
 		{
 // Load result from disk
 			char string[BCTEXTLEN];
-			sprintf(string, "%s%06d", MOTION_FILE, plugin->get_source_position());
+			sprintf(string, "%s%06jd", MOTION_FILE, plugin->get_source_position());
 			FILE *input = fopen(string, "r");
 			if(input)
 			{
@@ -2303,7 +2303,7 @@ void MotionScan::scan_frame(VFrame *previous_frame,
 		if (plugin->config.addtrackedframeoffset) {
 		  int tf_dx_result, tf_dy_result;
 		  char string[BCTEXTLEN];
-		  sprintf(string, "%s%06d", MOTION_FILE, plugin->config.track_frame);
+		  sprintf(string, "%s%06jd", MOTION_FILE, plugin->config.track_frame);
 		  FILE *input = fopen(string, "r");
 		  if(input)
 		    {
@@ -2329,7 +2329,7 @@ void MotionScan::scan_frame(VFrame *previous_frame,
 	{
 		char string[BCTEXTLEN];
 		sprintf(string, 
-			"%s%06d", 
+			"%s%06jd", 
 			MOTION_FILE, 
 			plugin->get_source_position());
 		FILE *output = fopen(string, "w");
@@ -2577,7 +2577,7 @@ float RotateScan::scan_frame(VFrame *previous_frame,
 		case MotionConfig::LOAD:
 		{
 			char string[BCTEXTLEN];
-			sprintf(string, "%s%06d", ROTATION_FILE, plugin->get_source_position());
+			sprintf(string, "%s%06jd", ROTATION_FILE, plugin->get_source_position());
 			FILE *input = fopen(string, "r");
 			if(input)
 			{
@@ -2739,7 +2739,7 @@ printf("RotateScan::scan_frame min_angle=%f\n", min_angle * 360 / 2 / M_PI);
 	{
 		char string[BCTEXTLEN];
 		sprintf(string, 
-			"%s%06d", 
+			"%s%06jd", 
 			ROTATION_FILE, 
 			plugin->get_source_position());
 		FILE *output = fopen(string, "w");

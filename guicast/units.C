@@ -254,29 +254,29 @@ char* Units::totext(char *text,
 					60 + 
 					second) + 
 				0.0000001);   
-			sprintf(text, "%01d:%02d:%02d:%02ld", hour, minute, second, frame);
+			sprintf(text, "%01d:%02d:%02d:%02jd", hour, minute, second, frame);
 			return text;
 		}
 			break;
 			
 		case TIME_SAMPLES:
-  			sprintf(text, "%09ld", to_int64(seconds * sample_rate));
+  			sprintf(text, "%09jd", to_int64(seconds * sample_rate));
 			break;
 		
 		case TIME_SAMPLES_HEX:
-  			sprintf(text, "%08x", to_int64(seconds * sample_rate));
+  			sprintf(text, "%08jx", to_int64(seconds * sample_rate));
 			break;
 		
 		case TIME_FRAMES:
 			frame = to_int64(seconds * frame_rate);
-			sprintf(text, "%06ld", frame);
+			sprintf(text, "%06jd", frame);
 			return text;
 			break;
 		
 		case TIME_FEET_FRAMES:
 			frame = to_int64(seconds * frame_rate);
 			feet = (int64_t)(frame / frames_per_foot);
-			sprintf(text, "%05ld-%02ld", 
+			sprintf(text, "%05jd-%02jd", 
 				feet, 
 				(int64_t)(frame - feet * frames_per_foot));
 			return text;
@@ -385,7 +385,7 @@ int64_t Units::fromtext(char *text,
 			break;
 		
 		case TIME_SAMPLES_HEX:
-			sscanf(text, "%x", &total_samples);
+			sscanf(text, "%jx", &total_samples);
 			return total_samples;
 		
 		case TIME_FRAMES:

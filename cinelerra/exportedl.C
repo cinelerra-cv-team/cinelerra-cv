@@ -201,7 +201,7 @@ int ExportEDLAsset::export_it()
 					colnum --;
 				}
 				edittype[0] = 'D';
-				fprintf(fh, "%03d %8s %s %4s %03d", colnum, reel_name, avselect, edittype, edit->transition->length);
+				fprintf(fh, "%03d %8s %s %4s %03jd", colnum, reel_name, avselect, edittype, edit->transition->length);
 				fprintf(fh, " %s %s", sourceinpoint, sourceoutpoint);
 				fprintf(fh, " %s %s", destinpoint, destoutpoint);
 				fprintf(fh,"\n");
