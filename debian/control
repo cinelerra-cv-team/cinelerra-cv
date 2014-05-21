@@ -26,7 +26,7 @@ Section: video
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, libguicast1-cv (= ${binary:Version}),
  libquicktimecine-cv (= ${binary:Version}), libmpeg3cine-cv (= ${binary:Version}),
- mjpegtools (>= 1.6.2)
+ mjpegtools (>= 1.6.2), debianutils
 Description: Non-linear audio/video authoring tool
  Cinelerra-CV is a complete audio and video authoring
  tool. It understands a lot of multimedia formats

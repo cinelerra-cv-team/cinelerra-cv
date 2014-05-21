@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+#DEBHELPER#
+
+# Load our kernel settings unless ischroot from debianutils claim we
+# are in a chroot / LXC / etc environment.  Default to not loading if
+# detection is not possible.
+if ! ischroot -t && type sysctl >/dev/null 2>&1; then
+    sysctl -p /etc/sysctl.d/cinelerra-cv.conf
+fi
