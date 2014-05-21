@@ -214,7 +214,7 @@ int FFT::ready_fftw(unsigned int samples)
 	return 0;
 }
 
-int FFT::do_fftw_inplace(unsigned int samples,
+void FFT::do_fftw_inplace(unsigned int samples,
 		int inverse,
 		fftw_complex *data)
 {

@@ -55,7 +55,7 @@ public:
 
 	fftw_plan_desc *my_fftw_plan;
 	int ready_fftw(unsigned int samples);
-	int do_fftw_inplace(unsigned int samples,
+	void do_fftw_inplace(unsigned int samples,
 		int inverse,
 		fftw_complex *data);
 
