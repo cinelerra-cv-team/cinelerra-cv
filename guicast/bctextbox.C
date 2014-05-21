@@ -44,7 +44,7 @@ BC_TextBox::BC_TextBox(int x,
 	int y, 
 	int w, 
 	int rows, 
-	char *text, 
+	const char *text, 
 	int has_border, 
 	int font)
  : BC_SubWindow(x, y, w, 0, -1)
@@ -195,7 +195,7 @@ void BC_TextBox::set_selection(int char1, int char2, int ibeam)
 	draw();
 }
 
-int BC_TextBox::update(char *text)
+int BC_TextBox::update(const char *text)
 {
 //printf("BC_TextBox::update 1 %d %s %s\n", strcmp(text, this->text), text, this->text);
 	int text_len = strlen(text);
