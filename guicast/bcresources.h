@@ -41,7 +41,7 @@
 
 typedef struct
 {
-	char *suffix;
+	const char *suffix;
 	int icon_type;
 } suffix_to_type_t;
 
