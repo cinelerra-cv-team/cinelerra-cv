@@ -22,10 +22,10 @@ ifneq (, $(findstring smp2,$(DEB_BUILD_OPTIONS)))
 	MAKEFLAGS=-j3
 endif
 
-# Enable this to activate hardening, when the source is fixed
-#CFLAGS += $(shell dpkg-buildflags --get CFLAGS)
-#CXXFLAGS += $(shell dpkg-buildflags --get CXXFLAGS)
-#LDFLAGS += $(shell dpkg-buildflags --get LDFLAGS)
+# Enable hardening flags
+CFLAGS += $(shell dpkg-buildflags --get CFLAGS)
+CXXFLAGS += $(shell dpkg-buildflags --get CXXFLAGS)
+LDFLAGS += $(shell dpkg-buildflags --get LDFLAGS)
 
 build: build-stamp
 build-stamp: debian/cinelerra-cv.1 debian/mplexhi.1 debian/mplexlo.1
