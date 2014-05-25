@@ -38,7 +38,7 @@
 // 24 bpp unpacked:       0bgr
 
 
-BC_Capture::BC_Capture(int w, int h, char *display_path)
+BC_Capture::BC_Capture(int w, int h, const char *display_path)
 {
 	this->w = w;
 	this->h = h;
@@ -56,7 +56,7 @@ BC_Capture::~BC_Capture()
 	XCloseDisplay(display);
 }
 
-int BC_Capture::init_window(char *display_path)
+int BC_Capture::init_window(const char *display_path)
 {
 	int bits_per_pixel;
 	if(display_path && display_path[0] == 0) display_path = NULL;

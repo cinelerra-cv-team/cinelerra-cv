@@ -34,10 +34,10 @@
 class BC_Capture
 {
 public:
-	BC_Capture(int w, int h, char *display_path = "");
+	BC_Capture(int w, int h, const char *display_path = "");
 	virtual ~BC_Capture();
 
-	int init_window(char *display_path);
+	int init_window(const char *display_path);
 // x1 and y1 are automatically adjusted if out of bounds
 	int capture_frame(VFrame *frame, int &x1, int &y1);
 	int get_w();
