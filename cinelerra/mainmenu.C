@@ -549,7 +549,7 @@ int Undo::handle_event()
 	mwindow->undo_entry(mwindow->gui);
 	return 1;
 }
-int Undo::update_caption(char *new_caption)
+int Undo::update_caption(const char *new_caption)
 {
 	char string[1024];
 	sprintf(string, _("Undo %s"), new_caption);
@@ -569,7 +569,7 @@ int Redo::handle_event()
 
 	return 1;
 }
-int Redo::update_caption(char *new_caption)
+int Redo::update_caption(const char *new_caption)
 {
 	char string[1024];
 	sprintf(string, _("Redo %s"), new_caption);

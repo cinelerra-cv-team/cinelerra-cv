@@ -139,7 +139,7 @@ class Undo : public BC_MenuItem
 public:
 	Undo(MWindow *mwindow);
 	int handle_event();
-	int update_caption(char *new_caption = "");
+	int update_caption(const char *new_caption = "");
 	MWindow *mwindow;
 };
 
@@ -182,7 +182,7 @@ class Redo : public BC_MenuItem
 public:
 	Redo(MWindow *mwindow);
 	int handle_event();
-	int update_caption(char *new_caption = "");
+	int update_caption(const char *new_caption = "");
 	MWindow *mwindow;
 };
 
