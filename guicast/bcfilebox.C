@@ -793,7 +793,7 @@ int BC_FileBox::create_tables()
 // Date entry
 		if(!is_dir || 1)
 		{
-			static char *month_text[13] = 
+			static const char *month_text[13] = 
 			{
 				"Null",
 				"Jan",
