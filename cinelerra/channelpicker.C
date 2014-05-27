@@ -500,7 +500,7 @@ int ChannelPicker::close_threads()
 	return 0;
 }
 
-char* ChannelPicker::get_source_name(Channel *channel)
+const char* ChannelPicker::get_source_name(Channel *channel)
 {
 	if(channel->entry < chanlists[channel->freqtable].count)
 		return chanlists[channel->freqtable].list[channel->entry].name;
