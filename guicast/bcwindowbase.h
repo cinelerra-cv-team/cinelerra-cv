@@ -852,7 +852,7 @@ private:
 	int id;
 
 protected:
-	Atom create_xatom(char *atom_name);
+	Atom create_xatom(const char *atom_name);
 	int send_custom_xatom(xatom_event *event); 
 
 };

@@ -1544,7 +1544,7 @@ int BC_WindowBase::send_custom_xatom(xatom_event *event)
 
 
 
-Atom BC_WindowBase::create_xatom(char *atom_name)
+Atom BC_WindowBase::create_xatom(const char *atom_name)
 {
 	return XInternAtom(display, atom_name, False);
 }
