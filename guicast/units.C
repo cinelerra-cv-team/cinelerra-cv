@@ -656,7 +656,7 @@ uint64_t Units::ptr_to_int64(void *ptr)
 	return result;
 }
 
-char* Units::format_to_separators(int time_format)
+const char* Units::format_to_separators(int time_format)
 {
 	switch(time_format)
 	{
