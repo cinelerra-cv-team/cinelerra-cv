@@ -7,5 +7,11 @@ AM_CXXFLAGS = $(LARGEFILE_CFLAGS)
 AM_CPPFLAGS = -I$(top_srcdir)/guicast -I$(top_srcdir)/cinelerra -I$(top_srcdir)/quicktime
 LIBTOOL = $(SHELL) $(top_builddir)/libtool $(LTCXX_FLAGS)
 
-noinst_HEADERS = picon_png.h timeavg.h timeavgwindow.h 
+noinst_HEADERS = timeavg.h timeavgwindow.h 
 EXTRA_DIST = picon.png
+
+timeavg.o: picon_png.h
+picon_png.h: picon.png
+	$(top_builddir)/guicast/pngtoh $^ || { rm -f $@; exit 1; }
+clean-local:
+	$(RM) picon_png.h

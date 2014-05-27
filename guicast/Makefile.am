@@ -1,5 +1,5 @@
 lib_LTLIBRARIES = libguicast.la
-noinst_PROGRAMS=bootstrap
+noinst_PROGRAMS = bootstrap pngtoh
 
 libguicast_la_LIBADD = $(OPENGL_LIBS) -lXxf86vm -lXv -lXext -lX11 $(X_EXTRA_LIBS)
 libguicast_la_LDFLAGS = $(X_LIBS) -version-info 1:0:0 
@@ -208,4 +208,5 @@ bootstrap_LDADD =
 bootstrap.$(OBJEXT): bootstrap.c
 	$(CC) $(BOOTSTRAP_CFLAGS) -c $<
 
-EXTRA_DIST = images pngtoh.c
+pngtoh_SOURCES = pngtoh.c
+EXTRA_DIST = images

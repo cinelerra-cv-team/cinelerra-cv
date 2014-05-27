@@ -15,5 +15,11 @@ chromakey_sl.c: chromakey.sl
 	-e 's/^/"/' -e 's/$$/\\n"/' < $(srcdir)/chromakey.sl; \
 	echo ";") > chromakey_sl.c
 
-noinst_HEADERS = chromakey.h picon_png.h 
+noinst_HEADERS = chromakey.h
 EXTRA_DIST = chromakey.sl picon.png
+
+chromakey.o: picon_png.h
+picon_png.h: picon.png
+	$(top_builddir)/guicast/pngtoh $^ || { rm -f $@; exit 1; }
+clean-local:
+	$(RM) picon_png.h

@@ -9,6 +9,11 @@ LIBTOOL = $(SHELL) $(top_builddir)/libtool $(LTCXX_FLAGS)
 
 noinst_HEADERS = \
 	unsharp.h unsharp.inc \
-	unsharpwindow.h unsharpwindow.inc \
-	picon_png.h 
+	unsharpwindow.h unsharpwindow.inc
 EXTRA_DIST = picon.png
+
+unsharp.o: picon_png.h
+picon_png.h: picon.png
+	$(top_builddir)/guicast/pngtoh $^ || { rm -f $@; exit 1; }
+clean-local:
+	$(RM) picon_png.h
