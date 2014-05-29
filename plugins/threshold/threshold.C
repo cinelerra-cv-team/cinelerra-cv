@@ -289,7 +289,7 @@ void ThresholdMain::calculate_histogram(VFrame *frame)
 int ThresholdMain::handle_opengl()
 {
 #ifdef HAVE_GL
-	static char *rgb_shader = 
+	static const char *rgb_shader = 
 		"uniform sampler2D tex;\n"
 		"uniform float min;\n"
 		"uniform float max;\n"
@@ -309,7 +309,7 @@ int ThresholdMain::handle_opengl()
 		"	gl_FragColor = pixel;\n"
 		"}\n";
 
-	static char *yuv_shader = 
+	static const char *yuv_shader = 
 		"uniform sampler2D tex;\n"
 		"uniform float min;\n"
 		"uniform float max;\n"
