@@ -38,6 +38,20 @@ if eval "test x$GCC = xyes"; then
   do
     GREP_CXXFLAGS($flag, [ CXXFLAGS="$CXXFLAGS $flag" ])
   done
+  AC_ARG_WITH([lots-of-warnings],
+	AC_HELP_STRING([--with-lots-of-warnings], [ask the compiler to enable lots of warning flags]),[
+  for flag in \
+      -Wall \
+      -Wextra \
+      -Wcast-qual \
+      -Wpointer-arith \
+      -Wreturn-type \
+      -Wunused \
+      -pedantic
+  do
+    GREP_CXXFLAGS($flag, [ CXXFLAGS="$CXXFLAGS $flag" ])
+  done
+])
 fi
 
 AC_ENABLE_SHARED
