@@ -35,9 +35,9 @@ class BC_ListBoxItem
 public:
 	BC_ListBoxItem();
 // New items
-	BC_ListBoxItem(char *text, 
+	BC_ListBoxItem(const char *text, 
 		int color = -1);
-	BC_ListBoxItem(char *text, 
+	BC_ListBoxItem(const char *text, 
 		BC_Pixmap *icon, 
 		int color = -1);
 	
@@ -53,7 +53,7 @@ public:
 
 	BC_ListBoxItem& operator=(BC_ListBoxItem& item);
 	void copy_from(BC_ListBoxItem *item);
-	void set_text(char *new_text);
+	void set_text(const char *new_text);
 	char* get_text();
 	void set_icon(BC_Pixmap *icon);
 	void set_icon_vframe(VFrame *icon_vframe);

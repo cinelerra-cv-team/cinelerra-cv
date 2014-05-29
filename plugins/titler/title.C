@@ -311,7 +311,7 @@ void GlyphUnit::process_package(LoadPackage *package)
 		{
 // carrige return
 			if (glyph->char_code != 10)  
-				printf(_("GlyphUnit::process_package FT_Load_Char failed - char: %i.\n"),
+				printf(_("GlyphUnit::process_package FT_Load_Char failed - char: %li.\n"),
 					glyph->char_code);
 // Prevent a crash here
 			glyph->width = 8;
@@ -1382,7 +1382,7 @@ int TitleMain::load_freetype_face(FT_Library &freetype_library,
 		0,
 		&freetype_face))
 	{
-		fprintf(stderr, _("TitleMain::load_freetype_face %s failed.\n"));
+		fprintf(stderr, _("TitleMain::load_freetype_face %s failed.\n"), path);
 		FT_Done_FreeType(freetype_library);
 		freetype_face = 0;
 		freetype_library = 0;
