@@ -76,7 +76,7 @@ public:
 class SwapItem : public BC_MenuItem
 {
 public:
-	SwapItem(SwapMenu *menu, char *title);
+	SwapItem(SwapMenu *menu, const char *title);
 
 	int handle_event();
 
@@ -142,7 +142,7 @@ public:
 
 
 // parameters needed for processor
-	char* output_to_text(int value);
+	const char* output_to_text(int value);
 	int text_to_output(char *text);
 
 	VFrame *temp;

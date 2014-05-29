@@ -161,7 +161,7 @@ int SwapMenu::create_objects()
 
 
 
-SwapItem::SwapItem(SwapMenu *menu, char *title)
+SwapItem::SwapItem(SwapMenu *menu, const char *title)
  : BC_MenuItem(title)
 {
 	this->menu = menu;
@@ -442,7 +442,7 @@ int SwapMain::process_realtime(VFrame *input_ptr, VFrame *output_ptr)
 }
 
 
-char* SwapMain::output_to_text(int value)
+const char* SwapMain::output_to_text(int value)
 {
 	switch(value)
 	{

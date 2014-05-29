@@ -41,7 +41,7 @@
 
 // ================================ Menu Item ==================================
 
-BC_MenuItem::BC_MenuItem(char *text, const char *hotkey_text, int hotkey)
+BC_MenuItem::BC_MenuItem(const char *text, const char *hotkey_text, int hotkey)
 {
 	reset();
 
@@ -104,7 +104,7 @@ BC_Pixmap* BC_MenuItem::get_icon()
 	return icon;
 }
 
-void BC_MenuItem::set_text(char *text)
+void BC_MenuItem::set_text(const char *text)
 {
 	if(this->text) delete [] this->text;
 	this->text = new char[strlen(text) + 1];
