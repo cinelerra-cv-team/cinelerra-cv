@@ -220,9 +220,9 @@ void BC_Signals::dump_traces()
 	if(execution_table.size)
 	{
 		for(int i = execution_table.current_value; i < execution_table.size; i++)
-			printf("    %s\n", execution_table.values[i]);
+			printf("    %s\n", (char*)execution_table.values[i]);
 		for(int i = 0; i < execution_table.current_value; i++)
-			printf("    %s\n", execution_table.values[i]);
+			printf("    %s\n", (char*)execution_table.values[i]);
 	}
 
 }

@@ -605,7 +605,7 @@ int BC_QPot::decrease_value()
 
 const char* BC_QPot::get_caption()
 {
-	sprintf(caption, "%ld", Freq::tofreq(value));
+	sprintf(caption, "%d", Freq::tofreq(value));
 	return caption;
 }
 

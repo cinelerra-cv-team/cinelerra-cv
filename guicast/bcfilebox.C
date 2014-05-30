@@ -877,7 +877,7 @@ BC_Pixmap* BC_FileBox::get_icon(char *path, int is_dir)
 	return icons[icon_type];
 }
 
-char* BC_FileBox::columntype_to_text(int type)
+const char* BC_FileBox::columntype_to_text(int type)
 {
 	switch(type)
 	{

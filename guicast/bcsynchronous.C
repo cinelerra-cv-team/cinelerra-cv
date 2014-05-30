@@ -443,7 +443,7 @@ window_id);
 			glXDestroyPbuffer(display, pbuffer_ids.values[i]->pbuffer);
 			glXDestroyContext(display, pbuffer_ids.values[i]->gl_context);
 if(debug)
-printf("BC_Synchronous::delete_window_sync pbuffer_id=%p window_id=%d\n", 
+printf("BC_Synchronous::delete_window_sync pbuffer_id=%lx window_id=%d\n", 
 pbuffer_ids.values[i]->pbuffer,
 window_id);
 			pbuffer_ids.remove_object_number(i);

@@ -443,8 +443,8 @@ int BC_WindowBase::create_window(BC_WindowBase *parent_window,
 			Atom ClientLeaderXAtom;
 			if (XGroupLeader == 0)
 				XGroupLeader = win;
-			char *instance_name = "cinelerra";
-			char *class_name = "Cinelerra";
+			char *instance_name = (char*)"cinelerra";
+			char *class_name = (char*)"Cinelerra";
 			XClassHint *class_hints = XAllocClassHint(); 
 			class_hints->res_name = instance_name;
 			class_hints->res_class = class_name;
@@ -893,7 +893,7 @@ int BC_WindowBase::dispatch_event()
 			if(keysym > 0xffe0 && keysym < 0xffff) break;
 
 
-			if(test_keypress) printf("BC_WindowBase::dispatch_event %x\n", keysym);
+			if(test_keypress) printf("BC_WindowBase::dispatch_event %lx\n", keysym);
 
 
   			switch(keysym)
