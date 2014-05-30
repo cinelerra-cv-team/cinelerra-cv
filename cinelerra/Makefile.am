@@ -339,7 +339,7 @@ cinelerra_SOURCES = aattachmentpoint.C \
 AM_CPPFLAGS = \
 	-I$(top_srcdir)/guicast \
 	-I$(top_srcdir)/quicktime \
-	-I$(top_srcdir)/libmpeg3
+	$(LIBMPEG3_CFLAGS)
 
 AM_CXXFLAGS = \
 	$(LARGEFILE_CFLAGS) \
@@ -678,7 +678,7 @@ cinelerra_LDADD = \
 	$(top_builddir)/toolame-02l/libtoolame.la \
 	$(top_builddir)/quicktime/libquicktimehv.la \
 	$(top_builddir)/guicast/libguicast.la \
-	$(top_builddir)/libmpeg3/libmpeg3hv.la \
+	$(LIBMPEG3_LIBS) \
 	@FFMPEG_LIBS@ \
 	$(XIPH_LIBS) \
 	$(A52DEC_LIBS) \

@@ -21,7 +21,7 @@ libquicktimehv_la_LIBADD = \
 	$(FAAD_LIBS) \
 	-lfaac \
 	encore50/libencore.la \
-	$(top_builddir)/libmpeg3/libmpeg3hv.la \
+	$(LIBMPEG3_LIBS) \
 	$(LIBX264_LIBS) \
 	$(LIBDV_LIBS) \
 	-ljpeg -lpng \
@@ -129,7 +129,7 @@ noinst_HEADERS = cmodel_permutation.h \
 	
 EXTRA_DIST = docs
 
-AM_CPPFLAGS = -I$(top_srcdir)/libmpeg3
+AM_CPPFLAGS = $(LIBMPEG3_CFLAGS)
 
 pkgincludedir=$(includedir)/quicktime
 pkginclude_HEADERS=quicktime.h qtprivate.h

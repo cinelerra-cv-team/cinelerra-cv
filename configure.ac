@@ -395,13 +395,56 @@ rm -f cinelerra/versioninfo.h > /dev/null 2>&1
 
 ############# END BUILDINFO display, (for displaying version / date)
 
-############# CSS SUPPORT IN LIBMPEG3
+############ external libmpeg3
+AC_ARG_WITH([external-libmpeg3], AC_HELP_STRING([--with-external-libmpeg3], [use external libmpeg3 library (experimental)]))
+
+if test "x$with_external_libmpeg3" = "xyes"; then
+	PKG_CHECK_MODULES(LIBMPEG3, libmpeg3,[libmpeg3_system=yes],:)
+	AC_CHECK_HEADER(mpeg3/libmpeg3.h)
+	# the mpeg3io_eof macro in mpeg3protos.h is used by mplexlo,
+	# make sure it is available
+	old_LIBS="$LIBS"
+	LIBS="$LIBS -lmpeg3"
+	AC_LINK_IFELSE([AC_LANG_PROGRAM(
+[[#include <mpeg3/libmpeg3.h>
+#include <mpeg3/mpeg3protos.h>
+void test() { mpeg3io_eof(0); }]])],
+	[libmpeg3_mpeg3io_eof=1], [libmpeg3_mpeg3io_eof=0])
+	LIBS="$old_LIBS"
+	unset old_LIBS
+
+	# Check if libmpeg3 1.7 or later is used.  It is needed for
+	# several functions not present in earlier versions.
+	AC_CHECK_LIB(mpeg3, mpeg3_open)
+	AC_TRY_LINK([#include <mpeg3/libmpeg3.h>],
+		[char *s; int e; mpeg3_open(s, &e);],
+		libmpeg3_open_return_error=1, libmpeg3_open_return_error=0)
+	if test 1 = $libmpeg3_open_return_error ; then
+		echo "external libmpeg3 version with mpeg3_open(char*, int*) (present in 1.7 or later) found"
+	else
+		echo "error: external libmpeg3 without mpeg3_open(char*, int*) (before version 1.7) found"
+		echo "error: Upgrade libmpeg3 or drop the --with-external-libmpeg3 configure flag."
+		exit 1
+fi
+else
+	LIBMPEG3_CFLAGS="-I\$(top_srcdir)/libmpeg3"
+	LIBMPEG3_LIBS="\$(top_builddir)/libmpeg3/libmpeg3hv.la"
+	libmpeg3_mpeg3io_eof=1
+	AC_SUBST(LIBMPEG3_CFLAGS)
+	AC_SUBST(LIBMPEG3_LIBS)
+fi
+
+AM_CONDITIONAL(HAVE_MPEG3IO_EOF, [test "x$libmpeg3_mpeg3io_eof" = "x1"])
+AM_CONDITIONAL(HAVE_LIBMPEG3_INTERNAL, [test "x$libmpeg3_system" != "xyes"])
+############# END external libmpeg3
+
+############# CSS SUPPORT IN INTERNAL LIBMPEG3
 if test "x$enable_css" = "xyes"; then
 	CSS_CFLAGS="-DHAVE_CSS"
 fi
 AC_SUBST(CSS_CFLAGS)
 AC_ARG_ENABLE(css, 
-							AC_HELP_STRING([--disable-css], [disable support for css in libmpeg3 (default=enabled)]),,
+	AC_HELP_STRING([--disable-css], [disable support for css in internal libmpeg3 (default=enabled)]),,
 							[ enable_css=$enableval ],
 							[ enable_css=yes ])
 ############## END OF CSS SUPPORT IN LIBMPEG3
