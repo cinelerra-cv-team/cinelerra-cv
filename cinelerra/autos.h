@@ -127,7 +127,7 @@ public:
 	int save(FileXML *xml);
 	virtual int slope_adjustment(int64_t ax, double slope);
 	int release_auto();
-	virtual int release_auto_derived() {};
+	virtual int release_auto_derived() { return 0; };
 	Auto* append_auto();
 	int scale_time(float rate_scale, int scale_edits, int scale_autos, int64_t start, int64_t end);
 

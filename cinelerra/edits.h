@@ -105,9 +105,9 @@ public:
 	int load(FileXML *xml, int track_offset);
 	int load_edit(FileXML *xml, int64_t &startproject, int track_offset);
 
-	virtual Edit* append_new_edit() {};
+	virtual Edit* append_new_edit() { return 0; };
 	virtual Edit* insert_edit_after(Edit *previous_edit) { return 0; };
-	virtual int load_edit_properties(FileXML *xml) {};
+	virtual int load_edit_properties(FileXML *xml) { return 0; };
 
 
 // ==================================== accounting
@@ -132,7 +132,7 @@ public:
 
 	int64_t loaded_length;
 private:
-	virtual int clone_derived(Edit* new_edit, Edit* old_edit) {};
+	virtual int clone_derived(Edit* new_edit, Edit* old_edit) { return 0; };
 };
 
 

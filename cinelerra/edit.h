@@ -148,12 +148,12 @@ public:
 // ============================= initialization
 
 	int load_properties(FileXML *xml, int64_t &startproject);
-	virtual int load_properties_derived(FileXML *xml) {};
+	virtual int load_properties_derived(FileXML *xml) { return 0; };
 
 // ============================= drawing
 
-	virtual int draw(int flash, int center_pixel, int x, int w, int y, int h, int set_index_file) {};
-	virtual int set_index_file(int flash, int center_pixel, int x, int y, int w, int h) {};
+	virtual int draw(int flash, int center_pixel, int x, int w, int y, int h, int set_index_file) { return 0; };
+	virtual int set_index_file(int flash, int center_pixel, int x, int y, int w, int h) { return 0; };
 	int draw_transition(int flash, int center_pixel, int x, int w, int y, int h, int set_index_file);
 
 	int draw_handles(BC_SubWindow *canvas, float view_start, float view_units, float zoom_units, int view_pixels, int center_pixel);
@@ -161,16 +161,16 @@ public:
 
 // ============================= editing
 
-	virtual int copy_properties_derived(FileXML *xml, int64_t length_in_selection) {};
+	virtual int copy_properties_derived(FileXML *xml, int64_t length_in_selection) { return 0; };
 
 	int popup_transition(float view_start, float zoom_units, int cursor_x, int cursor_y);
 
 // Return 1 if the left handle was selected 2 if the right handle was selected
 	int select_handle(float view_start, float zoom_units, int cursor_x, int cursor_y, int64_t &selection);
-	virtual int get_handle_parameters(int64_t &left, int64_t &right, int64_t &left_sample, int64_t &right_sample, float view_start, float zoom_units) {};
+	virtual int get_handle_parameters(int64_t &left, int64_t &right, int64_t &left_sample, int64_t &right_sample, float view_start, float zoom_units) { return 0; };
 	virtual int64_t get_source_end(int64_t default_);
 	int dump();
-	virtual int dump_derived() {};
+	virtual int dump_derived() { return 0; };
 
 };
 
