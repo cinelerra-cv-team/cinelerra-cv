@@ -10,7 +10,7 @@ LIBTOOL = $(SHELL) $(top_builddir)/libtool $(LTCXX_FLAGS)
 noinst_HEADERS = blur.h blur.inc blurwindow.h blurwindow.inc
 EXTRA_DIST = picon.png
 
-blur.o: picon_png.h
+BUILT_SOURCES = picon_png.h
 picon_png.h: picon.png
 	$(top_builddir)/guicast/pngtoh $^ || { rm -f $@; exit 1; }
 clean-local:

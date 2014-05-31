@@ -18,7 +18,7 @@ chromakey_sl.c: chromakey.sl
 noinst_HEADERS = chromakey.h
 EXTRA_DIST = chromakey.sl picon.png
 
-chromakey.o: picon_png.h
+BUILT_SOURCES = picon_png.h
 picon_png.h: picon.png
 	$(top_builddir)/guicast/pngtoh $^ || { rm -f $@; exit 1; }
 clean-local:

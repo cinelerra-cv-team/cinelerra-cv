@@ -9,7 +9,7 @@ LIBTOOL = $(SHELL) $(top_builddir)/libtool $(LTCXX_FLAGS)
 
 EXTRA_DIST = picon.png
 
-wave.o: picon_png.h
+BUILT_SOURCES = picon_png.h
 picon_png.h: picon.png
 	$(top_builddir)/guicast/pngtoh $^ || { rm -f $@; exit 1; }
 clean-local:
