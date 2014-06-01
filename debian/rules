@@ -28,6 +28,11 @@ CXXFLAGS += $(shell dpkg-buildflags --get CXXFLAGS)
 LDFLAGS += $(shell dpkg-buildflags --get LDFLAGS)
 
 build: build-stamp
+
+build: build-arch build-indep
+build-arch: build-stamp
+build-indep: build-stamp
+
 build-stamp: debian/cinelerra-cv.1 debian/mplexhi.1 debian/mplexlo.1
 	dh_testdir
 	@if [ ! -e configure ] ; then ./autogen.sh; fi
