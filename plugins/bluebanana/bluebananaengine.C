@@ -1150,7 +1150,7 @@ void BluebananaEngine::process_packages(VFrame *data){
 }
 
 /* create a coordinated work-division list and join point */
-void BluebananaEngine::set_task(int n, char *task){
+void BluebananaEngine::set_task(int n, const char *task){
   pthread_mutex_lock(&this->tasklock);
   if(task_init_state==0){
     //fprintf(stderr,"New task!: %s",task);

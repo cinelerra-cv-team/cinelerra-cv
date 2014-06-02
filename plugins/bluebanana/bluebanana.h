@@ -210,7 +210,7 @@ public:
 	int total_size;
 	VFrame *data;
 
-        void set_task(int n,char *task);
+        void set_task(int n, const char *task);
         int next_task();
         void wait_task();
 

@@ -2001,7 +2001,7 @@ int BluebananaWindow::create_objects(){
     y += l->get_h()*(row_padding+1.);
   }
 
-  char *labels[11]={"hue","saturation","value","fill","red","green","blue","hue","saturation","value","fade"};
+  const char *labels[11]={"hue","saturation","value","fill","red","green","blue","hue","saturation","value","fade"};
   for(i=0;i<11;i++){
     add_subwindow(slider_labels[i] = new BC_Title(-1,-1,labels[i]));
     if(slider_labels[i]->get_w()>label_w)label_w=slider_labels[i]->get_w();

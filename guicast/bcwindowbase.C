@@ -2344,7 +2344,7 @@ XFontSet BC_WindowBase::get_curr_fontset(void)
 	return 0;
 }
 
-int BC_WindowBase::get_single_text_width(int font, char *text, int length)
+int BC_WindowBase::get_single_text_width(int font, const char *text, int length)
 {
 #ifdef HAVE_XFT
 	if(get_resources()->use_xft && get_xft_struct(font))
@@ -2384,7 +2384,7 @@ int BC_WindowBase::get_single_text_width(int font, char *text, int length)
 	}
 }
 
-int BC_WindowBase::get_text_width(int font, char *text, int length)
+int BC_WindowBase::get_text_width(int font, const char *text, int length)
 {
 	int i, j, w = 0, line_w = 0;
 	if(length < 0) length = strlen(text);

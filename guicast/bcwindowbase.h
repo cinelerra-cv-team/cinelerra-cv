@@ -304,7 +304,7 @@ public:
 	int get_text_ascent(int font);
 	int get_text_descent(int font);
 	int get_text_height(int font, char *text = 0);
-	int get_text_width(int font, char *text, int length = -1);
+	int get_text_width(int font, const char *text, int length = -1);
 	BC_Clipboard* get_clipboard();
 	void set_dragging(int value);
 	int set_w(int w);
@@ -599,7 +599,7 @@ private:
 	int create_color(int color);
 	int create_shared_colors();
 // Get width of a single line.  Used by get_text_width
-	int get_single_text_width(int font, char *text, int length);
+	int get_single_text_width(int font, const char *text, int length);
 	int allocate_color_table();
 	int init_gc();
 	int init_fonts();
