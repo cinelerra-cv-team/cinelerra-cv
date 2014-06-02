@@ -139,16 +139,6 @@ extern "C"
 // }
 // 
 
-
-// Hack for XFree86 4.1.0
-
-int atexit(void (*function)(void))
-{
-	return 0;
-}
-
-
-
 }
 
 
