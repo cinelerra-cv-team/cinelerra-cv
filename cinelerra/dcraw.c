@@ -4540,6 +4540,8 @@ void CLASS parse_riff()
   } else if (!memcmp(tag,"IDIT",4) && size < 64) {
     fread (date, 64, 1, ifp);
     date[size] = 0;
+    // Zero out the unused fields before calling mktime()
+    t.tm_wday = 0; t.tm_yday = 0; t.tm_isdst = 0;
     if (sscanf (date, "%*s %s %d %d:%d:%d %d", month, &t.tm_mday,
 	&t.tm_hour, &t.tm_min, &t.tm_sec, &t.tm_year) == 6) {
       for (i=0; i < 12 && strcmp(mon[i],month); i++);
