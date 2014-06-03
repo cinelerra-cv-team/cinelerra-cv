@@ -281,6 +281,10 @@ DISABLE_BUFFER
 	}
 
 	filenames.remove_all_objects();
+	delete EDL::id_lock;
+	EDL::id_lock = 0;
+	delete Garbage::garbage;
+	Garbage::garbage = 0;
 	return 0;
 }
 
