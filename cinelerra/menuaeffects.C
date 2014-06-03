@@ -117,7 +117,7 @@ int MenuAEffectThread::fix_menu(char *title)
 
 
 
-MenuAEffectItem::MenuAEffectItem(MenuAEffects *menueffect, char *string)
+MenuAEffectItem::MenuAEffectItem(MenuAEffects *menueffect, const char *string)
  : MenuEffectItem(menueffect, string)
 {
 }

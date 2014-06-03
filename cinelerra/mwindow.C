@@ -2273,7 +2273,7 @@ void MWindow::time_format_common()
 }
 
 
-int MWindow::set_filename(char *filename)
+int MWindow::set_filename(const char *filename)
 {
 	strcpy(session->filename, filename);
 	if(gui)

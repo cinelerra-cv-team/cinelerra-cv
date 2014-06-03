@@ -44,8 +44,8 @@ public:
 		int audio_options,
 		int video_options);
 	static int check_sig(Asset *asset);
-	static char* compression_to_str(int value);
-	static char* cmodel_to_str(int value);
+	static const char* compression_to_str(int value);
+	static const char* cmodel_to_str(int value);
 	int can_copy_from(Edit *edit, int64_t position);
 	int colormodel_supported(int colormodel);
 	int get_best_colormodel(Asset *asset, int driver);

@@ -384,7 +384,7 @@ int BC_CancelButton::calculate_w()
 #define RIGHT_HI 7
 #define RIGHT_UP 8
 
-BC_GenericButton::BC_GenericButton(int x, int y, char *text, VFrame **data)
+BC_GenericButton::BC_GenericButton(int x, int y, const char *text, VFrame **data)
  : BC_Button(x, 
  	y, 
 	data ? data : BC_WindowBase::get_resources()->generic_button_images)
@@ -392,7 +392,7 @@ BC_GenericButton::BC_GenericButton(int x, int y, char *text, VFrame **data)
 	strcpy(this->text, text);
 }
 
-BC_GenericButton::BC_GenericButton(int x, int y, int w, char *text, VFrame **data)
+BC_GenericButton::BC_GenericButton(int x, int y, int w, const char *text, VFrame **data)
  : BC_Button(x, 
  	y, 
 	w,

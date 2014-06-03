@@ -643,7 +643,7 @@ Edit* Edits::get_playable_edit(int64_t position, int use_nudge)
 
 
 
-int Edits::copy(int64_t start, int64_t end, FileXML *file, char *output_path)
+int Edits::copy(int64_t start, int64_t end, FileXML *file, const char *output_path)
 {
 	Edit *current_edit;
 

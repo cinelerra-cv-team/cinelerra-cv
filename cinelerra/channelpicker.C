@@ -508,7 +508,7 @@ const char* ChannelPicker::get_source_name(Channel *channel)
 		return chanlists[channel->freqtable].list[0].name;
 }
 
-char* ChannelPicker::current_channel_name()
+const char* ChannelPicker::current_channel_name()
 {
 	if(get_current_channel_struct())
 	{

@@ -28,16 +28,16 @@
 class Sema
 {
 public:
-	Sema(int init_value = 1, char *title = 0);
+	Sema(int init_value = 1, const char *title = 0);
 	~Sema();
 
-	void lock(char *location = 0);
+	void lock(const char *location = 0);
 	void unlock();
 	int get_value();
 	void reset();
 
 	sem_t sem;
-	char *title;
+	const char *title;
 	int init_value;
 };
 

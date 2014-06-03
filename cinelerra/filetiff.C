@@ -98,7 +98,7 @@ int FileTIFF::check_sig(Asset *asset)
 	return 0;
 }
 
-char* FileTIFF::compression_to_str(int value)
+const char* FileTIFF::compression_to_str(int value)
 {
 	switch(value)
 	{
@@ -113,7 +113,7 @@ char* FileTIFF::compression_to_str(int value)
 	}
 }
 
-char* FileTIFF::cmodel_to_str(int value)
+const char* FileTIFF::cmodel_to_str(int value)
 {
 	switch(value)
 	{

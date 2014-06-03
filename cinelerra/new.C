@@ -446,7 +446,7 @@ EDL* NewPresets::get_edl()
 
 
 
-NewATracks::NewATracks(NewWindow *nwindow, char *text, int x, int y)
+NewATracks::NewATracks(NewWindow *nwindow, const char *text, int x, int y)
  : BC_TextBox(x, y, 90, 1, text)
 {
 	this->nwindow = nwindow;
@@ -478,7 +478,7 @@ int NewATracksTumbler::handle_down_event()
 	return 1;
 }
 
-NewAChannels::NewAChannels(NewWindow *nwindow, char *text, int x, int y)
+NewAChannels::NewAChannels(NewWindow *nwindow, const char *text, int x, int y)
  : BC_TextBox(x, y, 90, 1, text)
 {
 	this->nwindow = nwindow;
@@ -511,7 +511,7 @@ int NewAChannelsTumbler::handle_down_event()
 }
 
 
-NewSampleRate::NewSampleRate(NewWindow *nwindow, char *text, int x, int y)
+NewSampleRate::NewSampleRate(NewWindow *nwindow, const char *text, int x, int y)
  : BC_TextBox(x, y, 90, 1, text)
 {
 	this->nwindow = nwindow;
@@ -561,7 +561,7 @@ int SampleRatePulldown::handle_event()
 
 
 
-NewVTracks::NewVTracks(NewWindow *nwindow, char *text, int x, int y)
+NewVTracks::NewVTracks(NewWindow *nwindow, const char *text, int x, int y)
  : BC_TextBox(x, y, 90, 1, text)
 {
 	this->nwindow = nwindow;
@@ -593,7 +593,7 @@ int NewVTracksTumbler::handle_down_event()
 	return 1;
 }
 
-NewVChannels::NewVChannels(NewWindow *nwindow, char *text, int x, int y)
+NewVChannels::NewVChannels(NewWindow *nwindow, const char *text, int x, int y)
  : BC_TextBox(x, y, 90, 1, text)
 {
 	this->nwindow = nwindow;
@@ -625,7 +625,7 @@ int NewVChannelsTumbler::handle_down_event()
 	return 1;
 }
 
-NewFrameRate::NewFrameRate(NewWindow *nwindow, char *text, int x, int y)
+NewFrameRate::NewFrameRate(NewWindow *nwindow, const char *text, int x, int y)
  : BC_TextBox(x, y, 90, 1, text)
 {
 	this->nwindow = nwindow;
@@ -733,7 +733,7 @@ int NewOutputH::handle_event()
 	return 1;
 }
 
-NewAspectW::NewAspectW(NewWindow *nwindow, char *text, int x, int y)
+NewAspectW::NewAspectW(NewWindow *nwindow, const char *text, int x, int y)
  : BC_TextBox(x, y, 70, 1, text)
 {
 	this->nwindow = nwindow;
@@ -745,7 +745,7 @@ int NewAspectW::handle_event()
 	return 1;
 }
 
-NewAspectH::NewAspectH(NewWindow *nwindow, char *text, int x, int y)
+NewAspectH::NewAspectH(NewWindow *nwindow, const char *text, int x, int y)
  : BC_TextBox(x, y, 70, 1, text)
 {
 	this->nwindow = nwindow;
@@ -802,7 +802,7 @@ int AspectPulldown::handle_event()
 	return 1;
 }
 
-ColormodelItem::ColormodelItem(char *text, int value)
+ColormodelItem::ColormodelItem(const char *text, int value)
  : BC_ListBoxItem(text)
 {
 	this->value = value;
@@ -838,7 +838,7 @@ int ColormodelPulldown::handle_event()
 	return 1;
 }
 
-char* ColormodelPulldown::colormodel_to_text()
+const char* ColormodelPulldown::colormodel_to_text()
 {
 	for(int i = 0; i < mwindow->colormodels.total; i++)
 		if(mwindow->colormodels.values[i]->value == *output_value) 
@@ -853,7 +853,7 @@ void ColormodelPulldown::update_value(int value)
 }
 
 
-InterlacemodeItem::InterlacemodeItem(char *text, int value)
+InterlacemodeItem::InterlacemodeItem(const char *text, int value)
  : BC_ListBoxItem(text)
 {
 	this->value = value;
@@ -891,7 +891,7 @@ int InterlacemodePulldown::handle_event()
 	return 1;
 }
 
-char* InterlacemodePulldown::interlacemode_to_text()
+const char* InterlacemodePulldown::interlacemode_to_text()
 {
 	ilacemode_to_text(this->string,*output_value);
 	return (this->string);

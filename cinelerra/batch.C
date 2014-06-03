@@ -199,7 +199,7 @@ Channel* Batch::get_current_channel_struct()
 }
 
 
-char* Batch::get_source_text()
+const char* Batch::get_source_text()
 {
 // Driver sensitive
 	Channel *channel = get_current_channel_struct();

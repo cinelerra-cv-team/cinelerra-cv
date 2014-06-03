@@ -101,8 +101,8 @@ public:
 	int colormodel_supported(int colormodel);
 // This file can copy frames directly from the asset
 	int can_copy_from(Edit *edit, int64_t position); 
-	static char *strtocompression(char *string);
-	static char *compressiontostr(char *string);
+	static const char *strtocompression(char *string);
+	static const char *compressiontostr(char *string);
 
 
 private:

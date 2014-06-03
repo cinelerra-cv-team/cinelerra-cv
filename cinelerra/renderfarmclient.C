@@ -365,7 +365,7 @@ void RenderFarmClientThread::abort()
 	exit(1);
 }
 
-void RenderFarmClientThread::lock(char *location)
+void RenderFarmClientThread::lock(const char *location)
 {
 	mutex_lock->lock(location);
 }

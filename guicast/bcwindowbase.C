@@ -2492,7 +2492,7 @@ int BC_WindowBase::get_text_descent(int font)
 	}
 }
 
-int BC_WindowBase::get_text_height(int font, char *text)
+int BC_WindowBase::get_text_height(int font, const char *text)
 {
 	if(!text) return get_text_ascent(font) + get_text_descent(font);
 
@@ -3408,7 +3408,7 @@ void BC_WindowBase::set_background(VFrame *bitmap)
 	draw_background(0, 0, w, h);
 }
 
-void BC_WindowBase::set_title(char *text)
+void BC_WindowBase::set_title(const char *text)
 {
 	XSetStandardProperties(top_level->display, top_level->win, text, text, None, 0, 0, 0); 
 	strcpy(this->title, _(text));

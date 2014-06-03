@@ -81,7 +81,7 @@ void Edit::reset()
 	user_title[0] = 0;
 }
 
-int Edit::copy(int64_t start, int64_t end, FileXML *file, char *output_path)
+int Edit::copy(int64_t start, int64_t end, FileXML *file, const char *output_path)
 {
 // variables
 //printf("Edit::copy 1\n");

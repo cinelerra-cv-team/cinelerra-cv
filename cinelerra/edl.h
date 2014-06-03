@@ -85,7 +85,7 @@ public:
 		uint32_t load_flags);
 	int save_xml(ArrayList<PluginServer*> *plugindb,
 		FileXML *xml, 
-		char *output_path,
+		const char *output_path,
 		int is_clip,
 		int is_vwindow);
     int load_audio_config(FileXML *file, int append_mode, uint32_t load_flags);
@@ -135,8 +135,8 @@ public:
 	int dump();
 	static int next_id();
 // Create a new folder if it doesn't exist already
-	void new_folder(char *folder);
-	void delete_folder(char *folder);
+	void new_folder(const char *folder);
+	void delete_folder(const char *folder);
 	void modify_edithandles(double oldposition, 
 		double newposition, 
 		int currentend, 
@@ -162,7 +162,7 @@ public:
 		FileXML *file, 
 		int all, 
 		ArrayList<PluginServer*> *plugindb,
-		char *output_path);
+		const char *output_path);
 	int copy(double start, 
 		double end, 
 		int all,   // Ignore recordable status of tracks for saving
@@ -170,7 +170,7 @@ public:
 		int is_vwindow,
 		FileXML *file, 
 		ArrayList<PluginServer*> *plugindb,
-		char *output_path,
+		const char *output_path,
 		int rewind_it);     // Rewind EDL for easy pasting
 	void paste_silence(double start, 
 		double end, 

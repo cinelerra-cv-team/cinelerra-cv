@@ -54,7 +54,7 @@ public:
 class MenuAEffectItem : public MenuEffectItem
 {
 public:
-	MenuAEffectItem(MenuAEffects *menueffect, char *string);
+	MenuAEffectItem(MenuAEffects *menueffect, const char *string);
 };
 
 

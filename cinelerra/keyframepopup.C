@@ -419,7 +419,7 @@ KeyframePopupTangentMode::KeyframePopupTangentMode(
 KeyframePopupTangentMode::~KeyframePopupTangentMode() { }
 
 
-char* KeyframePopupTangentMode::get_labeltext(int mode)
+const char* KeyframePopupTangentMode::get_labeltext(int mode)
 {
 	switch(mode)
 	{   case FloatAuto::SMOOTH: return _("smooth curve");

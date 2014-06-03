@@ -390,7 +390,7 @@ int FileSystem::test_filter(FileItem *file)
 }
 
 
-int FileSystem::update(char *new_dir)
+int FileSystem::update(const char *new_dir)
 {
 	DIR *dirstream;
 	struct dirent64 *new_filename;
@@ -481,7 +481,7 @@ int FileSystem::update(char *new_dir)
 // success
 }
 
-int FileSystem::set_filter(char *new_filter)
+int FileSystem::set_filter(const char *new_filter)
 {
 	strcpy(filter, new_filter);
 	return 0;
@@ -713,7 +713,7 @@ int FileSystem::extract_name(char *out, const char *in, int test_dir)
 	return 0;
 }
 
-int FileSystem::join_names(char *out, char *dir_in, char *name_in)
+int FileSystem::join_names(char *out, const char *dir_in, const char *name_in)
 {
 	strcpy(out, dir_in);
 	int len = strlen(out);
@@ -747,7 +747,7 @@ int64_t FileSystem::get_size(char *filename)
 	return file_status.st_size;
 }
 
-int FileSystem::change_dir(char *new_dir)
+int FileSystem::change_dir(const char *new_dir)
 {
 	char new_dir_full[BCTEXTLEN];
 	
@@ -762,7 +762,7 @@ int FileSystem::change_dir(char *new_dir)
 	return 0;
 }
 
-int FileSystem::set_current_dir(char *new_dir)
+int FileSystem::set_current_dir(const char *new_dir)
 {
 	strcpy(current_dir, new_dir);
 	return 0;

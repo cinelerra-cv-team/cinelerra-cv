@@ -112,7 +112,7 @@ FormatPresetItem* FormatPresets::find_preset(EDL *edl)
 	return 0;
 }
 
-char* FormatPresets::get_preset_text(EDL *edl)
+const char* FormatPresets::get_preset_text(EDL *edl)
 {
 	FormatPresetItem *item = find_preset(edl);
 	if(item)

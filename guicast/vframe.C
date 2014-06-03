@@ -870,7 +870,7 @@ long VFrame::get_number()
 	return sequence_number;
 }
 
-void VFrame::push_prev_effect(char *name)
+void VFrame::push_prev_effect(const char *name)
 {
 	char *ptr;
 	prev_effects.append(ptr = new char[strlen(name) + 1]);
@@ -884,7 +884,7 @@ void VFrame::pop_prev_effect()
 		prev_effects.remove_object(prev_effects.last());
 }
 
-void VFrame::push_next_effect(char *name)
+void VFrame::push_next_effect(const char *name)
 {
 	char *ptr;
 	next_effects.append(ptr = new char[strlen(name) + 1]);

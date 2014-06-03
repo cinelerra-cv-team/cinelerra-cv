@@ -63,20 +63,20 @@ public:
 // Load the new directory and change current_dir to it.
 // This does not complete the dir path.
 // If any of the files failed to stat, it returns nonzero.
-	int update(char *new_dir = 0);
+	int update(const char *new_dir = 0);
 
 // Complete the path in the string and change to the directory in the string.
 // Does not change new_dir
-	int change_dir(char *new_dir);
+	int change_dir(const char *new_dir);
 // Set the current_dir to something without completing the path.
-	int set_current_dir(char *new_dir);
+	int set_current_dir(const char *new_dir);
 
 	int move_up();
 	char *get_current_dir();
 // Syntax of filter is
 // single filter without [].
 // multiple filters enclosed in [].
-	int set_filter(char *new_filter);
+	int set_filter(const char *new_filter);
 	int set_show_all();     // show hidden files
 	int set_want_directory();
 	int set_sort_order(int value);
@@ -87,7 +87,7 @@ public:
 	int is_dir(const char *new_dir_);	  
 	int extract_dir(char *out, const char *in);    // extract the directory from the path
 	int extract_name(char *out, const char *in, int test_dir = 1);	// extract the name from the path
-	int join_names(char *out, char *dir_in, char *name_in);    // combine a directory and filename
+	int join_names(char *out, const char *dir_in, const char *name_in);    // combine a directory and filename
 	static int64_t get_date(char *filename);        // get the date of the filename modification
 	static int64_t get_size(char *filename);        // Get the number of bytes in the file.
 	int add_end_slash(char *new_dir);

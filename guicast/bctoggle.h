@@ -62,7 +62,7 @@ public:
 		int *text_y, 
 		int *text_w,
 		int *text_h, 
-		char *caption);
+		const char *caption);
 
 	int initialize();
 	int set_images(VFrame **data);

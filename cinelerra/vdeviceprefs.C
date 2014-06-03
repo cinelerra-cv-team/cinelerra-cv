@@ -561,7 +561,7 @@ int VDriverMenu::create_objects()
 }
 
 
-VDriverItem::VDriverItem(VDriverMenu *popup, char *text, int driver)
+VDriverItem::VDriverItem(VDriverMenu *popup, const char *text, int driver)
  : BC_MenuItem(text)
 {
 	this->popup = popup;

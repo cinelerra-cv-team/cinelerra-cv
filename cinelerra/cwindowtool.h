@@ -70,7 +70,7 @@ class CWindowToolGUI : public BC_Window
 public:
 	CWindowToolGUI(MWindow *mwindow, 
 		CWindowTool *thread, 
-		char *title,
+		const char *title,
 		int w, 
 		int h);
 	~CWindowToolGUI();
@@ -130,7 +130,7 @@ public:
 class CWindowMaskMode : public BC_PopupMenu
 {
 public:
-	CWindowMaskMode(MWindow *mwindow, CWindowToolGUI *gui, int x, int y, char *text);
+	CWindowMaskMode(MWindow *mwindow, CWindowToolGUI *gui, int x, int y, const char *text);
 	void create_objects();
 	int handle_event();
 	static char* mode_to_text(int mode);
