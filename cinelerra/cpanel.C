@@ -60,6 +60,8 @@ int CPanel::create_objects()
 	y += operation[CWINDOW_ZOOM]->get_h();
 	subwindow->add_subwindow(operation[CWINDOW_MASK] = new CPanelMask(mwindow, this, x, y));
 	y += operation[CWINDOW_MASK]->get_h();
+	subwindow->add_subwindow(operation[CWINDOW_RULER] = new CPanelRuler(mwindow, this, x, y));
+	y += operation[CWINDOW_RULER]->get_h();
 	subwindow->add_subwindow(operation[CWINDOW_CAMERA] = new CPanelCamera(mwindow, this, x, y));
 	y += operation[CWINDOW_CAMERA]->get_h();
 	subwindow->add_subwindow(operation[CWINDOW_PROJECTOR] = new CPanelProj(mwindow, this, x, y));
@@ -161,6 +163,30 @@ int CPanelMask::handle_event()
 	gui->subwindow->set_operation(CWINDOW_MASK);
 	return 1;
 }
+
+
+
+
+CPanelRuler::CPanelRuler(MWindow *mwindow, CPanel *gui, int x, int y)
+ : BC_Toggle(x, 
+ 	y, 
+	mwindow->theme->get_image_set("ruler"), 
+	mwindow->edl->session->cwindow_operation == CWINDOW_RULER)
+{
+	this->mwindow = mwindow;
+	this->gui = gui;
+	set_tooltip(_("Ruler"));
+}
+CPanelRuler::~CPanelRuler()
+{
+}
+int CPanelRuler::handle_event()
+{
+	gui->subwindow->set_operation(CWINDOW_RULER);
+	return 1;
+}
+
+
 
 
 CPanelMagnify::CPanelMagnify(MWindow *mwindow, CPanel *gui, int x, int y)

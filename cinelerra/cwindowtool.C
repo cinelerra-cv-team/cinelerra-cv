@@ -97,6 +97,9 @@ void CWindowTool::start_tool(int operation)
 			case CWINDOW_MASK:
 				new_gui = new CWindowMaskGUI(mwindow, this);
 				break;
+			case CWINDOW_RULER:
+				new_gui = new CWindowRulerGUI(mwindow, this);
+				break;
 			default:
 				result = 1;
 				stop_tool();
@@ -201,6 +204,18 @@ void CWindowTool::update_show_window()
 		tool_gui->flush();
 
 		tool_gui->unlock_window();
+	}
+}
+
+void CWindowTool::raise_window()
+{
+	if(tool_gui)
+	{
+		gui->unlock_window();
+		tool_gui->lock_window("CWindowTool::raise_window");
+		tool_gui->raise_window();
+		tool_gui->unlock_window();
+		gui->lock_window("CWindowTool::raise_window");
 	}
 }
 
@@ -2080,6 +2095,102 @@ void CWindowMaskGUI::update_preview()
 
 
 
+
+CWindowRulerGUI::CWindowRulerGUI(MWindow *mwindow, CWindowTool *thread)
+ : CWindowToolGUI(mwindow, 
+ 	thread,
+	PROGRAM_NAME ": Ruler",
+	320,
+	240)
+{
+}
+
+CWindowRulerGUI::~CWindowRulerGUI()
+{
+}
+
+void CWindowRulerGUI::create_objects()
+{
+	int x = 10, y = 10;
+	BC_Title *title;
+
+	lock_window("CWindowRulerGUI::create_objects");
+	add_subwindow(title = new BC_Title(x, y, "Current:"));
+	add_subwindow(current = new BC_Title(x + title->get_w() + 10, y, ""));
+	y += title->get_h() + 5;
+	
+	add_subwindow(title = new BC_Title(x, y, "Point 1:"));
+	add_subwindow(point1 = new BC_Title(x + title->get_w() + 10, y, ""));
+	y += title->get_h() + 5;
+
+	add_subwindow(title = new BC_Title(x, y, "Point 2:"));
+	add_subwindow(point2 = new BC_Title(x + title->get_w() + 10, y, ""));
+	y += title->get_h() + 5;
+
+	add_subwindow(title = new BC_Title(x, y, "Distance:"));
+	add_subwindow(distance = new BC_Title(x + title->get_w() + 10, y, ""));
+	y += title->get_h() + 5;
+	add_subwindow(title = new BC_Title(x, y, "Angle:"));
+	add_subwindow(angle = new BC_Title(x + title->get_w() + 10, y, ""));
+	y += title->get_h() + 10;
+	char string[BCTEXTLEN];
+	sprintf(string, _("Press Ctrl to lock ruler to the\nnearest 45%c angle."), 0xb0);
+	add_subwindow(title = new BC_Title(x, 
+		y, 
+		string));
+	y += title->get_h() + 10;
+	sprintf(string, _("Press Alt to translate the ruler."));
+	add_subwindow(title = new BC_Title(x, 
+		y, 
+		string));
+	update();
+	unlock_window();
+}
+
+void CWindowRulerGUI::update()
+{
+	double distance_value = 
+		sqrt(SQR(mwindow->edl->session->ruler_x2 - mwindow->edl->session->ruler_x1) +
+		SQR(mwindow->edl->session->ruler_y2 - mwindow->edl->session->ruler_y1));
+	double angle_value = atan((mwindow->edl->session->ruler_y2 - mwindow->edl->session->ruler_y1) /
+		(mwindow->edl->session->ruler_x2 - mwindow->edl->session->ruler_x1)) * 
+		360 /
+		2 / 
+		M_PI;
+
+	if(EQUIV(distance_value, 0.0)) 
+	{
+		angle_value = 0.0;
+	}
+	else
+	if(angle_value < 0)
+	{
+		angle_value *= -1;
+	}
+
+	char string[BCTEXTLEN];
+	sprintf(string, "%d, %d", 
+		mwindow->session->cwindow_output_x,
+		mwindow->session->cwindow_output_y);
+	current->update(string);
+	sprintf(string, "%.0f, %.0f", 
+		mwindow->edl->session->ruler_x1,
+		mwindow->edl->session->ruler_y1);
+	point1->update(string);
+	sprintf(string, "%.0f, %.0f", 
+		mwindow->edl->session->ruler_x2,
+		mwindow->edl->session->ruler_y2);
+	point2->update(string);
+
+	sprintf(string, "%0.01f pixels", distance_value);
+	distance->update(string);
+	sprintf(string, "%0.02f %c", angle_value, 0xb0);
+	angle->update(string);
+}
+
+void CWindowRulerGUI::handle_event()
+{
+}
 
 
 

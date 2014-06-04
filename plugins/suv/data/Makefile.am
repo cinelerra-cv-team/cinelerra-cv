@@ -483,6 +483,7 @@ PNGS = \
 	resource64.png \
 	reverse.png \
 	rewind.png \
+	ruler.png \
 	right_justify.png \
 	select_dn.png \
 	select_hi.png \

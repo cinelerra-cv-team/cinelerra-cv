@@ -55,6 +55,16 @@ public:
 	CPanel *gui;
 };
 
+class CPanelRuler : public BC_Toggle
+{
+public:
+	CPanelRuler(MWindow *mwindow, CPanel *gui, int x, int y);
+	~CPanelRuler();
+	int handle_event();
+	MWindow *mwindow;
+	CPanel *gui;
+};
+
 class CPanelTitleSafe : public BC_Toggle
 {
 public:

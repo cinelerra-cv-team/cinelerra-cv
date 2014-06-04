@@ -80,6 +80,10 @@ EDLSession::EDLSession(EDL *edl)
 	record_speed = 24;
 	decode_subtitles = 0;
 	subtitle_number = 0;
+	ruler_x1 = 0.0;
+	ruler_y1 = 0.0;
+	ruler_x2 = 0.0;
+	ruler_y2 = 0.0;
 }
 
 EDLSession::~EDLSession()
@@ -183,6 +187,10 @@ int EDLSession::load_defaults(BC_Hash *defaults)
 	crop_x2 = defaults->get("CROP_X2", 320);
 	crop_y1 = defaults->get("CROP_Y1", 0);
 	crop_y2 = defaults->get("CROP_Y2", 240);
+	ruler_x1 = defaults->get("RULER_X1", 0.0);
+	ruler_x2 = defaults->get("RULER_X2", 0.0);
+	ruler_y1 = defaults->get("RULER_Y1", 0.0);
+	ruler_y2 = defaults->get("RULER_Y2", 0.0);
 	sprintf(current_folder, MEDIA_FOLDER);
 	defaults->get("CURRENT_FOLDER", current_folder);
 	cursor_on_frames = defaults->get("CURSOR_ON_FRAMES", 1);
@@ -318,6 +326,10 @@ int EDLSession::save_defaults(BC_Hash *defaults)
 	defaults->update("CROP_X2", crop_x2);
 	defaults->update("CROP_Y1", crop_y1);
 	defaults->update("CROP_Y2", crop_y2);
+	defaults->update("RULER_X1", ruler_x1);
+	defaults->update("RULER_X2", ruler_x2);
+	defaults->update("RULER_Y1", ruler_y1);
+	defaults->update("RULER_Y2", ruler_y2);
 	defaults->update("CURRENT_FOLDER", current_folder);
 	defaults->update("CURSOR_ON_FRAMES", cursor_on_frames);
 	defaults->update("CWINDOW_DEST", cwindow_dest);
@@ -439,6 +451,10 @@ void EDLSession::boundaries()
 	Workarounds::clamp(crop_x2, 0, output_w);
 	Workarounds::clamp(crop_y1, 0, output_h);
 	Workarounds::clamp(crop_y2, 0, output_h);
+	Workarounds::clamp(ruler_x1, 0.0, output_w);
+	Workarounds::clamp(ruler_x2, 0.0, output_w);
+	Workarounds::clamp(ruler_y1, 0.0, output_h);
+	Workarounds::clamp(ruler_y2, 0.0, output_h);
 	if(brender_start < 0) brender_start = 0.0;
 
 	Workarounds::clamp(subtitle_number, 0, 31);
@@ -526,6 +542,10 @@ int EDLSession::load_xml(FileXML *file,
 		crop_y1 = file->tag.get_property("CROP_Y1", crop_y1);
 		crop_x2 = file->tag.get_property("CROP_X2", crop_x2);
 		crop_y2 = file->tag.get_property("CROP_Y2", crop_y2);
+		ruler_x1 = file->tag.get_property("RULER_X1", ruler_x1);
+		ruler_y1 = file->tag.get_property("RULER_Y1", ruler_y1);
+		ruler_x2 = file->tag.get_property("RULER_X2", ruler_x2);
+		ruler_y2 = file->tag.get_property("RULER_Y2", ruler_y2);
 		file->tag.get_property("CURRENT_FOLDER", current_folder);
 		cursor_on_frames = file->tag.get_property("CURSOR_ON_FRAMES", cursor_on_frames);
 		cwindow_dest = file->tag.get_property("CWINDOW_DEST", cwindow_dest);
@@ -590,6 +610,10 @@ int EDLSession::save_xml(FileXML *file)
 	file->tag.set_property("CROP_Y1", crop_y1);
 	file->tag.set_property("CROP_X2", crop_x2);
 	file->tag.set_property("CROP_Y2", crop_y2);
+	file->tag.set_property("RULER_X1", ruler_x1);
+	file->tag.set_property("RULER_Y1", ruler_y1);
+	file->tag.set_property("RULER_X2", ruler_x2);
+	file->tag.set_property("RULER_Y2", ruler_y2);
 	file->tag.set_property("CURRENT_FOLDER", current_folder);
 	file->tag.set_property("CURSOR_ON_FRAMES", cursor_on_frames);
 	file->tag.set_property("CWINDOW_DEST", cwindow_dest);
@@ -725,6 +749,10 @@ int EDLSession::copy(EDLSession *session)
 	crop_y1 = session->crop_y1;
 	crop_x2 = session->crop_x2;
 	crop_y2 = session->crop_y2;
+	ruler_x1 = session->ruler_x1;
+	ruler_y1 = session->ruler_y1;
+	ruler_x2 = session->ruler_x2;
+	ruler_y2 = session->ruler_y2;
 	strcpy(current_folder, session->current_folder);
 	cursor_on_frames = session->cursor_on_frames;
 	cwindow_dest = session->cwindow_dest;

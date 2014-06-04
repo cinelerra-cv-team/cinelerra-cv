@@ -99,6 +99,8 @@ public:
 	long drag_start_position;
 // Records for redrawing brender position in timebar
 	double brender_end;
+// Position of cursor in CWindow output.  Used by ruler.
+	int cwindow_output_x, cwindow_output_y;
 
 // Show controls in CWindow
 	int cwindow_controls;

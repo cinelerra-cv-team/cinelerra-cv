@@ -51,6 +51,7 @@ public:
 
 	void run();
 	void update_show_window();
+	void raise_window();
 	void update_values();
 
 	MWindow *mwindow;
@@ -391,6 +392,26 @@ public:
 	int handle_event();
 	MWindow *mwindow;
 	CWindowProjectorGUI *gui;
+};
+
+
+
+
+class CWindowRulerGUI : public CWindowToolGUI
+{
+public:
+	CWindowRulerGUI(MWindow *mwindow, CWindowTool *thread);
+	~CWindowRulerGUI();
+	void create_objects();
+	void update();
+// Update the gui
+	void handle_event();
+	
+	BC_Title *current;
+	BC_Title *point1;
+	BC_Title *point2;
+	BC_Title *distance;
+	BC_Title *angle;
 };
 
 
