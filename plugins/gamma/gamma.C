@@ -36,8 +36,6 @@
 
 #include "aggregated.h"
 
-#define SQR(a) ((a) * (a))
-
 REGISTER_PLUGIN(GammaMain)
 
 
