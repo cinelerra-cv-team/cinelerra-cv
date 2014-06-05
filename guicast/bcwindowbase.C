@@ -936,7 +936,7 @@ int BC_WindowBase::dispatch_event()
 			else
 				XLookupString((XKeyEvent*)event, keys_return, 6, &keysym, 0);
 #else
-			XLookupString((XKeyEvent*)event, keys_return, 6, &keysym, 0);
+			XLookupString((XKeyEvent*)event, keys_return, 2, &keysym, 0);
 #endif
 // printf("BC_WindowBase::dispatch_event 2 %llx\n", 
 // event->xkey.state);
