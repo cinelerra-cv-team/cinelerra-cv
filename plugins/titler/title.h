@@ -134,6 +134,11 @@ public:
 	char timecodeformat[BCTEXTLEN];
 // Width of the stroke
 	double stroke_width;
+#ifdef X_HAVE_UTF8_STRING
+	int tlen;
+	FT_ULong *ucs4text;
+	void convert_text();
+#endif
 };
 
 class FontEntry
@@ -345,9 +350,6 @@ public:
 	int load_defaults();
 	int save_defaults();
 	VFrame* new_picon();
-
-
-
 	void build_fonts();
 	void draw_glyphs();
 	int draw_mask();
@@ -436,6 +438,7 @@ public:
 	VFrame *input, *output;
 
 	int need_reconfigure;
+
 };
 
 

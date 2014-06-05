@@ -266,13 +266,13 @@ int TitleWindow::create_objects()
 	color_x = x;
 	color_y = y + 20;
 	color_thread = new TitleColorThread(client, this);
-
+#ifndef X_HAVE_UTF8_STRING
 	x = 10;
 	y += 50;
 	add_tool(encoding_title = new BC_Title(x, y + 3, _("Encoding:")));
 	encoding = new TitleEncoding(client, this, x, y + 20);
 	encoding->create_objects();
-
+#endif
 #ifdef USE_OUTLINE
 	x += 160;
 	add_tool(strokewidth_title = new BC_Title(x, y, _("Outline width:")));
