@@ -116,7 +116,11 @@ mpeg3_release());
 "Eric Seigne\n"
 "Joe Stewart\n"
 "Dan Streetman\n"
+#ifdef X_HAVE_UTF8_STRING
+"Gustavo Iñiguez\n"
+#else
 "Gustavo I\361iguez\n"
+#endif
 "Johannes Sixt\n"
 "Mark Taraba\n"
 "Andraz Tori\n"
@@ -132,7 +136,11 @@ mpeg3_release());
 	char credits_cont1[BCTEXTLEN];
 	sprintf(credits_cont1,
 
+#ifdef X_HAVE_UTF8_STRING
+"Einar Rünkaru\n"
+#else
 "Einar R\374nkaru\n"
+#endif
 "Monty Montgomery\n"
 
 );
