@@ -560,6 +560,15 @@ fi
 AC_SUBST(OPENGL_LIBS)
 # END OpenGL
 
+############## ask for extra debug output from X
+AC_ARG_ENABLE(x-error-output,
+	AC_HELP_STRING([--enable-x-error-output], [enable output when X report errors (default=no)])
+	[],
+	[if test yes = "$enableval" ; then
+	AC_DEFINE(OUTPUT_X_ERROR, [1], [enable output when X report errors])
+fi])
+# END --enable-x-error-output
+
 ############## .png TO .o CONVERSION
 
 AC_CHECK_TOOL(OBJCOPY, objcopy)
