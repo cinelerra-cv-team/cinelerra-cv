@@ -192,7 +192,7 @@ int ExportEDLAsset::export_it()
 
 				if (last_dissolve)
 				{
-					fprintf(fh, "%03d %8s %s %4s %03s", colnum, reel_name, avselect, edittype, cutinfo);
+					fprintf(fh, "%03d %8s %s %4s %3s", colnum, reel_name, avselect, edittype, cutinfo);
 					fprintf(fh, " %s %s", last_sourceout, last_sourceout);
 					fprintf(fh, " %s %s", destinpoint, destinpoint);
 					fprintf(fh,"\n");		

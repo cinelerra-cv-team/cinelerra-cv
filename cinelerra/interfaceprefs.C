@@ -150,7 +150,7 @@ int InterfacePrefs::create_objects()
 	add_subwindow(isize = new IndexSize(x + 230, y, pwindow, string));
 	y += 30;
 	add_subwindow(new BC_Title(x, y + 5, _("Number of index files to keep:"), MEDIUMFONT, resources->text_default));
-	sprintf(string, "%ld", pwindow->thread->preferences->index_count);
+	sprintf(string, "%d", pwindow->thread->preferences->index_count);
 	add_subwindow(icount = new IndexCount(x + 230, y, pwindow, string));
 	add_subwindow(deleteall = new DeleteAllIndexes(mwindow, pwindow, 350, y));
 

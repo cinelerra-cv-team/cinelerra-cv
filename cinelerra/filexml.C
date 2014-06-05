@@ -726,7 +726,7 @@ int XMLTag::set_title(const char *text)       // set the title field
 
 int XMLTag::set_property(const char *text, int32_t value)
 {
-	sprintf(temp_string, "%ld", value);
+	sprintf(temp_string, "%d", value);
 	set_property(text, temp_string);
 	return 0;
 }

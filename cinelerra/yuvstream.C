@@ -133,7 +133,7 @@ int YUVStream::read_frame_raw(uint8_t *data, long frame_size) {
 	}
 	result = y4m_read(stream_fd, data, frame_size);
 	if (result != Y4M_OK) {
-		printf("y4m_read(%d) failed: %s\n", 
+		printf("y4m_read(%ld) failed: %s\n", 
 		       frame_size, y4m_strerr(result));
 		return 1;
 	}
@@ -162,7 +162,7 @@ int YUVStream::write_frame_raw(uint8_t *data, long frame_size) {
 	}
 	result = y4m_write(stream_fd, data, frame_size);
 	if (result != Y4M_OK) {
-		eprintf("y4m_write(%jd) failed: %s\n", 
+		eprintf("y4m_write(%ld) failed: %s\n", 
 		       frame_size, y4m_strerr(result));
 		return 1;
 	}
@@ -208,7 +208,7 @@ int YUVStream::seek_frame(int64_t frame_number) {
 	}
 
 	if (lseek(stream_fd, position, SEEK_SET) < 0) {
-		eprintf("lseek(%d) failed: %s\n", position, strerror(errno));
+		eprintf("lseek(%jd) failed: %s\n", (intmax_t)position, strerror(errno));
 		return 1;
 	}
 

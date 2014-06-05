@@ -122,8 +122,8 @@ Device1394Output::~Device1394Output()
         	if(ioctl(output_fd, video1394_talk_wait_buffer, &output_queue) < 0) 
 			{
             	fprintf(stderr, 
-					"Device1394::close_all: VIDEO1394_TALK_WAIT_BUFFER %s: %s",
-					output_queue,
+					"Device1394::close_all: VIDEO1394_TALK_WAIT_BUFFER %p: %s",
+					&output_queue,
 					strerror(errno));
         	}
         	munmap(output_buffer, output_mmap.nb_buffers * output_mmap.buf_size);
