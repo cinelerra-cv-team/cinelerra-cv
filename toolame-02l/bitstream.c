@@ -198,7 +198,10 @@ void put1bit (Bit_stream_struc * bs, int bit)
 }
 
 /*write N bits into the bit stream */
-INLINE void putbits (Bit_stream_struc * bs, unsigned int val, int N)
+#if !defined(__clang__)
+INLINE
+#endif /* not __clang__ */
+void putbits (Bit_stream_struc * bs, unsigned int val, int N)
 {
   register int j = N;
   register int k, tmp;

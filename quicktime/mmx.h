@@ -97,6 +97,12 @@ typedef	union {
 
 
 
+/*
+ * Drop mm_support() and mmx_ok() as these do not build with clang and
+ * are unused by Cinelerra CV.  Inspired by change found in
+ * <URL: http://hg.libsdl.org/SDL/file/32f0f603a0c8/src/video/mmx.h >
+ */
+#if !defined(__clang__)
 /*	Function to test if multimedia instructions are supported...
 */
 inline extern int
@@ -258,6 +264,7 @@ mmx_ok(void)
 	/* Returns 1 if MMX instructions are supported, 0 otherwise */
 	return ( mm_support() & 0x1 );
 }
+#endif /* not __clang__ */
 
 
 /*	Helper functions for the instruction macros that follow...
