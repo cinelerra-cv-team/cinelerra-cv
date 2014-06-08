@@ -81,7 +81,6 @@ public:
 	int handle_event();
 
 	SwapMenu *menu;
-	char *title;
 };
 
 class SwapWindow : public BC_Window
