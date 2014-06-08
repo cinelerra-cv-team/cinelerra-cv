@@ -23,4 +23,4 @@ mid_picon_png.h: mid_picon.png
 min_picon_png.h: min_picon.png
 	$(top_builddir)/guicast/pngtoh $^ || { rm -f $@; exit 1; }
 clean-local:
-	$(RM) picon_png.h
+	$(RM) picon_png.h mid_picon_png.h min_picon_png.h max_picon_png.h
