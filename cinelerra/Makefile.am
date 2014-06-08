@@ -348,7 +348,8 @@ AM_CXXFLAGS = \
 	$(OPENEXR_CFLAGS) \
 	$(LIBDV_CFLAGS) \
 	$(FFMPEG_CFLAGS) \
-	-DPLUGIN_DIR=\"$(plugindir)\"
+	-DPLUGIN_DIR=\"$(plugindir)\" \
+	-DLOCALE_DIR=\"$(localedir)\"
 
 AM_LDFLAGS = -export-dynamic
 

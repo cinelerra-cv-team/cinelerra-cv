@@ -43,10 +43,6 @@
 
 #include <locale.h>
 
-#define PACKAGE "cinelerra"
-#define LOCALEDIR "/usr/share/locale"
-
-
 enum
 {
 	DO_GUI,
@@ -78,7 +74,7 @@ int main(int argc, char *argv[])
 	Garbage::garbage = new Garbage;
 	EDL::id_lock = new Mutex("EDL::id_lock");
 
-	bindtextdomain (PACKAGE, LOCALEDIR);
+	bindtextdomain (PACKAGE, LOCALE_DIR);
 	textdomain (PACKAGE);
 	setlocale (LC_MESSAGES, "");
 	setlocale (LC_CTYPE, "");
