@@ -56,7 +56,7 @@ you distrib. Not joking):
 	- xlib-dev
 	- gettext
 
-Additional requirements for the CVS branch (this source code)
+Additional requirements for the git branch (this source code)
 	- automake 1.7
 	- autoconf
 	- libtool
