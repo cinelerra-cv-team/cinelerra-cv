@@ -71,7 +71,7 @@ public:
 	virtual ~MenuEffectThread();
 
 	void run();
-	int set_title(char *text);  // set the effect to be run by a menuitem
+	int set_title(const char *text);  // set the effect to be run by a menuitem
 	virtual int get_recordable_tracks(Asset *asset) { return 0; };
 	virtual int get_derived_attributes(Asset *asset, BC_Hash *defaults) { return 0; };
 	virtual int save_derived_attributes(Asset *asset, BC_Hash *defaults) { return 0; };
@@ -90,7 +90,7 @@ public:
 class MenuEffectItem : public BC_MenuItem
 {
 public:
-	MenuEffectItem(MenuEffects *menueffect, char *string);
+	MenuEffectItem(MenuEffects *menueffect, const char *string);
 	virtual ~MenuEffectItem() {};
 	int handle_event();
 	MenuEffects *menueffect;

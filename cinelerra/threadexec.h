@@ -44,7 +44,7 @@ public:
 	
 	FILE* get_stdin();
 	void run();
-	void start_command(char *command_line, int pipe_stdin);
+	void start_command(const char *command_line, int pipe_stdin);
 	virtual void run_program(int argc, char *argv[], int stdin_fd);
 	
 	
@@ -55,7 +55,7 @@ private:
 	int total_arguments;
 	FILE *stdin_fd;
 	Mutex *start_lock;
-	char *command_line;
+	const char *command_line;
 	int pipe_stdin;
 };
 

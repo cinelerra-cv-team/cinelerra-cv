@@ -242,7 +242,7 @@ class BC_PopupTextBox : public BC_RelocatableWidget
 public:
 	BC_PopupTextBox(BC_WindowBase *parent_window, 
 		ArrayList<BC_ListBoxItem*> *list_items,
-		char *default_text,
+		const char *default_text,
 		int x, 
 		int y, 
 		int text_w,
@@ -256,7 +256,7 @@ public:
 	int get_y();
 	int get_w();
 	int get_h();
-	void update(char *text);
+	void update(const char *text);
 	void update_list(ArrayList<BC_ListBoxItem*> *data);
 	int  reposition_widget(int x, int y, int w = -1, int h = -1);
 	void reposition_window(int x, int y);
@@ -266,7 +266,7 @@ public:
 
 private:
 	int x, y, text_w, list_h;
-	char *default_text;
+	const char *default_text;
 	ArrayList<BC_ListBoxItem*> *list_items;
 	BC_PopupTextBoxText *textbox;
 	BC_PopupTextBoxList *listbox;

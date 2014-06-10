@@ -387,7 +387,10 @@ int FileOGG::open_file(int rd, int wr)
 
 			/* create the remaining theora headers */
 			theora_comment_init (&tf->tc);
-			theora_comment_add_tag (&tf->tc, "ENCODER", PACKAGE_STRING);
+			/* cast to work around missing const in libtheora */
+			theora_comment_add_tag (&tf->tc,
+						const_cast<char*>("ENCODER"),
+						const_cast<char*>(PACKAGE_STRING));
 			theora_encode_comment (&tf->tc, &tf->op);
 			ogg_stream_packetin (&tf->to, &tf->op);
 			theora_comment_clear(&tf->tc);

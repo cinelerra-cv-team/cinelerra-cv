@@ -46,7 +46,7 @@ ThreadFork::ThreadFork()
 	total_arguments = 0;
 	stdin_fd = 0;
 	pipe_stdin = 0;
-	command_line = "";
+	command_line = 0;
 }
 
 ThreadFork::~ThreadFork()

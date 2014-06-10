@@ -240,7 +240,7 @@ void CWindowTool::update_values()
 
 CWindowToolGUI::CWindowToolGUI(MWindow *mwindow, 
 	CWindowTool *thread, 
-	char *title,
+	const char *title,
 	int w, 
 	int h)
  : BC_Window(title,
@@ -531,8 +531,8 @@ void CWindowEyedropGUI::update()
 struct _TGD {
 	FloatAuto::t_mode mode;
 	bool use_camera;
-	char* icon_id;
-	char* tooltip;
+	const char* icon_id;
+	const char* tooltip;
 };
 	
 const _TGD Camera_Tan_Smooth =
@@ -1526,7 +1526,7 @@ CWindowMaskMode::CWindowMaskMode(MWindow *mwindow,
 	CWindowToolGUI *gui, 
 	int x, 
 	int y,
-	char *text)
+	const char *text)
  : BC_PopupMenu(x,
  	y,
 	200,

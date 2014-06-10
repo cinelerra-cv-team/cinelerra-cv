@@ -54,7 +54,7 @@ public:
 	int create_objects();
 // must delete each derived class
 	int update(int new_value);
-	char* behavior_to_text(int mode);
+	const char* behavior_to_text(int mode);
 
 	BrowseButton *ipath;
 	IndexSize *isize;
@@ -218,7 +218,7 @@ class ViewBehaviourText : public BC_PopupMenu
 public:
 	ViewBehaviourText(int x, 
 		int y, 
-		char *text, 
+		const char *text, 
 		PreferencesWindow *pwindow, 
 		int *output);
 	~ViewBehaviourText();

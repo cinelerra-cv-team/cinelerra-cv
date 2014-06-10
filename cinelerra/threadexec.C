@@ -67,7 +67,7 @@ ThreadExec::~ThreadExec()
 
 
 
-void ThreadExec::start_command(char *command_line, int pipe_stdin)
+void ThreadExec::start_command(const char *command_line, int pipe_stdin)
 {
 	this->command_line = command_line;
 	this->pipe_stdin = pipe_stdin;

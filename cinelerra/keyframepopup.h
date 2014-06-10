@@ -113,7 +113,7 @@ private:
 	MWindow *mwindow;
 	KeyframePopup *popup;
 	int tangent_mode;
-	char* get_labeltext(int);
+	const char* get_labeltext(int);
 	void toggle_mode(FloatAuto*);
     
 friend class KeyframePopup;

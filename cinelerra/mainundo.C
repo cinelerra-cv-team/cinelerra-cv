@@ -42,7 +42,7 @@
 class MainUndoStackItem : public UndoStackItem
 {
 public:
-	MainUndoStackItem(MainUndo* undo, char* description,
+	MainUndoStackItem(MainUndo* undo, const char* description,
 			uint32_t load_flags, void* creator);
 	virtual ~MainUndoStackItem();
 
@@ -80,7 +80,7 @@ MainUndo::~MainUndo()
 	delete last_update;
 }
 
-void MainUndo::update_undo(char *description, uint32_t load_flags, 
+void MainUndo::update_undo(const char *description, uint32_t load_flags, 
 		void *creator, int changes_made)
 {
 	if (ignore_push(description, load_flags, creator))
@@ -130,7 +130,7 @@ void MainUndo::capture_state()
 	strcpy(data_after, file.string);
 }
 
-bool MainUndo::ignore_push(char *description, uint32_t load_flags, void* creator)
+bool MainUndo::ignore_push(const char *description, uint32_t load_flags, void* creator)
 {
 // ignore this push under certain conditions:
 // - if nothing was undone
@@ -249,7 +249,7 @@ void MainUndo::prune_undo()
 
 
 
-MainUndoStackItem::MainUndoStackItem(MainUndo* main_undo, char* description,
+MainUndoStackItem::MainUndoStackItem(MainUndo* main_undo, const char* description,
 			uint32_t load_flags, void* creator)
 {
 	data_before = 0;

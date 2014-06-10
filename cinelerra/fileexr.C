@@ -185,7 +185,7 @@ FileEXR::~FileEXR()
 	if(temp_v) delete [] temp_v;
 }
 
-char* FileEXR::compression_to_str(int compression)
+const char* FileEXR::compression_to_str(int compression)
 {
 	switch(compression)
 	{

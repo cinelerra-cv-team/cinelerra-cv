@@ -222,7 +222,7 @@ int InterfacePrefs::create_objects()
 	return 0;
 }
 
-char* InterfacePrefs::behavior_to_text(int mode)
+const char* InterfacePrefs::behavior_to_text(int mode)
 {
 	switch(mode)
 	{
@@ -444,7 +444,7 @@ int TimeFormatFeetSetting::handle_event()
 
 ViewBehaviourText::ViewBehaviourText(int x, 
 	int y, 
-	char *text, 
+	const char *text, 
 	PreferencesWindow *pwindow, 
 	int *output)
  : BC_PopupMenu(x, y, 200, text)

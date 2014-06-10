@@ -120,7 +120,7 @@ int MenuVEffectThread::fix_menu(char *title)
 	mwindow->gui->mainmenu->add_veffect(title); 
 }
 
-MenuVEffectItem::MenuVEffectItem(MenuVEffects *menueffect, char *string)
+MenuVEffectItem::MenuVEffectItem(MenuVEffects *menueffect, const char *string)
  : MenuEffectItem(menueffect, string)
 {
 }

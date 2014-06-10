@@ -167,7 +167,7 @@ public:
 class VDriverItem : public BC_MenuItem
 {
 public:
-	VDriverItem(VDriverMenu *popup, char *text, int driver);
+	VDriverItem(VDriverMenu *popup, const char *text, int driver);
 	~VDriverItem();
 	
 	int handle_event();

@@ -53,7 +53,7 @@ public:
 class MenuVEffectItem : public MenuEffectItem
 {
 public:
-	MenuVEffectItem(MenuVEffects *menueffect, char *string);
+	MenuVEffectItem(MenuVEffects *menueffect, const char *string);
 };
 
 #endif

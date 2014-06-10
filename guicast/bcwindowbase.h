@@ -303,7 +303,7 @@ public:
 	BC_Pixmap* get_bg_pixmap();
 	int get_text_ascent(int font);
 	int get_text_descent(int font);
-	int get_text_height(int font, char *text = 0);
+	int get_text_height(int font, const char *text = 0);
 	int get_text_width(int font, const char *text, int length = -1);
 	BC_Clipboard* get_clipboard();
 	void set_dragging(int value);
@@ -354,10 +354,10 @@ public:
 	void draw_box(int x, int y, int w, int h, BC_Pixmap *pixmap = 0);
 	void draw_circle(int x, int y, int w, int h, BC_Pixmap *pixmap = 0);
 	void draw_disc(int x, int y, int w, int h, BC_Pixmap *pixmap = 0);
-	void draw_text(int x, int y, char *text, int length = -1, BC_Pixmap *pixmap = 0);
+	void draw_text(int x, int y, const char *text, int length = -1, BC_Pixmap *pixmap = 0);
 	void draw_xft_text(int x, 
 		int y, 
-		char *text, 
+		const char *text, 
 		int length, 
 		BC_Pixmap *pixmap,
 		int x2,
@@ -475,7 +475,7 @@ public:
 	void set_inverse();
 	void set_background(VFrame *bitmap);
 // Change the window title.  The title is translated internally.
-	void set_title(char *text);
+	void set_title(const char *text);
 	char* get_title();
 	void start_video();
 	void stop_video();

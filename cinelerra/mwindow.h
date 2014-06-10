@@ -111,7 +111,7 @@ public:
 
 	int load_defaults();
 	int save_defaults();
-	int set_filename(char *filename);
+	int set_filename(const char *filename);
 // Total vertical pixels in timeline
 	int get_tracks_height();
 // Total horizontal pixels in timeline

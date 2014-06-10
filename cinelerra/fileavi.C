@@ -592,7 +592,7 @@ void FileAVI::get_parameters(BC_WindowBase *parent_window,
 		BC_WindowBase* &format_window,
 		int audio_options,
 		int video_options,
-		char *locked_compressor)
+		const char *locked_compressor)
 {
 	if(audio_options)
 	{
@@ -873,7 +873,7 @@ int AVIACodecList::handle_event()
 
 AVIConfigVideo::AVIConfigVideo(BC_WindowBase *parent_window, 
 		Asset *asset, 
-		char *locked_compressor)
+		const char *locked_compressor)
  : BC_Window(PROGRAM_NAME ": Video Compression",
  	parent_window->get_abs_cursor_x(1),
  	parent_window->get_abs_cursor_y(1),
@@ -1050,7 +1050,7 @@ void AVIConfigVideo::generate_attributelist()
 #endif
 }
 
-char* AVIConfigVideo::get_current_attribute_text()
+const char* AVIConfigVideo::get_current_attribute_text()
 {
 	BC_ListBoxItem *item = attributes->get_selection(0, 0);
 
@@ -1062,7 +1062,7 @@ char* AVIConfigVideo::get_current_attribute_text()
 		return "";
 }
 
-char* AVIConfigVideo::get_current_attribute_value()
+const char* AVIConfigVideo::get_current_attribute_value()
 {
 	BC_ListBoxItem *item = attributes->get_selection(1, 0);
 

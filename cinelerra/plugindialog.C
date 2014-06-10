@@ -63,7 +63,7 @@ PluginDialogThread::~PluginDialogThread()
 
 void PluginDialogThread::start_window(Track *track,
 	Plugin *plugin, 
-	char *title)
+	const char *title)
 {
 	if(Thread::running())
 	{

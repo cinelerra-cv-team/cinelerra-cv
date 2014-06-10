@@ -166,7 +166,7 @@ int quicktime_make_streamable(char *in_path, char *out_path);
 /* Set various options in the file. */
 void quicktime_set_copyright(quicktime_t *file, char *string);
 void quicktime_set_name(quicktime_t *file, char *string);
-void quicktime_set_info(quicktime_t *file, char *string);
+void quicktime_set_info(quicktime_t *file, const char *string);
 char* quicktime_get_copyright(quicktime_t *file);
 char* quicktime_get_name(quicktime_t *file);
 char* quicktime_get_info(quicktime_t *file);
@@ -206,7 +206,7 @@ void quicktime_set_jpeg(quicktime_t *file, int quality, int use_float);
 /* It iterates through every track and sets the key in that codec to */
 /* the value.  The value can be any data type and the key must be a */
 /* string which the codec understands. */
-void quicktime_set_parameter(quicktime_t *file, char *key, void *value);
+void quicktime_set_parameter(quicktime_t *file, const char *key, void *value);
 
 /* Get the english title of a codec based on its fourcc. */
 /* Used by info boxed. */

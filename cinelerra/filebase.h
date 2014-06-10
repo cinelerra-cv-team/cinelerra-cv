@@ -147,7 +147,7 @@ protected:
 // allocate a buffer for translating video to VFrame
 	int get_video_buffer(unsigned char **buffer, int depth); // video
 	int get_row_pointers(unsigned char *buffer, unsigned char ***pointers, int depth);
-	static int match4(char *in, char *out);   // match 4 bytes for a quicktime type
+	static int match4(const char *in, const char *out);   // match 4 bytes for a quicktime type
 
 	int64_t ima4_samples_to_bytes(int64_t samples, int channels);
 	int64_t ima4_bytes_to_samples(int64_t bytes, int channels);

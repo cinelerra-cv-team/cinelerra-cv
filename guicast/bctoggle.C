@@ -106,7 +106,7 @@ void BC_Toggle::calculate_extents(BC_WindowBase *gui,
 	int *text_y, 
 	int *text_w,
 	int *text_h, 
-	char *caption)
+	const char *caption)
 {
 	BC_Resources *resources = get_resources();
 	VFrame *frame = images[0];

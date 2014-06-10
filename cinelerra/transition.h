@@ -58,7 +58,7 @@ public:
 class Transition : public Plugin
 {
 public:
-	Transition(EDL *edl, Edit *edit, char *title, long unit_length);
+	Transition(EDL *edl, Edit *edit, const char *title, long unit_length);
 
 	Edit *edit;
 
@@ -92,7 +92,7 @@ public:
 	int update_display();
 // Update edit after attaching
 	int update_edit(int is_loading);
-	char* default_title();
+	const char* default_title();
 	void dump();
 
 private:

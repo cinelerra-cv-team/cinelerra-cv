@@ -83,7 +83,7 @@ void PasteTransition::run()
 
 
 
-Transition::Transition(EDL *edl, Edit *edit, char *title, long unit_length)
+Transition::Transition(EDL *edl, Edit *edit, const char *title, long unit_length)
  : Plugin(edl, (PluginSet*)edit->edits, title)
 {
 	this->edit = edit;
@@ -222,7 +222,7 @@ int Transition::update_display()
 	return 0;
 }
 
-char* Transition::default_title()
+const char* Transition::default_title()
 {
 	return "Transition";
 }

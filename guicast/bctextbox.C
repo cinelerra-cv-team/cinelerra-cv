@@ -1906,7 +1906,7 @@ int BC_PopupTextBoxList::handle_event()
 
 BC_PopupTextBox::BC_PopupTextBox(BC_WindowBase *parent_window, 
 		ArrayList<BC_ListBoxItem*> *list_items,
-		char *default_text,
+		const char *default_text,
 		int x, 
 		int y, 
 		int text_w,
@@ -1940,7 +1940,7 @@ int BC_PopupTextBox::create_objects()
 	return 0;
 }
 
-void BC_PopupTextBox::update(char *text)
+void BC_PopupTextBox::update(const char *text)
 {
 	textbox->update(text);
 }

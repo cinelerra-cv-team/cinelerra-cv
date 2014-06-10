@@ -62,7 +62,7 @@ public:
 	int picon_h();
 	double frame_w();
 	double frames_per_picon();
-	int copy(int64_t start, int64_t end, FileXML *xml, char *output_path);
+	int copy(int64_t start, int64_t end, FileXML *xml, const char *output_path);
 // When inherited by a plugin need to resample keyframes
 	virtual void resample(double old_rate, double new_rate) {};
 

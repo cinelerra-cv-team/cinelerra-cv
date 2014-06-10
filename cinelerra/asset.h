@@ -69,20 +69,20 @@ public:
 // Load and save parameters for a render dialog
 // Used by render, record, menueffects, preferences
 	void load_defaults(BC_Hash *defaults, 
-		char *prefix /* = 0 */, 
+		const char *prefix /* = 0 */, 
 		int do_format /* = 0 */,
 		int do_compression,
 		int do_path,
 		int do_data_types,
 		int do_bits);
 	void save_defaults(BC_Hash *defaults, 
-		char *prefix /* = 0 */,
+		const char *prefix /* = 0 */,
 		int do_format,     /* Don't save format which is autodetected by file loader */
 		int do_compression,    /* Don't save compression which is fixed by driver */
 		int do_path,
 		int do_data_types,
 		int do_bits);
-	char* construct_param(char *param, char *prefix, char *return_value);
+	char* construct_param(const char *param, const char *prefix, char *return_value);
 
 
 
@@ -110,7 +110,7 @@ public:
 // It is a "" if; complete names should be used.
 	int write(FileXML *file, 
 		int include_index, 
-		char *output_path);
+		const char *output_path);
 // Write the index data and asset info.  Used by IndexThread.
 	int write_index(char *path, int data_bytes);
 

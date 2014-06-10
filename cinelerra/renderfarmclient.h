@@ -84,7 +84,7 @@ public:
 	void read_string(char* &string);
 	void abort();
 // Lock access to the socket during complete transactions
-	void lock(char *location);
+	void lock(const char *location);
 	void unlock();
 
 
