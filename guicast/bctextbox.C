@@ -1636,6 +1636,7 @@ void BC_TextBox::paste_selection(int clipboard_num)
 		char *string = new char[len + 1];
 		get_clipboard()->from_clipboard(string, len, clipboard_num);
 		insert_text(string);
+		delete[] string;
 	}
 }
 
