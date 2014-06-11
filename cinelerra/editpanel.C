@@ -121,50 +121,6 @@ void EditPanel::update()
 	subwindow->flush();
 }
 
-void EditPanel::delete_buttons()
-{
-	if(use_editing_mode)
-	{
-		if(arrow) delete arrow;
-		if(ibeam) delete ibeam;
-	}
-	
-	if(use_keyframe)
-		delete keyframe;
-
-	if(use_locklabels)
-		delete locklabels;
-
-	if(inpoint) delete inpoint;
-	if(outpoint) delete outpoint;
-	if(use_copy) delete copy;
-	if(use_splice) delete splice;
-	if(use_overwrite) delete overwrite;
-	if(use_lift) delete lift;
-	if(use_extract) delete extract;
-	if(cut) delete cut;
-	if(copy) delete copy;
-	if(use_paste) delete paste;
-
-	if(use_labels)
-	{	
-		delete labelbutton;
-		delete prevlabel;
-		delete nextlabel;
-	}
-
-	if(use_fit) 
-	{
-		delete fit;
-		delete fit_autos;
-	}
-	if(use_undo)
-	{
-		delete undo;
-		delete redo;
-	}
-}
-
 void EditPanel::create_buttons()
 {
 	x1 = x, y1 = y;

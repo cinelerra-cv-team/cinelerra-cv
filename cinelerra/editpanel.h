@@ -378,7 +378,6 @@ public:
 
 	void set_meters(MeterPanel *meter_panel);
 	void update();
-	void delete_buttons();
 	void create_buttons();
 	void reposition_buttons(int x, int y);
 	int create_objects();
