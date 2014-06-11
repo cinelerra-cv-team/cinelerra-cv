@@ -1098,7 +1098,7 @@ void FindObjectMain::process_blob()
 	delete [] scene_rows;
 
     blob_pTracker->Process(scene_image, pMask);
-printf("FindObjectMain::process_blob %d %ld %d\n", __LINE__, get_source_position(), blob_pTracker->GetBlobNum());
+printf("FindObjectMain::process_blob %d %jd %d\n", __LINE__, get_source_position(), blob_pTracker->GetBlobNum());
 
 
 #if 0
@@ -1192,10 +1192,6 @@ int FindObjectMain::process_buffer(VFrame **frame,
 // TODO: use oblique corners & affine transform
 	object_w = (int)(config.global_block_w * w / 100);
 	object_h = (int)(config.global_block_h * h / 100);
-	object_x1;
-	object_y1;
-	object_x2;
-	object_y2;
 
 	object_x1 = (int)(config.block_x * w / 100 - object_w / 2);
 	object_y1 = (int)(config.block_y * h / 100 - object_h / 2);
@@ -1211,10 +1207,6 @@ int FindObjectMain::process_buffer(VFrame **frame,
 
 	scene_w = (int)(config.global_range_w * w / 100);
 	scene_h = (int)(config.global_range_h * h / 100);
-	scene_x1;
-	scene_y1;
-	scene_x2;
-	scene_y2;
 	scene_x1 = (int)(config.block_x * w / 100 - scene_w / 2);
 	scene_y1 = (int)(config.block_y * h / 100 - scene_h / 2);
 	scene_x2 = scene_x1 + scene_w;

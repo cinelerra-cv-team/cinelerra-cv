@@ -504,6 +504,7 @@ int FindObjectAlgorithm::from_text(char *text)
 #endif
 	if(!strcmp(text, _("CAMSHIFT"))) return ALGORITHM_CAMSHIFT;
 	if(!strcmp(text, _("Blob"))) return ALGORITHM_BLOB;
+	return ALGORITHM_CAMSHIFT;
 }
 
 char* FindObjectAlgorithm::to_text(int mode)
