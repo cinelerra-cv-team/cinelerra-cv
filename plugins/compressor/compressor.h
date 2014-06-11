@@ -122,7 +122,7 @@ public:
 	CompressorInput(CompressorEffect *plugin, int x, int y);
 	void create_objects();
 	int handle_event();
-	static char* value_to_text(int value);
+	static const char* value_to_text(int value);
 	static int text_to_value(char *text);
 	CompressorEffect *plugin;
 };

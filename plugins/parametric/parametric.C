@@ -261,7 +261,7 @@ int ParametricMode::text_to_mode(char *text)
 
 
 
-char* ParametricMode::mode_to_text(int mode)
+const char* ParametricMode::mode_to_text(int mode)
 {
 	switch(mode)
 	{

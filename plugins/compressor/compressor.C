@@ -1375,7 +1375,7 @@ void CompressorInput::create_objects()
 	}
 }
 
-char* CompressorInput::value_to_text(int value)
+const char* CompressorInput::value_to_text(int value)
 {
 	switch(value)
 	{

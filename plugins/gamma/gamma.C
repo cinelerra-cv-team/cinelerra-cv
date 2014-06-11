@@ -599,7 +599,7 @@ int GammaMain::handle_opengl()
 	get_output()->enable_opengl();
 
 
-	char *shader_stack[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	const char *shader_stack[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 	int current_shader = 0;
 
 

@@ -141,7 +141,7 @@ int BrightnessMain::process_buffer(VFrame *frame,
 int BrightnessMain::handle_opengl()
 {
 #ifdef HAVE_GL
-	static char *brightness_yuvluma_frag = 
+	static const char *brightness_yuvluma_frag =
 		"uniform sampler2D tex;\n"
 		"uniform float brightness;\n"
 		"uniform float contrast;\n"
@@ -154,7 +154,7 @@ int BrightnessMain::handle_opengl()
 		"	gl_FragColor = yuva;\n"
 		"}\n";
 
-	static char *brightness_yuv_frag = 
+	static const char *brightness_yuv_frag =
 		"uniform sampler2D tex;\n"
 		"uniform float brightness;\n"
 		"uniform float contrast;\n"
@@ -168,7 +168,7 @@ int BrightnessMain::handle_opengl()
 		"	gl_FragColor = yuva;\n"
 		"}\n";
 
-	static char *brightness_rgb_frag =
+	static const char *brightness_rgb_frag =
 		"uniform sampler2D tex;\n"
 		"uniform float brightness;\n"
 		"uniform float contrast;\n"
@@ -182,7 +182,7 @@ int BrightnessMain::handle_opengl()
 		"	gl_FragColor = rgba;\n"
 		"}\n";
 
-	static char *brightness_rgbluma_frag =
+	static const char *brightness_rgbluma_frag =
 		"uniform sampler2D tex;\n"
 		"uniform float brightness;\n"
 		"uniform float contrast;\n"

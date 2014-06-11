@@ -73,7 +73,7 @@ public:
 		int x, 
 		int y, 
 		int value, 
-		char *string);
+		const char *string);
 	int handle_event();
 
 	RotateEffect *plugin;
@@ -294,7 +294,7 @@ RotateToggle::RotateToggle(RotateWindow *window,
 	int x, 
 	int y, 
 	int value, 
-	char *string)
+	const char *string)
  : BC_Radial(x, y, init_value, string)
 {
 	this->value = value;

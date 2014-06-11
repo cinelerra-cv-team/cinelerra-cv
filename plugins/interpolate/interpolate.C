@@ -332,7 +332,7 @@ printf("InterpolatePixelsMain::handle_opengl\n");
 	get_output()->to_texture();
 	get_output()->enable_opengl();
 
-	char *shader_stack[] = { 0, 0, 0 };
+	const char *shader_stack[] = { 0, 0, 0 };
 	int current_shader = 0;
 	INTERPOLATE_COMPILE(shader_stack, current_shader)
 	unsigned int frag = VFrame::make_shader(0,

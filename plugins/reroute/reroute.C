@@ -46,7 +46,7 @@ public:
 
 
 
-	static char* operation_to_text(int operation);
+	static const char* operation_to_text(int operation);
 	int operation;
 	enum
 	{
@@ -55,7 +55,7 @@ public:
 		REPLACE_ALPHA
 	};
 
-	static char* output_to_text(int output_track);
+	static const char* output_to_text(int output_track);
 	int output_track;
 	enum
 	{
@@ -151,7 +151,7 @@ RerouteConfig::RerouteConfig()
 }
 
 
-char* RerouteConfig::operation_to_text(int operation)
+const char* RerouteConfig::operation_to_text(int operation)
 {
 	switch(operation)
 	{
@@ -162,7 +162,7 @@ char* RerouteConfig::operation_to_text(int operation)
 	return "";
 }
 
-char* RerouteConfig::output_to_text(int output_track)
+const char* RerouteConfig::output_to_text(int output_track)
 {
 	switch(output_track)
 	{

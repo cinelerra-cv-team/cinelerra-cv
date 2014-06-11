@@ -42,7 +42,7 @@ public:
 		int64_t prev_frame, 
 		int64_t next_frame, 
 		int64_t current_frame);
-	static char* output_to_text(int output_layer);
+	static const char* output_to_text(int output_layer);
 	int output_track;
 	enum
 	{
@@ -128,7 +128,7 @@ void OverlayAudioConfig::interpolate(OverlayAudioConfig &prev,
 	output_track = prev.output_track;
 }
 
-char* OverlayAudioConfig::output_to_text(int output_layer)
+const char* OverlayAudioConfig::output_to_text(int output_layer)
 {
 	switch(output_layer)
 	{

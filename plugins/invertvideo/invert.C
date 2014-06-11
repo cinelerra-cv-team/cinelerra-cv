@@ -377,7 +377,7 @@ int InvertVideoEffect::process_buffer(VFrame *frame,
 int InvertVideoEffect::handle_opengl()
 {
 #ifdef HAVE_GL
-	static char *invert_frag = 
+	static const char *invert_frag =
 		"uniform sampler2D tex;\n"
 		"uniform bool do_r;\n"
 		"uniform bool do_g;\n"

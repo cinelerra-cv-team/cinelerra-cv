@@ -350,28 +350,28 @@ int RGB601Main::process_buffer(VFrame *frame,
 int RGB601Main::handle_opengl()
 {
 #ifdef HAVE_GL
-	static char *yuv_fwd_frag = 
+	static const char *yuv_fwd_frag =
 		"uniform sampler2D tex;\n"
 		"void main()\n"
 		"{\n"
 		"	gl_FragColor = texture2D(tex, gl_TexCoord[0].st);\n"
 		"	gl_FragColor.r = gl_FragColor.r * 0.8588 + 0.0627;\n"
 		"}\n";
-	static char *yuv_rev_frag = 
+	static const char *yuv_rev_frag =
 		"uniform sampler2D tex;\n"
 		"void main()\n"
 		"{\n"
 		"	gl_FragColor = texture2D(tex, gl_TexCoord[0].st);\n"
 		"	gl_FragColor.r = gl_FragColor.r * 1.1644 - 0.0627;\n"
 		"}\n";
-	static char *rgb_fwd_frag = 
+	static const char *rgb_fwd_frag =
 		"uniform sampler2D tex;\n"
 		"void main()\n"
 		"{\n"
 		"	gl_FragColor = texture2D(tex, gl_TexCoord[0].st);\n"
 		"	gl_FragColor.rgb = gl_FragColor.rgb * vec3(0.8588, 0.8588, 0.8588) + vec3(0.0627, 0.0627, 0.0627);\n"
 		"}\n";
-	static char *rgb_rev_frag = 
+	static const char *rgb_rev_frag =
 		"uniform sampler2D tex;\n"
 		"void main()\n"
 		"{\n"
