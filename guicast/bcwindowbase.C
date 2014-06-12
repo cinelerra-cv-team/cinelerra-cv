@@ -943,7 +943,7 @@ int BC_WindowBase::dispatch_event()
 // block out control keys
 			if(keysym > 0xffe0 && keysym < 0xffff) break;
 
-			if(test_keypress) printf("BC_WindowBase::dispatch_event %lx\n", (unsigned char)keysym);
+			if(test_keypress) printf("BC_WindowBase::dispatch_event %lx\n", (long int)keysym);
 #ifdef X_HAVE_UTF8_STRING
 			//It's Ascii or UTF8?
 			if ( (keys_return[0] & 0xff) >= 0x7f ) {
