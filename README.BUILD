@@ -77,7 +77,7 @@ build for your specific architecture.  Some common examples are:
 Pentium-M:
 
 ./configure --prefix=/usr --enable-x86 --enable-mmx --enable-freetype2 \ 
-            --with-buildinfo=svn/recompile \
+            --with-buildinfo=git/recompile \
  CFLAGS='-O3 -pipe -fomit-frame-pointer -funroll-all-loops -falign-loops=2 \
          -falign-jumps=2 -falign-functions=2 -ffast-math \
          -march=pentium-m -mfpmath=sse,387 -mmmx -msse'
