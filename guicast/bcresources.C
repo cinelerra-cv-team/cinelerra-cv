@@ -106,9 +106,7 @@ int BC_Resources::x_error_handler(Display *display, XErrorEvent *event)
 #endif
 
 	BC_Resources::error = 1;
-// This bug only happens in 32 bit mode.
-	if(sizeof(long) == 4)
-		BC_WindowBase::get_resources()->use_xft = 0;
+
 	return 0;
 }
 
