@@ -106,6 +106,7 @@ MenuEffectThread::~MenuEffectThread()
 int MenuEffectThread::set_title(const char *title)
 {
 	strcpy(this->title, title);
+	return 0;
 }
 
 // for recent effect menu items and running new effects

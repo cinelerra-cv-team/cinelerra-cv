@@ -659,6 +659,7 @@ int Edits::copy(int64_t start, int64_t end, FileXML *file, const char *output_pa
 	file->tag.set_title("/EDITS");
 	file->append_tag();
 	file->append_newline();
+	return 0;
 }
 
 

@@ -554,6 +554,7 @@ int Undo::update_caption(const char *new_caption)
 	char string[1024];
 	sprintf(string, _("Undo %s"), new_caption);
 	set_text(string);
+	return 0;
 }
 
 
@@ -574,6 +575,7 @@ int Redo::update_caption(const char *new_caption)
 	char string[1024];
 	sprintf(string, _("Redo %s"), new_caption);
 	set_text(string);
+	return 0;
 }
 
 CutKeyframes::CutKeyframes(MWindow *mwindow)
