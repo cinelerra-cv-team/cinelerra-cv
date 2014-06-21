@@ -124,7 +124,7 @@ int Pipe::open(const char *mode)
 	if (substitute() < 0) 
 		return 1;
 
-	if (complete == NULL || strlen(complete) == 0) 
+	if (strlen(complete) == 0) 
 	{
 		printf("Pipe::open(): no pipe to open\n");
 		return 1;
