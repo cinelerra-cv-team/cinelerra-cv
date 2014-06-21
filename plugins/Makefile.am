@@ -3,6 +3,11 @@ THEMES= \
 	bluedottheme \
 	defaulttheme
 
+if ENABLE_FINDOBJECT
+MAYBE_FINDOBJECT = \
+	findobject 
+endif
+
 SUBDIRS= \
 	$(THEMES) \
 	libfourier \
@@ -39,7 +44,6 @@ SUBDIRS= \
 	dot \
 	downsample \
 	fieldframe \
-	findobject \
 	flash \
 	flip \
 	framefield \
@@ -106,6 +110,7 @@ SUBDIRS= \
 	wipe \
 	yuv \
 	zoomblur \
+	$(MAYBE_FINDOBJECT) \
 	fonts
 
 AUTOMAKE_OPTIONS=foreign

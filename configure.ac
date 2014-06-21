@@ -284,6 +284,10 @@ else
 fi
 AC_DEFINE_UNQUOTED(HAVE_OPENCV_SURF, $HAVE_OPENCV_SURF,
 	[define if SURF support is compiled into opencv])
+if test "x$opencv" = "xyes" && test "x$opencvh" = "xyes" ; then
+	enable_findobject=ok
+fi
+AM_CONDITIONAL(ENABLE_FINDOBJECT,test "x$enable_findobject" = "xok")
 ############## END OF MISC LIBRARIES
 
 LARGEFILE_CFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64"
@@ -789,8 +793,6 @@ RPT(libfaac,libfaac libraries)
 RPT(libfaach,libfaac headers)
 RPT(libfaad,libfaad libraries)
 RPT(libfaadh,libfaad headers)
-RPT(opencv,opencv libraries)
-RPT(opencvh,opencv headers)
 mandatory="$succeeded"
 
 echo
@@ -814,6 +816,10 @@ ORPT(enable_firewire,Firewire,--disable-firewire,
 )
 ORPT(enable_opengl,Hardware acceleration using OpenGL 2.0,--disable-opengl,
 	RPT(libGL,OpenGL 2.0 libraries)
+)
+ORPT(enable_findobject,findobject plugin using OpenCV 2.0,--disable-findobject,
+	RPT(opencv,opencv libraries)
+	RPT(opencvh,opencv headers)
 )
 
 if test "x$mandatory" = "xno"; then
