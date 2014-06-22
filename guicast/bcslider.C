@@ -378,6 +378,11 @@ int BC_Slider::get_pointer_motion_range()
 	return pointer_motion_range;
 }
 
+void BC_Slider::set_pointer_motion_range(int value)
+{
+	pointer_motion_range = value;
+}
+
 
 
 
