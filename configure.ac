@@ -695,6 +695,7 @@ AC_OUTPUT(Makefile cinelerra-cvs-current.spec po/Makefile.in \
 	plugins/chromakey/Makefile \
 	plugins/chromakeyhsv/Makefile \
 	plugins/colorbalance/Makefile \
+	plugins/color3way/Makefile \
 	plugins/compressor/Makefile \
 	plugins/crossfade/Makefile \
 	plugins/decimate/Makefile \

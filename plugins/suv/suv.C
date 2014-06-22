@@ -602,6 +602,11 @@ void SUV::initialize()
 
 
 
+	new_image_set("color3way_point", 
+		3,
+		"color3way_up.png", 
+		"color3way_hi.png", 
+		"color3way_dn.png");
 
 	new_toggle("arrow.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi, "arrow");
 	new_toggle("autokeyframe.png", transport_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi, "autokeyframe");

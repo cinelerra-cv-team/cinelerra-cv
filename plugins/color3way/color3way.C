@@ -26,6 +26,8 @@
 #include "bchash.h"
 #include "language.h"
 #include "playback3d.h"
+#include "bchash.h"
+#include "bcdisplayinfo.h"
 
 #include "aggregated.h"
 #include "../interpolate/aggregated.h"
@@ -370,6 +372,8 @@ LoadPackage* Color3WayEngine::new_package()
 Color3WayMain::Color3WayMain(PluginServer *server)
  : PluginVClient(server)
 {
+	PLUGIN_CONSTRUCTOR_MACRO
+	using_defaults = 0;
 	need_reconfigure = 1;
 	engine = 0;
 	w = 500;
@@ -381,6 +385,7 @@ Color3WayMain::~Color3WayMain()
 {
 	
 	delete engine;
+	PLUGIN_DESTRUCTOR_MACRO
 }
 
 const char* Color3WayMain::plugin_title() { return N_("Color 3 Way"); }
@@ -457,9 +462,13 @@ void Color3WayMain::calculate_factors(float *r, float *g, float *b, int section)
 
 
 
+PLUGIN_THREAD_OBJECT(Color3WayMain, Color3WayThread, Color3WayWindow)
+
+SHOW_GUI_MACRO(Color3WayMain, Color3WayThread)
+RAISE_WINDOW_MACRO(Color3WayMain)
+SET_STRING_MACRO(Color3WayMain)
 
 LOAD_CONFIGURATION_MACRO(Color3WayMain, Color3WayConfig)
-NEW_WINDOW_MACRO(Color3WayMain, Color3WayWindow)
 
 
 
@@ -504,6 +513,7 @@ int Color3WayMain::process_buffer(VFrame *frame,
 	return 0;
 }
 
+VFrame* Color3WayMain::new_picon() { return NULL; }
 
 void Color3WayMain::update_gui()
 {
@@ -552,6 +562,23 @@ void Color3WayMain::save_data(KeyFrame *keyframe)
 	
 	output.append_tag();
 	output.terminate_string();
+}
+
+// FIXME Implement these based on the read_data() method used by
+// Cinelerra HV 4.5
+int Color3WayMain::load_defaults()
+{
+	printf("warning: dummy function Color3WayMain::load_defaults() called.")
+}
+
+int Color3WayMain::save_defaults()
+{
+	printf("warning: dummy function Color3WayMain::save_defaults() called.")
+}
+
+int Color3WayMain::is_defaults()
+{
+	return using_defaults;
 }
 
 void Color3WayMain::read_data(KeyFrame *keyframe)

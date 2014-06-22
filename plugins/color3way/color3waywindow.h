@@ -193,13 +193,14 @@ public:
 };
 
 
-class Color3WayWindow : public PluginClientWindow
+class Color3WayWindow : public BC_Window
 {
 public:
-	Color3WayWindow(Color3WayMain *plugin);
+	Color3WayWindow(Color3WayMain *plugin, int x, int y);
 	~Color3WayWindow();
 
 	void create_objects();
+	int close_event();
 	void update();
 	int resize_event(int w, int h);
 

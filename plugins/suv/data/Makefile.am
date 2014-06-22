@@ -118,6 +118,10 @@ PNGS = \
 	clip_icon.png \
 	closetip.png \
 	cmeter_bg.png \
+	color3way_dn.png \
+	color3way_hi.png \
+	color3way_point.png \
+	color3way_up.png \
 	column_dn.png \
 	column_hi.png \
 	column_up.png \

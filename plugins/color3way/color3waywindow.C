@@ -34,15 +34,20 @@
 
 
 
+WINDOW_CLOSE_EVENT(Color3WayWindow)
 
 
-Color3WayWindow::Color3WayWindow(Color3WayMain *plugin)
- : PluginClientWindow(plugin,
+Color3WayWindow::Color3WayWindow(Color3WayMain *plugin, int x, int y)
+ : BC_Window(plugin->get_gui_string(),
+	x,
+	y,
 	plugin->w, 
 	plugin->h, 
 	500, 
 	370, 
-	1)
+	1,
+	0,
+	0)
 { 
 	this->plugin = plugin; 
 }
@@ -308,7 +313,7 @@ void Color3WayPoint::draw_face(int flash, int flush)
 // Draw the color wheel
 	if(!bg_image)
 	{
-		VFrame frame(0, -1, radius * 2, radius * 2, BC_RGB888, -1);
+		VFrame frame(0, /* -1,*/ radius * 2, radius * 2, BC_RGB888, -1);
 		for(int i = 0; i < radius * 2; i++)
 		{
 			unsigned char *row = frame.get_rows()[i];
