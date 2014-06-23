@@ -123,7 +123,7 @@ public:
 	int process_realtime(long size, VFrame **input_ptr, VFrame **output_ptr);
 	int plugin_is_realtime();
 	int plugin_is_multi_channel();
-	char* plugin_title();
+	const char* plugin_title();
 	int start_realtime();
 	int stop_realtime();
 	int start_gui();
@@ -145,7 +145,7 @@ public:
 			int64_t start_position,
 			double frame_rate);
 	int is_realtime();
-	char* plugin_title();
+	const char* plugin_title();
 	VFrame* new_picon();
 	int load_defaults();
 	int save_defaults();
@@ -404,7 +404,7 @@ C41Effect::~C41Effect()
 	PLUGIN_DESTRUCTOR_MACRO
 }
 
-char* C41Effect::plugin_title() { return N_("C41"); }
+const char* C41Effect::plugin_title() { return N_("C41"); }
 
 int C41Effect::is_realtime() { return 1; }
 
