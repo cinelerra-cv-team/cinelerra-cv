@@ -159,6 +159,7 @@ FindObjectMain::FindObjectMain(PluginServer *server)
 	PLUGIN_CONSTRUCTOR_MACRO
 	bzero(&blob_param, sizeof(CvBlobTrackerAutoParam1));
 	blob_pTracker = 0;
+	blob_initialized = 0;
 
 
 	object_image = 0;
