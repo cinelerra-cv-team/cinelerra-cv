@@ -61,10 +61,11 @@ Additional requirements for the git branch (this source code)
 	- autoconf
 	- libtool
 		
-The others are maybe part of your distrib. If they aren't, 
+The others may be part of your distribution. If they aren't, 
 you can find most of them on ftp://ftp.nerim.net/debian-marillat/
 and the rest on http://www.kiberpipa.org/~minmax/cinelerra/builds/
-(if not, please complain to cinelerra@skolelinux.no!)
+or http://launchpad.net/~cinelerra-ppa/+archive/ppa
+(if not, please complain to cinelerra@lists.cinelerra-cv.org !)
 
 ----------------------------
 Compiler flags:
