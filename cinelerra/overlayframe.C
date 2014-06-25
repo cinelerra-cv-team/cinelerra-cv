@@ -102,7 +102,7 @@ OverlayFrame::~OverlayFrame()
 
 #define BLEND_3(max, temp_type, type, chroma_offset) \
 { \
-	temp_type r, g, b; \
+	temp_type r = 0, g = 0, b = 0; \
  \
 /* if(mode != TRANSFER_NORMAL) printf("BLEND mode = %d\n", mode); */ \
 	switch(mode) \
@@ -223,7 +223,7 @@ OverlayFrame::~OverlayFrame()
 // Blending equations are drastically different for 3 and 4 components
 #define BLEND_4(max, temp_type, type, chroma_offset) \
 { \
-	temp_type r, g, b, a; \
+	temp_type r = 0, g = 0, b = 0, a = 0; \
 	temp_type pixel_opacity, pixel_transparency; \
 	temp_type output1 = output[0]; \
 	temp_type output2 = output[1]; \
