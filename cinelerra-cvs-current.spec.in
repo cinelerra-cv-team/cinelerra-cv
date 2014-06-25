@@ -19,7 +19,7 @@ Release: %{build_nick}.%(date '+%Y%m%d')
 ##Release: %(date '+%Y%m%d')
 License: GPL
 Group: Productivity/Multimedia/Video/Editors and Convertors
-URL: http://cvs.cinelerra.org
+URL: http://git.cinelerra-cv.org
 Source0: %{name}-@VERSION@.tar.gz
 BuildRoot: %{_tmppath}/%{name}-@VERSION@-%{release}-buildroot
 Requires: mjpegtools >= 1.6.3
