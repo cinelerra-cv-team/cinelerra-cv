@@ -30,6 +30,19 @@ AC_DEFUN([GREP_CXXFLAGS],
   ;;
 esac
 ])
+dnl
+dnl GREP_CFLAGS(flag, cmd_if_missing, cmd_if_present)
+dnl
+AC_DEFUN([GREP_CFLAGS],
+[case "$CFLAGS" in
+"$1" | "$1 "* | *" $1" | *" $1 "* )
+  ifelse($#, 3, [$3], [:])
+  ;;
+*)
+  $2
+  ;;
+esac
+])
 
 if eval "test x$GCC = xyes"; then
   for flag in \
@@ -38,10 +51,17 @@ if eval "test x$GCC = xyes"; then
   do
     GREP_CXXFLAGS($flag, [ CXXFLAGS="$CXXFLAGS $flag" ])
   done
+  for flag in \
+      -Wformat \
+      -Werror=format-security
+  do
+    GREP_CFLAGS($flag, [ CFLAGS="$CFLAGS $flag" ])
+  done
   AC_ARG_WITH([lots-of-warnings],
 	AC_HELP_STRING([--with-lots-of-warnings], [ask the compiler to enable lots of warning flags]),[
   for flag in \
       -Wall \
+      -Werror=format-security \
       -Wextra \
       -Wcast-qual \
       -Wpointer-arith \
@@ -50,6 +70,18 @@ if eval "test x$GCC = xyes"; then
       -pedantic
   do
     GREP_CXXFLAGS($flag, [ CXXFLAGS="$CXXFLAGS $flag" ])
+  done
+  for flag in \
+      -Wall \
+      -Werror=format-security \
+      -Wextra \
+      -Wcast-qual \
+      -Wpointer-arith \
+      -Wreturn-type \
+      -Wunused \
+      -pedantic
+  do
+    GREP_CFLAGS($flag, [ CFLAGS="$CFLAGS $flag" ])
   done
 ])
 fi
