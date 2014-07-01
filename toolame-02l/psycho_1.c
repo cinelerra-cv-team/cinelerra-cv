@@ -177,7 +177,10 @@ void psycho_1_init_add_db (void)
   }
 }
 
-INLINE double add_db (double a, double b)
+#if !defined(__clang__)
+INLINE
+#endif
+double add_db (double a, double b)
 {
   /* MFC - if the difference between a and b is large (>99), then just return the
      largest one. (about 10% of the time)

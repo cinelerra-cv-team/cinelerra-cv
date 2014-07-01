@@ -1189,7 +1189,10 @@ static void fht (FLOAT * fz)
 #define ATANSCALE 50.0
   static FLOAT atan_t[ATANSIZE];
 
-INLINE FLOAT atan_table(FLOAT y, FLOAT x) {
+#if !defined(__clang__)
+INLINE
+#endif
+FLOAT atan_table(FLOAT y, FLOAT x) {
   int index;
 
   index = (int)(ATANSCALE * fabs(y/x));

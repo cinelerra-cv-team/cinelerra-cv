@@ -94,7 +94,10 @@ void psycho_4_trigtable_init(void) {
   }
 }
 
-INLINE FLOAT psycho_4_cos(FLOAT phi) {
+#if !defined(__clang__)
+INLINE
+#endif
+FLOAT psycho_4_cos(FLOAT phi) {
   int index;
   int sign=1;
 
@@ -106,7 +109,10 @@ INLINE FLOAT psycho_4_cos(FLOAT phi) {
   return(sign * cos_table[index]);
 }
 
-INLINE FLOAT psycho_4_sin(FLOAT phi) {
+#if !defined(__clang__)
+INLINE
+#endif
+FLOAT psycho_4_sin(FLOAT phi) {
   int index;
   int sign=1;
 

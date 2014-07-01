@@ -41,7 +41,10 @@ static D1408 *fft_buf;
 frame_header *header;
 
 
-INLINE double psycho_3_add_db (double a, double b)
+#if !defined(__clang__)
+INLINE
+#endif
+double psycho_3_add_db (double a, double b)
 {
   /* MFC - if the difference between a and b is large (>99), then just return the
      largest one. (about 10% of the time)
