@@ -1,0 +1,11 @@
+language: cpp
+compiler:
+  - gcc
+  - clang
+install:
+ - sudo apt-get update -qq
+ - sudo apt-get install -y gdebi
+ - sudo apt-get install -y $(gdebi --quiet --apt-line debian/control)
+ - ./autogen.sh
+script:
+ - ./configure; make distcheck
