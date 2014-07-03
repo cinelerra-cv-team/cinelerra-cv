@@ -62,9 +62,6 @@ public:
 // Units native to the track
 	int is_default;
 	int64_t position;
-
-private:
-	virtual int value_to_str(char *string, float value) {};
 };
 
 
