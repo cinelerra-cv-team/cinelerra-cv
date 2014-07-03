@@ -19,6 +19,10 @@
  * 
  */
 
+#if defined(HAVE_CONFIG_H)
+#include "config.h"
+#endif
+
 #ifdef HAVE_GL
 #define GL_GLEXT_PROTOTYPES
 #include <GL/gl.h>
