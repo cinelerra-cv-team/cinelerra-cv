@@ -33,6 +33,75 @@
 
 #include <string.h>
 
+PluginClientWindow::PluginClientWindow(PluginClient *client, 
+	int w,
+	int h,
+	int min_w,
+	int min_h,
+	int allow_resize)
+ : BC_Window(client->gui_string, 
+	client->window_x /* - w / 2 */, 
+	client->window_y /* - h / 2 */, 
+	w, 
+	h, 
+	min_w, 
+	min_h,
+	allow_resize, 
+	0,
+	1)
+{
+	this->client = client;
+}
+
+PluginClientWindow::PluginClientWindow(const char *title, 
+	int x,
+	int y,
+	int w,
+	int h,
+	int min_w,
+	int min_h,
+	int allow_resize)
+ : BC_Window(title, 
+	x, 
+	y, 
+	w, 
+	h, 
+	min_w, 
+	min_h,
+	allow_resize, 
+	0,
+	1)
+{
+	this->client = 0;
+}
+
+PluginClientWindow::~PluginClientWindow()
+{
+}
+
+
+int PluginClientWindow::translation_event()
+{
+	if(client)
+	{
+		client->window_x = get_x();
+		client->window_y = get_y();
+	}
+
+	return 1;
+}
+
+int PluginClientWindow::close_event()
+{
+/* Set result to 1 to indicate a client side close */
+	set_done(1);
+	return 1;
+}
+
+
+
+
+
 PluginClient::PluginClient(PluginServer *server)
 {
 	reset();

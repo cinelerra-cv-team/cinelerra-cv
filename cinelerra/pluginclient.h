@@ -102,9 +102,10 @@ thread_class::~thread_class() \
 void thread_class::run() \
 { \
 	BC_DisplayInfo info; \
+	if(plugin->window_x < 0) plugin->window_x = info.get_abs_cursor_x(); \
+	if(plugin->window_y < 0) plugin->window_y = info.get_abs_cursor_y(); \
 	window = new window_class(plugin,  \
-		info.get_abs_cursor_x() - 75,  \
-		info.get_abs_cursor_y() - 65); \
+		plugin->window_x - 75, plugin->window_y - 65); \
 	window->create_objects(); \
  \
 /* Only set it here so tracking doesn't update it until everything is created. */ \
@@ -225,6 +226,34 @@ int plugin_class::load_configuration() \
 }
 
 
+
+
+
+
+class PluginClientWindow : public BC_Window
+{
+public:
+	PluginClientWindow(PluginClient *client, 
+		int w,
+		int h,
+		int min_w,
+		int min_h,
+		int allow_resize);
+	PluginClientWindow(const char *title, 
+		int x,
+		int y,
+		int w,
+		int h,
+		int min_w,
+		int min_h,
+		int allow_resize);
+	virtual ~PluginClientWindow();
+	
+	virtual int translation_event();
+	virtual int close_event();
+	
+	PluginClient *client;
+};
 
 
 
@@ -511,6 +540,10 @@ public:
 // Total number of processors available - 1
 	int smp;  
 	PluginServer *server;
+
+// Temporaries set in new_window.  Should be private when
+// PluginClientThread is ported from HV 4.5.
+	int window_x, window_y;
 
 private:
 
