@@ -8,7 +8,7 @@ Changes since Cinelerra-cv 2.2:
  - Added support for UTF-8 fonts.
  - Revised plugin infrastructure to be similar to Cinelerra-HV 4.5.
  - Automated creation of header files for png in plugins.
- - New plugins: Bluebanana, C41, color3way, findobject.
+ - New plugins: Bluebanana, C41, color3way, findobject, lens.
  - New graphics (About panel, icons).
  - Added YUV, HSV AffineMartix classes from Cinelerra-HV 4.5.
  - Fixed colormode conversions. 

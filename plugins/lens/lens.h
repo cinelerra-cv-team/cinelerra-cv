@@ -34,6 +34,7 @@ class LensEngine;
 class LensGUI;
 class LensMain;
 class LensText;
+class LensThread;
 
 #define FOV_CHANNELS 4
 
@@ -165,7 +166,7 @@ public:
 class LensGUI : public PluginClientWindow
 {
 public:
-	LensGUI(LensMain *client);
+	LensGUI(LensMain *client, int x, int y);
 	~LensGUI();
 	
 	void create_objects();
@@ -274,12 +275,19 @@ public:
 	LensMain(PluginServer *server);
 	~LensMain();
 
-	PLUGIN_CLASS_MEMBERS(LensConfig)
+	PLUGIN_CLASS_MEMBERS(LensConfig, LensThread)
 	int process_buffer(VFrame *frame,
 		int64_t start_position,
 		double frame_rate);
 	int is_realtime();
 	void update_gui();
+
+	// These three methods are part of the PluginClient class in
+	// Cinelerra HV 4.5
+	int load_defaults();
+	int save_defaults();
+	int is_defaults();
+
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
 	void load_presets();
@@ -290,8 +298,11 @@ public:
 	int lock;
 	int current_preset;
 	ArrayList<LensPreset*> presets;
+private:
+	int using_defaults;
 };
 
 
+PLUGIN_THREAD_HEADER(LensMain, LensThread, LensGUI)
 
 #endif

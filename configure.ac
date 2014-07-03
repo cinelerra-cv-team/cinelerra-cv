@@ -726,6 +726,7 @@ AC_OUTPUT(Makefile cinelerra-cvs-current.spec po/Makefile.in \
 	plugins/invertvideo/Makefile \
 	plugins/irissquare/Makefile \
 	plugins/ivtc/Makefile \
+	plugins/lens/Makefile \
 	plugins/liveaudio/Makefile \
 	plugins/livevideo/Makefile \
 	plugins/loopaudio/Makefile \

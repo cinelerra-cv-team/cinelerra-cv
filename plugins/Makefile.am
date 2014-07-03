@@ -63,6 +63,7 @@ SUBDIRS= \
 	invertvideo \
 	irissquare \
 	ivtc \
+	lens \
 	level \
 	linearblur \
 	liveaudio \
