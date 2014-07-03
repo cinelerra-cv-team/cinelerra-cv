@@ -24,7 +24,7 @@
 #include <string.h>
 
 
-#include "../motion/affine.h"
+#include "affine.h"
 #include "bcdisplayinfo.h"
 #include "clip.h"
 #include "bchash.h"

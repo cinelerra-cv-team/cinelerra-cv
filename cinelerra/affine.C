@@ -1476,6 +1476,12 @@ void AffineEngine::set_out_viewport(int x, int y, int w, int h)
 	this->user_out_viewport = 1;
 }
 
+void AffineEngine::set_viewport(int x, int y, int w, int h)
+{
+	set_in_viewport(x, y, w, h);
+	set_out_viewport(x, y, w, h);
+}
+
 void AffineEngine::set_opengl(int value)
 {
 	this->use_opengl = value;
@@ -1493,6 +1499,12 @@ void AffineEngine::set_out_pivot(int x, int y)
 	this->out_pivot_x = x;
 	this->out_pivot_y = y;
 	this->user_out_pivot = 1;
+}
+
+void AffineEngine::set_pivot(int x, int y)
+{
+	set_in_pivot(x, y);
+	set_out_pivot(x, y);
 }
 
 void AffineEngine::unset_pivot()

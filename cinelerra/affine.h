@@ -113,11 +113,20 @@ public:
 	void set_in_viewport(int x, int y, int w, int h);
 // Only used by motion tracker.  Not used in OpenGL.
 	void set_out_viewport(int x, int y, int w, int h);
+
+// Set the viewport for both input and output.  Removed in HV 4.5.
+// Compatibility function introduced to avoid having to rewrite old
+// plugins.  Should be removed when no plugin uses it any more.
+	void set_viewport(int x, int y, int w, int h);
 // For rotation, set the pivot point.  Also affects output in OpenGL.
 // The default is in the middle of the viewport.
 	void set_in_pivot(int x, int y);
 // Set the pivot point in the output.  Only used by motion tracker.
 	void set_out_pivot(int x, int y);
+// Set the pivot point for both input and output.  Removed in HV 4.5.
+// Compatibility function introduced to avoid having to rewrite old
+// plugins.
+	void set_pivot(int x, int y);
 // Never used
 	void unset_pivot();
 	void unset_viewport();
