@@ -568,12 +568,12 @@ void Color3WayMain::save_data(KeyFrame *keyframe)
 // Cinelerra HV 4.5
 int Color3WayMain::load_defaults()
 {
-	printf("warning: dummy function Color3WayMain::load_defaults() called.")
+	printf("warning: dummy function Color3WayMain::load_defaults() called.");
 }
 
 int Color3WayMain::save_defaults()
 {
-	printf("warning: dummy function Color3WayMain::save_defaults() called.")
+	printf("warning: dummy function Color3WayMain::save_defaults() called.");
 }
 
 int Color3WayMain::is_defaults()
