@@ -8,6 +8,6 @@ Comment=Video Editor
 Categories=Application;AudioVideo;Multimedia;VideoEditing;
 Encoding=UTF-8
 Exec=cinelerra
-Icon=cinelerra.xpm
+Icon=cinelerra-cv.xpm
 Terminal=false
 Type=Application
