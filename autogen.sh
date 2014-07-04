@@ -5,10 +5,10 @@ rm -f install-sh
 rm -f missing
 rm -f compile
 
-# autogen.sh for Cinelerra Unofficial CVS
+# autogen.sh for Cinelerra-CV official GIT
 # 
 # This script allows you to create a ./configure script
-# It is only needed when building from CVS when no ./configure script is provided
+# It is only needed when building from GIT when no ./configure script is provided
 #
 # WARNING: Recent versions of automake and autoconf are needed.
 # You will need at least automake 1.7 and autoconf 2.57.
