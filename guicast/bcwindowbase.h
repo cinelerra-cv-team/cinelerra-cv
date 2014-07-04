@@ -175,8 +175,11 @@ public:
 	friend class BC_WindowEvents;
 
 #ifdef X_HAVE_UTF8_STRING
-	XIM im;         /* Used to communicate with the input method (IM) server */
-	XIC ic;         /* Used for retaining the state, properties, and semantics of communication with                                                  the input method (IM) server */
+	// Used to communicate with the input method (IM) server
+	XIM input_method;
+	// Used for retaining the state, properties, and semantics
+	//  of communication with the input method (IM) server
+	XIC input_context;
 #endif
 
 // Main loop
@@ -606,6 +609,7 @@ private:
 	int init_gc();
 	int init_fonts();
 	void init_xft();
+	void init_im();
 	int get_color_rgb8(int color);
 	int64_t get_color_rgb16(int color);
 	int64_t get_color_bgr16(int color);

@@ -152,6 +152,15 @@ BC_WindowBase::~BC_WindowBase()
 			XFreeFont(display, mediumfont);
 		if(largefont)
 			XFreeFont(display, largefont);
+#ifdef X_HAVE_UTF8_STRING
+		if(!get_resources()->missing_im)
+		{
+			if(input_context)
+				XDestroyIC(input_context);
+			if(input_method)
+				XCloseIM(input_method);
+		}
+#endif
 		flush();
 // Can't close display if another thread is waiting for events.
 // Synchronous thread must delete display if gl_context exists.
@@ -248,6 +257,11 @@ int BC_WindowBase::initialize()
 	largefont_xft = 0;
 	mediumfont_xft = 0;
 	smallfont_xft = 0;
+#ifdef X_HAVE_UTF8_STRING
+	input_method = 0;
+	input_context = 0;
+#endif
+
 // Need these right away since put_event is called before run_window sometimes.
 	event_lock = new Mutex("BC_WindowBase::event_lock");
 	event_condition = new Condition(0, "BC_WindowBase::event_condition");
@@ -372,6 +386,7 @@ int BC_WindowBase::create_window(BC_WindowBase *parent_window,
 // if(window_type == MAIN_WINDOW) sleep(1);
 // printf("bcwindowbase 10\n");
 		init_fonts();
+		init_im();
 		init_gc();
 		init_cursors();
 
@@ -883,49 +898,8 @@ int BC_WindowBase::dispatch_event()
 			get_key_masks(event);
 #ifdef X_HAVE_UTF8_STRING
 			memset(keys_return, 0, sizeof(keys_return));
-			// this is routine re-adapted from xev.c - xutils
-			im = XOpenIM (display, NULL, NULL, NULL);
-			XIMStyles *xim_styles;
-			XIMStyle xim_style;
-
-			if (im == NULL)
-				printf ("XOpenIM failed\n");
-
-			if (im)
-			{
-				char *imvalret;
-				imvalret = XGetIMValues (im, XNQueryInputStyle, &xim_styles, NULL);
-				if (imvalret != NULL || xim_styles == NULL) 
-					printf ("input method doesn't support any styles\n");
-
-				if (xim_styles)
-				{
-					xim_style = 0;
-					for (int z = 0;  z < xim_styles->count_styles;  z++) 
-					{
-						if (xim_styles->supported_styles[z] == (XIMPreeditNothing | XIMStatusNothing)) 
-						{
-							xim_style = xim_styles->supported_styles[z];
-							break;
-						}
-					}
-
-					if (xim_style == 0)
-						printf ("input method doesn't support the style we support\n");
-					XFree (xim_styles);
-				}
-			}
-			if (im && xim_style) 
-			{
-				ic = XCreateIC (im, XNInputStyle, xim_style, 
-				XNClientWindow, win,
-					XNFocusWindow, win,
-					NULL);
-				if (ic == NULL)
-					printf ("XCreateIC failed\n");
-			}
-			if (ic)
-				Xutf8LookupString(ic, (XKeyEvent*)event, keys_return, 6, &keysym, 0);
+			if(input_context)
+				Xutf8LookupString(input_context, (XKeyEvent*)event, keys_return, 6, &keysym, 0);
 			else
 				XLookupString((XKeyEvent*)event, keys_return, 6, &keysym, 0);
 #else
@@ -1972,6 +1946,60 @@ void BC_WindowBase::init_xft()
 #endif
 }
 
+void BC_WindowBase::init_im()
+{
+#ifdef X_HAVE_UTF8_STRING
+	XIMStyles *xim_styles;
+	XIMStyle xim_style;
+
+	if(get_resources()->missing_im)
+		return;
+
+	if(!(input_method = XOpenIM(display, NULL, NULL, NULL)))
+	{
+		printf("Could not open input method.\n");
+		get_resources()->missing_im = 1;
+		return;
+	}
+	if(XGetIMValues(input_method, XNQueryInputStyle, &xim_styles, NULL) ||
+			xim_styles == NULL)
+	{
+		printf("Input method doesn't support any styles.\n");
+		XCloseIM(input_method);
+		get_resources()->missing_im = 1;
+		return;
+	}
+
+	xim_style = 0;
+	for(int z = 0;  z < xim_styles->count_styles;  z++)
+	{
+		if(xim_styles->supported_styles[z] == (XIMPreeditNothing | XIMStatusNothing))
+		{
+			xim_style = xim_styles->supported_styles[z];
+			break;
+		}
+	}
+	XFree(xim_styles);
+
+	if(xim_style == 0)
+	{
+		printf("Input method doesn't support the style we need.\n");
+		XCloseIM(input_method);
+		get_resources()->missing_im = 1;
+		return;
+	}
+
+	input_context = XCreateIC(input_method, XNInputStyle, xim_style,
+		NULL);
+	if(!input_context)
+	{
+		printf("Failed to create input context.\n");
+		get_resources()->missing_im = 1;
+		XCloseIM(input_method);
+		return;
+	}
+#endif
+}
 
 int BC_WindowBase::get_color(int64_t color) 
 {
