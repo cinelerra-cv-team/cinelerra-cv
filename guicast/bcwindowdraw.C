@@ -305,17 +305,27 @@ void BC_WindowBase::draw_xft_text(int x,
 // (const XftChar8 *)&text[j],
 // i - j);
 #ifdef X_HAVE_UTF8_STRING
-	XftDrawStringUtf8 (
-#else
-	XftDrawString8 (
+	if(get_resources()->locale_utf8)
+	{
+		XftDrawStringUtf8((XftDraw*)(pixmap ? pixmap->opaque_xft_draw : this->pixmap->opaque_xft_draw),
+			&xft_color,
+			top_level->get_xft_struct(top_level->current_font),
+			x2 + k,
+			y2 + k,
+			(const FcChar8 *)&text[j],
+			i - j);
+	}
+	else
 #endif
-		(XftDraw*)(pixmap ? pixmap->opaque_xft_draw : this->pixmap->opaque_xft_draw),
-		&xft_color,
-		top_level->get_xft_struct(top_level->current_font),
-		x2 + k, 
-		y2 + k,
-		(const FcChar8 *)&text[j],
-		i - j);
+	{
+		XftDrawString8((XftDraw*)(pixmap ? pixmap->opaque_xft_draw : this->pixmap->opaque_xft_draw),
+			&xft_color,
+			top_level->get_xft_struct(top_level->current_font),
+			x2 + k,
+			y2 + k,
+			(const FcChar8 *)&text[j],
+			i - j);
+	}
 #endif
 }
 
