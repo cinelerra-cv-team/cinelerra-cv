@@ -1,7 +1,7 @@
 \input texinfo  @c -*-texinfo-*-
 
-@c Manual do Cinelerra CV - PORTUGUÊS DO BRASIL
-@c A versão do Cinelerra Community Version está disponível em http://cvs.cinelerra.org. 
+@c Manual do Cinelerra-CV - PORTUGUÊS DO BRASIL
+@c A versão do Cinelerra-CV está disponível em http://cinelerra-cv.org.
 @c Mantenedor do manual: Nicolas MAUFRAIS - e.conti@gmx.net
 @c Mantenedores da tradução para português do Brasil são
 @c Flavio Freitas (qazav3.0@gmail.com) e Wille Marcel (wille.yyz@gmail.com)
@@ -51,7 +51,7 @@
 @vskip 0pt plus 1filll
 Copyright @copyright{} 2003, 2004, 2005, 2006 Adam Williams - Heroine Virtual Ltd.
 
-Copyright @copyright{} 2003, 2004, 2005, 2006, 2007 Cinelerra CV Team.@*
+Copyright @copyright{} 2003 - 2014 Cinelerra-CV Team.@*
 
 Este manual é livre. Você pode redistribui-lo e/ou modificá-lo sob os termos da GNU General Public License, conforme publicada pela Free Software Foundation; tanto a versão 2 da Licença, quanto (à sua escolha) qualquer versão posterior.
 
@@ -139,7 +139,7 @@ Existem dois tipos de pessoas que apreciam vídeos: produtores que querem criar n
 @section As duas versões do Cinelerra
 @cindex As duas versões do Cinelerra
 
-Existem duas versões do Cinelerra. Uma pode ser encontrada no endereço @uref{http://www.heroinewarrior.com} e a outra em @uref{http://cvs.cinelerra.org}. Esta documentação está focada no @b{Cinelerra-CV (Community Version)}.
+Existem duas versões do Cinelerra. Uma pode ser encontrada no endereço @uref{http://www.heroinewarrior.com} e a outra em @uref{http://cinelerra-cv.org}. Esta documentação está focada no @b{Cinelerra-CV (Community Version)}.
 
 O Cinelerra é desenvolvido de forma "upstream" por uma entidade a quem chamaremos de HV que é uma entidade que compartilha, mas que não é do tipo "comunidade". HV prefere trabalhar em sua própria cópia do Cinelerra por conta própria, lançando um novo código em uma base de seis em seis meses mais ou menos. Alguns desenvolvedores decidiram que seria interessante melhorá-la de uma forma comunitária, mas não queriam exatamente dividir ("fork") o desenvolvimento. Basicamente, mantemos uma cópia que é bastante similar à publicação oficial. Porém, aplicamos nossas correções de erros, correções de compilação ("compiler compliance fixes") e alguns melhoramentos ao SVN. Nós tentamos mandar os patches aos desenvolvedores oficiais. Assim, a versão do Cinelerra CV possui um número de características que a versão oficial não possui.
 
@@ -187,7 +187,7 @@ Você pode conseguir ajuda em: @*
 @itemize @bullet
 @item @b{Canal IRC:} #cinelerra no Freenode
 @item @b{Lista de discussão:} @uref{https://init.linpro.no/mailman/skolelinux.no/listinfo/cinelerra}
-@item @b{Site do Cinelerra CV:} @uref{http://cvs.cinelerra.org}
+@item @b{Site do Cinelerra CV:} @uref{http://cinelerra-cv.org}
 @end itemize
 
 @xref{Reportando erros}, caso você queira preencher um reporte de erros.
@@ -6295,7 +6295,7 @@ vcodec=mjpeg -vf scale=720:540 -oac pcm -o `basename $i mpeg`avi; done}
 @cindex Edição HDV 1080i editing, convertendo os arquivos HDV e proxy
 
 O script python @b{proxychange.py} converte HDV para/de proxies. Você pode baixar este script aqui:@*
-@uref{http://cvs.cinelerra.org/docs/proxychange.py}
+@uref{http://cinelerra-cv.org/docs/proxychange.py}
 
 Ele sobrescreve os arquivos existentes de projeto e cria uma cópia do original em @file{projectfile.xml.bak}.
 

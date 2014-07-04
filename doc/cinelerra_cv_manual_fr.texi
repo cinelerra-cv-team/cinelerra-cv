@@ -1,7 +1,7 @@
 \input texinfo  @c -*-texinfo-*-
 
-@c Manuel de Cinelerra CV - FRANCAIS
-@c Site internet de Cinelerra Community Version : http://cvs.cinelerra.org
+@c Manuel de Cinelerra-CV - FRANCAIS
+@c Site internet de Cinelerra-CV: http://cinelerra-cv.org
 @c Coordinateur de la documentation : Nicolas MAUFRAIS - e.conti@gmx.net
 @c Responsable du manuel en français : Jean-Luc COULON
 
@@ -36,7 +36,7 @@
 @vskip 0pt plus 1filll
 Copyright @copyright{} 2003, 2004, 2005, 2006 Jack Crossfire - Heroine Virtual Ltd.
 
-Copyright @copyright{} 2003, 2004, 2005, 2006, 2007 Cinelerra CV Team.@*
+Copyright @copyright{} 2003 - 2014 Cinelerra-CV Team.@*
 
 Ce manuel est un document @w{libre ;} vous pouvez le redistribuer et/ou le
 modifier au titre des clauses de la Licence Publique Générale GNU, telle que
@@ -145,7 +145,7 @@ l'utilisation d'autres outils, tels que MainActor, Kino ou Moxy.
 
 Il y a deux branches de Cinelerra.  L'une d'elle se trouve à
 @uref{http://www.heroinewarrior.com} et l'autre à
-@uref{http://cvs.cinelerra.org}.  Cette documentation concerne @b{Cinelerra-CV
+@uref{http://cinelerra-cv.org}.  Cette documentation concerne @b{Cinelerra-CV
 (Community Version)}.
 
 Les sources de la version officielle de Cinelerra sont développées "en amont" Par Heroine Virtual, Ltd (HV)
@@ -159,7 +159,7 @@ Ils ont décidé qu'il serait bien d'effectuer le développement de manière
 communautaire, sans pour autant effectuer un "fork".  De ce fait, le code
 source de Cinelerra CV est très proche de celui de la version officielle.  Les
 développeurs de la version CV appliquent des résolutions de bugs
-(@uref{http://bugs.cinelerra.org}), effectuent des correctifs de bogues et des
+(@uref{http://bugs.cinelerra-cv.org}), effectuent des correctifs de bogues et des
 correctifs de compatibilité.  Les programmeurs envoyent occasionnellement des
 correctifs en amont à HV@.  De ce fait, Cinelerra CV comporte certaines
 fonctionnalités qu'on ne trouve pas dans la version officielle.
@@ -194,7 +194,7 @@ bugs est relativement aisé.  Cependant, décrire clairement et concisément ces
 bugs à la communauté qui les corrige est une tâche que l'on est à même
 d'espérer de la part de tous les utilisateurs.  La communauté est très
 réactive.  Aidez-la en créant des rapports de bugs bien réalisés.  Vous pouvez
-rejoindre notre mailing-liste à @uref{http://cvs.cinelerra.org}.
+rejoindre notre mailing-liste à @uref{http://cinelerra-cv.org}.
 
 @c cincvdoc_node_number_5
 @node A propos de ce manuel
@@ -242,7 +242,7 @@ votre ordinateur et @w{lancez :}@*
 @command{cg-clone git://scm.pipapo.org/cinelerra/nicolasm}
 @item Vous pouvez participer à l'édition de ce manuel en effectuant vos
 modifications dans le wiki de @w{Cinelerra-CV :}@*
-@uref{http://cvs.cinelerra.org/docs/wiki/doku.php}
+@uref{http://cinelerra-cv.org/docs/wiki/doku.php}
 @end itemize
 
 @ifnotplaintext
@@ -266,7 +266,7 @@ On peut trouver de l'aide @w{sur :}
 @item @b{Le canal IRC :} #cinelerra sur Freenode
 @item @b{La liste de diffusion :}
 @uref{https://init.linpro.no/mailman/skolelinux.no/listinfo/cinelerra}
-@item @b{Le site Web de Cinelerra CV :} @uref{http://cvs.cinelerra.org}
+@item @b{Le site Web de Cinelerra-CV :} @uref{http://cinelerra-cv.org}
 @end itemize
 
 @c cincvdoc_node_number_327
@@ -9983,7 +9983,7 @@ vcodec=mjpeg -vf scale=720:540 -oac pcm -o `basename $i mpeg`avi; done}
 
 Le script python @b{proxychange.py} réalise la conversion entre les projets HDV
 et proxy.  Vous pouvez télécharger ce script @w{ici :}@*
-@uref{http://cvs.cinelerra.org/docs/proxychange.py}
+@uref{http://cinelerra-cv.org/docs/proxychange.py}
 
 Ce script écrase les projets existants, et copie le fichier original dans
 @file{projectfile.xml.bak}.

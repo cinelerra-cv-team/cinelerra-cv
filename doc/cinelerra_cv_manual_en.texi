@@ -1,7 +1,7 @@
 \input texinfo  @c -*-texinfo-*-
 
-@c Cinelerra CV Manual - ENGLISH
-@c Cinelerra Community Version website: http://cvs.cinelerra.org
+@c Cinelerra-CV Manual - ENGLISH
+@c Cinelerra-CV  website: http://cinelerra-cv.org
 @c Documentation coordinator: Nicolas MAUFRAIS - e.conti@gmx.net
 
 @c Licence:
@@ -30,7 +30,7 @@
 @vskip 0pt plus 1filll
 Copyright @copyright{} 2003, 2004, 2005, 2006 Adam Williams - Heroine Virtual Ltd.
 
-Copyright @copyright{} 2003, 2004, 2005, 2006, 2007 Cinelerra CV Team.@*
+Copyright @copyright{} 2003 - 2014 Cinelerra-CV Team.@*
 
 This manual is free; you can redistribute it and/or modify it under the terms
 of the GNU General Public License as published by the Free Software Foundation;
@@ -142,7 +142,7 @@ and for some operations blistering fast."
 
 There are two branches of Cinelerra.  One can be found at
 @uref{http://www.heroinewarrior.com} and the other at
-@uref{http://cvs.cinelerra.org}.  This documentation is focused on
+@uref{http://cinelerra-cv.org}.  This documentation is focused on
 @b{Cinelerra-CV (Community Version)}.
 
 The official Cinelerra source code is developed "upstream" by Heroine Virtual, Ltd (HV).
@@ -156,7 +156,7 @@ Cinelerra-CV was founded by developers who wanted to extend the functionality
 and fix bugs inherent in the HV code base.  They decided to develop Cinelerra
 in a community fashion and not create a separate fork of the original HV code.
 So, the Cinelerra CV code is very similar to the official release.  CV coders
-apply bug fixes (@uref{http://bugs.cinelerra.org}), enhancements to the SVN and
+apply bug fixes (@uref{http://bugs.cinelerra-cv.org}), enhancements to the SVN and
 compliance fixes.  Programmers occasionally send patches upstream.  In this
 way, Cinelerra CV has a number of features that the official version does not.
 
@@ -185,7 +185,7 @@ the task of finding bugs is relatively easy.  However, clearly and concisely
 documenting these bugs for the community that fixes them is a task that we ask
 of all users of the software.  The community is very responsive.  Please help
 them by creating well-formed bug reports.  You may join our mailing list at
-@uref{http://cvs.cinelerra.org}.
+@uref{http://cinelerra-cv.org}.
 
 @c cincvdoc_node_number_5
 @node About this manual
@@ -238,10 +238,10 @@ in DokuWiki sintax (one file per chapter, in a folder), Docbook.
 
 You can participate on editing this manual by making changes in the
 Cinelerra-CV wiki:@*
-@uref{http://cvs.cinelerra.org/docs/wiki/doku.php}
+@uref{http://cinelerra-cv.org/docs/wiki/doku.php}
 
 If you would like to translate this manual in your language, see the doc/TRANSLATIONS 
-file and contact the Cinelerra CV Community.
+file and contact the Cinelerra-CV Community.
 
 @ifnotplaintext
 @ifnothtml
@@ -263,7 +263,7 @@ Help can be found at:
 @itemize @bullet
 @item @b{IRC channel:} #cinelerra on Freenode
 @item @b{Mailing list:} @uref{https://init.linpro.no/mailman/skolelinux.no/listinfo/cinelerra}
-@item @b{Cinelerra CV website:} @uref{http://cvs.cinelerra.org}
+@item @b{Cinelerra-CV website:} @uref{http://cinelerra-cv.org}
 @end itemize
 
 @c cincvdoc_node_number_327
@@ -2638,7 +2638,7 @@ files. @*
 For creating a TOC file without creating new image files you can use external
 list generators like IMG2LIST 0.1.5. (by Claudio "malefico" @sc{Andaur}) or
 Seven Gnomes (by Peter @sc{Semiletov}). See
-@uref{http://cvs.cinelerra.org/user-tips.php}.
+@uref{http://cinelerra-cv.org/user-tips.php}.
 
 Cinelerra can create TOCs with the following formats: JPEG, PNG, EXR, TIFF,
 TGA. @*
@@ -10138,7 +10138,7 @@ vcodec=mjpeg -vf scale=720:540 -oac pcm -o `basename $i mpeg`avi; done}
 
 The @b{proxychange.py} python script converts HDV to/from proxies.  You can
 download that script here:@*
-@uref{http://cvs.cinelerra.org/docs/proxychange.py}
+@uref{http://cinelerra-cv.org/docs/proxychange.py}
 
 It overwrites the existing project files, and creates copy of the original in
 @file{projectfile.xml.bak}.
