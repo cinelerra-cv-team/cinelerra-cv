@@ -679,42 +679,22 @@ int BC_TextBox::repeat_event(int64_t duration)
 
 void BC_TextBox::default_keypress(int &dispatch_event, int &result)
 {
-	char buffer[4];
-	char *temp_string = buffer;
+	char *temp_string = top_level->get_keystring();
 
-	if((top_level->get_keypress() == RETURN) ||
-		(top_level->get_keypress() > 30 && top_level->get_keypress() <= 255))
+	if((top_level->get_keypress() == RETURN) || (unsigned)temp_string[0] > 30)
 	{
-		if((top_level->get_keypress() == RETURN) || (top_level->get_keypress() > 30))
-		{
 // Substitute UNIX linefeed
-			if(top_level->get_keypress() == RETURN)
-			{
-				temp_string[0] = 0xa;
-				temp_string[1] = 0;
-			}
-			else
-			{
-#ifdef X_HAVE_UTF8_STRING
-				if (top_level->get_keypress_utf8())
-					temp_string = top_level->get_keypress_utf8();
-				else
-				{
-					temp_string[0] = top_level->get_keypress();
-					temp_string[1] = 0;
-				}
-#else
-				temp_string[0] = top_level->get_keypress();
-				temp_string[1] = 0;
-#endif
-			}
+		if(top_level->get_keypress() == RETURN)
+		{
+			temp_string[0] = '\n';
+			temp_string[1] = 0;
 		}
+		insert_text((char*)temp_string);
+		find_ibeam(1);
+		draw();
+		dispatch_event = 1;
+		result = 1;
 	}
-	insert_text((char*)temp_string);
-	find_ibeam(1);
-	draw();
-	dispatch_event = 1;
-	result = 1;
 }
 
 int BC_TextBox::select_whole_text(int select)

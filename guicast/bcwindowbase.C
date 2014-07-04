@@ -683,17 +683,10 @@ int BC_WindowBase::dispatch_event()
 	XEvent *event = 0;
     Window tempwin;
   	KeySym keysym;
-#ifdef X_HAVE_UTF8_STRING
-	char keys_return[6];
-#else
-  	char keys_return[2];
-#endif
 	int result;
 	XClientMessageEvent *ptr;
 	int temp;
 	int cancel_resize, cancel_translation;
-
-	key_pressed = 0;
 
 // If an event is waiting get it, otherwise
 // wait for next event only if there are no compressed events.
@@ -896,14 +889,16 @@ int BC_WindowBase::dispatch_event()
 
 		case KeyPress:
 			get_key_masks(event);
+			key_pressed = 0;
+			memset(key_string, 0, sizeof(key_string));
+
 #ifdef X_HAVE_UTF8_STRING
-			memset(keys_return, 0, sizeof(keys_return));
 			if(input_context)
-				Xutf8LookupString(input_context, (XKeyEvent*)event, keys_return, 6, &keysym, 0);
+				Xutf8LookupString(input_context, (XKeyEvent*)event, key_string, 6, &keysym, 0);
 			else
-				XLookupString((XKeyEvent*)event, keys_return, 6, &keysym, 0);
+				XLookupString((XKeyEvent*)event, key_string, 6, &keysym, 0);
 #else
-			XLookupString((XKeyEvent*)event, keys_return, 2, &keysym, 0);
+			XLookupString((XKeyEvent*)event, key_string, 2, &keysym, 0);
 #endif
 // printf("BC_WindowBase::dispatch_event 2 %llx\n", 
 // event->xkey.state);
@@ -911,15 +906,7 @@ int BC_WindowBase::dispatch_event()
 			if(keysym > 0xffe0 && keysym < 0xffff) break;
 
 			if(test_keypress) printf("BC_WindowBase::dispatch_event %lx\n", (long int)keysym);
-#ifdef X_HAVE_UTF8_STRING
-			//It's Ascii or UTF8?
-			if ( (keys_return[0] & 0xff) >= 0x7f ) {
-				key_pressed_utf8 = keys_return;
-				key_pressed = keysym & 0xff;
-			}
-			else
-			{
-#endif
+
 				switch(keysym)
 				{
 // block out extra keys
@@ -975,16 +962,9 @@ int BC_WindowBase::dispatch_event()
 				case XK_KP_Decimal:
 				case XK_KP_Delete:      key_pressed = KPDEL;     break;
  	    		default:        
-#ifdef X_HAVE_UTF8_STRING
-					keys_return[1] = 0;
-					key_pressed_utf8 = keys_return;
 					key_pressed = keysym & 0xff;
-#else
-					key_pressed = keysym & 0xff;
-#endif
 					break;
 			}
-		}
 
 //printf("BC_WindowBase::dispatch_event %d %d %x\n", shift_down(), alt_down(), key_pressed);
 			result = dispatch_keypress_event();
@@ -1952,7 +1932,7 @@ void BC_WindowBase::init_im()
 	XIMStyles *xim_styles;
 	XIMStyle xim_style;
 
-	if(get_resources()->missing_im)
+	if(get_resources()->missing_im || !get_resources()->locale_utf8)
 		return;
 
 	if(!(input_method = XOpenIM(display, NULL, NULL, NULL)))
@@ -3268,12 +3248,11 @@ int BC_WindowBase::ctrl_down()
 {
 	return top_level->ctrl_mask;
 }
-#ifdef X_HAVE_UTF8_STRING
-char* BC_WindowBase::get_keypress_utf8()
+
+char* BC_WindowBase::get_keystring()
 {
-	return top_level->key_pressed_utf8;
+	return top_level->key_string;
 }
-#endif
 
 int BC_WindowBase::get_keypress()
 {
