@@ -128,7 +128,7 @@ mpeg3_release());
 "David Arendt\n"
 
 );
-	draw_text(x, y, credits);
+	draw_utf8_text(x, y, credits);
 
 	int x_indented;
 	x_indented = x + get_text_width(MEDIUMFONT, "Pierre Marc Dumuid") + 20;
@@ -144,7 +144,7 @@ mpeg3_release());
 "Monty Montgomery\n"
 
 );
-	draw_text(x_indented, y, credits_cont1);
+	draw_utf8_text(x_indented, y, credits_cont1);
 
 	y = get_h() - 135;
 
