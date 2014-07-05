@@ -79,7 +79,11 @@ TitleConfig::TitleConfig()
 	dropshadow = 10;
 	sprintf(font, "fixed");
 	sprintf(text, _("hello world"));
+#ifdef X_HAVE_UTF8_STRING
+#define DEFAULT_ENCODING "UTF-8"
+#else
 #define DEFAULT_ENCODING "ISO8859-1"
+#endif
 	sprintf(encoding, DEFAULT_ENCODING);
 #define DEFAULT_TIMECODEFORMAT "h:mm:ss:ff"
 	sprintf(timecodeformat, DEFAULT_TIMECODEFORMAT);
