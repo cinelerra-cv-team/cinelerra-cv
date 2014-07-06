@@ -1,3 +1,46 @@
+xx.xxx.2014
+Changes since Cinelerra-cv 2.2:
+ * to be finalized for the release of cinelerra-cv next *
+ - Updated infrastructure to reflect the CV nature of the software.
+ - Updated debian-specific building infrastructure.
+ - Several bug fixes: 
+	- segmentation faults, memory leaks, undefined behavior, compiler warnings.
+ - Added support for UTF-8 fonts.
+ - Revised plugin infrastructure to be similar to Cinelerra-HV 4.5.
+ - Automated creation of header files for png in plugins.
+ - New plugins: Bluebanana, C41, color3way, findobject.
+ - New graphics (About panel, icons).
+ - Added YUV, HSV AffineMartix classes from Cinelerra-HV 4.5.
+ - Fixed colormode conversions. 
+ - Fixed Interpolation in blur and Brightness/Contrast plugins
+ - Ported Ruler GUI implementation from Cinelerra-HV 4.5.
+ - Updated documentation (installation).
+ - Updated pt_BR translation
+
+13.Nov.2011
+Official release of Cinelerra-cv 2.2
+Changes:
+ - Merged Bezier Patch created by Hermann Vosseler to get a usable
+bezier automation for Cinelerra-CV fades, camera and projector
+The documenation is located at http://ichthyostega.de/cinelerra/bezier-patch/
+
+ - Created new defaults for first start of CinelerraCV.
+
+ -Changed audio infinity to -96db. This change may be conflict with projects
+saved from previous versions of Cinelerra. Check the places there audio fades
+to silence.
+
+ -Fixed loading of multiline comments of labels and clips
+
+ -Changes in build system:
+
+ -Fixed autodetection of OpenGL in configure
+
+ -v4l2 is now detected
+
+ -Full changelog can be browsed through gitweb:
+http://git.cinelerra.org/gitweb?p=CinelerraCV.git;a=shortlog;h=refs/heads/rel2.2.0
+
 20.Oct.2003
 Added xlib-dev, automake version (1.7), autoconf version (2.57) and libavcodec
 	detection
