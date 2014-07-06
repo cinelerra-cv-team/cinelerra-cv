@@ -4,7 +4,7 @@ than English.
 
 - To start a new translation, contact the Cinelerra Community. 
   IRC: channel #cinelerra on Freenode. 
-  Mailing list: cinelerra@skolelinux.no
+  Mailing list: cinelerra@lists.cinelerra-cv.org
 - Make sure you have the the latest English manual edition.
 - Translate the texinfo file cinelerra_cv_manual_en.texi, and rename it to
   cinelerra_cv_manual_xx.texi, "xx" being the two-letter ISO-639 code of the
