@@ -21,7 +21,7 @@
 @documentencoding ISO-8859-15
 @settitle Manuel de Cinelerra CV
 @afourpaper
-@set EDITION 1.24.FR
+@set EDITION 1.25.FR
 @set VERSION 2.1
 @finalout
 
@@ -669,7 +669,7 @@ dans @b{Configuration --> Dépôts}.  Dans la fenêtre de gestion des paquets,
 cliquez sur le bouton @b{Ajouter} et renseignez les dépôts @w{suivants :}
 
 @verbatim
-deb http://www.kiberpipa.org/~muzzol/cinelerra/edgy-i386/ ./
+ppa:cinelerra-ppa/ppa
 @end verbatim
 
 En cliquant sur @b{Ajouter le dépôt} vous verrez le nouveau dépôt activé dans
@@ -677,9 +677,10 @@ la fenêtre de gestion des paquets.  Vous pouvez aussi ajouter directement les
 lignes suivantes dans le fichier @file{/etc/apt/sources.list} :
 
 @verbatim
-deb http://www.kiberpipa.org/~muzzol/cinelerra/edgy-i386/ ./
+deb http://ppa.launchpad.net/cinelerra-ppa/ppa/ubuntu <RELEASE> main
 @end verbatim
 
+where <RELEASE> is your installed version of Ubuntu (precise, trusty, etc). @*
 Vous verrez alors apparaître Cinelerra dans Synaptic.
 
 Pour installer Cinelerra avec @b{GDebi}, consultez cette @w{page :}@*

@@ -26,7 +26,7 @@
 @documentencoding ISO-8859-1
 @settitle Manual do Cinelerra CV
 @afourpaper
-@set EDITION 1.46.pt_BR
+@set EDITION 1.47.pt_BR
 @set VERSION 2.1
 
 @c Tamanho de papel. Opções disponíveis são:
@@ -562,77 +562,10 @@ Se você não usa sudo, use o seguinte comando como root: @*
 @subsection Repositórios de pacotes Ubuntu
 @cindex Repositórios de pacotes Ubuntu
 
-@b{Para Ubuntu 7.04 Feisty Fawn:}
-
-@itemize @bullet
-@item para i386, por muzzol:
 @verbatim
-deb http://www.kiberpipa.org/~muzzol/cinelerra/feisty-i386/ ./
+deb http://ppa.launchpad.net/cinelerra-ppa/ppa/ubuntu <RELEASE> main
 @end verbatim
-
-@item otimizado para UbuntuStudio, com OpenGL, por Valentina @sc{Messeri}:
-@verbatim
-deb http://giss.tv/~vale/ubuntuopengl/ ./
-@end verbatim
-
-@item para AMD64, por Valentina @sc{Messeri}:
-@verbatim
-deb http://giss.tv/~vale/ubuntu64 ./
-@end verbatim
-
-@item para i686, por Jure @sc{Cuhalev}:
-@verbatim
-deb http://www.kiberpipa.org/~gandalf/ubuntu/feisty/cinelerra/i686/ ./
-@end verbatim
-
-@item para athlonxp, por Jure @sc{Cuhalev}:
-@verbatim
-deb http://www.kiberpipa.org/~gandalf/ubuntu/feisty/cinelerra/athlonxp/ ./
-@end verbatim
-
-@item para pentium4, por Jure @sc{Cuhalev}:
-@verbatim
-deb http://www.kiberpipa.org/~gandalf/ubuntu/feisty/cinelerra/pentium4/ ./
-@end verbatim
-@end itemize
-
-@b{Para Ubuntu 6.10 Edgy Eft:}
-
-@itemize @bullet
-@item por muzzol
-@verbatim
-deb http://www.kiberpipa.org/~muzzol/cinelerra/edgy-i386/ ./
-@end verbatim
-
-@item por Valentina @sc{Messeri}:
-@verbatim
-deb http://giss.tv/~vale/ubuntu32 ./
-@end verbatim
-@end itemize
-
-@b{For Ubuntu 6.06 Dapper Drake}
-
-@itemize @bullet
-@item Backport mjpegtools do ubuntu necessário, por Jure @sc{Cuhalev}:
-@verbatim
-deb http://www.kiberpipa.org/~gandalf/ubuntu/dapper/mjpegtools ./
-@end verbatim
-
-@item para pentium4, por Jure @sc{Cuhalev}::
-@verbatim
-deb http://www.kiberpipa.org/~gandalf/ubuntu/dapper/cinelerra/pentium4/ ./
-@end verbatim
-
-@item para i686, por Jure @sc{Cuhalev}::
-@verbatim
-deb http://www.kiberpipa.org/~gandalf/ubuntu/dapper/cinelerra/i686/ ./
-@end verbatim
-
-@item para athlonxp, por Jure @sc{Cuhalev}::
-@verbatim
-deb http://www.kiberpipa.org/~gandalf/ubuntu/dapper/cinelerra/athlonxp/ ./
-@end verbatim
-@end itemize
+where <RELEASE> is your installed version of Ubuntu (precise, trusty, etc). @*
 
 @c cincvdoc_node_number_355
 @node Instruções para a instalação de pacotes no Ubuntu

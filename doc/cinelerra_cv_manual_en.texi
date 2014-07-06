@@ -15,7 +15,7 @@
 @documentencoding ISO-8859-1
 @settitle Cinelerra CV Manual
 @afourpaper
-@set EDITION 1.55.EN
+@set EDITION 1.56.EN
 @set VERSION 2.1
 
 @finalout
@@ -836,171 +836,8 @@ You will need to apt-get install the following packages:
 @cindex Ubuntu
 
 @menu
-* Ubuntu packages repositories::
 * Instructions for Ubuntu packages installation::
 @end menu
-
-@c cincvdoc_node_number_354
-@node Ubuntu packages repositories
-@subsection Ubuntu packages repositories
-@cindex Ubuntu packages repositories
-
-@b{For Ubuntu 8.04 Hardy Heron:}
-
-@itemize @bullet
-
-@item for all x86 (full working on 32 and 64 bits), by Paolo @sc{Rampino}:
-@verbatim
-deb http://repository.akirad.net akirad-hardy main
-@end verbatim
-
-Installation notes:@*
-- To add this repository in your sources list use the following terminal
-  command:@*
-@command{sudo wget http://repository.akirad.net/dists/hardy.list -O
-/etc/apt/sources.list.d/akirad.list}@*
--Installations from this repository need an authentication key. Add it by 
-  typing the following command in your terminal:@*
-@command{wget -q http://repository.akirad.net/dists/akirad.key -O- | sudo
-apt-key add -}@*
-- Cinelerra package is available in 5 variants:@*
-cinelerra (x86 and x86_64 without opengl 2.0 video card)@*
-cinelerra-generic (all x86 and x86_64 with opengl 2.0 video card)@*
-cinelerra-k7 (amd32 without opengl 2.0 video card)@*
-cinelerra-k7gl (amd32 with opengl 2.0 video card)@*
-cinelerra-k8 (amd k8 optimized with opengl 2.0 video card)@*
-- Cinelerra must be set to work with PulseAudio. Open Cinelerra and go 
-to Settings->Preferences->Playback->Audio Driver. Select ESound and set the
-following parameters:@*
-Server:@*
-Port: 7007@*
-- These packages set shmmax to 0x7fffffff and add non-English language support
-  for Cinelerra.@*
-- Please, report any package bug to akir4d at gmail dot com
-@end itemize
-
-@b{For Ubuntu 7.10 Gutsy Gibbon:}
-
-@itemize @bullet
-
-@item for all x86 (full working on 32 and 64 bits), by Paolo @sc{Rampino}:
-@verbatim
-deb http://repository.akirad.net akirad-gutsy main
-@end verbatim
-
-Installation notes:@*
-- To add this repository in your sources list use the following terminal
-  command:@*
-@command{sudo wget http://repository.akirad.net/dists/gutsy.list -O
-/etc/apt/sources.list.d/akirad.list}@*
--Installations from this repository need an authentication key. Add it by 
-  typing the following command in your terminal:@*
-@command{wget -q http://repository.akirad.net/dists/akirad.key -O- | sudo
-apt-key add -}@*
-- Cinelerra package is available in 5 variants:@*
-cinelerra (all x86 and x86_64 without opengl 2.0 video card)@*
-cinelerra-generic (all x86 and x86_64 with opengl 2.0 video card)@*
-cinelerra-k7 (all amd32 without opengl 2.0 video card)@*
-cinelerra-k7gl (all amd32 with opengl 2.0 video card)@*
-cinelerra-k8 (all amd64 with opengl 2.0 video card)@*
-- These packages set shmmax to 0x7fffffff and add Cinelerra non-English language 
-  support on Ubuntu.@*
-- Please, report any package bug to akir4d at gmail dot com
-  
-@item for i386 (not working on amd 32 bits), by Valentina @sc{Messeri}:
-@verbatim
-deb http://giss.tv/~vale/ubuntu32 ./
-@end verbatim
-
-@item for AMD64 (and also Core Duo Intel64), by Valentina @sc{Messeri}:
-@verbatim
-deb http://giss.tv/~vale/ubuntu64 ./
-@end verbatim
-
-Note:@*
-- If your package manager complains that it does not have the right version of 
-libfaac (1.25) you can install:@*
-@uref{http://www.debian-multimedia.org/dists/stable/main/binary-amd64/package/libfaac0.php}
-
-@end itemize
-
-@b{For Ubuntu 7.04 Feisty Fawn:}
-
-@itemize @bullet
-
-@item for i386, optimised for UbuntuStudio, with OpenGL, by Valentina @sc{Messeri}:
-@verbatim
-deb http://giss.tv/~vale/ubuntuopengl/ ./
-@end verbatim
-
-@item for AMD64 (and also Core Duo Intel64), by Valentina @sc{Messeri}:
-@verbatim
-deb http://giss.tv/~vale/ubuntu64 ./
-@end verbatim
-
-@item for AMD64, with OpenGL disabled, by Valentina @sc{Messeri}:
-@verbatim
-deb http://giss.tv/~vale/ubuntu64NOopengl/ ./
-@end verbatim
-
-@item for i386, by muzzol:
-@verbatim
-deb http://www.kiberpipa.org/~muzzol/cinelerra/feisty-i386/ ./
-@end verbatim
-
-@item for i686, by Jure @sc{Cuhalev}:
-@verbatim
-deb http://www.kiberpipa.org/~gandalf/ubuntu/feisty/cinelerra/i686/ ./
-@end verbatim
-
-@item for athlonxp, by Jure @sc{Cuhalev}:
-@verbatim
-deb http://www.kiberpipa.org/~gandalf/ubuntu/feisty/cinelerra/athlonxp/ ./
-@end verbatim
-
-@item for pentium4, by Jure @sc{Cuhalev}:
-@verbatim
-deb http://www.kiberpipa.org/~gandalf/ubuntu/feisty/cinelerra/pentium4/ ./
-@end verbatim
-@end itemize
-
-@b{For Ubuntu 6.10 Edgy Eft:}
-
-@itemize @bullet
-@item by muzzol
-@verbatim
-deb http://www.kiberpipa.org/~muzzol/cinelerra/edgy-i386/ ./
-@end verbatim
-
-@item by Valentina @sc{Messeri}:
-@verbatim
-deb http://giss.tv/~vale/ubuntu32 ./
-@end verbatim
-@end itemize
-
-@b{For Ubuntu 6.06 Dapper Drake}
-
-@itemize @bullet
-@item necessary mjpegtools ubuntu backport, by Jure @sc{Cuhalev}:
-@verbatim
-deb http://www.kiberpipa.org/~gandalf/ubuntu/dapper/mjpegtools ./
-@end verbatim
-
-@item for pentium4, by Jure @sc{Cuhalev}:
-@verbatim
-deb http://www.kiberpipa.org/~gandalf/ubuntu/dapper/cinelerra/pentium4/ ./
-@end verbatim
-
-@item for i686, by Jure @sc{Cuhalev}:
-@verbatim
-deb http://www.kiberpipa.org/~gandalf/ubuntu/dapper/cinelerra/i686/ ./
-@end verbatim
-
-@item for athlonxp, by Jure @sc{Cuhalev}:
-@verbatim
-deb http://www.kiberpipa.org/~gandalf/ubuntu/dapper/cinelerra/athlonxp/ ./
-@end verbatim
-@end itemize
 
 @c cincvdoc_node_number_355
 @node Instructions for Ubuntu packages installation
@@ -1011,7 +848,7 @@ Chose a repository from the ones above according to your release and CPU type
 and install the package.@*
 Here are 3 ways of doing that:
 
-@b{With Synaptic Package Manager:}
+@b{With Synaptic Package Manager (recommended):}
 
 Open the Software Sources Window. @*
 You can do it in two ways: @*
@@ -1019,7 +856,11 @@ You can do it in two ways: @*
 - Inside Synaptic Package Manager: Go to Settings -> Repositories. @*
 Make sure you have universe, multiverse and restricted sources checked in the 
 first tab.@*
-Click on tab Third Party. Click on the Add button and enter your chosen repository. @*
+Click on tab Third Party. Click on the Add button and enter: @*
+@verbatim
+ppa:cinelerra-ppa/ppa
+@end verbatim
+
 Clicking Add Source will display the new repository enabled in the Software 
 Sources window. @*
 You should now see Cinelerra in the list of packages available in Synaptic. @*
@@ -1031,8 +872,10 @@ Edit directly your @file{/etc/apt/sources.list} file.@*
 Make sure you have universe, multiverse and restricted sources enabled by checking 
 you have the following line uncommented: @*
 @verbatim
-deb http://archive.ubuntu.com/ubuntu dapper universe multiverse restricted
+deb http://ppa.launchpad.net/cinelerra-ppa/ppa/ubuntu <RELEASE> main
 @end verbatim
+where <RELEASE> is your installed version of Ubuntu (precise, trusty, etc). @*
+
 Add the complete APT line of your chosen repository.@*
 Install Cinelerra by typing in your terminal:@*
 @verbatim
