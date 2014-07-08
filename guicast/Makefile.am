@@ -217,4 +217,8 @@ bootstrap.$(OBJEXT): bootstrap.c
 	$(CC) $(BOOTSTRAP_CFLAGS) -c $<
 
 pngtoh_SOURCES = pngtoh.c
+
+pngtoh$(EXEEXT): pngtoh.c
+	$(CC) -o pngtoh$(EXEEXT) $<
+
 EXTRA_DIST = images
