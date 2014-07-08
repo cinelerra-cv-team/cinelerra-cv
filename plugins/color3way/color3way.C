@@ -569,11 +569,13 @@ void Color3WayMain::save_data(KeyFrame *keyframe)
 int Color3WayMain::load_defaults()
 {
 	printf("warning: dummy function Color3WayMain::load_defaults() called.");
+	return 0;
 }
 
 int Color3WayMain::save_defaults()
 {
 	printf("warning: dummy function Color3WayMain::save_defaults() called.");
+	return 0;
 }
 
 int Color3WayMain::is_defaults()
@@ -703,6 +705,7 @@ printf("Color3WayMain::handle_opengl %d %d\n", aggregate_interpolate, aggregate_
 	glUseProgram(0);
 	get_output()->set_opengl_state(VFrame::SCREEN);
 #endif
+    return 0;
 }
 
 

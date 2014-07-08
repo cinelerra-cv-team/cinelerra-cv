@@ -768,11 +768,13 @@ void LensMain::save_presets()
 int LensMain::load_defaults()
 {
 	printf("warning: dummy function LensMain::load_defaults() called.");
+	return 0;
 }
 
 int LensMain::save_defaults()
 {
 	printf("warning: dummy function LensMain::save_defaults() called.");
+	return 0;
 }
 
 int LensMain::is_defaults()
