@@ -2719,7 +2719,7 @@ msgstr "Dimensione:"
 
 #: cinelerra/new.C:384 cinelerra/setformat.C:511
 msgid "Interlace mode:"
-msgstr "Modo Interlaccio :"
+msgstr "Interlaccio:"
 
 #: cinelerra/new.C:909
 msgid "Auto aspect ratio"
@@ -2796,7 +2796,7 @@ msgstr "Dimensione cache (MB):"
 
 #: cinelerra/performanceprefs.C:82
 msgid "Seconds to preroll renders:"
-msgstr "Secondi alla preparazione elaborazioni:"
+msgstr "Sec. alla preparazione elaborazioni:"
 
 #: cinelerra/performanceprefs.C:101
 msgid "Background Rendering (Video only)"
@@ -2808,7 +2808,7 @@ msgstr "Fotogrammi elaborati in Background:"
 
 #: cinelerra/performanceprefs.C:115
 msgid "Frames to preroll background:"
-msgstr "Fotogrammi in preparazione background:"
+msgstr "Fotogrammi preparati in background:"
 
 #: cinelerra/performanceprefs.C:124
 msgid "Output for background rendering:"
@@ -2833,11 +2833,11 @@ msgstr "Frequenza fotogrammi del Nodo principale: %0.3f"
 
 #: cinelerra/performanceprefs.C:209
 msgid "Total jobs to create:"
-msgstr "Totale dei lavori da creare:"
+msgstr "Totale lavori da creare:"
 
 #: cinelerra/performanceprefs.C:212
 msgid "(overridden if new file at each label is checked)"
-msgstr "(sovrapponi se si seleziona un nuovo file per ogni etichetta)"
+msgstr "(non in uso se si seleziona un nuovo file per etichetta)"
 
 #: cinelerra/performanceprefs.C:268 cinelerra/pluginpopup.C:207
 #: cinelerra/recordgui.C:92 cinelerra/transitionpopup.C:232
@@ -2878,7 +2878,7 @@ msgstr "Aggiungi Nodo"
 
 #: cinelerra/performanceprefs.C:634
 msgid "Apply Changes"
-msgstr "Applica i cambiamenti"
+msgstr "Applica cambiamenti"
 
 #: cinelerra/performanceprefs.C:661
 msgid "Delete Node"
@@ -3883,7 +3883,7 @@ msgstr "Tipo d'Automazione"
 
 #: cinelerra/zoombar.C:481
 msgid "Audio Fade:"
-msgstr "Dissolvenza Audio:"
+msgstr "Dissolv. Audio:"
 
 #: cinelerra/zoombar.C:483
 msgid "Video Fade:"
