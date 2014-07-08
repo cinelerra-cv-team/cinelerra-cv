@@ -1149,7 +1149,7 @@ int LensMain::handle_opengl()
 
 	get_output()->to_texture();
 	get_output()->enable_opengl();
-	unsigned int frag_shader;
+	unsigned int frag_shader = 0;
 	switch(config.mode)
 	{
 		case LensConfig::SHRINK:
