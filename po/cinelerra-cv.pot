@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
-"POT-Creation-Date: 2014-07-01 07:57+0200\n"
+"POT-Creation-Date: 2014-07-09 10:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -292,7 +292,7 @@ msgid "Jump to end ( End )"
 msgstr ""
 
 #: cinelerra/awindowgui.C:376 cinelerra/awindowgui.C:973
-#: cinelerra/awindowgui.C:1000 plugins/titler/title.C:1139
+#: cinelerra/awindowgui.C:1000 plugins/titler/title.C:1143
 msgid "Title"
 msgstr ""
 
@@ -853,7 +853,7 @@ msgstr ""
 
 #: cinelerra/cwindowtool.C:665 cinelerra/cwindowtool.C:1118
 #: cinelerra/cwindowtool.C:1964 cinelerra/zoombar.C:487
-#: plugins/radialblur/radialblur.C:282 plugins/titler/titlewindow.C:224
+#: plugins/radialblur/radialblur.C:282 plugins/titler/titlewindow.C:225
 #: plugins/zoomblur/zoomblur.C:297
 msgid "X:"
 msgstr ""
@@ -861,7 +861,7 @@ msgstr ""
 #: cinelerra/cwindowtool.C:674 cinelerra/cwindowtool.C:1127
 #: cinelerra/cwindowtool.C:1972 cinelerra/zoombar.C:489
 #: plugins/perspective/perspective.C:158 plugins/radialblur/radialblur.C:286
-#: plugins/titler/titlewindow.C:229 plugins/yuv/yuv.C:193
+#: plugins/titler/titlewindow.C:230 plugins/yuv/yuv.C:193
 #: plugins/zoomblur/zoomblur.C:301
 msgid "Y:"
 msgstr ""
@@ -916,11 +916,13 @@ msgid "Apply mask before plugins"
 msgstr ""
 
 #: cinelerra/cwindowtool.C:1937 cinelerra/recordgui.C:178
-#: plugins/denoisemjpeg/denoisemjpeg.C:413 plugins/overlay/overlay.C:267
+#: plugins/denoisemjpeg/denoisemjpeg.C:413 plugins/lens/lens.C:635
+#: plugins/overlay/overlay.C:267
 msgid "Mode:"
 msgstr ""
 
 #: cinelerra/cwindowtool.C:1945 cinelerra/fileavi.C:941
+#: plugins/color3way/color3waywindow.C:162
 #: plugins/huesaturation/huesaturation.C:336
 msgid "Value:"
 msgstr ""
@@ -2005,50 +2007,50 @@ msgstr ""
 msgid "Insertion strategy:"
 msgstr ""
 
-#: cinelerra/main.C:198
+#: cinelerra/main.C:203
 #, c-format
 msgid ""
 "\n"
 "Usage:\n"
 msgstr ""
 
-#: cinelerra/main.C:199
+#: cinelerra/main.C:204
 #, c-format
 msgid ""
 "%s [-f] [-c configuration] [-d port] [-n nice] [-r batch file] [filenames]\n"
 "\n"
 msgstr ""
 
-#: cinelerra/main.C:200
+#: cinelerra/main.C:205
 #, c-format
 msgid ""
 "-d = Run in the background as renderfarm client.  The port (400) is "
 "optional.\n"
 msgstr ""
 
-#: cinelerra/main.C:201
+#: cinelerra/main.C:206
 #, c-format
 msgid "-f = Run in the foreground as renderfarm client.  Substitute for -d.\n"
 msgstr ""
 
-#: cinelerra/main.C:202
+#: cinelerra/main.C:207
 #, c-format
 msgid "-n = Nice value if running as renderfarm client. (20)\n"
 msgstr ""
 
-#: cinelerra/main.C:203
+#: cinelerra/main.C:208
 #, c-format
 msgid "-c = Configuration file to use instead of %s%s.\n"
 msgstr ""
 
-#: cinelerra/main.C:206
+#: cinelerra/main.C:211
 #, c-format
 msgid ""
 "-r = batch render the contents of the batch file (%s%s) with no GUI.  batch "
 "file is optional.\n"
 msgstr ""
 
-#: cinelerra/main.C:209
+#: cinelerra/main.C:214
 #, c-format
 msgid ""
 "filenames = files to load\n"
@@ -2406,38 +2408,40 @@ msgstr ""
 msgid "MWindow::init_plugins: couldn't open %s directory\n"
 msgstr ""
 
-#: cinelerra/mwindow.C:677
+#: cinelerra/mwindow.C:691
 #, c-format
-msgid "MWindow::init_theme: theme %s not found.\n"
+msgid ""
+"MWindow::init_theme: Default theme %s not exists.\n"
+"Maybe an install problem\n"
 msgstr ""
 
-#: cinelerra/mwindow.C:1010
+#: cinelerra/mwindow.C:1024
 #, c-format
 msgid "Failed to open %s"
 msgstr ""
 
-#: cinelerra/mwindow.C:1058
+#: cinelerra/mwindow.C:1072
 msgid "'s format couldn't be determined."
 msgstr ""
 
-#: cinelerra/mwindow.C:1239
+#: cinelerra/mwindow.C:1253
 msgid "load"
 msgstr ""
 
-#: cinelerra/mwindow.C:1384
+#: cinelerra/mwindow.C:1398
 msgid "Initializing GUI"
 msgstr ""
 
-#: cinelerra/mwindow.C:2022
+#: cinelerra/mwindow.C:2036
 #, c-format
 msgid "Couldn't open %s for writing."
 msgstr ""
 
-#: cinelerra/mwindow.C:2111
+#: cinelerra/mwindow.C:2125
 msgid "remove assets"
 msgstr ""
 
-#: cinelerra/mwindow.C:2269
+#: cinelerra/mwindow.C:2283
 #, c-format
 msgid "Using %s."
 msgstr ""
@@ -2687,7 +2691,7 @@ msgstr ""
 msgid "Enter the name of the folder:"
 msgstr ""
 
-#: cinelerra/newfolder.C:62 cinelerra/pluginclient.C:135
+#: cinelerra/newfolder.C:62 cinelerra/pluginclient.C:204
 msgid "Untitled"
 msgstr ""
 
@@ -3000,7 +3004,7 @@ msgstr ""
 msgid "%s took %s"
 msgstr ""
 
-#: cinelerra/pluginclient.C:189
+#: cinelerra/pluginclient.C:258
 #, c-format
 msgid "No processing defined for this plugin.\n"
 msgstr ""
@@ -3156,7 +3160,7 @@ msgstr ""
 msgid "Select a file to record to:"
 msgstr ""
 
-#: cinelerra/recordgui.C:236 plugins/titler/titlewindow.C:307
+#: cinelerra/recordgui.C:236 plugins/titler/titlewindow.C:308
 msgid "Format:"
 msgstr ""
 
@@ -3488,7 +3492,7 @@ msgid ""
 "it can't be rendered by OpenGL."
 msgstr ""
 
-#: cinelerra/resizetrackthread.C:133 plugins/titler/titlewindow.C:196
+#: cinelerra/resizetrackthread.C:133 plugins/titler/titlewindow.C:197
 msgid "Size:"
 msgstr ""
 
@@ -3889,39 +3893,40 @@ msgstr ""
 msgid ": Delete"
 msgstr ""
 
-#: guicast/bcresources.C:64
+#: guicast/bcresources.C:69
 msgid "-*-helvetica-medium-r-normal-*-10-*"
 msgstr ""
 
-#: guicast/bcresources.C:65
+#: guicast/bcresources.C:70
 msgid "-*-helvetica-medium-r-normal-*-11-*"
 msgstr ""
 
-#: guicast/bcresources.C:66 guicast/bcresources.C:67
+#: guicast/bcresources.C:71 guicast/bcresources.C:72
+#: plugins/defaulttheme/defaulttheme.C:666
 msgid "-*-helvetica-bold-r-normal-*-14-*"
 msgstr ""
 
-#: guicast/bcresources.C:68
+#: guicast/bcresources.C:73
 msgid "-*-helvetica-bold-r-normal-*-18-*"
 msgstr ""
 
-#: guicast/bcresources.C:69
+#: guicast/bcresources.C:74
 msgid "-*-helvetica-bold-r-normal-*-20-*"
 msgstr ""
 
-#: guicast/bcresources.C:75
+#: guicast/bcresources.C:80
 msgid "Sans-8"
 msgstr ""
 
-#: guicast/bcresources.C:76 guicast/bcresources.C:78 guicast/bcresources.C:80
+#: guicast/bcresources.C:81 guicast/bcresources.C:83 guicast/bcresources.C:85
 msgid "-microsoft-verdana-*-*-*-*-*-*-*-*-*-*-*-*"
 msgstr ""
 
-#: guicast/bcresources.C:77
+#: guicast/bcresources.C:82
 msgid "Sans-10"
 msgstr ""
 
-#: guicast/bcresources.C:79
+#: guicast/bcresources.C:84
 msgid "Sans-16"
 msgstr ""
 
@@ -4054,6 +4059,32 @@ msgstr ""
 msgid "BandWipe"
 msgstr ""
 
+#: plugins/bluebanana/bluebananawindow.C:1347
+#: plugins/bluebanana/bluebananawindow.C:1355
+#: plugins/bluebanana/bluebananawindow.C:1363
+#: plugins/bluebanana/bluebananawindow.C:2048
+msgid "Pick"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:1374
+#: plugins/bluebanana/bluebananawindow.C:1382
+#: plugins/bluebanana/bluebananawindow.C:1390
+#: plugins/bluebanana/bluebananawindow.C:1398
+#: plugins/bluebanana/bluebananawindow.C:1406
+#: plugins/bluebanana/bluebananawindow.C:1414
+#: plugins/bluebanana/bluebananawindow.C:1422
+#: plugins/bluebanana/bluebananawindow.C:2047
+#: plugins/color3way/color3waywindow.C:643
+#: plugins/colorbalance/colorbalancewindow.C:221
+#: plugins/histogram/histogramwindow.C:595
+#: plugins/perspective/perspective.C:529
+msgid "Reset"
+msgstr ""
+
+#: plugins/bluedottheme/bluedottheme.C:721
+msgid "-*-helvetica-medium-r-normal-*-14-*"
+msgstr ""
+
 #: plugins/blur/blur.C:129 plugins/blur/blurwindow.C:60
 msgid "Blur"
 msgstr ""
@@ -4177,7 +4208,7 @@ msgid "Threshold:"
 msgstr ""
 
 #: plugins/chromakey/chromakey.C:192 plugins/chromakeyhsv/chromakey.C:300
-#: plugins/titler/titlewindow.C:606
+#: plugins/titler/titlewindow.C:607
 msgid "Color..."
 msgstr ""
 
@@ -4258,6 +4289,24 @@ msgstr ""
 msgid "Chroma key (HSV)"
 msgstr ""
 
+#: plugins/color3way/color3way.C:391
+msgid "Color 3 Way"
+msgstr ""
+
+#: plugins/color3way/color3waywindow.C:173
+#: plugins/huesaturation/huesaturation.C:333
+msgid "Saturation:"
+msgstr ""
+
+#: plugins/color3way/color3waywindow.C:672
+msgid "Copy to all"
+msgstr ""
+
+#: plugins/color3way/color3waywindow.C:697
+#: plugins/colorbalance/colorbalancewindow.C:175
+msgid "White balance"
+msgstr ""
+
 #: plugins/colorbalance/colorbalance.C:374
 #: plugins/colorbalance/colorbalancewindow.C:57
 msgid "Color Balance"
@@ -4308,16 +4357,6 @@ msgstr ""
 
 #: plugins/colorbalance/colorbalancewindow.C:155
 msgid "Lock parameters"
-msgstr ""
-
-#: plugins/colorbalance/colorbalancewindow.C:175
-msgid "White balance"
-msgstr ""
-
-#: plugins/colorbalance/colorbalancewindow.C:221
-#: plugins/histogram/histogramwindow.C:595
-#: plugins/perspective/perspective.C:529
-msgid "Reset"
 msgstr ""
 
 #: plugins/colors/colorpicker.C:87
@@ -4542,14 +4581,6 @@ msgstr ""
 msgid "Denoise video2"
 msgstr ""
 
-#: plugins/denoisevideo/denoisevideo.C:192
-msgid "Frames to accumulate:"
-msgstr ""
-
-#: plugins/denoisevideo/denoisevideo.C:345
-msgid "Denoise video"
-msgstr ""
-
 #: plugins/denoiseseltempavg/seltempavg.C:121
 msgid "Selective Temporal Averaging"
 msgstr ""
@@ -4635,6 +4666,14 @@ msgstr ""
 msgid "This Frame is a start of a section"
 msgstr ""
 
+#: plugins/denoisevideo/denoisevideo.C:192
+msgid "Frames to accumulate:"
+msgstr ""
+
+#: plugins/denoisevideo/denoisevideo.C:345
+msgid "Denoise video"
+msgstr ""
+
 #: plugins/despike/despike.C:57
 msgid "Despike"
 msgstr ""
@@ -4685,6 +4724,99 @@ msgstr ""
 msgid "Fields to frames"
 msgstr ""
 
+#: plugins/findobject/findobject.C:204
+msgid "Find Object"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:59
+msgid "Algorithm:"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:70
+msgid ""
+"Search radius:\n"
+"(W/H Percent of image)"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:83
+msgid ""
+"Object size:\n"
+"(W/H Percent of image)"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:94 plugins/motion/motionwindow.C:142
+msgid "Block X:"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:109 plugins/motion/motionwindow.C:153
+msgid "Block Y:"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:150
+msgid "Object layer:"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:159
+msgid "Replacement object layer:"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:168
+msgid "Output/scene layer:"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:178
+msgid "Object blend amount:"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:186
+msgid "Camshift VMIN:"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:193
+msgid "Camshift VMAX:"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:200
+msgid "Camshift SMIN:"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:342
+msgid "Draw border"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:367
+msgid "Draw keypoints"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:390
+msgid "Replace object"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:415
+msgid "Draw object border"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:501
+#: plugins/findobject/findobjectwindow.C:515 plugins/motion/motionwindow.C:950
+#: plugins/motion/motionwindow.C:961
+msgid "Don't Calculate"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:503
+#: plugins/findobject/findobjectwindow.C:519
+msgid "SURF"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:505
+#: plugins/findobject/findobjectwindow.C:527
+msgid "CAMSHIFT"
+msgstr ""
+
+#: plugins/findobject/findobjectwindow.C:506
+#: plugins/findobject/findobjectwindow.C:523
+msgid "Blob"
+msgstr ""
+
 #: plugins/flash/flash.C:49
 msgid "Flash"
 msgstr ""
@@ -4729,6 +4861,32 @@ msgstr ""
 msgid "Gain"
 msgstr ""
 
+#: plugins/gamma/gamma.C:397
+msgid "Gamma"
+msgstr ""
+
+#: plugins/gamma/gammawindow.C:61
+msgid "Maximum:"
+msgstr ""
+
+#: plugins/gamma/gammawindow.C:79
+msgid "Gamma:"
+msgstr ""
+
+#: plugins/gamma/gammawindow.C:270 plugins/histogram/histogramwindow.C:777
+#: plugins/ivtc/ivtc.C:37 plugins/ivtc/ivtcwindow.C:34
+msgid "Automatic"
+msgstr ""
+
+#: plugins/gamma/gammawindow.C:284 plugins/histogram/histogramwindow.C:795
+#: plugins/threshold/thresholdwindow.C:102
+msgid "Plot histogram"
+msgstr ""
+
+#: plugins/gamma/gammawindow.C:300
+msgid "Use Color Picker"
+msgstr ""
+
 #: plugins/gradient/gradient.C:188 plugins/shapewipe/shapewipe.C:218
 msgid "Shape:"
 msgstr ""
@@ -4754,11 +4912,13 @@ msgstr ""
 msgid "Angle:"
 msgstr ""
 
-#: plugins/gradient/gradient.C:257 plugins/timefront/timefront.C:240
+#: plugins/gradient/gradient.C:257 plugins/lens/lens.C:573
+#: plugins/timefront/timefront.C:240
 msgid "Center X:"
 msgstr ""
 
-#: plugins/gradient/gradient.C:262 plugins/timefront/timefront.C:245
+#: plugins/gradient/gradient.C:262 plugins/lens/lens.C:595
+#: plugins/timefront/timefront.C:245
 msgid "Center Y:"
 msgstr ""
 
@@ -4817,16 +4977,6 @@ msgstr ""
 msgid "Output Max:"
 msgstr ""
 
-#: plugins/histogram/histogramwindow.C:777 plugins/ivtc/ivtc.C:37
-#: plugins/ivtc/ivtcwindow.C:34
-msgid "Automatic"
-msgstr ""
-
-#: plugins/histogram/histogramwindow.C:795
-#: plugins/threshold/thresholdwindow.C:102
-msgid "Plot histogram"
-msgstr ""
-
 #: plugins/histogram/histogramwindow.C:813
 msgid "Split output"
 msgstr ""
@@ -4841,12 +4991,14 @@ msgid ""
 "Copyright (C) 2001 FUKUCHI Kentarou"
 msgstr ""
 
-#: plugins/huesaturation/huesaturation.C:333
-msgid "Saturation:"
-msgstr ""
-
 #: plugins/huesaturation/huesaturation.C:593
 msgid "Hue saturation"
+msgstr ""
+
+#: plugins/interpolateaudio/interpolateaudio.C:98
+#: plugins/interpolatevideo/interpolatevideo.C:539
+#: plugins/reframert/reframert.C:325
+msgid "Interpolate"
 msgstr ""
 
 #: plugins/interpolate/interpolate.C:103
@@ -4863,11 +5015,6 @@ msgstr ""
 
 #: plugins/interpolatevideo/interpolatevideo.C:326
 msgid "Use keyframes as input"
-msgstr ""
-
-#: plugins/interpolatevideo/interpolatevideo.C:539
-#: plugins/reframert/reframert.C:325
-msgid "Interpolate"
 msgstr ""
 
 #: plugins/invertaudio/invert.C:48
@@ -4922,6 +5069,39 @@ msgstr ""
 msgid "Automatic IVTC"
 msgstr ""
 
+#: plugins/lens/lens.C:494
+msgid "R Field of View:"
+msgstr ""
+
+#: plugins/lens/lens.C:495
+msgid "G Field of View:"
+msgstr ""
+
+#: plugins/lens/lens.C:496
+msgid "B Field of View:"
+msgstr ""
+
+#: plugins/lens/lens.C:497
+msgid "A Field of View:"
+msgstr ""
+
+#: plugins/lens/lens.C:531
+msgid "Aspect Ratio:"
+msgstr ""
+
+#: plugins/lens/lens.C:552 plugins/oilpainting/oil.C:283
+#: plugins/unsharp/unsharpwindow.C:59 plugins/zoomblur/zoomblur.C:305
+msgid "Radius:"
+msgstr ""
+
+#: plugins/lens/lens.C:631
+msgid "Draw center"
+msgstr ""
+
+#: plugins/lens/lens.C:704
+msgid "Lens"
+msgstr ""
+
 #: plugins/level/leveleffect.C:135
 msgid "Duration (seconds):"
 msgstr ""
@@ -4942,13 +5122,21 @@ msgstr ""
 msgid "Length:"
 msgstr ""
 
-#: plugins/linearblur/linearblur.C:299 plugins/radialblur/radialblur.C:294
-#: plugins/zoomblur/zoomblur.C:309 plugins/motionblur/motionblur.C:261
+#: plugins/linearblur/linearblur.C:299 plugins/motionblur/motionblur.C:261
+#: plugins/radialblur/radialblur.C:294 plugins/zoomblur/zoomblur.C:309
 msgid "Steps:"
 msgstr ""
 
 #: plugins/linearblur/linearblur.C:402
 msgid "Linear Blur"
+msgstr ""
+
+#: plugins/liveaudio/liveaudio.C:353
+msgid "Live Audio"
+msgstr ""
+
+#: plugins/livevideo/livevideo.C:563
+msgid "Live Video"
 msgstr ""
 
 #: plugins/loopaudio/loopaudio.C:129
@@ -4965,6 +5153,10 @@ msgstr ""
 
 #: plugins/loopvideo/loopvideo.C:187
 msgid "Loop video"
+msgstr ""
+
+#: plugins/motionblur/motionblur.C:322
+msgid "Motion Blur"
 msgstr ""
 
 #: plugins/motion/motion.C:270
@@ -5005,14 +5197,6 @@ msgstr ""
 
 #: plugins/motion/motionwindow.C:134
 msgid "Translation direction:"
-msgstr ""
-
-#: plugins/motion/motionwindow.C:142
-msgid "Block X:"
-msgstr ""
-
-#: plugins/motion/motionwindow.C:153
-msgid "Block Y:"
 msgstr ""
 
 #: plugins/motion/motionwindow.C:164
@@ -5068,12 +5252,14 @@ msgid "Previous frame same block"
 msgstr ""
 
 #: plugins/motion/motionwindow.C:827 plugins/motion/motionwindow.C:833
-#: plugins/overlay/overlay.C:229 plugins/titler/titlewindow.C:913
+#: plugins/overlayaudio/overlayaudio.C:135 plugins/overlay/overlay.C:229
+#: plugins/reroute/reroute.C:169 plugins/titler/titlewindow.C:914
 msgid "Top"
 msgstr ""
 
-#: plugins/motion/motionwindow.C:833 plugins/overlay/overlay.C:230
-#: plugins/titler/titlewindow.C:941
+#: plugins/motion/motionwindow.C:833 plugins/overlayaudio/overlayaudio.C:136
+#: plugins/overlay/overlay.C:230 plugins/reroute/reroute.C:170
+#: plugins/titler/titlewindow.C:942
 msgid "Bottom"
 msgstr ""
 
@@ -5091,10 +5277,6 @@ msgstr ""
 
 #: plugins/motion/motionwindow.C:882 plugins/motion/motionwindow.C:900
 msgid "Stabilize Pixel"
-msgstr ""
-
-#: plugins/motion/motionwindow.C:950 plugins/motion/motionwindow.C:961
-msgid "Don't Calculate"
 msgstr ""
 
 #: plugins/motion/motionwindow.C:951 plugins/motion/motionwindow.C:964
@@ -5137,13 +5319,12 @@ msgstr ""
 msgid "Use intensity"
 msgstr ""
 
-#: plugins/oilpainting/oil.C:283 plugins/unsharp/unsharpwindow.C:59
-#: plugins/zoomblur/zoomblur.C:305
-msgid "Radius:"
-msgstr ""
-
 #: plugins/oilpainting/oil.C:324
 msgid "Oil painting"
+msgstr ""
+
+#: plugins/overlayaudio/overlayaudio.C:239 plugins/overlay/overlay.C:714
+msgid "Overlay"
 msgstr ""
 
 #: plugins/overlay/overlay.C:219
@@ -5160,10 +5341,6 @@ msgstr ""
 
 #: plugins/overlay/overlay.C:281
 msgid "Output layer:"
-msgstr ""
-
-#: plugins/overlay/overlay.C:714
-msgid "Overlay"
 msgstr ""
 
 #: plugins/parametric/parametric.C:269
@@ -5257,6 +5434,30 @@ msgstr ""
 
 #: plugins/reframert/reframert.C:354
 msgid "ReframeRT"
+msgstr ""
+
+#: plugins/reroute/reroute.C:158
+msgid "replace Target"
+msgstr ""
+
+#: plugins/reroute/reroute.C:159
+msgid "Components only"
+msgstr ""
+
+#: plugins/reroute/reroute.C:160
+msgid "Alpha replace"
+msgstr ""
+
+#: plugins/reroute/reroute.C:207
+msgid "Target track:"
+msgstr ""
+
+#: plugins/reroute/reroute.C:216
+msgid "Operation:"
+msgstr ""
+
+#: plugins/reroute/reroute.C:488
+msgid "Reroute"
 msgstr ""
 
 #: plugins/resample/resample.C:106
@@ -5384,18 +5585,6 @@ msgstr ""
 msgid "Constrain ratio"
 msgstr ""
 
-#: plugins/timeavg/timeavg.C:111
-msgid "Time Average"
-msgstr ""
-
-#: plugins/timeavg/timeavgwindow.C:114
-msgid "Accumulate"
-msgstr ""
-
-#: plugins/timeavg/timeavgwindow.C:158
-msgid "Inclusive Or"
-msgstr ""
-
 #: plugins/shapewipe/shapewipe.C:46
 msgid "White to Black"
 msgstr ""
@@ -5456,12 +5645,12 @@ msgstr ""
 msgid "ShiftInterlace"
 msgstr ""
 
-#: plugins/slide/slide.C:53 plugins/titler/titlewindow.C:869
+#: plugins/slide/slide.C:53 plugins/titler/titlewindow.C:870
 #: plugins/wipe/wipe.C:50
 msgid "Left"
 msgstr ""
 
-#: plugins/slide/slide.C:75 plugins/titler/titlewindow.C:897
+#: plugins/slide/slide.C:75 plugins/titler/titlewindow.C:898
 #: plugins/wipe/wipe.C:72
 msgid "Right"
 msgstr ""
@@ -5714,6 +5903,18 @@ msgstr ""
 msgid "Max:"
 msgstr ""
 
+#: plugins/timeavg/timeavg.C:111
+msgid "Time Average"
+msgstr ""
+
+#: plugins/timeavg/timeavgwindow.C:114
+msgid "Accumulate"
+msgstr ""
+
+#: plugins/timeavg/timeavgwindow.C:158
+msgid "Inclusive Or"
+msgstr ""
+
 #: plugins/timefront/timefront.C:161
 msgid "Type:"
 msgstr ""
@@ -5763,119 +5964,119 @@ msgstr ""
 msgid "hello world"
 msgstr ""
 
-#: plugins/titler/title.C:360
+#: plugins/titler/title.C:364
 #, c-format
 msgid "GlyphUnit::process_package FT_New_Face failed.\n"
 msgstr ""
 
-#: plugins/titler/title.C:379
+#: plugins/titler/title.C:383
 #, c-format
 msgid "GlyphUnit::process_package FT_Load_Char failed - char: %li.\n"
 msgstr ""
 
-#: plugins/titler/title.C:1454
+#: plugins/titler/title.C:1458
 #, c-format
 msgid "TitleMain::load_freetype_face %s failed.\n"
 msgstr ""
 
-#: plugins/titler/title.C:1585
+#: plugins/titler/title.C:1589
 #, c-format
 msgid "Iconv conversion from %s to Unicode UCS-4 not available\n"
 msgstr ""
 
-#: plugins/titler/title.C:2031
+#: plugins/titler/title.C:2035
 msgid "No motion"
 msgstr ""
 
-#: plugins/titler/title.C:2032
+#: plugins/titler/title.C:2036
 msgid "Bottom to top"
 msgstr ""
 
-#: plugins/titler/title.C:2033
+#: plugins/titler/title.C:2037
 msgid "Top to bottom"
 msgstr ""
 
-#: plugins/titler/title.C:2034
+#: plugins/titler/title.C:2038
 msgid "Right to left"
 msgstr ""
 
-#: plugins/titler/title.C:2035
+#: plugins/titler/title.C:2039
 msgid "Left to right"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:189
+#: plugins/titler/titlewindow.C:190
 msgid "Font:"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:202
+#: plugins/titler/titlewindow.C:203
 msgid "Style:"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:209
+#: plugins/titler/titlewindow.C:210
 msgid "Justify:"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:234
+#: plugins/titler/titlewindow.C:235
 msgid "Motion type:"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:246
+#: plugins/titler/titlewindow.C:247
 msgid "Drop shadow:"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:251
+#: plugins/titler/titlewindow.C:252
 msgid "Fade in (sec):"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:255
+#: plugins/titler/titlewindow.C:256
 msgid "Fade out (sec):"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:259
+#: plugins/titler/titlewindow.C:260
 msgid "Speed:"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:272
+#: plugins/titler/titlewindow.C:273
 msgid "Encoding:"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:278
+#: plugins/titler/titlewindow.C:279
 msgid "Outline width:"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:299
+#: plugins/titler/titlewindow.C:300
 msgid "Text:"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:510
+#: plugins/titler/titlewindow.C:511
 msgid "Bold"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:524
+#: plugins/titler/titlewindow.C:525
 msgid "Italic"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:537
+#: plugins/titler/titlewindow.C:538
 msgid "Outline"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:618
+#: plugins/titler/titlewindow.C:619
 msgid "Outline color..."
 msgstr ""
 
-#: plugins/titler/titlewindow.C:651
+#: plugins/titler/titlewindow.C:652
 msgid "Loop"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:663
+#: plugins/titler/titlewindow.C:664
 msgid "Stamp timecode"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:883
+#: plugins/titler/titlewindow.C:884
 msgid "Center"
 msgstr ""
 
-#: plugins/titler/titlewindow.C:927
+#: plugins/titler/titlewindow.C:928
 msgid "Mid"
 msgstr ""
 
@@ -5985,12 +6186,4 @@ msgstr ""
 
 #: plugins/zoomblur/zoomblur.C:417
 msgid "Zoom Blur"
-msgstr ""
-
-#: plugins/livevideo/livevideo.C:563
-msgid "Live Video"
-msgstr ""
-
-#: plugins/motionblur/motionblur.C:322
-msgid "Motion Blur"
 msgstr ""
