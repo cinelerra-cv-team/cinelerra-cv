@@ -195,7 +195,7 @@ plugins/gain/gainwindow.C
 plugins/gamma/gamma.C
 plugins/gamma/gammawindow.C
 plugins/gradient/gradient.C
-plugins/graphic/graphic.C
+# plugins/graphic/graphic.C
 plugins/histogram/histogram.C
 plugins/histogram/histogramconfig.C
 plugins/histogram/histogramwindow.C
@@ -223,7 +223,7 @@ plugins/liveaudio/liveaudio.C
 plugins/livevideo/livevideo.C
 plugins/loopaudio/loopaudio.C
 plugins/loopvideo/loopvideo.C
-plugins/microtheme/microtheme.C
+# plugins/microtheme/microtheme.C
 plugins/motionblur/motionblur.C
 plugins/motion/motion.C
 plugins/motion/motionwindow.C
