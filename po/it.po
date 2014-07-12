@@ -8,16 +8,15 @@ msgstr ""
 "Project-Id-Version: cinelerra 2.1\n"
 "Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
 "POT-Creation-Date: 2014-07-09 10:15+0200\n"
-"PO-Revision-Date: 2007-11-30 01:18+0100\n"
+"PO-Revision-Date: 2014-07-12 11:47-0500\n"
 "Last-Translator: Paolo Rampino <akir4d@gmail.com>\n"
 "Language-Team: Paolo Rampino <akir4d@gmail.com>\n"
-"Language: \n"
+"Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Italian\n"
-"X-Poedit-Country: ITALY\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+"X-Generator: Poedit 1.6.6\n"
 
 #: cinelerra/aboutprefs.C:80
 #, c-format
@@ -787,7 +786,7 @@ msgstr "Edita Maschera"
 
 #: cinelerra/cpanel.C:178
 msgid "Ruler"
-msgstr ""
+msgstr "Righello"
 
 #: cinelerra/cpanel.C:200
 msgid "Zoom view"
@@ -855,19 +854,19 @@ msgstr "H:"
 
 #: cinelerra/cwindowtool.C:542
 msgid "\"smooth\" Tangent on current Camera Keyframes"
-msgstr ""
+msgstr "\"smussato\" Tangent sull'attuale fotogramma (Camera)"
 
 #: cinelerra/cwindowtool.C:548
 msgid "\"linear\" Tangent on current Camera Keyframes"
-msgstr ""
+msgstr "\"lineare\" Tangent sull'attuale fotogramma (Camera)"
 
 #: cinelerra/cwindowtool.C:554
 msgid "\"smooth\" Tangent on current Projector Keyframes"
-msgstr ""
+msgstr "\"smussato\" Tangent sull'attuale fotogramma (Proiettore)"
 
 #: cinelerra/cwindowtool.C:560
 msgid "\"linear\" Tangent on current Projector Keyframes"
-msgstr ""
+msgstr "\"lineare\" Tangent sull'attuale fotogramma (Proiettore)"
 
 #: cinelerra/cwindowtool.C:665 cinelerra/cwindowtool.C:1118
 #: cinelerra/cwindowtool.C:1964 cinelerra/zoombar.C:487
@@ -959,11 +958,13 @@ msgid ""
 "Press Ctrl to lock ruler to the\n"
 "nearest 45%c angle."
 msgstr ""
+"Premi Ctrl per bloccare il righello\n"
+"all'angolo di 45%c piu' vicino"
 
 #: cinelerra/cwindowtool.C:2142
 #, c-format
 msgid "Press Alt to translate the ruler."
-msgstr ""
+msgstr "Premi Alt per tradurre il righello"
 
 #: cinelerra/dcoffset.C:61
 msgid "DC Offset"
@@ -1931,15 +1932,15 @@ msgstr "Cancella fotogrammi chiave"
 
 #: cinelerra/keyframepopup.C:427
 msgid "tangent edit"
-msgstr ""
+msgstr "Modifica tangente"
 
 #: cinelerra/keyframepopup.C:428
 msgid "disjoint edit"
-msgstr ""
+msgstr "modifica disjoint"
 
 #: cinelerra/keyframepopup.C:451
 msgid "change keyframe tangent mode"
-msgstr ""
+msgstr "cambia modalita' keyframe tangente"
 
 #: cinelerra/labelnavigate.C:64
 msgid "Previous label"
@@ -2960,7 +2961,7 @@ msgstr "Vedi riproduzioni seguenti"
 
 #: cinelerra/playbackprefs.C:343 cinelerra/recordprefs.C:407
 msgid "Disable hardware synchronization"
-msgstr ""
+msgstr "Disabilita sincronizzazione hardware"
 
 #: cinelerra/playbackprefs.C:358
 msgid "Audio playback in real time priority (root only)"
@@ -4042,19 +4043,19 @@ msgstr "720 per 480"
 
 #: plugins/C41/c41.C:290
 msgid "Activate processing"
-msgstr ""
+msgstr "Attiva elaborazione"
 
 #: plugins/C41/c41.C:293
 msgid "Compute negfix values"
-msgstr ""
+msgstr "Calcola valori negfix"
 
 #: plugins/C41/c41.C:295
 msgid "(uncheck for faster rendering)"
-msgstr ""
+msgstr "(deseleziona per rendering veloce)"
 
 #: plugins/C41/c41.C:298
 msgid "Computed negfix values:"
-msgstr ""
+msgstr "valori negfix calcolati:"
 
 #: plugins/C41/c41.C:301 plugins/C41/c41.C:342
 msgid "Min R:"
@@ -4082,7 +4083,7 @@ msgstr ""
 
 #: plugins/C41/c41.C:339
 msgid "negfix values to apply:"
-msgstr ""
+msgstr "valori negfix da applicare"
 
 #: plugins/C41/c41.C:407
 msgid "C41"
@@ -4149,7 +4150,7 @@ msgstr "SchiaraBande"
 #: plugins/bluebanana/bluebananawindow.C:1363
 #: plugins/bluebanana/bluebananawindow.C:2048
 msgid "Pick"
-msgstr ""
+msgstr "Seleziona"
 
 #: plugins/bluebanana/bluebananawindow.C:1374
 #: plugins/bluebanana/bluebananawindow.C:1382
@@ -4388,7 +4389,7 @@ msgstr "Saturazione:"
 
 #: plugins/color3way/color3waywindow.C:672
 msgid "Copy to all"
-msgstr ""
+msgstr "Copia su tutti"
 
 #: plugins/color3way/color3waywindow.C:697
 #: plugins/colorbalance/colorbalancewindow.C:175
@@ -4816,11 +4817,11 @@ msgstr "Campi per Fotogramma"
 
 #: plugins/findobject/findobject.C:204
 msgid "Find Object"
-msgstr ""
+msgstr "Trova Oggetto"
 
 #: plugins/findobject/findobjectwindow.C:59
 msgid "Algorithm:"
-msgstr ""
+msgstr "Algoritmo:"
 
 #: plugins/findobject/findobjectwindow.C:70
 #, fuzzy
@@ -5214,7 +5215,7 @@ msgstr "Disegna vettori"
 
 #: plugins/lens/lens.C:704
 msgid "Lens"
-msgstr ""
+msgstr "Lente"
 
 #: plugins/level/leveleffect.C:135
 msgid "Duration (seconds):"
@@ -5348,7 +5349,7 @@ msgstr "Calcolo:"
 
 #: plugins/motion/motionwindow.C:494
 msgid "Add (loaded) offset from tracked frame"
-msgstr ""
+msgstr "Aggiungi offset (salvato) da fotogramma "
 
 #: plugins/motion/motionwindow.C:515
 msgid "Track translation"
@@ -5561,7 +5562,7 @@ msgstr "RiformaRT"
 
 #: plugins/reroute/reroute.C:158
 msgid "replace Target"
-msgstr ""
+msgstr "Rimpiazza obiettivo"
 
 #: plugins/reroute/reroute.C:159
 #, fuzzy
@@ -5585,7 +5586,7 @@ msgstr "Dimensione:"
 
 #: plugins/reroute/reroute.C:488
 msgid "Reroute"
-msgstr ""
+msgstr "Ridireziona"
 
 #: plugins/resample/resample.C:106
 msgid "Resample"

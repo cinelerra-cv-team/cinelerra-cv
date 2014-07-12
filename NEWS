@@ -15,7 +15,7 @@ Changes since Cinelerra-cv 2.2:
  - Fixed Interpolation in blur and Brightness/Contrast plugins
  - Ported Ruler GUI implementation from Cinelerra-HV 4.5.
  - Updated documentation (installation).
- - Updated pt_BR translation
+ - Updated pt_BR, fr, it translations.
 
 13.Nov.2011
 Official release of Cinelerra-cv 2.2
