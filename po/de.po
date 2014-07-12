@@ -1,12 +1,13 @@
-# German translation of cinelerra.
-# Copyright (C) 2003 Heroine Warrior Inc.
-# This file is distributed under the same license as the cinelerra package.
+# German translation of cinelerra-cv.
+# Copyright (C) 2007 Heroine Warrior Inc.
+# Copyright (C) 2007-2014 Cinelerra-CV.
+# This file is distributed under the same license as the cinelerra-cv package.
 # Jens Seidel <tux-master@web.de>, 2003, 2006.
 # "Asset" (so etwas wie Ressource) sollte nicht übersetzt werden, siehe
 # https://init.linpro.no/pipermail/skolelinux.no/cinelerra/2006-December/009007.html
 #
 msgid ""
-msgstr ""
+msgstr "2
 "Project-Id-Version: cinelerra 2.1\n"
 "Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
 "POT-Creation-Date: 2014-07-09 10:15+0200\n"

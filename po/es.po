@@ -1,10 +1,11 @@
-# Spanish translation of cinelerra.
-# Copyright (C) 2003 Heroine Warrior Inc.
-# This file is distributed under the same license as the cinelerra package.
+# Spanish translation of cinelerra-cv.
+# Copyright (C) 2007 Heroine Warrior Inc.
+# Copyright (C) 2007-2014 Cinelerra-CV.
+# This file is distributed under the same license as the cinelerra-cv package.
 # Gustavo Iñiguez <ga@kutxa.homeunix.org>, 2003.
 msgid ""
 msgstr ""
-"Project-Id-Version: cinelerra 2.0\n"
+"Project-Id-Version: cinelerra 2.2\n"
 "Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
 "POT-Creation-Date: 2014-07-09 10:15+0200\n"
 "PO-Revision-Date: 2006-02-01 15:00+0200\n"

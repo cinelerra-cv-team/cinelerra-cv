@@ -1,22 +1,21 @@
-# translation of it.po to Italian
+# translation of cinelerra-cv to Italian
 # Copyright (C) 2007 Heroine Warrior Inc.
-# This file is distributed under the same license as the Cinelerra package.
+# Copyright (C) 2007-2014 Cinelerra-CV.
+# This file is distributed under the same license as the Cinelerra-cv package.
 # Paolo Rampino <akir4d@gmail.com>, 2007.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cinelerra 2.1\n"
+"Project-Id-Version: cinelerra 2.2\n"
 "Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
 "POT-Creation-Date: 2014-07-09 10:15+0200\n"
 "PO-Revision-Date: 2014-07-12 11:47-0500\n"
-"Last-Translator: Paolo Rampino <akir4d@gmail.com>\n"
-"Language-Team: Paolo Rampino <akir4d@gmail.com>\n"
+"Last-Translator: Nicola Ferralis <feranick@hotmail.com>\n"
+"Language-Team: feranick@hotmail.com\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-SourceCharset: iso-8859-15\n"
-"X-Generator: Poedit 1.6.6\n"
 
 #: cinelerra/aboutprefs.C:80
 #, c-format

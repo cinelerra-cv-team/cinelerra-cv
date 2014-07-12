@@ -1,6 +1,7 @@
-# SOME DESCRIPTIVE TITLE.
+# translation of cinelerra-cv to Russian
 # Copyright (C) 2008 Heroine Warrior Inc.
-# This file is distributed under the same license as the Cinelerra package.
+# Copyright (C) 2007-2014 Cinelerra-CV.
+# This file is distributed under the same license as the cinelerra-cv package.
 # Valentin Pesegov <walq64@gmal.com>, 2008.
 #
 msgid ""

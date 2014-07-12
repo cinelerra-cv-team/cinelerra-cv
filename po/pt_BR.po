@@ -1,4 +1,4 @@
-# Tradução para Português Brasileiro do Cinelerra
+# Tradução para Português Brasileiro do Cinelerra-cv
 # Copyright (C) 2001-2007 Heroine Warrior Inc.
 # Copyright (C) 2007-2014 Cinelerra-CV.
 # This file is distributed under the same license as the cinelerra package.
@@ -7,7 +7,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cinelerra 2.1\n"
+"Project-Id-Version: cinelerra 2.2\n"
 "Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
 "POT-Creation-Date: 2014-07-09 10:15+0200\n"
 "PO-Revision-Date: 2014-05-24 20:21-0300\n"
