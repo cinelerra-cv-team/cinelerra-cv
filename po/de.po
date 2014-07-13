@@ -7,8 +7,8 @@
 # https://init.linpro.no/pipermail/skolelinux.no/cinelerra/2006-December/009007.html
 #
 msgid ""
-msgstr "2
-"Project-Id-Version: cinelerra 2.1\n"
+msgstr ""
+"Project-Id-Version: cinelerra 2.2\n"
 "Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
 "POT-Creation-Date: 2014-07-09 10:15+0200\n"
 "PO-Revision-Date: 2006-11-26 23:53+0100\n"
