@@ -1,11 +1,12 @@
 # French translation of cinelerra.
 # Copyright (C) 2003 Heroine Warrior Inc.
+# Copyright (C) 2007-2014 Cinelerra-CV.
 # Eric Seigne <eric.seigne@ryxeo.com>, 2004, 2005.
 # Jean-Luc Coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cinelerra 2.1\n"
+"Project-Id-Version: cinelerra 2.2\n"
 "Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
 "POT-Creation-Date: 2014-07-09 10:15+0200\n"
 "PO-Revision-Date: 2006-11-08 17:23+0100\n"
@@ -116,7 +117,7 @@ msgstr "Sélectionner un fichier pour cet objet :"
 
 #: cinelerra/assetedit.C:213
 msgid "File format:"
-msgstr "Format du fichier :"
+msgstr "Fichier-type :"
 
 #: cinelerra/assetedit.C:231
 msgid "Bytes:"
@@ -177,7 +178,7 @@ msgstr "Vidéo :"
 
 #: cinelerra/assetedit.C:420 cinelerra/setformat.C:404
 msgid "Frame rate:"
-msgstr "Fréquence des images :"
+msgstr "Image/seconde :"
 
 #: cinelerra/assetedit.C:430 cinelerra/setformat.C:419
 #: plugins/freeverb/freeverb.C:348
@@ -1561,7 +1562,7 @@ msgstr "III"
 
 #: cinelerra/filempeg.C:1734 cinelerra/new.C:374 cinelerra/setformat.C:467
 msgid "Color model:"
-msgstr "Modèle colorimétrique :"
+msgstr "Modèle couleurs "
 
 #: cinelerra/filempeg.C:1800
 msgid "Format Preset:"
@@ -1743,7 +1744,7 @@ msgstr "Présélections :"
 
 #: cinelerra/formattools.C:152 cinelerra/recordprefs.C:65
 msgid "File Format:"
-msgstr "Format de fichier :"
+msgstr "Fichier-type :"
 
 #: cinelerra/formattools.C:252
 msgid "MPEG transport stream"
@@ -1793,7 +1794,7 @@ msgstr "IndexFile::draw_index : zoom nul pour l'index\n"
 
 #: cinelerra/interfaceprefs.C:33
 msgid "Drag all following edits"
-msgstr "Glisser tous les plans suivants"
+msgstr "Glisser les plans suivants"
 
 #: cinelerra/interfaceprefs.C:34
 msgid "Drag only one edit"
@@ -1837,7 +1838,7 @@ msgstr "Taille du fichier d'index :"
 
 #: cinelerra/interfaceprefs.C:152
 msgid "Number of index files to keep:"
-msgstr "Nombre de fichiers d'index à conserver :"
+msgstr "Nombre d'index à conserver :"
 
 #: cinelerra/interfaceprefs.C:165
 msgid "Editing"
@@ -1897,7 +1898,7 @@ msgstr "Utiliser les secondes"
 
 #: cinelerra/interfaceprefs.C:423
 msgid "Use Feet-frames"
-msgstr "Utiliser les « images-pieds »"
+msgstr "Usage «image-pied»"
 
 #: cinelerra/interfaceprefs.C:611
 msgid "Use thumbnails in resource window"
@@ -2716,23 +2717,23 @@ msgstr "Pistes :"
 
 #: cinelerra/new.C:285 cinelerra/recordgui.C:245 cinelerra/setformat.C:352
 msgid "Samplerate:"
-msgstr "Taux d'échantillonnage :"
+msgstr "Échantillonnage :"
 
 #: cinelerra/new.C:311 cinelerra/recordgui.C:258
 msgid "Framerate:"
-msgstr "Fréquence des images :"
+msgstr "Image/seconde :"
 
 #: cinelerra/new.C:337 cinelerra/setformat.C:416
 msgid "Canvas size:"
-msgstr "Taille de l'aire de travail :"
+msgstr "Taille image :"
 
 #: cinelerra/new.C:356 cinelerra/setformat.C:484
 msgid "Aspect ratio:"
-msgstr "Rapport d'aspect :"
+msgstr "Ratio d'écran :"
 
 #: cinelerra/new.C:384 cinelerra/setformat.C:511
 msgid "Interlace mode:"
-msgstr "Mode d'entrelacement :"
+msgstr "Entrelacement :"
 
 #: cinelerra/new.C:909
 msgid "Auto aspect ratio"
@@ -2809,7 +2810,7 @@ msgstr "Taille du cache (Mo) :"
 
 #: cinelerra/performanceprefs.C:82
 msgid "Seconds to preroll renders:"
-msgstr "Temps en secondes d'anticipation du rendu :"
+msgstr "Anticipation de rendu en secondes :"
 
 #: cinelerra/performanceprefs.C:101
 msgid "Background Rendering (Video only)"
@@ -2821,7 +2822,7 @@ msgstr "Images par tâche de rendu en tâche de fond :"
 
 #: cinelerra/performanceprefs.C:115
 msgid "Frames to preroll background:"
-msgstr "Images pour l'anticipation des tâches de fond :"
+msgstr "Images anticipant tâches de rendus :"
 
 #: cinelerra/performanceprefs.C:124
 msgid "Output for background rendering:"
@@ -2869,7 +2870,7 @@ msgstr "Port"
 
 #: cinelerra/performanceprefs.C:271
 msgid "Framerate"
-msgstr "Fréquence images"
+msgstr "Image/seconde "
 
 #: cinelerra/performanceprefs.C:302
 msgid "Use background rendering"
@@ -2893,7 +2894,7 @@ msgstr "Ajouter un noeud"
 
 #: cinelerra/performanceprefs.C:634
 msgid "Apply Changes"
-msgstr "Appliquer les modifications"
+msgstr "Faire changements"
 
 #: cinelerra/performanceprefs.C:661
 msgid "Delete Node"
@@ -2933,7 +2934,7 @@ msgstr "Sortie vidéo"
 
 #: cinelerra/playbackprefs.C:145
 msgid "Framerate achieved:"
-msgstr "Fréquence d'images obtenue :"
+msgstr "Images/sec. obtenues:"
 
 #: cinelerra/playbackprefs.C:146 cinelerra/zoombar.C:118
 #: cinelerra/zoombar.C:120
@@ -3339,7 +3340,7 @@ msgstr "Entrée audio"
 
 #: cinelerra/recordprefs.C:104 cinelerra/recordprefs.C:160
 msgid "Record Driver:"
-msgstr "Pilote d'enregistrement :"
+msgstr "Pilote :"
 
 #: cinelerra/recordprefs.C:118
 msgid "Samples to write to disk at a time:"
@@ -3359,19 +3360,19 @@ msgstr "Entrée vidéo"
 
 #: cinelerra/recordprefs.C:176
 msgid "Frames to record to disk at a time:"
-msgstr "Images à écrire sur le disque en une fois :"
+msgstr "Images à écrire à la fois sur le disque :"
 
 #: cinelerra/recordprefs.C:181
 msgid "Frames to buffer in device:"
-msgstr "Images à mettre en tampon sur le périphérique :"
+msgstr "Image à mettre en tampon à la source"
 
 #: cinelerra/recordprefs.C:196
 msgid "Size of captured frame:"
-msgstr "Taille des images capturées :"
+msgstr "Taille images sources :"
 
 #: cinelerra/recordprefs.C:212
 msgid "Frame rate for recording:"
-msgstr "Fréquence des images en enregistrement :"
+msgstr "Fréquence images sources :"
 
 #: cinelerra/recordprefs.C:220
 msgid "Images"
@@ -3391,7 +3392,7 @@ msgstr "Synchroniser les disques automatiquement"
 
 #: cinelerra/recordprefs.C:433
 msgid "Import images with a duration of"
-msgstr "Importer des images pour une durée de"
+msgstr "Durée des images à importer"
 
 #: cinelerra/recordtransport.C:156
 msgid ""
@@ -4065,31 +4066,31 @@ msgstr "720 vers 480"
 
 #: plugins/C41/c41.C:290
 msgid "Activate processing"
-msgstr ""
+msgstr "activer le traitement"
 
 #: plugins/C41/c41.C:293
 msgid "Compute negfix values"
-msgstr ""
+msgstr "Calculer valeurs de negfix"
 
 #: plugins/C41/c41.C:295
 msgid "(uncheck for faster rendering)"
-msgstr ""
+msgstr "(plus rapide si non-sélectionné)"
 
 #: plugins/C41/c41.C:298
 msgid "Computed negfix values:"
-msgstr ""
+msgstr "Valeurs negfix calculées:"
 
 #: plugins/C41/c41.C:301 plugins/C41/c41.C:342
 msgid "Min R:"
-msgstr ""
+msgstr "R min:"
 
 #: plugins/C41/c41.C:305 plugins/C41/c41.C:346
 msgid "Min G:"
-msgstr ""
+msgstr "V min:"
 
 #: plugins/C41/c41.C:309 plugins/C41/c41.C:350
 msgid "Min B:"
-msgstr ""
+msgstr "B min:"
 
 #: plugins/C41/c41.C:313 plugins/C41/c41.C:354
 msgid "Magic4:"
@@ -4105,7 +4106,7 @@ msgstr ""
 
 #: plugins/C41/c41.C:339
 msgid "negfix values to apply:"
-msgstr ""
+msgstr "valeurs de negfix à appliquer:"
 
 #: plugins/C41/c41.C:407
 msgid "C41"
@@ -4172,7 +4173,7 @@ msgstr "BandWipe"
 #: plugins/bluebanana/bluebananawindow.C:1363
 #: plugins/bluebanana/bluebananawindow.C:2048
 msgid "Pick"
-msgstr ""
+msgstr "Choisir"
 
 #: plugins/bluebanana/bluebananawindow.C:1374
 #: plugins/bluebanana/bluebananawindow.C:1382
@@ -4411,7 +4412,7 @@ msgstr "Saturation :"
 
 #: plugins/color3way/color3waywindow.C:672
 msgid "Copy to all"
-msgstr ""
+msgstr "Appliquer à tout"
 
 #: plugins/color3way/color3waywindow.C:697
 #: plugins/colorbalance/colorbalancewindow.C:175
@@ -4468,7 +4469,7 @@ msgstr "Préserver la luminosité"
 
 #: plugins/colorbalance/colorbalancewindow.C:155
 msgid "Lock parameters"
-msgstr "Verrouiller les paramètres"
+msgstr "Paramètres verrouillés"
 
 #: plugins/colors/colorpicker.C:87
 msgid "Color Picker"
@@ -4843,13 +4844,12 @@ msgstr ""
 
 #: plugins/findobject/findobjectwindow.C:59
 msgid "Algorithm:"
-msgstr ""
+msgstr "Algorithme:"
 
 #: plugins/findobject/findobjectwindow.C:70
 #, fuzzy
 msgid ""
 "Search radius:\n"
-"(W/H Percent of image)"
 msgstr ""
 "Rayon de recherche pour la translation :\n"
 "(Pourcentage largeur/hauteur de l'image)"
@@ -4859,7 +4859,7 @@ msgstr ""
 msgid ""
 "Object size:\n"
 "(W/H Percent of image)"
-msgstr ""
+msgstr "(% L/H de l'image)"
 "Taille de bloc pour la rotation :\n"
 "(Pourcentage Largeur/hauteur de l'image)"
 
