@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cinelerra_eu\n"
 "Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
-"POT-Creation-Date: 2014-07-09 10:15+0200\n"
+"POT-Creation-Date: 2014-07-14 12:39-0400\n"
 "PO-Revision-Date: 2007-12-13 15:27+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
@@ -110,6 +110,7 @@ msgid "VirtualAConsole::load_track Couldn't open %s.\n"
 msgstr "VirtualAConsole::load_track: ezin izan da %s ireki.\n"
 
 #: cinelerra/apatchgui.C:249 cinelerra/vpatchgui.C:211
+#: plugins/bluebanana/bluebananawindow.C:2004
 msgid "fade"
 msgstr "iraungitu"
 
@@ -4043,6 +4044,10 @@ msgstr "1080-tik 540-ra"
 msgid "720 to 480"
 msgstr "720-tik 480-ra"
 
+#: plugins/C41/c41.C:266 plugins/colorbalance/colorbalancewindow.C:155
+msgid "Lock parameters"
+msgstr "Blokeatu parametroak"
+
 #: plugins/C41/c41.C:290
 msgid "Activate processing"
 msgstr ""
@@ -4168,6 +4173,71 @@ msgstr ""
 #: plugins/perspective/perspective.C:529
 msgid "Reset"
 msgstr "Berrezarri"
+
+#: plugins/bluebanana/bluebananawindow.C:1841
+#, fuzzy
+msgid " Mask Selection"
+msgstr "Hautapena"
+
+#: plugins/bluebanana/bluebananawindow.C:1984
+#, fuzzy
+msgid "Color Selection"
+msgstr "Doitu hautapena"
+
+#: plugins/bluebanana/bluebananawindow.C:1985
+msgid " Mark Selected Areas"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "hue"
+msgstr "Ñabardura"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "saturation"
+msgstr "Saturazioa"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "value"
+msgstr "Balioa"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+msgid "fill"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "red"
+msgstr "Gorria"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "green"
+msgstr "Berdea"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "blue"
+msgstr "Lauso urdina"
+
+#: plugins/bluebanana/bluebananawindow.C:2017
+msgid "pre-erode"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2094
+#, fuzzy
+msgid " Invert Selection"
+msgstr "Alderantzikatu Telezinema"
+
+#: plugins/bluebanana/bluebananawindow.C:2255
+msgid "Color Adjustment"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2256
+msgid " Filter Active"
+msgstr ""
 
 #: plugins/bluedottheme/bluedottheme.C:721
 #, fuzzy
@@ -4384,6 +4454,18 @@ msgstr "Gako kromatikoa (ÑSB)"
 msgid "Color 3 Way"
 msgstr ""
 
+#: plugins/color3way/color3waywindow.C:141
+msgid "Shadows"
+msgstr ""
+
+#: plugins/color3way/color3waywindow.C:142
+msgid "Midtones"
+msgstr ""
+
+#: plugins/color3way/color3waywindow.C:143
+msgid "Highlights"
+msgstr ""
+
 #: plugins/color3way/color3waywindow.C:173
 #: plugins/huesaturation/huesaturation.C:333
 msgid "Saturation:"
@@ -4445,10 +4527,6 @@ msgstr "Urdina"
 #: plugins/colorbalance/colorbalancewindow.C:136
 msgid "Preserve luminosity"
 msgstr "Mantendu argitasuna"
-
-#: plugins/colorbalance/colorbalancewindow.C:155
-msgid "Lock parameters"
-msgstr "Blokeatu parametroak"
 
 #: plugins/colors/colorpicker.C:87
 msgid "Color Picker"
@@ -5180,6 +5258,28 @@ msgstr "Eredua:"
 msgid "Automatic IVTC"
 msgstr "IVTC automatikoa"
 
+#: plugins/lens/lens.C:301 plugins/lens/lens.C:316
+#, fuzzy
+msgid "Sphere Stretch"
+msgstr "Tiratu"
+
+#: plugins/lens/lens.C:303 plugins/lens/lens.C:319
+msgid "Sphere Shrink"
+msgstr ""
+
+#: plugins/lens/lens.C:305 plugins/lens/lens.C:322
+msgid "Rectilinear Stretch"
+msgstr ""
+
+#: plugins/lens/lens.C:307 plugins/lens/lens.C:325
+msgid "Rectilinear Shrink"
+msgstr ""
+
+#: plugins/lens/lens.C:328 plugins/perspective/perspective.C:188
+#: plugins/reframert/reframert.C:288
+msgid "Stretch"
+msgstr "Tiratu"
+
 #: plugins/lens/lens.C:494
 #, fuzzy
 msgid "R Field of View:"
@@ -5199,6 +5299,10 @@ msgstr "Despl. finkatua:"
 #, fuzzy
 msgid "A Field of View:"
 msgstr "Despl. finkatua:"
+
+#: plugins/lens/lens.C:524
+msgid "Lock"
+msgstr ""
 
 #: plugins/lens/lens.C:531
 #, fuzzy
@@ -5513,10 +5617,6 @@ msgstr "Perspektiba"
 #: plugins/perspective/perspective.C:181
 msgid "Sheer"
 msgstr "Garbitasuna"
-
-#: plugins/perspective/perspective.C:188 plugins/reframert/reframert.C:288
-msgid "Stretch"
-msgstr "Tiratu"
 
 #: plugins/perspective/perspective.C:192
 msgid "Perspective direction:"

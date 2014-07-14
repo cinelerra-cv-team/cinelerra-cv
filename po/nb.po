@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cinelerra CV\n"
 "Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
-"POT-Creation-Date: 2014-07-09 10:15+0200\n"
+"POT-Creation-Date: 2014-07-14 12:39-0400\n"
 "PO-Revision-Date: 2014-05-30 06:25+0000\n"
 "Last-Translator: Petter Reinholdtsen <pere@hungry.com>\n"
 "Language-Team: Norwegian Bokmål <i18n-no@lister.ping.uio.no>\n"
@@ -103,6 +103,7 @@ msgid "VirtualAConsole::load_track Couldn't open %s.\n"
 msgstr ""
 
 #: cinelerra/apatchgui.C:249 cinelerra/vpatchgui.C:211
+#: plugins/bluebanana/bluebananawindow.C:2004
 msgid "fade"
 msgstr ""
 
@@ -3982,6 +3983,10 @@ msgstr ""
 msgid "720 to 480"
 msgstr "720 til 480"
 
+#: plugins/C41/c41.C:266 plugins/colorbalance/colorbalancewindow.C:155
+msgid "Lock parameters"
+msgstr ""
+
 #: plugins/C41/c41.C:290
 msgid "Activate processing"
 msgstr ""
@@ -4104,6 +4109,67 @@ msgstr ""
 #: plugins/histogram/histogramwindow.C:595
 #: plugins/perspective/perspective.C:529
 msgid "Reset"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:1841
+msgid " Mask Selection"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:1984
+msgid "Color Selection"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:1985
+msgid " Mark Selected Areas"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+msgid "hue"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "saturation"
+msgstr "Metning"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "value"
+msgstr "Verdi"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+msgid "fill"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "red"
+msgstr "Rød"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "green"
+msgstr "Grønn"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+msgid "blue"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2017
+msgid "pre-erode"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2094
+#, fuzzy
+msgid " Invert Selection"
+msgstr "sett inn effekt"
+
+#: plugins/bluebanana/bluebananawindow.C:2255
+msgid "Color Adjustment"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2256
+msgid " Filter Active"
 msgstr ""
 
 #: plugins/bluedottheme/bluedottheme.C:721
@@ -4318,6 +4384,18 @@ msgstr ""
 msgid "Color 3 Way"
 msgstr ""
 
+#: plugins/color3way/color3waywindow.C:141
+msgid "Shadows"
+msgstr ""
+
+#: plugins/color3way/color3waywindow.C:142
+msgid "Midtones"
+msgstr ""
+
+#: plugins/color3way/color3waywindow.C:143
+msgid "Highlights"
+msgstr ""
+
 #: plugins/color3way/color3waywindow.C:173
 #: plugins/huesaturation/huesaturation.C:333
 msgid "Saturation:"
@@ -4378,10 +4456,6 @@ msgstr "Blå"
 
 #: plugins/colorbalance/colorbalancewindow.C:136
 msgid "Preserve luminosity"
-msgstr ""
-
-#: plugins/colorbalance/colorbalancewindow.C:155
-msgid "Lock parameters"
 msgstr ""
 
 #: plugins/colors/colorpicker.C:87
@@ -5098,6 +5172,28 @@ msgstr "Mønster:"
 msgid "Automatic IVTC"
 msgstr ""
 
+#: plugins/lens/lens.C:301 plugins/lens/lens.C:316
+#, fuzzy
+msgid "Sphere Stretch"
+msgstr "Strekk"
+
+#: plugins/lens/lens.C:303 plugins/lens/lens.C:319
+msgid "Sphere Shrink"
+msgstr ""
+
+#: plugins/lens/lens.C:305 plugins/lens/lens.C:322
+msgid "Rectilinear Stretch"
+msgstr ""
+
+#: plugins/lens/lens.C:307 plugins/lens/lens.C:325
+msgid "Rectilinear Shrink"
+msgstr ""
+
+#: plugins/lens/lens.C:328 plugins/perspective/perspective.C:188
+#: plugins/reframert/reframert.C:288
+msgid "Stretch"
+msgstr "Strekk"
+
 #: plugins/lens/lens.C:494
 msgid "R Field of View:"
 msgstr ""
@@ -5112,6 +5208,10 @@ msgstr ""
 
 #: plugins/lens/lens.C:497
 msgid "A Field of View:"
+msgstr ""
+
+#: plugins/lens/lens.C:524
+msgid "Lock"
 msgstr ""
 
 #: plugins/lens/lens.C:531
@@ -5418,10 +5518,6 @@ msgstr ""
 #: plugins/perspective/perspective.C:181
 msgid "Sheer"
 msgstr ""
-
-#: plugins/perspective/perspective.C:188 plugins/reframert/reframert.C:288
-msgid "Stretch"
-msgstr "Strekk"
 
 #: plugins/perspective/perspective.C:192
 msgid "Perspective direction:"

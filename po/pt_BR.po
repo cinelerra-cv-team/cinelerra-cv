@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cinelerra 2.2\n"
 "Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
-"POT-Creation-Date: 2014-07-09 10:15+0200\n"
+"POT-Creation-Date: 2014-07-14 12:39-0400\n"
 "PO-Revision-Date: 2014-05-24 20:21-0300\n"
 "Last-Translator: Rafael Diniz <rafael@riseup.net>\n"
 "Language-Team: Cinelerra-CV Core Developers <cinelerra@lists.cinelerra-cv."
@@ -105,6 +105,7 @@ msgid "VirtualAConsole::load_track Couldn't open %s.\n"
 msgstr "VirtualAConsole::load_track Não consegui abrir %s .\n"
 
 #: cinelerra/apatchgui.C:249 cinelerra/vpatchgui.C:211
+#: plugins/bluebanana/bluebananawindow.C:2004
 msgid "fade"
 msgstr "fade"
 
@@ -4030,6 +4031,10 @@ msgstr "1080 para 540"
 msgid "720 to 480"
 msgstr "720 para 480"
 
+#: plugins/C41/c41.C:266 plugins/colorbalance/colorbalancewindow.C:155
+msgid "Lock parameters"
+msgstr "Travar parâmetros"
+
 #: plugins/C41/c41.C:290
 msgid "Activate processing"
 msgstr ""
@@ -4155,6 +4160,71 @@ msgstr ""
 #: plugins/perspective/perspective.C:529
 msgid "Reset"
 msgstr "Zerar"
+
+#: plugins/bluebanana/bluebananawindow.C:1841
+#, fuzzy
+msgid " Mask Selection"
+msgstr "Seleção"
+
+#: plugins/bluebanana/bluebananawindow.C:1984
+#, fuzzy
+msgid "Color Selection"
+msgstr "Eliminar espaços de seleção"
+
+#: plugins/bluebanana/bluebananawindow.C:1985
+msgid " Mark Selected Areas"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "hue"
+msgstr "Tom"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "saturation"
+msgstr "Saturação"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "value"
+msgstr "Valor"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+msgid "fill"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "red"
+msgstr "Vermelho"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "green"
+msgstr "Verde"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "blue"
+msgstr "Desfocar azul"
+
+#: plugins/bluebanana/bluebananawindow.C:2017
+msgid "pre-erode"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2094
+#, fuzzy
+msgid " Invert Selection"
+msgstr "Telecine Inverso"
+
+#: plugins/bluebanana/bluebananawindow.C:2255
+msgid "Color Adjustment"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2256
+msgid " Filter Active"
+msgstr ""
 
 #: plugins/bluedottheme/bluedottheme.C:721
 #, fuzzy
@@ -4371,6 +4441,18 @@ msgstr "Chroma key (HSV)"
 msgid "Color 3 Way"
 msgstr ""
 
+#: plugins/color3way/color3waywindow.C:141
+msgid "Shadows"
+msgstr ""
+
+#: plugins/color3way/color3waywindow.C:142
+msgid "Midtones"
+msgstr ""
+
+#: plugins/color3way/color3waywindow.C:143
+msgid "Highlights"
+msgstr ""
+
 #: plugins/color3way/color3waywindow.C:173
 #: plugins/huesaturation/huesaturation.C:333
 msgid "Saturation:"
@@ -4432,10 +4514,6 @@ msgstr "Azul"
 #: plugins/colorbalance/colorbalancewindow.C:136
 msgid "Preserve luminosity"
 msgstr "Preservar luminosidade"
-
-#: plugins/colorbalance/colorbalancewindow.C:155
-msgid "Lock parameters"
-msgstr "Travar parâmetros"
 
 #: plugins/colors/colorpicker.C:87
 msgid "Color Picker"
@@ -5167,6 +5245,28 @@ msgstr "Padrão:"
 msgid "Automatic IVTC"
 msgstr "IVTC automático"
 
+#: plugins/lens/lens.C:301 plugins/lens/lens.C:316
+#, fuzzy
+msgid "Sphere Stretch"
+msgstr "Esticar"
+
+#: plugins/lens/lens.C:303 plugins/lens/lens.C:319
+msgid "Sphere Shrink"
+msgstr ""
+
+#: plugins/lens/lens.C:305 plugins/lens/lens.C:322
+msgid "Rectilinear Stretch"
+msgstr ""
+
+#: plugins/lens/lens.C:307 plugins/lens/lens.C:325
+msgid "Rectilinear Shrink"
+msgstr ""
+
+#: plugins/lens/lens.C:328 plugins/perspective/perspective.C:188
+#: plugins/reframert/reframert.C:288
+msgid "Stretch"
+msgstr "Esticar"
+
 #: plugins/lens/lens.C:494
 #, fuzzy
 msgid "R Field of View:"
@@ -5186,6 +5286,10 @@ msgstr "Deslocamento fixo: "
 #, fuzzy
 msgid "A Field of View:"
 msgstr "Deslocamento fixo: "
+
+#: plugins/lens/lens.C:524
+msgid "Lock"
+msgstr ""
 
 #: plugins/lens/lens.C:531
 #, fuzzy
@@ -5500,10 +5604,6 @@ msgstr "Perspectiva"
 #: plugins/perspective/perspective.C:181
 msgid "Sheer"
 msgstr "Desvio"
-
-#: plugins/perspective/perspective.C:188 plugins/reframert/reframert.C:288
-msgid "Stretch"
-msgstr "Esticar"
 
 #: plugins/perspective/perspective.C:192
 msgid "Perspective direction:"

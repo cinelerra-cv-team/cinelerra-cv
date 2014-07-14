@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
-"POT-Creation-Date: 2014-07-09 10:15+0200\n"
+"POT-Creation-Date: 2014-07-14 12:39-0400\n"
 "PO-Revision-Date: 2008-02-07 19:32+0300\n"
 "Last-Translator: Valentin Pesegov <walq64@gmal.com>\n"
 "Language-Team: ru <ru@li.org>\n"
@@ -91,6 +91,7 @@ msgid "VirtualAConsole::load_track Couldn't open %s.\n"
 msgstr "VirtualAConsole::load_track Невозможно открыть %s.\n"
 
 #: cinelerra/apatchgui.C:249 cinelerra/vpatchgui.C:211
+#: plugins/bluebanana/bluebananawindow.C:2004
 msgid "fade"
 msgstr "затемнение"
 
@@ -4000,6 +4001,10 @@ msgstr "1080 > 540"
 msgid "720 to 480"
 msgstr "720 > 480"
 
+#: plugins/C41/c41.C:266 plugins/colorbalance/colorbalancewindow.C:155
+msgid "Lock parameters"
+msgstr "Синхронно"
+
 #: plugins/C41/c41.C:290
 msgid "Activate processing"
 msgstr ""
@@ -4125,6 +4130,71 @@ msgstr ""
 #: plugins/perspective/perspective.C:529
 msgid "Reset"
 msgstr "Сброс"
+
+#: plugins/bluebanana/bluebananawindow.C:1841
+#, fuzzy
+msgid " Mask Selection"
+msgstr "Выбранная область"
+
+#: plugins/bluebanana/bluebananawindow.C:1984
+#, fuzzy
+msgid "Color Selection"
+msgstr "Обрезать выделение"
+
+#: plugins/bluebanana/bluebananawindow.C:1985
+msgid " Mark Selected Areas"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "hue"
+msgstr "Оттенок"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "saturation"
+msgstr "Насыщенность"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "value"
+msgstr "Значение"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+msgid "fill"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "red"
+msgstr "Красн."
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "green"
+msgstr "Зелен."
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "blue"
+msgstr "Размывка синего"
+
+#: plugins/bluebanana/bluebananawindow.C:2017
+msgid "pre-erode"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2094
+#, fuzzy
+msgid " Invert Selection"
+msgstr "Инверсия телесина"
+
+#: plugins/bluebanana/bluebananawindow.C:2255
+msgid "Color Adjustment"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2256
+msgid " Filter Active"
+msgstr ""
 
 #: plugins/bluedottheme/bluedottheme.C:721
 #, fuzzy
@@ -4341,6 +4411,18 @@ msgstr "Хромакей (HSV)"
 msgid "Color 3 Way"
 msgstr ""
 
+#: plugins/color3way/color3waywindow.C:141
+msgid "Shadows"
+msgstr ""
+
+#: plugins/color3way/color3waywindow.C:142
+msgid "Midtones"
+msgstr ""
+
+#: plugins/color3way/color3waywindow.C:143
+msgid "Highlights"
+msgstr ""
+
 #: plugins/color3way/color3waywindow.C:173
 #: plugins/huesaturation/huesaturation.C:333
 msgid "Saturation:"
@@ -4402,10 +4484,6 @@ msgstr "Синий"
 #: plugins/colorbalance/colorbalancewindow.C:136
 msgid "Preserve luminosity"
 msgstr "Люменисцентность"
-
-#: plugins/colorbalance/colorbalancewindow.C:155
-msgid "Lock parameters"
-msgstr "Синхронно"
 
 #: plugins/colors/colorpicker.C:87
 msgid "Color Picker"
@@ -5131,6 +5209,28 @@ msgstr "Шаблон:"
 msgid "Automatic IVTC"
 msgstr "Авто IVTC"
 
+#: plugins/lens/lens.C:301 plugins/lens/lens.C:316
+#, fuzzy
+msgid "Sphere Stretch"
+msgstr "Растяжение"
+
+#: plugins/lens/lens.C:303 plugins/lens/lens.C:319
+msgid "Sphere Shrink"
+msgstr ""
+
+#: plugins/lens/lens.C:305 plugins/lens/lens.C:322
+msgid "Rectilinear Stretch"
+msgstr ""
+
+#: plugins/lens/lens.C:307 plugins/lens/lens.C:325
+msgid "Rectilinear Shrink"
+msgstr ""
+
+#: plugins/lens/lens.C:328 plugins/perspective/perspective.C:188
+#: plugins/reframert/reframert.C:288
+msgid "Stretch"
+msgstr "Растяжение"
+
 #: plugins/lens/lens.C:494
 #, fuzzy
 msgid "R Field of View:"
@@ -5150,6 +5250,10 @@ msgstr "Фикс. смещение:"
 #, fuzzy
 msgid "A Field of View:"
 msgstr "Фикс. смещение:"
+
+#: plugins/lens/lens.C:524
+msgid "Lock"
+msgstr ""
 
 #: plugins/lens/lens.C:531
 #, fuzzy
@@ -5456,10 +5560,6 @@ msgstr "Перспектива"
 #: plugins/perspective/perspective.C:181
 msgid "Sheer"
 msgstr "Плоскость"
-
-#: plugins/perspective/perspective.C:188 plugins/reframert/reframert.C:288
-msgid "Stretch"
-msgstr "Растяжение"
 
 #: plugins/perspective/perspective.C:192
 msgid "Perspective direction:"

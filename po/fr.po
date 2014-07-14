@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cinelerra 2.2\n"
 "Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
-"POT-Creation-Date: 2014-07-09 10:15+0200\n"
+"POT-Creation-Date: 2014-07-14 12:39-0400\n"
 "PO-Revision-Date: 2006-11-08 17:23+0100\n"
 "Last-Translator: Jean-Luc Coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -104,6 +104,7 @@ msgid "VirtualAConsole::load_track Couldn't open %s.\n"
 msgstr "VirtualAConsole::load_track ouverture impossible de %s.\n"
 
 #: cinelerra/apatchgui.C:249 cinelerra/vpatchgui.C:211
+#: plugins/bluebanana/bluebananawindow.C:2004
 msgid "fade"
 msgstr "fondu"
 
@@ -4064,6 +4065,10 @@ msgstr "1080 vers 540"
 msgid "720 to 480"
 msgstr "720 vers 480"
 
+#: plugins/C41/c41.C:266 plugins/colorbalance/colorbalancewindow.C:155
+msgid "Lock parameters"
+msgstr "Paramètres verrouillés"
+
 #: plugins/C41/c41.C:290
 msgid "Activate processing"
 msgstr "activer le traitement"
@@ -4189,6 +4194,71 @@ msgstr "Choisir"
 #: plugins/perspective/perspective.C:529
 msgid "Reset"
 msgstr "Réinitialiser"
+
+#: plugins/bluebanana/bluebananawindow.C:1841
+#, fuzzy
+msgid " Mask Selection"
+msgstr "Sélectionner"
+
+#: plugins/bluebanana/bluebananawindow.C:1984
+#, fuzzy
+msgid "Color Selection"
+msgstr "Ajuster la sélection"
+
+#: plugins/bluebanana/bluebananawindow.C:1985
+msgid " Mark Selected Areas"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "hue"
+msgstr "Teinte"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "saturation"
+msgstr "Saturation"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "value"
+msgstr "Valeur"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+msgid "fill"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "red"
+msgstr "Rouge"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "green"
+msgstr "Vert"
+
+#: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
+msgid "blue"
+msgstr "Flou bleu"
+
+#: plugins/bluebanana/bluebananawindow.C:2017
+msgid "pre-erode"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2094
+#, fuzzy
+msgid " Invert Selection"
+msgstr "Télécinéma inversé"
+
+#: plugins/bluebanana/bluebananawindow.C:2255
+msgid "Color Adjustment"
+msgstr ""
+
+#: plugins/bluebanana/bluebananawindow.C:2256
+msgid " Filter Active"
+msgstr ""
 
 #: plugins/bluedottheme/bluedottheme.C:721
 #, fuzzy
@@ -4405,6 +4475,18 @@ msgstr "Clé chromatique (TSV)"
 msgid "Color 3 Way"
 msgstr ""
 
+#: plugins/color3way/color3waywindow.C:141
+msgid "Shadows"
+msgstr ""
+
+#: plugins/color3way/color3waywindow.C:142
+msgid "Midtones"
+msgstr ""
+
+#: plugins/color3way/color3waywindow.C:143
+msgid "Highlights"
+msgstr ""
+
 #: plugins/color3way/color3waywindow.C:173
 #: plugins/huesaturation/huesaturation.C:333
 msgid "Saturation:"
@@ -4466,10 +4548,6 @@ msgstr "Bleu"
 #: plugins/colorbalance/colorbalancewindow.C:136
 msgid "Preserve luminosity"
 msgstr "Préserver la luminosité"
-
-#: plugins/colorbalance/colorbalancewindow.C:155
-msgid "Lock parameters"
-msgstr "Paramètres verrouillés"
 
 #: plugins/colors/colorpicker.C:87
 msgid "Color Picker"
@@ -4850,6 +4928,7 @@ msgstr "Algorithme:"
 #, fuzzy
 msgid ""
 "Search radius:\n"
+"(W/H Percent of image)"
 msgstr ""
 "Rayon de recherche pour la translation :\n"
 "(Pourcentage largeur/hauteur de l'image)"
@@ -4859,8 +4938,8 @@ msgstr ""
 msgid ""
 "Object size:\n"
 "(W/H Percent of image)"
-msgstr "(% L/H de l'image)"
-"Taille de bloc pour la rotation :\n"
+msgstr ""
+"(% L/H de l'image)Taille de bloc pour la rotation :\n"
 "(Pourcentage Largeur/hauteur de l'image)"
 
 #: plugins/findobject/findobjectwindow.C:94 plugins/motion/motionwindow.C:142
@@ -5200,6 +5279,28 @@ msgstr "Motif :"
 msgid "Automatic IVTC"
 msgstr "IVTC automatique"
 
+#: plugins/lens/lens.C:301 plugins/lens/lens.C:316
+#, fuzzy
+msgid "Sphere Stretch"
+msgstr "Étirer"
+
+#: plugins/lens/lens.C:303 plugins/lens/lens.C:319
+msgid "Sphere Shrink"
+msgstr ""
+
+#: plugins/lens/lens.C:305 plugins/lens/lens.C:322
+msgid "Rectilinear Stretch"
+msgstr ""
+
+#: plugins/lens/lens.C:307 plugins/lens/lens.C:325
+msgid "Rectilinear Shrink"
+msgstr ""
+
+#: plugins/lens/lens.C:328 plugins/perspective/perspective.C:188
+#: plugins/reframert/reframert.C:288
+msgid "Stretch"
+msgstr "Étirer"
+
 #: plugins/lens/lens.C:494
 #, fuzzy
 msgid "R Field of View:"
@@ -5219,6 +5320,10 @@ msgstr "Décalage fixe :"
 #, fuzzy
 msgid "A Field of View:"
 msgstr "Décalage fixe :"
+
+#: plugins/lens/lens.C:524
+msgid "Lock"
+msgstr ""
 
 #: plugins/lens/lens.C:531
 #, fuzzy
@@ -5536,10 +5641,6 @@ msgstr "Perspective"
 #, fuzzy
 msgid "Sheer"
 msgstr "Écart"
-
-#: plugins/perspective/perspective.C:188 plugins/reframert/reframert.C:288
-msgid "Stretch"
-msgstr "Étirer"
 
 #: plugins/perspective/perspective.C:192
 msgid "Perspective direction:"
@@ -6353,6 +6454,12 @@ msgstr "YUV"
 #: plugins/zoomblur/zoomblur.C:417
 msgid "Zoom Blur"
 msgstr "Flou de zoom"
+
+#, fuzzy
+#~ msgid "Search radius:\n"
+#~ msgstr ""
+#~ "Rayon de recherche pour la translation :\n"
+#~ "(Pourcentage largeur/hauteur de l'image)"
 
 #~ msgid "Cinelerra "
 #~ msgstr "Cinelerra "
