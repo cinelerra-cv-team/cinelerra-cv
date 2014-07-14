@@ -1922,12 +1922,10 @@ msgid "Copy keyframe"
 msgstr "Copia fotogramma chiave"
 
 #: cinelerra/keyframepopup.C:425
-#, fuzzy
 msgid "smooth curve"
 msgstr "attenua curve"
 
 #: cinelerra/keyframepopup.C:426
-#, fuzzy
 msgid "linear segments"
 msgstr "Cancella fotogrammi chiave"
 
@@ -4173,31 +4171,26 @@ msgid "Reset"
 msgstr "Resetta"
 
 #: plugins/bluebanana/bluebananawindow.C:1841
-#, fuzzy
 msgid " Mask Selection"
-msgstr "Seleziona"
+msgstr "Seleziona Maschera"
 
 #: plugins/bluebanana/bluebananawindow.C:1984
-#, fuzzy
 msgid "Color Selection"
-msgstr "Elimina Selezione"
+msgstr "Selezione Colore"
 
 #: plugins/bluebanana/bluebananawindow.C:1985
 msgid " Mark Selected Areas"
 msgstr "Marca Aree Selezionate"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "hue"
 msgstr "Tonalità"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "saturation"
 msgstr "Saturazione"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "value"
 msgstr "Valore"
 
@@ -4206,28 +4199,24 @@ msgid "fill"
 msgstr "riempimento"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "red"
-msgstr "Rosso"
+msgstr "rosso"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "green"
-msgstr "Verde"
+msgstr "verde"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "blue"
-msgstr "Sfocatura blu"
+msgstr "blu"
 
 #: plugins/bluebanana/bluebananawindow.C:2017
 msgid "pre-erode"
 msgstr "Attenua"
 
 #: plugins/bluebanana/bluebananawindow.C:2094
-#, fuzzy
 msgid " Invert Selection"
-msgstr "Telecinema Inverso"
+msgstr " Inverti Selezione"
 
 #: plugins/bluebanana/bluebananawindow.C:2255
 msgid "Color Adjustment"
@@ -4270,7 +4259,7 @@ msgstr "Sfocatura Rosso"
 
 #: plugins/blur/blurwindow.C:172
 msgid "Blur green"
-msgstr "Sfocatura Verde"
+msgstr "Sfocatura verde"
 
 #: plugins/blur/blurwindow.C:184
 msgid "Blur blue"
@@ -4454,11 +4443,11 @@ msgstr "Color 3 Way"
 
 #: plugins/color3way/color3waywindow.C:141
 msgid "Shadows"
-msgstr "ombre"
+msgstr "Ombre"
 
 #: plugins/color3way/color3waywindow.C:142
 msgid "Midtones"
-msgstr "Tomi Medi"
+msgstr "Toni Medi"
 
 #: plugins/color3way/color3waywindow.C:143
 msgid "Highlights"
@@ -4902,7 +4891,6 @@ msgid "Algorithm:"
 msgstr "Algoritmo:"
 
 #: plugins/findobject/findobjectwindow.C:70
-#, fuzzy
 msgid ""
 "Search radius:\n"
 "(W/H Percent of image)"
@@ -4911,7 +4899,6 @@ msgstr ""
 "(A/L in percentuale immagine)"
 
 #: plugins/findobject/findobjectwindow.C:83
-#, fuzzy
 msgid ""
 "Object size:\n"
 "(W/H Percent of image)"
@@ -4928,22 +4915,18 @@ msgid "Block Y:"
 msgstr "Blocco Y:"
 
 #: plugins/findobject/findobjectwindow.C:150
-#, fuzzy
 msgid "Object layer:"
 msgstr "Uscita livello:"
 
 #: plugins/findobject/findobjectwindow.C:159
-#, fuzzy
 msgid "Replacement object layer:"
 msgstr "Sostituisci il progetto corrente"
 
 #: plugins/findobject/findobjectwindow.C:168
-#, fuzzy
 msgid "Output/scene layer:"
 msgstr "Uscita livello:"
 
 #: plugins/findobject/findobjectwindow.C:178
-#, fuzzy
 msgid "Object blend amount:"
 msgstr "Scala in percentuale:"
 
@@ -4960,22 +4943,18 @@ msgid "Camshift SMIN:"
 msgstr ""
 
 #: plugins/findobject/findobjectwindow.C:342
-#, fuzzy
 msgid "Draw border"
 msgstr "Disegna vettori"
 
 #: plugins/findobject/findobjectwindow.C:367
-#, fuzzy
 msgid "Draw keypoints"
 msgstr "Disegna cardine"
 
 #: plugins/findobject/findobjectwindow.C:390
-#, fuzzy
 msgid "Replace object"
 msgstr "Sostituisci il progetto corrente"
 
 #: plugins/findobject/findobjectwindow.C:415
-#, fuzzy
 msgid "Draw object border"
 msgstr "Disegna vettori"
 
@@ -5049,7 +5028,6 @@ msgid "Gamma"
 msgstr "Gamma"
 
 #: plugins/gamma/gammawindow.C:61
-#, fuzzy
 msgid "Maximum:"
 msgstr "Massimo"
 
@@ -5068,7 +5046,6 @@ msgid "Plot histogram"
 msgstr "Disegna Istogramma"
 
 #: plugins/gamma/gammawindow.C:300
-#, fuzzy
 msgid "Use Color Picker"
 msgstr "Usa cattura colore"
 
@@ -5257,9 +5234,8 @@ msgid "Automatic IVTC"
 msgstr "IVTC Automatico"
 
 #: plugins/lens/lens.C:301 plugins/lens/lens.C:316
-#, fuzzy
 msgid "Sphere Stretch"
-msgstr "Stira"
+msgstr "Stidamento Sferico"
 
 #: plugins/lens/lens.C:303 plugins/lens/lens.C:319
 msgid "Sphere Shrink"
@@ -5279,22 +5255,18 @@ msgid "Stretch"
 msgstr "Stira"
 
 #: plugins/lens/lens.C:494
-#, fuzzy
 msgid "R Field of View:"
 msgstr "Compensa aggiustato:"
 
 #: plugins/lens/lens.C:495
-#, fuzzy
 msgid "G Field of View:"
 msgstr "Compensa aggiustato:"
 
 #: plugins/lens/lens.C:496
-#, fuzzy
 msgid "B Field of View:"
 msgstr "Compensa aggiustato:"
 
 #: plugins/lens/lens.C:497
-#, fuzzy
 msgid "A Field of View:"
 msgstr "Compensa aggiustato:"
 
@@ -5303,7 +5275,6 @@ msgid "Lock"
 msgstr "Bloccato"
 
 #: plugins/lens/lens.C:531
-#, fuzzy
 msgid "Aspect Ratio:"
 msgstr "Dimensione:"
 
@@ -5313,7 +5284,6 @@ msgid "Radius:"
 msgstr "Raggio:"
 
 #: plugins/lens/lens.C:631
-#, fuzzy
 msgid "Draw center"
 msgstr "Disegna vettori"
 
@@ -5351,7 +5321,6 @@ msgid "Linear Blur"
 msgstr "Sfocatura Lineare"
 
 #: plugins/liveaudio/liveaudio.C:353
-#, fuzzy
 msgid "Live Audio"
 msgstr "Invertire Audio"
 
@@ -5665,22 +5634,18 @@ msgid "replace Target"
 msgstr "Rimpiazza obiettivo"
 
 #: plugins/reroute/reroute.C:159
-#, fuzzy
 msgid "Components only"
 msgstr "Smussa solo"
 
 #: plugins/reroute/reroute.C:160
-#, fuzzy
 msgid "Alpha replace"
 msgstr "Maschera Alpha"
 
 #: plugins/reroute/reroute.C:207
-#, fuzzy
 msgid "Target track:"
 msgstr "Tracce condivise:"
 
 #: plugins/reroute/reroute.C:216
-#, fuzzy
 msgid "Operation:"
 msgstr "Dimensione:"
 
