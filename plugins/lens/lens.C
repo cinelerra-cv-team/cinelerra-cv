@@ -298,13 +298,13 @@ int LensMode::calculate_w(LensGUI *gui)
 
 int LensMode::from_text(char *text)
 {
-	if(!strcmp(text, "Sphere Stretch")) return LensConfig::STRETCH;
+	if(!strcmp(text, _("Sphere Stretch"))) return LensConfig::STRETCH;
 	else
-	if(!strcmp(text, "Sphere Shrink")) return LensConfig::SHRINK;
+	if(!strcmp(text, _("Sphere Shrink"))) return LensConfig::SHRINK;
 	else
-	if(!strcmp(text, "Rectilinear Stretch")) return LensConfig::RECTILINEAR_STRETCH;
+	if(!strcmp(text, _("Rectilinear Stretch"))) return LensConfig::RECTILINEAR_STRETCH;
 	else
-	if(!strcmp(text, "Rectilinear Shrink")) return LensConfig::RECTILINEAR_SHRINK;
+	if(!strcmp(text, _("Rectilinear Shrink"))) return LensConfig::RECTILINEAR_SHRINK;
 	return LensConfig::STRETCH;
 }
 
@@ -313,19 +313,19 @@ const char* LensMode::to_text(int mode)
 	switch(mode)
 	{
 		case LensConfig::STRETCH:
-			return "Sphere Stretch";
+			return _("Sphere Stretch");
 			break;
 		case LensConfig::SHRINK:
-			return "Sphere Shrink";
+			return _("Sphere Shrink");
 			break;
 		case LensConfig::RECTILINEAR_STRETCH:
-			return "Rectilinear Stretch";
+			return _("Rectilinear Stretch");
 			break;
 		case LensConfig::RECTILINEAR_SHRINK:
-			return "Rectilinear Shrink";
+			return _("Rectilinear Shrink");
 			break;
 	}
-	return "Stretch";
+	return _("Stretch");
 }
 
 
@@ -521,7 +521,7 @@ void LensGUI::create_objects()
 		&client->lock, 
 		x, 
 		y,
-		"Lock"));
+		_("Lock")));
 	y += toggle->get_h() + 10;
 	
 	BC_Bar *bar;

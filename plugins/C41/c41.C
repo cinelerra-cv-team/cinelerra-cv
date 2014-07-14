@@ -263,7 +263,7 @@ int C41TextBox::handle_event()
 
 // C41Button
 C41Button::C41Button(C41Effect *plugin, int x, int y)
- : BC_GenericButton(x, y, "Lock parameters")
+ : BC_GenericButton(x, y, _("Lock parameters"))
 {
 	this->plugin = plugin;
 }
