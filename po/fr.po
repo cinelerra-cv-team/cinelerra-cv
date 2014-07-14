@@ -4203,11 +4203,11 @@ msgstr "Sélectionner"
 #: plugins/bluebanana/bluebananawindow.C:1984
 #, fuzzy
 msgid "Color Selection"
-msgstr "Ajuster la sélection"
+msgstr "Sélection de la couleur"
 
 #: plugins/bluebanana/bluebananawindow.C:1985
 msgid " Mark Selected Areas"
-msgstr ""
+msgstr "Sélection de masque"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
 #, fuzzy
@@ -4226,7 +4226,7 @@ msgstr "Valeur"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
 msgid "fill"
-msgstr ""
+msgstr "remplir"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
 #, fuzzy
@@ -4245,20 +4245,20 @@ msgstr "Flou bleu"
 
 #: plugins/bluebanana/bluebananawindow.C:2017
 msgid "pre-erode"
-msgstr ""
+msgstr "atténuer"
 
 #: plugins/bluebanana/bluebananawindow.C:2094
 #, fuzzy
 msgid " Invert Selection"
-msgstr "Télécinéma inversé"
+msgstr "Inverser la sélection"
 
 #: plugins/bluebanana/bluebananawindow.C:2255
 msgid "Color Adjustment"
-msgstr ""
+msgstr "Sélection de la couleur"
 
 #: plugins/bluebanana/bluebananawindow.C:2256
 msgid " Filter Active"
-msgstr ""
+msgstr " Filtre Actif"
 
 #: plugins/bluedottheme/bluedottheme.C:721
 #, fuzzy
@@ -4477,15 +4477,15 @@ msgstr ""
 
 #: plugins/color3way/color3waywindow.C:141
 msgid "Shadows"
-msgstr ""
+msgstr "Ombres"
 
 #: plugins/color3way/color3waywindow.C:142
 msgid "Midtones"
-msgstr ""
+msgstr "Tons moyens"
 
 #: plugins/color3way/color3waywindow.C:143
 msgid "Highlights"
-msgstr ""
+msgstr "Brilliance"
 
 #: plugins/color3way/color3waywindow.C:173
 #: plugins/huesaturation/huesaturation.C:333
@@ -5286,15 +5286,15 @@ msgstr "Étirer"
 
 #: plugins/lens/lens.C:303 plugins/lens/lens.C:319
 msgid "Sphere Shrink"
-msgstr ""
+msgstr "Compression sphérique"
 
 #: plugins/lens/lens.C:305 plugins/lens/lens.C:322
 msgid "Rectilinear Stretch"
-msgstr ""
+msgstr "étirement rectiligne"
 
 #: plugins/lens/lens.C:307 plugins/lens/lens.C:325
 msgid "Rectilinear Shrink"
-msgstr ""
+msgstr "Compression rectiligne"
 
 #: plugins/lens/lens.C:328 plugins/perspective/perspective.C:188
 #: plugins/reframert/reframert.C:288
@@ -5323,7 +5323,7 @@ msgstr "Décalage fixe :"
 
 #: plugins/lens/lens.C:524
 msgid "Lock"
-msgstr ""
+msgstr "Bloquer"
 
 #: plugins/lens/lens.C:531
 #, fuzzy
