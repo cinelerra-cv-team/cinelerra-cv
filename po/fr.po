@@ -1688,12 +1688,10 @@ msgid "RGBA uncompressed"
 msgstr "RVBA non compressé"
 
 #: cinelerra/fileyuv.C:397
-#, fuzzy
 msgid "Output Path:"
 msgstr "Chemin pour la sortie :"
 
 #: cinelerra/fileyuv.C:405
-#, fuzzy
 msgid "Use Pipe:"
 msgstr "Utiliser les échantillons"
 
@@ -1702,12 +1700,11 @@ msgid "Stream Header:"
 msgstr ""
 
 #: cinelerra/fileyuv.C:420
-#, fuzzy
+
 msgid "Interlacing:"
 msgstr "Entrelacement fixe :"
 
 #: cinelerra/fileyuv.C:427
-#, fuzzy
 msgid "Pipe Presets:"
 msgstr "Présélections :"
 
@@ -1926,12 +1923,10 @@ msgid "Copy keyframe"
 msgstr "Copier l'image-clé"
 
 #: cinelerra/keyframepopup.C:425
-#, fuzzy
 msgid "smooth curve"
 msgstr "redresser les courbes"
 
 #: cinelerra/keyframepopup.C:426
-#, fuzzy
 msgid "linear segments"
 msgstr "Effacer les images-clés"
 
@@ -3466,22 +3461,18 @@ msgid "render"
 msgstr "effectuer le rendu"
 
 #: cinelerra/render.C:1157
-#, fuzzy
 msgid "Render range:"
-msgstr "Grappe de rendu"
+msgstr "Grappe de rendu:"
 
 #: cinelerra/render.C:1201
-#, fuzzy
 msgid "Project"
 msgstr "X projecteur"
 
 #: cinelerra/render.C:1212
-#, fuzzy
 msgid "Selection"
 msgstr "Sélectionner"
 
 #: cinelerra/render.C:1224
-#, fuzzy
 msgid "In/Out Points"
 msgstr "point de sortie"
 
@@ -3540,17 +3531,14 @@ msgid "RenderProfile:"
 msgstr ""
 
 #: cinelerra/renderprofiles.C:96
-#, fuzzy
 msgid "Render profile:"
 msgstr "Grappe de rendu"
 
 #: cinelerra/renderprofiles.C:248
-#, fuzzy
 msgid "Save profile"
 msgstr "Enregistrer la réverbération"
 
 #: cinelerra/renderprofiles.C:287
-#, fuzzy
 msgid "Delete profile"
 msgstr "Supprimer des fichiers"
 
@@ -3830,7 +3818,6 @@ msgid "Show transitions"
 msgstr "Afficher les transitions"
 
 #: cinelerra/viewmenu.C:146
-#, fuzzy
 msgid "Plugin Autos"
 msgstr "Greffon défini"
 
@@ -4196,12 +4183,10 @@ msgid "Reset"
 msgstr "Réinitialiser"
 
 #: plugins/bluebanana/bluebananawindow.C:1841
-#, fuzzy
 msgid " Mask Selection"
 msgstr "Sélectionner"
 
 #: plugins/bluebanana/bluebananawindow.C:1984
-#, fuzzy
 msgid "Color Selection"
 msgstr "Sélection de la couleur"
 
@@ -4210,17 +4195,14 @@ msgid " Mark Selected Areas"
 msgstr "Sélection de masque"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "hue"
 msgstr "Teinte"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "saturation"
 msgstr "Saturation"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "value"
 msgstr "Valeur"
 
@@ -4229,17 +4211,14 @@ msgid "fill"
 msgstr "remplir"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "red"
 msgstr "Rouge"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "green"
 msgstr "Vert"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "blue"
 msgstr "Flou bleu"
 
@@ -4248,7 +4227,6 @@ msgid "pre-erode"
 msgstr "atténuer"
 
 #: plugins/bluebanana/bluebananawindow.C:2094
-#, fuzzy
 msgid " Invert Selection"
 msgstr "Inverser la sélection"
 
@@ -4261,7 +4239,6 @@ msgid " Filter Active"
 msgstr " Filtre Actif"
 
 #: plugins/bluedottheme/bluedottheme.C:721
-#, fuzzy
 msgid "-*-helvetica-medium-r-normal-*-14-*"
 msgstr "-*-helvetica-medium-r-normal-*-10-*"
 
@@ -4925,7 +4902,6 @@ msgid "Algorithm:"
 msgstr "Algorithme:"
 
 #: plugins/findobject/findobjectwindow.C:70
-#, fuzzy
 msgid ""
 "Search radius:\n"
 "(W/H Percent of image)"
@@ -4934,7 +4910,6 @@ msgstr ""
 "(Pourcentage largeur/hauteur de l'image)"
 
 #: plugins/findobject/findobjectwindow.C:83
-#, fuzzy
 msgid ""
 "Object size:\n"
 "(W/H Percent of image)"
@@ -4951,22 +4926,18 @@ msgid "Block Y:"
 msgstr "Y bloc :"
 
 #: plugins/findobject/findobjectwindow.C:150
-#, fuzzy
 msgid "Object layer:"
 msgstr "Calque de sortie :"
 
 #: plugins/findobject/findobjectwindow.C:159
-#, fuzzy
 msgid "Replacement object layer:"
 msgstr "Remplacer le projet actuel"
 
 #: plugins/findobject/findobjectwindow.C:168
-#, fuzzy
 msgid "Output/scene layer:"
 msgstr "Calque de sortie :"
 
 #: plugins/findobject/findobjectwindow.C:178
-#, fuzzy
 msgid "Object blend amount:"
 msgstr "Facteur d'échelle :"
 
@@ -4983,22 +4954,18 @@ msgid "Camshift SMIN:"
 msgstr ""
 
 #: plugins/findobject/findobjectwindow.C:342
-#, fuzzy
 msgid "Draw border"
 msgstr "Dessiner les vecteurs"
 
 #: plugins/findobject/findobjectwindow.C:367
-#, fuzzy
 msgid "Draw keypoints"
 msgstr "Dessiner le pivot"
 
 #: plugins/findobject/findobjectwindow.C:390
-#, fuzzy
 msgid "Replace object"
 msgstr "Remplacer le projet actuel"
 
 #: plugins/findobject/findobjectwindow.C:415
-#, fuzzy
 msgid "Draw object border"
 msgstr "Dessiner les vecteurs"
 
@@ -5072,7 +5039,6 @@ msgid "Gamma"
 msgstr ""
 
 #: plugins/gamma/gammawindow.C:61
-#, fuzzy
 msgid "Maximum:"
 msgstr "Maximum"
 
@@ -5091,7 +5057,6 @@ msgid "Plot histogram"
 msgstr "Afficher l'histogramme"
 
 #: plugins/gamma/gammawindow.C:300
-#, fuzzy
 msgid "Use Color Picker"
 msgstr "Utiliser la pipette à couleur"
 
@@ -5280,7 +5245,6 @@ msgid "Automatic IVTC"
 msgstr "IVTC automatique"
 
 #: plugins/lens/lens.C:301 plugins/lens/lens.C:316
-#, fuzzy
 msgid "Sphere Stretch"
 msgstr "Étirer"
 
@@ -5302,22 +5266,18 @@ msgid "Stretch"
 msgstr "Étirer"
 
 #: plugins/lens/lens.C:494
-#, fuzzy
 msgid "R Field of View:"
 msgstr "Décalage fixe :"
 
 #: plugins/lens/lens.C:495
-#, fuzzy
 msgid "G Field of View:"
 msgstr "Décalage fixe :"
 
 #: plugins/lens/lens.C:496
-#, fuzzy
 msgid "B Field of View:"
 msgstr "Décalage fixe :"
 
 #: plugins/lens/lens.C:497
-#, fuzzy
 msgid "A Field of View:"
 msgstr "Décalage fixe :"
 
@@ -5326,7 +5286,6 @@ msgid "Lock"
 msgstr "Bloquer"
 
 #: plugins/lens/lens.C:531
-#, fuzzy
 msgid "Aspect Ratio:"
 msgstr "Rapport d'aspect :"
 
@@ -5336,7 +5295,6 @@ msgid "Radius:"
 msgstr "Rayon :"
 
 #: plugins/lens/lens.C:631
-#, fuzzy
 msgid "Draw center"
 msgstr "Dessiner les vecteurs"
 
@@ -5374,12 +5332,10 @@ msgid "Linear Blur"
 msgstr "Flou linéaire"
 
 #: plugins/liveaudio/liveaudio.C:353
-#, fuzzy
 msgid "Live Audio"
 msgstr "Inverser l'audio"
 
 #: plugins/livevideo/livevideo.C:563
-#, fuzzy
 msgid "Live Video"
 msgstr "Inverser la vidéo"
 
@@ -5400,7 +5356,6 @@ msgid "Loop video"
 msgstr "Boucle vidéo"
 
 #: plugins/motionblur/motionblur.C:322
-#, fuzzy
 msgid "Motion Blur"
 msgstr "Suivi de mouvement"
 
@@ -5638,7 +5593,6 @@ msgid "Perspective"
 msgstr "Perspective"
 
 #: plugins/perspective/perspective.C:181
-#, fuzzy
 msgid "Sheer"
 msgstr "Écart"
 
@@ -5688,31 +5642,27 @@ msgstr "ReframeRT"
 
 #: plugins/reroute/reroute.C:158
 msgid "replace Target"
-msgstr ""
+msgstr "remplacer Target"
 
 #: plugins/reroute/reroute.C:159
-#, fuzzy
 msgid "Components only"
 msgstr "Lisser seulement"
 
 #: plugins/reroute/reroute.C:160
-#, fuzzy
 msgid "Alpha replace"
 msgstr "Masque alpha"
 
 #: plugins/reroute/reroute.C:207
-#, fuzzy
 msgid "Target track:"
 msgstr "Pistes partagées :"
 
 #: plugins/reroute/reroute.C:216
-#, fuzzy
 msgid "Operation:"
 msgstr "Rapport d'aspect :"
 
 #: plugins/reroute/reroute.C:488
 msgid "Reroute"
-msgstr ""
+msgstr "Réacheminer"
 
 #: plugins/resample/resample.C:106
 msgid "Resample"
@@ -6131,32 +6081,26 @@ msgid "Prime"
 msgstr "Premier"
 
 #: plugins/threshold/thresholdwindow.C:310
-#, fuzzy
 msgid "Low Color"
-msgstr "Couleur :"
+msgstr "Faible Couleur :"
 
 #: plugins/threshold/thresholdwindow.C:330
-#, fuzzy
 msgid "Mid Color"
-msgstr "Couleur :"
+msgstr "Moyen Couleur :"
 
 #: plugins/threshold/thresholdwindow.C:350
-#, fuzzy
 msgid "High Color"
-msgstr "Couleur :"
+msgstr "haut Couleur :"
 
 #: plugins/threshold/thresholdwindow.C:370
-#, fuzzy
 msgid "Low color"
 msgstr "Récupérer la couleur"
 
 #: plugins/threshold/thresholdwindow.C:389
-#, fuzzy
 msgid "Mid color"
 msgstr "Récupérer la couleur"
 
 #: plugins/threshold/thresholdwindow.C:408
-#, fuzzy
 msgid "High color"
 msgstr "Récupérer la couleur"
 
@@ -6387,7 +6331,6 @@ msgid "HDTV"
 msgstr ""
 
 #: plugins/videoscope/videoscope.C:759
-#, fuzzy
 msgid "Inverse"
 msgstr "Inverser"
 
@@ -6455,7 +6398,6 @@ msgstr "YUV"
 msgid "Zoom Blur"
 msgstr "Flou de zoom"
 
-#, fuzzy
 #~ msgid "Search radius:\n"
 #~ msgstr ""
 #~ "Rayon de recherche pour la translation :\n"
