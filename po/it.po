@@ -4839,7 +4839,7 @@ msgstr "Frame da accumulare:"
 
 #: plugins/denoisevideo/denoisevideo.C:345
 msgid "Denoise video"
-msgstr "Antidisturo video"
+msgstr "Antidisturbo video"
 
 #: plugins/despike/despike.C:57
 msgid "Despike"
