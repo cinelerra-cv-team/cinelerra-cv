@@ -4128,12 +4128,10 @@ msgid "hue"
 msgstr ""
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "saturation"
 msgstr "Metning"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "value"
 msgstr "Verdi"
 
@@ -4142,12 +4140,10 @@ msgid "fill"
 msgstr ""
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "red"
 msgstr "Rød"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "green"
 msgstr "Grønn"
 
@@ -4160,7 +4156,6 @@ msgid "pre-erode"
 msgstr ""
 
 #: plugins/bluebanana/bluebananawindow.C:2094
-#, fuzzy
 msgid " Invert Selection"
 msgstr "sett inn effekt"
 
@@ -4852,12 +4847,10 @@ msgid "Block Y:"
 msgstr ""
 
 #: plugins/findobject/findobjectwindow.C:150
-#, fuzzy
 msgid "Object layer:"
 msgstr "Mesterlag:"
 
 #: plugins/findobject/findobjectwindow.C:159
-#, fuzzy
 msgid "Replacement object layer:"
 msgstr "Erstatt det åpne prosjektet"
 
@@ -4890,7 +4883,6 @@ msgid "Draw keypoints"
 msgstr ""
 
 #: plugins/findobject/findobjectwindow.C:390
-#, fuzzy
 msgid "Replace object"
 msgstr "Erstatt det åpne prosjektet"
 
@@ -4968,7 +4960,6 @@ msgid "Gamma"
 msgstr ""
 
 #: plugins/gamma/gammawindow.C:61
-#, fuzzy
 msgid "Maximum:"
 msgstr "Maksimum"
 
@@ -5173,7 +5164,6 @@ msgid "Automatic IVTC"
 msgstr ""
 
 #: plugins/lens/lens.C:301 plugins/lens/lens.C:316
-#, fuzzy
 msgid "Sphere Stretch"
 msgstr "Strekk"
 
@@ -5215,7 +5205,6 @@ msgid "Lock"
 msgstr ""
 
 #: plugins/lens/lens.C:531
-#, fuzzy
 msgid "Aspect Ratio:"
 msgstr "Sideforhold:"
 
@@ -5262,7 +5251,6 @@ msgid "Linear Blur"
 msgstr ""
 
 #: plugins/liveaudio/liveaudio.C:353
-#, fuzzy
 msgid "Live Audio"
 msgstr "Lyd"
 
@@ -5568,22 +5556,18 @@ msgid "replace Target"
 msgstr ""
 
 #: plugins/reroute/reroute.C:159
-#, fuzzy
 msgid "Components only"
 msgstr "Kommentarer"
 
 #: plugins/reroute/reroute.C:160
-#, fuzzy
 msgid "Alpha replace"
 msgstr "Alpha-maske"
 
 #: plugins/reroute/reroute.C:207
-#, fuzzy
 msgid "Target track:"
 msgstr "Delte spor:"
 
 #: plugins/reroute/reroute.C:216
-#, fuzzy
 msgid "Operation:"
 msgstr "Sideforhold:"
 
