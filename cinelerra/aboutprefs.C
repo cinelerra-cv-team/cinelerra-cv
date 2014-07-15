@@ -73,7 +73,7 @@ int AboutPrefs::create_objects()
 
 
 
-	y += get_text_height(MEDIUMFONT) * 4;
+	y += get_text_height(MEDIUMFONT) * 3;
 
 	char versions[BCTEXTLEN];
 	sprintf(versions, 
@@ -96,9 +96,7 @@ mpeg3_release());
 	y += get_text_height(LARGEFONT);
 	set_font(MEDIUMFONT);
 
-	char credits[BCTEXTLEN];
-	sprintf(credits,
-
+	draw_utf8_text(x, y,
 "Jack Crossfire\n"
 "Richard Baverstock\n"
 "Karl Bielefeldt\n"
@@ -115,6 +113,11 @@ mpeg3_release());
 "Greg Mekkes\n"
 "Eric Seigne\n"
 "Joe Stewart\n"
+);
+
+	int x_indented;
+	x_indented = x + get_text_width(MEDIUMFONT, "Pierre Marc Dumuid") + 20;
+	draw_utf8_text(x_indented, y,
 "Dan Streetman\n"
 #ifdef X_HAVE_UTF8_STRING
 "Gustavo Iñiguez\n"
@@ -126,27 +129,15 @@ mpeg3_release());
 "Andraz Tori\n"
 "Jonas Wulff\n"
 "David Arendt\n"
-
-);
-	draw_utf8_text(x, y, credits);
-
-	int x_indented;
-	x_indented = x + get_text_width(MEDIUMFONT, "Pierre Marc Dumuid") + 20;
-
-	char credits_cont1[BCTEXTLEN];
-	sprintf(credits_cont1,
-
 #ifdef X_HAVE_UTF8_STRING
 "Einar Rünkaru\n"
 #else
 "Einar R\374nkaru\n"
 #endif
 "Monty Montgomery\n"
-
 );
-	draw_utf8_text(x_indented, y, credits_cont1);
 
-	y = get_h() - 135;
+	y = get_h() - 170;
 
 	set_font(LARGEFONT);
 	draw_text(x, y, "License:");
@@ -154,8 +145,7 @@ mpeg3_release());
 
 	set_font(MEDIUMFONT);
 
-	char license3[BCTEXTLEN];
-	sprintf(license3, _(
+	draw_text(x, y,  _(
 "This program is free software; you can redistribute it and/or modify it under the terms\n"
 "of the GNU General Public License as published by the Free Software Foundation; either version\n"
 "2 of the License, or (at your option) any later version.\n"
@@ -164,7 +154,6 @@ mpeg3_release());
 "without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR\n"
 "PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"));
-	draw_text(x, y, license3);
 
 	x = get_w() - mwindow->theme->about_bg->get_w() - 10;
 	y = mwindow->theme->preferencesoptions_y;
