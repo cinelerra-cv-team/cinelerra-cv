@@ -57,6 +57,8 @@ int PlaybackPrefs::create_objects()
 	BC_PopupTextBox *popup;
 	BC_WindowBase *window;
 	BC_Resources *resources = BC_WindowBase::get_resources();
+	BC_WindowBase *win;
+	int maxw, curw, ybix[2];
 
 	playback_config = pwindow->thread->edl->session->playback_config;
 
@@ -76,7 +78,7 @@ SET_TRACE
 
 	BC_Title *title1, *title2;
 	add_subwindow(title2 = new BC_Title(x, y, _("Playback buffer size:"), MEDIUMFONT));
-	x2 = MAX(title2->get_w(), title2->get_w()) + 10;
+	x2 = title2->get_w() + 10;
 
 SET_TRACE
 	sprintf(string, "%d", playback_config->aconfig->fragment_size);
@@ -108,14 +110,13 @@ SET_TRACE
 	y += audio_offset->get_h() + 5;
 
 SET_TRACE
-	add_subwindow(new PlaybackViewFollows(pwindow, pwindow->thread->edl->session->view_follows_playback, y));
-	y += 30;
+	win = add_subwindow(new PlaybackViewFollows(pwindow, pwindow->thread->edl->session->view_follows_playback, y));
+	y += win->get_h();
 	add_subwindow(new PlaybackSoftwareTimer(pwindow, pwindow->thread->edl->session->playback_software_position, y));
-	y += 30;
-	add_subwindow(new PlaybackRealTime(pwindow, pwindow->thread->edl->session->real_time_playback, y));
-	y += 40;
-	add_subwindow(new BC_Title(x, y, _("Audio Driver:")));
-	audio_device = new ADevicePrefs(x + 100, 
+	y += win->get_h() + 10;
+	win = add_subwindow(new BC_Title(x, y, _("Audio Driver:")));
+	y += win->get_h();
+	audio_device = new ADevicePrefs(x + 55,
 		y, 
 		pwindow, 
 		this, 
@@ -140,10 +141,10 @@ SET_TRACE
 	y += 30;
 
 SET_TRACE
-	add_subwindow(window = new VideoEveryFrame(pwindow, this, x, y));
+	win = add_subwindow(window = new VideoEveryFrame(pwindow, this, x, y));
 
-	add_subwindow(new BC_Title(x + 200, y + 5, _("Framerate achieved:")));
-	add_subwindow(framerate_title = new BC_Title(x + 350, y + 5, _("--"), MEDIUMFONT, RED));
+	win = add_subwindow(new BC_Title(x + win->get_w() + 100, y + 2, _("Framerate achieved:")));
+	add_subwindow(framerate_title = new BC_Title(win->get_x() + win->get_w() + 10, y + 2, _("--"), MEDIUMFONT, RED));
 	draw_framerate();
 	y += window->get_h() + 5;
 
@@ -172,16 +173,21 @@ SET_TRACE
 		y));
 
 SET_TRACE
-	y += 35;
-	add_subwindow(new BC_Title(x, y, _("Preload buffer for Quicktime:"), MEDIUMFONT));
+	ybix[0] = y += 35;
+	win = add_subwindow(new BC_Title(x, y, _("Preload buffer for Quicktime:"), MEDIUMFONT));
+	maxw = win->get_w();
+	ybix[1] = y += win->get_h() + 10;
+	win = add_subwindow(title1 = new BC_Title(x, y, _("DVD Subtitle to display:")));
+	if((curw = win->get_w()) > maxw)
+		maxw = curw;
+	maxw += x + 10;
+// Preload buffer for Quicktime
 	sprintf(string, "%jd", pwindow->thread->edl->session->playback_preload);
 	PlaybackPreload *preload;
-	add_subwindow(preload = new PlaybackPreload(x + 210, y, pwindow, this, string));
-
-	y += preload->get_h() + 5;
-	add_subwindow(title1 = new BC_Title(x, y, _("DVD Subtitle to display:")));
+	add_subwindow(preload = new PlaybackPreload(maxw, ybix[0], pwindow, this, string));
+// DVD Subtitle to display
 	PlaybackSubtitleNumber *subtitle_number;
-	subtitle_number = new PlaybackSubtitleNumber(x + title1->get_w() + 10, 
+	subtitle_number = new PlaybackSubtitleNumber(maxw,
 		y, 
 		pwindow, 
 		this);
@@ -189,7 +195,7 @@ SET_TRACE
 
 	PlaybackSubtitle *subtitle_toggle;
 	add_subwindow(subtitle_toggle = new PlaybackSubtitle(
-		x + title1->get_w() + 10 + subtitle_number->get_w() + 10, 
+		subtitle_number->get_x() + subtitle_number->get_w() + 10,
 		y, 
 		pwindow, 
 		this));
@@ -208,7 +214,6 @@ SET_TRACE
 		y,
 		pwindow,
 		this));
-	y += white_balance_raw->get_h() + 10;
 	if(!pwindow->thread->edl->session->interpolate_raw) 
 		white_balance_raw->disable();
 
@@ -217,22 +222,26 @@ SET_TRACE
 //	y += 30;
 //	add_subwindow(new PlaybackDeblock(pwindow, 10, y));
 
-	add_subwindow(new BC_Title(x, y, _("Timecode offset:"), MEDIUMFONT, BLACK));
+	x2 = x;
+	x += 370;
+	win = add_subwindow(new BC_Title(x, y, _("Timecode offset:"), MEDIUMFONT));
+	x += win->get_w();
 	sprintf(string, "%d", pwindow->thread->edl->session->timecode_offset[3]);
-	add_subwindow(new TimecodeOffset(x + 120, y, pwindow, this, string, 3));
-	add_subwindow(new BC_Title(x + 152, y, _(":"), MEDIUMFONT, BLACK));
+	win = add_subwindow(new TimecodeOffset(x, y, pwindow, this, string, 3));
+	win = add_subwindow(new BC_Title(win->get_x() + win->get_w(), y, _(":"), MEDIUMFONT));
 	sprintf(string, "%d", pwindow->thread->edl->session->timecode_offset[2]);
-	add_subwindow(new TimecodeOffset(x + 160, y, pwindow, this, string, 2));
-	add_subwindow(new BC_Title(x + 192, y, _(":"), MEDIUMFONT, BLACK));
+	win = add_subwindow(new TimecodeOffset(win->get_x() + win->get_w(), y, pwindow, this, string, 2));
+	win = add_subwindow(new BC_Title(win->get_x() + win->get_w(), y, _(":"), MEDIUMFONT));
 	sprintf(string, "%d", pwindow->thread->edl->session->timecode_offset[1]);
-	add_subwindow(new TimecodeOffset(x + 200, y, pwindow, this, string, 1));
-	add_subwindow(new BC_Title(x + 232, y, _(":"), MEDIUMFONT, BLACK));
+	win = add_subwindow(new TimecodeOffset(win->get_x() + win->get_w(), y, pwindow, this, string, 1));
+	win = add_subwindow(new BC_Title(win->get_x() + win->get_w(), y, _(":"), MEDIUMFONT));
 	sprintf(string, "%d", pwindow->thread->edl->session->timecode_offset[0]);
-	add_subwindow(new TimecodeOffset(x + 240, y, pwindow, this, string, 0));
-
-	y += 35;
+	add_subwindow(new TimecodeOffset(win->get_x() + win->get_w(), y, pwindow, this, string, 0));
+	x = x2;
+	y += white_balance_raw->get_h() + 10;
 	add_subwindow(vdevice_title = new BC_Title(x, y, _("Video Driver:")));
-	video_device = new VDevicePrefs(x + vdevice_title->get_w() + 10, 
+	y += vdevice_title->get_h();
+	video_device = new VDevicePrefs(55,
 		y, 
 		pwindow, 
 		this, 
@@ -350,25 +359,6 @@ int PlaybackSoftwareTimer::handle_event()
 	pwindow->thread->edl->session->playback_software_position = get_value(); 
 	return 1;
 }
-
-
-
-
-PlaybackRealTime::PlaybackRealTime(PreferencesWindow *pwindow, int value, int y)
- : BC_CheckBox(10, y, value, _("Audio playback in real time priority (root only)"))
-{ 
-	this->pwindow = pwindow; 
-}
-
-int PlaybackRealTime::handle_event() 
-{ 
-	pwindow->thread->edl->session->real_time_playback = get_value(); 
-	return 1;
-}
-
-
-
-
 
 
 

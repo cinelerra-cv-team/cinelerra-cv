@@ -40,7 +40,6 @@ class PlaybackOutChannels;
 class PlaybackOutPath;
 class PlaybackPreload;
 class PlaybackReadLength;
-class PlaybackRealTime;
 class PlaybackSoftwareTimer;
 class PlaybackViewFollows;
 class PlaybackWhiteBalanceRaw;
@@ -129,13 +128,6 @@ public:
 	PreferencesWindow *pwindow;
 };
 
-class PlaybackRealTime : public BC_CheckBox
-{
-public:
-	PlaybackRealTime(PreferencesWindow *pwindow, int value, int y);
-	int handle_event();
-	PreferencesWindow *pwindow;
-};
 
 class VideoAsynchronous : public BC_CheckBox
 {
