@@ -1905,12 +1905,10 @@ msgid "Copy keyframe"
 msgstr "Копировать ключевые кадры"
 
 #: cinelerra/keyframepopup.C:425
-#, fuzzy
 msgid "smooth curve"
 msgstr "упордочить кривые"
 
 #: cinelerra/keyframepopup.C:426
-#, fuzzy
 msgid "linear segments"
 msgstr "Очистить ключевые кадры"
 
@@ -4132,12 +4130,10 @@ msgid "Reset"
 msgstr "Сброс"
 
 #: plugins/bluebanana/bluebananawindow.C:1841
-#, fuzzy
 msgid " Mask Selection"
 msgstr "Выбранная область"
 
 #: plugins/bluebanana/bluebananawindow.C:1984
-#, fuzzy
 msgid "Color Selection"
 msgstr "Обрезать выделение"
 
@@ -4146,17 +4142,14 @@ msgid " Mark Selected Areas"
 msgstr ""
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "hue"
 msgstr "Оттенок"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "saturation"
 msgstr "Насыщенность"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "value"
 msgstr "Значение"
 
@@ -4165,17 +4158,14 @@ msgid "fill"
 msgstr ""
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "red"
 msgstr "Красн."
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "green"
 msgstr "Зелен."
 
 #: plugins/bluebanana/bluebananawindow.C:2004
-#, fuzzy
 msgid "blue"
 msgstr "Размывка синего"
 
@@ -4184,7 +4174,6 @@ msgid "pre-erode"
 msgstr ""
 
 #: plugins/bluebanana/bluebananawindow.C:2094
-#, fuzzy
 msgid " Invert Selection"
 msgstr "Инверсия телесина"
 
@@ -4197,7 +4186,6 @@ msgid " Filter Active"
 msgstr ""
 
 #: plugins/bluedottheme/bluedottheme.C:721
-#, fuzzy
 msgid "-*-helvetica-medium-r-normal-*-14-*"
 msgstr "-*-helvetica-medium-r-normal-*-11-*"
 
@@ -4881,22 +4869,18 @@ msgid "Block Y:"
 msgstr ""
 
 #: plugins/findobject/findobjectwindow.C:150
-#, fuzzy
 msgid "Object layer:"
 msgstr "Вывод слоя:"
 
 #: plugins/findobject/findobjectwindow.C:159
-#, fuzzy
 msgid "Replacement object layer:"
 msgstr "Переписать текущий проект"
 
 #: plugins/findobject/findobjectwindow.C:168
-#, fuzzy
 msgid "Output/scene layer:"
 msgstr "Вывод слоя:"
 
 #: plugins/findobject/findobjectwindow.C:178
-#, fuzzy
 msgid "Object blend amount:"
 msgstr "Множитель:"
 
@@ -4913,22 +4897,18 @@ msgid "Camshift SMIN:"
 msgstr ""
 
 #: plugins/findobject/findobjectwindow.C:342
-#, fuzzy
 msgid "Draw border"
 msgstr "Показывать направляющие"
 
 #: plugins/findobject/findobjectwindow.C:367
-#, fuzzy
 msgid "Draw keypoints"
 msgstr "Показывать центр"
 
 #: plugins/findobject/findobjectwindow.C:390
-#, fuzzy
 msgid "Replace object"
 msgstr "Переписать текущий проект"
 
 #: plugins/findobject/findobjectwindow.C:415
-#, fuzzy
 msgid "Draw object border"
 msgstr "Показывать направляющие"
 
@@ -5006,7 +4986,6 @@ msgid "Maximum:"
 msgstr ""
 
 #: plugins/gamma/gammawindow.C:79
-#, fuzzy
 msgid "Gamma:"
 msgstr "Коррекция гаммы"
 
@@ -5021,7 +5000,6 @@ msgid "Plot histogram"
 msgstr "Строить гистограмму"
 
 #: plugins/gamma/gammawindow.C:300
-#, fuzzy
 msgid "Use Color Picker"
 msgstr "Использавать пипетку"
 
@@ -5210,7 +5188,6 @@ msgid "Automatic IVTC"
 msgstr "Авто IVTC"
 
 #: plugins/lens/lens.C:301 plugins/lens/lens.C:316
-#, fuzzy
 msgid "Sphere Stretch"
 msgstr "Растяжение"
 
@@ -5232,22 +5209,18 @@ msgid "Stretch"
 msgstr "Растяжение"
 
 #: plugins/lens/lens.C:494
-#, fuzzy
 msgid "R Field of View:"
 msgstr "Фикс. смещение:"
 
 #: plugins/lens/lens.C:495
-#, fuzzy
 msgid "G Field of View:"
 msgstr "Фикс. смещение:"
 
 #: plugins/lens/lens.C:496
-#, fuzzy
 msgid "B Field of View:"
 msgstr "Фикс. смещение:"
 
 #: plugins/lens/lens.C:497
-#, fuzzy
 msgid "A Field of View:"
 msgstr "Фикс. смещение:"
 
@@ -5256,7 +5229,6 @@ msgid "Lock"
 msgstr ""
 
 #: plugins/lens/lens.C:531
-#, fuzzy
 msgid "Aspect Ratio:"
 msgstr "Пропорции:"
 
@@ -5266,7 +5238,6 @@ msgid "Radius:"
 msgstr "Радиус кисти:"
 
 #: plugins/lens/lens.C:631
-#, fuzzy
 msgid "Draw center"
 msgstr "Показывать направляющие"
 
@@ -5304,7 +5275,6 @@ msgid "Linear Blur"
 msgstr "Линейное размытие"
 
 #: plugins/liveaudio/liveaudio.C:353
-#, fuzzy
 msgid "Live Audio"
 msgstr "Живое видео"
 
@@ -5610,22 +5580,18 @@ msgid "replace Target"
 msgstr ""
 
 #: plugins/reroute/reroute.C:159
-#, fuzzy
 msgid "Components only"
 msgstr "Комментарии"
 
 #: plugins/reroute/reroute.C:160
-#, fuzzy
 msgid "Alpha replace"
 msgstr "Прозрачная маска"
 
 #: plugins/reroute/reroute.C:207
-#, fuzzy
 msgid "Target track:"
 msgstr "Общие дорожки:"
 
 #: plugins/reroute/reroute.C:216
-#, fuzzy
 msgid "Operation:"
 msgstr "Пропорции:"
 
