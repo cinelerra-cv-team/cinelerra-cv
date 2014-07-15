@@ -56,6 +56,8 @@ int PerformancePrefs::create_objects()
 	int xmargin4 = 380;
 	char string[BCTEXTLEN];
 	BC_Resources *resources = BC_WindowBase::get_resources();
+	BC_WindowBase *win;
+	int maxw, curw, y1;
 
 	node_list = 0;
 	generate_node_list();
@@ -71,19 +73,28 @@ int PerformancePrefs::create_objects()
 // 
 // 	y += get_text_height(LARGEFONT) + 5;
 
-	add_subwindow(new BC_Title(x, y + 5, _("Cache size (MB):"), MEDIUMFONT, resources->text_default));
-	cache_size = new CICacheSize(x + 230, 
-		y, 
+	int ybx[2];
+	ybx[0] = y;
+
+	win = add_subwindow(new BC_Title(x, y + 5, _("Cache size (MB):"), MEDIUMFONT, resources->text_default));
+	maxw = win->get_w();
+
+	ybx[1] = y += 30;
+	win = add_subwindow(new BC_Title(x, y + 5, _("Seconds to preroll renders:")));
+	if((curw = win->get_w()) > maxw)
+		maxw = curw;
+	maxw += x + 5;
+
+	cache_size = new CICacheSize(maxw,
+		ybx[0],
 		pwindow, 
 		this);
 	cache_size->create_objects();
 
-	y += 30;
-	add_subwindow(new BC_Title(x, y + 5, _("Seconds to preroll renders:")));
 	PrefsRenderPreroll *preroll = new PrefsRenderPreroll(pwindow, 
 		this, 
-		x + 230, 
-		y);
+		maxw,
+		ybx[1]);
 	preroll->create_objects();
 	y += 30;
 	add_subwindow(new PrefsForceUniprocessor(pwindow, x, y));
@@ -99,36 +110,40 @@ int PerformancePrefs::create_objects()
 
 
 	add_subwindow(new BC_Title(x, y, _("Background Rendering (Video only)"), LARGEFONT, resources->text_default));
-	y += 30;
+	y1 = y += 30;
 
-	add_subwindow(new PrefsUseBRender(pwindow, 
+	win = add_subwindow(new PrefsUseBRender(pwindow,
 		x,
 		y));
 
-
-	add_subwindow(new BC_Title(x, y + 40, _("Frames per background rendering job:")));
+	y += win->get_h() + 10;
+	win = add_subwindow(new BC_Title(x, y, _("Frames per background rendering job:")));
+	y += win->get_h() + 5;
 	PrefsBRenderFragment *brender_fragment = new PrefsBRenderFragment(pwindow, 
 		this, 
-		x, 
-		y + 60);
+		x + xmargin3,
+		y);
 	brender_fragment->create_objects();
-	add_subwindow(new BC_Title(x, y + 95, _("Frames to preroll background:")));
+	y += brender_fragment->get_h() + 5;
+	win = add_subwindow(new BC_Title(x, y, _("Frames to preroll background:")));
+	y += win->get_h() + 5;
 	PrefsBRenderPreroll *bpreroll = new PrefsBRenderPreroll(pwindow, 
 		this, 
 		x + xmargin3, 
-		y + 90);
+		y + 5);
 	bpreroll->create_objects();
+	y += bpreroll->get_h() + 20;
 
 
 	x += xmargin4;
-	add_subwindow(new BC_Title(x, y, _("Output for background rendering:")));
-	y += 20;
+	add_subwindow(new BC_Title(x, y1, _("Output for background rendering:")));
+	y1 += 20;
 	brender_tools = 
 		new FormatTools(mwindow,
 			this, 
 			pwindow->thread->preferences->brender_asset);
 	brender_tools->create_objects(x, 
-		y, 
+		y1,
 		0,  // Include tools for audio
 		1,  // Include tools for video
 		0,  // Include checkbox for audio
@@ -143,7 +158,7 @@ int PerformancePrefs::create_objects()
 
 
 // Renderfarm
-	add_subwindow(new BC_Bar(5, y, 	get_w() - 10));
+	add_subwindow(new BC_Bar(5, y, get_w() - 10));
 	y += 5;
 
 
