@@ -79,10 +79,12 @@ int FormatTools::create_objects(int &init_x,
 						const char *locked_compressor,
 						int recording,
 						int *strategy,
-						int brender)
+						int brender,
+						int horizontal_layout)
 {
 	int x = init_x;
 	int y = init_y;
+	int ylev = init_y;
 
 	this->locked_compressor = locked_compressor;
 	this->recording = recording;
@@ -142,15 +144,15 @@ int FormatTools::create_objects(int &init_x,
 
 // Set w for user.
 		w = x + path_button->get_w() + 5;
-		x -= 305;
 
-		y += 35;
+		y += path_textbox->get_h() + 10;
 	}
 	else
 		w = x + 305;
 
+	x = init_x;
 	window->add_subwindow(format_title = new BC_Title(x, y, _("File Format:")));
-	x += 90;
+	y += format_title->get_h() + 5;
 	window->add_subwindow(format_text = new BC_TextBox(x, 
 		y, 
 		200, 
@@ -175,7 +177,8 @@ int FormatTools::create_objects(int &init_x,
 			window->add_subwindow(audio_switch = new FormatAudio(x, y, this, asset->audio_data));
 		}
 		x = init_x;
-		y += aparams_button->get_h() + 20;
+		ylev = y;
+		y += aparams_button->get_h() + 5;
 
 // Audio channels only used for recording.
 // 		if(prompt_audio_channels)
@@ -196,6 +199,10 @@ int FormatTools::create_objects(int &init_x,
 //printf("FormatTools::create_objects 7\n");
 	if(do_video)
 	{
+		if(horizontal_layout && do_audio){
+			x += 370;
+			y = ylev;
+		}
 
 //printf("FormatTools::create_objects 8\n");
 		window->add_subwindow(video_title = new BC_Title(x, y, _("Video:"), LARGEFONT,  BC_WindowBase::get_resources()->audiovideo_color));
