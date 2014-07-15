@@ -56,6 +56,8 @@ int RecordPrefs::create_objects()
 	char string[BCTEXTLEN];
 	BC_Resources *resources = BC_WindowBase::get_resources();
 	BC_Title *title;
+	BC_WindowBase *win;
+	int maxw, curw, ybix[5];
 
 	x = mwindow->theme->preferencesoptions_x;
 	y = mwindow->theme->preferencesoptions_y;
@@ -82,14 +84,14 @@ int RecordPrefs::create_objects()
 		0,  // Select compressors to be offered
 		1,  // Prompt for recording options
 		0,  // If nonzero, prompt for insertion strategy
-		0); // Supply file formats for background rendering
-
+		0, // Supply file formats for background rendering
+		1); // Horizontal layout
 
 
 
 
 // Audio hardware
-	add_subwindow(new BC_Bar(5, y, 	get_w() - 10));
+	add_subwindow(new BC_Bar(5, y, get_w() - 10));
 	y += 5;
 
 
@@ -99,10 +101,11 @@ int RecordPrefs::create_objects()
 		LARGEFONT, 
 		resources->text_default));
 
-	y += title->get_h() + 5;
+	y += title->get_h();
 
-	add_subwindow(new BC_Title(x, y, _("Record Driver:"), MEDIUMFONT, resources->text_default));
-	audio_in_device = new ADevicePrefs(x + 110, 
+	win = add_subwindow(new BC_Title(x, y, _("Record Driver:"), MEDIUMFONT, resources->text_default));
+	y += win->get_h();
+	audio_in_device = new ADevicePrefs(x + 55,
 		y, 
 		pwindow, 
 		this, 
@@ -115,9 +118,13 @@ int RecordPrefs::create_objects()
 
 	BC_TextBox *textbox;
 	BC_Title *title1, *title2, *title3;
+
+	ybix[0] = y;
 	add_subwindow(title1 = new BC_Title(x, y, _("Samples to write to disk at a time:")));
-	add_subwindow(title2 = new BC_Title(x, y + 30, _("Sample rate for recording:")));
-	add_subwindow(title3 = new BC_Title(x, y + 60, _("Channels to record:")));
+	ybix[1] = y += title1->get_h() + 8;
+	add_subwindow(title2 = new BC_Title(x, y, _("Sample rate for recording:")));
+	ybix[2] = y += title2->get_h() + 8;
+	add_subwindow(title3 = new BC_Title(x, y, _("Channels to record:")));
 	x2 = MAX(title1->get_w(), title2->get_w()) + 10;
 	x2 = MAX(x2, title3->get_w() + 10);
 
@@ -125,42 +132,34 @@ int RecordPrefs::create_objects()
 	add_subwindow(textbox = new RecordWriteLength(mwindow, 
 		pwindow, 
 		x2, 
-		y, 
+		ybix[0],
 		string));
-	add_subwindow(textbox = new RecordSampleRate(pwindow, x2, y + 30));
-	add_subwindow(new SampleRatePulldown(mwindow, textbox, x2 + textbox->get_w(), y + 30));
+	add_subwindow(textbox = new RecordSampleRate(pwindow, x2, ybix[1]));
+	add_subwindow(new SampleRatePulldown(mwindow, textbox, x2 + textbox->get_w(), ybix[1]));
 
-	RecordChannels *channels = new RecordChannels(pwindow, this, x2, y + 60);
+	RecordChannels *channels = new RecordChannels(pwindow, this, x2, ybix[2]);
 	channels->create_objects();
 
-	y += 90;
-
-
-	add_subwindow(new RecordRealTime(mwindow, 
-		pwindow, 
-		x, 
-		y, 
-		pwindow->thread->edl->session->real_time_record));
-	y += 45;
+	y += title3->get_h() + 15;
 	x = 5;
 
 
 
-
 // Video hardware
-	add_subwindow(new BC_Bar(5, y, 	get_w() - 10));
+	add_subwindow(new BC_Bar(5, y, get_w() - 10));
 	y += 5;
 
 
-	add_subwindow(new BC_Title(x, y, _("Video In"), LARGEFONT, resources->text_default));
-	y += 25;
+	win = add_subwindow(new BC_Title(x, y, _("Video In"), LARGEFONT, resources->text_default));
+	y += win->get_h();
 
-	add_subwindow(new BC_Title(x, 
+	win = add_subwindow(new BC_Title(x,
 		y, 
 		_("Record Driver:"), 
 		MEDIUMFONT, 
 		resources->text_default));
-	video_in_device = new VDevicePrefs(x + 110, 
+	y += win->get_h() + 5;
+	video_in_device = new VDevicePrefs(x + 55,
 		y, 
 		pwindow, 
 		this, 
@@ -169,32 +168,51 @@ int RecordPrefs::create_objects()
 		MODERECORD);
 	video_in_device->initialize(1);
 
-	y += 55;
-	sprintf(string, "%d", pwindow->thread->edl->session->video_write_length);
-	add_subwindow(textbox = new VideoWriteLength(pwindow, string, y));
-	add_subwindow(new CaptureLengthTumbler(pwindow, textbox, textbox->get_x() + textbox->get_w(), y));
-	add_subwindow(new BC_Title(x, y, _("Frames to record to disk at a time:")));
-	y += 27;
-	sprintf(string, "%d", pwindow->thread->edl->session->vconfig_in->capture_length);
-	add_subwindow(textbox = new VideoCaptureLength(pwindow, string, y));
-	add_subwindow(new CaptureLengthTumbler(pwindow, textbox, textbox->get_x() + textbox->get_w(), y));
-	add_subwindow(new BC_Title(x, y, _("Frames to buffer in device:")));
-	y += 27;
+	ybix[0] = y += 50;
+	win = add_subwindow(new BC_Title(x, y, _("Frames to record to disk at a time:")));
+	ybix[1] = y += win->get_h() + 8;
+	maxw = win->get_w();
 
-	add_subwindow(new RecordSoftwareTimer(pwindow, 
+	win = add_subwindow(new BC_Title(x, y, _("Frames to buffer in device:")));
+	y += win->get_h() + 8;
+	if((curw = win->get_w()) > maxw)
+		maxw = curw;
+
+	win = add_subwindow(new RecordSoftwareTimer(pwindow,
 		pwindow->thread->edl->session->record_software_position, 
 		x, 
 		y));
-	y += 27;
-	add_subwindow(new RecordSyncDrives(pwindow, 
+	y += win->get_h();
+	win = add_subwindow(new RecordSyncDrives(pwindow,
 		pwindow->thread->edl->session->record_sync_drives, 
 		x, 
 		y));
-	y += 35;
+	ybix[2] = y += win->get_h() + 5;
 
+	win = add_subwindow(new BC_Title(x, y, _("Size of captured frame:")));
+	ybix[3] = y += win->get_h() + 8;
+	if((curw = win->get_w()) > maxw)
+		maxw = curw;
+
+	win = add_subwindow(new BC_Title(x, y, _("Frame rate for recording:")));
+	ybix[4] = y += win->get_h() + 15;
+	if((curw = win->get_w()) > maxw)
+		maxw = curw;
+	maxw += x + 10;
+
+// Frames to record to disk at a time
+	sprintf(string, "%d", pwindow->thread->edl->session->video_write_length);
+	add_subwindow(textbox = new VideoWriteLength(pwindow, string, maxw, ybix[0]));
+	add_subwindow(new CaptureLengthTumbler(pwindow, textbox, textbox->get_x() + textbox->get_w(), ybix[0]));
+// Frames to buffer in device
+	sprintf(string, "%d", pwindow->thread->edl->session->vconfig_in->capture_length);
+	add_subwindow(textbox = new VideoCaptureLength(pwindow, string, maxw, ybix[1]));
+	add_subwindow(new CaptureLengthTumbler(pwindow, textbox, textbox->get_x() + textbox->get_w(), ybix[1]));
+
+// Size of captured frame
 	BC_TextBox *w_text, *h_text;
-	add_subwindow(new BC_Title(x, y, _("Size of captured frame:")));
-	x += 170;
+	x = maxw;
+	y = ybix[2];
 	add_subwindow(w_text = new RecordW(pwindow, x, y));
 	x += w_text->get_w() + 2;
 	add_subwindow(new BC_Title(x, y, "x"));
@@ -207,29 +225,28 @@ int RecordPrefs::create_objects()
 		x, 
 		y));
 
-	y += 30;
-	x = 5;
-	add_subwindow(new BC_Title(x, y, _("Frame rate for recording:")));
-	x += 180;
+	y = ybix[3];
+	x = maxw;
 	add_subwindow(textbox = new RecordFrameRate(pwindow, x, y));
 	x += 75;
 	add_subwindow(new FrameRatePulldown(mwindow, textbox, x, y));
-	y += 45;
+	y = ybix[4];
 	x = 5;
-	
-	add_subwindow(new BC_Title(x, y, _("Images"), LARGEFONT, BLACK));
+
+	add_subwindow(new BC_Bar(5, y,  get_w() - 10));
+	y += 5;
+
+	add_subwindow(new BC_Title(x, y, _("Images"), LARGEFONT, get_resources()->text_default));
 	y += 25;
-	add_subwindow(new StillImageUseDuration(pwindow, 
+	win = add_subwindow(new StillImageUseDuration(pwindow,
 		pwindow->thread->edl->session->si_useduration, 
 		x, 
 		y));
-	x += 260;
-	y += 5;
-	add_subwindow(new StillImageDuration(pwindow, x, y));
-	x += 80;
-	y += 5;
+	x += win->get_w() + 10;
+	win = add_subwindow(new StillImageDuration(pwindow, x, y));
+	x += win->get_w() + 10;
+	y += 3;
 	add_subwindow(new BC_Title(x, y, _("Seconds")));
-	y += 30;
 
 	return 0;
 }
@@ -245,26 +262,6 @@ int RecordWriteLength::handle_event()
 { 
 	pwindow->thread->edl->session->record_write_length = atol(get_text());
 	return 1; 
-}
-
-
-
-RecordRealTime::RecordRealTime(MWindow *mwindow, 
-	PreferencesWindow *pwindow, 
-	int x, 
-	int y, 
-	int value)
- : BC_CheckBox(x, 
- 	y, 
-	value, 
-	_("Record in realtime priority (root only)"))
-{ 
-	this->pwindow = pwindow; 
-}
-
-int RecordRealTime::handle_event()
-{
-	pwindow->thread->edl->session->real_time_record = get_value();
 }
 
 
@@ -346,8 +343,8 @@ int RecordChannels::handle_event()
 
 
 
-VideoWriteLength::VideoWriteLength(PreferencesWindow *pwindow, char *text, int y)
- : BC_TextBox(260, y, 100, 1, text)
+VideoWriteLength::VideoWriteLength(PreferencesWindow *pwindow, char *text, int x, int y)
+ : BC_TextBox(x, y, 100, 1, text)
 { 
 	this->pwindow = pwindow; 
 }
@@ -359,8 +356,8 @@ int VideoWriteLength::handle_event()
 }
 
 
-VideoCaptureLength::VideoCaptureLength(PreferencesWindow *pwindow, char *text, int y)
- : BC_TextBox(260, y, 100, 1, text)
+VideoCaptureLength::VideoCaptureLength(PreferencesWindow *pwindow, char *text, int x, int y)
+ : BC_TextBox(x, y, 100, 1, text)
 { 
 	this->pwindow = pwindow;
 }

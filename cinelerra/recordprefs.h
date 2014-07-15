@@ -27,7 +27,6 @@ class RecordMinDB;
 class RecordVUDB;
 class RecordVUInt;
 class RecordWriteLength;
-class RecordRealTime;
 class RecordChannels;
 
 #include "adeviceprefs.inc"
@@ -70,14 +69,6 @@ public:
  * };
  * 
  */
-class RecordRealTime : public BC_CheckBox
-{
-public:
-	RecordRealTime(MWindow *mwindow, PreferencesWindow *pwindow, int x, int y, int value);
-	int handle_event();
-	PreferencesWindow *pwindow;
-};
-
 
 class RecordSampleRate : public BC_TextBox
 {
@@ -108,7 +99,7 @@ public:
 class VideoWriteLength : public BC_TextBox
 {
 public:
-	VideoWriteLength(PreferencesWindow *pwindow, char *text, int y);
+	VideoWriteLength(PreferencesWindow *pwindow, char *text, int x, int y);
 	int handle_event();
 	PreferencesWindow *pwindow;
 };
@@ -116,7 +107,7 @@ public:
 class VideoCaptureLength : public BC_TextBox
 {
 public:
-	VideoCaptureLength(PreferencesWindow *pwindow, char *text, int y);
+	VideoCaptureLength(PreferencesWindow *pwindow, char *text, int x, int y);
 	int handle_event();
 	PreferencesWindow *pwindow;
 };
