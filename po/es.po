@@ -190,6 +190,7 @@ msgid "Height:"
 msgstr "Altura:"
 
 #: cinelerra/assetedit.C:446
+#, fuzzy
 msgid "Subtitle tracks:"
 msgstr "Pistas compartidas:"
 
@@ -222,6 +223,7 @@ msgid "Automatically Fix Interlacing"
 msgstr "Arreglar entrelazado automáticamente"
 
 #: cinelerra/assetedit.h:92
+#, fuzzy
 msgid " Path"
 msgstr "Ruta"
 
@@ -254,6 +256,7 @@ msgid "Match project size"
 msgstr "Ajustar al tamaño del proyecto"
 
 #: cinelerra/assetpopup.C:290
+#, fuzzy
 msgid "Match frame rate"
 msgstr "Velocidad de fotograma"
 
@@ -471,22 +474,27 @@ msgid "Delete"
 msgstr "Borrar"
 
 #: cinelerra/batchrender.C:1028
+#, fuzzy
 msgid "Save List"
 msgstr "Guardar como..."
 
 #: cinelerra/batchrender.C:1031
+#, fuzzy
 msgid "Save a Batch Render List"
 msgstr "Renderizado por lotes..."
 
 #: cinelerra/batchrender.C:1076
+#, fuzzy
 msgid "Save Batch Render List"
 msgstr "Renderizado por lotes..."
 
 #: cinelerra/batchrender.C:1077
+#, fuzzy
 msgid "Enter a Batch Render filename to save as:"
 msgstr "Introducir un nombre de fichero para guardar."
 
 #: cinelerra/batchrender.C:1114
+#, fuzzy
 msgid "Load List"
 msgstr "Cargar ficheros..."
 
@@ -495,10 +503,12 @@ msgid "Load a previously saved Batch Render List"
 msgstr ""
 
 #: cinelerra/batchrender.C:1163
+#, fuzzy
 msgid "Load Batch Render List"
 msgstr "Renderizado por lotes..."
 
 #: cinelerra/batchrender.C:1164
+#, fuzzy
 msgid "Enter a Batch Render filename to load from:"
 msgstr "Seleccionar el fichero de reverberación para cargar"
 
@@ -525,6 +535,7 @@ msgid "Look for file"
 msgstr "Buscar fichero"
 
 #: cinelerra/canvas.C:1053
+#, fuzzy
 msgid "Windowed"
 msgstr "Ventana"
 
@@ -565,6 +576,7 @@ msgid "Zoom 400%"
 msgstr "Zoom 400%"
 
 #: cinelerra/canvas.C:1121
+#, fuzzy
 msgid "Zoom Auto"
 msgstr "Zoom difuminado"
 
@@ -1060,6 +1072,7 @@ msgid "Fit selection to display ( f )"
 msgstr "Ajustar la selección a la vista ( f )"
 
 #: cinelerra/editpanel.C:972
+#, fuzzy
 msgid "Fit all autos to display ( Alt + f )"
 msgstr "Ajustar los keyframes a la vista ( Alt + f )"
 
@@ -1117,14 +1130,17 @@ msgid "Export EDL..."
 msgstr ""
 
 #: cinelerra/exportedl.C:356
+#, fuzzy
 msgid "No."
 msgstr "No"
 
 #: cinelerra/exportedl.C:357
+#, fuzzy
 msgid "Track name"
 msgstr "Monitorizar un solo fotograma"
 
 #: cinelerra/exportedl.C:396
+#, fuzzy
 msgid "Select a file to export to:"
 msgstr "Seleccionar el fichero donde grabar:"
 
@@ -1137,6 +1153,7 @@ msgid "Select a file to write to:"
 msgstr "Seleccionar un fichero para escribir:"
 
 #: cinelerra/exportedl.C:421
+#, fuzzy
 msgid "Select track to be exported:"
 msgstr "Selecciona un fichero a renderizar:"
 
@@ -1383,10 +1400,12 @@ msgid "YUV 4:2:0 Planar"
 msgstr "YUV 4:2:0 Planar"
 
 #: cinelerra/filemov.C:54
+#, fuzzy
 msgid "Component Y'CbCr 8-bit 4:2:2 (yuv2)"
 msgstr "Y'CbCr 8-bit 4:4:4 compuesto"
 
 #: cinelerra/filemov.C:55
+#, fuzzy
 msgid "Component Y'CbCr 8-bit 4:2:2 (2vuy)"
 msgstr "Y'CbCr 8-bit 4:4:4 compuesto"
 
@@ -1683,22 +1702,27 @@ msgid "RGBA uncompressed"
 msgstr "RGBA sin comprimir"
 
 #: cinelerra/fileyuv.C:397
+#, fuzzy
 msgid "Output Path:"
 msgstr "Ruta de salida:"
 
 #: cinelerra/fileyuv.C:405
+#, fuzzy
 msgid "Use Pipe:"
 msgstr "Usar muestras"
 
 #: cinelerra/fileyuv.C:416
+#, fuzzy
 msgid "Stream Header:"
 msgstr "Total heads:"
 
 #: cinelerra/fileyuv.C:420
+#, fuzzy
 msgid "Interlacing:"
 msgstr "Arreglar entrelazado:"
 
 #: cinelerra/fileyuv.C:427
+#, fuzzy
 msgid "Pipe Presets:"
 msgstr "Presets:"
 
@@ -1801,6 +1825,7 @@ msgid "No effect"
 msgstr "Sin efecto"
 
 #: cinelerra/interfaceprefs.C:59
+#, fuzzy
 msgid "Time Format"
 msgstr "Formato de fichero:"
 
@@ -1921,6 +1946,7 @@ msgid "smooth curve"
 msgstr ""
 
 #: cinelerra/keyframepopup.C:426
+#, fuzzy
 msgid "linear segments"
 msgstr "Eliminar fotogramas clave"
 
@@ -2493,6 +2519,7 @@ msgid "asset to size"
 msgstr "clip a tamaño"
 
 #: cinelerra/mwindowedit.C:200
+#, fuzzy
 msgid "asset to rate"
 msgstr "clip a tamaño"
 
@@ -2972,10 +2999,12 @@ msgid "Bilinear enlarge and bilinear reduce"
 msgstr "Bilinear enlarge and bilinear reduce"
 
 #: cinelerra/playbackprefs.C:462
+#, fuzzy
 msgid "Interpolate CR2 images"
 msgstr "Interpolación"
 
 #: cinelerra/playbackprefs.C:496
+#, fuzzy
 msgid "White balance CR2 images"
 msgstr "Balance de blancos"
 
@@ -3232,6 +3261,7 @@ msgid "Quit without pasting into project."
 msgstr "Salir sin pegarlo en el proyecto."
 
 #: cinelerra/recordgui.C:774
+#, fuzzy
 msgid "Quit and paste into project."
 msgstr "Salir sin pegarlo en el proyecto."
 
@@ -3296,6 +3326,7 @@ msgid "Label"
 msgstr "Etiqueta"
 
 #: cinelerra/recordgui.C:1163
+#, fuzzy
 msgid "Interrupt recording in progress?"
 msgstr "No se puede salir mientras se esté grabando."
 
@@ -3328,6 +3359,7 @@ msgid "Sample rate for recording:"
 msgstr "Velocidad de muestreo para grabrar:"
 
 #: cinelerra/recordprefs.C:120
+#, fuzzy
 msgid "Channels to record:"
 msgstr "Número de canales de audio a grabar:"
 
@@ -3442,18 +3474,22 @@ msgid "render"
 msgstr "renderizar"
 
 #: cinelerra/render.C:1157
+#, fuzzy
 msgid "Render range:"
 msgstr "Granja de render"
 
 #: cinelerra/render.C:1201
+#, fuzzy
 msgid "Project"
 msgstr "Proyector X"
 
 #: cinelerra/render.C:1212
+#, fuzzy
 msgid "Selection"
 msgstr "Seleccionar"
 
 #: cinelerra/render.C:1224
+#, fuzzy
 msgid "In/Out Points"
 msgstr "Punto de salida"
 
@@ -3512,14 +3548,17 @@ msgid "RenderProfile:"
 msgstr ""
 
 #: cinelerra/renderprofiles.C:96
+#, fuzzy
 msgid "Render profile:"
 msgstr "Granja de render"
 
 #: cinelerra/renderprofiles.C:248
+#, fuzzy
 msgid "Save profile"
 msgstr "Guardar reverberación"
 
 #: cinelerra/renderprofiles.C:287
+#, fuzzy
 msgid "Delete profile"
 msgstr "Borrar ficheros"
 
@@ -3754,10 +3793,12 @@ msgid "Length"
 msgstr "Longitud"
 
 #: cinelerra/vdeviceprefs.C:218
+#, fuzzy
 msgid "Host:"
 msgstr "Nombre de la máquina:"
 
 #: cinelerra/vdeviceprefs.C:225
+#, fuzzy
 msgid "Adaptor:"
 msgstr "Adaptativo"
 
@@ -3786,6 +3827,7 @@ msgid "Show transitions"
 msgstr "Mostrar transiciones"
 
 #: cinelerra/viewmenu.C:146
+#, fuzzy
 msgid "Plugin Autos"
 msgstr "Poner plugin"
 
@@ -3818,6 +3860,7 @@ msgid "Divide"
 msgstr "Dividir"
 
 #: cinelerra/vpatchgui.C:380
+#, fuzzy
 msgid "Max"
 msgstr "Max DB:"
 
@@ -3859,18 +3902,22 @@ msgid "Automation range minimum"
 msgstr ""
 
 #: cinelerra/zoombar.C:464
+#, fuzzy
 msgid "Automation Type"
 msgstr "Automatizado"
 
 #: cinelerra/zoombar.C:481
+#, fuzzy
 msgid "Audio Fade:"
 msgstr "Audio %d"
 
 #: cinelerra/zoombar.C:483
+#, fuzzy
 msgid "Video Fade:"
 msgstr "Video %d"
 
 #: cinelerra/zoombar.C:485
+#, fuzzy
 msgid "Zoom:"
 msgstr "Zoom 25%"
 
@@ -3879,18 +3926,22 @@ msgid "??"
 msgstr ""
 
 #: cinelerra/zoombar.C:521
+#, fuzzy
 msgid "Automation range"
 msgstr "Automatizado"
 
 #: cinelerra/zoombar.C:581
+#, fuzzy
 msgid "Selection start time"
 msgstr "Tiempo de inicio"
 
 #: cinelerra/zoombar.C:619
+#, fuzzy
 msgid "Selection length"
 msgstr "Seleccionar un efecto"
 
 #: cinelerra/zoombar.C:653
+#, fuzzy
 msgid "Selection end time"
 msgstr "Seleccionar un fichero"
 
@@ -4010,6 +4061,7 @@ msgid "Even field first"
 msgstr "Even field first"
 
 #: plugins/1080to540/1080to540.C:172
+#, fuzzy
 msgid "1080 to 540"
 msgstr "1080 a 480"
 
@@ -4148,10 +4200,12 @@ msgid "Reset"
 msgstr "Restaurar"
 
 #: plugins/bluebanana/bluebananawindow.C:1841
+#, fuzzy
 msgid " Mask Selection"
 msgstr "Seleccionar"
 
 #: plugins/bluebanana/bluebananawindow.C:1984
+#, fuzzy
 msgid "Color Selection"
 msgstr "Eliminar espacios de selección"
 
@@ -4160,14 +4214,17 @@ msgid " Mark Selected Areas"
 msgstr ""
 
 #: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
 msgid "hue"
 msgstr "Hue"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
 msgid "saturation"
 msgstr "Saturación"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
 msgid "value"
 msgstr "Valor"
 
@@ -4176,22 +4233,26 @@ msgid "fill"
 msgstr ""
 
 #: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
 msgid "red"
 msgstr "Rojo"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
 msgid "green"
 msgstr "Verde"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
 msgid "blue"
-msgstr "Azul"
+msgstr "Difuminado azul"
 
 #: plugins/bluebanana/bluebananawindow.C:2017
 msgid "pre-erode"
 msgstr ""
 
 #: plugins/bluebanana/bluebananawindow.C:2094
+#, fuzzy
 msgid " Invert Selection"
 msgstr "Telecine inverso"
 
@@ -4204,6 +4265,7 @@ msgid " Filter Active"
 msgstr ""
 
 #: plugins/bluedottheme/bluedottheme.C:721
+#, fuzzy
 msgid "-*-helvetica-medium-r-normal-*-14-*"
 msgstr "-*-helvetica-bold-r-normal-*-10-*-*-*-*-*-iso8859-1"
 
@@ -4354,26 +4416,32 @@ msgid "Chroma key"
 msgstr "Máscara"
 
 #: plugins/chromakeyhsv/chromakey.C:200
+#, fuzzy
 msgid "Key parameters:"
 msgstr "Bloquear parámetros"
 
 #: plugins/chromakeyhsv/chromakey.C:202
+#, fuzzy
 msgid "Hue Tolerance:"
 msgstr "Tolerancia de bitrate:"
 
 #: plugins/chromakeyhsv/chromakey.C:205
+#, fuzzy
 msgid "Min. Brightness:"
 msgstr "Brillo:"
 
 #: plugins/chromakeyhsv/chromakey.C:208
+#, fuzzy
 msgid "Max. Brightness:"
 msgstr "Brillo:"
 
 #: plugins/chromakeyhsv/chromakey.C:211
+#, fuzzy
 msgid "Saturation Offset:"
 msgstr "Saturación:"
 
 #: plugins/chromakeyhsv/chromakey.C:214
+#, fuzzy
 msgid "Min Saturation:"
 msgstr "Saturación:"
 
@@ -4382,34 +4450,42 @@ msgid "Mask tweaking:"
 msgstr ""
 
 #: plugins/chromakeyhsv/chromakey.C:222
+#, fuzzy
 msgid "In Slope:"
 msgstr "Slope"
 
 #: plugins/chromakeyhsv/chromakey.C:225
+#, fuzzy
 msgid "Out Slope:"
 msgstr "Slope"
 
 #: plugins/chromakeyhsv/chromakey.C:228
+#, fuzzy
 msgid "Alpha Offset:"
 msgstr "Syt Offset:"
 
 #: plugins/chromakeyhsv/chromakey.C:236
+#, fuzzy
 msgid "Spill light control:"
 msgstr "Mostrar controles"
 
 #: plugins/chromakeyhsv/chromakey.C:238
+#, fuzzy
 msgid "Spill Threshold:"
 msgstr "Threshold:"
 
 #: plugins/chromakeyhsv/chromakey.C:241
+#, fuzzy
 msgid "Spill Compensation:"
 msgstr "Parar la operación"
 
 #: plugins/chromakeyhsv/chromakey.C:456
+#, fuzzy
 msgid "Show Mask"
 msgstr "Mostrar clips"
 
 #: plugins/chromakeyhsv/chromakey.C:909
+#, fuzzy
 msgid "Chroma key (HSV)"
 msgstr "Máscara"
 
@@ -4419,11 +4495,11 @@ msgstr ""
 
 #: plugins/color3way/color3waywindow.C:141
 msgid "Shadows"
-msgstr "Sombras"
+msgstr ""
 
 #: plugins/color3way/color3waywindow.C:142
 msgid "Midtones"
-msgstr "Medios tonos"
+msgstr ""
 
 #: plugins/color3way/color3waywindow.C:143
 msgid "Highlights"
@@ -4436,7 +4512,7 @@ msgstr "Saturación:"
 
 #: plugins/color3way/color3waywindow.C:672
 msgid "Copy to all"
-msgstr "Copiar todo"
+msgstr ""
 
 #: plugins/color3way/color3waywindow.C:697
 #: plugins/colorbalance/colorbalancewindow.C:175
@@ -4527,6 +4603,7 @@ msgid "Decay secs:"
 msgstr "Retrasar segundos:"
 
 #: plugins/compressor/compressor.C:920
+#, fuzzy
 msgid "Trigger Type:"
 msgstr "Trigger:"
 
@@ -4573,6 +4650,7 @@ msgid "Deinterlace"
 msgstr "Desentrelazado"
 
 #: plugins/deinterlace/deinterwindow.C:62
+#, fuzzy
 msgid "Select deinterlacing mode"
 msgstr "Entrelazado de clips:"
 
@@ -4582,14 +4660,17 @@ msgid "Changed rows: %d\n"
 msgstr "Filas cambiadas: %d\n"
 
 #: plugins/deinterlace/deinterwindow.C:104
+#, fuzzy
 msgid "Keep top field"
 msgstr "Fotogramas a campos"
 
 #: plugins/deinterlace/deinterwindow.C:106
+#, fuzzy
 msgid "Keep bottom field"
 msgstr "Campo inferior primero"
 
 #: plugins/deinterlace/deinterwindow.C:110
+#, fuzzy
 msgid "Average top fields"
 msgstr "Fotogramas a campos"
 
@@ -4604,6 +4685,7 @@ msgid "Threshold"
 msgstr "Umbral:"
 
 #: plugins/deinterlace/deinterwindow.C:149
+#, fuzzy
 msgid "Bob Threshold"
 msgstr "Umbral:"
 
@@ -4616,10 +4698,12 @@ msgid "Duplicate one field"
 msgstr ""
 
 #: plugins/deinterlace/deinterwindow.C:280
+#, fuzzy
 msgid "Average one field"
 msgstr "Average odd lines"
 
 #: plugins/deinterlace/deinterwindow.C:282
+#, fuzzy
 msgid "Average both fields"
 msgstr "Average odd lines"
 
@@ -4628,10 +4712,12 @@ msgid "Bob & Weave"
 msgstr ""
 
 #: plugins/deinterlace/deinterwindow.C:286
+#, fuzzy
 msgid "Spatial field swap"
 msgstr "Intercambiar campos"
 
 #: plugins/deinterlace/deinterwindow.C:288
+#, fuzzy
 msgid "Temporal field swap"
 msgstr "Campo superior primero"
 
@@ -4887,18 +4973,22 @@ msgid "Block Y:"
 msgstr "Bloque Y:"
 
 #: plugins/findobject/findobjectwindow.C:150
+#, fuzzy
 msgid "Object layer:"
 msgstr "Capa de salida:"
 
 #: plugins/findobject/findobjectwindow.C:159
+#, fuzzy
 msgid "Replacement object layer:"
 msgstr "Reemplazar proyecto actual"
 
 #: plugins/findobject/findobjectwindow.C:168
+#, fuzzy
 msgid "Output/scene layer:"
 msgstr "Capa de salida:"
 
 #: plugins/findobject/findobjectwindow.C:178
+#, fuzzy
 msgid "Object blend amount:"
 msgstr "Escala por cantidad:"
 
@@ -4915,18 +5005,22 @@ msgid "Camshift SMIN:"
 msgstr ""
 
 #: plugins/findobject/findobjectwindow.C:342
+#, fuzzy
 msgid "Draw border"
 msgstr "Dibujar vectores"
 
 #: plugins/findobject/findobjectwindow.C:367
+#, fuzzy
 msgid "Draw keypoints"
 msgstr "Dibujar pivote"
 
 #: plugins/findobject/findobjectwindow.C:390
+#, fuzzy
 msgid "Replace object"
 msgstr "Reemplazar proyecto actual"
 
 #: plugins/findobject/findobjectwindow.C:415
+#, fuzzy
 msgid "Draw object border"
 msgstr "Dibujar vectores"
 
@@ -4996,6 +5090,7 @@ msgid "Gain"
 msgstr "Ganancia"
 
 #: plugins/gamma/gamma.C:397
+#, fuzzy
 msgid "Gamma"
 msgstr "Gamma:"
 
@@ -5014,6 +5109,7 @@ msgstr "Automático"
 
 #: plugins/gamma/gammawindow.C:284 plugins/histogram/histogramwindow.C:795
 #: plugins/threshold/thresholdwindow.C:102
+#, fuzzy
 msgid "Plot histogram"
 msgstr "Histograma"
 
@@ -5138,14 +5234,17 @@ msgid "Interpolate"
 msgstr "Interpolación"
 
 #: plugins/interpolate/interpolate.C:103
+#, fuzzy
 msgid "X Offset:"
-msgstr "X Offset:"
+msgstr "Syt Offset:"
 
 #: plugins/interpolate/interpolate.C:109
+#, fuzzy
 msgid "Y Offset:"
-msgstr "Y Offset:"
+msgstr "Syt Offset:"
 
 #: plugins/interpolate/interpolate.C:179
+#, fuzzy
 msgid "Interpolate Pixels"
 msgstr "Interpolación"
 
@@ -5206,8 +5305,9 @@ msgid "Automatic IVTC"
 msgstr "Automatic IVTC"
 
 #: plugins/lens/lens.C:301 plugins/lens/lens.C:316
+#, fuzzy
 msgid "Sphere Stretch"
-msgstr ""
+msgstr "Stretch"
 
 #: plugins/lens/lens.C:303 plugins/lens/lens.C:319
 msgid "Sphere Shrink"
@@ -5227,18 +5327,22 @@ msgid "Stretch"
 msgstr "Stretch"
 
 #: plugins/lens/lens.C:494
+#, fuzzy
 msgid "R Field of View:"
 msgstr "Código de tiempo:"
 
 #: plugins/lens/lens.C:495
+#, fuzzy
 msgid "G Field of View:"
 msgstr "Código de tiempo:"
 
 #: plugins/lens/lens.C:496
+#, fuzzy
 msgid "B Field of View:"
 msgstr "Código de tiempo:"
 
 #: plugins/lens/lens.C:497
+#, fuzzy
 msgid "A Field of View:"
 msgstr "Código de tiempo:"
 
@@ -5247,6 +5351,7 @@ msgid "Lock"
 msgstr ""
 
 #: plugins/lens/lens.C:531
+#, fuzzy
 msgid "Aspect Ratio:"
 msgstr "Ratio de Aspecto:"
 
@@ -5256,6 +5361,7 @@ msgid "Radius:"
 msgstr "Radio:"
 
 #: plugins/lens/lens.C:631
+#, fuzzy
 msgid "Draw center"
 msgstr "Dibujar vectores"
 
@@ -5293,10 +5399,12 @@ msgid "Linear Blur"
 msgstr "Difuminado linear"
 
 #: plugins/liveaudio/liveaudio.C:353
+#, fuzzy
 msgid "Live Audio"
 msgstr "Invertir Audio"
 
 #: plugins/livevideo/livevideo.C:563
+#, fuzzy
 msgid "Live Video"
 msgstr "Invertir Video"
 
@@ -5317,6 +5425,7 @@ msgid "Loop video"
 msgstr "Video continuo"
 
 #: plugins/motionblur/motionblur.C:322
+#, fuzzy
 msgid "Motion Blur"
 msgstr "Movimiento"
 
@@ -5357,6 +5466,7 @@ msgid "Rotation search steps:"
 msgstr "Rotation search steps:"
 
 #: plugins/motion/motionwindow.C:134
+#, fuzzy
 msgid "Translation direction:"
 msgstr "Dirección de la perspectiva:"
 
@@ -5457,12 +5567,13 @@ msgid "Horizontal only"
 msgstr "Solo horizontal"
 
 #: plugins/motion/motionwindow.C:1029
+#, fuzzy
 msgid "Vertical only"
-msgstr "Solo vertical"
+msgstr "Vertical"
 
 #: plugins/motion/motionwindow.C:1030
 msgid "Both"
-msgstr "Ambos"
+msgstr ""
 
 #: plugins/normalize/normalize.C:58 plugins/synthesizer/synthesizer.C:1201
 msgid "Normalize"
@@ -5595,21 +5706,25 @@ msgstr "ReframeRT"
 
 #: plugins/reroute/reroute.C:158
 msgid "replace Target"
-msgstr "reemplace Objetivo"
+msgstr ""
 
 #: plugins/reroute/reroute.C:159
+#, fuzzy
 msgid "Components only"
 msgstr "Video compuesto"
 
 #: plugins/reroute/reroute.C:160
+#, fuzzy
 msgid "Alpha replace"
-msgstr "Alpha reemplace"
+msgstr "Alpha"
 
 #: plugins/reroute/reroute.C:207
+#, fuzzy
 msgid "Target track:"
 msgstr "Pistas compartidas:"
 
 #: plugins/reroute/reroute.C:216
+#, fuzzy
 msgid "Operation:"
 msgstr "Ratio de Aspecto:"
 
@@ -5703,10 +5818,12 @@ msgid "RGB - 601"
 msgstr "RGB - 601"
 
 #: plugins/rgb601/rgb601window.C:65
+#, fuzzy
 msgid "RGB -> 601 compression"
 msgstr "RGB comprimido"
 
 #: plugins/rgb601/rgb601window.C:72
+#, fuzzy
 msgid "601 -> RGB expansion"
 msgstr "601 -> RGB"
 
@@ -6034,28 +6151,34 @@ msgid "Prime"
 msgstr "Prime"
 
 #: plugins/threshold/thresholdwindow.C:310
+#, fuzzy
 msgid "Low Color"
 msgstr "Color:"
 
 #: plugins/threshold/thresholdwindow.C:330
+#, fuzzy
 msgid "Mid Color"
 msgstr "Color:"
 
 #: plugins/threshold/thresholdwindow.C:350
+#, fuzzy
 msgid "High Color"
 msgstr "Color:"
 
 #: plugins/threshold/thresholdwindow.C:370
+#, fuzzy
 msgid "Low color"
-msgstr "Bajo color"
+msgstr "Obtener color"
 
 #: plugins/threshold/thresholdwindow.C:389
+#, fuzzy
 msgid "Mid color"
-msgstr "Medio color"
+msgstr "Obtener color"
 
 #: plugins/threshold/thresholdwindow.C:408
+#, fuzzy
 msgid "High color"
-msgstr "Alto color"
+msgstr "Obtener color"
 
 #: plugins/threshold/thresholdwindow.C:482
 msgid "Min:"
@@ -6067,7 +6190,7 @@ msgstr ""
 
 #: plugins/timeavg/timeavg.C:111
 msgid "Time Average"
-msgstr "Tiempo promedio"
+msgstr "Time average"
 
 #: plugins/timeavg/timeavgwindow.C:114
 msgid "Accumulate"
@@ -6079,9 +6202,10 @@ msgstr "O inclusivo"
 
 #: plugins/timefront/timefront.C:161
 msgid "Type:"
-msgstr "Tipo:"
+msgstr ""
 
 #: plugins/timefront/timefront.C:171
+#, fuzzy
 msgid "Time range:"
 msgstr "Time average"
 
@@ -6098,14 +6222,17 @@ msgid "Alpha as timefront"
 msgstr ""
 
 #: plugins/timefront/timefront.C:426
+#, fuzzy
 msgid "Intensity"
 msgstr "Usar intensidad"
 
 #: plugins/timefront/timefront.C:428
+#, fuzzy
 msgid "Alpha mask"
 msgstr "Alpha"
 
 #: plugins/timefront/timefront.C:610
+#, fuzzy
 msgid "Inversion"
 msgstr "Invertir Audio"
 
@@ -6283,6 +6410,7 @@ msgid "HDTV"
 msgstr ""
 
 #: plugins/videoscope/videoscope.C:759
+#, fuzzy
 msgid "Inverse"
 msgstr "Invertir"
 
@@ -6577,12 +6705,14 @@ msgstr "Zoom difuminado"
 #~ msgid "Look for personal plugins here"
 #~ msgstr "Look for personal plugins here"
 
+#, fuzzy
 #~ msgid "Personal Plugin Path"
 #~ msgstr "Ruta de plugins personal"
 
 #~ msgid "End:"
 #~ msgstr "Fin:"
 
+#, fuzzy
 #~ msgid "Device Transport:"
 #~ msgstr "Device Transport:"
 
@@ -6643,21 +6773,26 @@ msgstr "Zoom difuminado"
 #~ msgid "BC_Theme::BC_Theme: can't open /proc/self/cmdline.\n"
 #~ msgstr "BC_Theme::BC_Theme: no se puede abrir /proc/self/cmdline.\n"
 
+#, fuzzy
 #~ msgid "Theme::get_image: %s is a directory.\n"
 #~ msgstr "Theme::get_image: %s es un directorio.\n"
 
 #~ msgid "Theme::get_image: %s when opening %s\n"
 #~ msgstr "Theme::get_image: %s al abrir %s\n"
 
+#, fuzzy
 #~ msgid "BC_Theme::get_image_data fseek %s\n"
 #~ msgstr "Theme::get_image: fseek %s\n"
 
+#, fuzzy
 #~ msgid "BC_Theme::get_image_data fread 1 %s\n"
 #~ msgstr "Theme::get_image: fread 1 %s\n"
 
+#, fuzzy
 #~ msgid "BC_Theme::get_image_data fread 2 %s\n"
 #~ msgstr "Theme::get_image: %s al abrir %s\n"
 
+#, fuzzy
 #~ msgid "Hello world"
 #~ msgstr "Hola mundo"
 
@@ -6671,9 +6806,11 @@ msgstr "Zoom difuminado"
 #~ msgid "Preview secs:"
 #~ msgstr "Segundos de previo:"
 
+#, fuzzy
 #~ msgid "First frame is first field"
 #~ msgstr "El primer fotograma es el primer campo"
 
+#, fuzzy
 #~ msgid "Second frame is first field"
 #~ msgstr "El segundo fotograma es el primer campo"
 

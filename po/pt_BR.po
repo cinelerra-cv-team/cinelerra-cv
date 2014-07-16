@@ -4162,10 +4162,12 @@ msgid "Reset"
 msgstr "Zerar"
 
 #: plugins/bluebanana/bluebananawindow.C:1841
+#, fuzzy
 msgid " Mask Selection"
 msgstr "Seleção"
 
 #: plugins/bluebanana/bluebananawindow.C:1984
+#, fuzzy
 msgid "Color Selection"
 msgstr "Eliminar espaços de seleção"
 
@@ -4174,14 +4176,17 @@ msgid " Mark Selected Areas"
 msgstr ""
 
 #: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
 msgid "hue"
 msgstr "Tom"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
 msgid "saturation"
 msgstr "Saturação"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
 msgid "value"
 msgstr "Valor"
 
@@ -4190,14 +4195,17 @@ msgid "fill"
 msgstr ""
 
 #: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
 msgid "red"
 msgstr "Vermelho"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
 msgid "green"
 msgstr "Verde"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
+#, fuzzy
 msgid "blue"
 msgstr "Desfocar azul"
 
@@ -4206,6 +4214,7 @@ msgid "pre-erode"
 msgstr ""
 
 #: plugins/bluebanana/bluebananawindow.C:2094
+#, fuzzy
 msgid " Invert Selection"
 msgstr "Telecine Inverso"
 
@@ -4218,6 +4227,7 @@ msgid " Filter Active"
 msgstr ""
 
 #: plugins/bluedottheme/bluedottheme.C:721
+#, fuzzy
 msgid "-*-helvetica-medium-r-normal-*-14-*"
 msgstr "-*-helvetica-medium-r-normal-*-10-*"
 
@@ -4881,6 +4891,7 @@ msgid "Algorithm:"
 msgstr ""
 
 #: plugins/findobject/findobjectwindow.C:70
+#, fuzzy
 msgid ""
 "Search radius:\n"
 "(W/H Percent of image)"
@@ -4889,6 +4900,7 @@ msgstr ""
 "(Porcentagem da imagem A/L)"
 
 #: plugins/findobject/findobjectwindow.C:83
+#, fuzzy
 msgid ""
 "Object size:\n"
 "(W/H Percent of image)"
@@ -4905,18 +4917,22 @@ msgid "Block Y:"
 msgstr "Bloco Y:"
 
 #: plugins/findobject/findobjectwindow.C:150
+#, fuzzy
 msgid "Object layer:"
 msgstr "Camada de saída:"
 
 #: plugins/findobject/findobjectwindow.C:159
+#, fuzzy
 msgid "Replacement object layer:"
 msgstr "Substituir projeto atual"
 
 #: plugins/findobject/findobjectwindow.C:168
+#, fuzzy
 msgid "Output/scene layer:"
 msgstr "Camada de saída:"
 
 #: plugins/findobject/findobjectwindow.C:178
+#, fuzzy
 msgid "Object blend amount:"
 msgstr "Escala por amostragem:"
 
@@ -4933,18 +4949,22 @@ msgid "Camshift SMIN:"
 msgstr ""
 
 #: plugins/findobject/findobjectwindow.C:342
+#, fuzzy
 msgid "Draw border"
 msgstr "Desenhar vetores"
 
 #: plugins/findobject/findobjectwindow.C:367
+#, fuzzy
 msgid "Draw keypoints"
 msgstr "Desenhar pivô"
 
 #: plugins/findobject/findobjectwindow.C:390
+#, fuzzy
 msgid "Replace object"
 msgstr "Substituir projeto atual"
 
 #: plugins/findobject/findobjectwindow.C:415
+#, fuzzy
 msgid "Draw object border"
 msgstr "Desenhar vetores"
 
@@ -5018,6 +5038,7 @@ msgid "Gamma"
 msgstr ""
 
 #: plugins/gamma/gammawindow.C:61
+#, fuzzy
 msgid "Maximum:"
 msgstr "Máximo"
 
@@ -5036,6 +5057,7 @@ msgid "Plot histogram"
 msgstr "Trama do Histograma"
 
 #: plugins/gamma/gammawindow.C:300
+#, fuzzy
 msgid "Use Color Picker"
 msgstr "Usar selecionador de cor"
 
@@ -5224,6 +5246,7 @@ msgid "Automatic IVTC"
 msgstr "IVTC automático"
 
 #: plugins/lens/lens.C:301 plugins/lens/lens.C:316
+#, fuzzy
 msgid "Sphere Stretch"
 msgstr "Esticar"
 
@@ -5245,18 +5268,22 @@ msgid "Stretch"
 msgstr "Esticar"
 
 #: plugins/lens/lens.C:494
+#, fuzzy
 msgid "R Field of View:"
 msgstr "Deslocamento fixo: "
 
 #: plugins/lens/lens.C:495
+#, fuzzy
 msgid "G Field of View:"
 msgstr "Deslocamento fixo: "
 
 #: plugins/lens/lens.C:496
+#, fuzzy
 msgid "B Field of View:"
 msgstr "Deslocamento fixo: "
 
 #: plugins/lens/lens.C:497
+#, fuzzy
 msgid "A Field of View:"
 msgstr "Deslocamento fixo: "
 
@@ -5265,6 +5292,7 @@ msgid "Lock"
 msgstr ""
 
 #: plugins/lens/lens.C:531
+#, fuzzy
 msgid "Aspect Ratio:"
 msgstr "Razão de aspecto"
 
@@ -5274,6 +5302,7 @@ msgid "Radius:"
 msgstr "Raio:"
 
 #: plugins/lens/lens.C:631
+#, fuzzy
 msgid "Draw center"
 msgstr "Desenhar vetores"
 
@@ -5311,6 +5340,7 @@ msgid "Linear Blur"
 msgstr "Desfoque Linear"
 
 #: plugins/liveaudio/liveaudio.C:353
+#, fuzzy
 msgid "Live Audio"
 msgstr "Inverter Áudio"
 
@@ -5624,18 +5654,22 @@ msgid "replace Target"
 msgstr ""
 
 #: plugins/reroute/reroute.C:159
+#, fuzzy
 msgid "Components only"
 msgstr "Suavizar apenas"
 
 #: plugins/reroute/reroute.C:160
+#, fuzzy
 msgid "Alpha replace"
 msgstr "Máscara Alfa"
 
 #: plugins/reroute/reroute.C:207
+#, fuzzy
 msgid "Target track:"
 msgstr "Trilhas compartilhadas:"
 
 #: plugins/reroute/reroute.C:216
+#, fuzzy
 msgid "Operation:"
 msgstr "Razão de aspecto"
 
