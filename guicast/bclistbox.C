@@ -228,6 +228,8 @@ int BC_ListBoxToggle::cursor_leave_event(int *redraw_toggles)
 		state = BC_ListBoxToggle::TOGGLE_CHECKED;
 	else
 		state = BC_ListBoxToggle::TOGGLE_UP;
+
+    return 0;
 }
 
 int BC_ListBoxToggle::button_press_event()
