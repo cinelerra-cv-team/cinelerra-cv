@@ -150,7 +150,7 @@ msgstr "Campiona:"
 
 #: cinelerra/assetedit.C:339 cinelerra/fileformat.C:98
 msgid "Header length:"
-msgstr "Intestazione:"
+msgstr "Lunghezza intestazione:"
 
 #: cinelerra/assetedit.C:351 cinelerra/fileformat.C:105
 #: cinelerra/filesndfile.C:417
@@ -253,11 +253,11 @@ msgstr "Incolla"
 
 #: cinelerra/assetpopup.C:270
 msgid "Match project size"
-msgstr "Completa dimensione progetto"
+msgstr "Eguaglia dimensione progetto"
 
 #: cinelerra/assetpopup.C:290
 msgid "Match frame rate"
-msgstr "Freq.Frame:"
+msgstr "Eguaglia frame/rate:"
 
 #: cinelerra/assetpopup.C:316
 msgid "Remove from project"
@@ -389,15 +389,15 @@ msgstr "il File esiste"
 #: cinelerra/record.C:705
 #, c-format
 msgid "OK"
-msgstr "OK "
+msgstr "OK"
 
 #: cinelerra/batch.C:171 cinelerra/recordgui.C:1365
 msgid "Untimed"
-msgstr "Senza Contatore"
+msgstr "Senza contatore"
 
 #: cinelerra/batch.C:174 cinelerra/recordgui.C:1366
 msgid "Timed"
-msgstr "Con Contatore"
+msgstr "Con contatore"
 
 #: cinelerra/batch.C:183 cinelerra/batchrender.C:889 cinelerra/file.C:1334
 #: cinelerra/filemov.C:1245 cinelerra/loadmode.C:84
@@ -525,7 +525,7 @@ msgstr ""
 
 #: cinelerra/browsebutton.C:52
 msgid "Look for file"
-msgstr "Controlla file"
+msgstr "Cerca file"
 
 #: cinelerra/canvas.C:1053
 msgid "Windowed"
@@ -827,7 +827,7 @@ msgstr "punto della maschera"
 
 #: cinelerra/cwindowgui.C:2989
 msgid "camera"
-msgstr "telecamera "
+msgstr "telecamera"
 
 #: cinelerra/cwindowgui.C:2993
 msgid "projector"
@@ -1082,7 +1082,7 @@ msgstr "Genera i fotogrammi chiave al volo"
 
 #: cinelerra/editpanel.C:1090
 msgid "Lock labels from moving"
-msgstr "Blocca movimento etichette  "
+msgstr "Blocca movimento etichette"
 
 #: cinelerra/editpopup.C:93
 msgid "Attach effect..."
@@ -1135,7 +1135,7 @@ msgstr "Seleziona un file registrazione per:"
 
 #: cinelerra/exportedl.C:415 cinelerra/formattools.C:139
 msgid "Output to file"
-msgstr "File d'Uscita"
+msgstr "File d'uscita"
 
 #: cinelerra/exportedl.C:416 cinelerra/formattools.C:140
 msgid "Select a file to write to:"
@@ -1453,7 +1453,7 @@ msgstr "Creato con Cinelerra per Linux"
 
 #: cinelerra/filemov.C:1481
 msgid "Bits per channel:"
-msgstr "Bit per Canale:"
+msgstr "Bit per canale:"
 
 #: cinelerra/filemov.C:1493 cinelerra/filesndfile.C:411
 msgid "Dither"
@@ -1585,7 +1585,7 @@ msgstr "distanza fotogrammi P:"
 #: plugins/deinterlace/deinterwindow.C:124 plugins/fieldframe/fieldframe.C:246
 #: plugins/framefield/framefield.C:268
 msgid "Bottom field first"
-msgstr "area inferiore prima"
+msgstr "Area inferiore prima"
 
 #: cinelerra/filempeg.C:1844
 msgid "Progressive frames"
@@ -1931,7 +1931,7 @@ msgstr "Cancella fotogrammi chiave"
 
 #: cinelerra/keyframepopup.C:427
 msgid "tangent edit"
-msgstr "Modifica tangente"
+msgstr "modifica tangente"
 
 #: cinelerra/keyframepopup.C:428
 msgid "disjoint edit"
@@ -2495,7 +2495,7 @@ msgid ""
 "it can't be rendered by OpenGL."
 msgstr ""
 "Le dimensioni di questo progetto non sono multiple\n"
-"quindi non può essere renderizzato da OpenGL."
+" di 4 quindi non può essere renderizzato da OpenGL."
 
 #: cinelerra/mwindowedit.C:180
 msgid "asset to size"
@@ -2511,7 +2511,7 @@ msgstr "cancella"
 
 #: cinelerra/mwindowedit.C:252
 msgid "straighten curves"
-msgstr "attenua curve"
+msgstr "reddrizza curve"
 
 #: cinelerra/mwindowedit.C:268
 msgid "clear keyframes"
@@ -2523,7 +2523,7 @@ msgstr "cancella fotogrammi chiave predefiniti"
 
 #: cinelerra/mwindowedit.C:299
 msgid "clear labels"
-msgstr "cancella"
+msgstr "cancella etichette"
 
 #: cinelerra/mwindowedit.C:316
 msgid "concatenate tracks"
@@ -2637,7 +2637,7 @@ msgstr "transizione"
 #: cinelerra/mwindowedit.C:1696 cinelerra/mwindowedit.C:1716
 #, c-format
 msgid "No default transition %s found."
-msgstr "transizione predefinita %s non trovata."
+msgstr "Transizione predefinita %s non trovata."
 
 #: cinelerra/mwindowedit.C:1785
 msgid "resize track"
@@ -2645,11 +2645,11 @@ msgstr "ridimensiona traccia"
 
 #: cinelerra/mwindowedit.C:1808
 msgid "in point"
-msgstr "Punto d'entrata"
+msgstr "punto d'entrata"
 
 #: cinelerra/mwindowedit.C:1877
 msgid "out point"
-msgstr "Punto d'uscita"
+msgstr "punto d'uscita"
 
 #: cinelerra/mwindowedit.C:1968
 msgid "splice"
@@ -2675,7 +2675,7 @@ msgstr "etichetta"
 
 #: cinelerra/mwindowedit.C:2115
 msgid "trim selection"
-msgstr "Accorcia selezione"
+msgstr "accorcia selezione"
 
 #: cinelerra/mwindowedit.C:2183
 msgid "new folder"
@@ -2748,11 +2748,11 @@ msgstr "esegui correzione"
 
 #: cinelerra/patchgui.C:308
 msgid "mute patch"
-msgstr "correzione muto"
+msgstr "muta correzione"
 
 #: cinelerra/patchgui.C:314
 msgid "record patch"
-msgstr "correzione registrazione"
+msgstr "registra correzione"
 
 #: cinelerra/patchgui.C:318
 msgid "gang patch"
@@ -2808,7 +2808,7 @@ msgstr "Elaborazione Background (solo Video)"
 
 #: cinelerra/performanceprefs.C:109
 msgid "Frames per background rendering job:"
-msgstr "Fotogrammi elaborati in Background:"
+msgstr "Fotogrammi elaborati in background:"
 
 #: cinelerra/performanceprefs.C:115
 msgid "Frames to preroll background:"
@@ -2862,7 +2862,7 @@ msgstr "Freq.Fotogrammi"
 
 #: cinelerra/performanceprefs.C:302
 msgid "Use background rendering"
-msgstr "Usa Elaborazione in Background"
+msgstr "Usa elaborazione in Bbackground"
 
 #: cinelerra/performanceprefs.C:435
 msgid "Use render farm"
@@ -2935,7 +2935,7 @@ msgstr "Equazione ridimensionamento:"
 
 #: cinelerra/playbackprefs.C:176
 msgid "Preload buffer for Quicktime:"
-msgstr "Memoria di precarimento Quicktime:"
+msgstr "Memoria di precaricamento Quicktime:"
 
 #: cinelerra/playbackprefs.C:182
 msgid "DVD Subtitle to display:"
@@ -2952,7 +2952,7 @@ msgstr ":"
 
 #: cinelerra/playbackprefs.C:234
 msgid "Video Driver:"
-msgstr "Usa Driver:"
+msgstr "Video Driver:"
 
 #: cinelerra/playbackprefs.C:328
 msgid "View follows playback"
@@ -3256,7 +3256,7 @@ msgstr "Riavvolgi file corrente e cancella."
 
 #: cinelerra/recordgui.C:811
 msgid "Fill frames"
-msgstr "Riempi Fotogrammi"
+msgstr "Riempi fotogrammi"
 
 #: cinelerra/recordgui.C:815
 msgid "Write extra frames when behind."
@@ -3603,7 +3603,7 @@ msgstr "impostare formato"
 
 #: cinelerra/setformat.C:377
 msgid "Channel positions:"
-msgstr "Posizione del Canale:"
+msgstr "Posizione del canale:"
 
 #: cinelerra/setformat.C:449
 msgid "W Ratio:"
@@ -3891,7 +3891,7 @@ msgstr "Dissolv. Audio:"
 
 #: cinelerra/zoombar.C:483
 msgid "Video Fade:"
-msgstr "Dissolvenza Video:"
+msgstr "Dissolv. Video:"
 
 #: cinelerra/zoombar.C:485
 msgid "Zoom:"
@@ -3907,15 +3907,15 @@ msgstr "Scalatura automatica"
 
 #: cinelerra/zoombar.C:581
 msgid "Selection start time"
-msgstr "Seleziona un file"
+msgstr "Seleziona inizio"
 
 #: cinelerra/zoombar.C:619
 msgid "Selection length"
-msgstr "Seleziona un effetto"
+msgstr "Seleziona lunghezza"
 
 #: cinelerra/zoombar.C:653
 msgid "Selection end time"
-msgstr "Seleziona un file"
+msgstr "Seleziona fine"
 
 #: guicast/bccapture.C:65
 #, c-format
@@ -4030,7 +4030,7 @@ msgstr "area dispari prima"
 
 #: plugins/1080to540/1080to540.C:101 plugins/720to480/720to480.C:79
 msgid "Even field first"
-msgstr "area pari prima"
+msgstr "Area pari prima"
 
 #: plugins/1080to540/1080to540.C:172
 msgid "1080 to 540"
@@ -4058,7 +4058,7 @@ msgstr "(deseleziona per rendering veloce)"
 
 #: plugins/C41/c41.C:298
 msgid "Computed negfix values:"
-msgstr "valori negfix calcolati:"
+msgstr "Valori negfix calcolati:"
 
 #: plugins/C41/c41.C:301 plugins/C41/c41.C:342
 msgid "Min R:"
@@ -4375,7 +4375,7 @@ msgstr "Colore interna"
 
 #: plugins/chromakey/chromakey.C:582
 msgid "Chroma key"
-msgstr " Chiave comatica"
+msgstr "Chiave cromatica"
 
 #: plugins/chromakeyhsv/chromakey.C:200
 msgid "Key parameters:"
@@ -4403,7 +4403,7 @@ msgstr "Min Saturazione:"
 
 #: plugins/chromakeyhsv/chromakey.C:220
 msgid "Mask tweaking:"
-msgstr "Maschera Distorsione:"
+msgstr "Maschera distorsione:"
 
 #: plugins/chromakeyhsv/chromakey.C:222
 msgid "In Slope:"
@@ -4662,7 +4662,7 @@ msgstr "Area scambio temporale"
 #: plugins/deinterlace/deinterwindow.C:290 plugins/motion/motionwindow.C:883
 #: plugins/motion/motionwindow.C:903
 msgid "Do Nothing"
-msgstr "Non fare Nulla"
+msgstr "Non fare nulla"
 
 #: plugins/delayaudio/delayaudio.C:72
 msgid "Delay audio"
@@ -5676,7 +5676,7 @@ msgstr "ms prima della riflessione:"
 
 #: plugins/reverb/reverbwindow.C:65
 msgid "First reflection level:"
-msgstr "prima livello di riflessione:"
+msgstr "Primo livello di riflessione:"
 
 #: plugins/reverb/reverbwindow.C:67
 msgid "Last reflection level:"
@@ -5692,11 +5692,11 @@ msgstr "ms di riflessione:"
 
 #: plugins/reverb/reverbwindow.C:73
 msgid "Start band for lowpass:"
-msgstr "Inizio banda passa basso:"
+msgstr "Inizio banda passa-basso:"
 
 #: plugins/reverb/reverbwindow.C:75
 msgid "End band for lowpass:"
-msgstr "fine banda passa basso:"
+msgstr "Fine banda passa-basso:"
 
 #: plugins/reverb/reverbwindow.C:347
 msgid "Load..."
@@ -5756,7 +5756,7 @@ msgstr "Rotazione"
 
 #: plugins/rotate/rotate.C:520
 msgid "Degrees"
-msgstr "gradi"
+msgstr "Gradi"
 
 #: plugins/rotate/rotate.C:527
 msgid "Pivot (x,y):"
@@ -5898,7 +5898,7 @@ msgstr "Fuori Y:"
 
 #: plugins/svg/svgwin.C:180
 msgid "New/Open SVG..."
-msgstr "nuova/aprire SVG..."
+msgstr "Nuova/Aprire SVG..."
 
 #: plugins/svg/svgwin.C:360
 #, c-format
@@ -6070,27 +6070,27 @@ msgstr "Prima"
 
 #: plugins/threshold/thresholdwindow.C:310
 msgid "Low Color"
-msgstr "Colore:"
+msgstr "Basso Colore:"
 
 #: plugins/threshold/thresholdwindow.C:330
 msgid "Mid Color"
-msgstr "Colore:"
+msgstr "Medio Colore:"
 
 #: plugins/threshold/thresholdwindow.C:350
 msgid "High Color"
-msgstr "Colore:"
+msgstr "Alto Colore:"
 
 #: plugins/threshold/thresholdwindow.C:370
 msgid "Low color"
-msgstr "Ottieni colore"
+msgstr "Basso colore"
 
 #: plugins/threshold/thresholdwindow.C:389
 msgid "Mid color"
-msgstr "Ottieni colore"
+msgstr "Medio colore"
 
 #: plugins/threshold/thresholdwindow.C:408
 msgid "High color"
-msgstr "Ottieni colore"
+msgstr "Alto colore"
 
 #: plugins/threshold/thresholdwindow.C:482
 msgid "Min:"
@@ -6098,7 +6098,7 @@ msgstr "Min"
 
 #: plugins/threshold/thresholdwindow.C:495
 msgid "Max:"
-msgstr "Max DB:"
+msgstr "Max:"
 
 #: plugins/timeavg/timeavg.C:111
 msgid "Time Average"
@@ -6118,7 +6118,7 @@ msgstr "Testo:"
 
 #: plugins/timefront/timefront.C:171
 msgid "Time range:"
-msgstr "Tempo Medio:"
+msgstr "Intervallo tempo :"
 
 #: plugins/timefront/timefront.C:298
 msgid "As timefront use:"
@@ -6154,7 +6154,7 @@ msgstr "CronoFronte"
 
 #: plugins/timestretch/timestretch.C:339
 msgid "Time stretch"
-msgstr "Allunga Tempo"
+msgstr "Allunga tempo"
 
 #: plugins/titler/title.C:81
 #, c-format
@@ -6187,11 +6187,11 @@ msgstr "Senza movimento"
 
 #: plugins/titler/title.C:2036
 msgid "Bottom to top"
-msgstr "Da inferiore a cima"
+msgstr "Dal basso in alto"
 
 #: plugins/titler/title.C:2037
 msgid "Top to bottom"
-msgstr "Da cima a inferiore"
+msgstr "Dall'alto in basso"
 
 #: plugins/titler/title.C:2038
 msgid "Right to left"
@@ -6199,7 +6199,7 @@ msgstr "Da destra a sinistra"
 
 #: plugins/titler/title.C:2039
 msgid "Left to right"
-msgstr "da sinistra a destra"
+msgstr "Da sinistra a destra"
 
 #: plugins/titler/titlewindow.C:190
 msgid "Font:"
@@ -6267,7 +6267,7 @@ msgstr "Cicla"
 
 #: plugins/titler/titlewindow.C:664
 msgid "Stamp timecode"
-msgstr "Segno barra"
+msgstr "Stampa codice orario"
 
 #: plugins/titler/titlewindow.C:884
 msgid "Center"
@@ -6347,7 +6347,7 @@ msgstr "Fase:"
 
 #: plugins/wave/wave.C:427
 msgid "Wavelength:"
-msgstr "Durata onda:"
+msgstr "Lunghezza d'onda:"
 
 #: plugins/wave/wave.C:474
 msgid "Wave"
