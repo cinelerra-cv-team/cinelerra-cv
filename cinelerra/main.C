@@ -78,12 +78,14 @@ int main(int argc, char *argv[])
 	bindtextdomain (PACKAGE, LOCALE_DIR);
 	textdomain (PACKAGE);
 	setlocale (LC_MESSAGES, "");
-
+#ifdef X_HAVE_UTF8_STRING
 	if(setlocale(LC_CTYPE, ""))
 		BC_Resources::locale_utf8 = !strcmp(nl_langinfo(CODESET), "UTF-8");
 	else
 		printf(PROGRAM_NAME ": Could not set locale.\n");
-
+#else
+	setlocale(LC_CTYPE, "");
+#endif
 	for(int i = 1; i < argc; i++)
 	{
 		if(!strcmp(argv[i], "-h"))
