@@ -90,6 +90,8 @@ TitleConfig::TitleConfig()
 	pixels_per_second = 1.0;
 	timecode = 0;
 	stroke_width = 1.0;
+	ucs4text = 0;
+	tlen = 0;
 }
 
 // Does not test equivalency but determines if redrawing text is necessary.
@@ -204,14 +206,15 @@ void TitleConfig::convert_text()
 		}
 		i += x;
 	}
+	if(ucs4text) delete [] ucs4text;
 	ucs4text = new FT_ULong [tlen + 1];
-	FcChar32 retunucs4;
 	int count = 0;
+	FcChar32 return_ucs4;
 	for(int i = 0; i < text_len; i++)
 	{
+		int z = (char)text[i];
 		int x = 0;
-		int z = (unsigned char)text[i];
-		FcChar8 loadutf8[5];
+		FcChar8 loadutf8[6];
 		if (!(z & 0x80))
 		{
 			x = 0;
@@ -231,26 +234,24 @@ void TitleConfig::convert_text()
 		{
 			x = 6;
 		}
+		//clean array
+		memset(loadutf8, 0, sizeof(loadutf8));
 		if ( x > 0 ) {
-			for (int r = 0; r < 5; r++) loadutf8[r] = 0;
-			loadutf8[0] = text[i];
-			int p = 0;
-			for (; p < x; p++ )
+			//fill array
+			for(int p = 0; p < x; p++)
 				loadutf8[p] = text[i + p];
-			loadutf8[p + x] = 0;
-			loadutf8[p + x + 1] = 0;
 			i += (x - 1);
 		} else {
+			//fill array
 			loadutf8[0] = z;
 			loadutf8[1] = 0;
 		}
-		FcUtf8ToUcs4 (loadutf8, &retunucs4, 6);
-		ucs4text[count] = (FT_ULong)retunucs4;
+		FcUtf8ToUcs4(loadutf8, &return_ucs4, 6);
+		ucs4text[count] = (FT_ULong)return_ucs4;
 		count++;
-		}
+	}
 }
 #endif
-
 
 FontEntry::FontEntry()
 {

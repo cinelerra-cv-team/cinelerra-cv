@@ -348,8 +348,10 @@ int TitleWindow::resize_event(int w, int h)
 #endif
 	size_title->reposition_window(size_title->get_x(), size_title->get_y());
 	size->reposition_window(size->get_x(), size->get_y());
+#ifndef X_HAVE_UTF8_STRING
 	encoding_title->reposition_window(encoding_title->get_x(), encoding_title->get_y());
 	encoding->reposition_window(encoding->get_x(), encoding->get_y());
+#endif
 	color_button->reposition_window(color_button->get_x(), color_button->get_y());
 #ifdef USE_OUTLINE
 	color_stroke_button->reposition_window(color_stroke_button->get_x(), color_stroke_button->get_y());
@@ -470,7 +472,9 @@ void TitleWindow::update()
 	stroke->update(client->config.style & FONT_OUTLINE);
 #endif
 	size->update(client->config.size);
+#ifndef X_HAVE_UTF8_STRING
 	encoding->update(client->config.encoding);
+#endif
 	timecode->update(client->config.timecode);
 	timecodeformat->update(client->config.timecodeformat);
 	motion->update(TitleMain::motion_to_text(client->config.motion_strategy));
