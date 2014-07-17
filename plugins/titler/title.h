@@ -135,11 +135,9 @@ public:
 	char timecodeformat[BCTEXTLEN];
 // Width of the stroke
 	double stroke_width;
-#ifdef X_HAVE_UTF8_STRING
 	int tlen;
 	FT_ULong *ucs4text;
 	void convert_text();
-#endif
 };
 
 class FontEntry
@@ -367,8 +365,8 @@ public:
 		FT_Face &freetype_face,
 		char *path);
 
-
-
+	//backward compatibility
+	void convert_encoding();
 
 
 	static char* motion_to_text(int motion);
