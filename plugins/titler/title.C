@@ -393,22 +393,23 @@ void GlyphUnit::process_package(LoadPackage *package)
 	GlyphPackage *pkg = (GlyphPackage*)package;
 	TitleGlyph *glyph = pkg->glyph;
 	int result = 0;
+	char new_path[1024];
 
-	if(!freetype_library)
-	{
-		current_font = plugin->get_font();
+	current_font = plugin->get_font();
+	plugin->check_char_code_path(current_font->path,
+					glyph->char_code,
+					new_path);
 
-		if(plugin->load_freetype_face(freetype_library,
+	if(plugin->load_freetype_face(freetype_library,
 			freetype_face,
-			current_font->path))
-		{
-			printf(_("GlyphUnit::process_package FT_New_Face failed.\n"));
-			result = 1;
-		}
-		else
-		{
-			FT_Set_Pixel_Sizes(freetype_face, plugin->config.size, 0);
-		}
+			new_path))
+	{
+		printf(_("GlyphUnit::process_package FT_New_Face failed.\n"));
+		result = 1;
+	}
+	else
+	{
+		FT_Set_Pixel_Sizes(freetype_face, plugin->config.size, 0);
 	}
 
 	if(!result)
@@ -1712,6 +1713,72 @@ void TitleMain::build_fonts()
 //	fonts->values[i]->dump();
 
 
+}
+
+//This checks if char_code is on the selected font and changes font with the first compatible //Akirad
+int TitleMain::check_char_code_path(const char *path_old, FT_ULong &char_code,
+		char *path_new)
+{
+	int result = 0;
+	int match_charset = 0;
+	bool not_only_truetype = true;
+
+	//Try to open char_set with ft_Library
+	FT_Library temp_freetype_library;
+	FT_Face temp_freetype_face;
+	FT_Init_FreeType(&temp_freetype_library);
+	if(!FT_New_Face(temp_freetype_library,
+					path_old,
+					0,
+					&temp_freetype_face))
+	{
+		if(!FT_Get_Char_Index(temp_freetype_face, char_code) == 0) match_charset = 1;
+	}
+	if(temp_freetype_face) FT_Done_Face(temp_freetype_face);
+	FT_Done_FreeType(temp_freetype_library);
+
+	// If not match call fontconfig
+	if(!match_charset)
+	{
+		FcPattern *pat;
+		FcFontSet *fs;
+		FcObjectSet *os;
+		FcChar8 *file, *format;
+		FcCharSet *fcs;
+		FcConfig *config;
+		FcBool resultfc;
+
+		resultfc = FcInit();
+		config = FcConfigGetCurrent();
+		FcConfigSetRescanInterval(config, 0);
+		pat = FcPatternCreate();
+		os = FcObjectSetBuild ( FC_FILE, FC_CHARSET, FC_FONTFORMAT, (char *) 0);
+		fs = FcFontList(config, pat, os);
+		FcPattern *font;
+		for (int i = 0; i < fs->nfont; i++)
+		{
+			font = fs->fonts[i];
+			FcPatternGetString(font, FC_FONTFORMAT, 0, &format);
+			if((!strcmp((char *)format, "TrueType")) || not_only_truetype)
+			{
+				if(FcPatternGetCharSet(font, FC_CHARSET, 0, &fcs) == FcResultMatch)
+				{
+					if(FcCharSetHasChar (fcs, char_code))
+					{
+						if(FcPatternGetString(font, FC_FILE, 0, &file) == FcResultMatch)
+						{
+							strcpy(path_new, (char*)file);
+							result = 1;
+							break;
+						}
+					}
+				}
+			}
+		}
+		FcFontSetDestroy(fs);
+	}
+	if(!result) strcpy(path_new, path_old);
+	return result;
 }
 
 int TitleMain::load_freetype_face(FT_Library &freetype_library,
