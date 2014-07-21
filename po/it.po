@@ -51,10 +51,10 @@ msgstr ""
 "precedente.\n"
 "\n"
 "Questo programma è distribuito con la speranza\n"
-"che passa essere utile,ma SENZA ALCUNA GARANZIA;\n"
+"che possa essere utile,ma SENZA ALCUNA GARANZIA;\n"
 "anche senza nessuna garanzia COMMERCIALE o ADEGUAMENTO PER PARTICOLARI "
 "PROPOSITI\n"
-"Consultate la Licenza Pubblica Generale  GNU per maggiori dettagli.\n"
+"Consultate la Licenza Pubblica Generale GNU per maggiori dettagli.\n"
 "\n"
 
 #: cinelerra/adeviceprefs.C:266 cinelerra/vdeviceprefs.C:245
@@ -115,7 +115,7 @@ msgstr "filtro"
 
 #: cinelerra/assetedit.C:210
 msgid "Select a file for this asset:"
-msgstr "File per questo elemento :"
+msgstr "File per questo elemento:"
 
 #: cinelerra/assetedit.C:213
 msgid "File format:"
@@ -257,7 +257,7 @@ msgstr "Eguaglia dimensione progetto"
 
 #: cinelerra/assetpopup.C:290
 msgid "Match frame rate"
-msgstr "Eguaglia frame/rate:"
+msgstr "Eguaglia frame rate:"
 
 #: cinelerra/assetpopup.C:316
 msgid "Remove from project"
@@ -521,7 +521,7 @@ msgstr "BRender::set_video_map chiamata impostata su NOT_SCANNED\n"
 #, fuzzy, c-format
 msgid "BRender::set_video_map %jd: attempt to set beyond end of map %jd.\n"
 msgstr ""
-"BRender::set_video_map %d: attendere l'impostazione oltre la mappa %d.\n"
+"BRender::set_video_map %d: tentativo di impostazione oltre la mappa %d.\n"
 
 #: cinelerra/browsebutton.C:52
 msgid "Look for file"
@@ -1070,7 +1070,7 @@ msgstr "auto aggiusta display (Alt + f)"
 
 #: cinelerra/editpanel.C:1021
 msgid "Drag and drop editing mode"
-msgstr "Modifica in modalità 'Sposta e Aggiungi'"
+msgstr "Modifica in modalità \"Sposta e Aggiungi\""
 
 #: cinelerra/editpanel.C:1046
 msgid "Cut and paste editing mode"
@@ -1502,7 +1502,7 @@ msgstr "Intervallo di fotogrammi chiave"
 
 #: cinelerra/filemov.C:1951
 msgid "Quantizer:"
-msgstr "Quantizzare:"
+msgstr "Quantizzazione:"
 
 #: cinelerra/filemov.C:1965
 msgid "RC Period:"
@@ -1522,11 +1522,11 @@ msgstr "Intervallo massimo fra chiavi:"
 
 #: cinelerra/filemov.C:1993
 msgid "Max Quantizer:"
-msgstr "Max Quantizza:"
+msgstr "Max Quantizzazione:"
 
 #: cinelerra/filemov.C:2000
 msgid "Min Quantizer:"
-msgstr "Min Quantizza:"
+msgstr "Min Quantizzazione:"
 
 #: cinelerra/filemov.C:2121
 msgid "Fix bitrate"
@@ -1563,7 +1563,7 @@ msgstr "III"
 
 #: cinelerra/filempeg.C:1734 cinelerra/new.C:374 cinelerra/setformat.C:467
 msgid "Color model:"
-msgstr "Formato col:"
+msgstr "Formato colore:"
 
 #: cinelerra/filempeg.C:1800
 msgid "Format Preset:"
@@ -1653,7 +1653,7 @@ msgstr "Bitrate ottimizzato"
 
 #: cinelerra/filempeg.C:2028
 msgid "Fixed quantization"
-msgstr "Ottimizza quantizza"
+msgstr "Ottimizza quantizzazione"
 
 #: cinelerra/filempeg.C:2131 cinelerra/filempeg.C:2139
 msgid "YUV 4:2:0"
@@ -1717,7 +1717,7 @@ msgstr "Il formato scelto non supporta l'audio"
 
 #: cinelerra/formatcheck.C:71
 msgid "IMA4 compression is only available in Quicktime movies."
-msgstr "La compressione IMA4 non è disponibile nei video Quicktime."
+msgstr "La compressione IMA4 è disponibile solo nei video Quicktime."
 
 #: cinelerra/formatcheck.C:81
 msgid ""
@@ -1777,7 +1777,7 @@ msgstr "Sovrascrivi il progetto con l'uscita"
 
 #: cinelerra/formattools.C:669
 msgid "Create new file at each label"
-msgstr "Crea nuovo file ogni etichetta"
+msgstr "Crea nuovo file ad ogni etichetta"
 
 #: cinelerra/indexfile.C:304
 #, c-format
@@ -1927,7 +1927,7 @@ msgstr "attenua curve"
 
 #: cinelerra/keyframepopup.C:426
 msgid "linear segments"
-msgstr "Cancella fotogrammi chiave"
+msgstr "segmenti lineari"
 
 #: cinelerra/keyframepopup.C:427
 msgid "tangent edit"
@@ -1939,7 +1939,7 @@ msgstr "modifica disjoint"
 
 #: cinelerra/keyframepopup.C:451
 msgid "change keyframe tangent mode"
-msgstr "cambia modalita' keyframe tangente"
+msgstr "cambia modalità keyframe tangente"
 
 #: cinelerra/labelnavigate.C:64
 msgid "Previous label"
@@ -1959,7 +1959,7 @@ msgstr "Seleziona file da caricare:"
 
 #: cinelerra/loadfile.C:251
 msgid "Replace current project."
-msgstr "Sostituisci questo progetto"
+msgstr "Sostituisci questo progetto."
 
 #: cinelerra/loadfile.C:268
 msgid "Replace current project and concatenate tracks."
@@ -2082,7 +2082,7 @@ msgid ""
 "-r = batch render the contents of the batch file (%s%s) with no GUI.  batch "
 "file is optional.\n"
 msgstr ""
-"-r = batch elabora i contenuti del file batch (%s%s) senza GUI.  il file "
+"-r = batch elabora i contenuti del file batch (%s%s) senza GUI.  Il file "
 "batch è opzionale.\n"
 
 #: cinelerra/main.C:214
@@ -2334,7 +2334,7 @@ msgstr "Modifica Effetti"
 
 #: cinelerra/mainmenu.C:1099
 msgid "Autos follow edits"
-msgstr "Autos segue modifiche "
+msgstr "Autos segue modifiche"
 
 #: cinelerra/mainmenu.C:1113
 msgid "Align cursor on frames"
@@ -2413,7 +2413,7 @@ msgstr "Nessun effetto selezionato."
 
 #: cinelerra/menueffects.C:296
 msgid "No selected range to process."
-msgstr "Nessuna gamma di processi selezionato."
+msgstr "Nessuna gamma di processi selezionata."
 
 #: cinelerra/menueffects.C:455 cinelerra/packagerenderer.C:175
 #: cinelerra/savefile.C:103
@@ -2451,7 +2451,7 @@ msgstr "MWindow::init_plugins: non posso aprire la cartella %s\n"
 msgid ""
 "MWindow::init_theme: Default theme %s not exists.\n"
 "Maybe an install problem\n"
-msgstr "MWindow::init_theme: Tema %s non trovato.\n"
+msgstr "MWindow::init_theme: Il Tema di default %s non è stato trovato.\n"
 
 #: cinelerra/mwindow.C:1024
 #, c-format
@@ -2511,7 +2511,7 @@ msgstr "cancella"
 
 #: cinelerra/mwindowedit.C:252
 msgid "straighten curves"
-msgstr "reddrizza curve"
+msgstr "raddrizza curve"
 
 #: cinelerra/mwindowedit.C:268
 msgid "clear keyframes"
@@ -2519,7 +2519,7 @@ msgstr "cancella fotogrammi chiave"
 
 #: cinelerra/mwindowedit.C:283
 msgid "clear default keyframe"
-msgstr "cancella fotogrammi chiave predefiniti"
+msgstr "cancella il fotogramma chiave predefinito"
 
 #: cinelerra/mwindowedit.C:299
 msgid "clear labels"
@@ -2555,7 +2555,7 @@ msgstr "cancella traccia"
 
 #: cinelerra/mwindowedit.C:560
 msgid "detach transition"
-msgstr "dividere transizione"
+msgstr "stacca transizione"
 
 #: cinelerra/mwindowedit.C:645 cinelerra/mwindowedit.C:682
 msgid "insert effect"
@@ -2850,7 +2850,7 @@ msgstr "Acceso"
 
 #: cinelerra/performanceprefs.C:269
 msgid "Hostname"
-msgstr "Nome host"
+msgstr "Hostname"
 
 #: cinelerra/performanceprefs.C:270
 msgid "Port"
@@ -2862,7 +2862,7 @@ msgstr "Freq.Fotogrammi"
 
 #: cinelerra/performanceprefs.C:302
 msgid "Use background rendering"
-msgstr "Usa elaborazione in Bbackground"
+msgstr "Usa elaborazione in background"
 
 #: cinelerra/performanceprefs.C:435
 msgid "Use render farm"
@@ -3077,7 +3077,7 @@ msgstr "Stacca"
 
 #: cinelerra/pluginpopup.C:123
 msgid "detach effect"
-msgstr "Stacca effetto"
+msgstr "stacca effetto"
 
 #: cinelerra/pluginpopup.C:143
 msgid "Send"
@@ -3288,7 +3288,7 @@ msgid ""
 "from the current position."
 msgstr ""
 "Avvia registrazione in batch\n"
-"da posizione attuale."
+"dalla posizione attuale."
 
 #: cinelerra/recordgui.C:1069
 msgid "Activate"
@@ -3356,7 +3356,7 @@ msgstr "Frame per buffer sul dispositivo:"
 
 #: cinelerra/recordprefs.C:196
 msgid "Size of captured frame:"
-msgstr "Dimensione del frame catturato:"
+msgstr "Dim.ne frame catturato:"
 
 #: cinelerra/recordprefs.C:212
 msgid "Frame rate for recording:"
@@ -3380,7 +3380,7 @@ msgstr "Sincronizza dispositivi automaticamente"
 
 #: cinelerra/recordprefs.C:433
 msgid "Import images with a duration of"
-msgstr "Importa con durata immagini di"
+msgstr "Importa immagini con durata di"
 
 #: cinelerra/recordtransport.C:156
 msgid ""
@@ -3442,7 +3442,7 @@ msgstr "Avvio elaborazione distribuita"
 
 #: cinelerra/render.C:750
 msgid "Failed to start render farm"
-msgstr "Impossibile avviare calcolo distribuito"
+msgstr "Impossibile avviare elaborazione distribuita"
 
 #: cinelerra/render.C:852
 msgid "Error rendering data."
@@ -3539,7 +3539,7 @@ msgid ""
 "This track's dimensions are not multiples of 4 so\n"
 "it can't be rendered by OpenGL."
 msgstr ""
-"La dimensioni non sono multipli di 4 e\n"
+"Le dimensioni non sono multiple di 4 e\n"
 "non possono essere elaborate in OpenGL."
 
 #: cinelerra/resizetrackthread.C:133 plugins/titler/titlewindow.C:197
@@ -3655,8 +3655,8 @@ msgid ""
 "Ctrl + any transport command causes playback to only cover\n"
 "the region defined by the in/out points."
 msgstr ""
-"Ctrl + qualsiasi comando di trasporto riproducenla sola zona definita dai "
-"punti ingresso/uscita."
+"Ctrl + qualsiasi comando di trasporto riproduce\n"
+"la sola zona definita dai punti ingresso/uscita."
 
 #: cinelerra/tipwindow.C:43
 msgid ""
@@ -3664,7 +3664,7 @@ msgid ""
 "selected one to toggle."
 msgstr ""
 "Shift + Click su una correzione applicherà\n"
-" i cambiamenti a tutto tranne la selezione."
+"i cambiamenti a tutto tranne la selezione."
 
 #: cinelerra/tipwindow.C:46
 msgid ""
@@ -3687,8 +3687,8 @@ msgid ""
 "Load multiple files by clicking on one file and shift + clicking on\n"
 "another file.  Ctrl + clicking toggles individual files."
 msgstr ""
-"Carica file più file cliccando sul primo file e selezionandone un'altro \n"
-"tenendo premuto shift.  Tenendo premuto Ctrl puoi selezionarli "
+"Carica più file cliccando sul primo file e selezionandone un'altro \n"
+"tenendo premuto shift. Tenendo premuto Ctrl puoi selezionarli "
 "individualmente."
 
 #: cinelerra/tipwindow.C:55
@@ -3698,7 +3698,7 @@ msgid ""
 msgstr ""
 "Ctrl + click sinistro sulla barra del tempo effettuerà l'avanzamento del "
 "tempo.\n"
-"Ctrl +click centrale sulla barra del tempo effettuerà il riavvolgimento del "
+"Ctrl + click centrale sulla barra del tempo effettuerà il riavvolgimento del "
 "tempo."
 
 #: cinelerra/tipwindow.C:58
@@ -4021,12 +4021,12 @@ msgstr "Tema::get_image: %s Non trovato.\n"
 #: guicast/bctheme.C:485
 #, c-format
 msgid "BC_Theme::check_used: Images aren't used.\n"
-msgstr "BC_Theme::check_used: Immagini Non foram usadas.\n"
+msgstr "BC_Theme::check_used: Immagini non usate.\n"
 
 #: plugins/1080to540/1080to540.C:99 plugins/720to480/720to480.C:77
 #: plugins/ivtc/ivtcwindow.C:128
 msgid "Odd field first"
-msgstr "area dispari prima"
+msgstr "Area dispari prima"
 
 #: plugins/1080to540/1080to540.C:101 plugins/720to480/720to480.C:79
 msgid "Even field first"
@@ -4229,7 +4229,7 @@ msgstr " Filtro Attivo"
 #: plugins/bluedottheme/bluedottheme.C:721
 #, fuzzy
 msgid "-*-helvetica-medium-r-normal-*-14-*"
-msgstr "-*-helvetica-medium-r-normal-*-10-*"
+msgstr "-*-helvetica-medium-r-normal-*-14-*"
 
 #: plugins/blur/blur.C:129 plugins/blur/blurwindow.C:60
 msgid "Blur"
@@ -4371,7 +4371,7 @@ msgstr "Usa cattura colore"
 #: plugins/chromakey/chromakey.C:288 plugins/chromakeyhsv/chromakey.C:531
 #: plugins/gradient/gradient.C:509
 msgid "Inner color"
-msgstr "Colore interna"
+msgstr "Colore interno"
 
 #: plugins/chromakey/chromakey.C:582
 msgid "Chroma key"
@@ -4764,7 +4764,7 @@ msgstr "Soglia.Av."
 
 #: plugins/denoiseseltempavg/seltempavgwindow.C:70
 msgid "S.D. Thres."
-msgstr "Soglia.S.D."
+msgstr "Soglia S.D."
 
 #: plugins/denoiseseltempavg/seltempavgwindow.C:74
 msgid "R / Y"
@@ -5235,7 +5235,7 @@ msgstr "IVTC Automatico"
 
 #: plugins/lens/lens.C:301 plugins/lens/lens.C:316
 msgid "Sphere Stretch"
-msgstr "Stidamento Sferico"
+msgstr "Stiramento Sferico"
 
 #: plugins/lens/lens.C:303 plugins/lens/lens.C:319
 msgid "Sphere Shrink"
@@ -5373,8 +5373,8 @@ msgid ""
 "Translation block size:\n"
 "(W/H Percent of image)"
 msgstr ""
-"dimensione dei blocchi spostare:\n"
-"(percentuale dell' immagine)"
+"Dimensione dei blocchi spostare:\n"
+"(percentuale dell'immagine)"
 
 #: plugins/motion/motionwindow.C:108
 msgid ""
@@ -5631,15 +5631,15 @@ msgstr "RiformaRT"
 
 #: plugins/reroute/reroute.C:158
 msgid "replace Target"
-msgstr "Rimpiazza obiettivo"
+msgstr "rimpiazza Obiettivo"
 
 #: plugins/reroute/reroute.C:159
 msgid "Components only"
-msgstr "Smussa solo"
+msgstr "solo i componenti"
 
 #: plugins/reroute/reroute.C:160
 msgid "Alpha replace"
-msgstr "Maschera Alpha"
+msgstr "rimpiazza Alpha"
 
 #: plugins/reroute/reroute.C:207
 msgid "Target track:"
@@ -5647,7 +5647,7 @@ msgstr "Tracce condivise:"
 
 #: plugins/reroute/reroute.C:216
 msgid "Operation:"
-msgstr "Dimensione:"
+msgstr "Operazione:"
 
 #: plugins/reroute/reroute.C:488
 msgid "Reroute"
@@ -5876,7 +5876,7 @@ msgid ""
 "The file %s that was generated from %s is not in RAWC format. Try to delete "
 "all *.raw files.\n"
 msgstr ""
-"file %s che è stato generato da %s non è in formato RAWC. Prova a cancellare "
+"Il file %s che è stato generato da %s non è in formato RAWC. Prova a cancellare "
 "tutti i file *.raw.\n"
 
 #: plugins/svg/svg.C:310
@@ -5886,7 +5886,7 @@ msgid ""
 "RAWC format than Cinelerra. Please upgrade Cinelerra.\n"
 msgstr ""
 "Versione del file RAWC %s Non supportata. Questo significa che Inkscape usa "
-"una versione del formato RAWC. Prova ad aggiornare Cinelerra.\n"
+"una versione più recente del formato RAWC. Prova ad aggiornare Cinelerra.\n"
 
 #: plugins/svg/svgwin.C:106 plugins/translate/translatewin.C:94
 msgid "Out X:"
@@ -6094,7 +6094,7 @@ msgstr "Alto colore"
 
 #: plugins/threshold/thresholdwindow.C:482
 msgid "Min:"
-msgstr "Min"
+msgstr "Min:"
 
 #: plugins/threshold/thresholdwindow.C:495
 msgid "Max:"
@@ -6110,7 +6110,7 @@ msgstr "Accumula"
 
 #: plugins/timeavg/timeavgwindow.C:158
 msgid "Inclusive Or"
-msgstr "O Inclusivo"
+msgstr "Or Inclusivo"
 
 #: plugins/timefront/timefront.C:161
 msgid "Type:"
@@ -6145,8 +6145,8 @@ msgid "Inversion"
 msgstr "Inversione"
 
 #: plugins/timefront/timefront.C:626
-msgid "Show grayscale (for tuning"
-msgstr "Mostra scala di grigi (per tarare"
+msgid "Show grayscale (for tuning)"
+msgstr "Mostra scala di grigi (per tarare)"
 
 #: plugins/timefront/timefront.C:659
 msgid "TimeFront"
@@ -6215,7 +6215,7 @@ msgstr "Giustifica:"
 
 #: plugins/titler/titlewindow.C:235
 msgid "Motion type:"
-msgstr "Tipo di movimento"
+msgstr "Tipo di movimento:"
 
 #: plugins/titler/titlewindow.C:247
 msgid "Drop shadow:"
