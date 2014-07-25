@@ -181,26 +181,26 @@ void TitleConfig::convert_text()
 	for(int i = 0; i < text_len; i++)
 	{
 		tlen++;
-		int x = 0;  
+		int x = 0;
 		int z = (unsigned char)text[i];
 		if (!(z & 0x80))
 		{
 			x = 0;
-	 	} else if (!(z & 0x20))
-	 	{
-	 		x = 1;
-         	} else if (!(z & 0x10))
-         	{
-         		x = 2;
-         	} else if (!(z & 0x08))
-         	{
-         		x = 3;
-         	} else if (!(z & 0x04))
-         	{
-         		x = 4;
-         	} else if (!(z & 0x02))
-         	{
-         		x = 5;
+		} else if (!(z & 0x20))
+		{
+			x = 1;
+		} else if (!(z & 0x10))
+		{
+			x = 2;
+		} else if (!(z & 0x08))
+		{
+			x = 3;
+		} else if (!(z & 0x04))
+		{
+			x = 4;
+		} else if (!(z & 0x02))
+		{
+			x = 5;
 		}
 		i += x;
 	}
@@ -209,37 +209,37 @@ void TitleConfig::convert_text()
 	int count = 0;
 	for(int i = 0; i < text_len; i++)
 	{
-		int x = 0;  
+		int x = 0;
 		int z = (unsigned char)text[i];
 		FcChar8 loadutf8[5];
 		if (!(z & 0x80))
 		{
 			x = 0;
-	 	} else if (!(z & 0x20))
-	 	{
-	 		x = 2;
-         	} else if (!(z & 0x10))
-         	{
+		} else if (!(z & 0x20))
+		{
+			x = 2;
+		} else if (!(z & 0x10))
+		{
 			x = 3;
 		} else if (!(z & 0x08))
 		{
 			x = 4;
 		} else if (!(z & 0x04))
-         	{
+		{
 			x = 5;
 		} else if (!(z & 0x02))
 		{
 			x = 6;
 		}
 		if ( x > 0 ) {
-			for (int r = 0; r < 5; r++) loadutf8[r] = 0;  
+			for (int r = 0; r < 5; r++) loadutf8[r] = 0;
 			loadutf8[0] = text[i];
 			int p = 0;
-		  	for (; p < x; p++ )  
-		  		loadutf8[p] = text[i + p];
-		  	loadutf8[p + x] = 0;
-		  	loadutf8[p + x + 1] = 0;
-		  	i += (x - 1);
+			for (; p < x; p++ )
+				loadutf8[p] = text[i + p];
+			loadutf8[p + x] = 0;
+			loadutf8[p + x + 1] = 0;
+			i += (x - 1);
 		} else {
 			loadutf8[0] = z;
 			loadutf8[1] = 0;
