@@ -94,6 +94,11 @@ TitleConfig::TitleConfig()
 	tlen = 0;
 }
 
+TitleConfig::~TitleConfig()
+{
+	delete [] ucs4text;
+}
+
 // Does not test equivalency but determines if redrawing text is necessary.
 int TitleConfig::equivalent(TitleConfig &that)
 {
