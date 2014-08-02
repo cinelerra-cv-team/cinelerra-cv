@@ -2,7 +2,7 @@ Source: cinelerra-cv
 Section: video
 Priority: optional
 Maintainer: Cinelerra-CV mailing list <cinelerra@lists.cinelerra-cv.org>
-Standards-Version: 3.5.9
+Standards-Version: 3.9.5
 Build-Depends: debhelper (>= 9), automake,
  libasound2-dev (>= 1.0.4), libdv4-dev (>= 1.0.0), 
  libavcodeccvs51-dev | libavcodec-dev, 
@@ -33,7 +33,7 @@ Description: Non-linear audio/video authoring tool
  tool. It understands a lot of multimedia formats
  (quicktime, avi, ogg) and audio/video compression
  codecs (divx, xvid, mpeg1/2, ...). This is the 
- community-maintained version of cinelerra.
+ community-maintained version of Cinelerra.
 
 Package: libguicast1-cv
 Conflicts: libguicast1
@@ -60,7 +60,7 @@ Description: Quicktime 4 Linux Cinelerra internal library
  .
  Users wishing for a consumer library should use OpenQuicktime or FFMPEG.
  .
- For more information, see http://heroinewarrior.com/quicktime.php3
+ For more information, see http://heroinewarrior.com/quicktime.php
 
 Package: libquicktimecine-cv-dev
 Conflicts: libquicktimecine-dev
@@ -80,7 +80,7 @@ Description: Quicktime 4 Linux (Cinelerra internal) library (development files)
  .
  This package holds development files for the Quicktime 4 Linux library
  .
- For more information, see http://heroinewarrior.com/quicktime.php3
+ For more information, see http://heroinewarrior.com/quicktime.php
 
 Package: libmpeg3cine-cv
 Conflicts: libmpeg3cine
@@ -95,7 +95,7 @@ Description: advanced editing and manipulation of MPEG streams (cinelerra's inte
  Unless you have a need for MPEG editing and copying, you're better 
  off using a consumer library like FFMPEG.
  .
- For more information, see http://heroinewarrior.com/quicktime.php3
+ For more information, see http://heroinewarrior.com/quicktime.php
 
 Package: libmpeg3cine-cv-dev
 Conflicts: libmpeg3cine-dev
@@ -112,5 +112,5 @@ Description: advanced editing and manipulation of MPEG streams (development file
  .
  This package holds development files for the libmpeg3 library
  .
- For more information, see http://heroinewarrior.com/quicktime.php3
+ For more information, see http://heroinewarrior.com/quicktime.php
 
