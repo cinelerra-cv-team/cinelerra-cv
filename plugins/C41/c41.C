@@ -113,29 +113,6 @@ class C41Window : public BC_Window
 
 PLUGIN_THREAD_HEADER(C41Effect, C41Thread, C41Window);
 
-class C41Main : public PluginVClient
-{
-public:
-	C41Main(int argc, char *argv[]);
-	~C41Main();
-
-	// required for all realtime plugins
-	int process_realtime(long size, VFrame **input_ptr, VFrame **output_ptr);
-	int plugin_is_realtime();
-	int plugin_is_multi_channel();
-	const char* plugin_title();
-	int start_realtime();
-	int stop_realtime();
-	int start_gui();
-	int stop_gui();
-	int show_gui();
-	int hide_gui();
-	int set_string();
-	int save_data(char *text);
-	int read_data(char *text);
-	C41Thread *thread;
-};
-
 class C41Effect : public PluginVClient
 {
 public:
@@ -206,11 +183,11 @@ void C41Config::copy_from(C41Config &src)
 int C41Config::equivalent(C41Config &src)
 {
 	return (src.fix_min_r  == fix_min_r  &&
-		   src.fix_min_g  == fix_min_g  &&
-		   src.fix_min_b  == fix_min_b  &&
-		   src.fix_magic4 == fix_magic4 &&
-		   src.fix_magic5 == fix_magic5 &&
-		   src.fix_magic6 == fix_magic6);
+		src.fix_min_g  == fix_min_g  &&
+		src.fix_min_b  == fix_min_b  &&
+		src.fix_magic4 == fix_magic4 &&
+		src.fix_magic5 == fix_magic5 &&
+		src.fix_magic6 == fix_magic6);
 }
 
 void C41Config::interpolate(C41Config &prev,
@@ -299,27 +276,27 @@ void C41Window::create_objects()
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Min R:")));
-	add_subwindow(min_r = new C41TextBox(plugin, &plugin->min_r, x+60, y));
+	add_subwindow(min_r = new C41TextBox(plugin, &plugin->min_r, x + 60, y));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Min G:")));
-	add_subwindow(min_g = new C41TextBox(plugin, &plugin->min_g, x+60, y));
+	add_subwindow(min_g = new C41TextBox(plugin, &plugin->min_g, x + 60, y));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Min B:")));
-	add_subwindow(min_b = new C41TextBox(plugin, &plugin->min_b, x+60, y));
+	add_subwindow(min_b = new C41TextBox(plugin, &plugin->min_b, x + 60, y));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Magic4:")));
-	add_subwindow(magic4 = new C41TextBox(plugin, &plugin->magic4, x+60, y));
+	add_subwindow(magic4 = new C41TextBox(plugin, &plugin->magic4, x + 60, y));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Magic5:")));
-	add_subwindow(magic5 = new C41TextBox(plugin, &plugin->magic5, x+60, y));
+	add_subwindow(magic5 = new C41TextBox(plugin, &plugin->magic5, x + 60, y));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Magic6:")));
-	add_subwindow(magic6 = new C41TextBox(plugin, &plugin->magic6, x+60, y));
+	add_subwindow(magic6 = new C41TextBox(plugin, &plugin->magic6, x + 60, y));
 	y += 30;
 
 	// The user shouldn't be able to change the computed values
@@ -340,29 +317,28 @@ void C41Window::create_objects()
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Min R:")));
-	add_subwindow(fix_min_r = new C41TextBox(plugin, &plugin->config.fix_min_r, x+60, y));
+	add_subwindow(fix_min_r = new C41TextBox(plugin, &plugin->config.fix_min_r, x + 60, y));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Min G:")));
-	add_subwindow(fix_min_g = new C41TextBox(plugin, &plugin->config.fix_min_g, x+60, y));
+	add_subwindow(fix_min_g = new C41TextBox(plugin, &plugin->config.fix_min_g, x + 60, y));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Min B:")));
-	add_subwindow(fix_min_b = new C41TextBox(plugin, &plugin->config.fix_min_b, x+60, y));
+	add_subwindow(fix_min_b = new C41TextBox(plugin, &plugin->config.fix_min_b, x + 60, y));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Magic4:")));
-	add_subwindow(fix_magic4 = new C41TextBox(plugin, &plugin->config.fix_magic4, x+60, y));
+	add_subwindow(fix_magic4 = new C41TextBox(plugin, &plugin->config.fix_magic4, x + 60, y));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Magic5:")));
-	add_subwindow(fix_magic5 = new C41TextBox(plugin, &plugin->config.fix_magic5, x+60, y));
+	add_subwindow(fix_magic5 = new C41TextBox(plugin, &plugin->config.fix_magic5, x + 60, y));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Magic6:")));
-	add_subwindow(fix_magic6 = new C41TextBox(plugin, &plugin->config.fix_magic6, x+60, y));
+	add_subwindow(fix_magic6 = new C41TextBox(plugin, &plugin->config.fix_magic6, x + 60, y));
 	y += 30;
-
 
 	show_window();
 	flush();
@@ -645,8 +621,8 @@ int C41Effect::process_buffer(VFrame *frame,
 		// Shave the image in order to avoid black borders
 		// Tolerance default: 5%, i.e. 0.05
 #define TOLERANCE 0.05
-#define SKIP_ROW if (i<(TOLERANCE * frame_h) || i>((1-TOLERANCE)*frame_h)) continue
-#define SKIP_COL if (j<(TOLERANCE * frame_w) || j>((1-TOLERANCE)*frame_w)) continue
+#define SKIP_ROW if (i < (TOLERANCE * frame_h) || i > ((1-TOLERANCE)*frame_h)) continue
+#define SKIP_COL if (j < (TOLERANCE * frame_w) || j > ((1-TOLERANCE)*frame_w)) continue
 
 		for(int i = 0; i < frame_h; i++)
 		{
