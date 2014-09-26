@@ -32,9 +32,19 @@
 #include <stdint.h>
 #include <string.h>
 
-
 /* Class declarations */
 class C41Effect;
+class C41Window;
+
+struct magic
+{
+	float min_r;
+	float min_g;
+	float min_b;
+	float light;
+	float gamma_g;
+	float gamma_b;
+};
 
 class C41Config
 {
@@ -54,9 +64,9 @@ public:
 	float fix_min_r;
 	float fix_min_g;
 	float fix_min_b;
-	float fix_magic4;
-	float fix_magic5;
-	float fix_magic6;
+	float fix_light;
+	float fix_gamma_g;
+	float fix_gamma_b;
 };
 
 class C41Enable : public BC_CheckBox
@@ -80,33 +90,35 @@ public:
 class C41Button : public BC_GenericButton
 {
 public:
-	C41Button(C41Effect *plugin, int x, int y);
+	C41Button(C41Effect *plugin, C41Window *window, int x, int y);
 	int handle_event();
 	C41Effect *plugin;
+	C41Window *window;
 	float *boxValue;
 };
 
 class C41Window : public BC_Window
 {
-	public:
+public:
 	C41Window(C41Effect *plugin, int x, int y);
 	void create_objects();
 	int close_event();
 	void update();
+	void update_magic();
 	C41Enable *active;
 	C41Enable *compute_magic;
 	C41TextBox *min_r;
 	C41TextBox *min_g;
 	C41TextBox *min_b;
-	C41TextBox *magic4;
-	C41TextBox *magic5;
-	C41TextBox *magic6;
+	C41TextBox *light;
+	C41TextBox *gamma_g;
+	C41TextBox *gamma_b;
 	C41TextBox *fix_min_r;
 	C41TextBox *fix_min_g;
 	C41TextBox *fix_min_b;
-	C41TextBox *fix_magic4;
-	C41TextBox *fix_magic5;
-	C41TextBox *fix_magic6;
+	C41TextBox *fix_light;
+	C41TextBox *fix_gamma_g;
+	C41TextBox *fix_gamma_b;
 	C41Button *lock;
 	C41Effect *plugin;
 };
@@ -134,18 +146,12 @@ public:
 	void raise_window();
 	int set_string();
 	int load_configuration();
-	void lock_parameters();
-	float myLog2(float i);
-	float myPow2(float i);
+	float myLog2(float i) __attribute__ ((optimize(0)));
+	float myPow2(float i) __attribute__ ((optimize(0)));
 	float myPow(float a, float b);
 	double difftime_nano(timespec start, timespec end);
 
-	float min_r;
-	float min_g;
-	float min_b;
-	float magic4;
-	float magic5;
-	float magic6;
+	struct magic values;
 
 	C41Config config;
 	C41Thread *thread;
@@ -164,7 +170,7 @@ C41Config::C41Config()
 	active = 0;
 	compute_magic = 0;
 
-	fix_min_r = fix_min_g = fix_min_b = fix_magic4 = fix_magic5 = fix_magic6 = 0.;
+	fix_min_r = fix_min_g = fix_min_b = fix_light = fix_gamma_g = fix_gamma_b = 0.;
 }
 
 void C41Config::copy_from(C41Config &src)
@@ -175,19 +181,21 @@ void C41Config::copy_from(C41Config &src)
 	fix_min_r = src.fix_min_r;
 	fix_min_g = src.fix_min_g;
 	fix_min_b = src.fix_min_b;
-	fix_magic4 = src.fix_magic4;
-	fix_magic5 = src.fix_magic5;
-	fix_magic6 = src.fix_magic6;
+	fix_light = src.fix_light;
+	fix_gamma_g = src.fix_gamma_g;
+	fix_gamma_b = src.fix_gamma_b;
 }
 
 int C41Config::equivalent(C41Config &src)
 {
-	return (src.fix_min_r  == fix_min_r  &&
-		src.fix_min_g  == fix_min_g  &&
-		src.fix_min_b  == fix_min_b  &&
-		src.fix_magic4 == fix_magic4 &&
-		src.fix_magic5 == fix_magic5 &&
-		src.fix_magic6 == fix_magic6);
+	return (src.active == active &&
+		compute_magic == src.compute_magic &&
+		EQUIV(src.fix_min_r, fix_min_r) &&
+		EQUIV(src.fix_min_g, fix_min_g) &&
+		EQUIV(src.fix_min_b, fix_min_b) &&
+		EQUIV(src.fix_light, fix_light) &&
+		EQUIV(src.fix_gamma_g, fix_gamma_g) &&
+		EQUIV(src.fix_gamma_b, fix_gamma_b));
 }
 
 void C41Config::interpolate(C41Config &prev,
@@ -202,9 +210,9 @@ void C41Config::interpolate(C41Config &prev,
 	fix_min_r = prev.fix_min_r;
 	fix_min_g = prev.fix_min_g;
 	fix_min_b = prev.fix_min_b;
-	fix_magic4 = prev.fix_magic4;
-	fix_magic5 = prev.fix_magic5;
-	fix_magic6 = prev.fix_magic6;
+	fix_light = prev.fix_light;
+	fix_gamma_g = prev.fix_gamma_g;
+	fix_gamma_b = prev.fix_gamma_b;
 }
 
 // C41Enable
@@ -239,22 +247,30 @@ int C41TextBox::handle_event()
 
 
 // C41Button
-C41Button::C41Button(C41Effect *plugin, int x, int y)
+C41Button::C41Button(C41Effect *plugin, C41Window *window, int x, int y)
  : BC_GenericButton(x, y, _("Lock parameters"))
 {
 	this->plugin = plugin;
+	this->window = window;
 }
 
 int C41Button::handle_event()
 {
-	plugin->lock_parameters();
+	plugin->config.fix_min_r = plugin->values.min_r;
+	plugin->config.fix_min_g = plugin->values.min_g;
+	plugin->config.fix_min_b = plugin->values.min_b;
+	plugin->config.fix_light = plugin->values.light;
+	plugin->config.fix_gamma_g = plugin->values.gamma_g;
+	plugin->config.fix_gamma_b = plugin->values.gamma_b;
+
+	window->update();
 	plugin->send_configure_change();
 	return 1;
 }
 
 // C41Window
 C41Window::C41Window(C41Effect *plugin, int x, int y)
- : BC_Window(plugin->gui_string, x, y, 250, 620, 250, 620, 1, 0, 1)
+ : BC_Window(plugin->gui_string, x, y, 270, 620, 270, 620, 1, 0, 1)
 {
 	this->plugin = plugin;
 }
@@ -269,47 +285,47 @@ void C41Window::create_objects()
 
 	add_subwindow(compute_magic = new C41Enable(plugin, &plugin->config.compute_magic, x, y, _("Compute negfix values")));
 	y += 20;
-	add_subwindow(new BC_Title(x+20, y, _("(uncheck for faster rendering)")));
+	add_subwindow(new BC_Title(x + 20, y, _("(uncheck for faster rendering)")));
 	y += 40;
 
 	add_subwindow(new BC_Title(x, y, _("Computed negfix values:")));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Min R:")));
-	add_subwindow(min_r = new C41TextBox(plugin, &plugin->min_r, x + 60, y));
+	add_subwindow(min_r = new C41TextBox(plugin, &plugin->values.min_r, x + 80, y));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Min G:")));
-	add_subwindow(min_g = new C41TextBox(plugin, &plugin->min_g, x + 60, y));
+	add_subwindow(min_g = new C41TextBox(plugin, &plugin->values.min_g, x + 80, y));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Min B:")));
-	add_subwindow(min_b = new C41TextBox(plugin, &plugin->min_b, x + 60, y));
+	add_subwindow(min_b = new C41TextBox(plugin, &plugin->values.min_b, x + 80, y));
 	y += 30;
 
-	add_subwindow(new BC_Title(x, y, _("Magic4:")));
-	add_subwindow(magic4 = new C41TextBox(plugin, &plugin->magic4, x + 60, y));
+	add_subwindow(new BC_Title(x, y, _("Light:")));
+	add_subwindow(light = new C41TextBox(plugin, &plugin->values.light, x + 80, y));
 	y += 30;
 
-	add_subwindow(new BC_Title(x, y, _("Magic5:")));
-	add_subwindow(magic5 = new C41TextBox(plugin, &plugin->magic5, x + 60, y));
+	add_subwindow(new BC_Title(x, y, _("Gamma G:")));
+	add_subwindow(gamma_g = new C41TextBox(plugin, &plugin->values.gamma_g, x + 80, y));
 	y += 30;
 
-	add_subwindow(new BC_Title(x, y, _("Magic6:")));
-	add_subwindow(magic6 = new C41TextBox(plugin, &plugin->magic6, x + 60, y));
+	add_subwindow(new BC_Title(x, y, _("Gamma B:")));
+	add_subwindow(gamma_b = new C41TextBox(plugin, &plugin->values.gamma_b, x + 80, y));
 	y += 30;
 
 	// The user shouldn't be able to change the computed values
 	min_r->disable();
 	min_g->disable();
 	min_b->disable();
-	magic4->disable();
-	magic5->disable();
-	magic6->disable();
+	light->disable();
+	gamma_g->disable();
+	gamma_b->disable();
 
 
 	y += 30;
-	add_subwindow(lock = new C41Button(plugin, x, y));
+	add_subwindow(lock = new C41Button(plugin, this, x, y));
 	y += 30;
 
 	y += 20;
@@ -317,51 +333,56 @@ void C41Window::create_objects()
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Min R:")));
-	add_subwindow(fix_min_r = new C41TextBox(plugin, &plugin->config.fix_min_r, x + 60, y));
+	add_subwindow(fix_min_r = new C41TextBox(plugin, &plugin->config.fix_min_r, x + 80, y));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Min G:")));
-	add_subwindow(fix_min_g = new C41TextBox(plugin, &plugin->config.fix_min_g, x + 60, y));
+	add_subwindow(fix_min_g = new C41TextBox(plugin, &plugin->config.fix_min_g, x + 80, y));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Min B:")));
-	add_subwindow(fix_min_b = new C41TextBox(plugin, &plugin->config.fix_min_b, x + 60, y));
+	add_subwindow(fix_min_b = new C41TextBox(plugin, &plugin->config.fix_min_b, x + 80, y));
 	y += 30;
 
-	add_subwindow(new BC_Title(x, y, _("Magic4:")));
-	add_subwindow(fix_magic4 = new C41TextBox(plugin, &plugin->config.fix_magic4, x + 60, y));
+	add_subwindow(new BC_Title(x, y, _("Light:")));
+	add_subwindow(fix_light = new C41TextBox(plugin, &plugin->config.fix_light, x + 80, y));
 	y += 30;
 
-	add_subwindow(new BC_Title(x, y, _("Magic5:")));
-	add_subwindow(fix_magic5 = new C41TextBox(plugin, &plugin->config.fix_magic5, x + 60, y));
+	add_subwindow(new BC_Title(x, y, _("Gamma G:")));
+	add_subwindow(fix_gamma_g = new C41TextBox(plugin, &plugin->config.fix_gamma_g, x + 80, y));
 	y += 30;
 
-	add_subwindow(new BC_Title(x, y, _("Magic6:")));
-	add_subwindow(fix_magic6 = new C41TextBox(plugin, &plugin->config.fix_magic6, x + 60, y));
+	add_subwindow(new BC_Title(x, y, _("Gamma B:")));
+	add_subwindow(fix_gamma_b = new C41TextBox(plugin, &plugin->config.fix_gamma_b, x + 80, y));
 	y += 30;
-
 	show_window();
 	flush();
+	update_magic();
 }
 
 void C41Window::update()
 {
-	plugin->thread->window->active->update(plugin->config.active);
-	plugin->thread->window->compute_magic->update(plugin->config.compute_magic);
+	active->update(plugin->config.active);
+	compute_magic->update(plugin->config.compute_magic);
 
-	plugin->thread->window->min_r->update(plugin->min_r);
-	plugin->thread->window->min_g->update(plugin->min_g);
-	plugin->thread->window->min_b->update(plugin->min_b);
-	plugin->thread->window->magic4->update(plugin->magic4);
-	plugin->thread->window->magic5->update(plugin->magic5);
-	plugin->thread->window->magic6->update(plugin->magic6);
+	fix_min_r->update(plugin->config.fix_min_r);
+	fix_min_g->update(plugin->config.fix_min_g);
+	fix_min_b->update(plugin->config.fix_min_b);
+	fix_light->update(plugin->config.fix_light);
+	fix_gamma_g->update(plugin->config.fix_gamma_g);
+	fix_gamma_b->update(plugin->config.fix_gamma_b);
 
-	plugin->thread->window->fix_min_r->update(plugin->config.fix_min_r);
-	plugin->thread->window->fix_min_g->update(plugin->config.fix_min_g);
-	plugin->thread->window->fix_min_b->update(plugin->config.fix_min_b);
-	plugin->thread->window->fix_magic4->update(plugin->config.fix_magic4);
-	plugin->thread->window->fix_magic5->update(plugin->config.fix_magic5);
-	plugin->thread->window->fix_magic6->update(plugin->config.fix_magic6);
+	update_magic();
+}
+
+void C41Window::update_magic()
+{
+	min_r->update(plugin->values.min_r);
+	min_g->update(plugin->values.min_g);
+	min_b->update(plugin->values.min_b);
+	light->update(plugin->values.light);
+	gamma_g->update(plugin->values.gamma_g);
+	gamma_b->update(plugin->values.gamma_b);
 }
 
 WINDOW_CLOSE_EVENT(C41Window);
@@ -371,7 +392,7 @@ PLUGIN_THREAD_OBJECT(C41Effect, C41Thread, C41Window);
 C41Effect::C41Effect(PluginServer *server)
  : PluginVClient(server)
 {
-	min_r = min_g = min_b = magic4 = magic5 = magic6 = 0.;
+	memset(&values, 0, sizeof(values));
 	PLUGIN_CONSTRUCTOR_MACRO
 }
 
@@ -390,15 +411,6 @@ RAISE_WINDOW_MACRO(C41Effect)
 SET_STRING_MACRO(C41Effect)
 LOAD_CONFIGURATION_MACRO(C41Effect, C41Config)
 
-void C41Effect::lock_parameters()
-{
-	config.fix_min_r = min_r;
-	config.fix_min_g = min_g;
-	config.fix_min_b = min_b;
-	config.fix_magic4 = magic4;
-	config.fix_magic5 = magic5;
-	config.fix_magic6 = magic6;
-}
 
 void C41Effect::update_gui()
 {
@@ -411,7 +423,14 @@ void C41Effect::update_gui()
 }
 
 void C41Effect::render_gui(void* data)
-{}
+{
+	// Updating values computed by process_frame
+	struct magic *vp = (struct magic *)data;
+
+	values = *vp;
+	if(thread)
+		thread->window->update_magic();
+}
 
 int C41Effect::load_defaults()
 {
@@ -425,9 +444,9 @@ int C41Effect::load_defaults()
 	config.fix_min_r = defaults->get("FIX_MIN_R", config.fix_min_r);
 	config.fix_min_g = defaults->get("FIX_MIN_G", config.fix_min_g);
 	config.fix_min_b = defaults->get("FIX_MIN_B", config.fix_min_b);
-	config.fix_magic4 = defaults->get("FIX_MAGIC4", config.fix_magic4);
-	config.fix_magic5 = defaults->get("FIX_MAGIC5", config.fix_magic5);
-	config.fix_magic6 = defaults->get("FIX_MAGIC6", config.fix_magic6);
+	config.fix_light = defaults->get("FIX_LIGHT", config.fix_light);
+	config.fix_gamma_g = defaults->get("FIX_GAMMA_G", config.fix_gamma_g);
+	config.fix_gamma_b = defaults->get("FIX_GAMMA_B", config.fix_gamma_b);
 
 	return 0;
 }
@@ -440,9 +459,9 @@ int C41Effect::save_defaults()
 	defaults->update("FIX_MIN_R", config.fix_min_r);
 	defaults->update("FIX_MIN_G", config.fix_min_g);
 	defaults->update("FIX_MIN_B", config.fix_min_b);
-	defaults->update("FIX_MAGIC4", config.fix_magic4);
-	defaults->update("FIX_MAGIC5", config.fix_magic5);
-	defaults->update("FIX_MAGIC6", config.fix_magic6);
+	defaults->update("FIX_LIGHT", config.fix_light);
+	defaults->update("FIX_GAMMA_G", config.fix_gamma_g);
+	defaults->update("FIX_GAMMA_B", config.fix_gamma_b);
 	defaults->save();
 	return 0;
 }
@@ -458,9 +477,9 @@ void C41Effect::save_data(KeyFrame *keyframe)
 	output.tag.set_property("FIX_MIN_R", config.fix_min_r);
 	output.tag.set_property("FIX_MIN_G", config.fix_min_g);
 	output.tag.set_property("FIX_MIN_B", config.fix_min_b);
-	output.tag.set_property("FIX_MAGIC4", config.fix_magic4);
-	output.tag.set_property("FIX_MAGIC5", config.fix_magic5);
-	output.tag.set_property("FIX_MAGIC6", config.fix_magic6);
+	output.tag.set_property("FIX_LIGHT", config.fix_light);
+	output.tag.set_property("FIX_GAMMA_G", config.fix_gamma_g);
+	output.tag.set_property("FIX_GAMMA_B", config.fix_gamma_b);
 
 	output.append_tag();
 	output.tag.set_title("/C41");
@@ -482,9 +501,9 @@ void C41Effect::read_data(KeyFrame *keyframe)
 			config.fix_min_r = input.tag.get_property("FIX_MIN_R", config.fix_min_r);
 			config.fix_min_g = input.tag.get_property("FIX_MIN_G", config.fix_min_g);
 			config.fix_min_b = input.tag.get_property("FIX_MIN_B", config.fix_min_b);
-			config.fix_magic4 = input.tag.get_property("FIX_MAGIC4", config.fix_magic5);
-			config.fix_magic5 = input.tag.get_property("FIX_MAGIC5", config.fix_magic5);
-			config.fix_magic6 = input.tag.get_property("FIX_MAGIC6", config.fix_magic6);
+			config.fix_light = input.tag.get_property("FIX_LIGHT", config.fix_light);
+			config.fix_gamma_g = input.tag.get_property("FIX_GAMMA_G", config.fix_gamma_g);
+			config.fix_gamma_b = input.tag.get_property("FIX_GAMMA_B", config.fix_gamma_b);
 		}
 	}
 }
@@ -558,13 +577,6 @@ int C41Effect::process_buffer(VFrame *frame,
 			break;
 	}
 
-	float magic1;
-	float magic2;
-	float magic3;
-	float magic4;
-	float magic5;
-	float magic6;
-
 	if(config.compute_magic)
 	{
 		// Box blur!
@@ -620,7 +632,7 @@ int C41Effect::process_buffer(VFrame *frame,
 
 		// Shave the image in order to avoid black borders
 		// Tolerance default: 5%, i.e. 0.05
-#define TOLERANCE 0.05
+#define TOLERANCE 0.20
 #define SKIP_ROW if (i < (TOLERANCE * frame_h) || i > ((1-TOLERANCE)*frame_h)) continue
 #define SKIP_COL if (j < (TOLERANCE * frame_w) || j > ((1-TOLERANCE)*frame_w)) continue
 
@@ -631,7 +643,6 @@ int C41Effect::process_buffer(VFrame *frame,
 			for(int j = 0; j < frame_w; j++, row += 3)
 			{
 				SKIP_COL;
-
 				if(row[0] < minima_r) minima_r = row[0];
 				if(row[0] > maxima_r) maxima_r = row[0];
 
@@ -647,15 +658,15 @@ int C41Effect::process_buffer(VFrame *frame,
 		delete tmp_frame;
 		delete blurry_frame;
 
-		magic1 = minima_r;
-		magic2 = minima_g;
-		magic3 = minima_b;
-		magic4 = (minima_r / maxima_r) * 0.95;
-		magic5 = log(maxima_r / minima_r) / log(maxima_g / minima_g);
-		magic6 = log(maxima_r / minima_r) / log(maxima_b / minima_b);
+		values.min_r = minima_r;
+		values.min_g = minima_g;
+		values.min_b = minima_b;
+		values.light = (minima_r / maxima_r) * 0.95;
+		values.gamma_g = logf(maxima_r / minima_r) / logf(maxima_g / minima_g);
+		values.gamma_b = logf(maxima_r / minima_r) / logf(maxima_b / minima_b);
 
 		// Update GUI
-		send_render_gui(NULL);
+		send_render_gui(&values);
 	}
 
 	// Apply the transformation
@@ -667,11 +678,11 @@ int C41Effect::process_buffer(VFrame *frame,
 			float *row = (float*)frame->get_rows()[i];
 			for(int j = 0; j < frame_w; j++, row += 3)
 			{
-				row[0] = (config.fix_min_r / row[0]) - config.fix_magic4;
+				row[0] = (config.fix_min_r / row[0]) - config.fix_light;
 
-				row[1] = myPow((config.fix_min_g / row[1]), config.fix_magic5) - config.fix_magic4;
+				row[1] = myPow((config.fix_min_g / row[1]), config.fix_gamma_g) - config.fix_light;
 
-				row[2] = myPow((config.fix_min_b / row[2]), config.fix_magic6) - config.fix_magic4;
+				row[2] = myPow((config.fix_min_b / row[2]), config.fix_gamma_b) - config.fix_light;
 			}
 		}
 	}
