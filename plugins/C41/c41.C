@@ -107,12 +107,12 @@ public:
 	void update_magic();
 	C41Enable *active;
 	C41Enable *compute_magic;
-	C41TextBox *min_r;
-	C41TextBox *min_g;
-	C41TextBox *min_b;
-	C41TextBox *light;
-	C41TextBox *gamma_g;
-	C41TextBox *gamma_b;
+	BC_Title *min_r;
+	BC_Title *min_g;
+	BC_Title *min_b;
+	BC_Title *light;
+	BC_Title *gamma_g;
+	BC_Title *gamma_b;
 	C41TextBox *fix_min_r;
 	C41TextBox *fix_min_g;
 	C41TextBox *fix_min_b;
@@ -292,39 +292,29 @@ void C41Window::create_objects()
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Min R:")));
-	add_subwindow(min_r = new C41TextBox(plugin, &plugin->values.min_r, x + 80, y));
+	add_subwindow(min_r = new BC_Title(x + 80, y, "0.0000"));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Min G:")));
-	add_subwindow(min_g = new C41TextBox(plugin, &plugin->values.min_g, x + 80, y));
+	add_subwindow(min_g = new BC_Title(x + 80, y, "0.0000"));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Min B:")));
-	add_subwindow(min_b = new C41TextBox(plugin, &plugin->values.min_b, x + 80, y));
+	add_subwindow(min_b = new BC_Title(x + 80, y, "0.0000"));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Light:")));
-	add_subwindow(light = new C41TextBox(plugin, &plugin->values.light, x + 80, y));
+	add_subwindow(light = new BC_Title(x + 80, y, "0.0000"));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Gamma G:")));
-	add_subwindow(gamma_g = new C41TextBox(plugin, &plugin->values.gamma_g, x + 80, y));
+	add_subwindow(gamma_g = new BC_Title(x + 80, y, "0.0000"));
 	y += 30;
 
 	add_subwindow(new BC_Title(x, y, _("Gamma B:")));
-	add_subwindow(gamma_b = new C41TextBox(plugin, &plugin->values.gamma_b, x + 80, y));
+	add_subwindow(gamma_b = new BC_Title(x + 80, y, "0.0000"));
 	y += 30;
 
-	// The user shouldn't be able to change the computed values
-	min_r->disable();
-	min_g->disable();
-	min_b->disable();
-	light->disable();
-	gamma_g->disable();
-	gamma_b->disable();
-
-
-	y += 30;
 	add_subwindow(lock = new C41Button(plugin, this, x, y));
 	y += 30;
 
