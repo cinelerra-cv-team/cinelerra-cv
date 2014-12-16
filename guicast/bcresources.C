@@ -33,6 +33,7 @@
 #include "vframe.h"
 
 #include <string.h>
+#include <iconv.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <X11/extensions/XShm.h>
@@ -50,6 +51,11 @@ VFrame* BC_Resources::menu_bg = 0;
 #ifdef X_HAVE_UTF8_STRING
 int BC_Resources::locale_utf8 = 0;
 int BC_Resources::missing_im = 0;
+int BC_Resources::little_endian = 0;
+char BC_Resources::language[LEN_LANG] = {0};
+char BC_Resources::region[LEN_LANG] = {0};
+char BC_Resources::encoding[LEN_ENCOD] = {0};
+const char *BC_Resources::wide_encoding = 0;
 #endif
 
 #include "images/file_film_png.h"
@@ -127,6 +133,13 @@ BC_Resources::BC_Resources()
 
 	for(int i = 0; i < FILEBOX_HISTORY_SIZE; i++)
 		filebox_history[i][0] = 0;
+
+	little_endian = (*(const u_int32_t*)"\01\0\0\0") & 1;
+
+	if(little_endian)
+		wide_encoding = "UTF32LE";
+	else
+		wide_encoding = "UTF32BE";
 
 #ifdef HAVE_XFT
 	XftInitFtLibrary();
@@ -662,7 +675,6 @@ int BC_Resources::get_id()
 	id_lock->unlock();
 	return result;
 }
-
 
 void BC_Resources::set_signals(BC_Signals *signal_handler)
 {

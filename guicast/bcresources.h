@@ -322,6 +322,14 @@ public:
 	static int locale_utf8;
 // Failed to initalize input method
 	static int missing_im;
+// Byte order is little_endian
+	static int little_endian;
+// Language and region
+	static char language[LEN_LANG];
+	static char region[LEN_LANG];
+	static char encoding[LEN_ENCOD];
+	static const char *wide_encoding;
+
 #endif
 
 // Available display extensions
