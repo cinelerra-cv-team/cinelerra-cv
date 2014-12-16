@@ -676,6 +676,56 @@ int BC_Resources::get_id()
 	return result;
 }
 
+#ifdef X_HAVE_UTF8_STRING
+size_t BC_Resources::encode(const char *from_enc, const char *to_enc,
+	char *input, char *output, int output_length, int input_length)
+{
+	size_t inbytes, outbytes = 0;
+	iconv_t cd;
+	char *outbase = output;
+
+	if(!from_enc || *from_enc == 0)
+		from_enc = "UTF-8";
+
+	if(!to_enc || *to_enc == 0)
+		to_enc = "UTF-8";
+
+	if(input_length < 0)
+		inbytes = strlen(input);
+	else
+		inbytes = input_length;
+
+	if(strcmp(from_enc, to_enc) && inbytes)
+	{
+		if((cd = iconv_open(to_enc, from_enc)) == (iconv_t)-1)
+		{
+			printf(_("Conversion from %s to %s is not available"),
+				from_enc, to_enc);
+			return 0;
+		}
+
+		outbytes = output_length - 1;
+
+		iconv(cd, &input, &inbytes, &output, &outbytes);
+
+		iconv_close(cd);
+		inbytes = output - outbase;
+	}
+	else if(inbytes)
+	{
+		memcpy(output,  input, inbytes);
+		outbytes -= inbytes;
+	}
+	for(int i = 0; i < 4; i++)
+	{
+		output[i] = 0;
+		if(--outbytes <= 0)
+			break;
+	}
+	return inbytes;
+}
+#endif
+
 void BC_Resources::set_signals(BC_Signals *signal_handler)
 {
 	BC_Resources::signal_handler = signal_handler;
