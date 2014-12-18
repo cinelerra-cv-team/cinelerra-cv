@@ -33,6 +33,7 @@
 #include "fonts.h"
 #include "vframe.h"
 #include <string.h>
+#include <wchar.h>
 
 void BC_WindowBase::copy_area(int x1, int y1, int x2, int y2, int w, int h, BC_Pixmap *pixmap)
 {
@@ -107,7 +108,7 @@ void BC_WindowBase::draw_text(int x,
 	BC_Pixmap *pixmap)
 {
 	if(length < 0) length = strlen(text);
-	int boldface = top_level->current_font & BOLDFACE;
+
 	int font = top_level->current_font & 0xff;
 
 	switch(font)
@@ -197,72 +198,50 @@ void BC_WindowBase::draw_text(int x,
 			break;
 
 		default:
-		{
-// Set drawing color for dropshadow
-			int color = get_color();
-			if(boldface) set_color(BLACK);
-
-
-			for(int k = (boldface ? 1 : 0); k >= 0; k--)
+			if(top_level->get_xft_struct(top_level->current_font))
 			{
-				for(int i = 0, j = 0, x2 = x, y2 = y; 
-					i <= length; 
-					i++)
-				{
-					if(text[i] == '\n' || text[i] == 0)
-					{
-#ifdef HAVE_XFT
-						if(get_resources()->use_xft && 
-							top_level->get_xft_struct(top_level->current_font))
-						{
-							draw_xft_text(x,
-								y,
-								text,
-								length,
-								pixmap,
-								x2,
-								k,
-								y2,
-								j,
-								i);
-						}
-						else
-#endif
-						if(get_resources()->use_fontset && top_level->get_curr_fontset())
-						{
-        					XmbDrawString(top_level->display, 
-                				pixmap ? pixmap->opaque_pixmap : this->pixmap->opaque_pixmap, 
-                				top_level->get_curr_fontset(),
-                				top_level->gc, 
-                				x2 + k, 
-                				y2 + k, 
-                				&text[j], 
-                				i - j);
-						}
-						else
-						{
-//printf("BC_WindowBase::draw_text 3\n");
-							XDrawString(top_level->display, 
-								pixmap ? pixmap->opaque_pixmap : this->pixmap->opaque_pixmap, 
-								top_level->gc, 
-								x2 + k, 
-								y2 + k, 
-								&text[j], 
-								i - j);
-						}
-
-
-
-						j = i + 1;
-						y2 += get_text_height(MEDIUMFONT);
-					}
-				}
-				if(boldface) set_color(color);
+				draw_xft_text(x,
+					y,
+					text,
+					length,
+					pixmap);
+				return;
 			}
-			break;
-		}
+
+			for(int i = 0, j = 0; i <= length; i++)
+			{
+				if(text[i] == '\n' || text[i] == 0)
+				{
+					if(get_resources()->use_fontset && top_level->get_curr_fontset())
+					{
+						XmbDrawString(top_level->display,
+							pixmap ? pixmap->opaque_pixmap : this->pixmap->opaque_pixmap,
+							top_level->get_curr_fontset(),
+							top_level->gc,
+							x,
+							y,
+							&text[j],
+							i - j);
+					}
+					else
+					{
+//printf("BC_WindowBase::draw_text 3\n");
+						XDrawString(top_level->display,
+							pixmap ? pixmap->opaque_pixmap : this->pixmap->opaque_pixmap,
+							top_level->gc,
+							x,
+							y,
+							&text[j],
+							i - j);
+					}
+
+					j = i + 1;
+					y += get_text_height(MEDIUMFONT);
+				}
+			}
 	}
 }
+
 void BC_WindowBase::draw_utf8_text(int x,
 	int y,
 	const char *text,
@@ -270,73 +249,69 @@ void BC_WindowBase::draw_utf8_text(int x,
 	BC_Pixmap *pixmap)
 {
 	if(length < 0) length = strlen(text);
-	int boldface = top_level->current_font & BOLDFACE;
+
 	int font = top_level->current_font & 0xff;
 
-// Set drawing color for dropshadow
-	int color = get_color();
-	if(boldface) set_color(BLACK);
-
-	for(int k = (boldface ? 1 : 0); k >= 0; k--)
+	if(top_level->get_xft_struct(top_level->current_font))
 	{
-		for(int i = 0, j = 0, x2 = x, y2 = y;
-			i <= length;
-			i++)
-		{
-			if(text[i] == '\n' || text[i] == 0)
-			{
-#ifdef HAVE_XFT
-				if(get_resources()->use_xft &&
-					top_level->get_xft_struct(top_level->current_font))
-				{
-#ifdef X_HAVE_UTF8_STRING
-					int old_utf8 = get_resources()->locale_utf8;
-					get_resources()->locale_utf8 = 1;
-#endif
-					draw_xft_text(x,
-						y,
-						text,
-						length,
-						pixmap,
-						x2,
-						k,
-						y2,
-						j,
-						i);
-#ifdef X_HAVE_UTF8_STRING
-					get_resources()->locale_utf8 = old_utf8;
-#endif
-				}
-				else
-#endif
-				if(get_resources()->use_fontset && top_level->get_curr_fontset())
-				{
-					XmbDrawString(top_level->display,
-						pixmap ? pixmap->opaque_pixmap : this->pixmap->opaque_pixmap,
-						top_level->get_curr_fontset(),
-						top_level->gc,
-						x2 + k,
-						y2 + k,
-						&text[j],
-						i - j);
-				}
-				else
-				{
-					XDrawString(top_level->display,
-						pixmap ? pixmap->opaque_pixmap : this->pixmap->opaque_pixmap,
-						top_level->gc,
-						x2 + k,
-						y2 + k,
-						&text[j],
-						i - j);
-				}
-
-				j = i + 1;
-				y2 += get_text_height(MEDIUMFONT);
-			}
-		}
-		if(boldface) set_color(color);
+		draw_xft_text(x,
+			y,
+			text,
+			length,
+			pixmap,
+			1);
+		return;
 	}
+
+	for(int i = 0, j = 0; i <= length; i++)
+	{
+		if(text[i] == '\n' || text[i] == 0)
+		{
+			if(get_resources()->use_fontset && top_level->get_curr_fontset())
+			{
+				XmbDrawString(top_level->display,
+					pixmap ? pixmap->opaque_pixmap : this->pixmap->opaque_pixmap,
+					top_level->get_curr_fontset(),
+					top_level->gc,
+					x,
+					y,
+					&text[j],
+					i - j);
+			}
+			else
+			{
+				XDrawString(top_level->display,
+					pixmap ? pixmap->opaque_pixmap : this->pixmap->opaque_pixmap,
+					top_level->gc,
+					x,
+					y,
+					&text[j],
+					i - j);
+			}
+
+			j = i + 1;
+			y += get_text_height(MEDIUMFONT);
+		}
+	}
+}
+
+int BC_WindowBase::resize_wide_text(int length)
+{
+	int len;
+
+	len = sizeof(wide_buffer) / sizeof(wchar_t);
+
+	if(wide_text != wide_buffer)
+		delete [] wide_text;
+
+	if(length < len)
+		wide_text = wide_buffer;
+	else
+	{
+		wide_text = new wchar_t[length + 1];
+		len = length + 1;
+	}
+	return len;
 }
 
 void BC_WindowBase::draw_xft_text(int x, 
@@ -344,18 +319,98 @@ void BC_WindowBase::draw_xft_text(int x,
 	const char *text, 
 	int length, 
 	BC_Pixmap *pixmap,
-	int x2,
-	int k,
-	int y2,
-	int j,
-	int i)
+	int is_utf8)
 {
-#ifdef HAVE_XFT
-// printf("BC_WindowBase::draw_xft_text_synch 1 %d %p\n", 
-// get_resources()->use_xft, 
-// top_level->get_xft_struct(top_level->current_font));
+	int l = resize_wide_text(length);
+
+	length = BC_Resources::encode(is_utf8 ? "UTF8" : BC_Resources::encoding, BC_Resources::wide_encoding,
+		(char*)text, (char*)wide_text, l * sizeof(wchar_t), length) / sizeof(wchar_t);
+
+	draw_xft_text(x, y, wide_text, length, pixmap);
+}
+
+void BC_WindowBase::draw_xft_text(int x,
+	int y,
+	const wchar_t *text,
+	int length,
+	BC_Pixmap *pixmap)
+{
+	wchar_t *up, *upb, *tx_end;
+
+	tx_end = &wide_text[length];
+
+	for(upb = up = wide_text; up < tx_end; up++)
+	{
+		if(*up < ' ')
+		{
+			draw_wtext(x, y, upb, up - upb, pixmap);
+			while(up < tx_end && *up == '\n')
+			{
+				y += get_text_height(top_level->current_font);
+				up++;
+			}
+			upb = up;
+		}
+	}
+
+	if(upb < up && up <= tx_end)
+		draw_wtext(x, y, upb, up - upb, pixmap);
+}
+
+int BC_WindowBase::wcharpos(const wchar_t *text, XftFont *font, int length,
+		int *charpos)
+{
+	XGlyphInfo extents;
+	int bpos = charpos[-1];
+
+	if(charpos)
+	{
+		int bpos = charpos[-1];
+
+		for(int i = 0; i < length; i++)
+		{
+			XftTextExtents32(top_level->display,
+				font,
+				(const FcChar32*)text,
+				i + 1,
+				&extents);
+			charpos[i] = extents.xOff + bpos;
+		}
+		return charpos[length - 1] - bpos;
+	}
+	else
+	{
+		XftTextExtents32(top_level->display,
+			font,
+			(const FcChar32*)text,
+			length,
+			&extents);
+		return extents.xOff;
+	}
+}
+
+void BC_WindowBase::draw_wtext(int x,
+	int y,
+	const wchar_t *text,
+	int length,
+	BC_Pixmap *pixmap,
+	int *charpos)
+{
 	XRenderColor color;
 	XftColor xft_color;
+	const wchar_t *up, *ubp;
+	int l, *cp;
+	FcPattern *newpat;
+	XftFont *curfont, *nextfont, *altfont, *basefont;
+
+	if(length < 0)
+		length = wcslen(text);
+
+	if(charpos)
+		charpos[0] = 0;
+	if(!length)
+		return;
+
 	color.red = (top_level->current_color & 0xff0000) >> 16;
 	color.red |= color.red << 8;
 	color.green = (top_level->current_color & 0xff00) >> 8;
@@ -370,45 +425,103 @@ void BC_WindowBase::draw_xft_text(int x,
 		&color,
 		&xft_color);
 
-// printf("BC_WindowBase::draw_text 1 %u   %p %p %p %d %d %s %d\n",
-// xft_color.pixel,
-// pixmap ? pixmap->opaque_xft_draw : this->xft_drawable,
-// &xft_color,
-// top_level->get_xft_struct(top_level->current_font),
-// x2 + k, 
-// y2 + k,
-// (const XftChar8 *)&text[j],
-// i - j);
-#ifdef X_HAVE_UTF8_STRING
-	if(get_resources()->locale_utf8)
+	basefont = top_level->get_xft_struct(top_level->current_font);
+
+	curfont = nextfont = basefont;
+	altfont = 0;
+	cp = 0;
+	ubp = text;
+
+	for(up = text; up < &text[length]; up++)
 	{
-		XftDrawStringUtf8((XftDraw*)(pixmap ? pixmap->opaque_xft_draw : this->pixmap->opaque_xft_draw),
-			&xft_color,
-			top_level->get_xft_struct(top_level->current_font),
-			x2 + k,
-			y2 + k,
-			(const FcChar8 *)&text[j],
-			i - j);
+		if(XftCharExists(top_level->display, basefont, *up))
+			nextfont = basefont;
+		else if(altfont && XftCharExists(top_level->display, altfont, *up))
+			nextfont = altfont;
+		else
+		{
+			if(altfont)
+				XftFontClose(top_level->display, altfont);
+
+			if(newpat = BC_Resources::find_similar_font(*up, basefont->pattern))
+			{
+				double psize;
+
+				FcPatternGetDouble(basefont->pattern, FC_PIXEL_SIZE,
+					0, &psize);
+				FcPatternAddDouble(newpat, FC_PIXEL_SIZE, psize);
+				FcPatternDel(newpat, FC_SCALABLE);
+				altfont = XftFontOpenPattern(top_level->display,
+					newpat);
+				if(altfont)
+				nextfont = altfont;
+			}
+			else
+			{
+				altfont = 0;
+				nextfont = basefont;
+			}
+		}
+		if(nextfont != curfont)
+		{
+			l = up - ubp;
+			XftDrawString32((XftDraw*)(pixmap ? pixmap->opaque_xft_draw : this->pixmap->opaque_xft_draw),
+				&xft_color,
+				curfont,
+				x,
+				y,
+				(const FcChar32*)ubp,
+				l);
+
+			if(charpos)
+				cp = &charpos[ubp - text + 1];
+
+			x += wcharpos(ubp, curfont, l, cp);
+			ubp = up;
+			curfont = nextfont;
+		}
 	}
-	else
-#endif
+
+	if(up > ubp)
 	{
-		XftDrawString8((XftDraw*)(pixmap ? pixmap->opaque_xft_draw : this->pixmap->opaque_xft_draw),
+		XftDrawString32((XftDraw*)(pixmap ? pixmap->opaque_xft_draw : this->pixmap->opaque_xft_draw),
 			&xft_color,
-			top_level->get_xft_struct(top_level->current_font),
-			x2 + k,
-			y2 + k,
-			(const FcChar8 *)&text[j],
-			i - j);
+			curfont,
+			x,
+			y,
+			(const FcChar32*)ubp,
+			up - ubp);
+		if(charpos)
+			wcharpos(ubp, curfont, up - ubp, &charpos[ubp - text + 1]);
 	}
-#endif
+
+	if(altfont)
+		XftFontClose(top_level->display, altfont);
+
+	XftColorFree(top_level->display,
+		top_level->vis,
+		top_level->cmap,
+		&xft_color);
 }
 
-
-void BC_WindowBase::draw_center_text(int x, int y, char *text, int length)
+void BC_WindowBase::draw_center_text(int x, int y, const char *text, int length)
 {
+	int w, l;
+
 	if(length < 0) length = strlen(text);
-	int w = get_text_width(current_font, text, length);
+
+	if(top_level->get_xft_struct(top_level->current_font))
+	{
+		l = resize_wide_text(length);
+		length = BC_Resources::encode(BC_Resources::encoding, BC_Resources::wide_encoding,
+			(char*)text, (char*)wide_text, l * sizeof(wchar_t), length) / sizeof(wchar_t);
+		w = get_text_width(current_font, wide_text, length);
+		x -= w / 2;
+		draw_xft_text(x, y, wide_text, length, 0);
+		return;
+	}
+
+	w = get_text_width(current_font, text, length);
 	x -= w / 2;
 	draw_text(x, y, text, length);
 }

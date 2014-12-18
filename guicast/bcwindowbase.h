@@ -174,13 +174,6 @@ public:
 	friend class BC_Window;
 	friend class BC_WindowEvents;
 
-#ifdef X_HAVE_UTF8_STRING
-	// Used to communicate with the input method (IM) server
-	XIM input_method;
-	// Used for retaining the state, properties, and semantics
-	//  of communication with the input method (IM) server
-	XIC input_context;
-#endif
 
 // Main loop
 	int run_window();
@@ -285,6 +278,7 @@ public:
 	int get_has_focus();
 	int get_dragging();
 	char* get_keystring();
+	wchar_t* get_wkeystring(int *length = 0);
 	int get_keypress();
 // Get cursor position of last event
 	int get_cursor_x();
@@ -307,6 +301,7 @@ public:
 	int get_text_descent(int font);
 	int get_text_height(int font, const char *text = 0);
 	int get_text_width(int font, const char *text, int length = -1);
+	int get_text_width(int font, const wchar_t *text, int length = -1);
 	BC_Clipboard* get_clipboard();
 	void set_dragging(int value);
 	int set_w(int w);
@@ -363,12 +358,13 @@ public:
 		const char *text, 
 		int length, 
 		BC_Pixmap *pixmap,
-		int x2,
-		int k,
-		int y2,
-		int j,
-		int i);
-	void draw_center_text(int x, int y, char *text, int length = -1);
+		int is_utf8 = 0);
+	void draw_xft_text(int x, int y, const wchar_t *text,
+		int length, BC_Pixmap *pixmap);
+	void draw_wtext(int x, int y, const wchar_t *text, int length = -1,
+		BC_Pixmap *pixmap = 0, int *charpos = 0);
+
+	void draw_center_text(int x, int y, const char *text, int length = -1);
 	void draw_line(int x1, int y1, int x2, int y2, BC_Pixmap *pixmap = 0);
 	void draw_polygon(ArrayList<int> *x, ArrayList<int> *y, BC_Pixmap *pixmap = 0);
 	void draw_rectangle(int x, int y, int w, int h);
@@ -603,6 +599,7 @@ private:
 	int create_shared_colors();
 // Get width of a single line.  Used by get_text_width
 	int get_single_text_width(int font, const char *text, int length);
+	int get_single_text_width(int font, const wchar_t *text, int length);
 	int allocate_color_table();
 	int init_gc();
 	int init_fonts();
@@ -613,9 +610,8 @@ private:
 	int64_t get_color_bgr16(int color);
 	int64_t get_color_bgr24(int color);
 	XFontStruct* get_font_struct(int font);
-#ifdef HAVE_XFT
 	XftFont* get_xft_struct(int font);
-#endif
+	int wcharpos(const wchar_t *text, XftFont *font, int length, int *charpos);
 	Cursor get_cursor_struct(int cursor);
     XFontSet get_fontset(int font);
     XFontSet get_curr_fontset(void);
@@ -733,6 +729,8 @@ private:
 // Last key pressed
 	int key_pressed;
 	char key_string[6];
+	int wkey_string_length;
+	wchar_t wkey_string[4];
 // During a selection drag involving toggles, set the same value for each toggle
 	int toggle_value;
 	int toggle_drag;
@@ -864,7 +862,16 @@ private:
 // unique ID of window.
 	int id;
 
+	// Used to communicate with the input method (IM) server
+	XIM input_method;
+	// Used for retaining the state, properties, and semantics
+	//  of communication with the input method (IM) server
+	XIC input_context;
+	wchar_t *wide_text;
+	wchar_t wide_buffer[BCTEXTLEN];
+
 protected:
+	int resize_wide_text(int length);
 	Atom create_xatom(const char *atom_name);
 	int send_custom_xatom(xatom_event *event); 
 

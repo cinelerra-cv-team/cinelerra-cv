@@ -52,6 +52,7 @@
 #endif
 #include <string.h>
 #include <unistd.h>
+#include <wchar.h>
 
 #include <X11/extensions/Xvlib.h>
 #include <X11/extensions/shape.h>
@@ -152,7 +153,7 @@ BC_WindowBase::~BC_WindowBase()
 			XFreeFont(display, mediumfont);
 		if(largefont)
 			XFreeFont(display, largefont);
-#ifdef X_HAVE_UTF8_STRING
+
 		if(!get_resources()->missing_im)
 		{
 			if(input_context)
@@ -160,7 +161,7 @@ BC_WindowBase::~BC_WindowBase()
 			if(input_method)
 				XCloseIM(input_method);
 		}
-#endif
+
 		flush();
 // Can't close display if another thread is waiting for events.
 // Synchronous thread must delete display if gl_context exists.
@@ -187,6 +188,9 @@ BC_WindowBase::~BC_WindowBase()
 		get_resources()->get_synchronous()->delete_window(this);
 	}
 #endif
+
+	if(wide_text != wide_buffer)
+		delete [] wide_buffer;
 
 	resize_history.remove_all_objects();
 	common_events.remove_all_objects();
@@ -257,10 +261,8 @@ int BC_WindowBase::initialize()
 	largefont_xft = 0;
 	mediumfont_xft = 0;
 	smallfont_xft = 0;
-#ifdef X_HAVE_UTF8_STRING
 	input_method = 0;
 	input_context = 0;
-#endif
 
 // Need these right away since put_event is called before run_window sometimes.
 	event_lock = new Mutex("BC_WindowBase::event_lock");
@@ -270,6 +272,7 @@ int BC_WindowBase::initialize()
 #ifdef HAVE_GL
 	gl_win_context = 0;
 #endif
+	wide_text = wide_buffer;
 
 	return 0;
 }
@@ -892,14 +895,12 @@ int BC_WindowBase::dispatch_event()
 			key_pressed = 0;
 			memset(key_string, 0, sizeof(key_string));
 
-#ifdef X_HAVE_UTF8_STRING
 			if(input_context)
-				Xutf8LookupString(input_context, (XKeyEvent*)event, key_string, 6, &keysym, 0);
+				wkey_string_length = XwcLookupString(input_context,
+					(XKeyEvent*)event, wkey_string, 4, &keysym, 0);
 			else
 				XLookupString((XKeyEvent*)event, key_string, 6, &keysym, 0);
-#else
-			XLookupString((XKeyEvent*)event, key_string, 2, &keysym, 0);
-#endif
+
 // printf("BC_WindowBase::dispatch_event 2 %llx\n", 
 // event->xkey.state);
 // block out control keys
@@ -1670,8 +1671,6 @@ int BC_WindowBase::init_colors()
 			}
 
 			allocate_color_table();
-// No antialiasing
-			get_resources()->use_xft = 0;
 			break;
 
 		default:
@@ -1871,46 +1870,13 @@ int BC_WindowBase::init_fonts()
 
 void BC_WindowBase::init_xft()
 {
-#ifdef HAVE_XFT
-// Rewrite to be fonts chooser ready //akirad
-	if(resources.large_font_xft[0] == '-')
-	{
-		largefont_xft = XftFontOpenXlfd(display,
-						screen,
-						resources.large_font_xft);
-	}
-	else
-	{
-		largefont_xft = XftFontOpenName(display,
-						screen,
-						resources.large_font_xft);
-	}
+	largefont_xft = XftFontOpenName(display, screen,
+		resources.large_font_xft);
+	mediumfont_xft = XftFontOpenName(display, screen,
+		resources.medium_font_xft);
+	smallfont_xft = XftFontOpenName(display, screen,
+		resources.small_font_xft);
 
-	if(resources.medium_font_xft[0] == '-')
-	{
-		mediumfont_xft = XftFontOpenXlfd(display,
-						screen,
-						resources.medium_font_xft);
-	}
-	else
-	{
-		mediumfont_xft = XftFontOpenName(display,
-						screen,
-						resources.medium_font_xft);
-	}
-
-	if(resources.small_font_xft[0] == '-')
-	{
-		smallfont_xft = XftFontOpenXlfd(display,
-						screen,
-						resources.small_font_xft);
-	}
-	else
-	{
-		smallfont_xft = XftFontOpenName(display,
-						screen,
-						resources.small_font_xft);
-	}
 // Extension failed to locate fonts
 	if(!largefont_xft || !mediumfont_xft || !smallfont_xft)
 	{
@@ -1921,14 +1887,12 @@ void BC_WindowBase::init_xft()
 			mediumfont_xft,
 			resources.small_font_xft,
 			smallfont_xft);
-		get_resources()->use_xft = 0;
+		exit(1);
 	}
-#endif
 }
 
 void BC_WindowBase::init_im()
 {
-#ifdef X_HAVE_UTF8_STRING
 	XIMStyles *xim_styles;
 	XIMStyle xim_style;
 
@@ -1978,7 +1942,6 @@ void BC_WindowBase::init_im()
 		XCloseIM(input_method);
 		return;
 	}
-#endif
 }
 
 int BC_WindowBase::get_color(int64_t color) 
@@ -2268,7 +2231,6 @@ XFontSet BC_WindowBase::get_fontset(int font)
 	return fs;
 }
 
-#ifdef HAVE_XFT
 XftFont* BC_WindowBase::get_xft_struct(int font)
 {
 // Clear out unrelated flags
@@ -2283,7 +2245,6 @@ XftFont* BC_WindowBase::get_xft_struct(int font)
 
 	return 0;
 }
-#endif
 
 
 
@@ -2298,19 +2259,6 @@ XftFont* BC_WindowBase::get_xft_struct(int font)
 void BC_WindowBase::set_font(int font)
 {
 	top_level->current_font = font;
-
-
-#ifdef HAVE_XFT
-	if(get_resources()->use_xft)
-	{
-		;
-	}
-	else
-#endif
-	if(get_resources()->use_fontset)
-	{
-		set_fontset(font);
-	}
 
 	if(get_font_struct(font))
 	{
@@ -2347,11 +2295,10 @@ XFontSet BC_WindowBase::get_curr_fontset(void)
 
 int BC_WindowBase::get_single_text_width(int font, const char *text, int length)
 {
-#ifdef HAVE_XFT
 	if(get_resources()->use_xft && get_xft_struct(font))
 	{
 		XGlyphInfo extents;
-#ifdef X_HAVE_UTF8_STRING
+
 		if(get_resources()->locale_utf8)
 		{
 			XftTextExtentsUtf8(top_level->display,
@@ -2361,7 +2308,6 @@ int BC_WindowBase::get_single_text_width(int font, const char *text, int length)
 				&extents);
 		}
 		else
-#endif
 		{
 			XftTextExtents8(top_level->display,
 				get_xft_struct(font),
@@ -2372,7 +2318,6 @@ int BC_WindowBase::get_single_text_width(int font, const char *text, int length)
 		return extents.xOff;
 	}
 	else
-#endif
 	if(get_resources()->use_fontset && top_level->get_fontset(font))
 		return XmbTextEscapement(top_level->get_fontset(font), text, length);
 	else
@@ -2392,6 +2337,18 @@ int BC_WindowBase::get_single_text_width(int font, const char *text, int length)
 		}
 		return w;
 	}
+}
+
+int BC_WindowBase::get_single_text_width(int font, const wchar_t *text, int length)
+{
+	XGlyphInfo extents;
+
+	XftTextExtents32(top_level->display,
+		get_xft_struct(font),
+		(const FcChar32*)text,
+		length,
+		&extents);
+	return extents.xOff;
 }
 
 int BC_WindowBase::get_text_width(int font, const char *text, int length)
@@ -2423,15 +2380,40 @@ int BC_WindowBase::get_text_width(int font, const char *text, int length)
 	return w;
 }
 
+int BC_WindowBase::get_text_width(int font, const wchar_t *text, int length)
+{
+	int i, j, w = 0, line_w = 0;
+
+	if(length < 0) length = wcslen(text);
+
+	for(i = 0, j = 0; i <= length; i++)
+	{
+		line_w = 0;
+		if(text[i] == '\n')
+		{
+			line_w = get_single_text_width(font, &text[j], i - j);
+			j = i + 1;
+		}
+		else
+		if(text[i] == 0)
+			line_w = get_single_text_width(font, &text[j], length - j);
+
+		if(line_w > w) w = line_w;
+	}
+
+	if(i > length && w == 0)
+		w = get_single_text_width(font, text, length);
+
+	return w;
+}
+
 int BC_WindowBase::get_text_ascent(int font)
 {
-#ifdef HAVE_XFT
 	XftFont *fstruct;
 
-	if(get_resources()->use_xft && (fstruct = get_xft_struct(font)))
+	if(fstruct = get_xft_struct(font))
 		return fstruct->ascent;
 	else
-#endif
 	if(get_resources()->use_fontset && top_level->get_fontset(font))
 	{
         XFontSetExtents *extents;
@@ -2456,13 +2438,11 @@ int BC_WindowBase::get_text_ascent(int font)
 
 int BC_WindowBase::get_text_descent(int font)
 {
-#ifdef HAVE_XFT
 	XftFont *fstruct;
 
-	if(get_resources()->use_xft && (fstruct = get_xft_struct(font)))
+	if(fstruct = get_xft_struct(font))
 		return fstruct->descent;
 	else
-#endif
     if(get_resources()->use_fontset && top_level->get_fontset(font))
     {
         XFontSetExtents *extents;
@@ -2474,24 +2454,17 @@ int BC_WindowBase::get_text_descent(int font)
     else
 	if(get_font_struct(font))
 		return top_level->get_font_struct(font)->descent;
-	else
-	switch(font)
-	{
-		default:
-			return 0;
-	}
+	return 0;
 }
 
 int BC_WindowBase::get_text_height(int font, const char *text)
 {
 	int rowh;
-#ifdef HAVE_XFT
 	XftFont *fstruct;
 
-	if(get_resources()->use_xft && (fstruct = get_xft_struct(font)))
+	if(fstruct = get_xft_struct(font))
 		rowh = fstruct->height;
 	else
-#endif
 		rowh = get_text_ascent(font) + get_text_descent(font);
 
 	if(!text) return rowh;
@@ -3252,6 +3225,13 @@ int BC_WindowBase::ctrl_down()
 char* BC_WindowBase::get_keystring()
 {
 	return top_level->key_string;
+}
+
+wchar_t* BC_WindowBase::get_wkeystring(int *length)
+{
+	if(length)
+		*length = top_level->wkey_string_length;
+	return top_level->wkey_string;
 }
 
 int BC_WindowBase::get_keypress()
