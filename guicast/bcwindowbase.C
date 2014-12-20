@@ -261,6 +261,9 @@ int BC_WindowBase::initialize()
 	largefont_xft = 0;
 	mediumfont_xft = 0;
 	smallfont_xft = 0;
+	bold_largefont_xft = 0;
+	bold_mediumfont_xft = 0;
+	bold_smallfont_xft = 0;
 	input_method = 0;
 	input_context = 0;
 
@@ -1876,17 +1879,31 @@ void BC_WindowBase::init_xft()
 		resources.medium_font_xft);
 	smallfont_xft = XftFontOpenName(display, screen,
 		resources.small_font_xft);
-
-// Extension failed to locate fonts
-	if(!largefont_xft || !mediumfont_xft || !smallfont_xft)
+	bold_largefont_xft = XftFontOpenName(display, screen,
+		resources.large_b_font_xft);
+	bold_mediumfont_xft = XftFontOpenName(display, screen,
+		resources.medium_b_font_xft);
+	bold_smallfont_xft = XftFontOpenName(display, screen,
+		resources.small_b_font_xft);
+ // Extension failed to locate fonts
+	if(!largefont_xft || !mediumfont_xft || !smallfont_xft ||
+		!bold_largefont_xft || !bold_mediumfont_xft || !bold_smallfont_xft)
 	{
-		printf("BC_WindowBase::init_fonts: no xft fonts found %s=%p %s=%p %s=%p\n",
+		printf("BC_WindowBase::init_fonts: no xft fonts found\n"
+			"    %s=%p %s=%p %s=%p\n"
+			"    %s=%p %s=%p %s=%p\n",
 			resources.large_font_xft,
 			largefont_xft,
 			resources.medium_font_xft,
 			mediumfont_xft,
 			resources.small_font_xft,
-			smallfont_xft);
+			smallfont_xft,
+			resources.large_b_font_xft,
+			bold_largefont_xft,
+			resources.medium_b_font_xft,
+			bold_mediumfont_xft,
+			resources.small_b_font_xft,
+			bold_smallfont_xft);
 		exit(1);
 	}
 }
@@ -2220,7 +2237,7 @@ XFontSet BC_WindowBase::get_fontset(int font)
 
 	if(get_resources()->use_fontset)
 	{
-		switch(font)
+		switch(font & 0xff)
 		{
 			case SMALLFONT:  fs = top_level->smallfontset; break;
 			case LARGEFONT:  fs = top_level->largefontset; break;
@@ -2233,14 +2250,14 @@ XFontSet BC_WindowBase::get_fontset(int font)
 
 XftFont* BC_WindowBase::get_xft_struct(int font)
 {
-// Clear out unrelated flags
-	if(font & BOLDFACE) font ^= BOLDFACE;
-
 	switch(font)
 	{
 		case MEDIUMFONT:   return (XftFont*)top_level->mediumfont_xft; break;
 		case SMALLFONT:    return (XftFont*)top_level->smallfont_xft;  break;
 		case LARGEFONT:    return (XftFont*)top_level->largefont_xft;  break;
+		case MEDIUMFONT_3D: return (XftFont*)top_level->bold_mediumfont_xft;
+		case SMALLFONT_3D:  return (XftFont*)top_level->bold_smallfont_xft;
+		case LARGEFONT_3D:  return (XftFont*)top_level->bold_largefont_xft;
 	}
 
 	return 0;

@@ -109,9 +109,7 @@ void BC_WindowBase::draw_text(int x,
 {
 	if(length < 0) length = strlen(text);
 
-	int font = top_level->current_font & 0xff;
-
-	switch(font)
+	switch(top_level->current_font)
 	{
 		case MEDIUM_7SEGMENT:
 			for(int i = 0; i < length; i++)
@@ -249,8 +247,6 @@ void BC_WindowBase::draw_utf8_text(int x,
 	BC_Pixmap *pixmap)
 {
 	if(length < 0) length = strlen(text);
-
-	int font = top_level->current_font & 0xff;
 
 	if(top_level->get_xft_struct(top_level->current_font))
 	{

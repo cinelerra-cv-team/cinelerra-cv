@@ -765,7 +765,7 @@ private:
 
 // Must be void so users don't need to include the wrong libpng version.
 	void *largefont_xft, *mediumfont_xft, *smallfont_xft;
-
+	void *bold_largefont_xft, *bold_mediumfont_xft, *bold_smallfont_xft;
 
 	int64_t current_color;
 // Coordinate of drag start

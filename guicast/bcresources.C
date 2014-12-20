@@ -89,6 +89,9 @@ const char* BC_Resources::medium_font_xft = N_("Sans:pixelsize=13.3333");
 const char* BC_Resources::medium_font_xft2 = N_("-microsoft-verdana-*-*-*-*-*-*-*-*-*-*-*-*");
 const char* BC_Resources::large_font_xft = N_("Sans:pixelsize=21.3333");
 const char* BC_Resources::large_font_xft2 = N_("-microsoft-verdana-*-*-*-*-*-*-*-*-*-*-*-*");
+const char* BC_Resources::small_b_font_xft = N_("Sans:bold:pixelsize=10.6667");
+const char* BC_Resources::medium_b_font_xft = N_("Sans:bold:pixelsize=13.33333");
+const char* BC_Resources::large_b_font_xft = N_("Sans:bold:pixelsize=21.33333");
 
 suffix_to_type_t BC_Resources::suffix_to_type[] = 
 {
@@ -543,7 +546,7 @@ BC_Resources::BC_Resources()
 
 	audiovideo_color = RED;
 
-	use_fontset = 1;
+	use_fontset = 0;
 
 // Xft has priority over font set
 #ifdef HAVE_XFT
