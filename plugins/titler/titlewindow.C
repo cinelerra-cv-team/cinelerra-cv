@@ -318,7 +318,6 @@ int TitleWindow::create_objects()
 		y, 
 		get_w() - x - 10, 
 		get_h() - y - 20 - 10);
-	text->create_objects();
 
 	update_color();
 

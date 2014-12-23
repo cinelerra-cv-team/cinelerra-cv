@@ -41,6 +41,15 @@ public:
 		int rows, 
 		const char *text, 
 		int has_border = 1, 
+		int font = MEDIUMFONT,
+		int is_utf8 = 0);
+	BC_TextBox(int x,
+		int y,
+		int w,
+		int rows,
+		const char *text,
+		const wchar_t *wtext,
+		int has_border = 1,
 		int font = MEDIUMFONT);
 	BC_TextBox(int x, 
 		int y, 
@@ -72,6 +81,8 @@ public:
 	virtual int motion_event() { return 0; };
 	void set_selection(int char1, int char2, int ibeam);
 	int update(const char *text);
+	void update(const wchar_t *text);
+	void updateutf8(const char *text);
 	int update(int64_t value);
 	int update(float value);
 	void disable();
@@ -93,6 +104,7 @@ public:
 	int deactivate();
 	char* get_text();
 	int get_text_rows();
+	wchar_t* get_wtext(int *length = 0);
 // Set top left of text view
 	void set_text_row(int row);
 	int get_text_row();
@@ -123,6 +135,7 @@ public:
 	void cycle_textboxes(int amout);
 	
 private:
+	void convert_number();
 	int reset_parameters(int rows, int has_border, int font);
 	void draw();
 	void draw_border();
@@ -130,7 +143,8 @@ private:
 	void copy_selection(int clipboard_num);
 	void paste_selection(int clipboard_num);
 	void delete_selection(int letter1, int letter2, int text_len);
-	void insert_text(char *string);
+	void insert_text(const wchar_t *string, int string_len = -1);
+	void update_wtext();
 // Reformat text according to separators.
 // ibeam_left causes the ibeam to move left.
 	void do_separators(int ibeam_left);
@@ -140,6 +154,7 @@ private:
 	int get_cursor_letter(int cursor_x, int cursor_y);
 	int get_row_h(int rows);
 	void default_keypress(int &dispatch_event, int &result);
+	int resize_ntext(int length);
 
 
 // Top left of text relative to window
@@ -159,7 +174,10 @@ private:
 	int highlighted;
 	int high_color, back_color;
 	int background_color;
-	char text[BCTEXTLEN], text_row[BCTEXTLEN];
+	char *ntext;
+	char ntext_buffer[BCTEXTLEN];
+	int wtext_len;
+	int *positions;
 	int active;
 	int enabled;
 	int precision;
@@ -186,13 +204,21 @@ public:
 		int y, 
 		int w,
 		int rows,
-		char *default_text);
+		const char *default_text);
+	BC_ScrollTextBox(BC_WindowBase *parent_window,
+		int x,
+		int y,
+		int w,
+		int rows,
+		const wchar_t *default_text);
 	virtual ~BC_ScrollTextBox();
-	void create_objects();
+
 	virtual int handle_event();
 	
 	char* get_text();
+	wchar_t* get_wtext(int *length = 0);
 	void update(char *text);
+	void update(const wchar_t *text);
 	void reposition_window(int x, int y, int w, int rows);
 	int get_x();
 	int get_y();
@@ -207,7 +233,8 @@ private:
 	BC_ScrollTextBoxText *text;
 	BC_ScrollTextBoxYScroll *yscroll;
 	BC_WindowBase *parent_window;
-	char *default_text;
+	const char *default_text;
+	const wchar_t *default_wtext;
 	int x, y, w, rows;
 };
 
