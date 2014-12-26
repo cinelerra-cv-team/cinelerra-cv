@@ -1364,7 +1364,7 @@ void MWindow::init_shm()
 	}
 }
 
-
+#define FONT_SEARCHPATH "fonts"
 
 void MWindow::create_objects(int want_gui, 
 	int want_new,
@@ -1398,6 +1398,11 @@ SET_TRACE
 	if(splash_window) splash_window->operation->update(_("Initializing GUI"));
 SET_TRACE
 	init_theme();
+
+	strcpy(string, preferences->global_plugin_dir);
+	strcat(string, "/" FONT_SEARCHPATH);
+	BC_Resources::init_fontconfig(string);
+
 // Default project created here
 SET_TRACE
 	init_edl();

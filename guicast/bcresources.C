@@ -22,6 +22,7 @@
 #include "bcdisplayinfo.h"
 #include "bcipc.h"
 #include "bclistbox.inc"
+#include "bcfontentry.h"
 #include "bcresources.h"
 #include "bcsignals.h"
 #include "bcsynchronous.h"
@@ -48,7 +49,6 @@ int BC_Resources::error = 0;
 VFrame* BC_Resources::bg_image = 0;
 VFrame* BC_Resources::menu_bg = 0;
 
-#ifdef X_HAVE_UTF8_STRING
 int BC_Resources::locale_utf8 = 0;
 int BC_Resources::missing_im = 0;
 int BC_Resources::little_endian = 0;
@@ -56,7 +56,7 @@ char BC_Resources::language[LEN_LANG] = {0};
 char BC_Resources::region[LEN_LANG] = {0};
 char BC_Resources::encoding[LEN_ENCOD] = {0};
 const char *BC_Resources::wide_encoding = 0;
-#endif
+ArrayList<BC_FontEntry*> *BC_Resources::fontlist = 0;
 
 #include "images/file_film_png.h"
 #include "images/file_folder_png.h"
@@ -679,7 +679,248 @@ int BC_Resources::get_id()
 	return result;
 }
 
-#ifdef X_HAVE_UTF8_STRING
+int BC_Resources::init_fontconfig(const char *search_path)
+{
+	if(!fontlist)
+	{
+		FcPattern *pat;
+		FcFontSet *fs;
+		FcObjectSet *os;
+		FcChar8 *strvalue;
+		int intvalue;
+		FcPattern *font;
+		BC_FontEntry *entry;
+		int i;
+
+		fontlist = new ArrayList<BC_FontEntry*>;
+
+		if(!FcInit())
+			return 1;
+
+		FcConfigAppFontAddDir(0, (const FcChar8*)search_path);
+		FcConfigSetRescanInterval(0, 0);
+		pat = FcPatternCreate();
+		os = FcObjectSetBuild(FC_FAMILY, FC_FILE, FC_FOUNDRY, FC_WEIGHT,
+			FC_WIDTH, FC_SLANT, FC_SPACING, FC_STYLE, (char *)0);
+
+		FcPatternAddBool(pat, FC_SCALABLE, true);
+
+		if(language[0])
+		{
+			char langstr[LEN_LANG * 3];
+			strcpy(langstr, language);
+
+			if(region[0])
+			{
+				strcat(langstr, "-");
+				strcat(langstr, region);
+			}
+
+			FcLangSet *ls =  FcLangSetCreate();
+			if(FcLangSetAdd(ls, (const FcChar8*)langstr))
+				if(FcPatternAddLangSet(pat, FC_LANG, ls))
+			FcLangSetDestroy(ls);
+		}
+
+		fs = FcFontList(0, pat, os);
+		FcPatternDestroy(pat);
+		FcObjectSetDestroy(os);
+
+		for(i = 0; i < fs->nfont; i++)
+		{
+			font = fs->fonts[i];
+			entry = new BC_FontEntry;
+
+			if(FcPatternGetString(font, FC_FILE, 0, &strvalue) == FcResultMatch)
+			{
+				entry->path = new char[strlen((char*)strvalue) + 1];
+				strcpy(entry->path, (char*)strvalue);
+			}
+
+			if(FcPatternGetString(font, FC_FOUNDRY, 0, &strvalue) == FcResultMatch)
+			{
+				entry->foundry = new char[strlen((char*)strvalue) + 1];
+				strcpy(entry->foundry, (char *)strvalue);
+			}
+
+			if(FcPatternGetString(font, FC_FAMILY, 0, &strvalue) == FcResultMatch)
+			{
+				entry->family = new char[strlen((char*)strvalue) + 2];
+				strcpy(entry->family, (char*)strvalue);
+			}
+
+			if(FcPatternGetInteger(font, FC_SLANT, 0, &intvalue) == FcResultMatch)
+			{
+				switch(intvalue)
+				{
+				case FC_SLANT_ROMAN:
+				default:
+					entry->style |= FL_SLANT_ROMAN;
+					break;
+
+				case FC_SLANT_ITALIC:
+					entry->style |= FL_SLANT_ITALIC;
+					break;
+
+				case FC_SLANT_OBLIQUE:
+					entry->style |= FL_SLANT_OBLIQUE;
+					break;
+				}
+			}
+
+			if(FcPatternGetInteger(font, FC_SLANT, 0, &intvalue) == FcResultMatch)
+			{
+				switch(intvalue)
+				{
+				case FC_SLANT_ROMAN:
+				default:
+					entry->style |= FL_SLANT_ROMAN;
+					break;
+
+				case FC_SLANT_ITALIC:
+					entry->style |= FL_SLANT_ITALIC;
+					break;
+
+				case FC_SLANT_OBLIQUE:
+					entry->style |= FL_SLANT_OBLIQUE;
+					break;
+				}
+			}
+
+			if(FcPatternGetInteger(font, FC_WEIGHT, 0, &intvalue) == FcResultMatch)
+			{
+				switch(intvalue)
+				{
+				case FC_WEIGHT_THIN:
+					entry->style |= FL_WEIGHT_THIN;
+					break;
+
+				case FC_WEIGHT_EXTRALIGHT:
+					entry->style |= FL_WEIGHT_EXTRALIGHT;
+					break;
+
+				case FC_WEIGHT_LIGHT:
+					entry->style |= FL_WEIGHT_LIGHT;
+					break;
+
+				case FC_WEIGHT_BOOK:
+					entry->style |= FL_WEIGHT_BOOK;
+					break;
+
+				case FC_WEIGHT_NORMAL:
+				default:
+					entry->style |= FL_WEIGHT_NORMAL;
+					break;
+
+				case FC_WEIGHT_MEDIUM:
+					entry->style |= FL_WEIGHT_MEDIUM;
+					break;
+
+				case FC_WEIGHT_DEMIBOLD:
+					entry->style |= FL_WEIGHT_DEMIBOLD;
+					break;
+
+				case FC_WEIGHT_BOLD:
+					entry->style |= FL_WEIGHT_BOLD;
+					break;
+
+				case FC_WEIGHT_EXTRABOLD:
+					entry->style |= FL_WEIGHT_EXTRABOLD;
+					break;
+
+				case FC_WEIGHT_BLACK:
+					entry->style |= FL_WEIGHT_BLACK;
+					break;
+
+				case FC_WEIGHT_EXTRABLACK:
+					entry->style |= FL_WEIGHT_EXTRABLACK;
+					break;
+				}
+			}
+
+			if(FcPatternGetInteger(font, FC_WIDTH, 0, &intvalue) == FcResultMatch)
+			{
+				switch(intvalue)
+				{
+				case FC_WIDTH_ULTRACONDENSED:
+					entry->style |= FL_WIDTH_ULTRACONDENSED;
+					break;
+
+				case FC_WIDTH_EXTRACONDENSED:
+					entry->style |= FL_WIDTH_EXTRACONDENSED;
+					break;
+
+				case FC_WIDTH_CONDENSED:
+					entry->style |= FL_WIDTH_CONDENSED;
+					break;
+
+				case FC_WIDTH_SEMICONDENSED:
+					entry->style = FL_WIDTH_SEMICONDENSED;
+					break;
+
+				case FC_WIDTH_NORMAL:
+				default:
+					entry->style |= FL_WIDTH_NORMAL;
+					break;
+
+				case FC_WIDTH_SEMIEXPANDED:
+					entry->style |= FL_WIDTH_SEMIEXPANDED;
+					break;
+
+				case FC_WIDTH_EXPANDED:
+					entry->style |= FL_WIDTH_EXPANDED;
+					break;
+
+				case FC_WIDTH_EXTRAEXPANDED:
+					entry->style |= FL_WIDTH_EXTRAEXPANDED;
+					break;
+
+				case FC_WIDTH_ULTRAEXPANDED:
+					entry->style |= FL_WIDTH_ULTRAEXPANDED;
+					break;
+				}
+			}
+			if(FcPatternGetInteger(font, FC_SPACING, 0, &intvalue) == FcResultMatch)
+			{
+				switch(intvalue)
+				{
+				case FC_PROPORTIONAL:
+				default:
+					entry->style |= FL_PROPORTIONAL;
+					break;
+
+				case FC_DUAL:
+					entry->style |= FL_DUAL;
+					break;
+
+				case FC_MONO:
+					entry->style |= FL_MONO;
+					break;
+
+				case FC_CHARCELL:
+					entry->style |= FL_CHARCELL;
+					break;
+				}
+			}
+			if(entry->foundry && strcmp(entry->foundry, "unknown"))
+			{
+				char tempstr[BCTEXTLEN];
+				sprintf(tempstr, "%s (%s)", entry->family, entry->foundry);
+				entry->displayname = new char[strlen(tempstr) + 1];
+				strcpy(entry->displayname, tempstr);
+			}
+			else
+			{
+				entry->displayname = new char[strlen(entry->family) + 1];
+				strcpy(entry->displayname, entry->family);
+			}
+			fontlist->append(entry);
+		}
+		FcFontSetDestroy(fs);
+	}
+	return 0;
+}
+
 size_t BC_Resources::encode(const char *from_enc, const char *to_enc,
 	char *input, char *output, int output_length, int input_length)
 {
@@ -727,7 +968,6 @@ size_t BC_Resources::encode(const char *from_enc, const char *to_enc,
 	}
 	return inbytes;
 }
-#endif
 
 FcPattern* BC_Resources::find_similar_font(FT_ULong char_code, FcPattern *oldfont)
 {

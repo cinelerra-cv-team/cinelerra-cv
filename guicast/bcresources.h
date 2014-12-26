@@ -31,6 +31,7 @@
 
 #include "bcdisplayinfo.inc"
 #include "bcfilebox.h"
+#include "bcfontentry.inc"
 #include "bcresources.inc"
 #include "bcsignals.inc"
 #include "bcsynchronous.inc"
@@ -320,7 +321,6 @@ public:
 // This must be constitutive since applications access the private members here.
 	int use_xft;
 
-#ifdef X_HAVE_UTF8_STRING
 // Current locale uses utf8
 	static int locale_utf8;
 // Failed to initalize input method
@@ -332,11 +332,11 @@ public:
 	static char region[LEN_LANG];
 	static char encoding[LEN_ENCOD];
 	static const char *wide_encoding;
+	static ArrayList<BC_FontEntry*> *fontlist;
+	static int init_fontconfig(const char *search_path);
 	static FcPattern* find_similar_font(FT_ULong char_code, FcPattern *oldfont);
 	static size_t encode(const char *from_enc, const char *to_enc,
 		char *input, char *output, int output_length, int input_length = -1);
-
-#endif
 
 // Available display extensions
 	int use_shm;
