@@ -143,6 +143,10 @@ public:
 	double get_project_framerate();
 // Frame rate requested
 	double get_framerate();
+// Get list of system fonts
+	ArrayList<BC_FontEntry*> *get_fontlist();
+// Find font entry
+	BC_FontEntry *find_fontentry(const char *displayname, int style, int mask);
 
 	int64_t local_to_edl(int64_t position);
 	int64_t edl_to_local(int64_t position);

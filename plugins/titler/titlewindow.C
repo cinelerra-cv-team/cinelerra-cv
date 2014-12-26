@@ -21,6 +21,7 @@
 
 #include "bcdisplayinfo.h"
 #include "titlewindow.h"
+#include "bcfontentry.h"
 
 #include <string.h>
 #include <libintl.h>
@@ -142,13 +143,15 @@ int TitleWindow::create_objects()
 
 
 // Construct font list
-	for(int i = 0; i < client->fonts->total; i++)
+	ArrayList<BC_FontEntry*> *fontlist = client->get_fontlist();
+
+	for(int i = 0; i < fontlist->total; i++)
 	{
 		int exists = 0;
 		for(int j = 0; j < fonts.total; j++)
 		{
 			if(!strcasecmp(fonts.values[j]->get_text(), 
-				client->fonts->values[i]->fixed_title)) 
+				fontlist->values[i]->displayname))
 			{
 				exists = 1;
 				break;
@@ -156,7 +159,7 @@ int TitleWindow::create_objects()
 		}
 
 		if(!exists) fonts.append(new 
-			BC_ListBoxItem(client->fonts->values[i]->fixed_title));
+			BC_ListBoxItem(fontlist->values[i]->displayname));
 	}
 
 // Sort font list
