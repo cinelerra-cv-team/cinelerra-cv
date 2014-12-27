@@ -338,6 +338,7 @@ public:
 	static FcPattern* find_similar_font(FT_ULong char_code, FcPattern *oldfont);
 	static size_t encode(const char *from_enc, const char *to_enc,
 		char *input, char *output, int output_length, int input_length = -1);
+	static int find_font_by_char(FT_ULong char_code, char *path_new);
 
 // Available display extensions
 	int use_shm;
@@ -360,6 +361,7 @@ private:
  	int list_total;
 
 	Mutex *id_lock;
+	static Mutex fontconfig_lock;
 
 // Pointer to signal handler class to run after ipc
 	static BC_Signals *signal_handler;
