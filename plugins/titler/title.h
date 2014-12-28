@@ -90,7 +90,6 @@ class TitleConfig
 {
 public:
 	TitleConfig();
-	~TitleConfig();
 
 // Only used to clear glyphs
 	int equivalent(TitleConfig &that);
@@ -100,6 +99,7 @@ public:
 		int64_t prev_frame, 
 		int64_t next_frame, 
 		int64_t current_frame);
+	void text_to_ucs4(const char *from_enc);
 
 
 // Font information
@@ -136,9 +136,8 @@ public:
 	char timecodeformat[BCTEXTLEN];
 // Width of the stroke
 	double stroke_width;
-	int tlen;
-	FT_ULong *ucs4text;
-	void convert_text();
+	int wtext_length;
+	wchar_t wtext[BCTEXTLEN];
 };
 
 class TitleGlyph
@@ -146,8 +145,7 @@ class TitleGlyph
 public:
 	TitleGlyph();
 	~TitleGlyph();
-	// character in 8 bit charset
-	int c;
+
 	// character in UCS-4
 	FT_ULong char_code;
 	int width, height, pitch, advance_w, left, top, freetype_index;
@@ -205,7 +203,8 @@ class TitlePackage : public LoadPackage
 {
 public:
 	TitlePackage();
-	int x, y, c;
+	int x, y;
+	wchar_t char_code;
 };
 
 
@@ -327,20 +326,13 @@ public:
 	int draw_mask();
 	void overlay_mask();
 	BC_FontEntry* get_font();
-	int get_char_advance(int current, int next);
+	int get_char_advance(FT_ULong current, FT_ULong next);
 	int get_char_height();
 	void get_total_extents();
 	void clear_glyphs();
-	int check_char_code_path(const char *path_old,
-				FT_ULong &char_code,
-				char *path_new);
 	int load_freetype_face(FT_Library &freetype_library,
 		FT_Face &freetype_face,
-		char *path);
-
-	//backward compatibility
-	void convert_encoding();
-
+		const char *path);
 
 	static char* motion_to_text(int motion);
 	static int text_to_motion(char *text);

@@ -147,6 +147,8 @@ public:
 	ArrayList<BC_FontEntry*> *get_fontlist();
 // Find font entry
 	BC_FontEntry *find_fontentry(const char *displayname, int style, int mask);
+// Find font path where glyph for the character_code exists
+	int find_font_by_char(FT_ULong char_code, char *path_new);
 
 	int64_t local_to_edl(int64_t position);
 	int64_t edl_to_local(int64_t position);

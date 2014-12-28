@@ -42,7 +42,6 @@ class TitleFontTumble;
 class TitleItalic;
 class TitleBold;
 class TitleSize;
-class TitleEncoding;
 class TitleColorButton;
 class TitleColorStrokeButton;
 class TitleStroke;
@@ -107,9 +106,7 @@ public:
 
 	int color_x, color_y;
 	BC_Title *size_title;
-	BC_Title *encoding_title;
 	TitleSize *size;
-	TitleEncoding *encoding;
 	TitleColorButton *color_button;
 	TitleColorThread *color_thread;
 	BC_Title *motion_title;
@@ -135,7 +132,6 @@ public:
 
 // Color preview
 	ArrayList<BC_ListBoxItem*> sizes;
-	ArrayList<BC_ListBoxItem*> encodings;
 	ArrayList<BC_ListBoxItem*> paths;
 	ArrayList<BC_ListBoxItem*> fonts;
 	ArrayList<BC_ListBoxItem*> timecodeformats;
@@ -191,15 +187,7 @@ public:
 	TitleMain *client;
 	TitleWindow *window;
 };
-class TitleEncoding : public BC_PopupTextBox
-{
-public:
-	TitleEncoding(TitleMain *client, TitleWindow *window, int x, int y);
-	~TitleEncoding();
-	int handle_event();
-	TitleMain *client;
-	TitleWindow *window;
-};
+
 class TitleColorButton : public BC_GenericButton
 {
 public:

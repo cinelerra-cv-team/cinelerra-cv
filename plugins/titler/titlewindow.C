@@ -25,6 +25,7 @@
 
 #include <string.h>
 #include <libintl.h>
+#include <wchar.h>
 #define _(String) gettext(String)
 #define gettext_noop(String) String
 #define N_(String) gettext_noop (String)
@@ -66,7 +67,6 @@ TitleWindow::TitleWindow(TitleMain *client, int x, int y)
 TitleWindow::~TitleWindow()
 {
 	sizes.remove_all_objects();
-	encodings.remove_all_objects();
 	timecodeformats.remove_all_objects();
 	delete timecodeformat;
 	delete color_thread;
@@ -89,26 +89,6 @@ int TitleWindow::create_objects()
 	//	timecodeformats.append(new BC_ListBoxItem(TIME_SAMPLES_HEX__STR)); 	
 	timecodeformats.append(new BC_ListBoxItem(TIME_FRAMES__STR)); 		
 	//	timecodeformats.append(new BC_ListBoxItem(TIME_FEET_FRAMES__STR)); 	
-	
-	encodings.append(new BC_ListBoxItem("ISO8859-1"));
-	encodings.append(new BC_ListBoxItem("ISO8859-2"));
-	encodings.append(new BC_ListBoxItem("ISO8859-3"));
-	encodings.append(new BC_ListBoxItem("ISO8859-4"));
-	encodings.append(new BC_ListBoxItem("ISO8859-5"));
-	encodings.append(new BC_ListBoxItem("ISO8859-6"));
-	encodings.append(new BC_ListBoxItem("ISO8859-7"));
-	encodings.append(new BC_ListBoxItem("ISO8859-8"));
-	encodings.append(new BC_ListBoxItem("ISO8859-9"));
-	encodings.append(new BC_ListBoxItem("ISO8859-10"));
-	encodings.append(new BC_ListBoxItem("ISO8859-11"));
-	encodings.append(new BC_ListBoxItem("ISO8859-12"));
-	encodings.append(new BC_ListBoxItem("ISO8859-13"));
-	encodings.append(new BC_ListBoxItem("ISO8859-14"));
-	encodings.append(new BC_ListBoxItem("ISO8859-15"));
-	encodings.append(new BC_ListBoxItem("KOI8"));
-	encodings.append(new BC_ListBoxItem("UTF-8"));
-
-
 
 	sizes.append(new BC_ListBoxItem("8"));
 	sizes.append(new BC_ListBoxItem("9"));
@@ -270,13 +250,7 @@ int TitleWindow::create_objects()
 	color_x = x;
 	color_y = y + 20;
 	color_thread = new TitleColorThread(client, this);
-#ifndef X_HAVE_UTF8_STRING
-	x = 10;
-	y += 50;
-	add_tool(encoding_title = new BC_Title(x, y + 3, _("Encoding:")));
-	encoding = new TitleEncoding(client, this, x, y + 20);
-	encoding->create_objects();
-#endif
+
 #ifdef USE_OUTLINE
 	x += 160;
 	add_tool(strokewidth_title = new BC_Title(x, y, _("Outline width:")));
@@ -350,10 +324,6 @@ int TitleWindow::resize_event(int w, int h)
 #endif
 	size_title->reposition_window(size_title->get_x(), size_title->get_y());
 	size->reposition_window(size->get_x(), size->get_y());
-#ifndef X_HAVE_UTF8_STRING
-	encoding_title->reposition_window(encoding_title->get_x(), encoding_title->get_y());
-	encoding->reposition_window(encoding->get_x(), encoding->get_y());
-#endif
 	color_button->reposition_window(color_button->get_x(), color_button->get_y());
 #ifdef USE_OUTLINE
 	color_stroke_button->reposition_window(color_stroke_button->get_x(), color_stroke_button->get_y());
@@ -474,9 +444,6 @@ void TitleWindow::update()
 	stroke->update(client->config.style & FONT_OUTLINE);
 #endif
 	size->update(client->config.size);
-#ifndef X_HAVE_UTF8_STRING
-	encoding->update(client->config.encoding);
-#endif
 	timecode->update(client->config.timecode);
 	timecodeformat->update(client->config.timecodeformat);
 	motion->update(TitleMain::motion_to_text(client->config.motion_strategy));
@@ -585,28 +552,6 @@ void TitleSize::update(int size)
 	char string[BCTEXTLEN];
 	sprintf(string, "%d", size);
 	BC_PopupTextBox::update(string);
-}
-TitleEncoding::TitleEncoding(TitleMain *client, TitleWindow *window, int x, int y)
- : BC_PopupTextBox(window, 
-		&window->encodings,
-		client->config.encoding,
-		x, 
-		y, 
-		100,
-		300)
-{
-	this->client = client;
-	this->window = window;
-}
-
-TitleEncoding::~TitleEncoding()
-{
-}
-int TitleEncoding::handle_event()
-{
-	strcpy(client->config.encoding, get_text());
-	client->send_configure_change();
-	return 1;
 }
 
 TitleColorButton::TitleColorButton(TitleMain *client, TitleWindow *window, int x, int y)
@@ -750,7 +695,7 @@ TitleText::TitleText(TitleMain *client,
 		y, 
 		w,
 		BC_TextBox::pixels_to_rows(window, MEDIUMFONT, h),
-		client->config.text)
+		client->config.wtext)
 {
 	this->client = client;
 	this->window = window;
@@ -759,7 +704,7 @@ TitleText::TitleText(TitleMain *client,
 
 int TitleText::handle_event()
 {
-	strcpy(client->config.text, get_text());
+	wcscpy(client->config.wtext, get_wtext(&client->config.wtext_length));
 	client->send_configure_change();
 	return 1;
 }

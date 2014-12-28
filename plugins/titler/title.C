@@ -55,11 +55,10 @@
 
 #define ZERO (1.0 / 64.0)
 
-#define FONT_SEARCHPATH "fonts"
-//#define FONT_SEARCHPATH "/usr/X11R6/lib/X11/fonts"
-
-
 REGISTER_PLUGIN(TitleMain)
+
+#define DEFAULT_ENCODING "UTF-8"
+#define DEFAULT_TIMECODEFORMAT "h:mm:ss:ff"
 
 
 TitleConfig::TitleConfig()
@@ -79,24 +78,14 @@ TitleConfig::TitleConfig()
 	dropshadow = 10;
 	sprintf(font, "fixed");
 	sprintf(text, _("hello world"));
-#ifdef X_HAVE_UTF8_STRING
-#define DEFAULT_ENCODING "UTF-8"
-#else
-#define DEFAULT_ENCODING "ISO8859-1"
-#endif
 	sprintf(encoding, DEFAULT_ENCODING);
-#define DEFAULT_TIMECODEFORMAT "h:mm:ss:ff"
 	sprintf(timecodeformat, DEFAULT_TIMECODEFORMAT);
 	pixels_per_second = 1.0;
 	timecode = 0;
 	stroke_width = 1.0;
-	ucs4text = 0;
+	wtext_length = 0;
 }
 
-TitleConfig::~TitleConfig()
-{
-	delete [] ucs4text;
-}
 
 // Does not test equivalency but determines if redrawing text is necessary.
 int TitleConfig::equivalent(TitleConfig &that)
@@ -114,7 +103,8 @@ int TitleConfig::equivalent(TitleConfig &that)
 		EQUIV(pixels_per_second, that.pixels_per_second) &&
 		!strcasecmp(font, that.font) &&
 		!strcasecmp(encoding, that.encoding) &&
-		!strcmp(text, that.text);
+		wtext_length == that.wtext_length &&
+		!memcmp(wtext, that.wtext, wtext_length * sizeof(wchar_t));
 }
 
 void TitleConfig::copy_from(TitleConfig &that)
@@ -139,6 +129,8 @@ void TitleConfig::copy_from(TitleConfig &that)
 	strcpy(timecodeformat, that.timecodeformat);
 	strcpy(text, that.text);
 	strcpy(encoding, that.encoding);
+	memcpy(wtext, that.wtext, that.wtext_length * sizeof(wchar_t));
+	wtext_length = that.wtext_length;
 }
 
 void TitleConfig::interpolate(TitleConfig &prev, 
@@ -161,7 +153,8 @@ void TitleConfig::interpolate(TitleConfig &prev,
 	fade_in = prev.fade_in;
 	fade_out = prev.fade_out;
 	pixels_per_second = prev.pixels_per_second;
-	strcpy(text, prev.text);
+	memcpy(wtext, prev.wtext, prev.wtext_length * sizeof(wchar_t));
+	wtext_length = prev.wtext_length;
 
 	double next_scale = (double)(current_frame - prev_frame) / (next_frame - prev_frame);
 	double prev_scale = (double)(next_frame - current_frame) / (next_frame - prev_frame);
@@ -177,127 +170,16 @@ void TitleConfig::interpolate(TitleConfig &prev,
 	this->dropshadow = prev.dropshadow;
 }
 
-// this is a little routine that converts no-utf8 text to utf8 // akirad
-void TitleMain::convert_encoding()
+void TitleConfig::text_to_ucs4(const char *from_enc)
 {
-	if(strcmp(config.encoding,"UTF-8"))
-	{
-		iconv_t cd;
-		char utf8text[BCTEXTLEN];
-		FcChar8 return_utf8;
-		cd = iconv_open("UTF-8", config.encoding);
-		if(cd == (iconv_t) - 1)
-		{
-			// Something went wrong.
-			fprintf(stderr, ("Iconv conversion from %s to UTF-8 not available\n"), config.encoding);
-		}
-
-		// if iconv is working ok for current encoding
-		if(cd != (iconv_t) -1)
-		{
-			char *inbuf = &config.text[0];
-			char *outbuf = &utf8text[0];
-			size_t inbytes = strlen(config.text);
-			size_t outbytes = sizeof(utf8text) - 1;
-
-			do {
-				if(iconv(cd, &inbuf, &inbytes, &outbuf, &outbytes) == (size_t) -1)
-				{
-					break;
-				}
-			} while (inbytes > 0 && outbytes > 0);
-
-			*outbuf = 0;
-			strcpy(config.text, utf8text);
-			strcpy(config.encoding, "UTF-8");
-			iconv_close(cd);
-		}
-	}
-}
-
-// this is a little routine that converts 8 bit string to FT_ULong array // akirad
-void TitleConfig::convert_text()
-{
-	int text_len = strlen(text);
-	int total_packages = 0;
-	tlen = 0;
-	for(int i = 0; i < text_len; i++)
-	{
-		tlen++;
-		int x = 0;
-		int z = text[i];
-		if (!(z & 0x80))
-		{
-			x = 0;
-		} else if (!(z & 0x20))
-		{
-			x = 1;
-		} else if (!(z & 0x10))
-		{
-			x = 2;
-		} else if (!(z & 0x08))
-		{
-			x = 3;
-		} else if (!(z & 0x04))
-		{
-			x = 4;
-		} else if (!(z & 0x02))
-		{
-			x = 5;
-		}
-		i += x;
-	}
-	if(ucs4text) delete [] ucs4text;
-	ucs4text = new FT_ULong [tlen + 1];
-	int count = 0;
-	FcChar32 return_ucs4;
-	for(int i = 0; i < text_len; i++)
-	{
-		int z = text[i];
-		int x = 0;
-		FcChar8 loadutf8[6];
-		if (!(z & 0x80))
-		{
-			x = 0;
-		} else if (!(z & 0x20))
-		{
-			x = 2;
-		} else if (!(z & 0x10))
-		{
-			x = 3;
-		} else if (!(z & 0x08))
-		{
-			x = 4;
-		} else if (!(z & 0x04))
-		{
-			x = 5;
-		} else if (!(z & 0x02))
-		{
-			x = 6;
-		}
-		//clean array
-		memset(loadutf8, 0, sizeof(loadutf8));
-		if ( x > 0 ) {
-			//fill array
-			for(int p = 0; p < x; p++)
-				loadutf8[p] = text[i + p];
-			i += (x - 1);
-		} else {
-			//fill array
-			loadutf8[0] = z;
-			loadutf8[1] = 0;
-		}
-		FcUtf8ToUcs4(loadutf8, &return_ucs4, 6);
-		ucs4text[count] = (FT_ULong)return_ucs4;
-		count++;
-	}
+	wtext_length = BC_Resources::encode(from_enc, BC_Resources::wide_encoding,
+		text, (char *)wtext, sizeof(wtext) / sizeof(wchar_t)) / sizeof(wchar_t);
 }
 
 
 TitleGlyph::TitleGlyph()
 {
 	char_code = 0;
-	c=0;
 	data = 0;
 	data_stroke = 0;
 }
@@ -343,23 +225,16 @@ void GlyphUnit::process_package(LoadPackage *package)
 	GlyphPackage *pkg = (GlyphPackage*)package;
 	TitleGlyph *glyph = pkg->glyph;
 	int result = 0;
-	char new_path[1024];
+	char new_path[BCTEXTLEN];
 
 	current_font = plugin->get_font();
-	plugin->check_char_code_path(current_font->path,
-					glyph->char_code,
-					new_path);
 
 	if(plugin->load_freetype_face(freetype_library,
 			freetype_face,
-			new_path))
+			current_font->path))
 	{
 		printf(_("GlyphUnit::process_package FT_New_Face failed.\n"));
 		result = 1;
-	}
-	else
-	{
-		FT_Set_Pixel_Sizes(freetype_face, plugin->config.size, 0);
 	}
 
 	if(!result)
@@ -368,6 +243,18 @@ void GlyphUnit::process_package(LoadPackage *package)
 
 //printf("GlyphUnit::process_package 1 %c\n", glyph->char_code);
 // Char not found
+		if(gindex == 0)
+		{
+			// Search replacement font
+			if(plugin->find_font_by_char(glyph->char_code, new_path))
+			{
+				plugin->load_freetype_face(freetype_library,
+					freetype_face, new_path);
+				gindex = FT_Get_Char_Index(freetype_face, glyph->char_code);
+			}
+		}
+		FT_Set_Pixel_Sizes(freetype_face, plugin->config.size, 0);
+
 		if (gindex == 0) 
 		{
 // carrige return
@@ -663,12 +550,12 @@ void TitleUnit::process_package(LoadPackage *package)
 {
 	TitlePackage *pkg = (TitlePackage*)package;
 	
-	if(pkg->c != 0xa)
+	if(pkg->char_code != 0xa)
 	{
 		for(int i = 0; i < plugin->glyphs.total; i++)
 		{
 			TitleGlyph *glyph = plugin->glyphs.values[i];
-			if(glyph->c == pkg->c)
+			if(glyph->char_code == pkg->char_code)
 			{
 				draw_glyph(plugin->text_mask, glyph, pkg->x, pkg->y);
 				if(plugin->config.stroke_width >= ZERO &&
@@ -706,7 +593,7 @@ void TitleEngine::init_packages()
 //printf("TitleEngine::init_packages 1\n");
 		pkg->y = char_position->y - visible_y1;
 //printf("TitleEngine::init_packages 1\n");
-		pkg->c = plugin->config.ucs4text[i];
+		pkg->char_code = plugin->config.wtext[i];
 //printf("TitleEngine::init_packages 2\n");
 		current_package++;
 	}
@@ -1120,6 +1007,7 @@ TitleMain::~TitleMain()
 	clear_glyphs();
 	if(glyph_engine) delete glyph_engine;
 	if(title_engine) delete title_engine;
+	if(freetype_face) FT_Done_Face(freetype_face);
 	if(freetype_library) FT_Done_FreeType(freetype_library);
 	if(translate) delete translate;
 }
@@ -1134,75 +1022,9 @@ VFrame* TitleMain::new_picon()
 }
 
 
-//This checks if char_code is on the selected font and changes font with the first compatible //Akirad
-int TitleMain::check_char_code_path(const char *path_old, FT_ULong &char_code,
-		char *path_new)
-{
-	int result = 0;
-	int match_charset = 0;
-	bool not_only_truetype = true;
-
-	//Try to open char_set with ft_Library
-	FT_Library temp_freetype_library;
-	FT_Face temp_freetype_face;
-	FT_Init_FreeType(&temp_freetype_library);
-	if(!FT_New_Face(temp_freetype_library,
-					path_old,
-					0,
-					&temp_freetype_face))
-	{
-		if(!FT_Get_Char_Index(temp_freetype_face, char_code) == 0) match_charset = 1;
-	}
-	if(temp_freetype_face) FT_Done_Face(temp_freetype_face);
-	FT_Done_FreeType(temp_freetype_library);
-
-	// If not match call fontconfig
-	if(!match_charset)
-	{
-		FcPattern *pat;
-		FcFontSet *fs;
-		FcObjectSet *os;
-		FcChar8 *file, *format;
-		FcCharSet *fcs;
-		FcConfig *config;
-		FcBool resultfc;
-
-		resultfc = FcInit();
-		config = FcConfigGetCurrent();
-		FcConfigSetRescanInterval(config, 0);
-		pat = FcPatternCreate();
-		os = FcObjectSetBuild ( FC_FILE, FC_CHARSET, FC_FONTFORMAT, (char *) 0);
-		fs = FcFontList(config, pat, os);
-		FcPattern *font;
-		for (int i = 0; i < fs->nfont; i++)
-		{
-			font = fs->fonts[i];
-			FcPatternGetString(font, FC_FONTFORMAT, 0, &format);
-			if((!strcmp((char *)format, "TrueType")) || not_only_truetype)
-			{
-				if(FcPatternGetCharSet(font, FC_CHARSET, 0, &fcs) == FcResultMatch)
-				{
-					if(FcCharSetHasChar (fcs, char_code))
-					{
-						if(FcPatternGetString(font, FC_FILE, 0, &file) == FcResultMatch)
-						{
-							strcpy(path_new, (char*)file);
-							result = 1;
-							break;
-						}
-					}
-				}
-			}
-		}
-		FcFontSetDestroy(fs);
-	}
-	if(!result) strcpy(path_new, path_old);
-	return result;
-}
-
 int TitleMain::load_freetype_face(FT_Library &freetype_library,
 	FT_Face &freetype_face,
-	char *path)
+	const char *path)
 {
 //printf("TitleMain::load_freetype_face 1\n");
 	if(!freetype_library) FT_Init_FreeType(&freetype_library);
@@ -1250,7 +1072,7 @@ int TitleMain::get_char_height()
 	return result;
 }
 
-int TitleMain::get_char_advance(int current, int next)
+int TitleMain::get_char_advance(FT_ULong current, FT_ULong next)
 {
 	FT_Vector kerning;
 	int result = 0;
@@ -1261,7 +1083,7 @@ int TitleMain::get_char_advance(int current, int next)
 
 	for(int i = 0; i < glyphs.total; i++)
 	{
-		if(glyphs.values[i]->c == current)
+		if(glyphs.values[i]->char_code == current)
 		{
 			current_glyph = glyphs.values[i];
 			break;
@@ -1270,7 +1092,7 @@ int TitleMain::get_char_advance(int current, int next)
 
 	for(int i = 0; i < glyphs.total; i++)
 	{
-		if(glyphs.values[i]->c == next)
+		if(glyphs.values[i]->char_code == next)
 		{
 			next_glyph = glyphs.values[i];
 			break;
@@ -1298,19 +1120,12 @@ void TitleMain::draw_glyphs()
 {
 // Build table of all glyphs needed
 	int total_packages = 0;
-#ifndef X_HAVE_UTF8_STRING
-	// on not-utf8 system we should be sure
-	// that text is UTF-8 before use convert_text.
-	convert_encodings();
-#endif
-	// now convert text to FT_Ulong array
-	config.convert_text();
-	for(int i = 0; i < config.tlen; i++)
+
+	for(int i = 0; i < config.wtext_length; i++)
 	{
-		FT_ULong char_code;	
-		int c = config.ucs4text[i];
+		wchar_t char_code;
 		int exists = 0;
-		char_code = config.ucs4text[i];
+		char_code = config.wtext[i];
 		for(int j = 0; j < glyphs.total; j++)
 		{
 			if(glyphs.values[j]->char_code == char_code)
@@ -1327,7 +1142,6 @@ void TitleMain::draw_glyphs()
 			TitleGlyph *glyph = new TitleGlyph;
 //printf("TitleMain::draw_glyphs 2\n");
 			glyphs.append(glyph);
-			glyph->c = c;
 			glyph->char_code = char_code;
 		}
 	}
@@ -1347,7 +1161,7 @@ void TitleMain::get_total_extents()
 // Determine extents of total text
 	int current_w = 0;
 	int row_start = 0;
-	text_len = config.tlen;
+	text_len = config.wtext_length;
 	if(!char_positions) char_positions = new title_char_position_t[text_len];
 	text_rows = 0;
 	text_w = 0;
@@ -1360,7 +1174,7 @@ void TitleMain::get_total_extents()
 	// get the number of rows first
 	for(int i = 0; i < text_len; i++)
 	{
-		if(config.ucs4text[i] == 0xa || i == text_len - 1)
+		if(config.wtext[i] == 0xa || i == text_len - 1)
 		{
 			text_rows++;
 		}
@@ -1373,11 +1187,11 @@ void TitleMain::get_total_extents()
 	{
 		char_positions[i].x = current_w;
 		char_positions[i].y = text_rows * get_char_height();
-		char_positions[i].w = get_char_advance(config.ucs4text[i], config.ucs4text[i + 1]);
+		char_positions[i].w = get_char_advance(config.wtext[i], config.wtext[i + 1]);
 		TitleGlyph *current_glyph = 0;
 		for(int j = 0; j < glyphs.total; j++)
 		{
-			if(glyphs.values[j]->c == config.ucs4text[i])
+			if(glyphs.values[j]->char_code == config.wtext[i])
 			{
 				current_glyph = glyphs.values[j];
 				break;
@@ -1394,7 +1208,7 @@ void TitleMain::get_total_extents()
 // 	char_positions[i].w);
 		current_w += char_positions[i].w;
 
-		if(config.ucs4text[i] == 0xa || i == text_len - 1)
+		if(config.wtext[i] == 0xa || i == text_len - 1)
 		{
 			text_rows++;
 			rows_bottom[text_rows] = 0;
@@ -1411,7 +1225,7 @@ void TitleMain::get_total_extents()
 	row_start = 0;
 	for(int i = 0; i < text_len; i++)
 	{
-		if(config.ucs4text[i] == 0xa || i == text_len - 1)
+		if(config.wtext[i] == 0xa || i == text_len - 1)
 		{
 			for(int j = row_start; j <= i; j++)
 			{
@@ -1946,13 +1760,20 @@ int TitleMain::load_defaults()
 		fseek(fd, 0, SEEK_END);
 		int64_t len = ftell(fd);
 		fseek(fd, 0, SEEK_SET);
-		fread(config.text, len, 1, fd);
+		if(len && fread(config.text, len, 1, fd) < 0)
+			len = 0;
 		config.text[len] = 0;
 //printf("TitleMain::load_defaults %s\n", config.text);
 		fclose(fd);
+		config.text_to_ucs4(config.encoding);
+		strcpy(config.encoding, DEFAULT_ENCODING);
 	}
 	else
+	{
 		config.text[0] = 0;
+		config.wtext[0] = 0;
+		config.wtext_length = 0;
+	}
 	return 0;
 }
 
@@ -1985,12 +1806,15 @@ int TitleMain::save_defaults()
 
 // Store text in separate path to isolate special characters
 	FileSystem fs;
+	int txlen = BC_Resources::encode(BC_Resources::wide_encoding, DEFAULT_ENCODING,
+		(char*)config.wtext, config.text, BCTEXTLEN,
+		config.wtext_length * sizeof(wchar_t));
 	sprintf(text_path, "%stitle_text.rc", BCASTDIR);
 	fs.complete_path(text_path);
 	FILE *fd = fopen(text_path, "wb");
 	if(fd)
 	{
-		fwrite(config.text, strlen(config.text), 1, fd);
+		fwrite(config.text, txlen, 1, fd);
 		fclose(fd);
 	}
 //	else
@@ -2063,9 +1887,6 @@ void TitleMain::save_data(KeyFrame *keyframe)
 {
 	FileXML output;
 
-// cause data to be stored directly in text
-	//checks if encodings is utf8 on write, if not first convert it.
-	convert_encoding();
 	output.set_shared_string(keyframe->data, MESSAGESIZE);
 	output.tag.set_title("TITLE");
 	output.tag.set_property("FONT", config.font);
@@ -2089,7 +1910,8 @@ void TitleMain::save_data(KeyFrame *keyframe)
 	output.tag.set_property("TIMECODEFORMAT", config.timecodeformat);
 	output.append_tag();
 	output.append_newline();
-	
+	BC_Resources::encode(BC_Resources::wide_encoding, DEFAULT_ENCODING, (char*)config.wtext,
+		config.text, BCTEXTLEN, config.wtext_length * sizeof(wchar_t));
 	output.encode_text(config.text);
 
 	output.tag.set_title("/TITLE");
@@ -2140,6 +1962,7 @@ void TitleMain::read_data(KeyFrame *keyframe)
 				config.timecode = input.tag.get_property("TIMECODE", config.timecode);
 				input.tag.get_property("TIMECODEFORMAT", config.timecodeformat);
 				strcpy(config.text, input.read_text());
+				config.text_to_ucs4(config.encoding);
 //printf("TitleMain::read_data 1\n%s\n", input.string);
 //printf("TitleMain::read_data 2\n%s\n", config.text);
 			}
@@ -2150,12 +1973,4 @@ void TitleMain::read_data(KeyFrame *keyframe)
 			}
 		}
 	}
-	// Checks if text is utf8 after read, if not convert it.
-	convert_encoding();
 }
-
-
-
-
-
-
