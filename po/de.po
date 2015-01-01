@@ -1,6 +1,6 @@
 # German translation of cinelerra-cv.
 # Copyright (C) 2007 Heroine Warrior Inc.
-# Copyright (C) 2007-2014 Cinelerra-CV.
+# Copyright (C) 2007-2015 Cinelerra-CV.
 # This file is distributed under the same license as the cinelerra-cv package.
 # Jens Seidel <tux-master@web.de>, 2003, 2006.
 # "Asset" (so etwas wie Ressource) sollte nicht übersetzt werden, siehe

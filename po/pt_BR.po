@@ -1,6 +1,6 @@
 # Tradução para Português Brasileiro do Cinelerra-cv
 # Copyright (C) 2001-2007 Heroine Warrior Inc.
-# Copyright (C) 2007-2014 Cinelerra-CV.
+# Copyright (C) 2007-2015 Cinelerra-CV.
 # This file is distributed under the same license as the cinelerra package.
 # Rafael Diniz <rafael@riseup.net> (2006/2014)
 # Flavio Freitas <qazav3.0@gmail.com> (2006/2007)

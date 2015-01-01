@@ -1,6 +1,6 @@
 # French translation of cinelerra.
 # Copyright (C) 2003 Heroine Warrior Inc.
-# Copyright (C) 2007-2014 Cinelerra-CV.
+# Copyright (C) 2007-2015 Cinelerra-CV.
 # Eric Seigne <eric.seigne@ryxeo.com>, 2004, 2005.
 # Jean-Luc Coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>, 2005.
 #
