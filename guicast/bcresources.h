@@ -323,8 +323,6 @@ public:
 
 // Current locale uses utf8
 	static int locale_utf8;
-// Failed to initalize input method
-	static int missing_im;
 // Byte order is little_endian
 	static int little_endian;
 // Language and region

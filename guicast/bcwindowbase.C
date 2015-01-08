@@ -154,13 +154,10 @@ BC_WindowBase::~BC_WindowBase()
 		if(largefont)
 			XFreeFont(display, largefont);
 
-		if(!get_resources()->missing_im)
-		{
-			if(input_context)
-				XDestroyIC(input_context);
-			if(input_method)
-				XCloseIM(input_method);
-		}
+		if(input_context)
+			XDestroyIC(input_context);
+		if(input_method)
+			XCloseIM(input_method);
 
 		flush();
 // Can't close display if another thread is waiting for events.
@@ -896,13 +893,9 @@ int BC_WindowBase::dispatch_event()
 		case KeyPress:
 			get_key_masks(event);
 			key_pressed = 0;
-			memset(key_string, 0, sizeof(key_string));
 
-			if(input_context)
-				wkey_string_length = XwcLookupString(input_context,
-					(XKeyEvent*)event, wkey_string, 4, &keysym, 0);
-			else
-				XLookupString((XKeyEvent*)event, key_string, 6, &keysym, 0);
+			wkey_string_length = XwcLookupString(input_context,
+				(XKeyEvent*)event, wkey_string, 4, &keysym, 0);
 
 // printf("BC_WindowBase::dispatch_event 2 %llx\n", 
 // event->xkey.state);
@@ -1913,22 +1906,17 @@ void BC_WindowBase::init_im()
 	XIMStyles *xim_styles;
 	XIMStyle xim_style;
 
-	if(get_resources()->missing_im || !get_resources()->locale_utf8)
-		return;
-
 	if(!(input_method = XOpenIM(display, NULL, NULL, NULL)))
 	{
-		printf("Could not open input method.\n");
-		get_resources()->missing_im = 1;
-		return;
+		printf("BC_WindowBase::init_im: Could not open input method.\n");
+		exit(1);
 	}
 	if(XGetIMValues(input_method, XNQueryInputStyle, &xim_styles, NULL) ||
 			xim_styles == NULL)
 	{
-		printf("Input method doesn't support any styles.\n");
+		printf("BC_WindowBase::init_im: Input method doesn't support any styles.\n");
 		XCloseIM(input_method);
-		get_resources()->missing_im = 1;
-		return;
+		exit(1);
 	}
 
 	xim_style = 0;
@@ -1944,20 +1932,18 @@ void BC_WindowBase::init_im()
 
 	if(xim_style == 0)
 	{
-		printf("Input method doesn't support the style we need.\n");
+		printf("BC_WindowBase::init_im: Input method doesn't support the style we need.\n");
 		XCloseIM(input_method);
-		get_resources()->missing_im = 1;
-		return;
+		exit(1);
 	}
 
 	input_context = XCreateIC(input_method, XNInputStyle, xim_style,
 		NULL);
 	if(!input_context)
 	{
-		printf("Failed to create input context.\n");
-		get_resources()->missing_im = 1;
+		printf("BC_WindowBase::init_im: Failed to create input context.\n");
 		XCloseIM(input_method);
-		return;
+		exit(1);
 	}
 }
 
@@ -3237,11 +3223,6 @@ int BC_WindowBase::shift_down()
 int BC_WindowBase::ctrl_down()
 {
 	return top_level->ctrl_mask;
-}
-
-char* BC_WindowBase::get_keystring()
-{
-	return top_level->key_string;
 }
 
 wchar_t* BC_WindowBase::get_wkeystring(int *length)
