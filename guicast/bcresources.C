@@ -38,6 +38,8 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <X11/extensions/XShm.h>
+#include <fontconfig/fontconfig.h>
+#include <fontconfig/fcfreetype.h>
 #include <unistd.h>
  
 
@@ -1009,12 +1011,9 @@ size_t BC_Resources::encode(const char *from_enc, const char *to_enc,
 	return inbytes;
 }
 
-int BC_Resources::find_font_by_char(FT_ULong char_code, char *path_new)
+int BC_Resources::find_font_by_char(FT_ULong char_code, char *path_new, const FT_Face oldface)
 {
-	FcPattern *pat, *font;
-	FcFontSet *fs;
-	FcObjectSet *os;
-	FcCharSet *fcs;
+	FcPattern *font, *ofont;
 	FcChar8 *file;
 	int result = 0;
 
@@ -1024,34 +1023,19 @@ int BC_Resources::find_font_by_char(FT_ULong char_code, char *path_new)
 	if(char_code < ' ')
 		return 0;
 
-	fontconfig_lock.lock("BC_Resources::find_font_by_char");
-	pat = FcPatternCreate();
-	os = FcObjectSetBuild(FC_FILE, FC_CHARSET, (char *)0);
-
-	FcPatternAddBool(pat, FC_SCALABLE, true);
-
-	fs = FcFontList(0, pat, os);
-	FcPatternDestroy(pat);
-	FcObjectSetDestroy(os);
-
-	for (int i = 0; i < fs->nfont; i++)
+	if(ofont = FcFreeTypeQueryFace(oldface, (const FcChar8*)"", 4097, 0))
 	{
-		font = fs->fonts[i];
-		if(FcPatternGetCharSet(font, FC_CHARSET, 0, &fcs) == FcResultMatch)
+		if(font = find_similar_font(char_code, ofont))
 		{
-			if(FcCharSetHasChar(fcs, char_code))
+			if(FcPatternGetString(font, FC_FILE, 0, &file) == FcResultMatch)
 			{
-				if(FcPatternGetString(font, FC_FILE, 0, &file) == FcResultMatch)
-				{
-					strcpy(path_new, (char*)file);
-					result = 1;
-					break;
-				}
+				strcpy(path_new, (char*)file);
+				result = 1;
 			}
+			FcPatternDestroy(font);
 		}
+		FcPatternDestroy(ofont);
 	}
-	FcFontSetDestroy(fs);
-	fontconfig_lock.unlock();
 	return result;
 }
 

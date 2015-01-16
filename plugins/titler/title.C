@@ -34,7 +34,6 @@
 #include FT_BBOX_H
 #include FT_OUTLINE_H
 #include FT_STROKER_H
-#include <fontconfig/fontconfig.h>
 #include "language.h"
 #include "mwindow.inc"
 #include "picon_png.h"
@@ -246,7 +245,7 @@ void GlyphUnit::process_package(LoadPackage *package)
 		if(gindex == 0)
 		{
 			// Search replacement font
-			if(plugin->find_font_by_char(glyph->char_code, new_path))
+			if(plugin->find_font_by_char(glyph->char_code, new_path, freetype_face))
 			{
 				plugin->load_freetype_face(freetype_library,
 					freetype_face, new_path);
