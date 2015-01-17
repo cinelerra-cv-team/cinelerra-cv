@@ -155,6 +155,14 @@ if test "$no_utf" = "yes"; then
 fi
 ############## UTF8 suppport
 
+############## Freetype2 and fontconfig suppport
+PKG_CHECK_MODULES(FREETYPE,freetype2,[freetype2=yes],:)
+PKG_CHECK_MODULES(FONTCONFIG,fontconfig >= 2.4.2,[fontconfig=yes],:)
+if test "x$freetype2" != "xyes" -o "x$fontconfig" != "xyes"; then
+	AC_MSG_ERROR([Cinelerra requires freetype2 and fontconfig ver 2.4.2 or later])
+fi
+############## End of freetype2 and fontconfig suppport
+
 ############# XFT
 AH_TEMPLATE(HAVE_XFT, [Define to 1 if libXft is available.])
 PKG_CHECK_MODULES(XFT, xft, [libxft=yes],:)
@@ -254,12 +262,6 @@ AC_CHECK_LIB(jpeg,jpeg_start_decompress,[libjpeg=yes])
 
 AC_CHECK_HEADER(tiffio.h,[libtiffh=yes])
 AC_CHECK_LIB(tiff,TIFFOpen,[libtiff=yes])
-
-AC_ARG_ENABLE(freetype2,
-	AC_HELP_STRING([--enable-freetype2],[enables freetype2 usage (default is use pkg-config detection)]),
-	[ 
-	  [freetype2=yes] ],
-	[ PKG_CHECK_MODULES(FREETYPE,freetype2,[freetype2=yes],:) ])
 
 # OpenCV is used by the findobj plugin.  Check if the needed libraries
 # exist.  The functions to look for are picked by random from the
