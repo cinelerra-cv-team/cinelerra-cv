@@ -52,16 +52,12 @@ BC_TextBox::BC_TextBox(int x,
 	int is_utf8)
  : BC_SubWindow(x, y, w, 0, -1)
 {
-	int len;
-
 	skip_cursor = 0;
 	reset_parameters(rows, has_border, font);
-	len = strlen(text);
-	resize_ntext(len);
-	len = resize_wide_text(len);
-	strcpy(ntext, text);
-	wtext_len = BC_Resources::encode(is_utf8 ? "UTF8" : get_resources()->encoding,
-		BC_Resources::wide_encoding, ntext, (char*)wide_text, len * sizeof(wchar_t)) / sizeof(wchar_t);
+	strncpy(ntext, text, TEXTBOXLEN);
+	ntext[TEXTBOXLEN] = 0;
+	wtext_len = BC_Resources::encode(is_utf8 ? "UTF8" : BC_Resources::encoding,
+		BC_Resources::wide_encoding, ntext, (char*)wide_text, TEXTBOXLEN * sizeof(wchar_t)) / sizeof(wchar_t);
 }
 
 BC_TextBox::BC_TextBox(int x,
@@ -74,26 +70,23 @@ BC_TextBox::BC_TextBox(int x,
 	int font)
  : BC_SubWindow(x, y, w, 0, -1)
 {
-	int len;
-
 	skip_cursor = 0;
 	reset_parameters(rows, has_border, font);
 	if(wtext)
 	{
 		wtext_len = wcslen(wtext);
-		resize_ntext(wtext_len);
-		len = resize_wide_text(wtext_len);
-		wcscpy(wide_text, wtext);
+		if(wtext_len > TEXTBOXLEN)
+			wtext_len = TEXTBOXLEN;
+		wcsncpy(wide_text, wtext, TEXTBOXLEN);
+		wide_text[TEXTBOXLEN] = 0;
 	}
 	else
 	{
-		len = strlen(text);
-		resize_ntext(len);
-		len = resize_wide_text(len);
-		strcpy(ntext, text);
-		wtext_len = BC_Resources::encode(get_resources()->encoding,
+		strncpy(ntext, text, TEXTBOXLEN);
+		ntext[TEXTBOXLEN] = 0;
+		wtext_len = BC_Resources::encode(BC_Resources::encoding,
 			BC_Resources::wide_encoding, ntext, (char*)wide_text,
-			len * sizeof(wchar_t)) / sizeof(wchar_t);
+			TEXTBOXLEN * sizeof(wchar_t)) / sizeof(wchar_t);
 	}
 }
 
@@ -157,8 +150,6 @@ void BC_TextBox::convert_number()
 BC_TextBox::~BC_TextBox()
 {
 	if(skip_cursor) delete skip_cursor;
-	if(ntext != ntext_buffer)
-		delete [] ntext;
 	delete [] positions;
 }
 
@@ -184,7 +175,6 @@ int BC_TextBox::reset_parameters(int rows, int has_border, int font)
 	last_keypress = 0;
 	separators = 0;
 	wtext_len = 0;
-	ntext = ntext_buffer;
 	positions = 0;
 	return 0;
 }
@@ -234,22 +224,6 @@ int BC_TextBox::initialize()
 	return 0;
 }
 
-int BC_TextBox::resize_ntext(int length)
-{
-	if(ntext != ntext_buffer)
-		delete [] ntext;
-	if(length < sizeof(ntext_buffer))
-	{
-		ntext = ntext_buffer;
-		return sizeof(ntext_buffer);
-	}
-	else
-	{
-		ntext = new char[length + 1];
-		return length + 1;
-	}
-}
-
 int BC_TextBox::calculate_h(BC_WindowBase *gui, 
 	int font, 
 	int has_border,
@@ -275,17 +249,13 @@ void BC_TextBox::set_selection(int char1, int char2, int ibeam)
 
 int BC_TextBox::update(const char *text)
 {
-	int len;
 //printf("BC_TextBox::update 1 %d %s %s\n", strcmp(text, this->text), text, this->text);
-	int text_len = strlen(text);
 // Don't update if contents are the same
 	if(!strcmp(text, ntext)) return 0;
-	len = strlen(text);
-	resize_ntext(len);
-	strcpy(ntext, text);
-	len = resize_wide_text(len);
-	wtext_len = BC_Resources::encode(get_resources()->encoding, BC_Resources::wide_encoding,
-		ntext, (char*)wide_text, len * sizeof(wchar_t)) / sizeof(wchar_t);
+	strncpy(ntext, text, TEXTBOXLEN);
+	ntext[TEXTBOXLEN] = 0;
+	wtext_len = BC_Resources::encode(BC_Resources::encoding, BC_Resources::wide_encoding,
+		ntext, (char*)wide_text, TEXTBOXLEN * sizeof(wchar_t)) / sizeof(wchar_t);
 	update_wtext();
 	return 0;
 }
@@ -300,28 +270,26 @@ void BC_TextBox::update_wtext()
 
 void BC_TextBox::updateutf8(const char *text)
 {
-	int len;
 // Don't update if contents are the same
 	if(!strcmp(text, ntext)) return;
 
-	len = strlen(text);
-	resize_ntext(len);
-	strcpy(ntext, text);
-	len = resize_wide_text(len);
+	strncpy(ntext, text, TEXTBOXLEN);
+	ntext[TEXTBOXLEN] = 0;
 	wtext_len = BC_Resources::encode("UTF8" , BC_Resources::wide_encoding,
-		ntext, (char*)wide_text, len * sizeof(wchar_t)) / sizeof(wchar_t);
+		ntext, (char*)wide_text, TEXTBOXLEN * sizeof(wchar_t)) / sizeof(wchar_t);
 	update_wtext();
 }
 
 void BC_TextBox::update(const wchar_t *text)
 {
-	int len;
 // Don't update if contents are the same
 	if(!wcscmp(text, wide_text)) return;
 
 	wtext_len = wcslen(text);
-	resize_wide_text(wtext_len);
-	wcscpy(wide_text, text);
+	if(wtext_len > TEXTBOXLEN)
+		wtext_len = TEXTBOXLEN;
+	wcsncpy(wide_text, text, TEXTBOXLEN);
+	wide_text[TEXTBOXLEN] = 0;
 	update_wtext();
 }
 
