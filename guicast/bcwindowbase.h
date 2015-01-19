@@ -472,8 +472,9 @@ public:
 	void set_opaque();
 	void set_inverse();
 	void set_background(VFrame *bitmap);
-// Change the window title.  The title is translated internally.
+// Change the window title.
 	void set_title(const char *text);
+	void set_utf8title(const char *text);
 	char* get_title();
 	void start_video();
 	void stop_video();
@@ -578,7 +579,8 @@ private:
 				const char *display_name,
 				int window_type,
 				BC_Pixmap *bg_pixmap,
-				int group_it);
+				int group_it,
+				int options = 0);
 
 	static Display* init_display(const char *display_name);
 // Get display from top level

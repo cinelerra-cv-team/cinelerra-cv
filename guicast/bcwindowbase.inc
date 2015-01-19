@@ -28,4 +28,9 @@ class BC_WindowList;
 // Milliseconds before cursor disappears during video playback
 #define VIDEO_CURSOR_TIMEOUT 2000
 
+// Window options
+// Splash is not implemented
+#define WINDOW_SPLASH  0x80
+#define WINDOW_UTF8    0x01
+
 #endif
