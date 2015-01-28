@@ -138,6 +138,7 @@ void ATrack::set_default_title()
 		if(current->data_type == TRACK_AUDIO) i++;
 	}
 	sprintf(title, _("Audio %d"), i);
+	BC_Resources::encode_to_utf8(title, BCTEXTLEN);
 }
 
 int64_t ATrack::to_units(double position, int round)
