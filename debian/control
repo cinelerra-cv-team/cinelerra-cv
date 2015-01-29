@@ -84,7 +84,8 @@ Description: Quicktime 4 Linux (Cinelerra internal) library (development files)
  For more information, see http://heroinewarrior.com/quicktime.php
 
 Package: libmpeg3cine-cv
-Conflicts: libmpeg3cine
+Conflicts: libmpeg3cine, mpeg3-utils
+Provides: mpeg3-utils
 Section: libs
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Architecture: any
@@ -99,7 +100,8 @@ Description: advanced editing and manipulation of MPEG streams (cinelerra's inte
  For more information, see http://heroinewarrior.com/quicktime.php
 
 Package: libmpeg3cine-cv-dev
-Conflicts: libmpeg3cine-dev
+Conflicts: libmpeg3cine-dev, libmpeg3-dev
+Provides: libmpeg3-dev
 Section: libdevel
 Depends: ${misc:Depends}, libmpeg3cine-cv (= ${binary:Version})
 Architecture: any
