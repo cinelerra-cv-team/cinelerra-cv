@@ -38,16 +38,11 @@ PLUGIN_THREAD_OBJECT(ScaleMain, ScaleThread, ScaleWin)
 
 
 ScaleWin::ScaleWin(ScaleMain *client, int x, int y)
- : BC_Window(client->gui_string, 
+ : PluginWindow(client->gui_string,
  	x,
 	y,
 	150, 
-	150, 
-	150, 
-	150, 
-	0, 
-	0,
-	1)
+	150)
 { 
 	this->client = client; 
 }

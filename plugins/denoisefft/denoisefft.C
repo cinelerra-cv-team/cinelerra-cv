@@ -30,6 +30,7 @@
 #include "fourier.h"
 #include "picon_png.h"
 #include "pluginaclient.h"
+#include "pluginwindow.h"
 #include "transportque.inc"
 #include "units.h"
 #include "vframe.h"
@@ -78,7 +79,7 @@ public:
 	DenoiseFFTEffect *plugin;
 };
 
-class DenoiseFFTWindow : public BC_Window
+class DenoiseFFTWindow : public PluginWindow
 {
 public:
 	DenoiseFFTWindow(DenoiseFFTEffect *plugin, int x, int y);
@@ -231,16 +232,11 @@ int DenoiseFFTSamples::handle_event()
 
 
 DenoiseFFTWindow::DenoiseFFTWindow(DenoiseFFTEffect *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	300, 
-	130, 
-	300, 
-	130,
-	0, 
-	0,
-	1)
+	130)
 {
 	this->plugin = plugin;
 }

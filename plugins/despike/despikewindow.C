@@ -38,16 +38,11 @@ PLUGIN_THREAD_OBJECT(Despike, DespikeThread, DespikeWindow)
 
 
 DespikeWindow::DespikeWindow(Despike *despike, int x, int y)
- : BC_Window(despike->gui_string, 
+ : PluginWindow(despike->gui_string,
  	x, 
 	y, 
 	230, 
-	110, 
-	230, 
-	110, 
-	0, 
-	0,
-	1)
+	110)
 { 
 	this->despike = despike; 
 }

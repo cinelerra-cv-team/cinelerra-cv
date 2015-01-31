@@ -30,10 +30,11 @@ class DotWindow;
 #include "filexml.h"
 #include "mutex.h"
 #include "dot.h"
+#include "pluginwindow.h"
 
 PLUGIN_THREAD_HEADER(DotMain, DotThread, DotWindow)
 
-class DotWindow : public BC_Window
+class DotWindow : public PluginWindow
 {
 public:
 	DotWindow(DotMain *client, int x, int y);

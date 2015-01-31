@@ -28,6 +28,7 @@
 #include "guicast.h"
 #include "mutex.h"
 #include "pluginaclient.h"
+#include "pluginwindow.h"
 #include "vframe.inc"
 
 
@@ -194,7 +195,7 @@ public:
 };
 
 
-class ParametricWindow : public BC_Window
+class ParametricWindow : public PluginWindow
 {
 public:
 	ParametricWindow(ParametricEQ *plugin, int x, int y);

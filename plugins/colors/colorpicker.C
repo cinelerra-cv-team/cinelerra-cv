@@ -128,16 +128,11 @@ int ColorThread::handle_new_color(int output, int alpha)
 
 
 ColorWindow::ColorWindow(ColorThread *thread, int x, int y, char *title)
- : BC_Window(title, 
+ : PluginWindow(title,
 	x,
 	y,
 	410, 
-	320, 
-	410, 
-	320, 
-	0, 
-	0,
-	1)
+	320)
 {
 	this->thread = thread;
 }

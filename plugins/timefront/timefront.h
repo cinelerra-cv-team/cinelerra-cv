@@ -36,6 +36,7 @@ class TimeFrontServer;
 #include "overlayframe.inc"
 #include "plugincolors.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "thread.h"
 #include "vframe.inc"
 
@@ -198,7 +199,7 @@ public:
 };
 
 
-class TimeFrontWindow : public BC_Window
+class TimeFrontWindow : public PluginWindow
 {
 public:
 	TimeFrontWindow(TimeFrontMain *plugin, int x, int y);

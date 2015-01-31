@@ -34,6 +34,7 @@
 #include "loadbalance.h"
 #include "picon_png.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.h"
 
 
@@ -96,7 +97,7 @@ public:
 	int *output;
 };
 
-class RadialBlurWindow : public BC_Window
+class RadialBlurWindow : public PluginWindow
 {
 public:
 	RadialBlurWindow(RadialBlurMain *plugin, int x, int y);
@@ -258,15 +259,11 @@ PLUGIN_THREAD_OBJECT(RadialBlurMain, RadialBlurThread, RadialBlurWindow)
 
 
 RadialBlurWindow::RadialBlurWindow(RadialBlurMain *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x,
 	y,
 	230, 
-	340, 
-	230, 
-	340, 
-	0, 
-	1)
+	340)
 {
 	this->plugin = plugin; 
 }

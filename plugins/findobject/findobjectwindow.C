@@ -29,16 +29,11 @@
 WINDOW_CLOSE_EVENT(FindObjectWindow)
 
 FindObjectWindow::FindObjectWindow(FindObjectMain *plugin, int x, int y)
- : BC_Window(plugin->get_gui_string(),
+ : PluginWindow(plugin->get_gui_string(),
 	x,
 	y,
  	300, 
-	550, 
-	300,
-	550,
-	0,
-	0,
-	1)
+	550)
 {
 	this->plugin = plugin; 
 }

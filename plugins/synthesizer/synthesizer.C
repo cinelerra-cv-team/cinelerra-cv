@@ -552,16 +552,11 @@ void SynthThread::run()
 
 
 SynthWindow::SynthWindow(Synth *synth, int x, int y)
- : BC_Window(synth->gui_string, 
+ : PluginWindow(synth->gui_string,
  	x, 
 	y, 
 	380, 
-	synth->h, 
-	380, 
-	10, 
-	1, 
-	0,
-	1)
+	synth->h)
 {
 	this->synth = synth; 
 }

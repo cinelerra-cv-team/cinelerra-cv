@@ -28,6 +28,7 @@
 #include "picon_png.h"
 #include "plugincolors.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.h"
 
 #include <stdint.h>
@@ -62,7 +63,7 @@ public:
 	float *output;
 };
 
-class YUVWindow : public BC_Window
+class YUVWindow : public PluginWindow
 {
 public:
 	YUVWindow(YUVEffect *plugin, int x, int y);
@@ -173,16 +174,11 @@ int YUVLevel::handle_event()
 
 
 YUVWindow::YUVWindow(YUVEffect *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	260, 
-	100, 
-	260, 
-	100, 
-	0, 
-	0,
-	1)
+	100)
 {
 	this->plugin = plugin;
 }

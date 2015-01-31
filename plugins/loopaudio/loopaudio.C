@@ -26,6 +26,7 @@
 #include "guicast.h"
 #include "language.h"
 #include "pluginaclient.h"
+#include "pluginwindow.h"
 #include "transportque.h"
 
 #include <string.h>
@@ -50,7 +51,7 @@ public:
 	LoopAudio *plugin;
 };
 
-class LoopAudioWindow : public BC_Window
+class LoopAudioWindow : public PluginWindow
 {
 public:
 	LoopAudioWindow(LoopAudio *plugin, int x, int y);
@@ -104,16 +105,11 @@ LoopAudioConfig::LoopAudioConfig()
 
 
 LoopAudioWindow::LoopAudioWindow(LoopAudio *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	210, 
-	160, 
-	200, 
-	160, 
-	0, 
-	0,
-	1)
+	160)
 {
 	this->plugin = plugin;
 }

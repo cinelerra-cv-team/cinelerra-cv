@@ -26,6 +26,7 @@
 #include "filexml.h"
 #include "mutex.h"
 #include "pluginclient.h"
+#include "pluginwindow.h"
 #include "svg.h"
 #include "thread.h"
 
@@ -39,7 +40,7 @@ class NewSvgButton;
 class NewSvgWindow;
 class EditSvgButton;
 
-class SvgWin : public BC_Window
+class SvgWin : public PluginWindow
 {
 public:
 	SvgWin(SvgMain *client, int x, int y);

@@ -29,13 +29,14 @@ class DespikeWindow;
 #include "guicast.h"
 #include "mutex.h"
 #include "pluginclient.h"
+#include "pluginwindow.h"
 
 PLUGIN_THREAD_HEADER(Despike, DespikeThread, DespikeWindow)
 
 class DespikeLevel;
 class DespikeSlope;
 
-class DespikeWindow : public BC_Window
+class DespikeWindow : public PluginWindow
 {
 public:
 	DespikeWindow(Despike *despike, int x, int y);

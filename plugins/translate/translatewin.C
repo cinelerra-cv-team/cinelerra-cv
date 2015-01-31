@@ -42,16 +42,11 @@ PLUGIN_THREAD_OBJECT(TranslateMain, TranslateThread, TranslateWin)
 
 
 TranslateWin::TranslateWin(TranslateMain *client, int x, int y)
- : BC_Window(client->gui_string, 
+ : PluginWindow(client->gui_string,
  	x,
 	y,
 	300, 
-	220, 
-	300, 
-	220, 
-	0, 
-	0,
-	1)
+	220)
 { 
 	this->client = client; 
 }

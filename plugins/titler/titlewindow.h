@@ -32,6 +32,7 @@ class TitleInterlace;
 #include "filexml.h"
 #include "mutex.h"
 #include "title.h"
+#include "pluginwindow.h"
 
 
 PLUGIN_THREAD_HEADER(TitleMain, TitleThread, TitleWindow)
@@ -65,7 +66,7 @@ class TitleSpeed;
 class TitleTimecode;
 class TitleTimecodeFormat;
 
-class TitleWindow : public BC_Window
+class TitleWindow : public PluginWindow
 {
 public:
 	TitleWindow(TitleMain *client, int x, int y);

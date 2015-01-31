@@ -30,6 +30,7 @@
 #include "plugincolors.h"
 #include "playback3d.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.h"
 
 #include <stdint.h>
@@ -93,7 +94,7 @@ public:
 	char string[BCTEXTLEN];
 };
 
-class HueWindow : public BC_Window
+class HueWindow : public PluginWindow
 {
 public:
 	HueWindow(HueEffect *plugin, int x, int y);
@@ -311,16 +312,11 @@ char* ValueSlider::get_caption()
 
 
 HueWindow::HueWindow(HueEffect *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
 			x,
 			y,
 			310, 
-			100, 
-			310, 
-			100, 
-			0,
-			0, 
-			1)
+			100)
 {
 	this->plugin = plugin;
 }

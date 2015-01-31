@@ -29,6 +29,7 @@
 #include "overlayframe.h"
 #include "picon_png.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.h"
 
 #include <string.h>
@@ -92,7 +93,7 @@ public:
 };
 
 
-class RerouteWindow : public BC_Window
+class RerouteWindow : public PluginWindow
 {
 public:
 	RerouteWindow(Reroute *plugin, int x, int y);
@@ -181,16 +182,11 @@ const char* RerouteConfig::output_to_text(int output_track)
 
 
 RerouteWindow::RerouteWindow(Reroute *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	300, 
-	160, 
-	300, 
-	160, 
-	0, 
-	0,
-	1)
+	160)
 {
 	this->plugin = plugin;
 }

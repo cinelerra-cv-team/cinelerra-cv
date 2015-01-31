@@ -29,7 +29,7 @@
 #include "guicast.h"
 #include "loadbalance.h"
 #include "pluginvclient.h"
-
+#include "pluginwindow.h"
 
 class ChromaKey;
 class ChromaKey;
@@ -113,7 +113,7 @@ public:
 };
 
 
-class ChromaKeyWindow : public BC_Window
+class ChromaKeyWindow : public PluginWindow
 {
 public:
 	ChromaKeyWindow(ChromaKey *plugin, int x, int y);

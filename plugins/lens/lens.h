@@ -27,6 +27,7 @@
 #include "guicast.h"
 #include "loadbalance.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "thread.h"
 
 
@@ -163,7 +164,7 @@ public:
 	LensGUI *gui;
 };
 
-class LensGUI : public PluginClientWindow
+class LensGUI : public PluginWindow
 {
 public:
 	LensGUI(LensMain *client, int x, int y);

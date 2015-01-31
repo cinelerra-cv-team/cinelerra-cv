@@ -30,16 +30,11 @@
 #define N_(String) gettext_noop (String)
 
 CDRipWindow::CDRipWindow(CDRipMain *cdripper, int x, int y)
- : BC_Window(PROGRAM_NAME ": CD Ripper", 
+ : PluginWindow(cdripper->gui_string,
  	x,
 	y,
  	450, 
-	192, 
-	450, 
-	192,
-	0,
-	0,
-	1)
+	192)
 { 
 	this->cdripper = cdripper; 
 }

@@ -23,11 +23,13 @@
 #define SRATEWINDOW_H
 
 #include "guicast.h"
+#include "normalize.h"
+#include "pluginwindow.h"
 
-class NormalizeWindow : public BC_Window
+class NormalizeWindow : public PluginWindow
 {
 public:
-	NormalizeWindow(int x, int y);
+	NormalizeWindow(NormalizeMain *plugin, int x, int y);
 	~NormalizeWindow();
 	
 	int create_objects(float *db_over, int *seperate_tracks);

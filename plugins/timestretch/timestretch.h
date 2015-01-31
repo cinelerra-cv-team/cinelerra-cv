@@ -27,6 +27,7 @@
 #include "guicast.h"
 #include "mainprogress.inc"
 #include "pluginaclient.h"
+#include "pluginwindow.h"
 #include "resample.inc"
 #include "timestretchengine.inc"
 #include "vframe.inc"
@@ -48,7 +49,7 @@ public:
 	TimeStretch *plugin;
 };
 
-class TimeStretchWindow : public BC_Window
+class TimeStretchWindow : public PluginWindow
 {
 public:
 	TimeStretchWindow(TimeStretch *plugin, int x, int y);

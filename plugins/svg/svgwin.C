@@ -53,16 +53,11 @@ PLUGIN_THREAD_OBJECT(SvgMain, SvgThread, SvgWin)
 
 
 SvgWin::SvgWin(SvgMain *client, int x, int y)
- : BC_Window(client->gui_string, 
+ : PluginWindow(client->gui_string,
  	x,
 	y,
 	300, 
-	280, 
-	300, 
-	280, 
-	0, 
-	0,
-	1)
+	280)
 { 
 	this->client = client; 
 	this->editing = 0;

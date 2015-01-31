@@ -25,6 +25,7 @@
 #include "guicast.h"
 #include "language.h"
 #include "pluginaclient.h"
+#include "pluginwindow.h"
 #include "transportque.h"
 
 #include <string.h>
@@ -49,7 +50,7 @@ public:
 	ReverseAudio *plugin;
 };
 
-class ReverseAudioWindow : public BC_Window
+class ReverseAudioWindow : public PluginWindow
 {
 public:
 	ReverseAudioWindow(ReverseAudio *plugin, int x, int y);
@@ -105,16 +106,11 @@ ReverseAudioConfig::ReverseAudioConfig()
 
 
 ReverseAudioWindow::ReverseAudioWindow(ReverseAudio *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	210, 
-	160, 
-	200, 
-	160, 
-	0, 
-	0,
-	1)
+	160)
 {
 	this->plugin = plugin;
 }

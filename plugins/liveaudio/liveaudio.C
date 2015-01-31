@@ -31,6 +31,7 @@
 #include "language.h"
 #include "picon_png.h"
 #include "pluginaclient.h"
+#include "pluginwindow.h"
 #include "transportque.inc"
 #include "vframe.h"
 
@@ -53,7 +54,7 @@ public:
 
 
 
-class LiveAudioWindow : public BC_Window
+class LiveAudioWindow : public PluginWindow
 {
 public:
 	LiveAudioWindow(LiveAudio *plugin, int x, int y);
@@ -124,16 +125,11 @@ LiveAudioConfig::LiveAudioConfig()
 
 
 LiveAudioWindow::LiveAudioWindow(LiveAudio *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	300, 
-	160, 
-	300, 
-	160, 
-	0, 
-	0,
-	1)
+	160)
 {
 	this->plugin = plugin;
 }

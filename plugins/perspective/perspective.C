@@ -116,15 +116,11 @@ PLUGIN_THREAD_OBJECT(PerspectiveMain, PerspectiveThread, PerspectiveWindow)
 
 
 PerspectiveWindow::PerspectiveWindow(PerspectiveMain *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x,
 	y,
 	plugin->config.window_w, 
-	plugin->config.window_h, 
-	plugin->config.window_w,
-	plugin->config.window_h,
-	0, 
-	1)
+	plugin->config.window_h)
 {
 //printf("PerspectiveWindow::PerspectiveWindow 1 %d %d\n", plugin->config.window_w, plugin->config.window_h);
 	this->plugin = plugin; 

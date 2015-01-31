@@ -43,16 +43,11 @@ PLUGIN_THREAD_OBJECT(IVTCMain, IVTCThread, IVTCWindow)
 
 
 IVTCWindow::IVTCWindow(IVTCMain *client, int x, int y)
- : BC_Window(client->gui_string, 
+ : PluginWindow(client->gui_string,
 	x,
 	y,
 	210, 
-	230, 
-	210, 
-	230, 
-	0, 
-	0,
-	1)
+	230)
 { 
 	this->client = client; 
 }

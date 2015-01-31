@@ -50,16 +50,11 @@ PLUGIN_THREAD_OBJECT(TitleMain, TitleThread, TitleWindow)
 
 
 TitleWindow::TitleWindow(TitleMain *client, int x, int y)
- : BC_Window(client->gui_string, 
+ : PluginWindow(client->gui_string,
 	x,
 	y,
 	client->window_w, 
-	client->window_h, 
-	100, 
-	100, 
-	1, 
-	0,
-	1)
+	client->window_h)
 { 
 	this->client = client; 
 }

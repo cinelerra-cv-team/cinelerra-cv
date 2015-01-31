@@ -36,16 +36,11 @@ PLUGIN_THREAD_OBJECT(FlipMain, FlipThread, FlipWindow)
 
 
 FlipWindow::FlipWindow(FlipMain *client, int x, int y)
- : BC_Window(client->get_gui_string(),
+ : PluginWindow(client->get_gui_string(),
  	x,
 	y,
 	140,
-	100,
-	140,
-	100,
-	0,
-	0,
-	1)
+	100)
 { 
 	this->client = client; 
 }

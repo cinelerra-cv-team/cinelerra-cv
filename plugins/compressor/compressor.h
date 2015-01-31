@@ -28,6 +28,7 @@
 #include "guicast.h"
 #include "mutex.h"
 #include "pluginaclient.h"
+#include "pluginwindow.h"
 #include "vframe.inc"
 
 class CompressorEffect;
@@ -129,7 +130,7 @@ public:
 
 
 
-class CompressorWindow : public BC_Window
+class CompressorWindow : public PluginWindow
 {
 public:
 	CompressorWindow(CompressorEffect *plugin, int x, int y);

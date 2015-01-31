@@ -31,11 +31,11 @@ class HoloWindow;
 #include "holo.h"
 #include "mutex.h"
 #include "pluginclient.h"
-
+#include "pluginwindow.h"
 
 PLUGIN_THREAD_HEADER(HoloMain, HoloThread, HoloWindow)
 
-class HoloWindow : public BC_Window
+class HoloWindow : public PluginWindow
 {
 public:
 	HoloWindow(HoloMain *client, int x, int y);

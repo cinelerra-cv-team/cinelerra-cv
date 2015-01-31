@@ -30,16 +30,11 @@ PLUGIN_THREAD_OBJECT(TimeAvgMain, TimeAvgThread, TimeAvgWindow)
 
 
 TimeAvgWindow::TimeAvgWindow(TimeAvgMain *client, int x, int y)
- : BC_Window(client->gui_string, 
+ : PluginWindow(client->gui_string,
  	x, 
 	y, 
 	210, 
-	210, 
-	200, 
-	210, 
-	0, 
-	0,
-	1)
+	210)
 { 
 	this->client = client; 
 }

@@ -25,6 +25,7 @@
 
 #include "guicast.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 
 
 class ReFrame;
@@ -40,7 +41,7 @@ public:
 
 
 
-class ReFrameWindow : public BC_Window
+class ReFrameWindow : public PluginWindow
 {
 public:
 	ReFrameWindow(ReFrame *plugin, int x, int y);

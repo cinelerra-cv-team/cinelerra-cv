@@ -23,6 +23,7 @@
 
 #include "plugincolors.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "pluginserver.h"
 #include "mwindow.h"
 
@@ -133,7 +134,7 @@ class BB_Tumble : public BC_TextBox {
   float prev;
 };
 
-class BluebananaWindow : public BC_Window {
+class BluebananaWindow : public PluginWindow {
 public:
 	BluebananaWindow(BluebananaMain *plugin, int x, int y);
 	~BluebananaWindow();

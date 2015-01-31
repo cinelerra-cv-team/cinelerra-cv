@@ -23,6 +23,7 @@
 #define UNSHARPWINDOW_H
 
 #include "guicast.h"
+#include "pluginwindow.h"
 #include "unsharp.inc"
 #include "unsharpwindow.inc"
 
@@ -50,7 +51,7 @@ public:
 	UnsharpMain *plugin;
 };
 
-class UnsharpWindow : public BC_Window
+class UnsharpWindow : public PluginWindow
 {
 public:
 	UnsharpWindow(UnsharpMain *plugin, int x, int y);

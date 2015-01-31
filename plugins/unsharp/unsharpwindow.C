@@ -34,15 +34,11 @@ PLUGIN_THREAD_OBJECT(UnsharpMain, UnsharpThread, UnsharpWindow)
 
 
 UnsharpWindow::UnsharpWindow(UnsharpMain *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x,
 	y,
 	200, 
-	160, 
-	200, 
-	160, 
-	0, 
-	1)
+	160)
 {
 	this->plugin = plugin; 
 }

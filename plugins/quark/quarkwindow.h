@@ -31,6 +31,7 @@ class SharpenInterlace;
 #include "filexml.h"
 #include "mutex.h"
 #include "quark.h"
+#include "pluginwindow.h"
 
 class SharpenThread : public Thread
 {
@@ -50,7 +51,7 @@ class SharpenSlider;
 class SharpenHorizontal;
 class SharpenLuminance;
 
-class SharpenWindow : public BC_Window
+class SharpenWindow : public PluginWindow
 {
 public:
 	SharpenWindow(SharpenMain *client, int x, int y);

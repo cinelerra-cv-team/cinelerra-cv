@@ -26,6 +26,7 @@
 #include "guicast.h"
 #include "mutex.h"
 #include "pluginaclient.h"
+#include "pluginwindow.h"
 #include "vframe.inc"
 #include <vector>
 
@@ -65,7 +66,7 @@ public:
 
 
 
-class DelayAudioWindow : public BC_Window
+class DelayAudioWindow : public PluginWindow
 {
 public:
 	DelayAudioWindow(DelayAudio *plugin, int x, int y);

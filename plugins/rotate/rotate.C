@@ -28,6 +28,7 @@
 #include "language.h"
 #include "picon_png.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "rotateframe.h"
 #include "vframe.h"
 
@@ -153,7 +154,7 @@ public:
     RotateWindow *window;
 };
 
-class RotateWindow : public BC_Window
+class RotateWindow : public PluginWindow
 {
 public:
 	RotateWindow(RotateEffect *plugin, int x, int y);
@@ -450,16 +451,11 @@ int RotateY::handle_event()
 
 
 RotateWindow::RotateWindow(RotateEffect *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
 	x,
 	y,
 	250, 
-	230, 
-	250, 
-	230, 
-	0, 
-	0,
-	1)
+	230)
 {
 	this->plugin = plugin;
 }

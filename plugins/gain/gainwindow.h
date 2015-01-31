@@ -32,12 +32,13 @@ class GainWindow;
 #include "guicast.h"
 #include "mutex.h"
 #include "pluginclient.h"
+#include "pluginwindow.h"
 
 PLUGIN_THREAD_HEADER(Gain, GainThread, GainWindow)
 
 class GainLevel;
 
-class GainWindow : public BC_Window
+class GainWindow : public PluginWindow
 {
 public:
 	GainWindow(Gain *gain, int x, int y);

@@ -30,6 +30,7 @@ class TranslateWin;
 #include "filexml.h"
 #include "mutex.h"
 #include "pluginclient.h"
+#include "pluginwindow.h"
 #include "translate.h"
 
 
@@ -37,7 +38,7 @@ PLUGIN_THREAD_HEADER(TranslateMain, TranslateThread, TranslateWin)
 
 class TranslateCoord;
 
-class TranslateWin : public BC_Window
+class TranslateWin : public PluginWindow
 {
 public:
 	TranslateWin(TranslateMain *client, int x, int y);

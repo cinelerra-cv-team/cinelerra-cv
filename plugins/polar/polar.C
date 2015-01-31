@@ -29,6 +29,7 @@
 #include "loadbalance.h"
 #include "picon_png.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.h"
 
 
@@ -84,7 +85,7 @@ public:
 	PolarEffect *plugin;
 };
 
-class PolarWindow : public BC_Window
+class PolarWindow : public PluginWindow
 {
 public:
 	PolarWindow(PolarEffect *plugin, int x, int y);
@@ -202,16 +203,11 @@ void PolarConfig::interpolate(PolarConfig &prev,
 
 
 PolarWindow::PolarWindow(PolarEffect *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	270, 
-	100, 
-	270, 
-	100, 
-	0, 
-	0,
-	1)
+	100)
 {
 	this->plugin = plugin;
 }

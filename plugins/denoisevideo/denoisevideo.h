@@ -28,6 +28,7 @@ class DenoiseVideoWindow;
 #include "bcdisplayinfo.h"
 #include "bchash.inc"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.inc"
 
 
@@ -85,7 +86,7 @@ public:
 };
 
 
-class DenoiseVideoWindow : public BC_Window
+class DenoiseVideoWindow : public PluginWindow
 {
 public:
 	DenoiseVideoWindow(DenoiseVideo *plugin, int x, int y);

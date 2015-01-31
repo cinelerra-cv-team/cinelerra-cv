@@ -24,12 +24,13 @@
 
 
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 
 class _720to480Main;
 class _720to480Order;
 class _720to480Direction;
 
-class _720to480Window : public BC_Window
+class _720to480Window : public PluginWindow
 {
 public:
 	_720to480Window(_720to480Main *client, int x, int y);

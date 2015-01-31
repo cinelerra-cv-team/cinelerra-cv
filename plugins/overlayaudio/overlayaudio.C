@@ -25,6 +25,7 @@
 #include "language.h"
 #include "picon_png.h"
 #include "pluginaclient.h"
+#include "pluginwindow.h"
 #include <string.h>
 
 
@@ -61,7 +62,7 @@ public:
 	OverlayAudio *plugin;
 };
 
-class OverlayAudioWindow : public BC_Window
+class OverlayAudioWindow : public PluginWindow
 {
 public:
 	OverlayAudioWindow(OverlayAudio *plugin, int x, int y);
@@ -145,16 +146,11 @@ const char* OverlayAudioConfig::output_to_text(int output_layer)
 
 
 OverlayAudioWindow::OverlayAudioWindow(OverlayAudio *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	400, 
-	100, 
-	400, 
-	100, 
-	0, 
-	0,
-	1)
+	100)
 {
 	this->plugin = plugin;
 }

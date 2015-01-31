@@ -35,14 +35,10 @@ PLUGIN_THREAD_OBJECT(GammaMain, GammaThread, GammaWindow)
 
 
 GammaWindow::GammaWindow(GammaMain *client, int x, int y)
- : BC_Window(client->gui_string, x,
+ : PluginWindow(client->gui_string, x,
  	y,
 	400, 
-	390,
-	400, 
-	390,
-	0, 
-	0)
+	390)
 { 
 	this->client = client; 
 }

@@ -364,16 +364,11 @@ int DenoiseMJPEGDelay::handle_event()
 
 
 DenoiseMJPEGWindow::DenoiseMJPEGWindow(DenoiseMJPEG *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	250, 
-	350, 
-	250, 
-	350, 
-	0, 
-	0,
-	1)
+	350)
 {
 	this->plugin = plugin;
 }

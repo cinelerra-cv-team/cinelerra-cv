@@ -37,6 +37,7 @@ class ScaleWin;
 #include "scalewin.h"
 #include "overlayframe.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 
 class ScaleConfig
 {
@@ -88,7 +89,7 @@ public:
 	ScaleMain *client;
 };
 
-class ScaleWin : public BC_Window
+class ScaleWin : public PluginWindow
 {
 public:
 	ScaleWin(ScaleMain *client, int x, int y);

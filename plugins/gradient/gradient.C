@@ -155,15 +155,11 @@ PLUGIN_THREAD_OBJECT(GradientMain, GradientThread, GradientWindow)
 #define COLOR_H 30
 
 GradientWindow::GradientWindow(GradientMain *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x,
 	y,
 	350, 
-	290, 
-	350, 
-	290, 
-	0, 
-	1)
+	290)
 {
 	this->plugin = plugin;
 	angle = 0;

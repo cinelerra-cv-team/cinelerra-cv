@@ -34,12 +34,13 @@ class TimeAvgNoSubtract;
 #include "guicast.h"
 #include "mutex.h"
 #include "timeavg.h"
+#include "pluginwindow.h"
 
 PLUGIN_THREAD_HEADER(TimeAvgMain, TimeAvgThread, TimeAvgWindow)
 
 class TimeAvgSlider;
 
-class TimeAvgWindow : public BC_Window
+class TimeAvgWindow : public PluginWindow
 {
 public:
 	TimeAvgWindow(TimeAvgMain *client, int x, int y);

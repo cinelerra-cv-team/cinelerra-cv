@@ -29,6 +29,7 @@
 #include "loadbalance.h"
 #include "picon_png.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.h"
 
 #include <math.h>
@@ -124,7 +125,7 @@ public:
 
 
 
-class WaveWindow : public BC_Window
+class WaveWindow : public PluginWindow
 {
 public:
 	WaveWindow(WaveEffect *plugin, int x, int y);
@@ -389,16 +390,11 @@ int WaveLength::handle_event()
 
 
 WaveWindow::WaveWindow(WaveEffect *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	320, 
-	150, 
-	320, 
-	150, 
-	0, 
-	0,
-	1)
+	150)
 {
 	this->plugin = plugin;
 }

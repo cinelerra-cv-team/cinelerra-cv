@@ -31,7 +31,7 @@ class PolarEngine;
 #include "bcbase.h"
 #include "polarwindow.h"
 #include "pluginvclient.h"
-
+#include "pluginwindow.h"
 
 class PolarMain : public PluginVClient
 {

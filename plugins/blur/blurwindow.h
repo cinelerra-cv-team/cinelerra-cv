@@ -31,6 +31,7 @@ class BlurWindow;
 #include "guicast.h"
 #include "mutex.h"
 #include "thread.h"
+#include "pluginwindow.h"
 
 PLUGIN_THREAD_HEADER(BlurMain, BlurThread, BlurWindow)
 
@@ -42,7 +43,7 @@ class BlurR;
 class BlurG;
 class BlurB;
 
-class BlurWindow : public BC_Window
+class BlurWindow : public PluginWindow
 {
 public:
 	BlurWindow(BlurMain *client, int x, int y);

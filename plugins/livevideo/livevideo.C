@@ -36,6 +36,7 @@
 #include "picon_png.h"
 #include "picture.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "recordconfig.h"
 #include "transportque.inc"
 #include "vframe.h"
@@ -95,7 +96,7 @@ public:
 };
 
 
-class LiveVideoWindow : public BC_Window
+class LiveVideoWindow : public PluginWindow
 {
 public:
 	LiveVideoWindow(LiveVideo *plugin, int x, int y);
@@ -196,16 +197,11 @@ void LiveVideoConfig::interpolate(LiveVideoConfig &prev,
 
 
 LiveVideoWindow::LiveVideoWindow(LiveVideo *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	plugin->w, 
-	plugin->h, 
-	100, 
-	100, 
-	1, 
-	0,
-	1)
+	plugin->h)
 {
 	this->plugin = plugin;
 }

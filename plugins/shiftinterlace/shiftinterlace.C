@@ -27,6 +27,7 @@
 #include "language.h"
 #include "picon_png.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.h"
 
 
@@ -78,7 +79,7 @@ public:
 	ShiftInterlaceMain *plugin;
 };
 
-class ShiftInterlaceWindow : public BC_Window
+class ShiftInterlaceWindow : public PluginWindow
 {
 public:
 	ShiftInterlaceWindow(ShiftInterlaceMain *plugin, int x, int y);
@@ -183,16 +184,11 @@ void ShiftInterlaceConfig::interpolate(ShiftInterlaceConfig &prev,
 ShiftInterlaceWindow::ShiftInterlaceWindow(ShiftInterlaceMain *plugin, 
 	int x, 
 	int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
 	x,
 	y,
 	310, 
-	100, 
-	310, 
-	100, 
-	0, 
-	0,
-	1)
+	100)
 {
 	this->plugin = plugin;
 }

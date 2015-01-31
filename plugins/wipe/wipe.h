@@ -28,6 +28,7 @@ class WipeWindow;
 
 #include "overlayframe.inc"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.inc"
 
 
@@ -60,7 +61,7 @@ public:
 
 
 
-class WipeWindow : public BC_Window
+class WipeWindow : public PluginWindow
 {
 public:
 	WipeWindow(WipeMain *plugin, int x, int y);

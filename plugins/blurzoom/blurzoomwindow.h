@@ -30,6 +30,7 @@ class BlurZoomWindow;
 #include "filexml.h"
 #include "mutex.h"
 #include "blurzoom.h"
+#include "pluginwindow.h"
 
 class BlurZoomThread : public Thread
 {
@@ -45,7 +46,7 @@ public:
 	BlurZoomWindow *window;
 };
 
-class BlurZoomWindow : public BC_Window
+class BlurZoomWindow : public PluginWindow
 {
 public:
 	BlurZoomWindow(BlurZoomMain *client, int x, int y);

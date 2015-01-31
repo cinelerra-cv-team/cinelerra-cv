@@ -39,7 +39,7 @@ class Color3WayWindow;
 #include "mutex.h"
 #include "color3way.h"
 #include "pluginclient.h"
-
+#include "pluginwindow.h"
 
 class Color3WayPoint : public BC_SubWindow
 {
@@ -193,7 +193,7 @@ public:
 };
 
 
-class Color3WayWindow : public BC_Window
+class Color3WayWindow : public PluginWindow
 {
 public:
 	Color3WayWindow(Color3WayMain *plugin, int x, int y);

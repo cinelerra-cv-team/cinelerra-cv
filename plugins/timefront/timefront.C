@@ -121,15 +121,11 @@ PLUGIN_THREAD_OBJECT(TimeFrontMain, TimeFrontThread, TimeFrontWindow)
 
 
 TimeFrontWindow::TimeFrontWindow(TimeFrontMain *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x,
 	y,
 	350, 
-	290, 
-	350, 
-	290, 
-	0, 
-	1)
+	290)
 {
 	this->plugin = plugin;
 	angle = 0;

@@ -30,6 +30,7 @@ class AgingWindow;
 #include "filexml.h"
 #include "mutex.h"
 #include "aging.h"
+#include "pluginwindow.h"
 
 PLUGIN_THREAD_HEADER(AgingMain, AgingThread, AgingWindow)
 
@@ -41,7 +42,7 @@ class AgingPitCount;
 class AgingDust;
 class AgingDustCount;
 
-class AgingWindow : public BC_Window
+class AgingWindow : public PluginWindow
 {
 public:
 	AgingWindow(AgingMain *client, int x, int y);

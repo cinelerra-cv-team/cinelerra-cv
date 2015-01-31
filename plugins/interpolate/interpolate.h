@@ -30,6 +30,7 @@ class InterpolatePixelsMain;
 #include "loadbalance.h"
 #include "mutex.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include <sys/types.h>
 
 class InterpolatePixelsConfig
@@ -64,7 +65,7 @@ public:
 	int *output;
 };
 
-class InterpolatePixelsWindow : public BC_Window
+class InterpolatePixelsWindow : public PluginWindow
 {
 public:
 	InterpolatePixelsWindow(InterpolatePixelsMain *client, int x, int y);

@@ -28,7 +28,7 @@
 #include "filexml.inc"
 #include "mutex.h"
 #include "pluginvclient.h"
-
+#include "pluginwindow.h"
 
 
 class FreezeFrameWindow;
@@ -64,7 +64,7 @@ public:
 	int *value;
 };
 
-class FreezeFrameWindow : public BC_Window
+class FreezeFrameWindow : public PluginWindow
 {
 public:
 	FreezeFrameWindow(FreezeFrameMain *client, int x, int y);

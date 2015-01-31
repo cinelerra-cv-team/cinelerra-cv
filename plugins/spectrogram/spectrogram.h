@@ -32,6 +32,7 @@
 #include "guicast.h"
 #include "mutex.h"
 #include "pluginaclient.h"
+#include "pluginwindow.h"
 #include "vframe.inc"
 
 
@@ -50,7 +51,7 @@ public:
 };
 
 
-class SpectrogramWindow : public BC_Window
+class SpectrogramWindow : public PluginWindow
 {
 public:
 	SpectrogramWindow(Spectrogram *plugin, int x, int y);

@@ -27,7 +27,7 @@
 #include "histogram.inc"
 #include "histogramwindow.inc"
 #include "pluginvclient.h"
-
+#include "pluginwindow.h"
 
 
 class HistogramSlider : public BC_SubWindow
@@ -159,7 +159,7 @@ public:
 	HistogramWindow *gui;
 };
 
-class HistogramWindow : public BC_Window
+class HistogramWindow : public PluginWindow
 {
 public:
 	HistogramWindow(HistogramMain *plugin, int x, int y);

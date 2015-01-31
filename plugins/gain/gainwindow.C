@@ -36,16 +36,11 @@ PLUGIN_THREAD_OBJECT(Gain, GainThread, GainWindow)
 
 
 GainWindow::GainWindow(Gain *gain, int x, int y)
- : BC_Window(gain->gui_string, 
+ : PluginWindow(gain->gui_string,
  	x, 
 	y, 
 	230, 
-	60, 
-	230, 
-	60, 
-	0, 
-	0,
-	1)
+	60)
 {
 	this->gain = gain;
 }

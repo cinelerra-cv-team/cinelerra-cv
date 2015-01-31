@@ -29,6 +29,7 @@
 #include "revmodel.hpp"
 #include "units.h"
 #include "vframe.h"
+#include "pluginwindow.h"
 
 #include <math.h>
 #include <string.h>
@@ -128,7 +129,7 @@ public:
 
 
 
-class FreeverbWindow : public BC_Window
+class FreeverbWindow : public PluginWindow
 {
 public:
 	FreeverbWindow(FreeverbEffect *plugin, int x, int y);
@@ -307,16 +308,11 @@ int FreeverbMode::handle_event()
 
 
 FreeverbWindow::FreeverbWindow(FreeverbEffect *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	180, 
-	250, 
-	180, 
-	250,
-	0, 
-	0,
-	1)
+	250)
 {
 	this->plugin = plugin;
 }

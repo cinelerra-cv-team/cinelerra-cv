@@ -28,6 +28,7 @@
 #include "guicast.h"
 #include "mutex.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.inc"
 
 
@@ -68,7 +69,7 @@ public:
 };
 
 
-class DelayVideoWindow : public BC_Window
+class DelayVideoWindow : public PluginWindow
 {
 public:
 	DelayVideoWindow(DelayVideo *plugin, int x, int y);

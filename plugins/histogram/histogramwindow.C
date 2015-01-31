@@ -36,16 +36,11 @@ PLUGIN_THREAD_OBJECT(HistogramMain, HistogramThread, HistogramWindow)
 
 
 HistogramWindow::HistogramWindow(HistogramMain *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x,
 	y,
 	440, 
-	500, 
-	440, 
-	500, 
-	0, 
-	1,
-	1)
+	500)
 {
 	this->plugin = plugin; 
 }

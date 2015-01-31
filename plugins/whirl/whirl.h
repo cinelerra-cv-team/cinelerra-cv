@@ -32,7 +32,7 @@ class WhirlEngine;
 #include "bcbase.h"
 #include "whirlwindow.h"
 #include "pluginvclient.h"
-
+#include "pluginwindow.h"
 
 class WhirlMain : public PluginVClient
 {

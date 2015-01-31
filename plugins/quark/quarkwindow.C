@@ -63,16 +63,11 @@ void SharpenThread::run()
 
 
 SharpenWindow::SharpenWindow(SharpenMain *client, int x, int y)
- : BC_Window(client->gui_string, 
+ : PluginWindow(client->gui_string,
 	x,
 	y,
 	210, 
-	120, 
-	210, 
-	120, 
-	0, 
-	0,
-	1)
+	120)
 { 
 	this->client = client; 
 }

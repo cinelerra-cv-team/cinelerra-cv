@@ -95,7 +95,7 @@ int NormalizeMain::save_defaults()
 int NormalizeMain::get_parameters()
 {
 	BC_DisplayInfo info;
-	NormalizeWindow window(info.get_abs_cursor_x(), info.get_abs_cursor_y());
+	NormalizeWindow window(this, info.get_abs_cursor_x(), info.get_abs_cursor_y());
 	window.create_objects(&db_over, &separate_tracks);
 	int result = window.run_window();
 	return result;

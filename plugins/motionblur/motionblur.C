@@ -32,6 +32,7 @@
 #include "loadbalance.h"
 #include "picon_png.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.h"
 
 
@@ -80,7 +81,7 @@ public:
 };
 
 
-class MotionBlurWindow : public BC_Window
+class MotionBlurWindow : public PluginWindow
 {
 public:
 	MotionBlurWindow(MotionBlurMain *plugin, int x, int y);
@@ -233,15 +234,11 @@ PLUGIN_THREAD_OBJECT(MotionBlurMain, MotionBlurThread, MotionBlurWindow)
 
 
 MotionBlurWindow::MotionBlurWindow(MotionBlurMain *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x,
 	y,
 	260, 
-	120, 
-	260, 
-	120, 
-	0, 
-	1)
+	120)
 {
 	this->plugin = plugin; 
 }

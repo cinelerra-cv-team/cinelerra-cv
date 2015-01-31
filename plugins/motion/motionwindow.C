@@ -35,15 +35,11 @@ PLUGIN_THREAD_OBJECT(MotionMain, MotionThread, MotionWindow)
 
 
 MotionWindow::MotionWindow(MotionMain *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x,
 	y,
 	610, 
-	650, 
-	610,
-	650,
-	0, 
-	1)
+	650)
 {
 	this->plugin = plugin; 
 }

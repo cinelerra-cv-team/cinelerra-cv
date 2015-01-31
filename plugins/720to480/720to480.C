@@ -51,16 +51,11 @@ _720to480Config::_720to480Config()
 
 
 _720to480Window::_720to480Window(_720to480Main *client, int x, int y)
- : BC_Window(client->gui_string, 
+ : PluginWindow(client->gui_string,
  	x, 
 	y, 
 	230, 
-	150, 
-	230, 
-	150, 
-	0, 
-	0,
-	1)
+	150)
 { 
 	this->client = client; 
 }

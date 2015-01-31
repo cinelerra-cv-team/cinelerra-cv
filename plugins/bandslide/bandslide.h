@@ -28,6 +28,7 @@ class BandSlideWindow;
 
 #include "overlayframe.inc"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.inc"
 
 
@@ -72,7 +73,7 @@ public:
 
 
 
-class BandSlideWindow : public BC_Window
+class BandSlideWindow : public PluginWindow
 {
 public:
 	BandSlideWindow(BandSlideMain *plugin, int x, int y);

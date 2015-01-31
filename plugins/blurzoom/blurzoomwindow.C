@@ -63,16 +63,11 @@ void BlurZoomThread::run()
 
 
 BlurZoomWindow::BlurZoomWindow(BlurZoomMain *client, int x, int y)
- : BC_Window(client->gui_string, 
+ : PluginWindow(client->gui_string,
 	x,
 	y,
 	300, 
-	170, 
-	300, 
-	170, 
-	0, 
-	0,
-	1)
+	170)
 { 
 	this->client = client; 
 }

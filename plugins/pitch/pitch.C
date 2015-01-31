@@ -380,16 +380,11 @@ PLUGIN_THREAD_OBJECT(PitchEffect, PitchThread, PitchWindow)
 
 
 PitchWindow::PitchWindow(PitchEffect *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	150, 
-	50, 
-	150, 
-	50,
-	0, 
-	0,
-	1)
+	50)
 {
 	this->plugin = plugin;
 }

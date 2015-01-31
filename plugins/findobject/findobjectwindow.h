@@ -25,6 +25,7 @@
 
 #include "guicast.h"
 #include "findobject.inc"
+#include "pluginwindow.h"
 
 class FindObjectLayer : public BC_TumbleTextBox
 {
@@ -194,7 +195,7 @@ public:
 };
 
 
-class FindObjectWindow : public BC_Window
+class FindObjectWindow : public PluginWindow
 {
 public:
 	FindObjectWindow(FindObjectMain *plugin, int x, int y);

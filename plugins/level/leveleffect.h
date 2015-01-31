@@ -24,7 +24,7 @@
 
 #include "guicast.h"
 #include "pluginaclient.h"
-
+#include "pluginwindow.h"
 
 
 class SoundLevelEffect;
@@ -55,7 +55,7 @@ public:
 	SoundLevelEffect *plugin;
 };
 
-class SoundLevelWindow : public BC_Window
+class SoundLevelWindow : public PluginWindow
 {
 public:
 	SoundLevelWindow(SoundLevelEffect *plugin, int x, int y);

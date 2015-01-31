@@ -37,16 +37,11 @@ PLUGIN_THREAD_OBJECT(Reverb, ReverbThread, ReverbWindow)
 
 
 ReverbWindow::ReverbWindow(Reverb *reverb, int x, int y)
- : BC_Window(reverb->gui_string, 
+ : PluginWindow(reverb->gui_string,
  	x, 
 	y, 
 	250, 
-	230, 
-	250, 
-	230, 
-	0, 
-	0,
-	1)
+	230)
 { 
 	this->reverb = reverb; 
 }

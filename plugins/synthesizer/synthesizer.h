@@ -28,6 +28,7 @@
 #include "guicast.h"
 #include "mutex.h"
 #include "pluginaclient.h"
+#include "pluginwindow.h"
 #include "vframe.inc"
 
 
@@ -55,7 +56,7 @@ class SynthScroll;
 class SynthSubWindow;
 class SynthWetness;
 
-class SynthWindow : public BC_Window
+class SynthWindow : public PluginWindow
 {
 public:
 	SynthWindow(Synth *synth, int x, int y);

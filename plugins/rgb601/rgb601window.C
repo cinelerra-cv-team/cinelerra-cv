@@ -35,16 +35,11 @@ PLUGIN_THREAD_OBJECT(RGB601Main, RGB601Thread, RGB601Window)
 
 
 RGB601Window::RGB601Window(RGB601Main *client, int x, int y)
- : BC_Window(client->gui_string, 
+ : PluginWindow(client->gui_string,
 	x,
 	y,
 	210, 
-	200, 
-	210, 
-	200, 
-	0, 
-	0,
-	1)
+	200)
 { 
 	this->client = client; 
 }

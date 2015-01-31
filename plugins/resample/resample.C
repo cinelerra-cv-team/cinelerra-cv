@@ -57,16 +57,11 @@ int ResampleFraction::handle_event()
 
 
 ResampleWindow::ResampleWindow(ResampleEffect *plugin, int x, int y)
- : BC_Window(PROGRAM_NAME ": Resample", 
+ : PluginWindow(plugin->gui_string,
  				x - 160,
 				y - 75,
  				320, 
-				150, 
-				320, 
-				150,
-				0,
-				0,
-				1)
+				150)
 {
 	this->plugin = plugin;
 }

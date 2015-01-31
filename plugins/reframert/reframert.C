@@ -26,6 +26,7 @@
 #include "guicast.h"
 #include "language.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "transportque.h"
 
 #include <string.h>
@@ -98,7 +99,7 @@ public:
 	ReframeRTWindow *gui;
 };
 
-class ReframeRTWindow : public BC_Window
+class ReframeRTWindow : public PluginWindow
 {
 public:
 	ReframeRTWindow(ReframeRT *plugin, int x, int y);
@@ -199,16 +200,11 @@ void ReframeRTConfig::boundaries()
 
 
 ReframeRTWindow::ReframeRTWindow(ReframeRT *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	210, 
-	160, 
-	200, 
-	160, 
-	0, 
-	0,
-	1)
+	160)
 {
 	this->plugin = plugin;
 }

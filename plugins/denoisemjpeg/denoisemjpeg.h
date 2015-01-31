@@ -27,6 +27,7 @@ class DenoiseMJPEG;
 #include "bcdisplayinfo.h"
 #include "bchash.inc"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.inc"
 
 
@@ -150,7 +151,7 @@ public:
 };
 
 
-class DenoiseMJPEGWindow : public BC_Window
+class DenoiseMJPEGWindow : public PluginWindow
 {
 public:
 	DenoiseMJPEGWindow(DenoiseMJPEG *plugin, int x, int y);

@@ -27,6 +27,7 @@
 #include "picon_png.h"
 #include "plugincolors.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.h"
 
 #include <stdint.h>
@@ -97,7 +98,7 @@ public:
 	float *boxValue;
 };
 
-class C41Window : public BC_Window
+class C41Window : public PluginWindow
 {
 public:
 	C41Window(C41Effect *plugin, int x, int y);
@@ -270,7 +271,7 @@ int C41Button::handle_event()
 
 // C41Window
 C41Window::C41Window(C41Effect *plugin, int x, int y)
- : BC_Window(plugin->gui_string, x, y, 270, 620, 270, 620, 1, 0, 1)
+ : PluginWindow(plugin->gui_string, x, y, 270, 620)
 {
 	this->plugin = plugin;
 }

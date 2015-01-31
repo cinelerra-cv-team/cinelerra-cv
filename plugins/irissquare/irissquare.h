@@ -28,6 +28,7 @@ class IrisSquareWindow;
 
 #include "overlayframe.inc"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.inc"
 
 
@@ -60,7 +61,7 @@ public:
 
 
 
-class IrisSquareWindow : public BC_Window
+class IrisSquareWindow : public PluginWindow
 {
 public:
 	IrisSquareWindow(IrisSquareMain *plugin, int x, int y);

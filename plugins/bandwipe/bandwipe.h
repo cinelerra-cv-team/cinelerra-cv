@@ -28,6 +28,7 @@ class BandWipeWindow;
 
 #include "overlayframe.inc"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.inc"
 
 
@@ -72,7 +73,7 @@ public:
 
 
 
-class BandWipeWindow : public BC_Window
+class BandWipeWindow : public PluginWindow
 {
 public:
 	BandWipeWindow(BandWipeMain *plugin, int x, int y);

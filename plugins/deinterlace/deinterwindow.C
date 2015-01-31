@@ -36,16 +36,11 @@ PLUGIN_THREAD_OBJECT(DeInterlaceMain, DeInterlaceThread, DeInterlaceWindow)
 
 
 DeInterlaceWindow::DeInterlaceWindow(DeInterlaceMain *client, int x, int y)
- : BC_Window(client->gui_string, 
+ : PluginWindow(client->gui_string,
  	x, 
 	y, 
 	400, 
-	200, 
-	400, 
-	200, 
-	0, 
-	0,
-	1)
+	200)
 { 
 	this->client = client; 
 	adaptive=0; dominance_top=0; dominance_bottom=0; threshold=0;

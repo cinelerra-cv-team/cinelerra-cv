@@ -31,6 +31,7 @@
 #include "loadbalance.h"
 #include "picon_png.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.h"
 
 #include <libintl.h>
@@ -97,7 +98,7 @@ public:
 	int *output;
 };
 
-class DownSampleWindow : public BC_Window
+class DownSampleWindow : public PluginWindow
 {
 public:
 	DownSampleWindow(DownSampleMain *plugin, int x, int y);
@@ -252,15 +253,11 @@ PLUGIN_THREAD_OBJECT(DownSampleMain, DownSampleThread, DownSampleWindow)
 
 
 DownSampleWindow::DownSampleWindow(DownSampleMain *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x,
 	y,
 	230, 
-	380, 
-	230, 
-	380, 
-	0, 
-	1)
+	380)
 {
 	this->plugin = plugin; 
 }

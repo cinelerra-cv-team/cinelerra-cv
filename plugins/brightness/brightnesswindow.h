@@ -32,11 +32,12 @@ class BrightnessLuma;
 #include "guicast.h"
 #include "mutex.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "thread.h"
 
 PLUGIN_THREAD_HEADER(BrightnessMain, BrightnessThread, BrightnessWindow)
 
-class BrightnessWindow : public BC_Window
+class BrightnessWindow : public PluginWindow
 {
 public:
 	BrightnessWindow(BrightnessMain *client, int x, int y);

@@ -28,6 +28,7 @@ class SlideWindow;
 
 #include "overlayframe.inc"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "vframe.inc"
 
 
@@ -85,7 +86,7 @@ public:
 
 
 
-class SlideWindow : public BC_Window
+class SlideWindow : public PluginWindow
 {
 public:
 	SlideWindow(SlideMain *plugin, int x, int y);

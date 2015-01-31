@@ -149,16 +149,11 @@ ChromaKeyConfig::get_color ()
 
 
 
-ChromaKeyWindow::ChromaKeyWindow (ChromaKeyHSV * plugin, int x, int y):BC_Window (plugin->gui_string,
+ChromaKeyWindow::ChromaKeyWindow (ChromaKeyHSV * plugin, int x, int y):PluginWindow (plugin->gui_string,
 	   x,
 	   y, 
 	   400, 
-	   450, 
-	   400, 
-	   450, 
-	   0, 
-	   0, 
-	   1)
+	   450)
 {
   this->plugin = plugin;
   color_thread = 0;

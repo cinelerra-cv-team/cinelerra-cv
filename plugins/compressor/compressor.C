@@ -883,16 +883,11 @@ PLUGIN_THREAD_OBJECT(CompressorEffect, CompressorThread, CompressorWindow)
 
 
 CompressorWindow::CompressorWindow(CompressorEffect *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	650, 
-	480, 
-	650, 
-	480,
-	0, 
-	0,
-	1)
+	480)
 {
 	this->plugin = plugin;
 }

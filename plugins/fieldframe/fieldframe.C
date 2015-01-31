@@ -29,6 +29,7 @@
 #include "mainprogress.h"
 #include "picon_png.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "transportque.inc"
 #include "vframe.h"
 
@@ -96,7 +97,7 @@ public:
 // 	FieldFrameWindow *gui;
 // };
 
-class FieldFrameWindow : public BC_Window
+class FieldFrameWindow : public PluginWindow
 {
 public:
 	FieldFrameWindow(FieldFrame *plugin, int x, int y);
@@ -168,16 +169,11 @@ int FieldFrameConfig::equivalent(FieldFrameConfig &src)
 
 
 FieldFrameWindow::FieldFrameWindow(FieldFrame *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	230, 
-	100, 
-	230, 
-	100, 
-	0, 
-	0,
-	1)
+	100)
 {
 	this->plugin = plugin;
 }

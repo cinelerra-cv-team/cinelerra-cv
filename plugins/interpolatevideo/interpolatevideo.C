@@ -28,6 +28,7 @@
 #include "language.h"
 #include "picon_png.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 #include "theme.h"
 #include "transportque.inc"
 #include "vframe.h"
@@ -94,7 +95,7 @@ public:
 	InterpolateVideo *plugin;
 };
 
-class InterpolateVideoWindow : public BC_Window
+class InterpolateVideoWindow : public PluginWindow
 {
 public:
 	InterpolateVideoWindow(InterpolateVideo *plugin, int x, int y);
@@ -191,16 +192,11 @@ int InterpolateVideoConfig::equivalent(InterpolateVideoConfig *config)
 
 
 InterpolateVideoWindow::InterpolateVideoWindow(InterpolateVideo *plugin, int x, int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	210, 
-	160, 
-	200, 
-	160, 
-	0, 
-	0,
-	1)
+	160)
 {
 	this->plugin = plugin;
 }

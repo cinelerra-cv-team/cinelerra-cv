@@ -30,12 +30,13 @@ class FlipWindow;
 #include "flip.h"
 #include "mutex.h"
 #include "pluginvclient.h"
+#include "pluginwindow.h"
 
 PLUGIN_THREAD_HEADER(FlipMain, FlipThread, FlipWindow)
 
 class FlipToggle;
 
-class FlipWindow : public BC_Window
+class FlipWindow : public PluginWindow
 {
 public:
 	FlipWindow(FlipMain *client, int x, int y);
