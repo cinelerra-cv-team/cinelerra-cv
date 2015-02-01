@@ -189,6 +189,8 @@ BC_WindowBase::~BC_WindowBase()
 	if(wide_text != wide_buffer)
 		delete [] wide_buffer;
 
+	delete [] tooltip_wtext;
+
 	resize_history.remove_all_objects();
 	common_events.remove_all_objects();
 	delete event_lock;
@@ -229,7 +231,7 @@ int BC_WindowBase::initialize()
 	active_subwindow = 0;
 	pixmap = 0;
 	bg_pixmap = 0;
-	tooltip_text[0] = 0;
+	tooltip_wtext = 0;
 	persistant_tooltip = 0;
 //	next_repeat_id = 0;
 	tooltip_popup = 0;
@@ -1394,10 +1396,10 @@ int BC_WindowBase::show_tooltip(int w, int h)
 
 		tooltip_on = 1;
 		if(w < 0)
-			w = get_text_width(MEDIUMFONT, tooltip_text);
+			w = get_text_width(MEDIUMFONT, tooltip_wtext);
 
 		if(h < 0)
-			h = get_text_height(MEDIUMFONT, tooltip_text);
+			h = get_text_height(MEDIUMFONT, tooltip_wtext);
 
 		w += TOOLTIP_MARGIN * 2;
 		h += TOOLTIP_MARGIN * 2;
@@ -1442,9 +1444,33 @@ int BC_WindowBase::hide_tooltip()
 	return 0;
 }
 
-int BC_WindowBase::set_tooltip(const char *text)
+int BC_WindowBase::set_tooltip(const char *text, int is_utf8)
 {
-	strcpy(this->tooltip_text, text);
+	char lbuf[BCTEXTLEN];
+	int len = strlen(text);
+
+	strncpy(lbuf, text, BCTEXTLEN - 1);
+	lbuf[BCTEXTLEN - 1] = 0;
+
+	if(len)
+	{
+		if(!tooltip_wtext)
+			tooltip_wtext = new wchar_t[BCTEXTLEN];
+	}
+	else
+	{
+		delete [] tooltip_wtext;
+		tooltip_wtext = 0;
+		tooltip_length = 0;
+		if(tooltip_on)
+			hide_tooltip();
+		return 0;
+	}
+
+	tooltip_length = BC_Resources::encode(is_utf8 ? "UTF8" : BC_Resources::encoding,
+		BC_Resources::wide_encoding, lbuf, (char*)tooltip_wtext,
+		BCTEXTLEN * sizeof(wchar_t)) / sizeof(wchar_t);
+
 // Update existing tooltip if it is visible
 	if(tooltip_on)
 	{

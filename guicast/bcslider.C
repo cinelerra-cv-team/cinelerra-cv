@@ -30,9 +30,8 @@
 
 
 
-#include <ctype.h>
 #include <string.h>
-
+#include <wctype.h>
 
 
 BC_Slider::BC_Slider(int x, 
@@ -199,7 +198,7 @@ int BC_Slider::repeat_event(int64_t duration)
 		else
 		if(status == SLIDER_HI)
 		{
-			if(!tooltip_text[0] || isdigit(tooltip_text[0]))
+			if(tooltip_wtext || iswdigit(tooltip_wtext[0]))
 			{
 				set_tooltip(get_caption());
 				show_tooltip(50);

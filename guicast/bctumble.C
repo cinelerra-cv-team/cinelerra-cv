@@ -118,7 +118,7 @@ int BC_Tumbler::repeat_event(int64_t duration)
 //printf("BC_Tumbler::repeat_event 1 %d\n", duration);
 	if(duration == top_level->get_resources()->tooltip_delay)
 	{
-		if(tooltip_text[0] != 0 &&
+		if(tooltip_wtext &&
 			status == TUMBLE_UPHI &&
 			!tooltip_done)
 		{

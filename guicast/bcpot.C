@@ -25,8 +25,7 @@
 #include "keys.h"
 #include "units.h"
 #include "vframe.h"
-
-#include <ctype.h>
+#include <wctype.h>
 #include <math.h>
 #include <string.h>
 #define MIN_ANGLE 225
@@ -220,7 +219,7 @@ int BC_Pot::repeat_event(int64_t duration)
 		{
 			if(use_caption)
 			{
-				if(!tooltip_text[0] || isdigit(tooltip_text[0]))
+				if(!tooltip_wtext || iswdigit(tooltip_wtext[0]))
 				{
 					set_tooltip(get_caption());
 					show_tooltip(50);
