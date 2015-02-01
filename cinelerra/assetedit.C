@@ -869,7 +869,7 @@ int AssetEditFormat::handle_event()
 
 
 AssetEditReelName::AssetEditReelName(AssetEditWindow *fwindow, int x, int y)
- : BC_TextBox(x, y, 300, 1, fwindow->asset->reel_name)
+ : BC_TextBox(x, y, 300, 1, fwindow->asset->reel_name, 1, MEDIUMFONT, 1)
 {
 	this->fwindow = fwindow;
 }
@@ -878,7 +878,7 @@ AssetEditReelName::~AssetEditReelName()
 }
 int AssetEditReelName::handle_event()
 {
-	strcpy(fwindow->asset->reel_name, get_text());
+	strcpy(fwindow->asset->reel_name, get_utf8text());
 }
 
 
