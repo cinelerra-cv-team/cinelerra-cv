@@ -102,7 +102,7 @@ int LabelGUI::button_press_event()
 		BC_Toggle::button_press_event();
 	}
 	if (label)
-		set_tooltip(this->label->textstr);
+		set_tooltip(this->label->textstr, 1);
 }
 
 int LabelGUI::handle_event()
@@ -249,7 +249,7 @@ void TimeBar::update_labels()
 							LabelGUI::get_y(mwindow, this), 
 							current->position));
 					new_label->set_cursor(ARROW_CURSOR);
-					new_label->set_tooltip(current->textstr);
+					new_label->set_tooltip(current->textstr, 1);
 					new_label->label = current;
 					labels.append(new_label);
 				}
@@ -268,7 +268,7 @@ void TimeBar::update_labels()
 					}
 
 					labels.values[output]->position = current->position;
-					labels.values[output]->set_tooltip(current->textstr);
+					labels.values[output]->set_tooltip(current->textstr, 1);
 					labels.values[output]->label = current;
 				}
 
