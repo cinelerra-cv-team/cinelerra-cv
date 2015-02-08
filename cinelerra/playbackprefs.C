@@ -149,15 +149,21 @@ SET_TRACE
 	y += window->get_h() + 5;
 
 	add_subwindow(asynchronous = new VideoAsynchronous(pwindow, x, y));
-	y += asynchronous->get_h() + 10;
+	y += asynchronous->get_h() + 5;
 
 SET_TRACE
  	add_subwindow(new BC_Title(x, y, _("Scaling equation:")));
 	y += 20;
-	add_subwindow(nearest_neighbor = new PlaybackNearest(pwindow, 
+	add_subwindow(lanczos_lanczos = new PlaybackLanczosLanczos(pwindow,
 		this, 
-		pwindow->thread->edl->session->interpolation_type == NEAREST_NEIGHBOR, 
-		10, 
+	pwindow->thread->edl->session->interpolation_type == LANCZOS_LANCZOS,
+		10,
+		y));
+	y += 20;
+	add_subwindow(cubic_cubic = new PlaybackBicubicBicubic(pwindow,
+		this,
+		pwindow->thread->edl->session->interpolation_type == CUBIC_CUBIC,
+		10,
 		y));
 	y += 20;
 	add_subwindow(cubic_linear = new PlaybackBicubicBilinear(pwindow, 
@@ -171,9 +177,15 @@ SET_TRACE
 		pwindow->thread->edl->session->interpolation_type == LINEAR_LINEAR, 
 		10, 
 		y));
+	y += 20;
+	add_subwindow(nearest_neighbor = new PlaybackNearest(pwindow,
+		this,
+		pwindow->thread->edl->session->interpolation_type == NEAREST_NEIGHBOR,
+		10,
+		y));
 
 SET_TRACE
-	ybix[0] = y += 35;
+	ybix[0] = y += 25;
 	win = add_subwindow(new BC_Title(x, y, _("Preload buffer for Quicktime:"), MEDIUMFONT));
 	maxw = win->get_w();
 	ybix[1] = y += win->get_h() + 10;
@@ -238,7 +250,7 @@ SET_TRACE
 	sprintf(string, "%d", pwindow->thread->edl->session->timecode_offset[0]);
 	add_subwindow(new TimecodeOffset(win->get_x() + win->get_w(), y, pwindow, this, string, 0));
 	x = x2;
-	y += white_balance_raw->get_h() + 10;
+	y += white_balance_raw->get_h() + 5;
 	add_subwindow(vdevice_title = new BC_Title(x, y, _("Video Driver:")));
 	y += vdevice_title->get_h();
 	video_device = new VDevicePrefs(55,
@@ -260,7 +272,8 @@ void PlaybackPrefs::update(int interpolation)
 {
 	pwindow->thread->edl->session->interpolation_type = interpolation;
 	nearest_neighbor->update(interpolation == NEAREST_NEIGHBOR);
-//	cubic_cubic->update(interpolation == CUBIC_CUBIC);
+	lanczos_lanczos->update(interpolation == LANCZOS_LANCZOS);
+	cubic_cubic->update(interpolation == CUBIC_CUBIC);
 	cubic_linear->update(interpolation == CUBIC_LINEAR);
 	linear_linear->update(interpolation == LINEAR_LINEAR);
 }
@@ -375,7 +388,19 @@ int PlaybackNearest::handle_event()
 }
 
 
+PlaybackLanczosLanczos::PlaybackLanczosLanczos(PreferencesWindow *pwindow,
+	PlaybackPrefs *prefs, int value, int x, int y)
+ : BC_Radial(x, y, value, _("Lanczos enlarge and reduce"))
+{
+	this->pwindow = pwindow;
+	this->prefs = prefs;
+}
 
+int PlaybackLanczosLanczos::handle_event()
+{
+	prefs->update(LANCZOS_LANCZOS);
+	return 1;
+}
 
 
 PlaybackBicubicBicubic::PlaybackBicubicBicubic(PreferencesWindow *pwindow, PlaybackPrefs *prefs, int value, int x, int y)

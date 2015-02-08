@@ -22,6 +22,7 @@
 #ifndef PLAYBACKPREFS_H
 #define PLAYBACKPREFS_H
 
+class PlaybackLanczosLanczos;
 class PlaybackBicubicBicubic;
 class PlaybackBicubicBilinear;
 class PlaybackBilinearBilinear;
@@ -75,6 +76,7 @@ public:
 	PlaybackConfig *playback_config;
 	BC_Title *framerate_title;
 	PlaybackNearest *nearest_neighbor;
+	PlaybackLanczosLanczos *lanczos_lanczos;
 	PlaybackBicubicBicubic *cubic_cubic;
 	PlaybackBicubicBilinear *cubic_linear;
 	PlaybackBilinearBilinear *linear_linear;
@@ -167,6 +169,20 @@ public:
 	PreferencesWindow *pwindow;
 	PlaybackPrefs *prefs;
 };
+
+
+class PlaybackLanczosLanczos : public BC_Radial
+{
+public:
+	PlaybackLanczosLanczos(PreferencesWindow *pwindow, PlaybackPrefs *prefs,
+		int value, int x, int y);
+
+	int handle_event();
+
+	PreferencesWindow *pwindow;
+	PlaybackPrefs *prefs;
+};
+
 
 class PlaybackBicubicBicubic : public BC_Radial
 {
