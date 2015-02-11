@@ -75,7 +75,6 @@ install: build
 	chmod +x debian/tmp/usr/lib/cinelerra/fonts
 	chmod -x debian/tmp/usr/lib/cinelerra/fonts/*
 	chmod +x debian/tmp/usr/lib/cinelerra/shapewipe
-	-ln -s /usr/bin/mpeg2enc debian/tmp/usr/lib/cinelerra/mpeg2enc.plugin
 
 binary-indep: build install
 
