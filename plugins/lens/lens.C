@@ -766,19 +766,12 @@ void LensMain::save_presets()
 // Cinelerra HV 4.5
 int LensMain::load_defaults()
 {
-	printf("warning: dummy function LensMain::load_defaults() called.");
 	return 0;
 }
 
 int LensMain::save_defaults()
 {
-	printf("warning: dummy function LensMain::save_defaults() called.");
 	return 0;
-}
-
-int LensMain::is_defaults()
-{
-	return using_defaults;
 }
 
 void LensMain::save_data(KeyFrame *keyframe)
