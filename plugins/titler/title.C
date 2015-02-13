@@ -83,6 +83,7 @@ TitleConfig::TitleConfig()
 	timecode = 0;
 	stroke_width = 1.0;
 	wtext_length = 0;
+	wtext[0] = 0;
 }
 
 
