@@ -179,7 +179,7 @@ int plugin_class::set_string() \
 	if(thread) \
 	{ \
 		thread->window->lock_window(); \
-		thread->window->set_title(gui_string); \
+		thread->window->set_utf8title(gui_string); \
 		thread->window->unlock_window(); \
 	} \
 	return 0; \
