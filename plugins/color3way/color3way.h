@@ -152,7 +152,6 @@ public:
     int redo_buffers;
 	int need_reconfigure;
 	int copy_to_all[SECTIONS];
-	int w, h;
 private:
 	int using_defaults;
 };

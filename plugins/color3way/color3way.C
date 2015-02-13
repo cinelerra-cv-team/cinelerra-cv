@@ -376,8 +376,6 @@ Color3WayMain::Color3WayMain(PluginServer *server)
 	using_defaults = 0;
 	need_reconfigure = 1;
 	engine = 0;
-	w = 500;
-	h = 300;
 	for(int i = 0; i < SECTIONS; i++) copy_to_all[i] = 0;
 }
 
@@ -554,12 +552,6 @@ void Color3WayMain::save_data(KeyFrame *keyframe)
 		}
 	}
 
-	if(is_defaults())
-	{
-		output.tag.set_property("W",  w);
-		output.tag.set_property("H",  h);
-	}
-	
 	output.append_tag();
 	output.terminate_string();
 }
@@ -568,13 +560,11 @@ void Color3WayMain::save_data(KeyFrame *keyframe)
 // Cinelerra HV 4.5
 int Color3WayMain::load_defaults()
 {
-	printf("warning: dummy function Color3WayMain::load_defaults() called.");
 	return 0;
 }
 
 int Color3WayMain::save_defaults()
 {
-	printf("warning: dummy function Color3WayMain::save_defaults() called.");
 	return 0;
 }
 
@@ -616,12 +606,6 @@ void Color3WayMain::read_data(KeyFrame *keyframe)
 						sprintf(string, "COPY_TO_ALL_%d", i);
 						copy_to_all[i] = input.tag.get_property(string, copy_to_all[i]);
 					}
-				}
-
-				if(is_defaults())
-				{
-					w = input.tag.get_property("W", w);
-					h = input.tag.get_property("H", h);
 				}
 			}
 		}

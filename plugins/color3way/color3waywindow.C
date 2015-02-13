@@ -41,8 +41,8 @@ Color3WayWindow::Color3WayWindow(Color3WayMain *plugin, int x, int y)
  : PluginWindow(plugin->get_gui_string(),
 	x,
 	y,
-	plugin->w, 
-	plugin->h)
+	500,
+	370)
 { 
 	this->plugin = plugin; 
 }
@@ -75,28 +75,6 @@ void Color3WayWindow::create_objects()
 	flash(0);
 	show_window();
 }
-
-int Color3WayWindow::resize_event(int w, int h)
-{
-	int margin = plugin->get_theme()->widget_border;
-	int x = sections[0]->x;
-	int y = sections[0]->y;
-
-	for(int i = 0; i < SECTIONS; i++)
-	{
-		sections[i]->reposition_window(x,
-			y,
-			(w - margin * 4) / 3,
-			w - margin * 2);
-		x += sections[i]->w + margin;
-	}
-
-	plugin->w = w;
-	plugin->h = h;
-	flush();
-	return 1;
-}
-
 
 void Color3WayWindow::update()
 {

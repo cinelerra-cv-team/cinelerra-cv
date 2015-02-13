@@ -202,7 +202,6 @@ public:
 	void create_objects();
 	int close_event();
 	void update();
-	int resize_event(int w, int h);
 
 	Color3WayMain *plugin;
 	Color3WayPoint *active_point;
