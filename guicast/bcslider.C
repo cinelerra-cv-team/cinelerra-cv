@@ -198,7 +198,7 @@ int BC_Slider::repeat_event(int64_t duration)
 		else
 		if(status == SLIDER_HI)
 		{
-			if(tooltip_wtext || iswdigit(tooltip_wtext[0]))
+			if(!tooltip_wtext || iswdigit(tooltip_wtext[0]))
 			{
 				set_tooltip(get_caption());
 				show_tooltip(50);
