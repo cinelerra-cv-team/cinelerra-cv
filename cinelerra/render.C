@@ -134,13 +134,6 @@ void RenderProgress::run()
 
 
 
-
-
-
-
-
-
-
 MainPackageRenderer::MainPackageRenderer(Render *render)
  : PackageRenderer()
 {
@@ -216,16 +209,6 @@ int MainPackageRenderer::progress_cancelled()
 	return (render->progress && render->progress->is_cancelled()) || 
 		render->batch_cancelled;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 Render::Render(MWindow *mwindow)
@@ -675,12 +658,6 @@ int Render::render(int test_overwrite,
 		}
 	}
 
-
-
-
-
-
-
 // Generate packages
 	if(!result)
 	{
@@ -699,15 +676,6 @@ int Render::render(int test_overwrite,
 			total_end,
 			test_overwrite);
 	}
-
-
-
-
-
-
-
-
-
 
 	done = 0;
 	total_rendered = 0;
@@ -760,9 +728,6 @@ int Render::render(int test_overwrite,
 		}
 	}
 
-
-
-
 // Perform local rendering
 
 
@@ -780,13 +745,7 @@ int Render::render(int test_overwrite,
 				default_asset,
 				plugindb);
 
-
-
-
-
-
-
-		while(!result)
+        while(!result)
 		{
 // Get unfinished job
 			RenderPackage *package;
@@ -1085,8 +1044,6 @@ int Render::save_defaults(Asset *asset)
 
 	return 0;
 }
-
-
 
 
 #define WIDTH 410

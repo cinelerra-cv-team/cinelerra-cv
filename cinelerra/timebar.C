@@ -112,12 +112,6 @@ int LabelGUI::handle_event()
 }
 
 
-
-
-
-
-
-
 InPointGUI::InPointGUI(MWindow *mwindow, 
 	TimeBar *timebar, 
 	int64_t pixel, 
@@ -176,12 +170,6 @@ PresentationGUI::PresentationGUI(MWindow *mwindow,
 PresentationGUI::~PresentationGUI()
 {
 }
-
-
-
-
-
-
 
 TimeBar::TimeBar(MWindow *mwindow, 
 	BC_WindowBase *gui,

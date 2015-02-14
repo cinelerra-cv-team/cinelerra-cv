@@ -114,16 +114,6 @@ int RenderFarmServer::wait_clients()
 }
 
 
-
-
-
-
-
-
-
-
-
-
 // Waits for requests from every client.
 // Joins when the client is finished.
 RenderFarmServerThread::RenderFarmServerThread(ArrayList<PluginServer*> *plugindb, 

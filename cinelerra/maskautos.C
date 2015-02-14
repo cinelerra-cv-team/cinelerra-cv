@@ -25,9 +25,6 @@
 #include "maskautos.h"
 #include "transportque.inc"
 
-
-
-
 MaskAutos::MaskAutos(EDL *edl, 
 	Track *track)
  : Autos(edl, track)

@@ -38,17 +38,6 @@
 
 //#define CLAMP(x, y, z) (x) = ((x) < (y) ? (y) : ((x) > (z) ? (z) : (x)))
 
-
-
-
-
-
-
-
-
-
-
-
 Preferences::Preferences()
 {
 // Set defaults

@@ -28,8 +28,6 @@
 #include <string.h>
 
 
-
-
 MaskPoint::MaskPoint()
 {
 	x = 0;

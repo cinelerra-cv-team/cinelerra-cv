@@ -32,9 +32,6 @@
 #include "trackcanvas.h"
 
 
-
-
-
 ShowAssets::ShowAssets(MWindow *mwindow, const char *hotkey)
  : BC_MenuItem(_("Show assets"), hotkey, hotkey[0])
 {

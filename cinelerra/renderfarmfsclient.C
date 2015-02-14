@@ -49,12 +49,6 @@
 extern "C"
 {
 
-
-
-
-
-
-
 RenderFarmFSClient *renderfarm_fs_global = 0;
 
 

@@ -33,10 +33,6 @@
 #include "tracks.h"
 
 
-
-
-
-
 ResizeTrackThread::ResizeTrackThread(MWindow *mwindow, int track_number)
  : Thread()
 {
@@ -226,10 +222,6 @@ int ResizeTrackSwap::handle_event()
 	gui->update(0, 1, 0);
 	return 1;
 }
-
-
-
-
 
 
 ResizeTrackWidth::ResizeTrackWidth(ResizeTrackWindow *gui, 

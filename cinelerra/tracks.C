@@ -564,47 +564,6 @@ void Tracks::select_all(int type,
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ===================================== file operations
 
 int Tracks::popup_transition(int cursor_x, int cursor_y)

@@ -66,9 +66,6 @@ MaskPackage::~MaskPackage()
 }
 
 
-
-
-
 MaskUnit::MaskUnit(MaskEngine *engine)
  : LoadClient(engine)
 {
@@ -91,19 +88,6 @@ MaskUnit::~MaskUnit()
 #ifndef SQR
 #define SQR(x) ((x) * (x))
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -307,26 +291,7 @@ void MaskUnit::do_feather(VFrame *output,
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 #define DO_FEATHER(type, max) \
 { \
 	int frame_w = input->get_w(); \
@@ -392,12 +357,6 @@ void MaskUnit::do_feather(VFrame *output,
 }
 
 
-
-
-
-
-
-
 //printf("do_feather %d\n", frame->get_color_model());
 	switch(input->get_color_model())
 	{
@@ -413,9 +372,6 @@ void MaskUnit::do_feather(VFrame *output,
 			DO_FEATHER(float, 1.0f);
 			break;
 	}
-
-
-
 
 }
 
@@ -506,10 +462,7 @@ SET_TRACE
 				// forward differencing bezier curves implementation taken from GPL code at
 				// http://cvs.sourceforge.net/viewcvs.py/guliverkli/guliverkli/src/subtitles/Rasterizer.cpp?rev=1.3
 
-
-
 				float cx3, cx2, cx1, cx0, cy3, cy2, cy1, cy0;
-
 
 				// [-1 +3 -3 +1]
 				// [+3 -6 +3  0]
@@ -968,9 +921,6 @@ SET_TRACE
 //printf("diff2: %lli\n", get_difference(&start_time));
 //printf("MaskUnit::process_package 4 %d\n", get_package_number());
 }
-
-
-
 
 
 MaskEngine::MaskEngine(int cpus)

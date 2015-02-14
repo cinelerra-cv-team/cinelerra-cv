@@ -365,15 +365,6 @@ int SampleZoomPanel::handle_event()
 }
 
 
-
-
-
-
-
-
-
-
-
 AmpZoomPanel::AmpZoomPanel(MWindow *mwindow, ZoomBar *zoombar, int x, int y)
  : ZoomPanel(mwindow, 
  	zoombar, 

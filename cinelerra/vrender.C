@@ -580,28 +580,6 @@ SET_TRACE
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 VRender::VRender(MWindow *mwindow, RenderEngine *renderengine)
  : CommonRender(mwindow, renderengine)
 {

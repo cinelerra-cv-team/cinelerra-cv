@@ -58,12 +58,6 @@ ResourceThreadItem::~ResourceThreadItem()
 	asset->GarbageObject::remove_user();
 }
 
-
-
-
-
-
-
 VResourceThreadItem::VResourceThreadItem(ResourcePixmap *pixmap, 
 	int picon_x, 
 	int picon_y, 
@@ -90,12 +84,6 @@ VResourceThreadItem::~VResourceThreadItem()
 }
 
 
-
-
-
-
-
-
 AResourceThreadItem::AResourceThreadItem(ResourcePixmap *pixmap, 
 	Asset *asset,
 	int x,
@@ -114,21 +102,6 @@ AResourceThreadItem::AResourceThreadItem(ResourcePixmap *pixmap,
 AResourceThreadItem::~AResourceThreadItem()
 {
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ResourceThread::ResourceThread(MWindow *mwindow)
@@ -209,15 +182,6 @@ void ResourceThread::add_wave(ResourcePixmap *pixmap,
 }
 
 
-
-
-
-
-
-
-
-
-
 void ResourceThread::stop_draw(int reset)
 {
 	if(!interrupted)
@@ -290,9 +254,6 @@ void ResourceThread::run()
 		}
 	}
 }
-
-
-
 
 void ResourceThread::do_video(VResourceThreadItem *item)
 {

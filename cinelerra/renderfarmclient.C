@@ -214,15 +214,6 @@ printf("RenderFarmClient::kill_client 2\n");
 }
 
 
-
-
-
-
-
-
-
-
-
 // The thread requests jobs from the server until the job table is empty
 // or the server reports an error.  This thread must poll the server
 // after every frame for the error status.

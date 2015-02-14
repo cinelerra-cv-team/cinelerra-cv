@@ -27,11 +27,6 @@
 #include "recordwindow.h"
 #include "videodevice.inc"
 
-
-
-
-
-
 RecordWindow::RecordWindow(MWindow *mwindow, Record *record, int x, int y)
  : BC_Window(PROGRAM_NAME ": Record", 
 	x,

@@ -53,11 +53,7 @@ int VEdit::load_properties_derived(FileXML *xml)
 }
 
 
-
-
-
 // ================================================== editing
-
 
 
 int VEdit::read_frame(VFrame *video_out, 

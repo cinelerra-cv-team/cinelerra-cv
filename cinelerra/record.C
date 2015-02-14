@@ -1296,16 +1296,6 @@ void Record::get_current_time(double &seconds, int &day)
 }
 
 
-
-
-
-
-
-
-
-
-
-
 int Record::get_time_format()
 {
 	return mwindow->edl->session->time_format;

@@ -37,14 +37,6 @@
 
 #include <string.h>
 
-
-
-
-
-
-
-
-
 SaveBackup::SaveBackup(MWindow *mwindow)
  : BC_MenuItem(_("Save backup"))
 {
