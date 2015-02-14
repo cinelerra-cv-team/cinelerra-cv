@@ -103,8 +103,6 @@ int Synth::load_defaults()
 	sprintf(directory, "%ssynthesizer.rc", BCASTDIR);
 	defaults = new BC_Hash(directory);
 	defaults->load();
-	w = defaults->get("WIDTH", 380);
-	h = defaults->get("HEIGHT", 400);
 
 	config.wetness = defaults->get("WETNESS", 0);
 	config.base_freq = defaults->get("BASEFREQ", 440);
@@ -188,8 +186,6 @@ int Synth::save_defaults()
 {
 	char string[BCTEXTLEN];
 
-	defaults->update("WIDTH", w);
-	defaults->update("HEIGHT", h);
 	defaults->update("WETNESS", config.wetness);
 	defaults->update("BASEFREQ", config.base_freq);
 	defaults->update("WAVEFUNCTION", config.wavefunction);
@@ -215,7 +211,7 @@ int Synth::show_gui()
 
 int Synth::set_string()
 {
-	if(thread) thread->window->set_title(gui_string);
+	if(thread) thread->window->set_utf8title(gui_string);
 	return 0;
 }
 
@@ -555,8 +551,8 @@ SynthWindow::SynthWindow(Synth *synth, int x, int y)
  : PluginWindow(synth->gui_string,
  	x, 
 	y, 
-	380, 
-	synth->h)
+	420,
+	400)
 {
 	this->synth = synth; 
 }
@@ -660,24 +656,6 @@ int SynthWindow::close_event()
 {
 // Set result to 1 to indicate a client side close
 	set_done(1);
-	return 1;
-}
-
-int SynthWindow::resize_event(int w, int h)
-{
-	clear_box(0, 0, w, h);
-	subwindow->reposition_window(subwindow->get_x(), 
-		subwindow->get_y(), 
-		subwindow->get_w(), 
-		h - subwindow->get_y());
-	subwindow->clear_box(0, 0, subwindow->get_w(), subwindow->get_h());
-	scroll->reposition_window(scroll->get_x(), 
-		scroll->get_y(), 
-		h - scroll->get_y());
-	update_scrollbar();
-	update_oscillators();
-	synth->w = w;
-	synth->h = h;
 	return 1;
 }
 

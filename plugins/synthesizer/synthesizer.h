@@ -64,7 +64,6 @@ public:
 
 	int create_objects();
 	int close_event();
-	int resize_event(int w, int h);
 	void update_gui();
 	int waveform_to_text(char *text, int waveform);
 	void update_scrollbar();
@@ -540,7 +539,6 @@ public:
 	BC_Hash *defaults;
 	SynthThread *thread;
 	SynthConfig config;
-	int w, h;
 	DB db;
 	int64_t waveform_length;           // length of loop buffer
 	int64_t waveform_sample;           // current sample in waveform of loop
