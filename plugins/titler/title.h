@@ -351,8 +351,6 @@ public:
 	TitleThread *thread;
 // Current configuration
 	TitleConfig config;
-// Size of window
-	int window_w, window_h;
 
 	BC_Hash *defaults;
 	ArrayList<TitleGlyph*> glyphs;

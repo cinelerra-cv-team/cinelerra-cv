@@ -74,7 +74,6 @@ public:
 	
 	int create_objects();
 	int close_event();
-	int resize_event(int w, int h);
 	void update_color();
 	void update_justification();
 	void update();
