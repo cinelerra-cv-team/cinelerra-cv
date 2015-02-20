@@ -155,6 +155,7 @@ int PluginServer::reset_parameters()
 	is_lad = 0;
 	lad_descriptor_function = 0;
 	lad_descriptor = 0;
+	return 0;
 }
 
 
@@ -171,6 +172,7 @@ int PluginServer::cleanup_plugin()
 	gui_on = 0;
 	plugin = 0;
 	plugin_open = 0;
+	return 0;
 }
 
 void PluginServer::set_mwindow(MWindow *mwindow)
@@ -199,6 +201,7 @@ int PluginServer::set_path(char *path)
 	if(this->path) delete [] this->path;
 	this->path = new char[strlen(path) + 1];
 	strcpy(this->path, path);
+	return 0;
 }
 
 void PluginServer::set_title(const char *string)
@@ -376,6 +379,7 @@ int PluginServer::init_realtime(int realtime_sched,
 	client->plugin_init_realtime(realtime_sched, 
 		total_in_buffers, 
 		buffer_size);
+	return 0;
 
 }
 

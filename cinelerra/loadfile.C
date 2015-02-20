@@ -401,6 +401,7 @@ void LoadPrevious::run()
 int LoadPrevious::set_path(char *path)
 {
 	strcpy(this->path, path);
+	return 0;
 }
 
 

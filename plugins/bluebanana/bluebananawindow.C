@@ -2348,6 +2348,7 @@ int BluebananaWindow::flush_config_change(){
     plugin->send_configure_change();
   }
   config_consume=config_produce;
+  return 0;
 }
 
 int BluebananaWindow::repeat_event(int64_t d){
@@ -2366,6 +2367,7 @@ int BluebananaWindow::repeat_event(int64_t d){
     /* push update request without an EDL update */
     plugin->server->mwindow->sync_parameters();
   }
+  return 0;
 }
 
 /* engine -> gui update; don't allow any EDL pushes */

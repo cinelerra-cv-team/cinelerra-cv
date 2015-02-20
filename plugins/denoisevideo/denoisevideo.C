@@ -159,6 +159,7 @@ int DenoiseVideoToggle::handle_event()
 {
 	*output = get_value();
 	plugin->send_configure_change();
+	return 1;
 }
 
 

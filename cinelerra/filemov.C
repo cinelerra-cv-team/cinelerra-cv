@@ -1306,6 +1306,7 @@ int FileMOVThread::start_encoding()
 	set_synchronous(1);
 	input_lock->lock("FileMOVThread::start_encoding");
 	start();
+	return 0;
 }
 
 int FileMOVThread::stop_encoding()
@@ -1314,11 +1315,13 @@ int FileMOVThread::stop_encoding()
 	input_lock->unlock();
 	join();
 	if(mjpeg) mjpeg_delete(mjpeg);
+	return 0;
 }
 
 int FileMOVThread::encode_buffer()
 {
 	input_lock->unlock();
+	return 0;
 }
 
 void FileMOVThread::run()

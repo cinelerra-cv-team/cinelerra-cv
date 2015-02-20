@@ -398,6 +398,7 @@ int FileBase::get_audio_buffer(char **buffer, int64_t len, int64_t bits, int64_t
 	prev_bytes = bytes;
 
 	if(!*buffer) *buffer = new char[bytes];
+	return 0;
 }
 
 int FileBase::get_float_buffer(float **buffer, int64_t len)
@@ -410,4 +411,5 @@ int FileBase::get_float_buffer(float **buffer, int64_t len)
 	prev_len = len;
 
 	if(!*buffer) *buffer = new float[len];
+	return 0;
 }

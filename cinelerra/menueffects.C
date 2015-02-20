@@ -549,6 +549,7 @@ int MenuEffectItem::handle_event()
 {
 	menueffect->thread->set_title(get_text());
 	menueffect->thread->start();
+	return 1;
 }
 
 

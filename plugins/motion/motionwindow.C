@@ -899,6 +899,7 @@ char* Mode1::to_text(int mode)
 			return _("Do Nothing");
 			break;
 	}
+	return _("");
 }
 
 int Mode1::calculate_w(MotionWindow *gui)

@@ -600,6 +600,7 @@ int IndexFile::close_index()
 
 		file = 0;
 	}
+	return 0;
 }
 
 int IndexFile::remove_index()
@@ -609,6 +610,7 @@ int IndexFile::remove_index()
 		close_index();
 		remove(index_filename);
 	}
+	return 0;
 }
 
 int IndexFile::read_info(Asset *test_asset)

@@ -194,6 +194,7 @@ int cmodel_components(int colormodel)
 		case BC_RGB_FLOAT:    return 3; break;
 		case BC_RGBA_FLOAT:   return 4; break;
 	}
+	return 0;
 }
 
 int cmodel_calculate_pixelsize(int colormodel)

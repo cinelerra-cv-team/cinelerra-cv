@@ -728,6 +728,7 @@ int mpeg3_update_index(mpeg3_t *file,
 	{
 		divide_index(file, track_number);
 	}
+	return 0;
 }
 
 
@@ -1083,6 +1084,7 @@ int mpeg3_do_toc(mpeg3_t *file, int64_t *bytes_processed)
 // Make user value independant of data type in packet
 	*bytes_processed = mpeg3demux_tell_byte(file->demuxer);
 //printf("mpeg3_do_toc 1000 %llx\n", *bytes_processed);
+	return 0;
 }
 
 

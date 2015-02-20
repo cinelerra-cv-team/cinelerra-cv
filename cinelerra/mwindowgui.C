@@ -710,6 +710,7 @@ int MWindowGUI::keypress_event()
 int MWindowGUI::close_event() 
 { 
 	mainmenu->quit(); 
+	return 0;
 }
 
 int MWindowGUI::menu_h()

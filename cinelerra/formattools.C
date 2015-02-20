@@ -586,6 +586,7 @@ FormatAudio::~FormatAudio() {}
 int FormatAudio::handle_event()
 {
 	format->asset->audio_data = get_value();
+	return 1;
 }
 
 
@@ -601,6 +602,7 @@ FormatVideo::~FormatVideo() {}
 int FormatVideo::handle_event()
 {
 	format->asset->video_data = get_value();
+	return 1;
 }
 
 

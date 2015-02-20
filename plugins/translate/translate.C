@@ -139,6 +139,7 @@ int TranslateMain::load_defaults()
 	config.out_y = defaults->get("OUT_Y", config.out_y);
 	config.out_w = defaults->get("OUT_W", config.out_w);
 	config.out_h = defaults->get("OUT_H", config.out_h);
+	return 0;
 }
 
 int TranslateMain::save_defaults()
@@ -152,6 +153,7 @@ int TranslateMain::save_defaults()
 	defaults->update("OUT_W", config.out_w);
 	defaults->update("OUT_H", config.out_h);
 	defaults->save();
+	return 0;
 }
 
 LOAD_CONFIGURATION_MACRO(TranslateMain, TranslateConfig)

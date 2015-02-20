@@ -906,6 +906,7 @@ int AVIConfigVideo::calculate_w(int format)
 		case FILE_AVI_AVIFILE: return 400; break;
 		case FILE_AVI_ARNE2: return 250; break;
 	}
+	return 0;
 }
 
 int AVIConfigVideo::calculate_h(int format)
@@ -915,6 +916,7 @@ int AVIConfigVideo::calculate_h(int format)
 		case FILE_AVI_AVIFILE: return 320; break;
 		case FILE_AVI_ARNE2: return 100; break;
 	}
+	return 0;
 }
 
 int AVIConfigVideo::create_objects()
