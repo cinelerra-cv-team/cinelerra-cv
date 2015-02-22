@@ -85,11 +85,11 @@ public:
 	virtual Channel* get_channel_usage() { return 0; };
 
 // Set current picture state
-	virtual int set_brightness(int value) { return 0; };
-	virtual int set_hue(int value) { return 0; };
-	virtual int set_color(int value) { return 0; };
-	virtual int set_contrast(int value) { return 0; };
-	virtual int set_whiteness(int value) { return 0; };
+	virtual void set_brightness(int value) {};
+	virtual void set_hue(int value) {};
+	virtual void set_color(int value) {};
+	virtual void set_contrast(int value) {};
+	virtual void set_whiteness(int value) {};
 	virtual int set_picture(int device_id, int value) { return 0; };
 
 // Get the current state of the picture
@@ -166,11 +166,11 @@ public:
 
 
 // Set current picture state
-	int set_brightness(int value);
-	int set_hue(int value);
-	int set_color(int value);
-	int set_contrast(int value);
-	int set_whiteness(int value);
+	void set_brightness(int value);
+	void set_hue(int value);
+	void set_color(int value);
+	void set_contrast(int value);
+	void set_whiteness(int value);
 
 // Get the current state of the picture
 	int get_brightness();
@@ -215,11 +215,11 @@ public:
 	Channel* get_channel_usage();
 
 // Set current picture state
-	int set_brightness(int value);
-	int set_hue(int value);
-	int set_color(int value);
-	int set_contrast(int value);
-	int set_whiteness(int value);
+	void set_brightness(int value);
+	void set_hue(int value);
+	void set_color(int value);
+	void set_contrast(int value);
+	void set_whiteness(int value);
 	int set_picture(int device_id, int value);
 
 // Get the current state of the picture
