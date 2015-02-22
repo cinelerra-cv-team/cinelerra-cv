@@ -435,6 +435,7 @@ StillImageUseDuration::StillImageUseDuration(PreferencesWindow *pwindow, int val
 int StillImageUseDuration::handle_event()
 {
 	pwindow->thread->edl->session->si_useduration = get_value();
+	return 1;
 }
 
 StillImageDuration::StillImageDuration(PreferencesWindow *pwindow, int x, int y)

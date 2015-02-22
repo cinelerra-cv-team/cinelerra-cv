@@ -879,6 +879,7 @@ AssetEditReelName::~AssetEditReelName()
 int AssetEditReelName::handle_event()
 {
 	strcpy(fwindow->asset->reel_name, get_utf8text());
+	return 1;
 }
 
 
@@ -905,6 +906,7 @@ int AssetEditReelNumber::handle_event()
 	}
 
 	fwindow->asset->reel_number = atoi(get_text());
+	return 1;
 }
 
 
@@ -926,4 +928,5 @@ int AssetEditTCStartTextBox::handle_event()
 	fwindow->asset->tcstart -= previous * multiplier;
 	fwindow->asset->tcstart += atoi(get_text()) * multiplier;
 	previous = atoi(get_text());
+	return 1;
 }

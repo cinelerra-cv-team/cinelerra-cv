@@ -551,4 +551,5 @@ int OverwriteReel::handle_event()
 		rwindow->reel_name->disable();
 		rwindow->reel_number->disable();
 	}
+	return 1;
 }

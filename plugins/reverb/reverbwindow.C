@@ -398,6 +398,7 @@ int ReverbLoadPrev::handle_event()
 {
 	menu->prev_load_thread->set_path(path);
 	menu->prev_load_thread->start();
+	return 1;
 }
 int ReverbLoadPrev::set_path(char *path)
 {

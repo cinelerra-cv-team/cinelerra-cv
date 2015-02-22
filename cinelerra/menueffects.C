@@ -67,6 +67,7 @@ int MenuEffects::handle_event()
 {
 	thread->set_title("");
 	thread->start();
+	return 1;
 }
 
 
@@ -688,6 +689,7 @@ int MenuEffectWindowOK::handle_event()
 		window->result = window->list->get_selection_number(0, 0); 
 	
 	window->set_done(0); 
+	return 1;
 }
 
 int MenuEffectWindowOK::keypress_event() 
@@ -709,6 +711,7 @@ MenuEffectWindowCancel::MenuEffectWindowCancel(MenuEffectWindow *window)
 int MenuEffectWindowCancel::handle_event() 
 { 
 	window->set_done(1); 
+	return 1;
 }
 
 int MenuEffectWindowCancel::keypress_event() 
@@ -741,6 +744,7 @@ int MenuEffectWindowList::handle_event()
 {
 	window->result = get_selection_number(0, 0);
 	window->set_done(0); 
+	return 1;
 }
 
 #define PROMPT_TEXT _("Set up effect panel and hit \"OK\"")

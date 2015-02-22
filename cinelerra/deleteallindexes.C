@@ -48,6 +48,7 @@ DeleteAllIndexes::~DeleteAllIndexes()
 int DeleteAllIndexes::handle_event() 
 { 
 	start(); 
+	return 1;
 }
 
 static int test_filter(const char *string, const char *filter)

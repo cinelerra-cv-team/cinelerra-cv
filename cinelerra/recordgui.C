@@ -1371,6 +1371,7 @@ int RecordGUIModeMenu::add_items()
 int RecordGUIModeMenu::handle_event()
 {
 //	engine->set_record_mode(get_text());
+	return 1;
 }
 
 RecordGUIMode::RecordGUIMode(char *text)

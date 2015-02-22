@@ -307,6 +307,7 @@ int DeInterlaceMode::handle_event()
 	plugin->config.mode = from_text(get_text());
 	gui->set_mode(plugin->config.mode,0);
 	plugin->send_configure_change();
+	return 1;
 }
 
 

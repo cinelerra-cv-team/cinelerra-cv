@@ -503,6 +503,7 @@ FormatAParams::~FormatAParams()
 int FormatAParams::handle_event() 
 {
 	format->set_audio_options(); 
+	return 1;
 }
 
 FormatVParams::FormatVParams(MWindow *mwindow, FormatTools *format, int x, int y)
@@ -517,6 +518,7 @@ FormatVParams::~FormatVParams()
 int FormatVParams::handle_event() 
 { 
 	format->set_video_options(); 
+	return 1;
 }
 
 
@@ -569,6 +571,7 @@ int FormatPathText::handle_event()
 {
 	strcpy(format->asset->path, get_text());
 	format->handle_event();
+	return 1;
 }
 
 

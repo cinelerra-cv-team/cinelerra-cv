@@ -592,6 +592,7 @@ VDeviceTextBox::VDeviceTextBox(int x, int y, char *output)
 int VDeviceTextBox::handle_event() 
 { 
 	strcpy(output, get_text()); 
+	return 1;
 }
 
 VDeviceTumbleBox::VDeviceTumbleBox(VDevicePrefs *prefs, 

@@ -52,6 +52,7 @@ TransitionMenuItem::~TransitionMenuItem()
 
 int TransitionMenuItem::handle_event()
 {
+	return 1;
 }
 
 

@@ -465,6 +465,7 @@ int PipeCheckBox::handle_event()
 			textbox->enable();
 		else 
 			textbox->disable();
+	return 1;
 }
 
 
@@ -489,4 +490,5 @@ int PipePreset::handle_event()
 	
 	// menuitem sets the title after selection but we reset it
 	set_text(title);
+	return 1;
 }

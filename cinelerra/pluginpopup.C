@@ -95,6 +95,7 @@ int PluginPopupChange::handle_event()
 	dialog_thread->start_window(popup->plugin->track,
 		popup->plugin,
 		PROGRAM_NAME ": Change Effect");
+	return 1;
 }
 
 

@@ -470,6 +470,7 @@ int ExportEDLPathText::handle_event()
 {
 	strcpy(window->exportasset->path, get_text());
 //	window->handle_event();
+	return 1;
 }
 
 ExportEDLWindowTrackList::ExportEDLWindowTrackList(ExportEDLWindow *window, 
@@ -496,6 +497,7 @@ int ExportEDLWindowTrackList::handle_event()
 //	window->exportasset->track_number = get_selection_number(0, 0);
 //	printf("aaaaa %i\n", window->exportasset->track_number );
 //	window->set_done(0); 
+	return 1;
 }
 
 
