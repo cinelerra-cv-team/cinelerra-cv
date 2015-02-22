@@ -568,6 +568,9 @@ BC_Resources::BC_Resources()
 
 BC_Resources::~BC_Resources()
 {
+	delete display_info;
+	delete id_lock;
+	delete create_window_lock;
 }
 
 int BC_Resources::initialize_display(BC_WindowBase *window)

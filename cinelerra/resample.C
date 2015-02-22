@@ -397,6 +397,7 @@ Resample_float::~Resample_float()
 	delete [] output_temp_start;
 	delete [] output_size;
 	delete [] last_out_end;
+	delete [] resample_init;
 }
 
 void Resample_float::reset(int channel)

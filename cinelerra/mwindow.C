@@ -165,6 +165,9 @@ MWindow::~MWindow()
 	delete brender_lock;
 
 	delete mainindexes;
+	delete channeldb_buz;
+	delete channeldb_v4l2jpeg;
+	delete dvb_input_lock;
 
 SET_TRACE
 	clean_indexes();

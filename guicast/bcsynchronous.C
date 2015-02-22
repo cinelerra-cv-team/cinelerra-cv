@@ -122,6 +122,9 @@ BC_Synchronous::BC_Synchronous()
 
 BC_Synchronous::~BC_Synchronous()
 {
+	delete next_command;
+	delete command_lock;
+	delete table_lock;
 	commands.remove_all_objects();
 }
 
