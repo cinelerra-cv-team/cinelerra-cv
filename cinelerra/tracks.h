@@ -24,7 +24,6 @@
 
 
 #include "autoconf.h"
-#include "cursor.inc"
 #include "edl.inc"
 #include "file.inc"
 #include "filexml.inc"

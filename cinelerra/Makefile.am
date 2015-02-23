@@ -112,7 +112,6 @@ cinelerra_SOURCES = aattachmentpoint.C \
 		    cplayback.C \
 		    ctimebar.C \
 		    ctracking.C \
-		    cursor.C \
 		    cwindow.C \
 		    cwindowgui.C \
 		    cwindowtool.C \
@@ -422,7 +421,6 @@ noinst_HEADERS = aattachmentpoint.h \
 		 cropvideo.h \
 		 ctimebar.h \
 		 ctracking.h \
-		 cursor.h \
 		 cwindowgui.h \
 		 cwindow.h \
 		 cwindowtool.h \
