@@ -622,8 +622,7 @@ int FileAVI::set_audio_position(int64_t x)
 // quicktime sets positions for each track seperately so store position in audio_position
 	if(x >= 0 && x < asset->audio_length)
 		return astream_in[file->current_layer]->Seek(x);
-	else
-		return 1;
+	return 1;
 #endif
 }
 
@@ -632,8 +631,7 @@ int FileAVI::set_video_position(int64_t x)
 #ifdef USE_AVIFILE
 	if(x >= 0 && x < asset->video_length)
 		return vstream_in[file->current_layer]->Seek(x);
-	else
-		return 1;
+	return 1;
 #endif
 }
 
