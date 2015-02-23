@@ -67,7 +67,7 @@ int FileVorbis::check_sig(Asset *asset)
 {
 // FILEVORBIS DECODING IS DISABLED
 	return 0;
-	FILE *fd = fopen(asset->path, "rb");
+/*	FILE *fd = fopen(asset->path, "rb");
 	OggVorbis_File vf;
 
 // Test for Quicktime since OGG misinterprets it
@@ -97,6 +97,7 @@ int FileVorbis::check_sig(Asset *asset)
 		ov_clear(&vf);
 		return 1;
 	}
+*/
 }
 
 int FileVorbis::reset_parameters_derived()

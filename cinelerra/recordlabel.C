@@ -104,7 +104,6 @@ double RecordLabels::get_prev_label(double position)
 		return current->position;
 	else
 		return -1;
-	return 0;
 }
 
 double RecordLabels::get_next_label(double position)
@@ -117,8 +116,8 @@ double RecordLabels::get_next_label(double position)
 	{
 		;
 	}
-	if(current && current->position >= position) return current->position; else return -1;
-	return 0;
+	if(current && current->position >= position) return current->position;
+	return -1;
 }
 
 double RecordLabels::goto_prev_label(double position)
@@ -132,8 +131,8 @@ double RecordLabels::goto_prev_label(double position)
 		;
 	}
 //printf("%ld\n", current->position);
-	if(current && current->position <= position) return current->position; else return -1;
-	return 0;
+	if(current && current->position <= position) return current->position;
+	return -1;
 }
 
 double RecordLabels::goto_next_label(double position)
@@ -146,7 +145,7 @@ double RecordLabels::goto_next_label(double position)
 	{
 		;
 	}
-	if(current && current->position >= position) return current->position; else return -1;
-	return 0;
+	if(current && current->position >= position) return current->position;
+	return -1;
 }
 

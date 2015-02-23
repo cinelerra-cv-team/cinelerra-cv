@@ -243,8 +243,6 @@ Auto* Autos::get_prev_auto(int direction, Auto* &current)
 	int64_t position = track->to_units(position_double, 0);
 
 	return get_prev_auto(position, direction, current);
-
-	return current;
 }
 
 int Autos::auto_exists_for_editing(double position)
