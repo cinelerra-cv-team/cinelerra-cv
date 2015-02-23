@@ -223,7 +223,7 @@ int OverlayFrame::overlay(VFrame *output, VFrame *input,
 	if(in_y1 < 0)
 		in_y1 = 0;
 	if(in_x2 > input->get_w())
-		in_y2 = input->get_w();
+		in_x2 = input->get_w();
 	if(in_y2 > input->get_h())
 		in_y2 = input->get_h();
 	if(out_x1 < 0)
