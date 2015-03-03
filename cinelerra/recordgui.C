@@ -453,8 +453,8 @@ void RecordGUI::flash_batch()
 			batch_titles,
 			column_widths,
 			BATCH_COLUMNS,
-			batch_list->get_yposition(),
 			batch_list->get_xposition(),
+			batch_list->get_yposition(),
 			batch_list->get_highlighted_item());
 
 		batch_list->flush();
@@ -518,8 +518,8 @@ void RecordGUI::update_batches()
 			batch_titles,
 			column_widths,
 			BATCH_COLUMNS,
-			batch_list->get_yposition(),
 			batch_list->get_xposition(),
+			batch_list->get_yposition(),
 			record->editing_batch,
 			1);
 	}
