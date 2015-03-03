@@ -501,6 +501,7 @@ int AutoTypeMenu::handle_event()
 {
 	mwindow->edl->local_session->zoombar_showautotype = from_text(this->get_text());
 	this->zoombar->update_autozoom();
+	return 1;
 }
 
 

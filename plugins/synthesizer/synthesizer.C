@@ -1230,6 +1230,7 @@ int SynthLevelSlope::handle_event()
 
 	synth->thread->window->update_gui();
 	synth->send_configure_change();
+	return 1;
 }
 
 SynthLevelRandom::SynthLevelRandom(Synth *synth)
@@ -1322,6 +1323,7 @@ int SynthPhaseInvert::handle_event()
 
 	synth->thread->window->update_gui();
 	synth->send_configure_change();
+	return 1;
 }
 
 SynthPhaseZero::SynthPhaseZero(Synth *synth)
@@ -1342,6 +1344,7 @@ int SynthPhaseZero::handle_event()
 
 	synth->thread->window->update_gui();
 	synth->send_configure_change();
+	return 1;
 }
 
 SynthPhaseSine::SynthPhaseSine(Synth *synth)
@@ -1365,6 +1368,7 @@ int SynthPhaseSine::handle_event()
 
 	synth->thread->window->update_gui();
 	synth->send_configure_change();
+	return 1;
 }
 
 SynthPhaseRandom::SynthPhaseRandom(Synth *synth)
@@ -1387,6 +1391,7 @@ int SynthPhaseRandom::handle_event()
 
 	synth->thread->window->update_gui();
 	synth->send_configure_change();
+	return 1;
 }
 
 
@@ -1432,6 +1437,7 @@ int SynthFreqEnum::handle_event()
 
 	synth->thread->window->update_gui();
 	synth->send_configure_change();
+	return 1;
 }
 
 SynthFreqEven::SynthFreqEven(Synth *synth)
