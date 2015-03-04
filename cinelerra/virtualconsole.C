@@ -283,7 +283,7 @@ int VirtualConsole::test_reconfigure(int64_t position,
 
 
 
-int VirtualConsole::delete_virtual_console()
+void VirtualConsole::delete_virtual_console()
 {
 // delete the virtual node tree
 	for(int i = 0; i < total_exit_nodes; i++)

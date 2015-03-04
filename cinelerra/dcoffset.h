@@ -38,7 +38,7 @@ public:
 	DC_Offset();
 	~DC_Offset();
 
-	int calibrate_dc_offset(int *output, RecordGUIDCOffsetText **dc_offset_text, int input_channels);
+	void calibrate_dc_offset(int *output, RecordGUIDCOffsetText **dc_offset_text, int input_channels);
 	void run();
 
 	int *output;

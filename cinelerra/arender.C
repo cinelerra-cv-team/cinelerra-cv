@@ -408,7 +408,7 @@ int ARender::arm_playback(int64_t current_position,
 // 	return 0;
 // }
 
-int ARender::reverse_buffer(double *buffer, int64_t len)
+void ARender::reverse_buffer(double *buffer, int64_t len)
 {
 	register int64_t start, end;
 	double temp;

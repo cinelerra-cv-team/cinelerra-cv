@@ -135,7 +135,7 @@ int ExportEDLAsset::edit_to_timecodes(Edit *edit, char *sourceinpoint, char *sou
 }
 
 
-int ExportEDLAsset::export_it()
+void ExportEDLAsset::export_it()
 {
 	FILE *fh;
 	fh = fopen(path, "w+");

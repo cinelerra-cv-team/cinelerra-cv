@@ -125,7 +125,7 @@ public:
 
 
 
-	int dump();
+	void dump();
 
 };
 

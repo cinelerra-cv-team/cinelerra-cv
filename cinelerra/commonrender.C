@@ -302,7 +302,7 @@ CommonRender::CommonRender(MWindow *mwindow, RenderEngine *renderengine)
 }
 
 
-int CommonRender::wait_for_completion()
+void CommonRender::wait_for_completion()
 {
 	join();
 }

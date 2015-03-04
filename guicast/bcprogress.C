@@ -58,7 +58,7 @@ int BC_ProgressBar::initialize()
 	return 0;
 }
 
-int BC_ProgressBar::reposition_window(int x, int y, int w, int h)
+void BC_ProgressBar::reposition_window(int x, int y, int w, int h)
 {
 	if(w < 0) w = get_w();
 	if(h < 0) h = get_h();

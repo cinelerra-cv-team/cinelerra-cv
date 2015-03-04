@@ -44,7 +44,7 @@ public:
 	VDeviceV4L2JPEG(VideoDevice *device);
 	~VDeviceV4L2JPEG();
 
-	int initialize();
+	void initialize();
 	int open_input();
 	int close_all();
 	int get_best_colormodel(Asset *asset);

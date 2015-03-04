@@ -469,7 +469,7 @@ void RenderFarmServerThread::run()
 //	delete fs_server;
 }
 
-int RenderFarmServerThread::write_string(char *string)
+void RenderFarmServerThread::write_string(char *string)
 {
 	int i, len;
 	i = 0;

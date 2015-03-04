@@ -139,7 +139,7 @@ public:
 		double **input, 
 		int length, 
 		int levels);
-	int threshold(int window_size, double gammas, int levels);
+	void threshold(int window_size, double gammas, int levels);
 	double dot_product_even(double *data, double *filter, int filtlen);
 	double dot_product_odd(double *data, double *filter, int filtlen);
 	int convolve_int_2(double *input_sequence, 

@@ -79,8 +79,8 @@ public:
 	int set_filter(const char *new_filter);
 	int set_show_all();     // show hidden files
 	int set_want_directory();
-	int set_sort_order(int value);
-	int set_sort_field(int field);
+	void set_sort_order(int value);
+	void set_sort_field(int field);
 	int create_dir(char *new_dir_);    // create a new directory
 	int complete_path(char *filename);   // use the filename and the current_dir to create a complete filename
 // return 1 if the text is a directory

@@ -1226,7 +1226,7 @@ void RecordStartoverThread::run()
 
 
 
-int RecordGUI::set_translation(int x, int y, float z)
+void RecordGUI::set_translation(int x, int y, float z)
 {
 	record->video_x = x;
 	record->video_y = y;
@@ -1289,7 +1289,7 @@ void RecordGUI::update_labels(double new_position)
 
 
 
-int RecordGUI::update_prev_label(long new_position) 
+void RecordGUI::update_prev_label(long new_position)
 { 
 	update_title(prev_label_title, new_position);
 }
@@ -1299,7 +1299,7 @@ int RecordGUI::update_prev_label(long new_position)
 // 	update_title(next_label_title, new_position); 
 // }
 // 
-int RecordGUI::update_title(BC_Title *title, double position)
+void RecordGUI::update_title(BC_Title *title, double position)
 {
 	static char string[256];
 

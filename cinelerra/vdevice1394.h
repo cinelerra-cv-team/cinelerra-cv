@@ -49,7 +49,7 @@ public:
 	int write_buffer(VFrame *frame, EDL *edl);
 // Called by the audio device to share a buffer
 //	int get_shared_data(unsigned char *data, long size);
-	int initialize();
+	void initialize();
 	int can_copy_from(Asset *asset, int output_w, int output_h);
 //	int stop_sharing();
 	void new_output_buffer(VFrame **output, int colormodel);

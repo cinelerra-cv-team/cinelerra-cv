@@ -239,7 +239,7 @@ int AttachmentPoint::gui_open()
 
 
 
-int AttachmentPoint::dump()
+void AttachmentPoint::dump()
 {
 	if(this)
 	{

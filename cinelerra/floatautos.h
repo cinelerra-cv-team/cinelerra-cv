@@ -38,7 +38,7 @@ public:
 	~FloatAutos();
 
 
-	int draw_joining_line(BC_SubWindow *canvas, int vertical, int center_pixel, int x1, int y1, int x2, int y2);
+	void draw_joining_line(BC_SubWindow *canvas, int vertical, int center_pixel, int x1, int y1, int x2, int y2);
 	int get_testy(float slope, int cursor_x, int ax, int ay);
 // Return 1 if the automation is constant.
 // constant - set to the value if it is constant

@@ -131,12 +131,12 @@ int FileSystem::delete_directory()
 	return 0;
 }
 
-int FileSystem::set_sort_order(int value)
+void FileSystem::set_sort_order(int value)
 {
 	this->sort_order = value;
 }
 
-int FileSystem::set_sort_field(int field)
+void FileSystem::set_sort_field(int field)
 {
 	this->sort_field = field;
 }

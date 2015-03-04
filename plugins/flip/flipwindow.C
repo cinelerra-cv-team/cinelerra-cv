@@ -49,7 +49,7 @@ FlipWindow::~FlipWindow()
 {
 }
 
-int FlipWindow::create_objects()
+void FlipWindow::create_objects()
 {
 	int x = 10, y = 10;
 	add_tool(flip_vertical = new FlipToggle(client, 

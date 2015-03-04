@@ -458,7 +458,7 @@ public:
 	void set_interactive();
 
 // Realtime operations.
-	int reset();
+	void reset();
 	int plugin_get_range();
 	int plugin_init_realtime(int realtime_priority, 
 		int total_in_buffers,

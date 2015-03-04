@@ -517,7 +517,7 @@ void BlurEngine::run()
 	}
 }
 
-int BlurEngine::reconfigure()
+void BlurEngine::reconfigure()
 {
 	std_dev = sqrt(-(double)(plugin->config.radius * plugin->config.radius) / 
 		(2 * log (1.0 / 255.0)));

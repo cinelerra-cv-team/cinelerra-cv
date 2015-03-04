@@ -593,7 +593,7 @@ VRender::VRender(MWindow *mwindow, RenderEngine *renderengine)
 	render_strategy = -1;
 }
 
-int VRender::init_device_buffers()
+void VRender::init_device_buffers()
 {
 // allocate output buffer if there is a video device
 	if(renderengine->video)
@@ -609,7 +609,7 @@ int VRender::get_datatype()
 }
 
 
-int VRender::start_playback()
+void VRender::start_playback()
 {
 // start reading input and sending to vrenderthread
 // use a thread only if there's a video device

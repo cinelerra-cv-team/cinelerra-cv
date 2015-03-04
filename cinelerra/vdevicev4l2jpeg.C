@@ -67,7 +67,7 @@ VDeviceV4L2JPEG::~VDeviceV4L2JPEG()
 	close_all();
 }
 
-int VDeviceV4L2JPEG::initialize()
+void VDeviceV4L2JPEG::initialize()
 {
 	thread = 0;
 }

@@ -42,7 +42,7 @@ public:
 
 	friend class VDevice1394;
 
-	int initialize();
+	void initialize();
 
 	int open_input();
 	int open_output();

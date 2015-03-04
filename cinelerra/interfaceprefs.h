@@ -53,7 +53,7 @@ public:
 
 	int create_objects();
 // must delete each derived class
-	int update(int new_value);
+	void update(int new_value);
 	const char* behavior_to_text(int mode);
 
 	BrowseButton *ipath;

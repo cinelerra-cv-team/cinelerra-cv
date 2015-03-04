@@ -212,7 +212,7 @@ SET_TRACE
 	return 0;
 }
 
-int VDevicePrefs::create_dvb_objs()
+void VDevicePrefs::create_dvb_objs()
 {
 	int x1 = x + menu->get_w() + 5;
 	dialog->add_subwindow(device_title = new BC_Title(x1, y, _("Host:")));

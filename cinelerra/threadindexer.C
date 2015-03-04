@@ -55,7 +55,7 @@ ThreadIndexer::~ThreadIndexer()
 	delete interrupt_lock;
 }
 
-int ThreadIndexer::start_build()
+void ThreadIndexer::start_build()
 {
 	interrupt_flag = 0;
 	start();
@@ -159,7 +159,7 @@ void ThreadIndexer::run()
 	interrupt_lock->unlock();
 }
 
-int ThreadIndexer::interrupt_build()
+void ThreadIndexer::interrupt_build()
 {
 	interrupt_flag = 1;
 	indexfile->interrupt_index();

@@ -476,19 +476,19 @@ ReverbEngine::~ReverbEngine()
 	join();
 }
 
-int ReverbEngine::process_overlays(int output_buffer, int64_t size)
+void ReverbEngine::process_overlays(int output_buffer, int64_t size)
 {
 	this->output_buffer = output_buffer;
 	this->size = size;
 	input_lock.unlock();
 }
 
-int ReverbEngine::wait_process_overlays()
+void ReverbEngine::wait_process_overlays()
 {
 	output_lock.lock();
 }
 	
-int ReverbEngine::process_overlay(double *in, double *out, double &out1, double &out2, double level, int64_t lowpass, int64_t samplerate, int64_t size)
+void ReverbEngine::process_overlay(double *in, double *out, double &out1, double &out2, double level, int64_t lowpass, int64_t samplerate, int64_t size)
 {
 // Modern niquist frequency is 44khz but pot limit is 20khz so can't use
 // niquist

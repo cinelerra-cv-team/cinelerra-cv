@@ -311,7 +311,7 @@ int DenoiseEffect::tree_copy(double **output,
 	return 0;
 }
 
-int DenoiseEffect::threshold(int window_size, double gammas, int levels)
+void DenoiseEffect::threshold(int window_size, double gammas, int levels)
 {
 	int i, j;
 	double threshold, cv, cvb, abs_coeff_r;

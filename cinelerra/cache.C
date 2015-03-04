@@ -219,7 +219,7 @@ int CICache::delete_entry(Asset *asset)
 	return 0;
 }
 
-int CICache::age()
+void CICache::age()
 {
 	CICacheItem *current;
 
@@ -324,7 +324,7 @@ int CICache::delete_oldest()
 	}
 }
 
-int CICache::dump()
+void CICache::dump()
 {
 	CICacheItem *current;
 	total_lock->lock("CICache::dump");

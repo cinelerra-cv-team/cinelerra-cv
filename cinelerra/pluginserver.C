@@ -951,7 +951,7 @@ int PluginServer::detach_buffers()
 	return 0;
 }
 
-int PluginServer::arm_buffer(int buffer_number, 
+void PluginServer::arm_buffer(int buffer_number,
 		int64_t offset_in, 
 		int64_t offset_out,
 		int double_buffer_in,
@@ -964,7 +964,7 @@ int PluginServer::arm_buffer(int buffer_number,
 }
 
 
-int PluginServer::set_automation(FloatAutos *autos, FloatAuto **start_auto, FloatAuto **end_auto, int reverse)
+void PluginServer::set_automation(FloatAutos *autos, FloatAuto **start_auto, FloatAuto **end_auto, int reverse)
 {
 	this->autos = autos;
 	this->start_auto = start_auto;

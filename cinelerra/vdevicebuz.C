@@ -227,7 +227,7 @@ VDeviceBUZ::~VDeviceBUZ()
 	delete tuner_lock;
 }
 
-int VDeviceBUZ::reset_parameters()
+void VDeviceBUZ::reset_parameters()
 {
 	jvideo_fd = 0;
 	input_buffer = 0;
@@ -250,7 +250,7 @@ int VDeviceBUZ::reset_parameters()
 	whiteness = 32768;
 }
 
-int VDeviceBUZ::close_input_core()
+void VDeviceBUZ::close_input_core()
 {
 	if(input_thread)
 	{

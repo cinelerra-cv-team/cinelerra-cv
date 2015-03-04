@@ -42,7 +42,7 @@ public:
 
 private:
 	int set_cloexec_flag(int desc, int value);
-	int set_mute(int muted);
+	void set_mute(int muted);
 	int v4l1_get_inputs();
 	int v4l1_set_mute(int muted);
 	unsigned long translate_colormodel(int colormodel);

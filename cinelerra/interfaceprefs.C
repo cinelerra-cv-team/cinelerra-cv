@@ -263,7 +263,7 @@ const char* InterfacePrefs::behavior_to_text(int mode)
 	}
 }
 
-int InterfacePrefs::update(int new_value)
+void InterfacePrefs::update(int new_value)
 {
 	pwindow->thread->redraw_times = 1;
 	pwindow->thread->edl->session->time_format = new_value;

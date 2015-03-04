@@ -105,10 +105,10 @@ public:
 
 // Called by check_in() and modules.
 // deletes oldest assets until under the memory limit
-	int age();
+	void age();
 
 
-	int dump();
+	void dump();
 
 	ArrayList<PluginServer*> *plugindb;
 

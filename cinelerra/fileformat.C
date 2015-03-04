@@ -53,7 +53,7 @@ FileFormat::~FileFormat()
 	delete bitspopup;
 }
 
-int FileFormat::create_objects(Asset *asset, char *string2)
+void FileFormat::create_objects(Asset *asset, char *string2)
 {
 // ================================= copy values
 	this->asset = asset;

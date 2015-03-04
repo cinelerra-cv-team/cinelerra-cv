@@ -120,7 +120,7 @@ public:
 	virtual int init_rendering(int duplicate) {};
 // Replaced by pull system
 //	int sort_virtual_console();
-	int delete_virtual_console();
+	void delete_virtual_console();
 
 // Signal effects to deallocate any resources which must be deallocated
 // after playback.

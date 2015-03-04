@@ -37,9 +37,9 @@ public:
 	ThreadIndexer(MWindow *mwindow, Assets *assets);
 	~ThreadIndexer();
 
-	int start_build();
+	void start_build();
 	void run();
-	int interrupt_build();
+	void interrupt_build();
 
 	int interrupt_flag;
 	MWindow *mwindow;

@@ -55,7 +55,7 @@ public:
 	void run();
 	int wait_for_startup();
 
-	int start_playback();     // start the thread
+	void start_playback();     // start the thread
 
 // get data type for certain commonrender routines
 	int get_datatype();
@@ -120,7 +120,7 @@ public:
 	int first_frame;
 
 private:
-	int init_device_buffers();
+	void init_device_buffers();
 	Timer timer;
 
 // for getting actual framerate

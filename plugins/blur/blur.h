@@ -100,7 +100,7 @@ public:
 
 // parameters needed for blur
 	int get_constants();
-	int reconfigure();
+	void reconfigure();
 	int transfer_pixels(pixel_f *src1, pixel_f *src2, pixel_f *dest, int size);
 	int multiply_alpha(pixel_f *row, int size);
 	int separate_alpha(pixel_f *row, int size);

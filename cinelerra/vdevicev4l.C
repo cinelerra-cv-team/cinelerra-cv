@@ -218,7 +218,7 @@ int VDeviceV4L::v4l1_get_inputs()
 	return 0;
 }
 
-int VDeviceV4L::set_mute(int muted)
+void VDeviceV4L::set_mute(int muted)
 {
 // Open audio, which obviously is controlled by the video driver.
 // and apparently resets the input source.

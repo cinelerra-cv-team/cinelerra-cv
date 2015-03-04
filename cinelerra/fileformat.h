@@ -45,7 +45,7 @@ public:
 	FileFormat(MWindow *mwindow);
 	~FileFormat();
 
-	int create_objects(Asset *asset, char *string2);
+	void create_objects(Asset *asset, char *string2);
 
 	int create_objects_(char *string2);
 

@@ -74,7 +74,7 @@ void FloatAutos::straighten(int64_t start, int64_t end)
 	}
 }
 
-int FloatAutos::draw_joining_line(BC_SubWindow *canvas, int vertical, int center_pixel, int x1, int y1, int x2, int y2)
+void FloatAutos::draw_joining_line(BC_SubWindow *canvas, int vertical, int center_pixel, int x1, int y1, int x2, int y2)
 {
 	if(vertical)
 		canvas->draw_line(center_pixel - y1, x1, center_pixel - y2, x2);

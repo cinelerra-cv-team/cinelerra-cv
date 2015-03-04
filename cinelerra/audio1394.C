@@ -44,7 +44,7 @@ Audio1394::~Audio1394()
 	close_all();
 }
 
-int Audio1394::initialize()
+void Audio1394::initialize()
 {
 	input_thread = 0;
 	output_thread = 0;

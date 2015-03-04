@@ -94,7 +94,7 @@ public:
 
 // clean up rendering
 	int virtual stop_rendering() {};
-	int wait_for_completion();
+	void wait_for_completion();
 	virtual int wait_device_completion() {};
 // renders to a device when there's a device
 	virtual int process_buffer(int64_t input_len, int64_t input_position) {};

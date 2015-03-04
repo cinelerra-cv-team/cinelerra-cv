@@ -33,7 +33,7 @@ public:
 	ThreadLoader(MWindow *mwindow);
 	~ThreadLoader();
 	
-	int set_paths(ArrayList<char *> *paths);
+	void set_paths(ArrayList<char *> *paths);
 	void run();
 	MWindow *mwindow;
 	ArrayList<char *> *paths;

@@ -45,8 +45,8 @@ public:
 
 	friend class IndexFile;
 
-	int start_build();
-	int stop_build();
+	void start_build();
+	void stop_build();
 	void run();
 
 	IndexFile *index_file;

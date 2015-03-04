@@ -44,7 +44,7 @@ public:
 // Copy what parameters the tuner device supports only
 	void copy_usage(Channel *channel);
 	int load(FileXML *file);
-	int save(FileXML *file);
+	void save(FileXML *file);
 // Store the location of the channels to scan.
 // Only used for channel scanning
 	void load_defaults(BC_Hash *defaults);

@@ -209,7 +209,7 @@ public:
 	ReverbLoadPrev(Reverb *reverb, ReverbMenu *menu, char *filename, char *path);
 	ReverbLoadPrev(Reverb *reverb, ReverbMenu *menu);
 	int handle_event();
-	int set_path(char *path);
+	void set_path(char *path);
 	char path[1024];
 	Reverb *reverb;
 	ReverbMenu *menu;

@@ -44,7 +44,7 @@ PluginClient::~PluginClient()
 {
 }
 
-int PluginClient::reset()
+void PluginClient::reset()
 {
 	interactive = 0;
 	show_initially = 0;

@@ -110,7 +110,7 @@ public:
 		int compressed);
 	int stop_video_thread();
 
-	int start_video_decode_thread();
+	void start_video_decode_thread();
 
 // Return the thread.
 // Used by functions that read only.

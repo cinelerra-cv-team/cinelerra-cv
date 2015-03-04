@@ -46,7 +46,7 @@ int FileBase::ima4_index[16] =
 
 
 
-int FileBase::init_ima4()
+void FileBase::init_ima4()
 {
 	ima4_block_samples = 1024;
 	ima4_block_size = (ima4_block_samples - 1) * asset->channels / 2 + 4;
@@ -54,7 +54,7 @@ int FileBase::init_ima4()
 	last_ima4_indexes = 0;
 }
 
-int FileBase::delete_ima4()
+void FileBase::delete_ima4()
 {
 	if(last_ima4_samples) delete last_ima4_samples;
 	if(last_ima4_indexes) delete last_ima4_indexes;

@@ -468,7 +468,7 @@ int Edits::optimize()
 
 // ===================================== file operations
 
-int Edits::load(FileXML *file, int track_offset)
+void Edits::load(FileXML *file, int track_offset)
 {
 	int result = 0;
 	int64_t startproject = 0;

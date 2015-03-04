@@ -96,7 +96,7 @@ public:
 	int wait_device_completion();
 
 // reverse the data in a buffer	
-	int reverse_buffer(double *buffer, int64_t len);
+	void reverse_buffer(double *buffer, int64_t len);
 // advance the buffer count
 	int swap_current_buffer();
 	int64_t get_render_length(int64_t current_render_length);

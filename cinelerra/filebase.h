@@ -50,8 +50,8 @@ public:
 
 
 
-	int get_mode(char *mode, int rd, int wr);
-	int reset_parameters();
+	void get_mode(char *mode, int rd, int wr);
+	void reset_parameters();
 
 
 
@@ -146,7 +146,7 @@ protected:
 
 // allocate a buffer for translating video to VFrame
 	int get_video_buffer(unsigned char **buffer, int depth); // video
-	int get_row_pointers(unsigned char *buffer, unsigned char ***pointers, int depth);
+	void get_row_pointers(unsigned char *buffer, unsigned char ***pointers, int depth);
 	static int match4(const char *in, const char *out);   // match 4 bytes for a quicktime type
 
 	int64_t ima4_samples_to_bytes(int64_t samples, int channels);
@@ -182,8 +182,8 @@ private:
 	unsigned char *floattoulaw_table, *floattoulaw_ptr;
 
 // IMA4
-	int init_ima4();
-	int delete_ima4();
+	void init_ima4();
+	void delete_ima4();
 	int ima4_decode_block(int16_t *output, unsigned char *input);
 	int ima4_decode_sample(int *predictor, int nibble, int *index, int *step);
 	int ima4_encode_block(unsigned char *output, int16_t *input, int step, int channel);

@@ -73,7 +73,7 @@ void RecordAudio::reset_parameters()
 }
 
 
-int RecordAudio::arm_recording()
+void RecordAudio::arm_recording()
 {
 	reset_parameters();
 // Fudge buffer sizes

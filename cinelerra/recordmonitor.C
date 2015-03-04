@@ -132,7 +132,7 @@ void RecordMonitor::run()
 	close_threads();
 }
 
-int RecordMonitor::close_threads()
+void RecordMonitor::close_threads()
 {
 	if(window->channel_picker) window->channel_picker->close_threads();
 }
@@ -153,7 +153,7 @@ int RecordMonitor::get_mbuttons_height()
 	return RECBUTTON_HEIGHT;
 }
 
-int RecordMonitor::fix_size(int &w, int &h, int width_given, float aspect_ratio)
+void RecordMonitor::fix_size(int &w, int &h, int width_given, float aspect_ratio)
 {
 	w = width_given;
 	h = (int)((float)width_given / aspect_ratio);

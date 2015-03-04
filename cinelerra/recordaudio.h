@@ -44,7 +44,7 @@ public:
 	
 	void run();
 // start saving audio data to file
-	int arm_recording();
+	void arm_recording();
 	void start_recording();
 // Called by record thread if audio is the only thing.
 // Called by video recording if video and audio are being recorded.

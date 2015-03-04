@@ -444,7 +444,7 @@ ThresholdWindow::~ThresholdWindow()
 {
 }
 
-int ThresholdWindow::create_objects()
+void ThresholdWindow::create_objects()
 {
 	int x = 10;
 	int y = 10;

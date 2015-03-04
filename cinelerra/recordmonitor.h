@@ -72,9 +72,9 @@ public:
 
 	void run();
 
-	int close_threads();   // Stop all the child threads on exit
+	void close_threads();   // Stop all the child threads on exit
 	int create_objects();
-	int fix_size(int &w, int &h, int width_given, float aspect_ratio);
+	void fix_size(int &w, int &h, int width_given, float aspect_ratio);
 	float get_scale(int w);
 	int get_mbuttons_height();
 	int get_canvas_height();

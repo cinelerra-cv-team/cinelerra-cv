@@ -102,7 +102,7 @@ public:
 
 // ================================== file operations
 
-	int load(FileXML *xml, int track_offset);
+	void load(FileXML *xml, int track_offset);
 	int load_edit(FileXML *xml, int64_t &startproject, int track_offset);
 
 	virtual Edit* append_new_edit() { return 0; };

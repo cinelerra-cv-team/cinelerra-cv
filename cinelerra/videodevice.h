@@ -71,10 +71,10 @@ public:
 	~KeepaliveThread();
 
 	void run();
-	int reset_keepalive();   // Call after frame capture to reset counter
+	void reset_keepalive();   // Call after frame capture to reset counter
 	int get_failed();
-	int start_keepalive();
-	int stop();
+	void start_keepalive();
+	void stop();
 
 	Timer timer;
 	int still_alive;
@@ -150,7 +150,7 @@ public:
 	int read_buffer(VFrame *frame);  // Read the next frame off the device
 	int has_signal();
 	int frame_to_vframe(VFrame *frame, unsigned char *input); // Translate the captured frame to a VFrame
-	int initialize();
+	void initialize();
 	ArrayList<Channel*>* get_inputs();
 // Create new input source if it doesn't match device_name.  
 // Otherwise return it.

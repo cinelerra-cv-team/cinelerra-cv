@@ -55,7 +55,7 @@ VDevice1394::~VDevice1394()
 	close_all();
 }
 
-int VDevice1394::initialize()
+void VDevice1394::initialize()
 {
 	input_thread = 0;
 	output_thread = 0;

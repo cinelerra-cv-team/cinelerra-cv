@@ -72,7 +72,7 @@ KeepaliveThread::~KeepaliveThread()
 	delete startup_lock;
 }
 
-int KeepaliveThread::start_keepalive()
+void KeepaliveThread::start_keepalive()
 {
 	startup_lock->lock("KeepaliveThread::start_keepalive 1");
 	start();
@@ -101,7 +101,7 @@ void KeepaliveThread::run()
 	}
 }
 
-int KeepaliveThread::reset_keepalive()
+void KeepaliveThread::reset_keepalive()
 {
 	still_alive = 1;
 }
@@ -111,7 +111,7 @@ int KeepaliveThread::get_failed()
 	if(failed) return 1; else return 0;
 }
 
-int KeepaliveThread::stop()
+void KeepaliveThread::stop()
 {
 	interrupted = 1;
 
@@ -152,7 +152,7 @@ VideoDevice::~VideoDevice()
 	delete picture_lock;
 }
 
-int VideoDevice::initialize()
+void VideoDevice::initialize()
 {
 	sharing = 0;
 	done_sharing = 0;

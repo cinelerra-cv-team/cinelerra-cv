@@ -621,7 +621,7 @@ void RenderEngine::run()
 
 
 
-int RenderEngine::reset_parameters()
+void RenderEngine::reset_parameters()
 {
 	start_position = 0;
 	follow_loop = 0;
@@ -633,7 +633,7 @@ int RenderEngine::reset_parameters()
 	done = 0;
 }
 
-int RenderEngine::arm_playback_audio(int64_t input_length, 
+void RenderEngine::arm_playback_audio(int64_t input_length,
 			int64_t amodule_render_fragment, 
 			int64_t playback_buffer, 
 			int64_t output_length)
@@ -649,7 +649,7 @@ int RenderEngine::arm_playback_audio(int64_t input_length,
 							output_length);
 }
 
-int RenderEngine::arm_playback_video(int every_frame, 
+void RenderEngine::arm_playback_video(int every_frame,
 			int64_t read_length, 
 			int64_t output_length,
 			int track_w,
@@ -671,7 +671,7 @@ int RenderEngine::arm_playback_video(int every_frame,
 // 							output_h);
 }
 
-int RenderEngine::start_video()
+void RenderEngine::start_video()
 {
 // start video for realtime
 	if(video) video->start_playback();

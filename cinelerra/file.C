@@ -657,7 +657,7 @@ int File::start_video_thread(int64_t buffer_size,
 	return 0;
 }
 
-int File::start_video_decode_thread()
+void File::start_video_decode_thread()
 {
 // Currently, CR2 is the only one which won't work asynchronously, so
 // we're not using a virtual function yet.

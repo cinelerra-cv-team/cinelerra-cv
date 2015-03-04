@@ -145,7 +145,7 @@ public:
 	int wait_for_completion();
 
 // start the thread processing buffers
-	int start_playback();
+	void start_playback();
 
 
 

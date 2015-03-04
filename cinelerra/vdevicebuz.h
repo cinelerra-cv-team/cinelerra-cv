@@ -81,7 +81,7 @@ public:
 	int close_all();
 	int read_buffer(VFrame *frame);
 	int write_buffer(VFrame *frames, EDL *edl);
-	int reset_parameters();
+	void reset_parameters();
 	ArrayList<int>* get_render_strategies();
 	int set_channel(Channel *channel);
 	int get_norm(int norm);
@@ -94,7 +94,7 @@ public:
 
 private:
 	int open_input_core(Channel *channel);
-	int close_input_core();
+	void close_input_core();
 	int open_output_core(Channel *channel);
 	int close_output_core();
 

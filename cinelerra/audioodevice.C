@@ -247,7 +247,7 @@ int AudioDevice::set_software_positioning(int status)
 	return 0;
 }
 
-int AudioDevice::start_playback()
+void AudioDevice::start_playback()
 {
 // arm buffer before doing this
 	is_playing_back = 1;

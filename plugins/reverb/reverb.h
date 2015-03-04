@@ -107,9 +107,9 @@ public:
 	ReverbEngine(Reverb *plugin);
 	~ReverbEngine();
 
-	int process_overlay(double *in, double *out, double &out1, double &out2, double level, int64_t lowpass, int64_t samplerate, int64_t size);
-	int process_overlays(int output_buffer, int64_t size);
-	int wait_process_overlays();
+	void process_overlay(double *in, double *out, double &out1, double &out2, double level, int64_t lowpass, int64_t samplerate, int64_t size);
+	void process_overlays(int output_buffer, int64_t size);
+	void wait_process_overlays();
 	void run();
 
 	Mutex input_lock, output_lock;

@@ -143,7 +143,7 @@ int Channel::load(FileXML *file)
 	return done;
 }
 
-int Channel::save(FileXML *file)
+void Channel::save(FileXML *file)
 {
 	file->tag.set_title("CHANNEL");
 	file->tag.set_property("ENTRY", entry);
