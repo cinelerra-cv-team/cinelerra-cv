@@ -32,6 +32,7 @@ class RemoveThread : public Thread
 {
 public:
 	RemoveThread();
+	~RemoveThread();
 	void remove_file(char *path);
 	void create_objects();
 	void run();

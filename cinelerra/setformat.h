@@ -40,6 +40,7 @@ class SetFormat : public BC_MenuItem
 {
 public:
 	SetFormat(MWindow *mwindow);
+	~SetFormat();
 	int handle_event();
 	SetFormatThread *thread;
 	MWindow *mwindow;
@@ -50,7 +51,7 @@ class SetFormatThread : public Thread
 {
 public:
 	SetFormatThread(MWindow *mwindow);
-
+	~SetFormatThread();
 	void run();
 
 	void apply_changes();

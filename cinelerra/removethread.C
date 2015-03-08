@@ -40,6 +40,12 @@ RemoveThread::RemoveThread()
 	file_lock = new Mutex("RemoveThread::file_lock");
 }
 
+RemoveThread::~RemoveThread()
+{
+	delete input_lock;
+	delete file_lock;
+}
+
 void RemoveThread::remove_file(char *path)
 {
 // Rename to temporary
