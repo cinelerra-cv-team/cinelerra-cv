@@ -333,7 +333,6 @@ void VDeviceBUZ::get_inputs(ArrayList<Channel*> *input_sources)
 {
 	Channel *new_source = new Channel;
 
-	new_source = new Channel;
 	strcpy(new_source->device_name, COMPOSITE_TEXT);
 	input_sources->append(new_source);
 
