@@ -884,6 +884,7 @@ int RotateEffect::handle_opengl()
 		glDisable(GL_COLOR_LOGIC_OP);
 	}
 #endif
+	return 0;
 }
 
 

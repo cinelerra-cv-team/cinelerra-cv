@@ -617,6 +617,7 @@ int RadialBlurMain::handle_opengl()
 	glColor4f(1, 1, 1, 1);
 	get_output()->set_opengl_state(VFrame::SCREEN);
 #endif
+	return 0;
 }
 
 

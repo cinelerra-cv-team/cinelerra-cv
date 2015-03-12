@@ -354,6 +354,7 @@ int FlipMain::handle_opengl()
 
 	get_output()->set_opengl_state(VFrame::SCREEN);
 #endif
+	return 0;
 }
 
 

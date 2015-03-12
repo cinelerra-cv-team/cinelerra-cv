@@ -724,6 +724,7 @@ printf("ColorBalanceMain::handle_opengl %d %d\n", aggregate_interpolate, aggrega
 	glUseProgram(0);
 	get_output()->set_opengl_state(VFrame::SCREEN);
 #endif
+	return 0;
 }
 
 

@@ -258,6 +258,7 @@ int BrightnessMain::handle_opengl()
 	get_output()->set_opengl_state(VFrame::SCREEN);
 //printf("BrightnessMain::handle_opengl 100 %x\n", glGetError());
 #endif
+	return 0;
 }
 
 

@@ -340,6 +340,7 @@ int ScaleMain::handle_opengl()
 		out_y2);
 	get_output()->set_opengl_state(VFrame::SCREEN);
 #endif
+	return 0;
 }
 
 
