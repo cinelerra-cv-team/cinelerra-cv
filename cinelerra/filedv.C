@@ -519,6 +519,7 @@ TRACE("FileDV::write_samples 220")
 		{
 			eprintf("Unable to read from audio buffer file\n");
 			stream_lock->unlock();
+			delete [] tmp_buf;
 			return 1;
 		}
 		
@@ -580,6 +581,7 @@ TRACE("FileDV::write_samples 270")
 		{
 			eprintf("Unable to write audio to audio buffer\n");
 			stream_lock->unlock();
+			delete [] tmp_buf;
 			return 1;
 		}
 
