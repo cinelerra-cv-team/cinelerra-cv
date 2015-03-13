@@ -348,8 +348,8 @@ void CWindowGUI::zoom_canvas(int do_auto, double value, int update_menu)
 
 	float old_zoom = mwindow->edl->session->cwindow_zoom;
 	float new_zoom = value;
-	float x = canvas->w / 2;
-	float y = canvas->h / 2;
+	float x = canvas->w / 2.0;
+	float y = canvas->h / 2.0;
 	canvas->canvas_to_output(mwindow->edl, 
 				0, 
 				x, 

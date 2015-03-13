@@ -324,8 +324,8 @@ void VTrack::calculate_input_transfer(Asset *asset,
 {
 	float auto_x, auto_y, auto_z;
 	float camera_z = 1;
-	float camera_x = asset->width / 2;
-	float camera_y = asset->height / 2;
+	float camera_x = asset->width / 2.0;
+	float camera_y = asset->height / 2.0;
 // camera and output coords
 	float z[6], x[6], y[6];        
 

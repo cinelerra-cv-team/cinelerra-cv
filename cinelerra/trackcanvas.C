@@ -3498,7 +3498,7 @@ int TrackCanvas::do_autos(Track *track,
 		{
 			int64_t x, y;
 			x = (int64_t)((double)(current->position - unit_start) / 
-				zoom_units - (pixmap->get_w() / 2 + 0.5));
+				zoom_units - (pixmap->get_w() / 2.0 + 0.5));
 			y = center_pixel - pixmap->get_h() / 2;
 
 			if(!draw)

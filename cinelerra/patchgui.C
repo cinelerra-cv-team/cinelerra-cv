@@ -814,7 +814,7 @@ int64_t NudgePatch::calculate_increment()
 {
 	if(patch->track->data_type == TRACK_AUDIO)
 	{
-		return (int64_t)ceil(patch->track->edl->session->sample_rate / 10);
+		return (int64_t)ceil(patch->track->edl->session->sample_rate / 10.0);
 	}
 	else
 	{
