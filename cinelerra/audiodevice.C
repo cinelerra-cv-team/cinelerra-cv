@@ -287,31 +287,35 @@ int AudioDevice::set_vdevice(VideoDevice *vdevice)
 
 int AudioDevice::get_ichannels()
 {
-	if(r) return in_channels;
-	else if(d) return duplex_channels;
-	else return 0;
+	if(r)
+		return in_channels;
+	assert(d);
+	return duplex_channels;
 }
 
 int AudioDevice::get_ibits()
 {
-	if(r) return in_bits;
-	else if(d) return duplex_bits;
-	return 0;
+	if(r)
+		return in_bits;
+	assert(d);
+	return duplex_bits;
 }
 
 
 int AudioDevice::get_obits()
 {
-	if(w) return out_bits;
-	else if(d) return duplex_bits;
-	return 0;
+	if(w)
+		return out_bits;
+	assert(d);
+	return duplex_bits;
 }
 
 int AudioDevice::get_ochannels()
 {
-	if(w) return out_channels;
-	else if(d) return duplex_channels;
-	return 0;
+	if(w)
+		return out_channels;
+	assert(d);
+	return duplex_channels;
 }
 
 AudioLowLevel* AudioDevice::get_lowlevel_out()
