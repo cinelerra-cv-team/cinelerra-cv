@@ -819,7 +819,6 @@ int FileMPEG::get_index(char *index_path)
 
 int FileMPEG::can_copy_from(Edit *edit, int64_t position)
 {
-	if(!fd) return 0;
 	return 0;
 }
 
