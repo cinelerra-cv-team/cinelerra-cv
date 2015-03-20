@@ -323,9 +323,9 @@ private:
 // Draw the button for a popup listbox
 	int draw_button();
 // Draw list border
-	int draw_border(int flash);
+	void draw_border(int flash);
 // Draw column titles
-	int draw_titles(int flash);
+	void draw_titles(int flash);
 // Draw expanders
 	void draw_toggles(int flash);
 // Draw selection rectangle

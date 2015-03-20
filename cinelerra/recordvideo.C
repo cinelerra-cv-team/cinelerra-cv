@@ -425,9 +425,9 @@ void RecordVideo::rewind_file()
 	gui->update_position(0);
 }
 
-int RecordVideo::unhang_thread()
+void RecordVideo::unhang_thread()
 {
-printf("RecordVideo::unhang_thread\n");
+	printf("RecordVideo::unhang_thread\n");
 	Thread::end();
 }
 

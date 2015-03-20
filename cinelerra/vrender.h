@@ -53,7 +53,7 @@ public:
 				int output_h);
 
 	void run();
-	int wait_for_startup();
+	void wait_for_startup();
 
 	void start_playback();     // start the thread
 

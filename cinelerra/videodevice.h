@@ -174,7 +174,6 @@ public:
 // Get output buffer for playback using colormodel.
 // colormodel argument should be as close to best_colormodel as possible
 	void new_output_buffer(VFrame **output, int colormodel);
-	int wait_for_startup();
 	int wait_for_completion();
 	int output_visible();     // Whether the output is visible or not.
 	int stop_playback();

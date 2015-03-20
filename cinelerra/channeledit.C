@@ -108,7 +108,7 @@ void ChannelEditThread::run()
 
 }
 
-int ChannelEditThread::close_threads()
+void ChannelEditThread::close_threads()
 {
 	if(in_progress && window)
 	{
@@ -118,7 +118,6 @@ int ChannelEditThread::close_threads()
 		completion->lock("ChannelEditThread::close_threads");
 		completion->unlock();
 	}
-	return 0;
 }
 
 char *ChannelEditThread::value_to_freqtable(int value)
@@ -870,7 +869,7 @@ ChannelEditEditThread::~ChannelEditEditThread()
 	delete completion;
 }
 
-int ChannelEditEditThread::close_threads()
+void ChannelEditEditThread::close_threads()
 {
 	if(edit_window)
 	{
@@ -878,7 +877,6 @@ int ChannelEditEditThread::close_threads()
 		completion->lock("ChannelEditEditThread::close_threads");
 		completion->unlock();
 	}
-	return 0;
 }
 
 int ChannelEditEditThread::edit_channel(Channel *channel, int editing)
@@ -1439,7 +1437,7 @@ SET_TRACE
 	in_progress = 0;
 }
 
-int ChannelEditPictureThread::close_threads()
+void ChannelEditPictureThread::close_threads()
 {
 	if(edit_window)
 	{

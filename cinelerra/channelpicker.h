@@ -108,7 +108,7 @@ public:
 	void update_channel_list();
 	int create_objects();
 	int reposition();
-	int close_threads();
+	void close_threads();
 	const char *get_source_name(Channel *channel);  // Get the name of the source for a channel
 	const char *current_channel_name();    // Get the name of the current channel of the device
 	int channel_up();

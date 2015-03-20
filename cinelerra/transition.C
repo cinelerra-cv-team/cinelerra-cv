@@ -210,9 +210,10 @@ int Transition::popup_transition(int x, int y)
 // 		mwindow->gui->transition_popup->activate_menu(this, PROGRAM_NAME ": Transition", y, x);
 // 	else
 // 		mwindow->gui->transition_popup->activate_menu(this, PROGRAM_NAME ": Transition", x, y);
+	return 0;
 }
 
-int Transition::update_derived()
+void Transition::update_derived()
 {
 // Redraw transition titles
 }

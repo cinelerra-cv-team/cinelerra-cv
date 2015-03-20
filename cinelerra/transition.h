@@ -75,7 +75,7 @@ public:
 
 	KeyFrame* get_keyframe();
 	int reset_parameters();
-	int update_derived();
+	void update_derived();
 	Transition& operator=(Transition &that);
 	Plugin& operator=(Plugin &that);
 	Edit& operator=(Edit &that);

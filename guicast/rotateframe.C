@@ -454,7 +454,7 @@ int RotateEngine::coords_to_pixel(int &input_y, int &input_x)
 	return input_y * plugin->input->get_w() + input_x;
 }
 
-int RotateEngine::coords_to_pixel(SourceCoord &float_pixel, float &input_y, float &input_x)
+void RotateEngine::coords_to_pixel(SourceCoord &float_pixel, float &input_y, float &input_x)
 {
 	if(input_y < 0) float_pixel.y = -1;
 	else

@@ -59,7 +59,7 @@ public:
 							int frames);
 	void write_buffer(int skip_new = 0);
 	void start_file_thread();
-	int unhang_thread();
+	void unhang_thread();
 	void rewind_file();
 	void finish_timed();
 	void finish_loop();

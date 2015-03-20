@@ -233,8 +233,8 @@ public:
 	void put_shader(unsigned int handle, char *title);
 	int get_opengl_server_version();
 
-	int flash(int x, int y, int w, int h, int flush = 1);
-	int flash(int flush = 1);
+	void flash(int x, int y, int w, int h, int flush = 1);
+	void flash(int flush = 1);
 	void flush();
 	void sync_display();
 // Lock out other threads

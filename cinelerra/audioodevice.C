@@ -285,10 +285,9 @@ int AudioDevice::interrupt_playback()
 	return 0;
 }
 
-int AudioDevice::wait_for_startup()
+void AudioDevice::wait_for_startup()
 {
 	startup_lock->lock("AudioDevice::wait_for_startup");
-	return 0;
 }
 
 int AudioDevice::wait_for_completion()

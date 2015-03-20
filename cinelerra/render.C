@@ -1074,7 +1074,7 @@ RenderWindow::~RenderWindow()
 }
 
 
-int RenderWindow::load_profile(int profile_slot)
+void RenderWindow::load_profile(int profile_slot)
 {
 	render->load_profile(profile_slot, asset);
 	update_range_type(render->range_type);

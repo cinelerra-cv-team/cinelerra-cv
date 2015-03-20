@@ -4319,7 +4319,7 @@ void BC_ListBox::draw_text_recursive(ArrayList<BC_ListBoxItem*> *data,
 
 
 
-int BC_ListBox::draw_border(int flash)
+void BC_ListBox::draw_border(int flash)
 {
 	BC_Resources *resources = top_level->get_resources();
 	gui->draw_3d_border(0, 
@@ -4340,10 +4340,9 @@ int BC_ListBox::draw_border(int flash)
 		gui->flash();
 		gui->flush();
 	}
-	return 0;
 }
 
-int BC_ListBox::draw_titles(int flash)
+void BC_ListBox::draw_titles(int flash)
 {
 	if(column_titles && display_format == LISTBOX_TEXT)
 	{

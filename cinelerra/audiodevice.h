@@ -140,7 +140,7 @@ public:
 // finished without writing a single byte
 	int set_last_buffer();         
 
-	int wait_for_startup();
+	void wait_for_startup();
 // wait for the playback thread to clean up
 	int wait_for_completion();
 

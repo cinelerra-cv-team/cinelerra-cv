@@ -489,10 +489,9 @@ int ChannelPicker::reposition()
 	return 0;
 }
 
-int ChannelPicker::close_threads()
+void ChannelPicker::close_threads()
 {
 	channel_button->thread->close_threads();
-	return 0;
 }
 
 const char* ChannelPicker::get_source_name(Channel *channel)

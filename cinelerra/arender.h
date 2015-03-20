@@ -44,7 +44,6 @@ public:
 				int64_t module_render_fragment, 
 				int64_t playback_buffer, 
 				int64_t output_length);
-	int wait_for_startup();
 	int64_t tounits(double position, int round);
 	double fromunits(int64_t position);
 

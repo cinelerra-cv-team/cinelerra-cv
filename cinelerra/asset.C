@@ -452,7 +452,7 @@ int Asset::test_path(const char *path)
 		return 0;
 }
 
-int Asset::test_plugin_title(const char *path)
+void Asset::test_plugin_title(const char *path)
 {
 }
 

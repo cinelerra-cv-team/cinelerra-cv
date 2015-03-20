@@ -356,7 +356,7 @@ PluginAClientWindow::~PluginAClientWindow()
 }
 
 
-int PluginAClientWindow::create_objects()
+void PluginAClientWindow::create_objects()
 {
 	PluginServer *server = plugin->server;
 	char string[BCTEXTLEN];

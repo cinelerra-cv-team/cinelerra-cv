@@ -619,7 +619,7 @@ void VRender::start_playback()
 	}
 }
 
-int VRender::wait_for_startup()
+void VRender::wait_for_startup()
 {
 }
 

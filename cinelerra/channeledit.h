@@ -43,7 +43,7 @@ public:
 		ChannelDB *channeldb);
 	~ChannelEditThread();
 	void run();
-	int close_threads();
+	void close_threads();
 	char* value_to_freqtable(int value);
 	char* value_to_norm(int value);
 	char* value_to_input(int value);
@@ -260,7 +260,7 @@ public:
 	int set_input(int value);
 	int set_norm(int value);
 	int set_freqtable(int value);
-	int close_threads();
+	void close_threads();
 
 	Channel new_channel;
 	Channel *output_channel;
@@ -428,7 +428,7 @@ public:
 	~ChannelEditPictureThread();
 
 	void run();
-	int close_threads();
+	void close_threads();
 	int edit_picture();
 
 	int in_progress;   // Allow only 1 thread at a time

@@ -517,7 +517,7 @@ int PluginDialog::attach_module(int number)
 	return 0;
 }
 
-int PluginDialog::save_settings()
+void PluginDialog::save_settings()
 {
 }
 

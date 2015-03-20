@@ -254,7 +254,7 @@ public:
 
 	int create_objects();
 	void update_range_type(int range_type);
-	int load_profile(int profile_slot);
+	void load_profile(int profile_slot);
 	
 	RenderRangeProject *rangeproject;
 	RenderRangeSelection *rangeselection;
