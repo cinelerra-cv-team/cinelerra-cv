@@ -523,6 +523,7 @@ int VideoDevice::set_channel(Channel *channel)
 		if(input_base) return input_base->set_channel(channel);
 		if(output_base) return output_base->set_channel(channel);
 	}
+	return 0;
 }
 
 void VideoDevice::set_quality(int quality)
@@ -743,11 +744,13 @@ int VideoDevice::write_buffer(VFrame *output, EDL *edl)
 int VideoDevice::output_visible()
 {
 	if(output_base) return output_base->output_visible();
+	return 0;
 }
 
 BC_Bitmap* VideoDevice::get_bitmap()
 {
 	if(output_base) return output_base->get_bitmap();
+	return 0;
 }
 
 

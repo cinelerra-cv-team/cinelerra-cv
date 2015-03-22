@@ -419,6 +419,7 @@ int AudioALSA::close_all()
 	samples_written = 0;
 	delay = 0;
 	interrupted = 0;
+	return 1;
 }
 
 // Undocumented

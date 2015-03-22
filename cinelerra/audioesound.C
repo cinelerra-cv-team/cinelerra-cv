@@ -156,6 +156,7 @@ int AudioESound::close_all()
  	   	close(esd_out_fd);
 		esd_close(esd_out);     
 	}
+	return 1;
 }
 
 // No position on ESD

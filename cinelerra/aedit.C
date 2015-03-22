@@ -61,6 +61,7 @@ int AEdit::copy_properties_derived(FileXML *xml, int64_t length_in_selection)
 int AEdit::dump_derived()
 {
 	//printf("	channel %d\n", channel);
+	return 0;
 }
 
 

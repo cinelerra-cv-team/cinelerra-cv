@@ -206,6 +206,7 @@ int FileMOV::reset_parameters_derived()
 	samples_correction = 0;
 	temp_float = 0;
 	temp_allocated = 0;
+	return 0;
 }
 
 

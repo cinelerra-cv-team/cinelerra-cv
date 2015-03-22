@@ -202,6 +202,7 @@ int ATrack::get_dimensions(double &view_start,
 	view_units = (double)0;
 //	view_units = (double)tracks->view_samples();
 	zoom_units = (double)edl->local_session->zoom_sample;
+	return 0;
 }
 
 

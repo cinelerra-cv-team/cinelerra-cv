@@ -124,9 +124,9 @@ public:
 
 // Signal effects to deallocate any resources which must be deallocated
 // after playback.
-	virtual int stop_rendering(int duplicate) {};
+	virtual int stop_rendering(int duplicate) {return 0;}
 
-	virtual int send_last_output_buffer() {};
+	virtual int send_last_output_buffer() {return 0;}
 
 
 	PlayableTracks *playable_tracks;

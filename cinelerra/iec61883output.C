@@ -321,6 +321,7 @@ int IEC61883Output::read_frame(unsigned char *data, int n, unsigned int dropped)
 			buffer_lock->unlock();
 		}
 	}
+	return 0;
 }
 
 

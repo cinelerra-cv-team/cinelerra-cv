@@ -84,6 +84,7 @@ int MButtons::resize_event()
 		mwindow->theme->mbuttons_h);
 	draw_top_background(get_parent(), 0, 0, get_w(), get_h());
 	flash();
+	return 1;
 }
 
 int MButtons::keypress_event()

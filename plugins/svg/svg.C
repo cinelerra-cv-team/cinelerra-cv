@@ -170,6 +170,7 @@ int SvgMain::load_defaults()
 	config.out_h = defaults->get("OUT_H", config.out_h);
 	strcpy(config.svg_file, "");
 //	defaults->get("SVG_FILE", config.svg_file);
+	return 0;
 }
 
 int SvgMain::save_defaults()
@@ -184,6 +185,7 @@ int SvgMain::save_defaults()
 	defaults->update("OUT_H", config.out_h);
 	defaults->update("SVG_FILE", config.svg_file);
 	defaults->save();
+	return 0;
 }
 
 LOAD_CONFIGURATION_MACRO(SvgMain, SvgConfig)

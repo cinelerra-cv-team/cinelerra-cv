@@ -543,6 +543,7 @@ int FileAVI::close_file()
 #endif
 	if(temp_audio) delete [] temp_audio;
 	reset();
+	return 0;
 }
 
 int FileAVI::cmodel_bc_to_avi(int input)

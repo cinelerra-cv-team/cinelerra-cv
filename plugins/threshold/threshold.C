@@ -207,6 +207,7 @@ int ThresholdMain::save_defaults()
 	config.mid_color.save_defaults(defaults,  "MID_COLOR");
 	config.high_color.save_defaults(defaults, "HIGH_COLOR");
 	defaults->save();
+	return 0;
 }
 
 void ThresholdMain::save_data(KeyFrame *keyframe)

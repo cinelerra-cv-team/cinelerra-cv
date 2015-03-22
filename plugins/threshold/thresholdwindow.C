@@ -379,6 +379,7 @@ int ThresholdLowColorThread::handle_new_color(int output, int alpha)
 	window->update_low_color();
 	window->flush();
 	plugin->send_configure_change();
+	return 1;
 }
 
 
@@ -398,6 +399,7 @@ int ThresholdMidColorThread::handle_new_color(int output, int alpha)
 	window->update_mid_color();
 	window->flush();
 	plugin->send_configure_change();
+	return 1;
 }
 
 
@@ -417,6 +419,7 @@ int ThresholdHighColorThread::handle_new_color(int output, int alpha)
 	window->update_high_color();
 	window->flush();
 	plugin->send_configure_change();
+	return 1;
 }
 
 

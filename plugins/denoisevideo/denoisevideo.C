@@ -335,6 +335,7 @@ int DenoiseVideo::process_realtime(VFrame *input, VFrame *output)
 			DENOISE_MACRO(uint16_t, 4, 0xffff);
 			break;
 	}
+	return 0;
 }
 
 

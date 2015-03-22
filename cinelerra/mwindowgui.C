@@ -480,6 +480,7 @@ int MWindowGUI::save_defaults(BC_Hash *defaults)
 	defaults->update("MWINDOWHEIGHT", get_h());
 	mainmenu->save_defaults(defaults);
 	BC_WindowBase::save_defaults(defaults);
+	return 0;
 }
 
 int MWindowGUI::keypress_event()

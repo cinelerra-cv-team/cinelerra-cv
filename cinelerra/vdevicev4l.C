@@ -367,6 +367,7 @@ int VDeviceV4L::v4l1_get_norm(int norm)
 int VDeviceV4L::set_picture(PictureConfig *picture)
 {
 	v4l1_set_picture(picture);
+	return 0;
 }
 
 

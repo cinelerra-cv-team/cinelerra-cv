@@ -70,6 +70,7 @@ int FileList::reset_parameters_derived()
 	writer = 0;
 	temp = 0;
 	first_number = 0;
+	return 0;
 }
 
 int FileList::open_file(int rd, int wr)

@@ -180,4 +180,5 @@ int DissolveMain::handle_opengl()
 
 
 #endif
+	return 0;
 }

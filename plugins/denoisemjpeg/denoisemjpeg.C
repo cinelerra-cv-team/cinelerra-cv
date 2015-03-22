@@ -470,7 +470,7 @@ DenoiseMJPEG::~DenoiseMJPEG()
 int DenoiseMJPEG::process_realtime(VFrame *input, VFrame *output)
 {
 	load_configuration();
-
+	return 0;
 }
 
 const char* DenoiseMJPEG::plugin_title() { return N_("Denoise video2"); }

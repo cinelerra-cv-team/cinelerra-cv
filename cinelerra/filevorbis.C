@@ -106,6 +106,7 @@ int FileVorbis::reset_parameters_derived()
 	bzero(&vf, sizeof(vf));
 	pcm_history = 0;
 	pcm_history_float = 0;
+	return 0;
 }
 
 

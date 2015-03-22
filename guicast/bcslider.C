@@ -286,6 +286,7 @@ int BC_Slider::activate()
 {
 	top_level->active_subwindow = this;
 	active = 1;
+	return 0;
 }
 
 int BC_Slider::button_press_event()

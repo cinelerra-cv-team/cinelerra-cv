@@ -176,6 +176,7 @@ int FileMPEG::reset_parameters_derived()
 	lame_output_allocation = 0;
 	lame_fd = 0;
 	lame_started = 0;
+	return 0;
 }
 
 

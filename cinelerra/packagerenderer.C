@@ -815,6 +815,7 @@ void PackageRenderer::set_progress(int64_t value)
 
 int PackageRenderer::set_video_map(int64_t position, int value)
 {
+	return 0;
 }
 
 int PackageRenderer::progress_cancelled()
