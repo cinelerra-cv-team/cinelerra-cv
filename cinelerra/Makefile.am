@@ -74,7 +74,6 @@ cinelerra_SOURCES = aattachmentpoint.C \
 		    atrack.C \
 		    attachmentpoint.C \
 		    audioalsa.C \
-		    audiocine.C \
 		    audiodevice.C \
 		    audiodvb.C \
 		    audioesound.C \
@@ -376,7 +375,6 @@ noinst_HEADERS = aattachmentpoint.h \
 		 attachmentpoint.h \
 		 audio1394.h \
 		 audioalsa.h \
-		 audiocine.h \
 		 audioconfig.h \
 		 audiodevice.h \
 		 audiodvb.h \
