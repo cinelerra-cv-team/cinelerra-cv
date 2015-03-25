@@ -852,7 +852,6 @@ int BC_WindowBase::dispatch_event()
 			break;
 
 		case ConfigureNotify:
-			get_key_masks(event);
 			XTranslateCoordinates(top_level->display, 
 				top_level->win, 
 				top_level->rootwin, 
