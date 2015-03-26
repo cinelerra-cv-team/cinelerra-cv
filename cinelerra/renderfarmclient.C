@@ -60,6 +60,8 @@ RenderFarmClient::RenderFarmClient(int port,
 	int nice_value,
 	char *config_path)
 {
+	char string[BCTEXTLEN];
+
 	this->port = port;
 	this->deamon_path = deamon_path;
 	SigHandler *signals = new SigHandler;
@@ -73,6 +75,10 @@ RenderFarmClient::RenderFarmClient(int port,
 	boot_preferences = new Preferences;
 	boot_preferences->load_defaults(boot_defaults);
 	MWindow::init_plugins(boot_preferences, plugindb, 0);
+
+	strcpy(string, boot_preferences->global_plugin_dir);
+	strcat(string, "/" FONT_SEARCHPATH);
+	BC_Resources::init_fontconfig(string);
 }
 
 
