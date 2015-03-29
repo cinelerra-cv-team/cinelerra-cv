@@ -95,15 +95,18 @@ void LabelGUI::reposition()
 
 int LabelGUI::button_press_event()
 {
+	int result = 0;
+
 	if (this->is_event_win() && get_buttonpress() == 3) {
 		if (label)
 			timebar->label_edit->edit_label(label);
+		result = 1;
 	} else {
-		BC_Toggle::button_press_event();
+		result = BC_Toggle::button_press_event();
 	}
 	if (label)
 		set_tooltip(this->label->textstr, 1);
-	return 1;
+	return result;
 }
 
 int LabelGUI::handle_event()
