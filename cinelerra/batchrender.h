@@ -31,6 +31,7 @@
 #include "formattools.h"
 #include "mwindow.inc"
 #include "preferences.inc"
+#include "render.inc"
 #include "timeentry.h"
 
 #define BATCHRENDER_COLUMNS 4
@@ -82,6 +83,7 @@ class BatchRenderThread : public BC_DialogThread
 public:
 	BatchRenderThread(MWindow *mwindow);
 	BatchRenderThread();
+	~BatchRenderThread();
 	void handle_close_event(int result);
 	BC_Window* new_gui();
 
@@ -119,6 +121,10 @@ public:
 	double current_end;
 	BatchRenderJob *default_job;
 	ArrayList<BatchRenderJob*> jobs;
+	ArrayList<PluginServer*> *plugindb;
+	BC_Hash *boot_defaults;
+	Preferences *preferences;
+	Render *render;
 	BatchRenderGUI *gui;
 	int column_width[BATCHRENDER_COLUMNS];
 // job being edited
