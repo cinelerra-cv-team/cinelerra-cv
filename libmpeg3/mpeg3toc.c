@@ -489,7 +489,6 @@ mpeg3demux_movie_size(input->atrack[j]->demuxer));
 						int64_t position = mpeg3demux_tell_byte(demuxer) - 2048;
 						int64_t result;
 						uint32_t code = 0;
-						int got_top = 0;
 						int got_bottom = 0;
 						int got_keyframe = 0;
 						int fields = 0;
@@ -536,11 +535,6 @@ mpeg3demux_movie_size(input->atrack[j]->demuxer));
 							mpeg3video_get_header(video, 0);
 							video->current_repeat += 100;
 
-							if(video->pict_struct == TOP_FIELD)
-							{
-								got_top = 1;
-							}
-							else
 							if(video->pict_struct == BOTTOM_FIELD)
 							{
 								got_bottom = 1;
@@ -548,7 +542,7 @@ mpeg3demux_movie_size(input->atrack[j]->demuxer));
 							else
 							if(video->pict_struct == FRAME_PICTURE)
 							{
-								got_top = got_bottom = 1;
+								got_bottom = 1;
 							}
 							fields++;
 
