@@ -1356,6 +1356,13 @@ void BC_TextBox::insert_text(const wchar_t *string, int string_len)
 		highlight_letter2 = ibeam_letter = highlight_letter1;
 	}
 
+	if(wtext_len + string_len > TEXTBOXLEN)
+	{
+		string_len = TEXTBOXLEN - wtext_len;
+		if(string_len <= 0)
+			return;
+	}
+
 	for(i = wtext_len, j = wtext_len + string_len; i >= ibeam_letter; i--, j--)
 		wide_text[j] = wide_text[i];
 
@@ -1593,6 +1600,9 @@ void BC_TextBox::paste_selection(int clipboard_num)
 	int len = get_clipboard()->clipboard_len(clipboard_num);
 	if(len)
 	{
+		if(len > TEXTBOXLEN)
+			len = TEXTBOXLEN;
+
 		wchar_t *string = new wchar_t[len + 1];
 		get_clipboard()->from_clipboard(ntext, len, clipboard_num);
 		BC_Resources::encode(BC_Resources::encoding, BC_Resources::wide_encoding,
