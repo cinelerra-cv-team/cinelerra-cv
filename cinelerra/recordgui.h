@@ -184,7 +184,6 @@ public:
 
 
 	int set_loop_status(int value);
-	void update_duration_boxes(); // Redraw the loop duration textboxes for a script.
 
 	int keypress_event();
 	int delete_all_labels();

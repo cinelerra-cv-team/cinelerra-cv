@@ -1321,21 +1321,6 @@ void RecordGUI::update_title(BC_Title *title, double position)
 	unlock_window();
 }
 
-void RecordGUI::update_duration_boxes()
-{
-	char string[1024];
-//	sprintf(string, "%d", engine->get_loop_hr());
-//	loop_hr->update(string);
-//	sprintf(string, "%d", engine->get_loop_min());
-//	loop_min->update(string);
-//	sprintf(string, "%d", engine->get_loop_sec());
-//	loop_sec->update(string);
-}
-
-
-
-
-
 
 // ===================================== GUI
 
