@@ -15,8 +15,8 @@
 @documentencoding ISO-8859-1
 @settitle Cinelerra CV Manual
 @afourpaper
-@set EDITION 1.56.EN
-@set VERSION 2.1
+@set EDITION 1.57.EN
+@set VERSION 2.2
 
 @finalout
 @titlepage
@@ -6611,9 +6611,24 @@ than with DV footage.
 @subsection Motion blur
 @cindex Motion blur
 
-@image{manual_images_intl/motionblur,12.5mm}
+This real-time effect takes  the X/Y camera automation vectors as input and
+applies a linear blur trailing the direction of the camera automation to fool
+ the eye into thinking it is seeing a more natural motion. It is mainly designed
+ to remove choppy motion in overlying graphics/SVG.
 
-FIXME
+ This plugin is not designed for rendering in non real-time applications, for
+ example to add motion blur frame-by-frame inside an existing live-action
+ video. For the plugin to work, camera automation is required.
+
+ @b{Parameters:}
+ @itemize @bullet
+ @item @i{Length:} sets the distance between the duplicate images
+ @item @i{Steps:} number of duplicate images (steps) that are offset from
+ the input image to the end of the blur. This lets you set the smoothness of
+ the resulting blur.
+ @end itemize
+
+@center @image{manual_images_intl/motionblur,120mm}
 
 @c cincvdoc_node_number_202
 @node Oil painting
