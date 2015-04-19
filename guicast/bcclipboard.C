@@ -20,6 +20,7 @@
  */
 
 #include "bcclipboard.h"
+#include "bcresources.h"
 #include "bcwindowbase.h"
 #include <string.h>
 
@@ -33,6 +34,10 @@ BC_Clipboard::BC_Clipboard(const char *display_name) : Thread()
 	primary = XA_PRIMARY;
 	secondary = XInternAtom(out_display, "CLIPBOARD", False);
 	targets_atom = XInternAtom(out_display, "TARGETS", False);
+	if(BC_Resources::locale_utf8)
+		strtype_atom = XInternAtom(out_display, "UTF8_STRING", False);
+	else
+		strtype_atom = XA_STRING;
 	in_win = XCreateSimpleWindow(in_display, 
 				DefaultRootWindow(in_display), 
 				0, 
@@ -130,7 +135,7 @@ void BC_Clipboard::run()
 void BC_Clipboard::handle_selectionrequest(XSelectionRequestEvent *request)
 {
 	int success = 0;
-	if (request->target == XA_STRING)
+	if (request->target == strtype_atom)
 		success = handle_request_string(request);
 	else if (request->target == targets_atom)
 		success = handle_request_targets(request);
@@ -158,7 +163,7 @@ int BC_Clipboard::handle_request_string(XSelectionRequestEvent *request)
 	XChangeProperty(out_display,
 			request->requestor,
 			request->property,
-			XA_STRING,
+			strtype_atom,
 			8,
 			PropModeReplace,
 			(unsigned char*)data_ptr,
@@ -170,7 +175,7 @@ int BC_Clipboard::handle_request_targets(XSelectionRequestEvent *request)
 {
 	Atom targets[] = {
 		targets_atom,
-		XA_STRING
+		strtype_atom
 	};
 	XChangeProperty(out_display,
 			request->requestor,
@@ -253,7 +258,7 @@ int BC_Clipboard::from_clipboard(char *data, long maxlen, int clipboard_num)
 
 	XConvertSelection(in_display, 
 		clipboard_num == PRIMARY_SELECTION ? primary : secondary, 
-		XA_STRING, 
+		strtype_atom,
 		pty,
        	in_win, 
 		CurrentTime);
@@ -343,7 +348,7 @@ long BC_Clipboard::clipboard_len(int clipboard_num)
 						   selection into */
 	XConvertSelection(in_display, 
 		(clipboard_num == PRIMARY_SELECTION) ? primary : secondary, 
-		XA_STRING, 
+		strtype_atom,
 		pty,
        	in_win, 
 		CurrentTime);
