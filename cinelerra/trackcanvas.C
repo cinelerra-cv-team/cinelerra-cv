@@ -5148,6 +5148,27 @@ int TrackCanvas::button_press_event()
 				mwindow->move_down(get_h() / 10);
 			result = 1;
 		}
+		if(get_buttonpress() == 6)
+                {
+			if(ctrl_down())
+				mwindow->move_left(get_w());
+			else if(alt_down())
+				mwindow->move_left(get_w() / 20);
+			else
+				mwindow->move_left(get_w() / 5);
+			result = 1;
+		}
+		else
+		if(get_buttonpress() == 7)
+                {
+			if(ctrl_down())
+				mwindow->move_right(get_w());
+			else if(alt_down())
+				mwindow->move_right(get_w() / 20);
+			else
+				mwindow->move_right(get_w() / 5);
+			result = 1;
+		}
 		else
 		switch(mwindow->edl->session->editing_mode)
 		{
