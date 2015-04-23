@@ -27,9 +27,10 @@
 #include <X11/Xutil.h>
 #include <unistd.h>
 
+#define TEST_X 100
+#define TEST_Y 100
 #define TEST_SIZE 128
-#define TEST_SIZE2 164
-#define TEST_SIZE3 196
+
 int BC_DisplayInfo::top_border = -1;
 int BC_DisplayInfo::left_border = -1;
 int BC_DisplayInfo::bottom_border = -1;
@@ -57,25 +58,24 @@ void BC_DisplayInfo::parse_geometry(char *geom, int *x, int *y, int *width, int 
 void BC_DisplayInfo::test_window(int &x_out, 
 	int &y_out, 
 	int &x_out2, 
-	int &y_out2, 
-	int x_in, 
-	int y_in)
+	int &y_out2)
 {
-	unsigned long mask = CWEventMask | CWWinGravity;
+	unsigned long mask = CWEventMask;
 	XSetWindowAttributes attr;
 	XSizeHints size_hints;
+	char *txlist[2];
+	XTextProperty titleprop;
 
-//printf("BC_DisplayInfo::test_window 1\n");
 	x_out = 0;
 	y_out = 0;
 	x_out2 = 0;
 	y_out2 = 0;
 	attr.event_mask = StructureNotifyMask;
-	attr.win_gravity = SouthEastGravity;
+
 	Window win = XCreateWindow(display, 
 			rootwin, 
-			x_in, 
-			y_in, 
+			TEST_X,
+			TEST_Y,
 			TEST_SIZE, 
 			TEST_SIZE, 
 			0, 
@@ -84,91 +84,53 @@ void BC_DisplayInfo::test_window(int &x_out,
 			vis, 
 			mask, 
 			&attr);
-	XGetNormalHints(display, win, &size_hints);
 	size_hints.flags = PPosition | PSize;
-	size_hints.x = x_in;
-	size_hints.y = y_in;
+	size_hints.x = TEST_X;
+	size_hints.y = TEST_Y;
 	size_hints.width = TEST_SIZE;
 	size_hints.height = TEST_SIZE;
-	XSetStandardProperties(display, 
-		win, 
-		"x", 
-		"x", 
-		None, 
-		0, 
-		0, 
-		&size_hints);
+	// Set the name of the window
+	// Makes possible to create special config for the window
+	txlist[0] = (char *)"guicast_test";
+	txlist[1] = 0;
+	XmbTextListToTextProperty(display, txlist, 1,
+		XStdICCTextStyle, &titleprop);
+	XSetWMProperties(display, win, &titleprop, &titleprop,
+		0, 0, &size_hints, 0, 0);
+	XFree(titleprop.value);
 
 	XMapWindow(display, win); 
 	XFlush(display);
 	XSync(display, 0);
-	XMoveResizeWindow(display, 
-		win, 
-		x_in, 
-		y_in,
-		TEST_SIZE2,
-		TEST_SIZE2);
-	XFlush(display);
-	XSync(display, 0);
-
-	XResizeWindow(display, 
-		win, 
-		TEST_SIZE3,
-		TEST_SIZE3);
-	XFlush(display);
-	XSync(display, 0);
-
-	XEvent event;
-	int last_w = 0;
-	int last_h = 0;
-	int state = 0;
-
-	do
-	{
-		XNextEvent(display, &event);
-//printf("BC_DisplayInfo::test_window 1 event=%d %d\n", event.type, XPending(display));
-		if(event.type == ConfigureNotify && event.xany.window == win)
-		{
-// Get creation repositioning
-			if(last_w != event.xconfigure.width || last_h != event.xconfigure.height)
-			{
-				state++;
-				last_w = event.xconfigure.width;
-				last_h = event.xconfigure.height;
-			}
-
-			if(state == 1)
-			{
-				x_out = MAX(event.xconfigure.x + event.xconfigure.border_width - x_in, x_out);
-				y_out = MAX(event.xconfigure.y + event.xconfigure.border_width - y_in, y_out);
-			}
-			else
-			if(state == 2)
-// Get moveresize repositioning
-			{
-				x_out2 = MAX(event.xconfigure.x + event.xconfigure.border_width - x_in, x_out2);
-				y_out2 = MAX(event.xconfigure.y + event.xconfigure.border_width - y_in, y_out2);
-			}
-// printf("BC_DisplayInfo::test_window 2 state=%d x_out=%d y_out=%d x_in=%d y_in=%d w=%d h=%d\n",
-// state,
-// event.xconfigure.x + event.xconfigure.border_width, 
-// event.xconfigure.y + event.xconfigure.border_width, 
-// x_in, 
-// y_in, 
-// event.xconfigure.width, 
-// event.xconfigure.height);
-		}
- 	}while(state != 3);
-
+	// Wait until WM reacts
+	usleep(20000);
 	XDestroyWindow(display, win);
 	XFlush(display);
 	XSync(display, 0);
 
-	x_out = MAX(0, x_out);
-	y_out = MAX(0, y_out);
-	x_out = MIN(x_out, 30);
-	y_out = MIN(y_out, 30);
-//printf("BC_DisplayInfo::test_window 2\n");
+	int xm = -1, ym = -1;
+	XEvent event;
+
+	for(;;)
+	{
+		XNextEvent(display, &event);
+		if(event.type == ConfigureNotify && event.xconfigure.window == win)
+		{
+			if(xm < event.xconfigure.x)
+				xm = event.xconfigure.x;
+			if(ym < event.xconfigure.y)
+				ym = event.xconfigure.y;
+		}
+		if(event.type == DestroyNotify && event.xdestroywindow.window == win)
+			break;
+	}
+
+// Create shift
+	if(xm >= 0)
+	{
+		x_out = xm - TEST_X;
+		y_out = ym - TEST_Y;
+	}
 }
 
 void BC_DisplayInfo::init_borders()
@@ -179,9 +141,7 @@ void BC_DisplayInfo::init_borders()
 		test_window(left_border, 
 			top_border, 
 			auto_reposition_x, 
-			auto_reposition_y, 
-			0, 
-			0);
+			auto_reposition_y);
 		right_border = left_border;
 		bottom_border = left_border;
 // printf("BC_DisplayInfo::init_borders border=%d %d auto=%d %d\n", 
