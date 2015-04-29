@@ -5148,6 +5148,7 @@ int TrackCanvas::button_press_event()
 				mwindow->move_down(get_h() / 10);
 			result = 1;
 		}
+		else
 		if(get_buttonpress() == 6)
                 {
 			if(ctrl_down())
