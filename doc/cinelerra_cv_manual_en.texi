@@ -15,7 +15,7 @@
 @documentencoding ISO-8859-1
 @settitle Cinelerra CV Manual
 @afourpaper
-@set EDITION 1.57.EN
+@set EDITION 1.58.EN
 @set VERSION 2.2
 
 @finalout
@@ -5466,6 +5466,7 @@ FIXME
 * Freeze frame::
 * Gamma::
 * Gradient::
+* GreyCStoration:: Advanced denoising and restoring
 * Histogram::         How to change the mapping of different brightness values
 * HolographicTV::
 * Hue saturation::    How to adjust hue and saturation
@@ -5959,6 +5960,15 @@ pixels, but displayed as 1920x1080 (16:9 aspect ratio). As Cinelerra does its
 calculations on a 1440x1080 pixel bitmap, any circular fill will be streched out 
 horizontally when displaying the final output.
 @end itemize
+
+@node GreyCStoration
+@subsection GreyCStoration
+@cindex GreyCStoration effect
+
+Although GREYCstoration is a rendered plugin, it can be optionally used as a
+realtime effect. It is important to note, however, that as a realtime effect, GreyCStoration
+is very slow. More details on the GreyCStoration plugin can be found in the rendered
+video effects chapter of this guide.
 
 @c cincvdoc_node_number_184
 @node Histogram
@@ -7450,6 +7460,7 @@ sequence.
 
 @menu
 * Reframe::        Reframe
+* GreyCStoration::        How to perform advanced denoising and restoration
 @end menu
 
 @c cincvdoc_node_number_236
@@ -7479,6 +7490,63 @@ clip to be created
 @item At the popup menu, enter the scale factor 2 to run twice as
 fast, and .5 to run at half speed
 @end enumerate
+
+@node GreyCStoration
+@subsection GreyCStoration
+@cindex GreyCStoration video effect
+
+GREYCstoration is an image regularization algorithm which is able to process a
+color image by locally removing small variations of pixel intensities while preserving
+significant global image features, such as edges and corners. The most direct
+application of image regularization is image denoising.
+
+GREYCstoration is based on state-of-the-art image processing methods using
+nonlinear multi-valued diffusion PDE (Partial Differential Equations). This kind of
+method generally outperforms basic image filtering techniques (such as convolution,
+median filtering, etc.), classically encountered in image painting programs.
+
+GREYCstoration is a rendered plugin, but it can be optionally used as a realtime effect.
+It is important to note, however, that as a realtime effect, GreyCStoration is very slow.
+
+@b{Parameters:}
+@enumerate 1
+@item @i{Amplitude (dt):} This parameter represents the average amount of smoothing
+ that is performed. GREYCstoration performs a spatial averaging of pixel values, and
+ Amplitude represents a kind of dimension of the area where the smoothing is computed.
+ It is related to the PDE time step. Default value is 40. Prefer using a larger value than
+  using multiple iterations when possible (at least until undesirable artifacts appear),
+  it will speed up the whole process.
+ @item @i{Sharpness (p):} This parameter tells GREYCstoration about structure
+  preservation. Once the local structures of the image have been detected,
+  GREYCstoration has to decide how much he will smooth image pixels. Basically, it
+  decreases the smoothing when the local structure is contrasted. The Sharpness
+  parameter simply tells how this decreasing must be considered. When Sharpness is
+  high, even low-contrasted structures will be preserved. Do not set Sharpness too high
+  or the noise may be preserved. On the contrary, when Sharpness is low, the structures
+  have to be very contrasted to avoid local smoothing. Do not set p too low or existing
+  image structures will be over-smoothed. As you can see, there is a (sometimes difficult)
+  trade-off to find when setting this parameter. Default value is 0.8 and typical values
+  range from 0 to 5.
+ @item @i{Anisotropy (a):} This parameters set the anisotropy level of the considered
+ smoothing. It ranges from 0 (which means 'purely isotropic') to 1 (which means 'purely
+ anisotropic'). The anisotropy notion relates to the way the performed smoothing
+ orientation will extend locally in space : a purely isotropic smoothing (0) will be performed
+  in all possible directions, while a purely anisotropic smoothing (1) will be performed only
+   along the directions of the structures. Values of anisotropy between 0 and 1 tell
+   GREYCstoration to smooth the image mainly along the structure directions, but with a
+   certain percentage of tolerance. Default value for a if 0.8 (which is already very anisotropic).
+  @item @i{Noise scale (alpha):} This parameter is mathematically defined as the standard
+   deviation of a blurring gaussian kernel applied to the original image before estimating its
+   geometry. In other words, it defines a kind of scale under which details won't be
+   considered as structures but much more as noise. This parameter highly depends on the
+   level of noise present on your image. Remember that increasing too much this parameter
+   will tell GREYCstoration to smooth more structures. It can be useful for special visual effects
+   though. Default value of alpha is 0.8, which is relatively low (many details should be
+   preserved). Note how the details are ignored for high values of alpha.
+@end enumerate
+
+More details on the GreyCStoration functionality can be found here:
+@i{http://cimg.sourceforge.net/greycstoration/guide.shtml}
 
 @c cincvdoc_node_number_237
 @node Ladspa effects
