@@ -15,7 +15,7 @@
 @documentencoding ISO-8859-1
 @settitle Cinelerra CV Manual
 @afourpaper
-@set EDITION 1.58.EN
+@set EDITION 1.59.EN
 @set VERSION 2.2
 
 @finalout
@@ -1504,7 +1504,7 @@ The easiest way to set the audio offset is to create a timeline with one video
 track and one audio track.  Expand the audio track and center the audio pan.
 The frame rate should be larger than 24 fps and the sampling rate should be
 greater than 32000.  The frame size should be small enough for your computer to render
-it at the full framerate.  Highlight a region of the timeline starting at 10
+it at the full frame rate.  Highlight a region of the timeline starting at 10
 seconds and ending at 20 seconds.  Drop a @b{gradient} effect on the video
 track and configure it to be clearly visible.  Drop a @b{synthesizer} effect on
 the audio and configure it to be clearly audible.@*
@@ -1539,7 +1539,7 @@ to be ignored and a software timer to be used for synchronization.
 Back in the days when 150 MHz was the maximum speed for a personal computer, this 
 setting allowed uninterrupted playback during periods of heavy load.  It forces 
 the audio playback to the highest priority in the kernel.  Today, it is most 
-useful for achieving very low latency between console tweeks and soundcard output. 
+useful for achieving very low latency between console tweaks and soundcard output.
 You must be root to get real-time priority.
 
 @cindex Audio driver
@@ -1842,7 +1842,7 @@ in the time ruler showing what has been background rendered.
 
 It is often useful to insert an effect or a transition and then select
 @b{Settings menu -> Set background render} right before the effect to preview
-it in real time and full framerates.
+it in real time and full frame rates.
 
 @cindex Frames per background rendering job
 @itemize @bullet
@@ -2249,7 +2249,7 @@ Histogram, still clip above 100% when in floating point.
 @cindex Supported file formats
 @cindex File format
 
-Here are most of the supported file formats that can be loaded and redered to,
+Here are most of the supported file formats that can be loaded and rendered to,
 with notes regarding their compression. You may be able to load other formats not 
 described here.@*
 The format of the file affects what Cinelerra does with it.  Edit decision
@@ -2465,7 +2465,7 @@ animated scene). They can be loaded as multiple files.
 An image sequence can be represented in Cinelerra also by an image list file,
 called also Table Of Contents file (TOC). A TOC is a text file with a specific format 
 containing absolute paths to every frame in the sequence plus additional information 
-like image resolution, fileformat and sequence framerate. To get better performance, 
+like image resolution, file format and sequence frame rate. To get better performance,
 the table of contents can be loaded as a single asset instead of the individual images. 
 A TOC is not a media file but it behaves like a video clip.
 
@@ -2568,7 +2568,7 @@ movie directory mounted under the same directory on each node.
 @subsection Ogg Theora/Vorbis
 @cindex Ogg Theora/Vorbis
 
-The OGG format is an antiquated but supposedly unpatented way of compressing
+The OGG format is an antiquated but supposedly patent-free way of compressing
 audio and video.  The quality is not as good as H.264 or MPEG-4 Audio.  In
 reality, anyone with enough money and desire can find a patent violation so the
 justification for OGG is questionable.
@@ -3913,7 +3913,7 @@ In all trimming operations, all edits which start on the same position as the
 cursor when the drag operation begins are affected.  Unarm tracks to prevent
 edits from being affected.
 
-Most effects in Cinelerra can be figured out just by using them and tweeking.
+Most effects in Cinelerra can be figured out just by using them and tweaking.
 Here are brief descriptions of effects which you might not utilize fully by
 mere experimentation.
 
@@ -4322,7 +4322,7 @@ projected with the same mask.
 
 Our compositing pipeline graph now has a masking stage.  There are 8 possible
 masks per track.  Each mask is defined separately, although they each perform
-the same operation, whether it is addition or subtraction.
+the same operation, whether it is multiplication or subtraction.
 
 @center @image{manual_images_en/compositing_pipeline2,140mm}
 @center @b{Compositing pipeline with masks}
@@ -4359,8 +4359,8 @@ curve are accessed by @b{SHIFT-dragging} in the vicinity of the corner.  Then
 @center @b{to create curves between mask points}
 
 Finally, once you have a mask, the mask can be translated in one piece by
-@b{ALT-dragging} the mask.  Mask editing in Cinelerra is identical to how The
-Gimp edits masks except in this case the effect of the mask is always on.
+@b{CTRL-ALT-dragging} the mask.  Mask editing in Cinelerra is identical to how
+The Gimp edits masks except in this case the effect of the mask is always on.
 
 @center @image{manual_images_en/compositor_mask_translate}
 @center @b{CTRL-ALT-drag translates an entire mask}
@@ -4375,17 +4375,16 @@ overlays.  These are represented in the tool window for masks.  Selecting the
 @center @b{Mask options window}
 
 The @b{mode} of the mask determines if the mask removes data or makes data
-visible.  If the mode is subtractive, the mask causes video to disappear.  If
-the mode is additive, the mask causes video to appear and everything outside
-the mask to disappear.
+visible.  In subtraction mode, the mask causes video to disappear.  In multiplication mode,
+the mask causes video to appear and everything outside the mask to disappear.
 
 @center @image{manual_images_en/compositor_mask_mode,160mm}
 @center @b{Mask mode}
 
-The @b{value} of the mask determines how extreme the addition or subtraction
-is.  In the subtractive mode, higher values subtract more alpha.  In the
-additive mode, higher values make the region in the mask brighter while the
-region outside the mask is always hidden.
+The @b{value} of the mask determines how extreme the multiplication or subtraction
+is.  In subtraction mode, higher values subtract more alpha.  In multiplication mode,
+higher values make the region in the mask brighter while the region outside the mask
+is always hidden.
 
 @center @image{manual_images_en/composite_mask_value}
 @center @b{Mask value}
@@ -4962,7 +4961,7 @@ to the effect and right click on it to bring up the effect popup.  In the
 effect popup is a @b{show} option.  The show option causes the GUI for the
 effect to appear under the cursor.  Most effects have GUI's but some do not.  If
 the effect does not have a GUI, nothing pops up when the @b{show} option is
-selected.  When you tweek parameters in the effect GUI, the parameters normally
+selected.  When you tweak parameters in the effect GUI, the parameters normally
 affect the entire duration of the effect.
 
 @menu
@@ -5119,9 +5118,6 @@ effect.
 
 @menu
 * Compressor::        How to reduce the dynamic range of audio.
-* Live audio::        Pass audio from the soundcard directly to the timeline.
-* Pitch shift::
-* Reverse audio::     How to play regions in reverse.
 * Delay audio::
 * Denoise::
 * DenoiseFFT::
@@ -5132,8 +5128,11 @@ effect.
 * Heroine College::
 * Interpolate::
 * Invert Audio::
+* Live audio::        Pass audio from the soundcard directly to the timeline.
 * Loop audio::
 * Overlay::
+* Pitch shift::
+* Reverse audio::     How to play regions in reverse.
 * SoundLevel::
 * Spectrogram::
 * Synthesizer::
@@ -5452,11 +5451,11 @@ FIXME
 * Chroma key::        Create transparency based on color similarities
 * Chroma key (HSV)::
 * Color balance::
+* Decimate::          How to reduce frame rates by eliminating similar frames
+* Deinterlace::       How to convert interlaced video to progressive video
 * Delay video::
 * Denoise video::
 * Denoise video2::
-* Decimate::          How to reduce frame rates by eliminating similar frames
-* Deinterlace::       How to convert interlaced video to progressive video
 * Difference key::    Create transparency based on color differences
 * DotTV::             How to give a "DotTV" look to your video
 * Downsample::        How to reduce the size of an image by throwing out data
@@ -5471,7 +5470,7 @@ FIXME
 * HolographicTV::
 * Hue saturation::    How to adjust hue and saturation
 * Interpolate video::
-* Interpolate pixels:: How to create the illusion of higher framerates
+* Interpolate pixels:: How to create the illusion of higher frame rates
 * Inverse telecine::  How to convert pulled down frames to progressive frames
 * Invert video::
 * Linear blur::
@@ -5844,13 +5843,13 @@ is obviously misleading with respect to the common usage of the terms "field"
 and "frame"; normally, "fields" denotes the interlaced half images and "frame" 
 denotes the full image).
 
-This plugin is only usefull if its output is pulled with doubled framerate with 
-respect to the source footage. One typical usage secenario is to do masking, 
+This plugin is only useful if its output is pulled with doubled framerate with
+respect to the source footage. One typical usage scenario is to do masking,
 scaling and translating on interlaced footage without the need to destroy the 
 additional temporal information contained in such source material. This is 
 helpful if your intended target format is interlaced. If on the other hand, 
 you just want to target a progressive display (e.g. you create video for display 
-on computer monitor solely) then it is much more convienient to de-interlace 
+on computer monitor solely) then it is much more convenient to de-interlace
 the source material prior to any further processing. 
 
 @b{Processing interlaced footage without deinterlacing}
@@ -5861,7 +5860,7 @@ source footage is 25i
 @item Insert your source footage onto a video track in the timeline. Now, 
 Cinelerra will playback each frame of your footage twice.
 @item Apply the "Frames to Fields" effect. Be sure to choose the correct 
-field order. Typical values beeing "bottom field first" for DV and "top field 
+field order. Typical values being "bottom field first" for DV and "top field
 first" for HDV.
 @item Then apply any further effects afterwards, including translations, scaling, 
 slow motion, precise frame-wise masking or use of the motion tracker plugin.
@@ -5940,7 +5939,7 @@ compositor window, you need to hit @b{use color picker} to apply the new value.
 @image{manual_images_intl/gradient,12.5mm}
 
 The gradient effect overlays a smooth color gradient on top of every video frame. 
-It is usefull for all sorts of backgound fills, for partially filtering or for 
+It is useful for all sorts of background fills, for partially filtering or for
 adding moving highlights. The Gradient effect can generate linear or circular 
 color fills. For linear fills, you can choose the angle, for circular fills the 
 center of the created gradient pattern. Moreover, you can control the slope of 
@@ -5953,11 +5952,11 @@ Note the following well known problems:
 @itemize @bullet
 @item When using limited color models in your project, the Gradient fill can 
 create color bands or steps.
-@item When using a project format with anamorphotic storage, Cinelerra won't do 
+@item When using a project format with anamorphic storage, Cinelerra won't do
 any internal corrections for this. This can result in a circular fill showing up 
 elliptical. A common example is the HDV 1080i format, which is stored as 1440x1080 
 pixels, but displayed as 1920x1080 (16:9 aspect ratio). As Cinelerra does its 
-calculations on a 1440x1080 pixel bitmap, any circular fill will be streched out 
+calculations on a 1440x1080 pixel bitmap, any circular fill will be stretched out
 horizontally when displaying the final output.
 @end itemize
 
@@ -6668,8 +6667,8 @@ Divide, Max and Replace. For a detailed explanation of the several overlay modes
 @xref{Compositing}. 
 
 Now, the overlay plugin enables the use of this Overlayer device in the middle 
-of any plugin stack, opening endles filtering and processing possibilities. 
-It is only usefull as a shared plugin (i.e. a multitrack plugin). So, to use 
+of any plugin stack, opening endless filtering and processing possibilities.
+It is only useful as a shared plugin (i.e. a multitrack plugin). So, to use
 the overlay plugin
 
 @enumerate 1
@@ -6728,7 +6727,7 @@ to see how RGB-601 affects your dynamic range. @xref{Videoscope}.
 
 (To preview how your rendered MPEG would look @i{without} RGB-to-601
 compression, instead enable @b{601 -> RGB expansion} -- you will
-observe a noticable contrast increase.)
+observe a noticeable contrast increase.)
 
 Although RGB-601 will reduce contrast in your video tracks, the
 contrast will be restored during MPEG playback.
@@ -7148,7 +7147,7 @@ The text should not cross the inner rectangle.
 @image{manual_images_intl/translate,12.5mm}
 
 This effect allows displacing, cropping, and/or scaling the source video
-horizonally and/or vertically.  The In and Out parameters operate similar to the
+horizontally and/or vertically.  The In and Out parameters operate similar to the
 camera and projector functions in the Compositor:
 
 @itemize @bullet
@@ -7179,7 +7178,7 @@ jumping movements.
 
 @image{manual_images_intl/unsharp,12.5mm}
 
-This effect applies a traditional darkroom techique, the so called unsharp mask 
+This effect applies a traditional darkroom technique, the so called unsharp mask
 to every video frame. With different parameter values, this can be used to 
 soften or to sharpen the image. Its parameters are:
 @itemize @bullet
@@ -7460,7 +7459,7 @@ sequence.
 
 @menu
 * Reframe::        Reframe
-* GreyCStoration::        How to perform advanced denoising and restoration
+* GreyCStoration Plugin::        How to perform advanced denoising and restoration
 @end menu
 
 @c cincvdoc_node_number_236
@@ -7491,7 +7490,7 @@ clip to be created
 fast, and .5 to run at half speed
 @end enumerate
 
-@node GreyCStoration
+@node GreyCStoration Plugin
 @subsection GreyCStoration
 @cindex GreyCStoration video effect
 
@@ -7555,7 +7554,7 @@ More details on the GreyCStoration functionality can be found here:
 
 LADSPA effects are supported in realtime and rendered mode for audio.  The
 LADSPA plugins you get from the internet vary in quality.  Most can not be
-tweeked in realtime very easily and work better when rendered.  Some crash and
+tweaked in realtime very easily and work better when rendered.  Some crash and
 some can only be applied to one track due to a lack of re-entrancy.  Although
 Cinelerra implements the LADSPA interface as accurately as possible, multiple
 tracks of realtime, simultaneous processing go beyond the majority of LADSPA
@@ -7827,7 +7826,7 @@ keyframes in automatic keyframe mode.  Automatic keyframe mode is usually more
 useful than dragging curves.
 
 Enable automatic keyframe mode by enabling the automatic keyframe toggle
-@image{manual_images_intl/autokeyframe}.  In automatic keyframe mode, every time you tweek
+@image{manual_images_intl/autokeyframe}.  In automatic keyframe mode, every time you tweak
 a key-framable parameter it creates a keyframe on the timeline.  Since
 automatic keyframes affect many parameters, it is best enabled just before you
 need a keyframe and disabled immediately thereafter.
@@ -7835,7 +7834,7 @@ need a keyframe and disabled immediately thereafter.
 It is useful to go into the @b{View} menu and make the desired parameter
 visible before performing a change.  The location where the automatic keyframe
 is generated is under the insertion point.  If the timeline is playing back
-during a tweek, several automatic keyframes will be generated as you change the
+during a tweak, several automatic keyframes will be generated as you change the
 parameter.
 
 When automatic keyframe mode is disabled, a similarly strange thing happens.
@@ -7879,7 +7878,7 @@ projection moves over time.  At any point between two keyframes, the motion
 path is red for all time before the insertion point and green for all time
 after the insertion point.  It is debatable if this is a very useful feature
 but it makes you feel good to know what keyframe is going to be affected by the
-next projector tweek.
+next projector tweak.
 
 Click-drag when automatic keyframes are off to adjust the preceding keyframe.
 If you are halfway between two keyframes, the first projector box is adjusted
@@ -8627,8 +8626,8 @@ You can use ming or flv2swf to create an swf file. @*
 @uref{http://klaus.geekserver.net/flash/streaming.html} has detailed instructions 
 for ming and @uref{http://search.cpan.org/~clotho/FLV-Info-0.17/bin/flv2swf} 
 can be installed with cpan> install FLV::ToSWF. Or you can use the Creative Commons 
-Non-Commercial licenced JW FLV Player
-@uref{http://www.jeroenwijering.com/?item=JW_FLV_Player}, or the Apache Licenced 
+Non-Commercial licensed JW FLV Player
+@uref{http://www.jeroenwijering.com/?item=JW_FLV_Player}, or the Apache licensed
 FlowPlayer @uref{http://flowplayer.org}. Both of these allow you to use the flv 
 as created above, and have controls for stopping and playing the movie etc.
 
@@ -8683,7 +8682,7 @@ This method allows you to precisely set the encoding option you want and produce
 mpeg2 file which is 100% compatible with all DVD standalone players.
 For how to make a DVD from the output @xref{Authoring a DVD}.
 
-Audio and video are rendered seperately and combined later in a procedure external 
+Audio and video are rendered separately and combined later in a procedure external
 to Cinelerra. @*
 @b{Audio} is rendered into @b{.ac3}, and @b{video} is rendered into a
 @b{yuv4mpeg stream} which is piped through either @b{mpeg2enc} or @b{ffmpeg} into a 
@@ -8876,7 +8875,7 @@ To draw the buttons, you have two possibilities:
 @item display them in Cinelerra.  That way, you will be able to make animated
 buttons, such as a video thumbnail for each part of your video.
 @item do not draw the buttons in Cinelerra.  You will add them later on, from
-PNG images "added" to the mpeg2 menu file.  This is the simpliest method, but
+PNG images "added" to the mpeg2 menu file.  This is the simplest method, but
 you won't be able to display animated buttons.
 @end itemize
 
@@ -8971,7 +8970,7 @@ dvdauthor uses XML files to describe the DVD structure. You need to create an
 XML file in a text editor and save it as @file{simple_example.xml} in the same folder 
 of your @file{/the/mpeg/file.mpeg} mpeg2 video file.
 You should really pay a lot of attention to the .xml file syntax since it is very rigorous.
-The risk is the DVD to be readable on some standalone players, but not on all ofthem.
+The risk is the DVD to be readable on some standalone players, but not on all of them.
 
 To help you start using dvdauthor, here are some example XML files you can copy
 and paste into your @file{simple_example.xml} file. Replace example filenames
@@ -9345,7 +9344,7 @@ for now you need to go back to the normal framerate to do editing or play test
 to make sure the fields are right.
 @item Render just the video to the highest quality file possible.
 @item Import the video back to a new track.  Set the project framerate to
-24.  The new track should now display more filmish and sharper images than the
+24.  The new track should now display more film-ish and sharper images than the
 original footage.
 @end enumerate
 
@@ -9522,7 +9521,7 @@ it behave more like a thoroughbred in desktop usage.
 * Speeding up the hard drive::
 * Disabling cron::
 * Reducing USB mouse sensitivity::
-* Assorted X tweeks::
+* Assorted X tweaks::
 * Speeding up the file system::
 * Improving Zoran video::
 @end menu
@@ -9760,9 +9759,9 @@ switch (code) {
 Change the value of @b{DOWNSAMPLE_N} to change the mouse sensitivity.
 
 @c cincvdoc_node_number_285
-@node Assorted X tweeks
-@subsection Assorted X tweeks
-@cindex X, assorted tweeks
+@node Assorted X tweaks
+@subsection Assorted X tweaks
+@cindex X, assorted tweaks
 
 XFree86 by default can not display Cinelerra's advanced pixmap rendering very
 fast.  The X server stalls during list box drawing.  Fix this by adding a line
@@ -10028,9 +10027,9 @@ There is no perfect solution so far.  One possibility is to run the
 @command{test-mpeg2} command available with the sources of @b{libiec61883}.
 Use this syntax:@*
 @command{test-mpeg2 > hdv_tape.mpeg}@*
-and press @b{Play} on the camcorder.  You should not run any heavy ressources
+and press @b{Play} on the camcorder.  You should not run any heavy resources
 consuming task on your computer since the lack of caching in test-mpeg2 causes
-framedrops.
+frame drops.
 
 New version of dvgrab seems to support HDV. Minimal example:@*
 Syntax:@*
@@ -10108,7 +10107,7 @@ with mplex.
 @subsection Other issues
 @cindex HDV 1080i editing, other issues
 
-When playing MJPEG files, the dissolve transistion does not work properly in
+When playing MJPEG files, the dissolve transition does not work properly in
 RGBA or YUVA modes but it works fine in RGB or YUV.
 
 @c cincvdoc_node_number_350
@@ -10185,7 +10184,7 @@ frame sizes like 640x480. Footage sourced online can have framerates as slow as 
 and frame sizes as small as 320x240.
 
 This section outlines a recipe for making the most of this limited quality footage, 
-and minimising any further quality losses.@*
+and minimizing any further quality losses.@*
 The steps we will follow are:
 @enumerate 1
 @item Up-sample the frame size
@@ -10204,8 +10203,8 @@ plugin on Adobe Premiere.
 
 We will perform steps 1-3 with 2 shell commands, and create temporary .yuv and .wav 
 files ready to import into Cinelerra. Note too that we're assuming you want to 
-create a PAL-DVD project, which is 25fps interlaced, 720x576 framesize. 
-Convert these figures below to the NTSC framerate and framesize if you are creating 
+create a PAL-DVD project, which is 25fps interlaced, 720x576 frame size.
+Convert these figures below to the NTSC frame rate and frame size if you are creating
 an NTSC-DVD project.
 
 Assume you have your source footage in the file @file{myfootage.avi}
@@ -10213,19 +10212,19 @@ Assume you have your source footage in the file @file{myfootage.avi}
 The shell command to separate out the audio is:@*
 @command{ffmpeg -i myfootage.avi -f wav myfootage.wav}@*
 
-The shell command to separate out the video, upsample the framesize and
-framerate is:@*
+The shell command to separate out the video, upsample the frame size and
+frame rate is:@*
 @command{ffmpeg -i myfootage.avi -s 720x576 -f yuv4mpegpipe -vcodec pgmyuv - |
 yuvmotionfps -r 50:1 > myfootage.yuv}
 
 After executing both these commands, you should have separated audio and video files
 ready for Cinelerra.
 
-Now, make sure that in your Cinelerra project options, you have set the framerate to 
+Now, make sure that in your Cinelerra project options, you have set the frame rate to
 50fps. This is crucial, otherwise you will get a quality loss and jerky motion after 
 rendering. (The sad thing is that this quality loss may not even show until you have 
 mastered your DVD and are playing it to others - embarrassing). But with your project 
-framerate at 50fps, you should be able to avoid this.
+frame rate at 50fps, you should be able to avoid this.
 
 Now, import your new separated and converted video and audio files into Cinelerra. 
 Apply effects as needed, such as colour corrections, zooms etc. Step through the 
@@ -10363,9 +10362,9 @@ set ALSA as audio driver.
 
 First, Zoran capture boards must be accessed using the @b{Buz} video driver in
 @b{Preferences->Recording} and @b{Preferences->Playback}.  Some performance
-tweeks are available in another section.  @xref{Improving performance}.
+tweaks are available in another section.  @xref{Improving performance}.
 
-Once tweeked, the Buz driver seems to crash if the number of recording buffers
+Once tweaked, the Buz driver seems to crash if the number of recording buffers
 is too high.  Make sure @b{Preferences->Recording->Frames to buffer in device}
 is below 10.
 
@@ -10376,13 +10375,12 @@ is below 10.
 @cindex Edit boundaries, dragging does not work
 
 Sometimes there will be two edits really close together.  The edit boundary
-selected for dragging may be next to the indended edit if those edits are too
-small to see at
-the current zoom level.  Zoom in horizontally.
+selected for dragging may be next to the intended edit if those edits are too
+small to see at the current zoom level.  Zoom in horizontally.
 
 If you think you can't drag all the edits starting at the same point on armed
 tracks, zoom in horizontally to check if they really start at the same point.
-Sometime vertical sychronization of edits can be lost just because you did not
+Sometime vertical synchronization of edits can be lost just because you did not
 set properly project attributes (e.g. PAL/NTSC).  Check @b{Settings -> Format}. 
 
 @c cincvdoc_node_number_297
@@ -10404,7 +10402,7 @@ window} to skip this process.
 @cindex Synchronization lost while recording
 @cindex Recording, synchronization
 
-If the rate at which frames are captured during recording is much lower than the framerate of the
+If the rate at which frames are captured during recording is much lower than the frame rate of the
 source, the video will accumulate in the recording buffers over time and the
 audio and video will become well out of sync.  Decrease the @b{number of frames to
 buffer in the device} in @b{preferences->recording} so the excess frames are
@@ -10478,13 +10476,13 @@ rename the symbols.
 * Introducing the pull method:: The current paradigm for plugin writing
 * Common plugin functions:: What all effects have to do.
 * Realtime plugins:: What realtime effects have to do.
-* Nonrealtime plugins:: What rendered effects have to do.
+* Non-realtime plugins:: What rendered effects have to do.
 * Audio plugins:: What audio effects have to do.
 * Video plugins:: What video effects have to do.
 * Transition plugins:: What transitions have to do.
 * Plugin GUI's which update during playback:: How to use currently playing data to draw the GUI.
-* Using OpenGL:: How to use hardware to speed up operations.
 * Plugin queries:: How plugins get information about the data to be processed.
+* Using OpenGL:: How to use hardware to speed up operations.
 @end menu
 
 @c cincvdoc_node_number_304
@@ -10504,7 +10502,7 @@ The latest evolution in Cinelerra's plugin design is the pull method.  The
 rendering pipeline starts at the final output and the final steps in the
 rendering pipeline are reading the data from disk.  Every step in the rendering
 chain involves requesting data from the previous step.  When the rendering
-pipleline eventually requests data from a plugin chain, each plugin requests
+pipeline eventually requests data from a plugin chain, each plugin requests
 data from the plugin before it.
 
 This is less intuitive than the push method but is much more powerful.
@@ -10547,9 +10545,9 @@ inherit @b{PluginAClient} and @b{PluginVClient} respectively.
 
 Cinelerra instantiates all plugins at least twice when they are used in a
 movie.  One instance is the GUI@.  The other instance is the signal processor.
-User input, through a complicated sequence, is propogated from the GUI instance
+User input, through a complicated sequence, is propagated from the GUI instance
 to the signal processor instance.  If the signal processor wants to alter the
-GUI, it propogates data back to the GUI instance.  There are utility functions
+GUI, it propagates data back to the GUI instance.  There are utility functions
 for doing all this.
 
 All plugins define at least three objects:
@@ -10629,8 +10627,8 @@ channels.
 To simplify the implementation of realtime plugins, a macro for commonly used
 members has been created for the class header, taking the configuration object
 and user interface thread object as arguments.  The macro definitions apply
-mainly to realtime plugins and are not useful in nonrealtime plugins.
-Fortunately, nonrealtime plugins are simpler.
+mainly to realtime plugins and are not useful in non-realtime plugins.
+Fortunately, non-realtime plugins are simpler.
 @verbatim
 PLUGIN_CLASS_MEMBERS(config_name, thread_name)
 @end verbatim
@@ -10746,7 +10744,7 @@ the plugin type.
 @cindex Configuration object
 
 The configuration object is critical for GUI updates, signal processing, and
-default settings in realtime plugins.  Be aware it is not used in nonrealtime
+default settings in realtime plugins.  Be aware it is not used in non-realtime
 plugins.  The configuration object inherits from nothing and has no
 dependancies.  It is merely a class containing three functions and variables
 specific to the plugin's parameters.
@@ -10778,7 +10776,7 @@ functions and the configuration variables.
 
 Now you must define the three functions.  @b{Equivalent} is called by
 LOAD_CONFIGURATION_MACRO to determine if the local configuration parameters are
-identical to the configuration parameters in the arguement.  If equivalent
+identical to the configuration parameters in the argument.  If equivalent
 returns 0, the LOAD_CONFIGURATION_MACRO causes the GUI to redraw.  If
 equivalent returns 1, the LOAD_CONFIGURATION_MACRO does not redraw the GUI@.
 
@@ -10838,7 +10836,7 @@ updating the GUI@.  For process_buffer; however, ignore load_configuration and
 write your own interpolation routine which loads all the keyframes in a console
 fragment and interpolates every sample.  This would be really slow and hard to
 debug, yielding improvement which may not be audible.  Then of course, every
-country has its own wierdos.
+country has its own weirdos.
 
 An easier way to get smoother interpolation is to reduce the console fragment
 to 1 sample.  This would have to be rendered and played back with the console
@@ -10865,7 +10863,7 @@ PLUGIN_THREAD_OBJECT(plugin_class, thread_class, window_class)
 
 This, in combination with the SHOW_GUI macro does all the work in instantiating
 the Window.  This two-class system is used in realtime plugins but not in
-nonrealtime plugins.  Nonrealtime plugins create and destroy their GUI in their
+non-realtime plugins.  Non-realtime plugins create and destroy their GUI in their
 @b{get_parameters} function and there is no need for a Thread.
 
 Now the window class must be declared in the plugin header.  It is easiest to
@@ -10914,7 +10912,7 @@ WINDOW_CLOSE_EVENT(window_class)
 Every widget in the GUI needs to detect when its value changes.  In GuiCast the
 @b{handle_event} method is called whenever the value changes.  In
 @b{handle_event}, the widget then needs to call
-@b{plugin->send_configure_change()} to propogate the change to any copies of
+@b{plugin->send_configure_change()} to propagate the change to any copies of
 the plugin which are processing data.
 
 @c cincvdoc_node_number_309
@@ -10972,7 +10970,7 @@ process_buffer if you do not need a temporary.
 
 It also needs a set of position arguments to determine when you want to read
 the data from.  The start position, rate, and len passed to a read function
-need not be the same as the values recieved by the process_buffer function.
+need not be the same as the values received by the process_buffer function.
 This way plugins can read data at a different rate than they output data.
 
 The channel argument is only meaningful if this is a multichannel plugin.  They
@@ -10980,7 +10978,7 @@ need to read data for each track in the get_total_buffers() value and process
 all the tracks.  Single channel plugins should pass 0 for channel.
 
 Additional members are implemented to maintain configuration in realtime
-plugins.  Some of these are also needed in nonrealtime plugins.
+plugins.  Some of these are also needed in non-realtime plugins.
 
 @itemize @bullet
 @item @b{void read_data(KeyFrame *keyframe);}@*
@@ -11010,23 +11008,23 @@ Saves the configuration in the defaults object.
 @end itemize
 
 @c cincvdoc_node_number_310
-@node Nonrealtime plugins
-@section Nonrealtime plugins
-@cindex Nonrealtime plugins
+@node Non-realtime plugins
+@section Non-realtime plugins
+@cindex Non-realtime plugins
 
 Some references for non-realtime plugins are @b{Normalize} for audio and
 @b{Reframe} for video.
 
 Like realtime plugins, @b{load_defaults} and @b{save_defaults} must be
-implemented.  In nonrealtime plugins, these are not just used for default
+implemented.  In non-realtime plugins, these are not just used for default
 parameters but to transfer values from the user interface to the signal
-processor.  There does not need to be a configuration class in nonrealtime
+processor.  There does not need to be a configuration class in non-realtime
 plugins.
 
 Unlike realtime plugins, the LOAD_CONFIGURATION_MACRO can not be used in the
 plugin header.  Instead, the following methods must be defined.
 
-The nonrealtime plugin should contain a pointer to a defaults object.
+The non-realtime plugin should contain a pointer to a defaults object.
 @verbatim
 BC_Hash *defaults;
 @end verbatim
@@ -11035,10 +11033,10 @@ It should also have a pointer to a MainProgressBar.
 MainProgressBar *progress;
 @end verbatim
 
-The progress pointer allows nonrealtime plugins to display their progress in
+The progress pointer allows non-realtime plugins to display their progress in
 Cinelerra's main window.
 
-The constructor for a nonrealtime plugin cannot use PLUGIN_CONSTRUCTOR_MACRO
+The constructor for a non-realtime plugin cannot use PLUGIN_CONSTRUCTOR_MACRO
 but must call @b{load_defaults} directly.
 
 The destructor, likewise, must call @b{save_defaults} and @b{delete defaults}
@@ -11050,7 +11048,7 @@ directly instead of PLUGIN_DESTRUCTOR_MACRO@.
 The usage of these is the same as realtime plugins.
 
 @item @b{int is_realtime();}@*
-This function must return 0 to indicate a nonrealtime plugin.
+This function must return 0 to indicate a non-realtime plugin.
 
 @item @b{int get_parameters();}@*
 Here, the user should create a GUI, wait for the user to hit an OK button or a
@@ -11145,7 +11143,7 @@ The processing function needs to request input samples with
 It always returns 0.  The user may specify any desired sample rate and start
 position.
 
-Nonrealtime audio plugins need to define
+Non-realtime audio plugins need to define
 @verbatim
 int process_loop(double *buffer, int64_t &write_length);
 for single channel or
@@ -11175,7 +11173,7 @@ if it is multichannel or
 @end verbatim
 if it is single channel.
 
-The nonrealtime video plugins need to define
+The non-realtime video plugins need to define
 @verbatim
 int process_loop(VFrame *buffer);
 for single channel or
@@ -11300,7 +11298,7 @@ project which can be used to improve the quality of the processing.
 
 @menu
 * System queries:: Utilities for determining the system resources.
-* Timing queries:: Utilities for performing time-dependant processing.
+* Timing queries:: Utilities for performing time-dependent processing.
 @end menu
 
 @c cincvdoc_node_number_316
@@ -11330,7 +11328,7 @@ Gives the number of tracks a multichannel plugin needs to process.
 
 There are two rates for media a realtime plugin has to be aware of: the project
 rate and the requested rate.  Functions are provided for getting the project
-and requested rate.  In addition, doing time dependant effects requires using
+and requested rate.  In addition, doing time dependent effects requires using
 several functions which tell where you are in the effect.
 
 @itemize @bullet
@@ -11356,7 +11354,7 @@ relative to the requested data rate.
 
 @item @b{get_source_start()}@*
 For realtime plugins it gives the lowest sample or frame in the effect range in
-the requested data rate.  For nonrealtime plugins it is the start of the range
+the requested data rate.  For non-realtime plugins it is the start of the range
 of the timeline to process.
 
 @item @b{get_source_position()}@*
@@ -11612,7 +11610,7 @@ The fall through plugins must determine if the processor plugin is attached
 with calls to @b{next_effect_is} and @b{prev_effect_is}.  These take the name
 of the processor plugin as a string argument and return 1 if the next or
 previous plugin is the processor plugin.  If either returns 1, the fall through
-plugin must still call @b{read_frame} to propogate the data but return after
+plugin must still call @b{read_frame} to propagate the data but return after
 that.
 
 The processor plugin must call @b{next_effect_is} and @b{prev_effect_is} to
