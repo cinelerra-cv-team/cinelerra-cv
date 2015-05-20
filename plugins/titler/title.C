@@ -1660,6 +1660,7 @@ int TitleMain::process_realtime(VFrame *input_ptr, VFrame *output_ptr)
 				0,
 				PluginVClient::project_frame_rate, 
 				0);
+		config.text_to_ucs4(DEFAULT_ENCODING);
 		need_reconfigure = 1;
 	}
 
@@ -1667,8 +1668,8 @@ int TitleMain::process_realtime(VFrame *input_ptr, VFrame *output_ptr)
 	if(config.size <= 0 || config.size >= 2048) config.size = 72;
 	if(config.stroke_width < 0 || 
 		config.stroke_width >= 512) config.stroke_width = 0.0;
-	if(!strlen(config.text)) return 0;
-	if(!strlen(config.encoding)) strcpy(config.encoding, DEFAULT_ENCODING);
+	if(!config.wtext_length) return 0;
+	if(!config.encoding) strcpy(config.encoding, DEFAULT_ENCODING);
 
 //printf("TitleMain::process_realtime 10\n");
 
