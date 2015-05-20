@@ -711,23 +711,6 @@ int BC_Resources::init_fontconfig(const char *search_path)
 
 		FcPatternAddBool(pat, FC_SCALABLE, true);
 
-		if(language[0])
-		{
-			char langstr[LEN_LANG * 3];
-			strcpy(langstr, language);
-
-			if(region[0])
-			{
-				strcat(langstr, "-");
-				strcat(langstr, region);
-			}
-
-			FcLangSet *ls =  FcLangSetCreate();
-			if(FcLangSetAdd(ls, (const FcChar8*)langstr))
-				if(FcPatternAddLangSet(pat, FC_LANG, ls))
-			FcLangSetDestroy(ls);
-		}
-
 		fs = FcFontList(0, pat, os);
 		FcPatternDestroy(pat);
 		FcObjectSetDestroy(os);
