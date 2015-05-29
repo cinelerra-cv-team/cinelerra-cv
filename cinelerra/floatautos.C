@@ -82,17 +82,6 @@ void FloatAutos::draw_joining_line(BC_SubWindow *canvas, int vertical, int cente
 		canvas->draw_line(x1, center_pixel + y1, x2, center_pixel + y2);
 }
 
-Auto* FloatAutos::add_auto(int64_t position, float value)
-{
-	FloatAuto* current = (FloatAuto*)autoof(position);
-	FloatAuto* result;
-	
-	insert_before(current, result = (FloatAuto*)new_auto());
-	result->adjust_to_new_coordinates(position,value);
-	
-	return result;
-}
-
 Auto* FloatAutos::new_auto()
 {
 	FloatAuto *result = new FloatAuto(edl, this);

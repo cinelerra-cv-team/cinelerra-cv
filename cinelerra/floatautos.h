@@ -64,7 +64,6 @@ public:
 	void straighten(int64_t start, int64_t end);
 
 	void dump();
-	Auto* add_auto(int64_t position, float value);
 	Auto* append_auto();
 	Auto* new_auto();
 	float default_;
