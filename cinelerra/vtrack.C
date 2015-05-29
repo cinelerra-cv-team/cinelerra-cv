@@ -545,8 +545,8 @@ void VTrack::translate(float offset_x, float offset_y, int do_camera)
 		subscript = AUTOMATION_PROJECTOR_X;
 	
 // Translate default keyframe
-	addto_value((FloatAuto*)automation->autos[subscript], offset_x);
-	addto_value((FloatAuto*)automation->autos[subscript + 1], offset_y);
+	addto_value((FloatAuto*)automation->autos[subscript]->default_auto, offset_x);
+	addto_value((FloatAuto*)automation->autos[subscript + 1]->default_auto, offset_y);
 
 // Translate everyone else
 	for(Auto *current = automation->autos[subscript]->first; 
