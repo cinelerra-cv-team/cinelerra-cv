@@ -374,17 +374,6 @@ YUVConfigVideo::YUVConfigVideo(BC_WindowBase *parent_window, Asset *asset, Forma
 	this->defaults = format->mwindow->defaults;
 }
 
-YUVConfigVideo::~YUVConfigVideo()
-{
-	delete path_textbox;
-	delete path_recent;
-	delete pipe_checkbox;
-	delete pipe_textbox;
-	delete pipe_recent;
-	delete mpeg2enc;
-	delete ffmpeg;
-}
-
 int YUVConfigVideo::create_objects()
 {
 	BC_Title *bt;
