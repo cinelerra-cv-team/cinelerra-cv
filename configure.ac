@@ -266,8 +266,8 @@ AC_CHECK_LIB(tiff,TIFFOpen,[libtiff=yes])
 # OpenCV is used by the findobj plugin.  Check if the needed libraries
 # exist.  The functions to look for are picked by random from the
 # libraries, and might not be the exact ones the findobj plugin need.
-AC_CHECK_HEADER(opencv2/legacy/legacy.hpp)
-AC_CHECK_HEADER(opencv2/legacy/compat.hpp)
+AC_CHECK_HEADER(opencv2/legacy/legacy.hpp, [opencvhlegacy=yes])
+AC_CHECK_HEADER(opencv2/legacy/compat.hpp, [], [opencvhlegacy=no])
 AC_CHECK_HEADER(opencv2/core/core_c.h, [opencvh=yes])
 AC_CHECK_LIB(opencv_legacy, cvChangeDetection)
 AC_CHECK_LIB(opencv_objdetect, cvLoadLatentSvmDetector)
@@ -297,7 +297,7 @@ else
 fi
 AC_DEFINE_UNQUOTED(HAVE_OPENCV_SURF, $HAVE_OPENCV_SURF,
 	[define if SURF support is compiled into opencv])
-if test "x$opencv" = "xyes" && test "x$opencvh" = "xyes" ; then
+if test "x$opencv" = "xyes" && test "x$opencvh" = "xyes" && test "x$opencvhlegacy" = "xyes"; then
 	enable_findobject=ok
 fi
 AM_CONDITIONAL(ENABLE_FINDOBJECT,test "x$enable_findobject" = "xok")
@@ -881,6 +881,7 @@ ORPT(enable_opengl,Hardware acceleration using OpenGL 2.0,--disable-opengl,
 ORPT(enable_findobject,findobject plugin using OpenCV 2.0,--disable-findobject,
 	RPT(opencv,opencv libraries)
 	RPT(opencvh,opencv headers)
+	RPT(opencvhlegacy, opencv legacy headers)
 )
 
 if test "x$mandatory" = "xno"; then
