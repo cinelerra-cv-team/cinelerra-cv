@@ -51,6 +51,7 @@ static int auto_defaults[] =
 	0,
 	1,
 	0,
+	0,
 	0
 };
 
