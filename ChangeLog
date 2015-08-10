@@ -1,3 +1,13 @@
+13. aug. 2015
+Cinelerra-cv team
+	- Cinelerra-CV version 2.3 released. Changelog:
+	Full UTF-8 support.
+	Complete new overlay engine and resampler.
+	New graphics: About panel, some icons.
+	New plugins: GreyCStoration, C41, Bluebanana, color3way, findobject, lens.
+	Updated translations: German, Italian, French, Norwegian, Portugese.
+	Lots of small bugfixes.
+
 6. jul. 2014
 Cinelerra-cv team
 	- Changes can be followed through gitweb:

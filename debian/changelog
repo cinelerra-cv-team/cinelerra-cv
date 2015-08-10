@@ -1,7 +1,7 @@
-cinelerra-cv (1:2.2.git.20140428.9154825-1) UNRELEASED; urgency=low
+cinelerra-cv (1:2.3.0) unstable; urgency=low
 
   [ Nicola Ferralis ]
-  * GIT of 2014-05-02 from cinelerra-CV master git.
+  * Official release of Cinelerra-CV version 2.3
   * Update maintainer contact address to the new mailing list on
     lists.cinelerra-cv.org.
   * Rename source and binary package to cinelerra-cv.
