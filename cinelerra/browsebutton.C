@@ -39,7 +39,7 @@ BrowseButton::BrowseButton(MWindow *mwindow,
 	int want_directory,
 	const char *recent_prefix)
  : BC_Button(x, y, mwindow->theme->get_image_set("magnify_button")), 
-   Thread()
+   Thread(1)
 {
 	this->parent_window = parent_window;
 	this->want_directory = want_directory;
