@@ -136,7 +136,7 @@ int Thread::cancel()
 void Thread::join()   // join this thread
 {
 	int result = 0;
-	if(tid_valid)
+	if(tid_valid && synchronous)
 	{
 		result = pthread_join(tid, 0);
 	}
