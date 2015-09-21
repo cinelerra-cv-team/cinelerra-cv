@@ -4232,7 +4232,7 @@ msgstr "Inverser la sélection"
 
 #: plugins/bluebanana/bluebananawindow.C:2255
 msgid "Color Adjustment"
-msgstr "Sélection de la couleur"
+msgstr "Ajustement des couleurs"
 
 #: plugins/bluebanana/bluebananawindow.C:2256
 msgid " Filter Active"
