@@ -51,6 +51,11 @@ if test "$AUTOHEADER" = ""; then
 fi
 echo 'AUTOHEADER'=$AUTOHEADER
 
+if test "$INTLTOOLIZE" = ""; then
+  INTLTOOLIZE=intltoolize
+fi
+echo 'INTLTOOLIZE'=$INTLTOOLIZE
+
 #
 # You should not be modifying anything from here
 #
@@ -88,7 +93,7 @@ echo "Running aclocal -I m4 ..." &&
 $ACLOCAL -I m4 &&
 
 echo "Running libtoolize ..."
-libtoolize --force &&
+libtoolize &&
 
 echo "Running autoheader ..." &&
 $AUTOHEADER &&
@@ -98,5 +103,8 @@ $AUTOMAKE --foreign --add-missing &&
 
 echo "Running autoconf ..." &&
 $AUTOCONF &&
+
+echo "Running intltoolize ..." &&
+$INTLTOOLIZE &&
 
 echo "Finished" 
