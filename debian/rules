@@ -72,8 +72,6 @@ install: build
 	install -D -m644 debian/cinelerra-cv.sysctl.d debian/cinelerra-cv/etc/sysctl.d/cinelerra-cv.conf
 
 	chmod -x debian/tmp/usr/lib/cinelerra/*
-	chmod +x debian/tmp/usr/lib/cinelerra/fonts
-	chmod -x debian/tmp/usr/lib/cinelerra/fonts/*
 	chmod +x debian/tmp/usr/lib/cinelerra/shapewipe
 
 binary-indep: build install
