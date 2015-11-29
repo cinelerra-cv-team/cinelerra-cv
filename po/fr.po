@@ -4220,7 +4220,7 @@ msgstr "Vert"
 
 #: plugins/bluebanana/bluebananawindow.C:2004
 msgid "blue"
-msgstr "Flou bleu"
+msgstr "Bleu"
 
 #: plugins/bluebanana/bluebananawindow.C:2017
 msgid "pre-erode"
