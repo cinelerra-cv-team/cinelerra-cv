@@ -96,7 +96,7 @@ int Pipe::substitute()
 		}
 
 		// insert the file string at the substitution point
-		if (f + strlen(sub_str) - complete > sizeof(complete))
+		if (f + strlen(sub_str) - complete > sizeof(complete) - 1)
 		{
 			printf("Pipe::substitute(): max length exceeded\n");
 			return -1;
@@ -105,7 +105,7 @@ int Pipe::substitute()
 		f += strlen(sub_str);
 		count++;
 	}
-
+	*f = 0;
 	return count;
 }
 	
