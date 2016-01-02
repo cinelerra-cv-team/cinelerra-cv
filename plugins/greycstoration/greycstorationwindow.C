@@ -32,16 +32,11 @@ PLUGIN_THREAD_OBJECT(GreyCStorationMain, GreyCStorationThread, GreyCStorationWin
 
 // configuration window
 GreyCStorationWindow::GreyCStorationWindow(GreyCStorationMain *client, int x, int y)
- : BC_Window(client->get_gui_string(),
+ : PluginWindow(client->get_gui_string(),
 	x,
 	y,
-	300, // width
-	180, // height
 	300,
-	180,
-	0,
-	0,
-	1)
+	180)
 {
 	this->client = client;
 }
