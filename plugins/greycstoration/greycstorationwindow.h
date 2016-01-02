@@ -23,25 +23,25 @@
 #define GREYCSTORATIONWINDOW_H
 
 class GreyCStorationThread;
-class PluginWindow;
+class GreyCStorationWindow;
 
 #include "filexml.inc"
 #include "greycstorationplugin.h"
 #include "mutex.h"
 #include "pluginvclient.h"
 
-PLUGIN_THREAD_HEADER(GreyCStorationMain, GreyCStorationThread, PluginWindow)
+PLUGIN_THREAD_HEADER(GreyCStorationMain, GreyCStorationThread, GreyCStorationWindow)
 
 class GreyCAmpSlider;
 class GreyCSharpSlider;
 class GreyCAniSlider;
 class GreyCNoiseSlider;
 
-class PluginWindow : public BC_Window
+class GreyCStorationWindow : public BC_Window
 {
 public:
-	PluginWindow(GreyCStorationMain *client, int x, int y);
-	~PluginWindow();
+	GreyCStorationWindow(GreyCStorationMain *client, int x, int y);
+	~GreyCStorationWindow();
 
 	void create_objects();
 	int close_event();

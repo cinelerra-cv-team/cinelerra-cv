@@ -28,10 +28,10 @@
 #define N_(String) gettext_noop (String)
 
 
-PLUGIN_THREAD_OBJECT(GreyCStorationMain, GreyCStorationThread, PluginWindow)
+PLUGIN_THREAD_OBJECT(GreyCStorationMain, GreyCStorationThread, GreyCStorationWindow)
 
 // configuration window
-PluginWindow::PluginWindow(GreyCStorationMain *client, int x, int y)
+GreyCStorationWindow::GreyCStorationWindow(GreyCStorationMain *client, int x, int y)
  : BC_Window(client->get_gui_string(),
 	x,
 	y,
@@ -46,12 +46,12 @@ PluginWindow::PluginWindow(GreyCStorationMain *client, int x, int y)
 	this->client = client;
 }
 
-PluginWindow::~PluginWindow()
+GreyCStorationWindow::~GreyCStorationWindow()
 {
 }
 
 // controls in window
-void PluginWindow::create_objects()
+void GreyCStorationWindow::create_objects()
 {
 	int x = 10, y = 10;
 	BC_Title *title;
@@ -75,7 +75,7 @@ void PluginWindow::create_objects()
 	flush();
 }
 
-int PluginWindow::close_event()
+int GreyCStorationWindow::close_event()
 {
 	set_done(1);
 	return 1;
