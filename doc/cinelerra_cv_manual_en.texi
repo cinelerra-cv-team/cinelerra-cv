@@ -30,7 +30,7 @@
 @vskip 0pt plus 1filll
 Copyright @copyright{} 2003, 2004, 2005, 2006 Adam Williams - Heroine Virtual Ltd.
 
-Copyright @copyright{} 2003 - 2015 Cinelerra-CV Team.@*
+Copyright @copyright{} 2003 - 2016 Cinelerra-CV Team.@*
 
 This manual is free; you can redistribute it and/or modify it under the terms
 of the GNU General Public License as published by the Free Software Foundation;

@@ -51,7 +51,7 @@
 @vskip 0pt plus 1filll
 Copyright @copyright{} 2003, 2004, 2005, 2006 Adam Williams - Heroine Virtual Ltd.
 
-Copyright @copyright{} 2003 - 2015 Cinelerra-CV Team.@*
+Copyright @copyright{} 2003 - 2016 Cinelerra-CV Team.@*
 
 Este manual é livre. Você pode redistribui-lo e/ou modificá-lo sob os termos da GNU General Public License, conforme publicada pela Free Software Foundation; tanto a versão 2 da Licença, quanto (à sua escolha) qualquer versão posterior.
 

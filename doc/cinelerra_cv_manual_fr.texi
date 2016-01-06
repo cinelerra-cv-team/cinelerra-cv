@@ -36,7 +36,7 @@
 @vskip 0pt plus 1filll
 Copyright @copyright{} 2003, 2004, 2005, 2006 Jack Crossfire - Heroine Virtual Ltd.
 
-Copyright @copyright{} 2003 - 2015 Cinelerra-CV Team.@*
+Copyright @copyright{} 2003 - 2016 Cinelerra-CV Team.@*
 
 Ce manuel est un document @w{libre ;} vous pouvez le redistribuer et/ou le
 modifier au titre des clauses de la Licence Publique Générale GNU, telle que
