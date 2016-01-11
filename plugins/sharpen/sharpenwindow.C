@@ -41,7 +41,7 @@ SharpenWindow::SharpenWindow(SharpenMain *client, int x, int y)
 	x,
 	y,
 	210, 
-	120)
+	150)
 { 
 	this->client = client; 
 }
