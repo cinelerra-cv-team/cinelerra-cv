@@ -22,7 +22,7 @@
 @settitle Manuel de Cinelerra CV
 @afourpaper
 @set EDITION 1.25.FR
-@set VERSION 2.1
+@set VERSION 2.3
 @finalout
 
 @titlepage

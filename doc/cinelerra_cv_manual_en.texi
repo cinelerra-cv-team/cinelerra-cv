@@ -16,7 +16,7 @@
 @settitle Cinelerra CV Manual
 @afourpaper
 @set EDITION 1.60.EN
-@set VERSION 2.2
+@set VERSION 2.3
 
 @finalout
 @titlepage

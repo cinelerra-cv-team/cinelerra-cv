@@ -27,7 +27,7 @@
 @settitle Manual do Cinelerra CV
 @afourpaper
 @set EDITION 1.47.pt_BR
-@set VERSION 2.1
+@set VERSION 2.3
 
 @c Tamanho de papel. Opções disponíveis são:
 @c (sem opção) : páginas de 8.5 inch por 11 inch (216mm por 280 mm) tamanho padrão,
