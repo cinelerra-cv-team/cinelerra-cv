@@ -16,11 +16,11 @@ folder) and TXT formats just execute the script make_manuals.sh followed by the
 language code.
 
 Example for converting the English manual:
-	$ cd hvirtual/doc
+	$ cd doc
 	$ ./make_manuals.sh en
 
 To get a folder with one file per chapter in DokuWiki sintax, type: 	
-	$ cd hvirtual/doc
+	$ cd doc
 	$ ./make_wiki.sh en
 
 Dependencies: 
