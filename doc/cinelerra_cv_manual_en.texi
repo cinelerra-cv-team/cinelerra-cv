@@ -2,7 +2,7 @@
 
 @c Cinelerra-CV Manual - ENGLISH
 @c Cinelerra-CV  website: http://cinelerra-cv.org
-@c Documentation coordinator: Nicolas MAUFRAIS - e.conti@gmx.net
+@c Documentation coordinator: Nicola Ferralis <feranick@hotmail.com>
 
 @c Licence:
 @c You may redistribute the Cinelerra CV manual and/or modify it under the terms
@@ -15,7 +15,7 @@
 @documentencoding ISO-8859-1
 @settitle Cinelerra CV Manual
 @afourpaper
-@set EDITION 1.59.EN
+@set EDITION 1.60.EN
 @set VERSION 2.2
 
 @finalout
@@ -5470,6 +5470,7 @@ FIXME
 * HolographicTV::
 * Hue saturation::    How to adjust hue and saturation
 * Interpolate video::
+* Lens:: How to stretch or shrink to convert lens distorted images to rectilinear images
 * Interpolate pixels:: How to create the illusion of higher frame rates
 * Inverse telecine::  How to convert pulled down frames to progressive frames
 * Invert video::
@@ -6128,6 +6129,46 @@ Also called invert video, it is a method of reversing the colors of a video
 track.
 
 The three parameters refer to channels (Red, Blue, Green, Alpha)
+
+@c cincvdoc_node_number_191
+@node Lens
+@subsection Lens
+@cindex Lens
+
+The lens affect stretches or shrinks to convert lens distorted images to rectilinear images.
+The most common use is converting fish eye lenses to rectilinear lenses. It is also useful for
+star tracking.
+
+@b{R, G, B, A Field of view:} These determine how much the image is stretched in each channel.
+
+@b{Lock:} This causes changes to 1 channel to affect all the channels. This is normally the desired behavior.
+
+@b{Aspect Ratio:} This changes the amount of stretching done in the X axis vs the Y axis. To crop
+less data from stretched images, this allows more stretching to be done on 1 axis without creating black
+borders in the other axis.
+
+@b{Radius:} This determines the size of the stretched region. While adjusting the field of view,
+black borders may appear. Adjust the radius to shrink or expand the output so black borders
+are out of frame.
+
+@b{Center X, Y: The center of the stretched region. This is only useful if the image was previously
+translated by the software so the center of the lens is now off center.
+
+@b{Draw center:} This is a visual aid when adjusting the Center X, Y but doesn't affect the results.
+
+@b{Mode:} The type of stretching algorithm.
+
+Parameters refer to:
+@itemize @bullet
+@item @b{Sphere shrink}@*
+This is for making an image look like it's mapped to a sphere.
+@item @b{Sphere expand}@*
+This is for unmapping an image mapped to a sphere and flattening it.
+@item @b{Rectilinear stretch}@*
+This is for flattening a fish eye lens.
+@item @b{Rectilinear shrink}@*
+This is for making something flat look like it was taken by a fish eye lens.
+@end itemize
 
 @c cincvdoc_node_number_191
 @node Linear blur
