@@ -6151,7 +6151,7 @@ borders in the other axis.
 black borders may appear. Adjust the radius to shrink or expand the output so black borders
 are out of frame.
 
-@b{Center X, Y: The center of the stretched region. This is only useful if the image was previously
+@b{Center X, Y:} The center of the stretched region. This is only useful if the image was previously
 translated by the software so the center of the lens is now off center.
 
 @b{Draw center:} This is a visual aid when adjusting the Center X, Y but doesn't affect the results.
