@@ -2115,22 +2115,22 @@ void CWindowRulerGUI::create_objects()
 	BC_Title *title;
 
 	lock_window("CWindowRulerGUI::create_objects");
-	add_subwindow(title = new BC_Title(x, y, "Current:"));
+	add_subwindow(title = new BC_Title(x, y, _("Current:")));
 	add_subwindow(current = new BC_Title(x + title->get_w() + 10, y, ""));
 	y += title->get_h() + 5;
 	
-	add_subwindow(title = new BC_Title(x, y, "Point 1:"));
+	add_subwindow(title = new BC_Title(x, y, _("Point 1:")));
 	add_subwindow(point1 = new BC_Title(x + title->get_w() + 10, y, ""));
 	y += title->get_h() + 5;
 
-	add_subwindow(title = new BC_Title(x, y, "Point 2:"));
+	add_subwindow(title = new BC_Title(x, y, _("Point 2:")));
 	add_subwindow(point2 = new BC_Title(x + title->get_w() + 10, y, ""));
 	y += title->get_h() + 5;
 
-	add_subwindow(title = new BC_Title(x, y, "Distance:"));
+	add_subwindow(title = new BC_Title(x, y, _("Distance:")));
 	add_subwindow(distance = new BC_Title(x + title->get_w() + 10, y, ""));
 	y += title->get_h() + 5;
-	add_subwindow(title = new BC_Title(x, y, "Angle:"));
+	add_subwindow(title = new BC_Title(x, y, _("Angle:")));
 	add_subwindow(angle = new BC_Title(x + title->get_w() + 10, y, ""));
 	y += title->get_h() + 10;
 	char string[BCTEXTLEN];
