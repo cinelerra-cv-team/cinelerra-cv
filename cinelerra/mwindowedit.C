@@ -2272,7 +2272,8 @@ void MWindow::map_audio(int pattern)
 				current_channel = 0;
 		}
 	}
-	undo->update_undo(_("map 1:1"), LOAD_AUTOMATION, 0);
+	undo->update_undo(pattern == MWindow::AUDIO_1_TO_1 ? _("map 1:1") : _("map 5.1:2"),
+		LOAD_AUTOMATION, 0);
 	sync_parameters(CHANGE_PARAMS);
 	gui->update(0,
 		1,
