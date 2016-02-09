@@ -15,7 +15,7 @@
 @documentencoding ISO-8859-1
 @settitle Cinelerra CV Manual
 @afourpaper
-@set EDITION 1.60.EN
+@set EDITION 1.61.EN
 @set VERSION 2.3
 
 @finalout
@@ -404,15 +404,15 @@ frame in an MPEG file.
 * Running Cinelerra::
 * Live CDs::
 * Arch Linux::
-* Ark Linux::
 * Debian::
 * Ubuntu::
 * Gentoo::
 * Fedora::
 * Mandriva::
 * Slackware::
-* Suse::
-* MacOSX::
+* OpenSUSE::
+* Manjaro::
+* ROSA Linux::
 @end menu
 
 @c cincvdoc_node_number_8
@@ -673,23 +673,13 @@ which boot from a CD, without installation on a hard drive.  Here are some of
 the Live CD's known to contain Cinelerra:
 
 @itemize @bullet
-@item @b{Knoppix} - the "original" Debian-based LiveDistro -
-@uref{http://www.knoppix.org}
-@item @b{dyne:bolic} - for multimedia production - uses Window Maker window
-manager - @uref{http://www.dynebolic.org}
-@item @b{Elive} - Debian based live CD using Enlightenment window manager -
-@uref{http://www.elivecd.org}
-@item @b{x-evian} - Debian based live CD for multimedia creations -
-@uref{http://x-evian.org}
-@item @b{Mediainlinux} - Knoppix based  - @uref{http://www.mediainlinux.org/}
-@item @b{Musix} - Knoppix based live CD for audio production, graphic design and 
-video editing  - @uref{http://musix.org.ar}
-@item @b{pho} (garbure) - dedicated to video editing -
-@uref{http://garbure.org/pho/}   
-@item @b{Slo-Tech} - based on Debian and Morphix -
-@uref{http://linux.slo-tech.com}
+@item @b{Apodio} - Based on Xubuntu 14.04. A GNU/Linux operating system containing audio, text-friendly, graphic and video tools - @uref{http://www.apodio.org}
 @item @b{ArtistX} - Debian based live CD, Gnome or KDE. For multimedia
-productions - @uref{http://artistx.org}
+productions - @uref{http://sourceforge.net/projects/archiveos/files/artistx/}
+@item @b{AVLinux} - 32bit+PAE OS, designed to turn a regular old PC or Intel Mac into an Audio/Graphics/Video workstation - @uref{http://www.bandshed.net/avlinux/}
+@item @b{Elive} - Debian based live CD using Enlightenment window manager: This uses the upstream version HV, not CV - @uref{http://www.elivecd.org}
+@item @b{Musix} - Knoppix based live CD for audio production, graphic design and 
+video editing: This uses the upstream version HV, not CV - @uref{http://musix.org.ar} 
 @end itemize
 
 @c cincvdoc_node_number_357
@@ -703,17 +693,6 @@ To install the @b{cinelerra} package enable the @b{community} repository first
 info).@*
 Then run the following command from the command line:@*
 @command{pacman -Sy cinelerra-cv}
-
-@c cincvdoc_node_number_89
-@node Ark Linux
-@section Ark Linux
-@cindex Ark Linux
-
-Cinelerra CV is included in the Ark Linux package repository. @*
-To install the @b{cinelerra} package use the @b{Install Software} tool in Mission 
-Control or run the following commands from a command line:@*
-@command{apt-get update}@*
-@command{apt-get install cinelerra}. 
 
 @c cincvdoc_node_number_15
 @node Debian
@@ -730,42 +709,9 @@ Control or run the following commands from a command line:@*
 @subsection Debian binaries
 @cindex Binaries, Debian
 
-Andraz @sc{Tori} maintains build rules for Debian Sid.  He also makes binary
-.deb packages for Sid.  They are built from the unofficial SVN releases.
-Debian Sid packages can be found here:
-@itemize @bullet
-@item @b{Apt source for i386:}@*
-@command{@w{deb http://www.kiberpipa.org/~minmax/cinelerra/builds/sid/ ./}}
-@item @b{Apt source for Pentium4 (optimized):}@*
-@command{@w{deb http://www.kiberpipa.org/~minmax/cinelerra/builds/pentium4/ ./}}
-@item @b{Apt source for Pentium-M (optimized):}@*
-@command{@w{deb http://www.kiberpipa.org/~minmax/cinelerra/builds/pentiumm/ ./}}
-@item @b{Apt source for AthlonXP (optimized):}@*
-@command{@w{deb http://www.kiberpipa.org/~minmax/cinelerra/builds/athlonxp/ ./}}
-@end itemize
+Debian packages are available through Deb Multimedia: @uref{https://www.deb-multimedia.org/}
 
-Valentina @sc{Messeri} built also
-@itemize @bullet
-@item @b{Apt source for Opteron (AMD64) (optimized):}@*
-@command{@w{deb http://giss.tv/~vale/debian64/ ./}}
-@end itemize
-
-Christian @sc{Marillat} makes binary Debian packages, built from the unofficial SVN 
-releases, for stable, testing and unstable.
-@itemize @bullet
-@item @b{Apt source for amd64, hppa, i386, ia64, powerpc (not optimized):}@*
-@command{@w{deb http://www.debian-multimedia.org BRANCH main}}
-@end itemize	
-
-@b{Note:} BRANCH = stable, testing or unstable@*
-@b{Note:} Install @b{debian-multimedia-keyring} to add in your keyring Marillat's
-gpg-key.
-
-@b{Note:} If Cinelerra produces the following error:@*
-@command{cinelerra: relocation error: /usr/lib/libavcodec.so.0.4.8: undefined symbol: 
-faacDecOpen}@*
-You can solve the problem by entering the following command as root:@* 
-@command{apt-get install --reinstall libfaad2-0=2.0.0-0.5} 
+Stable (Jessie) comes with Cinelerra-CV 2.2, Testing (Stretch) and Unstable (Sid) already have the latest version 2.3.
 
 @c cincvdoc_node_number_17
 @node Debian prerequisites
@@ -845,27 +791,30 @@ You will need to apt-get install the following packages:
 @cindex Ubuntu packages installation
 
 Chose a repository from the ones above according to your release and CPU type 
-and install the package.@*
-Here are 3 ways of doing that:
+and install the package. Here are 3 ways of doing that:
 
+@*
 @b{With Synaptic Package Manager (recommended):}
 
-Open the Software Sources Window. @*
-You can do it in two ways: @*
-- Go to System -> Administraton -> Software Sources@*
-- Inside Synaptic Package Manager: Go to Settings -> Repositories. @*
+Open the Software Sources Window. You can do it in two ways:
+
+@itemize @bullet
+@item Go to System -> Administraton -> Software Sources
+@item Inside Synaptic Package Manager: Go to Settings -> Repositories. 
+@end itemize
 Make sure you have universe, multiverse and restricted sources checked in the 
 first tab.@*
 Click on tab Third Party. Click on the Add button and enter: @*
 @verbatim
-ppa:cinelerra-ppa/ppa
+ppa:cinelerra-ppa/ppa 
 @end verbatim
 
-Clicking Add Source will display the new repository enabled in the Software 
+@* Clicking Add Source will display the new repository enabled in the Software 
 Sources window. @*
 You should now see Cinelerra in the list of packages available in Synaptic. @*
-Follow Synaptic instructions for installation.@*
+Follow Synaptic instructions for installation.
 
+@*
 @b{With the command line:}
 
 Edit directly your @file{/etc/apt/sources.list} file.@*
@@ -874,7 +823,7 @@ you have the following line uncommented: @*
 @verbatim
 deb http://ppa.launchpad.net/cinelerra-ppa/ppa/ubuntu <RELEASE> main
 @end verbatim
-where <RELEASE> is your installed version of Ubuntu (precise, trusty, etc). @*
+where <RELEASE> is your installed version of Ubuntu (precise, trusty, xenial, etc). @*
 
 Add the complete APT line of your chosen repository.@*
 Install Cinelerra by typing in your terminal:@*
@@ -885,41 +834,12 @@ and then
 @verbatim
 apt-get install cinelerra
 @end verbatim
+@*
+@b{HOWTOs for package installation or compilation from source code}
 
-@b{With GDebi Package Installer:}
+Compilation from source code on Ubuntu (for beginners):
 
-Send Firefox to the web address of the repository @*
-(e.g. http://www.kiberpipa.org/~muzzol/cinelerra/edgy-i386/.)@*
-Click on the .deb link for your chosen Cinelerra package @*
-(e.g. cinelerra_2.1.0+svn20070109-0ubuntu1_i386.deb)@*
-A dialog window will ask you to confirm your intention to open this file with 
-GDebi Package installer. @*
-Clicking OK will start the download.@*
-If during the process you get errors about not satisfiable dependencies, try 
-installing the problematic library with the same method from the same webpage.
-
-@b{HOWTOs for package installation or compilation from source code}@*
-
-@itemize @bullet
-@item Installation of Ubunty Feisty AMD64 Cinelerra package:@*
-@uref{https://help.ubuntu.com/community/CinelerraOnFeistyAMD64}
-
-@item Compilation from source code on Ubuntu 7.10 Gutsy Gibbon (for beginners):@*
-@uref{http://www.g-raffa.eu/Cinelerra/cin_compilation.html}
-
-@item Compilation from source code on Ubuntu 7.10 Gutsy Gibbon:@*
-@uref{http://lab.dyne.org/cinelerra/Gutsy}
-
-@item Compilation from source code on Ubuntu 6.10 Edgy Eft:@*
-@uref{http://www.ubuntuforums.org/showthread.php?t=320701&highlight=cinelerra}
-
-@item Compilation from source code on Ubuntu Breezy:@*
-@uref{http://placide.home.sapo.pt/cinelerra02.html}
-
-@item Compilation from source code on Ubuntu (for beginners, in 
-Italian):@*
-@uref{https://faberlibertatis.org/wiki/Cinelerra_CV_su_Ubuntu}
-@end itemize
+@uref{ http://www.g-raffa.eu/Cinelerra/HOWTO/compilation.html}
 
 @c cincvdoc_node_number_18
 @node Gentoo
@@ -928,27 +848,28 @@ Italian):@*
 
 Installation for Gentoo GNU/Linux is very straight forward. Simply type:
 @verbatim
-emerge cinelerra-cvs
+emerge cinelerra
 @end verbatim
 as root and it should install and run without any problems.  Note that you may need
-to put cinelerra-cvs in your @file{/etc/portage/package.keywords} file in order to
+to put cinelerra in your @file{/etc/portage/package.keywords} file in order to
 unmask it:
 @verbatim
-echo "=media-video/cinelerra-cvs ~x86" >> /etc/portage/package.keywords
+echo "=media-video/cinelerra ~x86" >> /etc/portage/package.keywords
 @end verbatim
 
-See @uref{http://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=3&chap=3} 
+@*
+See @uref{https://wiki.gentoo.org/wiki/Handbook:X86/Working/Portage} 
 for details. If you are running on an architecture other than x86 e.g. amd64, you 
 will need to replace ~x86 with the relevant architecture e.g. ~amd64.
 
-You may also want to adjust the USE flags. First run @*
+You may also want to adjust the USE flags. First run:
 @verbatim
-emerge -av cinelerra-cvs
+emerge -av cinelerra
 @end verbatim
 to see what flags are available and then add the relevant ones to 
-@file{/etc/portage/package.use}: @*
+@file{/etc/portage/package.use}:
 @verbatim
-echo "media-video/cinelerra-cvs ieee1394" >> /etc/portage/package.use 
+echo "media-video/cinelerra ieee1394" >> /etc/portage/package.use 
 @end verbatim
 This would enable support for firewire devices.
 
@@ -957,55 +878,12 @@ This would enable support for firewire devices.
 @section Fedora
 @cindex Fedora
 
-Cinelerra is included in the Freshrpms repository at
-@uref{http://freshrpms.net}.  The easiest way to install packages from
-Freshrpms is to include the repository in the @b{yum} configuration. Also make
-sure that the Fedora Extras repository is enabled.  This is the case by default
-on Fedora 5 and 6, and Core and Extras are merged into one on Fedora 7.
-
-For Fedora 8 see
-@uref{http://kernelreloaded.blog385.com/index.php/archives/install-cinelerra-on-fedora-8/}
-
-On Fedora 6, as the user root do:
-@verbatim
-rpm -ivh http://ftp.freshrpms.net/pub/freshrpms/fedora/linux/6/\
-freshrpms-release/freshrpms-release-1.1-1.fc.noarch.rpm
-@end verbatim
-
-On Fedora 5, do:
-@verbatim
-rpm -ivh http://ftp.freshrpms.net/pub/freshrpms/fedora/linux/5/\
-freshrpms-release/freshrpms-release-1.1-1.fc.noarch.rpm
-@end verbatim
-
-Then type:
-@verbatim
-yum -y install cinelerra
-@end verbatim
-to get and install Cinelerra and all the dependencies, including ffmpeg and
-mjpegtools.  If it does not work, check the @file{/etc/yum.conf} file and make
-sure that the Freshrpms config gets included from the @file{/etc/yum.repos.d}.
-
-@b{Notes:}
+Cinelerra-CV is not available in Fedora by default. It's also not in the RPM Fusion repository. The ATrpms repository offers the old version 2.1 for Fedora 20: @uref{http://packages.atrpms.net/name/cinelerra/}@*
+@*
+If you want to compile CinelerraCV from source you can find detailed instructions here:
 @itemize @bullet
-@item The package collection of Freshrpms may overlap and/or conflict with
-other third-party repositories such as Livna, which may also carry
-audio and video libraries and Cinelerra.  It may be a good idea to stick with
-one repository and not mix packages from several different third-party
-repositories.
-@item The header files of the various libraries are needed for compiling
-Cinelerra from source. The header files are included in separate devel packages
-that are included in the Fedora and Freshrpms repositories and can be installed
-with yum. At least the following are required:@*
-OpenEXR-devel SDL-devel a52dec-devel alsa-lib-devel e2fsprogs-devel faac-devel
-faad2-devel ffmpeg-devel fftw-devel imlib2-devel lame-devel libXv-devel
-libXxf86vm-devel libavc1394-devel libdv-devel libiec61883-devel libogg-devel
-libraw1394-devel libsndfile-devel libtheora-devel libvorbis-devel
-mjpegtools-devel x264-devel xvidcore-devel
-@item If you want to compile Cinelerra from source on Fedora Core 6, detailed 
-instructions on how to install the necessary dependent files can be found at:
-@uref{http://crazedmuleproductions.blogspot.com@*
-/2007/03/fedora-core-6-cinelerra-dependencies.html}
+@item Build Cinelerra-CV for Fedora 22 under Docker: @uref{ http://blog.rabin.io/447/building-cinelerracv-for-fedora-22-under-docker}
+@item Build Cinelerra-CV for Fedora 15, x86-64: @uref{ http://crazedmuleproductions.blogspot.com/2011/05/fedora-15-cinelerra-install-works.html}
 @end itemize
 
 @c cincvdoc_node_number_20
@@ -1013,73 +891,64 @@ instructions on how to install the necessary dependent files can be found at:
 @section Mandriva
 @cindex Mandriva
 
-Cinelerra packages for Mandriva are made by PLF are ready to install.  Read
-@uref{http://plf.zarb.org/packages.php} for more information.
+CinelerraCV 2.2 is officially available in OpenMandriva 2014.2. Make sure restricted packages are activated in the control center. Note: cinelerra doesn't appear in the "programs with GUI" list. You have to show the complete list to install it.
 
 @c cincvdoc_node_number_21
 @node Slackware
 @section Slackware
 @cindex Slackware
 
-Rafael @sc{Diniz} build Slackware packages for Cinelerra.
+You can find prebuilt Cinelerra-CV packages at the following locations:
 
 @itemize @bullet
-@item @b{For x86:}@*
-@uref{http://slack.sarava.org/packages/slackware/slackware-11.0/multimedia/}
-@item @b{For slackintosh:}@*
-@uref{http://slack.sarava.org/packages/slackintosh/slackintosh-11.0/multimedia/}
+@item Slackonly packages (recommended, because it uses SBo SlackBuilds): @uref{http://packages.slackonly.com/pub/packages/}
+@item Ponce's repository: @uref{http://ponce.cc/slackware/sources/repo/}
+@item Studioware packages: @uref{http://studioware.org/packages}
+@item If you want to build CinelerraCV from scratch, SlackBuilds are available at the usual place: @uref{http://slackbuilds.org/repository/14.1/multimedia/cinelerra/}
 @end itemize
 
 @c cincvdoc_node_number_22
-@node Suse
-@section Suse
-@cindex Suse
+@node OpenSUSE
+@section OpenSUSE
+@cindex OpenSUSE
 
-RPMs for SuSE 9 are built from SVN sources by Kevin @sc{Brosius}, and available at
-@uref{http://cin.kevb.net/files/RPM/}
+RPMs for openSUSE are in the Packman repositories: @uref{http://packman.links2linux.org/package/cinelerra-cv}
 
-RPMs for OpenSUSE 10.1 and 10.2, architecture i586 and x86_64, are built from
-SVN by Leon @sc{Freitag} at Packman.  They are available at
-@uref{http://packman.links2linux.org/package/cinelerra/16413}.
-
-The RPM package(s) can be installed as root in a terminal using this command:
-@verbatim
-rpm -Uvh package_name.rpm
-@end verbatim
-
-The following installation case shows four screenshots for a GUI based
-Cinelerra SVN installation on OpenSUSE 10.2 i586 using YaST2.  First by adding
-packman's YaST2 repository as a YaST2 Installation source, and next the package
-installation with the YaST2 Software Manager. 
-
-Start the YaST Control center on OpenSUSE 10.2 and add the root password when
-requested:
-
-@center @image{manual_images_intl/yast2_control_center,100mm}
-
-Start the YaST2 installation source tool, select the HTTP protocol and add the
-servername for packman as shown.  Synchronization with Zenworks may take some
-time, wait until it is finished.
-
-@center @image{manual_images_intl/yast2_installation_source,120mm}
-
-Start the YaST2 Software Management.  Enter "Cinelerra" in the left search field
-and next check the checkboxes for the Cinelerra packages in the right window.
-If an older version of Cinelerra is installed on beforehand visible with a lock
-symbol, delete it, possibly try an update first.
-
-@center @image{manual_images_intl/yast2_cinelerra_installation,120mm}
-
-Click Accept to start the package installation and afterwards Next to finish.
-
-@center @image{manual_images_intl/yast2_package_installation,120mm}
+You can install directly with Yast if you have Packman configured as a Yast install source.
 
 @c cincvdoc_node_number_23
-@node MacOSX
-@section MacOSX
-@cindex MacOSX
+@node Manjaro
+@section Manjaro
+@cindex Manjaro
 
-FIXME
+Cinelerra-CV can be installed through the Octopi package manager. Install the following packages:
+@itemize @bullet
+@item libquicktime
+@item mjpegtools
+@item cinelerra-cv
+@end itemize
+
+@c cincvdoc_node_number_23
+@node ROSA Linux
+@section ROSA Linux
+@cindex ROSA Linux
+
+Packages for Cinelerra-CV are available in the Restricted Updates Repository:
+@itemize @bullet
+@item @b{i586:}@uref{http://mirror.rosalab.ru/rosa/red/repository/i586/restricted/updates/} 
+@item @b{x86_64:}@uref{http://mirror.rosalab.ru/rosa/red/repository/x86_64/restricted/updates/}
+@end itemize
+
+To install Cinelerra-CV in ROSA Linux, enable ROSA Restricted Updates repository on "Install and Remove Software". 
+@*
+Update packages list:
+@verbatim
+urpmi.update -a
+@end verbatim
+Install cinelerra-cv rpm package:
+@verbatim
+urpmi cinelerra-cv
+@end verbatim
 
 @c cincvdoc_node_number_24
 @node Configuration
@@ -5470,10 +5339,10 @@ FIXME
 * HolographicTV::
 * Hue saturation::    How to adjust hue and saturation
 * Interpolate video::
-* Lens:: How to stretch or shrink to convert lens distorted images to rectilinear images
 * Interpolate pixels:: How to create the illusion of higher frame rates
 * Inverse telecine::  How to convert pulled down frames to progressive frames
 * Invert video::
+* Lens:: How to stretch or shrink to convert lens distorted images to rectilinear images
 * Linear blur::
 * Live video::        Pass video from the capture card directly to the timeline
 * Loop video::        How to loop regions of the timeline
