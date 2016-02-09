@@ -15,7 +15,7 @@
 @documentencoding ISO-8859-1
 @settitle Cinelerra CV Manual
 @afourpaper
-@set EDITION 1.61.EN
+@set EDITION 1.62.EN
 @set VERSION 2.3
 
 @finalout
@@ -5520,9 +5520,41 @@ alpha.
 @subsection Chroma key (HSV)
 @cindex Chroma key effect (HSV)
 
-@image{manual_images_intl/chromakeyhsv,12.5mm}
+Plugin by Jerome Cornet @uref{http://jcornet.free.fr/linux/chromakey.html}
+This plugin is used to remove a color from a video to composite with another image.
+People refer to is as green screen or blue screen process (because of the color that is keyed out).
+More information: @uref{http://en.wikipedia.org/wiki/Chromakey}@*
+@* @b{Requirements}
 
-FIXME
+The subject in the movie should have a good background. The lighting is crucial and good lighting during production will save your hide with much less effort than in post-production. Here we assume that we have a good video, filmed on green (or blue) screen that we want to use.
+@b{Important: Make sure you are using an color model that has an alpha channel, such as RGBA8, RGBAFloat, YUVA8.} To change color model, go to Settings->Format->Color Model.
+
+@* @b{Usage}
+
+As any other effect, add it to the timeline in the main window. You can tweak each parameter in order to improve the keying.
+
+Start with Hue Tolerance at 10%, Min Brightness at 0, Max brightness at 100%, Saturation offset at 0, Min Saturation at 0, In Slope at 0, Out Slope at 0, Alpha Offset at 0 (that's mid-way through), Spill Threshold at 0, Spill Compensation at 100%. At any time, you can check what the Mask looks like by clicking on Show Mask. This will output a black and white image of the mask.
+
+@itemize @bullet
+@item @b{Select the Key color} Select the key color (green, blue, etc) using the color wheel or the color picker. Remember, only the Hue matters, not Saturation or Value. To use the color picker, click on the color picker icon in the Compositor window, then click on the color you want in the Compositor window. Then in the Chromakey (HSV) parameters window, click on "Use Color Picker".
+
+@item @b{Adjust the Hue Tolerance} Because there are slight variations in lighting, the background will not be in a uniform key color hue. Increase or decrease the Hue tolerance to mask out the background. If there are dark spots that are keyed out that shouldn't be, it can be corrected later.
+
+@item @b{Adjust the Brightness} Increase Min Brightness so that only the background is masked out, and not parts of the foreground. You can also reduce Max Brightness if some clear areas are keyed out (useful for very dark backgrounds).
+
+@item @b{Adjust the Saturation} Increase Min Saturation so that only the background is masked out, and not parts of the foreground. Saturation Offset can be used to change this, but for now leave it to 0.
+
+@item @b{Check what it looks like} At this stage, your mask should be pretty clean. Toggle Show Mask to check what it looks like, it should be OK. If not, repeat steps 1 to 4 to get a better key. The rest of the controls are useful to smear the mask to help compositing later on. They will help you to make your key look much cleaner.
+
+@item @b{Adjust the slope} For now, the mask is a full on/ full off mask that can be really harsh and not necessarily what you are looking for. In Slope and Out Slope will help you to smooth that key. In Slope leaves more colors in the mask, Out Slope takes more colors out of the mask. The colors that are borderline in the mask will see their alpha channel reduced by half instead of being completely on or off.
+
+@item @b{Adjust the alpha channel} This control offsets the whole alpha channel by some amount. You probably know what you are doing if you change it from 0 (the default value)
+
+@item @b{Remove spill light} This steps helps you removing the green (or blue) halo around the edges of the mask. It does so by removing the saturation of pixels that have a similar hue to the key color (turning them into grey instead of green or blue). Spill Compensation controls the amount of de-saturation. If you start with Spill Compensation at 100%, slowly increase the Spill Threshold until the remaining green or blue areas turn grey. Then reduce Spill Compensation until the image looks good.
+
+@item @b{Blur the alpha channel} Now the mask is probably still very harsh, so just below the Chromakey (HSV) plugin, add a Blur effect, and select only the Alpha channel, with a radius of 2 or 3 (more if you really want to soften the edges). This will significantly help the keying.
+
+@end itemize
 
 @c cincvdoc_node_number_169
 @node Color balance
@@ -5643,7 +5675,7 @@ the transparency border.
 
 @image{manual_images_intl/dot,16.5mm}
 
-Another effect by Kentaro (effectTV).
+DotTV converts gray scale images to set of dots. It is hard to recognize what is shown when your eyes are close to the monitor. This is is part of EffectTV: @uref{http://effectv.sourceforge.net}
 
 @c cincvdoc_node_number_177
 @node Downsample
@@ -5911,7 +5943,7 @@ value.@*
 
 @image{manual_images_intl/holo,16.25mm}
 
-By Kentarou effectTV
+Incoming objects are projected like holovision seen in the movie "STAR WARS" (remember R2-D2's video message projector). To use, push space key and a picture is taken as a background image. Differences between current picture and the background image are recognized as the incoming objects. Use black clothing for best results. This is is part of EffectTV: @uref{http://effectv.sourceforge.net}
 
 @c cincvdoc_node_number_186
 @node Hue saturation
