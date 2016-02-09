@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 # Made with the aid of debmake, by Christoph Lameter,
 # based on the sample debian/rules file for GNU hello by Ian Jackson.
-# Modified by Nicola Ferralis <feranick@hotmail.com> for version 2.2CV.
+# Modified by Nicola Ferralis <feranick@hotmail.com> for version 2.3CV.
 
 package=cinelerra-cv
 
@@ -101,9 +101,9 @@ binary: binary-indep binary-arch
 get-upstream-source:
 	set -e; branch=master; \
 	  date=$$(date +%Y%m%d); \
-	  packagever=cinelerra-cv-2.2; \
+	  packagever=cinelerra-cv-2.3; \
 	  git clone -b $${branch} git://git.cinelerra-cv.org/CinelerraCV.git $${packagever}; \
 	  tag=$$(cd $${packagever}; git rev-list $${branch} -n 1 | cut -c 1-7); \
-	  (cd $${packagever}; git archive HEAD --prefix=$$packagever/) | bzip2 > ../cinelerra-cv_2.2.git.$${date}.$${tag}.orig.tar.bz2; \
-	  echo "created ../cinelerra-cv_2.2.git.$${date}.$${tag}.orig.tar.bz2"; \
+	  (cd $${packagever}; git archive HEAD --prefix=$$packagever/) | bzip2 > ../cinelerra-cv_2.3.git.$${date}.$${tag}.orig.tar.bz2; \
+	  echo "created ../cinelerra-cv_2.3.git.$${date}.$${tag}.orig.tar.bz2"; \
 	  rm -rf $${packagever}
