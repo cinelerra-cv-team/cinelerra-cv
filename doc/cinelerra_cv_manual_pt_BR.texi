@@ -26,7 +26,7 @@
 @documentencoding ISO-8859-1
 @settitle Manual do Cinelerra CV
 @afourpaper
-@set EDITION 1.47.pt_BR
+@set EDITION 1.48.pt_BR
 @set VERSION 2.3
 
 @c Tamanho de papel. Opções disponíveis são:
@@ -3176,9 +3176,6 @@ Clique com o botão direito do mouse em um efeito para revelar o menu para o efei
 
 @menu
 * Compressor::           Como reduzir a abrangência dinâmica do áudio.
-* Áudio ao vivo::        Passar áudio da placa de som diretamente para a linha do tempo.
-* Mudança de freqüência::
-* Reverter áudio::       Como reproduzir regiões ao reverso.
 * Atrasar áudio::
 * Depurador::
 * DepuradorFFT::
@@ -3189,8 +3186,11 @@ Clique com o botão direito do mouse em um efeito para revelar o menu para o efei
 * Colégio de Heroína::
 * Interpolar::
 * Inverter Áudio::
+* Áudio ao vivo::        Passar áudio da placa de som diretamente para a linha do tempo.
 * Áudio em loop::
 * Sobreposição::
+* Mudança de freqüência::
+* Reverter áudio::       Como reproduzir regiões ao reverso.
 * Nível do Som::
 * Espectrograma::
 * Sintetizador::
@@ -3436,11 +3436,11 @@ conserte-me.
 * Chroma key::        				Criar transparência baseada em similaridades de cores
 * Chroma key (HSV)::
 * Balanço de Cores::
+* Decimar::          				Como reduzir taxas de quadros eliminando quadros similares
+* Desentrelaçar::       			Como converter vídeo entrelaçado em vídeo progressivo
 * Atrasar Vídeo::
 * Depurar vídeo::
 * Depurar vídeo2::
-* Decimar::          				Como reduzir taxas de quadros eliminando quadros similares
-* Desentrelaçar::       			Como converter vídeo entrelaçado em vídeo progressivo
 * Chave de diferença::    			Criar transparência baseada em diferenças de cor
 * TV Pontilhada::           			Como dar a seu vídeo uma aparência de "TV Pontilhada"
 * Reduzir amostragem::     			Como reduzir o tamanho de uma imagem jogando informação fora
@@ -4021,7 +4021,9 @@ Determina a trilha que oferece o quadro inicial e o quadro final para o cálculo 
 Determina se a moção será calculada e se ela deve ser salva no disco rígido. Se esta opção estiver em @b{Não Calcular}, o cálculo de moção é pulado. Se ela estiver em @b{Recalcular}, o cálculo de moção é recalculado a cada vez que cada quadro for renderizado. Se ela estiver em @b{Salvar}, o cálculo de moção sempre será realizado mas uma cópia também será salva. Se estiver em @b{Carregar}, o cálculo de moção será carregado de um cálculo salvo anteriormente. Se não há cálculo anteriores salvos no disco, um novo cálculo de moção é realizado.
 
 @item @b{Ação} @*
-Uma vez que o vetor de moção seja conhecido, determina se a camada alvo será movida em oposição ao vetor de moção ou se seguindo o vetor de moção. Se estiver em @b{Não fazer nada}, a camada alvo permanece intocada. Se estiver em @b{Trilha...}, a camada alvo será movida pela mesma quantidade que a camada mestre. Isto é útil para ajustar títulos a objetos no quadro. Se estiver em @b{Estabilizar...}, a camada alvo é movida em oposição ao vetor de moção. Isso é útil para estabilizar um objeto no quadro. As operações de moção pode ser precisas para pixels únicos ou subpixels mudando-se a configuração de ação.  @end itemize
+Uma vez que o vetor de moção seja conhecido, determina se a camada alvo será movida em oposição ao vetor de moção ou se seguindo o vetor de moção. Se estiver em @b{Não fazer nada}, a camada alvo permanece intocada. Se estiver em @b{Trilha...}, a camada alvo será movida pela mesma quantidade que a camada mestre. Isto é útil para ajustar títulos a objetos no quadro. Se estiver em @b{Estabilizar...}, a camada alvo é movida em oposição ao vetor de moção. Isso é útil para estabilizar um objeto no quadro. As operações de moção pode ser precisas para pixels únicos ou subpixels mudando-se a configuração de ação.
+
+@end itemize
 
 @menu
 * Segredos do rastreamento de moção::

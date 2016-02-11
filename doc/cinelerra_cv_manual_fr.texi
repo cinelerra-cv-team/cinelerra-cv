@@ -21,7 +21,7 @@
 @documentencoding ISO-8859-15
 @settitle Manuel de Cinelerra CV
 @afourpaper
-@set EDITION 1.25.FR
+@set EDITION 1.26.FR
 @set VERSION 2.3
 @finalout
 
@@ -4528,8 +4528,7 @@ l'image transférée depuis le temporaire pourra tenir dans la piste de sortie.
 L'espace restant dans la sortie sera laissé vierge.
 
 @center @image{manual_images_intl/output_small}
-@center @b{Les dimensions de la sortie (affichées en vert) sont plus grandes
-que le temporaire}
+@center @b{Les dimensions de la sortie (affichées en vert) sont plus grandes que le temporaire}
 
 Si les dimensions de la sortie sont plus petites que celles du temporaire,
 alors certaines parties du temporaire vidéo seront recadrées.
@@ -5092,29 +5091,101 @@ un effet partagé.
 @cindex Les effets audio en temps réel
 
 @menu
-* Compresseur::	        Comment réduire la dynamique de l'audio.
-* Audio en direct::    	Passer l'audio directement de la carte son à la timeline.
-* Décalage de hauteur::
 * Audio arrière::	Comment lire des régions à l'envers.
-* Retard audio::
-* Supprimer le bruit::
-* Supprimer le bruit FFT::
+* Audio en direct::    	Passer l'audio directement de la carte son à la timeline.
+* Audio inversée::
+* Boucle audio::
+* Compresseur::	        Comment réduire la dynamique de l'audio.
+* Décalage de hauteur::
 * Déparasiter::
 * Egaliseur paramétrique::
+* Etirement du temps::
 * Freeverb::
 * Gain::
 * Heroine College::
 * Interpoler::
-* Audio inversée::
-* Boucle audio::
-* Overlay::
 * Niveau audio::
+* Overlay::
+* Retard audio::
 * Spectrogramme::
+* Supprimer le bruit::
+* Supprimer le bruit FFT::
 * Synthétiseur::
-* Etirement du temps::
 @end menu
 
 @c cincvdoc_node_number_140
+@node Audio arrière
+@subsection Audio arrière
+@cindex Effet d'audio arrière
+
+@image{manual_images_intl/reverseaudio,12.5mm}
+
+Appliquer @b{audio arrière} à une piste audio et lisez-la en sens inverse.  Le
+son sera reproduit normalement.
+
+Soyez conscient, en inversant l'audio, que la forme d'onde sur la timeline ne
+reflète pas la sortie inversée.
+
+@c cincvdoc_node_number_141
+@node Audio en direct
+@subsection Audio en direct
+@cindex Effet audio en direct
+
+@image{manual_images_intl/liveaudio,12.5mm}
+
+Cet effet lit directement l'audio depuis l'entrée de la carte son.  Il remplace
+toute l'audio de la piste il est donc en général appliqué sur une piste vide.
+
+Afin d'utiliser @b{audio en direct}, mettez en surbrillance une zone
+horizontale d'une piste audio ou placez les points d'entrée et de sortie.
+Déposez-y ensuite l'effet d'audio en direct.  Créez des pistes supplémentaires
+et attachez à ces autres pistes des copies partagées du premier effet d'audio
+en direct afin d'enregistrer des canaux supplémentaires.
+
+L'audio en direct utilise le pilote audio sélectionné dans
+@b{Configuration->Préférences->Lecture->Sortie audio} pour enregistrer, mais au
+contraire le l'acquisition il utilise la @b{taille de tampon en lecture} comme
+tampon d'enregistrement et le @b{taux d'échantillonage du projet} comme taux
+d'échantillonnage.
+
+Ces paramètres sont critiques car certaines cartes son ne peuvent pas
+enregistrer dans un tampon dimensionné de la même manière que celui dans lequel
+elle effectuent la restitution.  L'audio en direct est plus fiable lorsque le
+pilote d'enregistrement est ALSA et que la taille de fragment de lecture est de
+2048.
+
+Déposez les autres effets après l'effet audio en direct afin de traiter
+l'entrée de la carte son en temps réel.
+
+Aux mauvaises nouvelles maintenant.  Avec l'audio en direct, il n'y a pas
+d'anticipation, donc des effets tels que le compresseur auront un retard si
+l'anticipation est activée ou il manquera des données lors de la lecture.
+
+Un autre problème provient du fait que l'horloge de la carte son est parfois
+légèrement plus lente que l'horloge de la lecture.  L'enregistrement sera alors
+en avance et le son reproduit sera saccadé.
+
+Enfin, l'audio en direct ne fonctionne pas en inverse.
+
+@c cincvdoc_node_number_142
+@node Audio inversée
+@subsection Audio inversée
+@cindex Audio inversée
+
+@image{manual_images_intl/invertaudio,12.5mm}
+
+FIXME
+
+@c cincvdoc_node_number_143
+@node Boucle audio
+@subsection Boucle audio
+@cindex Boucle audio
+
+@image{manual_images_intl/loopaudio,12.5mm}
+
+FIXME
+
+@c cincvdoc_node_number_144
 @node Compresseur
 @subsection Compresseur
 @cindex Compresseur
@@ -5202,157 +5273,7 @@ indicateurs de niveau, cette option permet de remplacer l'onde sonore par
 uniquement la valeur crête actuelle.  Il est alors très facile de voir l'action
 du @b{temps de réaction} sur la détection des valeurs de crête.
 
-@c cincvdoc_node_number_141
-@node Retard audio
-@subsection Retard audio
-@cindex Retard audio
-
-@image{manual_images_intl/delayaudio,12.5mm}
-
-Indiquez simplement de combien de secondes vous désirez que la piste audio soit
-retardée.
-
-@c cincvdoc_node_number_142
-@node Supprimer le bruit
-@subsection Supprimer le bruit
-@cindex Supprimer le bruit
-
-@image{manual_images_intl/denoise,13mm}
-
-FIXME
-
-@c cincvdoc_node_number_143
-@node Supprimer le bruit FFT
-@subsection Supprimer le bruit FFT
-@cindex Supprimer le bruit FFT
-
-@image{manual_images_intl/denoisefft,13mm}
-
-FIXME
-
-@c cincvdoc_node_number_144
-@node Déparasiter
-@subsection Déparasiter
-@cindex Déparasiter
-
-@image{manual_images_intl/despike,12.5mm}
-
-FIXME
-
 @c cincvdoc_node_number_145
-@node Egaliseur paramétrique
-@subsection Egaliseur paramétrique
-@cindex Egaliseur paramétrique
-
-@image{manual_images_intl/parametric,12.5mm}
-
-FIXME
-
-@c cincvdoc_node_number_146
-@node Freeverb
-@subsection Freeverb
-@cindex Freeverb
-
-@image{manual_images_intl/freeverb,12.5mm}
-
-FIXME
-
-@c cincvdoc_node_number_147
-@node Gain
-@subsection Gain
-@cindex Gain
-
-@image{manual_images_intl/gain,12.5mm}
-
-FIXME
-
-@c cincvdoc_node_number_148
-@node Heroine College
-@subsection Heroine College
-@cindex Heroine College
-
-@image{manual_images_intl/reverb,12.5mm}
-
-FIXME
-
-@c cincvdoc_node_number_150
-@node Interpoler
-@subsection Interpoler
-@cindex Interpoler
-
-@image{manual_images_intl/interpolateaudio,13.25mm}
-
-FIXME
-
-@c cincvdoc_node_number_151
-@node Audio inversée
-@subsection Audio inversée
-@cindex Audio inversée
-
-@image{manual_images_intl/invertaudio,12.5mm}
-
-FIXME
-
-@c cincvdoc_node_number_152
-@node Audio en direct
-@subsection Audio en direct
-@cindex Effet audio en direct
-
-@image{manual_images_intl/liveaudio,12.5mm}
-
-Cet effet lit directement l'audio depuis l'entrée de la carte son.  Il remplace
-toute l'audio de la piste il est donc en général appliqué sur une piste vide.
-
-Afin d'utiliser @b{audio en direct}, mettez en surbrillance une zone
-horizontale d'une piste audio ou placez les points d'entrée et de sortie.
-Déposez-y ensuite l'effet d'audio en direct.  Créez des pistes supplémentaires
-et attachez à ces autres pistes des copies partagées du premier effet d'audio
-en direct afin d'enregistrer des canaux supplémentaires.
-
-L'audio en direct utilise le pilote audio sélectionné dans
-@b{Configuration->Préférences->Lecture->Sortie audio} pour enregistrer, mais au
-contraire le l'acquisition il utilise la @b{taille de tampon en lecture} comme
-tampon d'enregistrement et le @b{taux d'échantillonage du projet} comme taux
-d'échantillonnage.
-
-Ces paramètres sont critiques car certaines cartes son ne peuvent pas
-enregistrer dans un tampon dimensionné de la même manière que celui dans lequel
-elle effectuent la restitution.  L'audio en direct est plus fiable lorsque le
-pilote d'enregistrement est ALSA et que la taille de fragment de lecture est de
-2048.
-
-Déposez les autres effets après l'effet audio en direct afin de traiter
-l'entrée de la carte son en temps réel.
-
-Aux mauvaises nouvelles maintenant.  Avec l'audio en direct, il n'y a pas
-d'anticipation, donc des effets tels que le compresseur auront un retard si
-l'anticipation est activée ou il manquera des données lors de la lecture.
-
-Un autre problème provient du fait que l'horloge de la carte son est parfois
-légèrement plus lente que l'horloge de la lecture.  L'enregistrement sera alors
-en avance et le son reproduit sera saccadé.
-
-Enfin, l'audio en direct ne fonctionne pas en inverse.
-
-@c cincvdoc_node_number_153
-@node Boucle audio
-@subsection Boucle audio
-@cindex Boucle audio
-
-@image{manual_images_intl/loopaudio,12.5mm}
-
-FIXME
-
-@c cincvdoc_node_number_154
-@node Overlay
-@subsection Overlay
-@cindex Overlay
-
-@image{manual_images_intl/overlay,13.25mm}
-
-FIXME
-
-@c cincvdoc_node_number_155
 @node Décalage de hauteur
 @subsection Décalage de hauteur
 @cindex Décalage de hauteur
@@ -5383,20 +5304,70 @@ méthode demande aussi d'effectuer un clic gauche sur la limite droite des
 pistes audio et de glisser cette limite vers la gauche ou vers la droite afin
 de déterminer la durée de la modification.
 
-@c cincvdoc_node_number_156
-@node Audio arrière
-@subsection Audio arrière
-@cindex Effet d'audio arrière
+@c cincvdoc_node_number_146
+@node Déparasiter
+@subsection Déparasiter
+@cindex Déparasiter
 
-@image{manual_images_intl/reverseaudio,12.5mm}
+@image{manual_images_intl/despike,12.5mm}
 
-Appliquer @b{audio arrière} à une piste audio et lisez-la en sens inverse.  Le
-son sera reproduit normalement.
+FIXME
 
-Soyez conscient, en inversant l'audio, que la forme d'onde sur la timeline ne
-reflète pas la sortie inversée.
+@c cincvdoc_node_number_147
+@node Egaliseur paramétrique
+@subsection Egaliseur paramétrique
+@cindex Egaliseur paramétrique
 
-@c cincvdoc_node_number_157
+@image{manual_images_intl/parametric,12.5mm}
+
+FIXME
+
+@c cincvdoc_node_number_148
+@node Etirement du temps
+@subsection Etirement du temps
+@cindex Etirement du temps
+
+@image{manual_images_intl/timestretch,12.5mm}
+
+FIXME
+
+@c cincvdoc_node_number_149
+@node Freeverb
+@subsection Freeverb
+@cindex Freeverb
+
+@image{manual_images_intl/freeverb,12.5mm}
+
+FIXME
+
+@c cincvdoc_node_number_150
+@node Gain
+@subsection Gain
+@cindex Gain
+
+@image{manual_images_intl/gain,12.5mm}
+
+FIXME
+
+@c cincvdoc_node_number_151
+@node Heroine College
+@subsection Heroine College
+@cindex Heroine College
+
+@image{manual_images_intl/reverb,12.5mm}
+
+FIXME
+
+@c cincvdoc_node_number_152
+@node Interpoler
+@subsection Interpoler
+@cindex Interpoler
+
+@image{manual_images_intl/interpolateaudio,13.25mm}
+
+FIXME
+
+@c cincvdoc_node_number_153
 @node Niveau audio
 @subsection Niveau audio
 @cindex Niveau audio
@@ -5405,12 +5376,49 @@ reflète pas la sortie inversée.
 
 FIXME
 
-@c cincvdoc_node_number_158
+@c cincvdoc_node_number_154
+@node Overlay
+@subsection Overlay
+@cindex Overlay
+
+@image{manual_images_intl/overlay,13.25mm}
+
+FIXME
+
+@c cincvdoc_node_number_155
+@node Retard audio
+@subsection Retard audio
+@cindex Retard audio
+
+@image{manual_images_intl/delayaudio,12.5mm}
+
+Indiquez simplement de combien de secondes vous désirez que la piste audio soit
+retardée.
+
+@c cincvdoc_node_number_156
 @node Spectrogramme
 @subsection Spectrogramme
 @cindex Spectrogramme
 
 @image{manual_images_intl/spectrogram,12.5mm}
+
+FIXME
+
+@c cincvdoc_node_number_142
+@node Supprimer le bruit
+@subsection Supprimer le bruit
+@cindex Supprimer le bruit
+
+@image{manual_images_intl/denoise,13mm}
+
+FIXME
+
+@c cincvdoc_node_number_143
+@node Supprimer le bruit FFT
+@subsection Supprimer le bruit FFT
+@cindex Supprimer le bruit FFT
+
+@image{manual_images_intl/denoisefft,13mm}
 
 FIXME
 
@@ -5420,15 +5428,6 @@ FIXME
 @cindex Synthétiseur
 
 @image{manual_images_intl/synthesizer,12.5mm}
-
-FIXME
-
-@c cincvdoc_node_number_160
-@node Etirement du temps
-@subsection Etirement du temps
-@cindex Etirement du temps
-
-@image{manual_images_intl/timestretch,12.5mm}
 
 FIXME
 
@@ -5446,11 +5445,11 @@ FIXME
 * Clé chromatique::		Créer de la transparence en se basant du des similitudes de couleurs.
 * Clé chromatique (TSV)::
 * Balance des couleurs::
+* Décimer::          		Comment réduire la fréquence des images en éliminant les images semblables.
+* Désentrelacer::       	Comment convertir de la vidéo entrelacée en vidéo progressive.
 * Retard vidéo::
 * Supprimer le bruit de la vidéo::
 * Supprimer le bruit de la vidéo 2::
-* Décimer::          		Comment réduire la fréquence des images en éliminant les images semblables.
-* Désentrelacer::       	Comment convertir de la vidéo entrelacée en vidéo progressive.
 * Clé de différence::    	Créer de la transparence en se basant sur des différences de couleurs.
 * DotTV::             		Comment donner un effet "DotTV" à votre vidéo.
 * Sous-échantillonner::        	Comment réduire la taille d'une image en éliminant des données.
@@ -10316,9 +10315,9 @@ prendre le plus simple de son groupe et d'en renommer les symboles.
 * Greffons de transitions:: ce que les transitions doivent faire.
 * Greffons dont l'interfaces utilisateur se met à jour lors de la lecture:: comment utiliser les données en
   cours de lecture pour dessiner une interface graphique utilisateur.
-* Utiliser OpenGL:: comment utiliser le matériel pour accélérer les opérations.
 * Requêtes des greffons:: comment les greffons obtiennent des informations concernant les
   informations devant être traitées.
+* Utiliser OpenGL:: comment utiliser le matériel pour accélérer les opérations.
 @end menu
 
 @c cincvdoc_node_number_304
