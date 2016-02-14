@@ -15,7 +15,7 @@
 @documentencoding ISO-8859-1
 @settitle Cinelerra CV Manual
 @afourpaper
-@set EDITION 1.62.EN
+@set EDITION 1.63.EN
 @set VERSION 2.3
 
 @finalout
@@ -234,14 +234,13 @@ The sources of the manuals are Texinfo files. They are in the same SVN repositor
 as Cinelerra's source code (hvirtual/doc folder). They can be converted in many 
 formats. The doc/README_en file contains instructions for building the manual in 
 PDF, HTML (single page) HTML (one page per chapter, in a folder), plain TXT, TXT 
-in DokuWiki sintax (one file per chapter, in a folder), Docbook.
+in DokuWiki syntax (one file per chapter, in a folder), Docbook.
 
-You can participate on editing this manual by making changes in the
-Cinelerra-CV wiki:@*
-@uref{http://cinelerra-cv.org/docs/wiki/doku.php}
+A version of this manual for Cinelerra-CV is available online @*
+@uref{http://cinelerra-cv.org/docs.php}
 
 If you would like to translate this manual in your language, see the doc/TRANSLATIONS 
-file and contact the Cinelerra-CV Community.
+file and contact the Cinelerra-CV Community through the mailing list.
 
 @ifnotplaintext
 @ifnothtml
@@ -532,26 +531,26 @@ You can install Cinelerra CV by fetching the source code and compiling it.  That
 is the method to use if you want to compile the most up-to-date version of 
 Cinelerra CV.
 
-The source code of Cinelerra-CV is available from a Subversion (SVN) repository. 
-Subversion is available for download at @uref{http://subversion.tigris.org/}, but
+The source code of Cinelerra-CV is available from GIT repository.
+GIT is available for download at @uref{https://git-scm.com/}, but
 most likely your distribution has prebuilt packages. Complete documentation of 
-subversion is available at @uref{http://svnbook.red-bean.com/nightly/en/index.html}.
+subversion is available at @uref{https://git-scm.com/doc}.
 
 @enumerate 1
-@item First you have to fetch Cinelerra CV's sources from the SVN repository 
-(approximately 170Mb or 60Mb for a read-only checkout).  Run the following command:@*
-@command{svn checkout svn://svn.skolelinux.org/cinelerra/trunk/hvirtual}@*
-The svn command above will create in your current working directory a directory 
-hvirtual that contains the sources.
+@item First you have to fetch Cinelerra CV's sources from the GIT repository
+(approximately 120Mb for a read-only checkout).  Run the following command:@*
+@command{git clone git://git.cinelerra-cv.org/CinelerraCV.git cinelerra-cv}@*
+The git command above will create in your current working directory a directory
+cinelerra-cv that contains the sources.
 
-@item Go to the hvirtual directory:@*
-@command{cd hvirtual}
+@item Go to the cinelerra-cv directory:@*
+@command{cd cinelerra-cv}
 
 @item Create the @file{./configure} file by running:@*
 @command{autoreconf -i --force}
 
 @item Then run the @file{.configure} file:@*
-@command{./configure --with-buildinfo=svn/recompile}@*
+@command{./configure}@*
 This option makes the revision number to be shown in the @b{About} tab of the 
 @b{Preferences} window.
 You can have a look at all the other options available by running:@*
@@ -598,11 +597,10 @@ Replace @option{-prefer-non-pic} with @option{-fPIC \} in your @*
 @item @b{Updating the source code:}@*
 If you already fetched the sources of an out of date revision, you can update 
 to the latest revision by running:@*
-@command{svn update}@*
+@command{git checkout master}@*
 @item @b{Installing old revisions:}@*
 If you wish to fetch an old revision, run:@*
-@command{svn checkout -r <revision>
-svn://svn.skolelinux.org/cinelerra/trunk/hvirtual}
+@command{git checkout <revision>}
 @item @b{Installing several revisions:}@*
 If you wish to install several revisions of Cinelerra CV on your computer,
 create a @file{/usr/local_cinelerra} folder, and use the following options with
@@ -631,13 +629,12 @@ When Cinelerra CV crashes, one can compile it with debugging symbols and run it
 inside gdb.  The information displayed by gdb is far more detailed and
 will help CV developers find bugs faster.
 
-First, fetch the SVN sources as usual.  Then, run the following commands:@*
-@command{cd hvirtual}@*
+First, fetch the GIT sources as usual.  Then, run the following commands:@*
+@command{cd cinelerra-cv}@*
 @command{nice -19 autoreconf -i --force}@*
-@command{mkdir ../hvdbg}@*
-@command{cd ../hvdbg}@*
-@command{nice -19 ../hvirtual/configure CXXFLAGS='-O0 -g' CFLAGS='-O0 -g'
---with-buildinfo=svn/recompile}@*
+@command{mkdir ../cvdbg}@*
+@command{cd ../cvdbg}@*
+@command{nice -19 ../cinelerra-cv/configure CXXFLAGS='-O0 -g' CFLAGS='-O0 -g'}@*
 @command{cd quicktime/ffmpeg}@*
 @command{nice -19 make CFLAGS='-O3'}@*
 @command{cd ../..}@*
@@ -10249,14 +10246,12 @@ range of DVD players and TVs. Good luck!
 @cindex Reporting bugs
 @cindex Bugs, reporting
 
-When you notice a bug, the first thing to do is to go to
-@uref{http://bugs.cinelerra.org} and check if it has not been already reported.
-If there is no bug report for the bug you noticed, you can file a bug report.
-Open an account on @uref{http://bugs.cinelerra.org} if you do not have one.
-Then, file the bug report, including the following information:
+When you notice a bug, you can file a bug report by sending an email to
+the cinelerra-cv mailing list (@uref{http://lists.cinelerra-cv.org/cgi-bin/mailman/listinfo/cinelerra})
+including the following information:
 
 @itemize @bullet
-@item Revision number of Cinelerra CV@.  Example: r959
+@item GIT revision number of Cinelerra CV@.  Example: r959e
 
 @item Distribution name and version.  Example: Debian SID
 

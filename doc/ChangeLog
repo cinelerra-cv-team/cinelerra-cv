@@ -1,14 +1,22 @@
+2016-02-14 Nicola Ferralis <feranick@hotmail.com>
+
+    * 1.63 EN
+    Updated compilation info from GIT (rather than SVN)
+    Updated reporting bugs information.
+    Removed reference to the no longer existing wiki,
+    replaced with reference to online manual.
+
 2016-02-11 Nicola Ferralis <feranick@hotmail.com>
 
     * 1.26 FR
-	Reorder menu entries in realtime audio effects (and relative text), in
-	realtime video effects, and plugin authoring.
-	Fixed issue with closure of } bracket for @b{ call.
+    Reorder menu entries in realtime audio effects (and relative text), in
+    realtime video effects, and plugin authoring.
+    Fixed issue with closure of } bracket for @b{ call.
 
     * 1.48 pt_BR:
-	Reorder menu entries in realtime audio effects (and relative text), in
-	realtime video effects.
-	Fixed issue with @end not at new line.
+    Reorder menu entries in realtime audio effects (and relative text), in
+    realtime video effects.
+    Fixed issue with @end not at new line.
 
 2016-02-09 Nicola Ferralis <feranick@hotmail.com>
 
