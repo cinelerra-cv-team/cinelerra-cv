@@ -1008,6 +1008,7 @@ int SynthWaveFormItem::handle_event()
 {
 	synth->config.wavefunction = value;
 	synth->thread->window->canvas->update();
+	get_popup_menu()->set_text(get_text());
 	synth->send_configure_change();
 	return 1;
 }
