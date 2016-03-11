@@ -683,7 +683,7 @@ PrefsRenderFarmDelNode::~PrefsRenderFarmDelNode()
 }
 int PrefsRenderFarmDelNode::handle_event()
 {
-	if(strlen(subwindow->edit_node->get_text()))
+	if(subwindow->hot_node >= 0)
 	{
 		pwindow->thread->preferences->delete_node(subwindow->hot_node);
 		subwindow->generate_node_list();
