@@ -34,7 +34,7 @@ CDRipWindow::CDRipWindow(CDRipMain *cdripper, int x, int y)
  	x,
 	y,
  	450, 
-	192)
+	230)
 { 
 	this->cdripper = cdripper; 
 }
