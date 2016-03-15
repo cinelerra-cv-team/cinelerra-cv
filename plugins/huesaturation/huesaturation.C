@@ -315,14 +315,14 @@ HueWindow::HueWindow(HueEffect *plugin, int x, int y)
  : PluginWindow(plugin->gui_string,
 			x,
 			y,
-			310, 
+			345,
 			100)
 {
 	this->plugin = plugin;
 }
 void HueWindow::create_objects()
 {
-	int x = 10, y = 10, x1 = 100;
+	int x = 10, y = 10, x1 = 125;
 	add_subwindow(new BC_Title(x, y, _("Hue:")));
 	add_subwindow(hue = new HueSlider(plugin, x1, y, 200));
 	y += 30;
