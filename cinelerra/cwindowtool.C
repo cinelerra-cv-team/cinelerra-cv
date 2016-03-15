@@ -1529,7 +1529,7 @@ CWindowMaskMode::CWindowMaskMode(MWindow *mwindow,
 	const char *text)
  : BC_PopupMenu(x,
  	y,
-	200,
+	220,
 	text,
 	1)
 {
@@ -1943,7 +1943,7 @@ void CWindowMaskGUI::create_objects()
 	mode->create_objects();
 	y += 40;
 	add_subwindow(new BC_Title(x, y, _("Value:")));
-	add_subwindow(value = new CWindowMaskValue(mwindow, this, x + 50, y));
+	add_subwindow(value = new CWindowMaskValue(mwindow, this, x + 80, y));
 	y += 30;
 	add_subwindow(delete_point = new CWindowMaskDelete(mwindow, this, x, y));
 	y += 30;
