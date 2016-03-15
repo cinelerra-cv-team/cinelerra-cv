@@ -40,7 +40,7 @@ SharpenWindow::SharpenWindow(SharpenMain *client, int x, int y)
  : PluginWindow(client->gui_string,
 	x,
 	y,
-	210, 
+	230,
 	150)
 { 
 	this->client = client; 
