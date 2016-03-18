@@ -393,7 +393,7 @@ WaveWindow::WaveWindow(WaveEffect *plugin, int x, int y)
  : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
-	320, 
+	335,
 	150)
 {
 	this->plugin = plugin;
@@ -405,7 +405,7 @@ WaveWindow::~WaveWindow()
 
 void WaveWindow::create_objects()
 {
-	int x = 10, y = 10, x1 = 100;
+	int x = 10, y = 10, x1 = 115;
 
 //	add_subwindow(new BC_Title(x, y, _("Mode:")));
 //	add_subwindow(smear = new WaveSmear(plugin, this, x1, y));
