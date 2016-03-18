@@ -38,8 +38,8 @@ RGB601Window::RGB601Window(RGB601Main *client, int x, int y)
  : PluginWindow(client->gui_string,
 	x,
 	y,
-	210, 
-	200)
+	235,
+	100)
 { 
 	this->client = client; 
 }
