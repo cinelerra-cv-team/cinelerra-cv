@@ -788,7 +788,7 @@ DenoiseWindow::DenoiseWindow(DenoiseEffect *plugin, int x, int y)
  : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
-	150, 
+	280,
 	50)
 {
 	this->plugin = plugin;
