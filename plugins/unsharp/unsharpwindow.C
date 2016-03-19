@@ -37,7 +37,7 @@ UnsharpWindow::UnsharpWindow(UnsharpMain *plugin, int x, int y)
  : PluginWindow(plugin->gui_string,
  	x,
 	y,
-	200, 
+	285,
 	160)
 {
 	this->plugin = plugin; 
