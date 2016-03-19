@@ -78,7 +78,7 @@ FreezeFrameWindow::FreezeFrameWindow(FreezeFrameMain *client, int x, int y)
  : PluginWindow(client->get_gui_string(),
  	x,
 	y,
-	200,
+	260,
 	100)
 {
 	this->client = client; 
