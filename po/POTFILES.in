@@ -195,6 +195,7 @@ plugins/gain/gainwindow.C
 plugins/gamma/gamma.C
 plugins/gamma/gammawindow.C
 plugins/gradient/gradient.C
+plugins/greycstoration/greycstorationwindow.C
 # plugins/graphic/graphic.C
 plugins/histogram/histogram.C
 plugins/histogram/histogramconfig.C
