@@ -104,7 +104,7 @@ int DeInterlaceWindow::set_mode(int mode, int recursive)
 		case DEINTERLACE_AVG_1F: 
 			add_subwindow(dominance_top = new DeInterlaceDominanceTop(client, this, x, y, _("Average top fields")));
 			y+=25;
-			add_subwindow(dominance_bottom = new DeInterlaceDominanceBottom(client, this, x, y,"Average bottom fields"));
+			add_subwindow(dominance_bottom = new DeInterlaceDominanceBottom(client, this, x, y, _("Average bottom fields")));
 			y+=25;
 			break;
 		case DEINTERLACE_SWAP:
