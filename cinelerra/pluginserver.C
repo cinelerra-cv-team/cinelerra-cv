@@ -220,9 +220,9 @@ void PluginServer::generate_display_title(char *string)
 	else
 		BC_Resources::encode(BC_Resources::encoding, 0, _(title), lbuf, BCTEXTLEN);
 	if(plugin && plugin->track) 
-		sprintf(string, "%s: %s", plugin->track->title, lbuf);
+		sprintf(string, "%s - %s", plugin->track->title, lbuf);
 	else
-		strcpy(string, lbuf);
+		sprintf(string, "%s - %s", lbuf, PROGRAM_NAME);
 }
 
 // Open plugin for signal processing
