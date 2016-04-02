@@ -24,7 +24,7 @@
 #include "edit.h"
 #include "filetga.h"
 #include "language.h"
-#include "mwindow.inc"
+#include "mwindow.h"
 #include "vframe.h"
 #include "mainerror.h"
 
@@ -904,7 +904,7 @@ TGAUnit::~TGAUnit()
 
 
 TGAConfigVideo::TGAConfigVideo(BC_WindowBase *gui, Asset *asset)
- : BC_Window(PROGRAM_NAME ": Video Compression",
+ : BC_Window(MWindow::create_title(N_("Video Compression")),
  	gui->get_abs_cursor_x(1),
  	gui->get_abs_cursor_y(1),
 	400,

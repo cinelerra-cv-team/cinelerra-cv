@@ -21,6 +21,7 @@
 
 #include "edl.h"
 #include "edlsession.h"
+#include "language.h"
 #include "levelwindow.h"
 #include "levelwindowgui.h"
 #include "mainmenu.h"
@@ -32,7 +33,7 @@
 #include "theme.h"
 
 LevelWindowGUI::LevelWindowGUI(MWindow *mwindow, LevelWindow *thread)
- : BC_Window(PROGRAM_NAME ": Levels", 
+ : BC_Window(MWindow::create_title(N_("Levels")),
  	mwindow->session->lwindow_x, 
 	mwindow->session->lwindow_y, 
 	mwindow->session->lwindow_w, 

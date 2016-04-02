@@ -93,7 +93,7 @@ int Save::handle_event()
 		{
 			char string2[256];
 			sprintf(string2, _("Couldn't open %s"), mwindow->session->filename);
-			ErrorBox error(PROGRAM_NAME ": Error",
+			ErrorBox error(MWindow::create_title(N_("Error")),
 				mwindow->gui->get_abs_cursor_x(1),
 				mwindow->gui->get_abs_cursor_y(1));
 			error.create_objects(string2);
@@ -195,7 +195,7 @@ void SaveAs::run()
 		char string2[256];
 		mwindow->set_filename("");      // update the project name
 		sprintf(string2, _("Couldn't open %s."), filename);
-		ErrorBox error(PROGRAM_NAME ": Error",
+		ErrorBox error(MWindow::create_title(N_("Error")),
 			mwindow->gui->get_abs_cursor_x(1),
 			mwindow->gui->get_abs_cursor_y(1));
 		error.create_objects(string2);
@@ -232,7 +232,7 @@ SaveFileWindow::SaveFileWindow(MWindow *mwindow, char *init_directory)
  : BC_FileBox(mwindow->gui->get_abs_cursor_x(1),
  	mwindow->gui->get_abs_cursor_y(1) - BC_WindowBase::get_resources()->filebox_h / 2,
  	init_directory, 
-	PROGRAM_NAME ": Save", 
+	MWindow::create_title(N_("Save")),
 	_("Enter a filename to save as"))
 { 
 	this->mwindow = mwindow; 

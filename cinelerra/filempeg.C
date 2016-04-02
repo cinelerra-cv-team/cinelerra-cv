@@ -35,7 +35,7 @@
 #include "interlacemodes.h"
 #include "language.h"
 #include "mainerror.h"
-#include "mwindow.inc"
+#include "mwindow.h"
 #include "pipe.h"
 #include "preferences.h"
 #include "vframe.h"
@@ -1504,7 +1504,7 @@ void FileMPEGAudio::run()
 
 
 MPEGConfigAudio::MPEGConfigAudio(BC_WindowBase *parent_window, Asset *asset)
- : BC_Window(PROGRAM_NAME ": Audio Compression",
+ : BC_Window(MWindow::create_title(N_("Audio Compression")),
  	parent_window->get_abs_cursor_x(1),
  	parent_window->get_abs_cursor_y(1),
 	310,
@@ -1699,7 +1699,7 @@ char* MPEGABitrate::bitrate_to_string(char *string, int bitrate)
 
 MPEGConfigVideo::MPEGConfigVideo(BC_WindowBase *parent_window, 
 	Asset *asset)
- : BC_Window(PROGRAM_NAME ": Video Compression",
+ : BC_Window(MWindow::create_title(N_("Video Compression")),
  	parent_window->get_abs_cursor_x(1),
  	parent_window->get_abs_cursor_y(1),
 	500,

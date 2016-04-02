@@ -75,7 +75,7 @@ void FeatherEdits::run()
 
 
 FeatherEditsWindow::FeatherEditsWindow(MWindow *mwindow, long feather_samples)
- : BC_Window(PROGRAM_NAME ": Feather Edits", 
+ : BC_Window(MWindow::create_title(N_("Feather Edits")),
  	mwindow->gui->get_abs_cursor_x(), 
 	mwindow->gui->get_abs_cursor_y(), 
 	340, 

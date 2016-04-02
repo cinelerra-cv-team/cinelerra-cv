@@ -52,6 +52,7 @@
 #include "framecache.h"
 #include "language.h"
 #include "mutex.h"
+#include "mwindow.h"
 #include "pluginserver.h"
 #include "resample.h"
 #include "stringfile.h"
@@ -263,7 +264,7 @@ int File::get_options(FormatTools *format,
 
 	if(!format_window)
 	{
-		ErrorBox *errorbox = new ErrorBox(PROGRAM_NAME ": Error",
+		ErrorBox *errorbox = new ErrorBox(MWindow::create_title(N_("Error")),
 			parent_window->get_abs_cursor_x(1),
 			parent_window->get_abs_cursor_y(1));
 		format_window = errorbox;

@@ -30,7 +30,7 @@
 
 
 ConfirmQuitWindow::ConfirmQuitWindow(MWindow *mwindow)
- : BC_Window(PROGRAM_NAME ": Question", 
+ : BC_Window(MWindow::create_title(N_("Question")),
  	mwindow->gui->get_abs_cursor_x(1), 
 	mwindow->gui->get_abs_cursor_y(1), 
 	375, 

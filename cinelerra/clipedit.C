@@ -117,7 +117,7 @@ void ClipEdit::run()
 				}
 				if (!name_ok_or_cancel)
 				{
-					ErrorBox error(PROGRAM_NAME ": Error", 
+					ErrorBox error(MWindow::create_title(N_("Error")),
 						mwindow->gui->get_abs_cursor_x(1), 
 						mwindow->gui->get_abs_cursor_y(1));
 					error.create_objects(_("A clip with that name already exists."));
@@ -174,7 +174,7 @@ void ClipEdit::run()
 
 
 ClipEditWindow::ClipEditWindow(MWindow *mwindow, ClipEdit *thread)
- : BC_Window(PROGRAM_NAME ": Clip Info", 
+ : BC_Window(MWindow::create_title(N_("Clip Info")),
  	mwindow->gui->get_abs_cursor_x(1) - 400 / 2,
 	mwindow->gui->get_abs_cursor_y(1) - 350 / 2,
 	400, 

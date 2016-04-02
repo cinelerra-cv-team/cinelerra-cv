@@ -203,7 +203,7 @@ RecordMonitorGUI::RecordMonitorGUI(MWindow *mwindow,
 	Record *record, 
 	RecordMonitor *thread,
 	int min_w)
- : BC_Window(PROGRAM_NAME ": Video in", 
+ : BC_Window(MWindow::create_title(N_("Video in")),
  			mwindow->session->rmonitor_x,
 			mwindow->session->rmonitor_y,
  			mwindow->session->rmonitor_w, 
@@ -594,7 +594,7 @@ return 0;
 
 	scale = (int)(thread->get_scale(thread->record->video_window_w) * 100 + 0.5);
 
-	sprintf(string, PROGRAM_NAME ": Video in %d%%", scale);
+	sprintf(string, MWindow::create_title(N_("Video in %d%%")), scale);
 	BC_Window::set_title(string);
 	return 0;
 }

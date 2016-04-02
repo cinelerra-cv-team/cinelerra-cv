@@ -78,7 +78,7 @@ void LabelEdit::run()
 
 
 LabelEditWindow::LabelEditWindow(MWindow *mwindow, LabelEdit *thread)
- : BC_Window(PROGRAM_NAME ": Label Info", 
+ : BC_Window(MWindow::create_title(N_("Label Info")),
  	mwindow->gui->get_abs_cursor_x(1) - 400 / 2,
 	mwindow->gui->get_abs_cursor_y(1) - 350 / 2,
 	400, 

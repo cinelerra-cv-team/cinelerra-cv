@@ -261,7 +261,7 @@ int SaveRenderProfileButton::handle_event()
 		slot = profile->get_new_profile_slot();
 		if (slot < 0)
 		{
-			ErrorBox error_box(PROGRAM_NAME ": Error",
+			ErrorBox error_box(MWindow::create_title(N_("Error")),
 					   profile->mwindow->gui->get_abs_cursor_x(1),
 					   profile->mwindow->gui->get_abs_cursor_y(1));
 			error_box.create_objects("Maximum number of render profiles reached");

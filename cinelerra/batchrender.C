@@ -434,7 +434,7 @@ int BatchRenderThread::test_edl_files()
 				sprintf(string, _("EDL %s not found.\n"), jobs.values[i]->edl_path);
 				if(mwindow)
 				{
-					ErrorBox error_box(PROGRAM_NAME ": Error",
+					ErrorBox error_box(MWindow::create_title(N_("Error")),
 						mwindow->gui->get_abs_cursor_x(1),
 						mwindow->gui->get_abs_cursor_y(1));
 					error_box.create_objects(string);
@@ -661,7 +661,7 @@ BatchRenderGUI::BatchRenderGUI(MWindow *mwindow,
 	int y,
 	int w,
 	int h)
- : BC_Window(PROGRAM_NAME ": Batch Render", 
+ : BC_Window(MWindow::create_title(N_("Batch Render")),
 	x,
 	y,
 	w, 

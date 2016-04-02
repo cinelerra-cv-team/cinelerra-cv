@@ -316,7 +316,7 @@ SetFormatWindow::SetFormatWindow(MWindow *mwindow,
 	SetFormatThread *thread,
 	int x,
 	int y)
- : BC_Window(PROGRAM_NAME ": Set Format",
+ : BC_Window(MWindow::create_title(N_("Set Format")),
  	x,
 	y,
 	mwindow->theme->setformat_w,

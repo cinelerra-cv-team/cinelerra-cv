@@ -253,7 +253,7 @@ void Render::start_interactive()
 			render_window->raise_window();
 		}
 		else {
-			ErrorBox error_box(PROGRAM_NAME ": Error",
+			ErrorBox error_box(MWindow::create_title(N_("Error")),
 					   mwindow->gui->get_abs_cursor_x(1),
 					   mwindow->gui->get_abs_cursor_y(1));
 			error_box.create_objects("Already rendering");
@@ -275,7 +275,7 @@ void Render::start_batches(ArrayList<BatchRenderJob*> *jobs)
 	}
 	else
 	{
-		ErrorBox error_box(PROGRAM_NAME ": Error",
+		ErrorBox error_box(MWindow::create_title(N_("Error")),
 			mwindow->gui->get_abs_cursor_x(1),
 			mwindow->gui->get_abs_cursor_y(1));
 		error_box.create_objects("Already rendering");
@@ -805,7 +805,7 @@ printf("Render::render 90\n");
 		{
 			if(mwindow)
 			{
-				ErrorBox error_box(PROGRAM_NAME ": Error",
+				ErrorBox error_box(MWindow::create_title(N_("Error")),
 					mwindow->gui->get_abs_cursor_x(1),
 					mwindow->gui->get_abs_cursor_y(1));
 				error_box.create_objects(_("Error rendering data."));
@@ -1051,7 +1051,7 @@ int Render::save_defaults(Asset *asset)
 
 
 RenderWindow::RenderWindow(MWindow *mwindow, Render *render, Asset *asset)
- : BC_Window(PROGRAM_NAME ": Render", 
+ : BC_Window(MWindow::create_title(N_("Render")),
  	mwindow->gui->get_root_w(0, 1) / 2 - WIDTH / 2,
 	mwindow->gui->get_root_h(1) / 2 - HEIGHT / 2,
  	WIDTH, 

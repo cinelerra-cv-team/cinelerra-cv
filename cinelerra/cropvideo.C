@@ -94,7 +94,7 @@ int CropVideo::save_defaults()
 }
 
 CropVideoWindow::CropVideoWindow(MWindow *mwindow, CropVideo *thread)
- : BC_Window(PROGRAM_NAME ": Crop", 380, 75, 0, 0)
+ : BC_Window(MWindow::create_title(N_("Crop")), 380, 75, 0, 0)
 {
 	this->mwindow = mwindow;
 	this->thread = thread;

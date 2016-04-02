@@ -57,7 +57,7 @@
 
 
 RecordGUI::RecordGUI(MWindow *mwindow, Record *record)
- : BC_Window(PROGRAM_NAME ": Recording", 
+ : BC_Window(MWindow::create_title(N_("Recording")),
  	mwindow->session->rwindow_x, 
 	mwindow->session->rwindow_y, 
 	mwindow->session->rwindow_w, 
@@ -196,7 +196,7 @@ int RecordGUI::create_objects()
 		batch_path->get_x() + batch_path->get_w(), 
 		y,
 		record->default_asset->path,
-		PROGRAM_NAME ": Record path",
+		MWindow::create_title(N_("Record path")),
 		_("Select a file to record to:"),
 		0));
 	x2 = MAX(x2, batch_path->get_w() + batch_browse->get_w());

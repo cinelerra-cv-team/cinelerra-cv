@@ -364,7 +364,7 @@ int CWindowCropOK::keypress_event()
 CWindowCropGUI::CWindowCropGUI(MWindow *mwindow, CWindowTool *thread)
  : CWindowToolGUI(mwindow, 
  	thread,
-	PROGRAM_NAME ": Crop",
+	MWindow::create_title(N_("Crop")),
 	330,
 	100)
 {
@@ -475,7 +475,7 @@ void CWindowCropGUI::update()
 CWindowEyedropGUI::CWindowEyedropGUI(MWindow *mwindow, CWindowTool *thread)
  : CWindowToolGUI(mwindow, 
  	thread,
-	PROGRAM_NAME ": Color",
+	MWindow::create_title(N_("Color")),
 	150,
 	150)
 {
@@ -631,7 +631,7 @@ int CWindowTangentToggle::handle_event()
 CWindowCameraGUI::CWindowCameraGUI(MWindow *mwindow, CWindowTool *thread)
  : CWindowToolGUI(mwindow, 
  	thread,
-	PROGRAM_NAME ": Camera",
+	MWindow::create_title(N_("Camera")),
 	170,
 	170)
 {
@@ -1085,7 +1085,7 @@ int CWindowCameraBottom::handle_event()
 CWindowProjectorGUI::CWindowProjectorGUI(MWindow *mwindow, CWindowTool *thread)
  : CWindowToolGUI(mwindow, 
  	thread,
-	PROGRAM_NAME ": Projector",
+	MWindow::create_title(N_("Projector")),
 	170,
 	170)
 {
@@ -1912,7 +1912,7 @@ int CWindowMaskBeforePlugins::handle_event()
 CWindowMaskGUI::CWindowMaskGUI(MWindow *mwindow, CWindowTool *thread)
  : CWindowToolGUI(mwindow, 
  	thread,
-	PROGRAM_NAME ": Mask",
+	MWindow::create_title(N_("Mask")),
 	330,
 	280)
 {
@@ -2099,7 +2099,7 @@ void CWindowMaskGUI::update_preview()
 CWindowRulerGUI::CWindowRulerGUI(MWindow *mwindow, CWindowTool *thread)
  : CWindowToolGUI(mwindow, 
  	thread,
-	PROGRAM_NAME ": Ruler",
+	MWindow::create_title(N_("Ruler")),
 	320,
 	240)
 {

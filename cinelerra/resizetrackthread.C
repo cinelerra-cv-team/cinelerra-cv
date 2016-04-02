@@ -103,7 +103,7 @@ ResizeTrackWindow::ResizeTrackWindow(MWindow *mwindow,
 	ResizeTrackThread *thread,
 	int x,
 	int y)
- : BC_Window(PROGRAM_NAME ": Resize Track", 
+ : BC_Window(MWindow::create_title(N_("Resize Track")),
 				x - 320 / 2,
 				y - get_resources()->ok_images[0]->get_h() + 100 / 2,
 				340, 

@@ -132,7 +132,7 @@ void MenuEffectThread::run()
 	if(!get_recordable_tracks(default_asset))
 	{
 		sprintf(string, _("No recordable tracks specified."));
-		ErrorBox error(PROGRAM_NAME ": Error");
+		ErrorBox error(MWindow::create_title(N_("Error")));
 		error.create_objects(string);
 		error.run_window();
 		Garbage::delete_object(default_asset);
@@ -143,7 +143,7 @@ void MenuEffectThread::run()
 	if(!plugindb->total)
 	{
 		sprintf(string, _("No plugins available."));
-		ErrorBox error(PROGRAM_NAME ": Error");
+		ErrorBox error(MWindow::create_title(N_("Error")));
 		error.create_objects(string);
 		error.run_window();
 		Garbage::delete_object(default_asset);
@@ -243,7 +243,7 @@ void MenuEffectThread::run()
 	if(!result && !strlen(default_asset->path))
 	{
 		result = 1;        // no output path given
-		ErrorBox error(PROGRAM_NAME ": Error");
+		ErrorBox error(MWindow::create_title(N_("Error")));
 		error.create_objects(_("No output file specified."));
 		error.run_window();
 	}
@@ -251,7 +251,7 @@ void MenuEffectThread::run()
 	if(!result && plugin_number < 0)
 	{
 		result = 1;        // no output path given
-		ErrorBox error(PROGRAM_NAME ": Error");
+		ErrorBox error(MWindow::create_title(N_("Error")));
 		error.create_objects(_("No effect selected."));
 		error.run_window();
 	}
@@ -293,7 +293,7 @@ void MenuEffectThread::run()
 	if(!result && total_length <= 0)
 	{
 		result = 1;        // no output path given
-		ErrorBox error(PROGRAM_NAME ": Error");
+		ErrorBox error(MWindow::create_title(N_("Error")));
 		error.create_objects(_("No selected range to process."));
 		error.run_window();
 	}
@@ -308,9 +308,6 @@ void MenuEffectThread::run()
 // Open a prompt GUI
 			MenuEffectPrompt prompt(mwindow);
 			prompt.create_objects();
-			char title[BCTEXTLEN];
-			sprintf(title, PROGRAM_NAME ": %s", plugin->title);
-
 // Open the plugin GUI
 			plugin->set_mwindow(mwindow);
 			plugin->set_keyframe(&plugin_data);
@@ -455,7 +452,7 @@ void MenuEffectThread::run()
 			{
 // open failed
 				sprintf(string, _("Couldn't open %s"), asset->path);
-				ErrorBox error(PROGRAM_NAME ": Error");
+				ErrorBox error(MWindow::create_title(N_("Error")));
 				error.create_objects(string);
 				error.run_window();
 				result = 1;
@@ -569,7 +566,7 @@ MenuEffectWindow::MenuEffectWindow(MWindow *mwindow,
 	MenuEffectThread *menueffects, 
 	ArrayList<BC_ListBoxItem*> *plugin_list, 
 	Asset *asset)
- : BC_Window(PROGRAM_NAME ": Render effect", 
+ : BC_Window(MWindow::create_title(N_("Render effect")),
  		mwindow->gui->get_abs_cursor_x(1),
 		mwindow->gui->get_abs_cursor_y(1) - mwindow->session->menueffect_h / 2,
 		mwindow->session->menueffect_w, 
@@ -751,7 +748,7 @@ int MenuEffectWindowList::handle_event()
 #define PROMPT_TEXT _("Set up effect panel and hit \"OK\"")
 
 MenuEffectPrompt::MenuEffectPrompt(MWindow *mwindow)
- : BC_Window(PROGRAM_NAME ": Effect Prompt", 
+ : BC_Window(MWindow::create_title(N_("Effect Prompt")),
  		mwindow->gui->get_abs_cursor_x(1) - 260 / 2,
 		mwindow->gui->get_abs_cursor_y(1) - 300,
  		MenuEffectPrompt::calculate_w(mwindow->gui), 

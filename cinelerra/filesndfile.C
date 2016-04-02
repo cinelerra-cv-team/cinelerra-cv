@@ -27,7 +27,7 @@
 #include "file.h"
 #include "filesndfile.h"
 #include "language.h"
-#include "mwindow.inc"
+#include "mwindow.h"
 #include "mainerror.h"
 
 FileSndFile::FileSndFile(Asset *asset, File *file)
@@ -371,7 +371,7 @@ void FileSndFile::get_parameters(BC_WindowBase *parent_window,
 }
 
 SndFileConfig::SndFileConfig(BC_WindowBase *parent_window, Asset *asset)
- : BC_Window(PROGRAM_NAME ": Audio Compression",
+ : BC_Window(MWindow::create_title(N_("Audio Compression")),
  	parent_window->get_abs_cursor_x(1),
  	parent_window->get_abs_cursor_y(1),
 	250,

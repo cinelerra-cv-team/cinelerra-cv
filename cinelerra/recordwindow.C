@@ -28,7 +28,7 @@
 #include "videodevice.inc"
 
 RecordWindow::RecordWindow(MWindow *mwindow, Record *record, int x, int y)
- : BC_Window(PROGRAM_NAME ": Record", 
+ : BC_Window(MWindow::create_title(N_("Record")),
 	x,
 	y,
  	RECORD_WINDOW_WIDTH, 

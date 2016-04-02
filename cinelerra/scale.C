@@ -194,7 +194,7 @@ int ScaleThread::update_aspect(ScaleWindow *window)
 
 
 ScaleWindow::ScaleWindow(ScaleThread *thread)
- : BC_Window(PROGRAM_NAME ": Scale", 370, 260, 0, 0)
+ : BC_Window(MWindow::create_title(N_("Scale")), 370, 260, 0, 0)
 { this->thread = thread; }
 
 ScaleWindow::~ScaleWindow()

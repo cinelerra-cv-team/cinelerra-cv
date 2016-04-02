@@ -26,7 +26,7 @@
 
 
 FormatAWindow::FormatAWindow(Asset *asset, int *dither)
- : BC_Window(PROGRAM_NAME ": File format", 410, 
+ : BC_Window(MWindow::create_title(N_("File format")), 410,
  	(asset->format == FILE_WAV || asset->format == FILE_MOV) ? 115 : 185, 
 	0, 0)
 { this->asset = asset; this->dither = dither; }
@@ -87,7 +87,7 @@ int FormatAWindow::close_event()
 
 
 FormatVWindow::FormatVWindow(Asset *asset, int recording)
- : BC_Window(PROGRAM_NAME ": File format", 410, 115, 0, 0)
+ : BC_Window(MWindow::create_title(N_("File format")), 410, 115, 0, 0)
 { this->asset = asset; this->recording = recording; }
 
 FormatVWindow::~FormatVWindow()

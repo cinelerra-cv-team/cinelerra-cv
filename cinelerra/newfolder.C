@@ -34,7 +34,7 @@
 
 
 NewFolder::NewFolder(MWindow *mwindow, AWindowGUI *awindow, int x, int y)
- : BC_Window(PROGRAM_NAME ": New folder", 
+ : BC_Window(MWindow::create_title(N_("New folder")),
  	x, 
 	y, 
 	320, 

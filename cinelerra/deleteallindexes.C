@@ -101,7 +101,7 @@ printf("DeleteAllIndexes::run %s\n", string2);
 
 
 ConfirmDeleteAllIndexes::ConfirmDeleteAllIndexes(MWindow *mwindow, char *string)
- : BC_Window(PROGRAM_NAME ": Delete All Indexes", 
+ : BC_Window(MWindow::create_title(N_("Delete All Indexes")),
  		mwindow->gui->get_abs_cursor_x(1), 
 		mwindow->gui->get_abs_cursor_y(1), 
 		340, 

@@ -68,7 +68,7 @@ void ReIndex::run()
 }
 
 ReIndexWindow::ReIndexWindow(char *display = "")
- : BC_Window(display, MEGREY, PROGRAM_NAME ": Redraw Indexes", 340, 140, 340, 140)
+ : BC_Window(display, MEGREY, MWindow::create_title(N_("Redraw Indexes")), 340, 140, 340, 140)
 {
 }
 

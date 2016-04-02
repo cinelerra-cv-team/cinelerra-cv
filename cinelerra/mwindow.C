@@ -291,6 +291,13 @@ char *MWindow::get_preset_name(int index)
 	return (char*)format_presets[index].name;
 }
 
+char *MWindow::create_title(const char *name)
+{
+	static char title_string[BCTEXTLEN];
+
+	sprintf(title_string, "%s - " PROGRAM_NAME, _(name));
+	return title_string;
+}
 
 void MWindow::init_defaults(BC_Hash* &defaults, char *config_path)
 {
@@ -2307,7 +2314,7 @@ int MWindow::set_filename(const char *filename)
 			FileSystem dir;
 			char string[BCTEXTLEN], string2[BCTEXTLEN];
 			dir.extract_name(string, filename);
-			sprintf(string2, PROGRAM_NAME ": %s", string);
+			sprintf(string2,"%s - " PROGRAM_NAME, string);
 			gui->set_title(string2);
 		}
 	}

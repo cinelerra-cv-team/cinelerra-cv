@@ -26,7 +26,7 @@
 #include "filevorbis.h"
 #include "guicast.h"
 #include "language.h"
-#include "mwindow.inc"
+#include "mwindow.h"
 #include "mainerror.h"
 
 #include <errno.h>
@@ -551,7 +551,7 @@ int FileVorbis::read_samples_float(float *buffer, int64_t len)
 
 VorbisConfigAudio::VorbisConfigAudio(BC_WindowBase *parent_window, 
 	Asset *asset)
- : BC_Window(PROGRAM_NAME ": Audio Compression",
+ : BC_Window(MWindow::create_title(N_("Audio Compression")),
  	parent_window->get_abs_cursor_x(1),
  	parent_window->get_abs_cursor_y(1),
 	350,
