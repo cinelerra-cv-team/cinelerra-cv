@@ -34,12 +34,16 @@ cinelerra/exportedl.C
 # cinelerra/featheredits.C
 cinelerra/file.C
 cinelerra/file.inc
+cinelerra/fileac3.C
 cinelerra/fileavi.C
+cinelerra/filedv.C
+cinelerra/fileexr.C
 cinelerra/fileformat.C
 cinelerra/filejpeg.C
 # cinelerra/filejpeglist.C
 cinelerra/filemov.C
 cinelerra/filempeg.C
+cinelerra/fileogg.C
 cinelerra/filepng.C
 cinelerra/filesndfile.C
 cinelerra/filetga.C
@@ -52,14 +56,18 @@ cinelerra/formatpopup.C
 cinelerra/formatpresets.C
 cinelerra/formattools.C
 # cinelerra/formatwindow.C
+cinelerra/gwindowgui.C
 cinelerra/indexfile.C
 cinelerra/indexthread.C
 cinelerra/interfaceprefs.C
 cinelerra/keyframepopup.C
+cinelerra/labeledit.C
 cinelerra/labelnavigate.C
+cinelerra/levelwindowgui.C
 cinelerra/loadfile.C
 cinelerra/loadmode.C
 cinelerra/main.C
+cinelerra/mainerror.C
 cinelerra/mainindexes.C
 cinelerra/mainmenu.C
 cinelerra/mainprogress.C
@@ -68,7 +76,9 @@ cinelerra/menueffects.C
 #cinelerra/messages.C
 cinelerra/meterpanel.C
 cinelerra/mwindow.C
+cinelerra/mwindow.h
 cinelerra/mwindowedit.C
+cinelerra/mwindowgui.C
 cinelerra/new.C
 cinelerra/newfolder.C
 cinelerra/packagerenderer.C
