@@ -264,6 +264,11 @@ int SvgMain::process_realtime(VFrame *input_ptr, VFrame *output_ptr)
 	unsigned char * raw_buffer;
 	struct raw_struct *raw_data;
 
+// FIXME This plugin does not work
+	if(input_ptr != output_ptr)
+		output_ptr->copy_from(input_ptr);
+	return 0;
+
 	need_reconfigure |= load_configuration();
 
 	if (config.svg_file[0] == 0) {
