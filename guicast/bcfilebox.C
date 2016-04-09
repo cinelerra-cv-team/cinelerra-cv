@@ -882,17 +882,16 @@ const char* BC_FileBox::columntype_to_text(int type)
 	switch(type)
 	{
 		case FILEBOX_NAME:
-			return FILEBOX_NAME_TEXT;
-			break;
+			return _("File");
+
 		case FILEBOX_SIZE:
-			return FILEBOX_SIZE_TEXT;
-			break;
+			return _("Size");
+
 		case FILEBOX_DATE:
-			return FILEBOX_DATE_TEXT;
-			break;
+			return _("Date");
+
 		case FILEBOX_EXTENSION:
-			return FILEBOX_EXTENSION_TEXT;
-			break; 
+			return _("Ext.");
 	}
 	return "";
 }
