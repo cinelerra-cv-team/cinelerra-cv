@@ -383,6 +383,7 @@ int NewWindow::create_objects()
 	// --------------------
 	add_subwindow(new BC_Title(x, y, _("Interlace mode:")));
 	add_subwindow(textbox = new BC_TextBox(x + 100, y, 140, 1, ""));
+	textbox->disable(1);
 	add_subwindow(interlace_pulldown = new InterlacemodePulldown(mwindow, 
 		textbox, 
 		&new_edl->session->interlace_mode,
@@ -877,11 +878,10 @@ InterlacemodePulldown::InterlacemodePulldown(MWindow *mwindow,
 	0,
 	1)
 {
-	char string[BCTEXTLEN];
 	this->mwindow = mwindow;
 	this->output_text = output_text;
 	this->output_value = output_value;
-	output_text->update(interlacemode_to_text());
+	output_text->update(MWindow::ilacemode_to_text(*output_value));
 }
 
 int InterlacemodePulldown::handle_event()
@@ -891,16 +891,10 @@ int InterlacemodePulldown::handle_event()
 	return 1;
 }
 
-const char* InterlacemodePulldown::interlacemode_to_text()
-{
-	ilacemode_to_text(this->string,*output_value);
-	return (this->string);
-}
-
 int InterlacemodePulldown::update(int interlace_mode)
 {
 	*output_value = interlace_mode;
-	output_text->update(interlacemode_to_text());
+	output_text->update(MWindow::ilacemode_to_text(interlace_mode));
 	return 1;
 }
 

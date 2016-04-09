@@ -357,13 +357,11 @@ public:
 				int x,
 				int y);
 	int handle_event();
-	const char* interlacemode_to_text();
+
 	int update(int value);
 	MWindow *mwindow;
 	BC_TextBox *output_text;
 	int *output_value;
-private:
-  	char string[BCTEXTLEN];
 };
 
 class InterlacefixmethodItem : public BC_ListBoxItem
@@ -383,12 +381,10 @@ public:
 				   int x, 
 				   int y);
 	int handle_event();
-	const char* interlacefixmethod_to_text();
+
 	MWindow *mwindow;
 	BC_TextBox *output_text;
 	int *output_value;
-private:
-  	char string[BCTEXTLEN];
 };
 
 

@@ -524,6 +524,7 @@ void SetFormatWindow::create_objects()
 		140, 
 		1, 
 		""));
+	textbox->disable(1);
 	add_subwindow(interlace_pulldown = new InterlacemodePulldown(mwindow, 
 		textbox,
 		&(thread->new_settings->session->interlace_mode),
