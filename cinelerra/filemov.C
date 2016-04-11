@@ -297,7 +297,7 @@ void FileMOV::asset_to_format()
 	fix_codecs(asset);
 
 // Fix up the Quicktime file.
-	quicktime_set_copyright(fd, _("Made with Cinelerra for Linux"));
+	quicktime_set_copyright(fd, _("Made with Cinelerra-CV for Linux"));
 	quicktime_set_info(fd, "Quicktime for Linux");
 
 	if(asset->audio_data)
