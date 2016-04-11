@@ -109,7 +109,7 @@ void StatusBar::set_message(char *text)
 void StatusBar::default_message()
 {
 	status_text->set_color(mwindow->theme->message_normal);
-	status_text->update(_("Welcome to Cinelerra."));
+	status_text->update(_("Welcome to Cinelerra-CV."));
 }
 
 
