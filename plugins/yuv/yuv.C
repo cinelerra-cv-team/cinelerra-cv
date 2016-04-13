@@ -68,7 +68,6 @@ class YUVWindow : public PluginWindow
 public:
 	YUVWindow(YUVEffect *plugin, int x, int y);
 	void create_objects();
-	int close_event();
 	YUVLevel *y, *u, *v;
 	YUVEffect *plugin;
 };
@@ -197,13 +196,6 @@ void YUVWindow::create_objects()
 
 	show_window();
 	flush();
-}
-
-int YUVWindow::close_event()
-{
-// Set result to 1 to indicate a client side close
-	set_done(1);
-	return 1;
 }
 
 

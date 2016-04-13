@@ -48,7 +48,6 @@ public:
 	~ColorBalanceWindow();
 
 	int create_objects();
-	int close_event();
 	void update();
 
 	ColorBalanceMain *client;

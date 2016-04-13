@@ -57,7 +57,6 @@ public:
 	LoopAudioWindow(LoopAudio *plugin, int x, int y);
 	~LoopAudioWindow();
 	void create_objects();
-	int close_event();
 	LoopAudio *plugin;
 	LoopAudioSamples *samples;
 };
@@ -131,7 +130,6 @@ void LoopAudioWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(LoopAudioWindow)
 
 
 PLUGIN_THREAD_OBJECT(LoopAudio, LoopAudioThread, LoopAudioWindow)

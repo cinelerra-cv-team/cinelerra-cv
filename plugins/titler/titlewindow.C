@@ -350,12 +350,6 @@ void  TitleWindow::next_font()
 }
 
 
-int TitleWindow::close_event()
-{
-// Set result to 1 to indicate a client side close
-	set_done(1);
-	return 1;
-}
 
 void TitleWindow::update_color()
 {

@@ -113,7 +113,6 @@ int InterpolatePixelsWindow::create_objects()
 }
 
 
-WINDOW_CLOSE_EVENT(InterpolatePixelsWindow)
 
 
 

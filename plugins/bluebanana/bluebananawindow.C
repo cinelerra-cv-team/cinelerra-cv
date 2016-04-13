@@ -2296,10 +2296,6 @@ int BluebananaWindow::create_objects(){
   return 0;
 }
 
-int BluebananaWindow::close_event(){
-  set_done(1);
-  return 1;
-}
 
 // adds one to config push refcount
 // updates any internal state immediately

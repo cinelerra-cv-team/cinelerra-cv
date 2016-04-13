@@ -134,7 +134,6 @@ class FreeverbWindow : public PluginWindow
 public:
 	FreeverbWindow(FreeverbEffect *plugin, int x, int y);
 	void create_objects();
-	int close_event();
 
 	FreeverbEffect *plugin;
 	
@@ -350,12 +349,6 @@ void FreeverbWindow::create_objects()
 	flush();
 }
 
-int FreeverbWindow::close_event()
-{
-// Set result to 1 to indicate a client side close
-	set_done(1);
-	return 1;
-}
 
 
 

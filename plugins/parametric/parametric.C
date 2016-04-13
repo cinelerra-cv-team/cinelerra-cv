@@ -483,12 +483,6 @@ SET_TRACE
 SET_TRACE	
 }
 
-int ParametricWindow::close_event()
-{
-// Set result to 1 to indicate a client side close
-	set_done(1);
-	return 1;
-}
 
 void ParametricWindow::update_gui()
 {

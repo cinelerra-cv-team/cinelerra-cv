@@ -71,11 +71,6 @@ int ScaleWin::create_objects()
 	return 0;
 }
 
-int ScaleWin::close_event()
-{
-	set_done(1);
-	return 1;
-}
 
 ScaleWidth::ScaleWidth(ScaleWin *win, 
 	ScaleMain *client, 

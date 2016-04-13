@@ -43,7 +43,6 @@ public:
 	~FlipWindow();
 	
 	void create_objects();
-	int close_event();
 	
 	FlipMain *client;
 	FlipToggle *flip_vertical;

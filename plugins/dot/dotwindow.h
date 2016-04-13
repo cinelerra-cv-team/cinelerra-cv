@@ -41,7 +41,6 @@ public:
 	~DotWindow();
 
 	int create_objects();
-	int close_event();
 
 	DotMain *client;
 };

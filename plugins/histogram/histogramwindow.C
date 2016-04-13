@@ -217,7 +217,6 @@ int HistogramWindow::create_objects()
 	return 0;
 }
 
-WINDOW_CLOSE_EVENT(HistogramWindow)
 
 int HistogramWindow::keypress_event()
 {

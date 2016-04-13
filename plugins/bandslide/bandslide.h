@@ -78,7 +78,6 @@ class BandSlideWindow : public PluginWindow
 public:
 	BandSlideWindow(BandSlideMain *plugin, int x, int y);
 	void create_objects();
-	int close_event();
 	BandSlideMain *plugin;
 	BandSlideCount *count;
 	BandSlideIn *in;

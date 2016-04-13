@@ -483,11 +483,6 @@ void PluginAClientWindow::create_objects()
 	add_subwindow(new BC_Title(x, y, string));
 }
 
-int PluginAClientWindow::close_event()
-{
-	set_done(1);
-	return 1;
-}
 
 
 

@@ -149,12 +149,6 @@ SlideWindow::SlideWindow(SlideMain *plugin, int x, int y)
 }
 
 
-int SlideWindow::close_event()
-{
-	set_done(1);
-	return 1;
-}
-
 void SlideWindow::create_objects()
 {
 	int x = 10, y = 10;

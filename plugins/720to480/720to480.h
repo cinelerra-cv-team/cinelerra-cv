@@ -37,7 +37,6 @@ public:
 	~_720to480Window();
 	
 	int create_objects();
-	int close_event();
 	int set_first_field(int first_field);
 	int set_direction(int direction);
 

@@ -105,7 +105,6 @@ public:
 	ReframeRTWindow(ReframeRT *plugin, int x, int y);
 	~ReframeRTWindow();
 	void create_objects();
-	int close_event();
 	ReframeRT *plugin;
 	ReframeRTScale *scale;
 	ReframeRTStretch *stretch;
@@ -244,7 +243,6 @@ void ReframeRTWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(ReframeRTWindow)
 
 
 PLUGIN_THREAD_OBJECT(ReframeRT, ReframeRTThread, ReframeRTWindow)

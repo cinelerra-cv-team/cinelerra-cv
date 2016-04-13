@@ -91,7 +91,6 @@ class SlideWindow : public PluginWindow
 public:
 	SlideWindow(SlideMain *plugin, int x, int y);
 	void create_objects();
-	int close_event();
 	SlideMain *plugin;
 	SlideLeft *left;
 	SlideRight *right;

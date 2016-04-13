@@ -84,7 +84,6 @@ class DenoiseFFTWindow : public PluginWindow
 public:
 	DenoiseFFTWindow(DenoiseFFTEffect *plugin, int x, int y);
 	void create_objects();
-	int close_event();
 	DenoiseFFTLevel *level;
 	DenoiseFFTSamples *samples;
 	DenoiseFFTEffect *plugin;
@@ -266,7 +265,6 @@ void DenoiseFFTWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(DenoiseFFTWindow)
 
 
 

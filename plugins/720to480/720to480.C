@@ -86,8 +86,6 @@ int _720to480Window::create_objects()
 	return 0;
 }
 
-WINDOW_CLOSE_EVENT(_720to480Window)
-
 int _720to480Window::set_first_field(int first_field)
 {
 	odd_first->update(first_field == 1);

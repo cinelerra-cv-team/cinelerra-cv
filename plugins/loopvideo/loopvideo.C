@@ -57,7 +57,6 @@ public:
 	LoopVideoWindow(LoopVideo *plugin, int x, int y);
 	~LoopVideoWindow();
 	void create_objects();
-	int close_event();
 	LoopVideo *plugin;
 	LoopVideoFrames *frames;
 };
@@ -130,7 +129,6 @@ void LoopVideoWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(LoopVideoWindow)
 
 
 PLUGIN_THREAD_OBJECT(LoopVideo, LoopVideoThread, LoopVideoWindow)

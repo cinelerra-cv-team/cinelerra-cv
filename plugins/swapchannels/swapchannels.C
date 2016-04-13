@@ -121,7 +121,6 @@ void SwapWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(SwapWindow)
 
 
 

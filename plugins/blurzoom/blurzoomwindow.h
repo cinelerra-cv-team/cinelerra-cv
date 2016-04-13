@@ -53,7 +53,6 @@ public:
 	~BlurZoomWindow();
 
 	int create_objects();
-	int close_event();
 
 	BlurZoomMain *client;
 };

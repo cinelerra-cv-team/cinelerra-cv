@@ -45,7 +45,6 @@ public:
 	~GreyCStorationWindow();
 
 	void create_objects();
-	int close_event();
 
 	GreyCStorationMain *client;
 

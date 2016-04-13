@@ -84,7 +84,6 @@ void ColorBalanceWindow::update()
 	yellow->update((int64_t)client->config.yellow);
 }
 
-WINDOW_CLOSE_EVENT(ColorBalanceWindow)
 
 ColorBalanceSlider::ColorBalanceSlider(ColorBalanceMain *client, 
 	float *output, int x, int y)

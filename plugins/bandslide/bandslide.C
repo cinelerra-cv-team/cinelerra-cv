@@ -130,12 +130,6 @@ BandSlideWindow::BandSlideWindow(BandSlideMain *plugin, int x, int y)
 }
 
 
-int BandSlideWindow::close_event()
-{
-	set_done(1);
-	return 1;
-}
-
 void BandSlideWindow::create_objects()
 {
 	int x = 10, y = 10;

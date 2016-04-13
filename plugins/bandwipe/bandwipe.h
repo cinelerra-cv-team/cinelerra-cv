@@ -78,7 +78,6 @@ class BandWipeWindow : public PluginWindow
 public:
 	BandWipeWindow(BandWipeMain *plugin, int x, int y);
 	void create_objects();
-	int close_event();
 	BandWipeMain *plugin;
 	BandWipeCount *count;
 	BandWipeIn *in;

@@ -26,7 +26,6 @@
 #include "findobjectwindow.h"
 #include "theme.h"
 
-WINDOW_CLOSE_EVENT(FindObjectWindow)
 
 FindObjectWindow::FindObjectWindow(FindObjectMain *plugin, int x, int y)
  : PluginWindow(plugin->get_gui_string(),

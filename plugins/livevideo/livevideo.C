@@ -103,7 +103,6 @@ public:
 	~LiveVideoWindow();
 
 	void create_objects();
-	int close_event();
 	int resize_event(int w, int h);
 
 	ArrayList<BC_ListBoxItem*> channel_list;
@@ -240,7 +239,6 @@ void LiveVideoWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(LiveVideoWindow)
 
 int LiveVideoWindow::resize_event(int w, int h)
 {

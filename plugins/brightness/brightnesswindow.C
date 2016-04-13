@@ -70,12 +70,6 @@ int BrightnessWindow::create_objects()
 	return 0;
 }
 
-int BrightnessWindow::close_event()
-{
-// Set result to 1 to indicate a client side close
-	set_done(1);
-	return 1;
-}
 
 BrightnessSlider::BrightnessSlider(BrightnessMain *client, 
 	float *output, 

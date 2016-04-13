@@ -97,7 +97,6 @@ void DelayVideoWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(DelayVideoWindow)
 
 void DelayVideoWindow::update_gui()
 {

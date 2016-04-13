@@ -202,7 +202,6 @@ public:
 	~FindObjectWindow();
 
 	void create_objects();
-	int close_event();
 	char* get_radius_title();
 
 	FindObjectGlobalRange *global_range_w;

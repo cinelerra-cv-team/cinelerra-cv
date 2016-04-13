@@ -73,7 +73,6 @@ public:
 	~DelayAudioWindow();
 	
 	int create_objects();
-	int close_event();
 	void update_gui();
 
 	DelayAudio *plugin;

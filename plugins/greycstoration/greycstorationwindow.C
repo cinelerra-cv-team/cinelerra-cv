@@ -70,12 +70,6 @@ void GreyCStorationWindow::create_objects()
 	flush();
 }
 
-int GreyCStorationWindow::close_event()
-{
-	set_done(1);
-	return 1;
-}
-
 
 // amp slider implementation
 

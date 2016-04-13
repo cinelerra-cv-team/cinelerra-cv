@@ -105,7 +105,6 @@ public:
 	~DownSampleWindow();
 	
 	int create_objects();
-	int close_event();
 
 	DownSampleToggle *r, *g, *b, *a;
 	DownSampleSize *h, *v, *h_x, *v_y;
@@ -334,13 +333,6 @@ int DownSampleWindow::create_objects()
 	show_window();
 	flush();
 	return 0;
-}
-
-int DownSampleWindow::close_event()
-{
-// Set result to 1 to indicate a plugin side close
-	set_done(1);
-	return 1;
 }
 
 

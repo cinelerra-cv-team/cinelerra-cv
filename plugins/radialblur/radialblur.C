@@ -104,7 +104,6 @@ public:
 	~RadialBlurWindow();
 
 	int create_objects();
-	int close_event();
 
 	RadialBlurSize *x, *y, *steps, *angle;
 	RadialBlurToggle *r, *g, *b, *a;
@@ -306,7 +305,6 @@ int RadialBlurWindow::create_objects()
 	return 0;
 }
 
-WINDOW_CLOSE_EVENT(RadialBlurWindow)
 
 
 

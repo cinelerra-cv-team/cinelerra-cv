@@ -119,7 +119,6 @@ void SpectrogramWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(SpectrogramWindow)
 
 
 void SpectrogramWindow::update_gui()

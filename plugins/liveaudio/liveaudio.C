@@ -61,7 +61,6 @@ public:
 	~LiveAudioWindow();
 
 	void create_objects();
-	int close_event();
 
 	LiveAudio *plugin;
 };
@@ -148,7 +147,6 @@ void LiveAudioWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(LiveAudioWindow)
 
 
 

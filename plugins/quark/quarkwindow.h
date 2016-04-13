@@ -58,7 +58,6 @@ public:
 	~SharpenWindow();
 	
 	int create_objects();
-	int close_event();
 	
 	SharpenMain *client;
 	SharpenSlider *sharpen_slider;

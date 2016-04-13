@@ -66,15 +66,6 @@ PluginClient* new_plugin(PluginServer *server) \
 }
 
 
-#define WINDOW_CLOSE_EVENT(window_class) \
-int window_class::close_event() \
-{ \
-/* Set result to 1 to indicate a client side close */ \
-	set_done(1); \
-	return 1; \
-}
-
-
 #define PLUGIN_THREAD_HEADER(plugin_class, thread_class, window_class) \
 class thread_class : public Thread \
 { \
@@ -249,7 +240,6 @@ public:
 	virtual ~PluginClientWindow();
 	
 	virtual int translation_event();
-	virtual int close_event();
 	
 	PluginClient *client;
 };

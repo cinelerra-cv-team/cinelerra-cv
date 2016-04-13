@@ -261,7 +261,6 @@ void MotionWindow::update_mode()
 }
 
 
-WINDOW_CLOSE_EVENT(MotionWindow)
 
 
 

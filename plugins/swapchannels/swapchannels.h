@@ -92,7 +92,6 @@ public:
 
 
 	void create_objects();
-	int close_event();
 
 	SwapMain *plugin;
 	SwapMenu *red;

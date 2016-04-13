@@ -85,7 +85,6 @@ public:
 	ShiftInterlaceWindow(ShiftInterlaceMain *plugin, int x, int y);
 
 	void create_objects();
-	int close_event();
 
 	ShiftInterlaceOdd *odd_offset;
 	ShiftInterlaceEven *even_offset;
@@ -209,7 +208,6 @@ void ShiftInterlaceWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(ShiftInterlaceWindow)
 
 ShiftInterlaceOdd::ShiftInterlaceOdd(ShiftInterlaceMain *plugin, int x, int y)
  : BC_ISlider(x,

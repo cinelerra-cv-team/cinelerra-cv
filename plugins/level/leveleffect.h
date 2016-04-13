@@ -60,8 +60,6 @@ class SoundLevelWindow : public PluginWindow
 public:
 	SoundLevelWindow(SoundLevelEffect *plugin, int x, int y);
 	void create_objects();
-	int close_event();
-
 
 	BC_Title *soundlevel_max;
 	BC_Title *soundlevel_rms;

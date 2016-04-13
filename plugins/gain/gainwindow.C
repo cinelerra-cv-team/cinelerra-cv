@@ -60,7 +60,6 @@ int GainWindow::create_objects()
 	return 0;
 }
 
-WINDOW_CLOSE_EVENT(GainWindow)
 
 
 

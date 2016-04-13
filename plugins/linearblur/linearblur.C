@@ -102,7 +102,6 @@ public:
 	~LinearBlurWindow();
 
 	int create_objects();
-	int close_event();
 
 	LinearBlurSize *angle, *steps, *radius;
 	LinearBlurToggle *r, *g, *b, *a;
@@ -311,7 +310,6 @@ int LinearBlurWindow::create_objects()
 	return 0;
 }
 
-WINDOW_CLOSE_EVENT(LinearBlurWindow)
 
 
 

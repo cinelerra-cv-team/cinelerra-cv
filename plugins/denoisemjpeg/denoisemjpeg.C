@@ -429,13 +429,6 @@ void DenoiseMJPEGWindow::update_mode(int value)
 	fast->update(value == 2);
 }
 
-int DenoiseMJPEGWindow::close_event()
-{
-	set_done(1);
-	return 1;
-}
-
-
 
 
 

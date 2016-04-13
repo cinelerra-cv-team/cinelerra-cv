@@ -68,7 +68,6 @@ public:
 	OverlayAudioWindow(OverlayAudio *plugin, int x, int y);
 
 	int create_objects();
-	int close_event();
 
 	OverlayAudio *plugin;
 	OutputTrack *output;
@@ -167,7 +166,6 @@ int OverlayAudioWindow::create_objects()
 	return 0;
 }
 
-WINDOW_CLOSE_EVENT(OverlayAudioWindow)
 
 
 

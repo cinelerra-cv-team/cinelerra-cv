@@ -112,7 +112,6 @@ public:
 	~OverlayWindow();
 
 	void create_objects();
-	int close_event();
 
 	Overlay *plugin;
 	OverlayMode *mode;
@@ -284,7 +283,6 @@ void OverlayWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(OverlayWindow)
 
 
 

@@ -63,7 +63,6 @@ public:
 	~SynthWindow();
 
 	int create_objects();
-	int close_event();
 	void update_gui();
 	int waveform_to_text(char *text, int waveform);
 	void update_scrollbar();

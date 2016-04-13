@@ -153,7 +153,6 @@ public:
 	~ThresholdWindow();
 	
 	void create_objects();
-	int close_event();
 	void update_low_color();
 	void update_mid_color();
 	void update_high_color();

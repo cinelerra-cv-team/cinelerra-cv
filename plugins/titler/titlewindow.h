@@ -73,7 +73,6 @@ public:
 	~TitleWindow();
 	
 	int create_objects();
-	int close_event();
 	void update_color();
 	void update_justification();
 	void update();

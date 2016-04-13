@@ -941,7 +941,6 @@ void CompressorWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(CompressorWindow)
 
 void CompressorWindow::draw_scales()
 {

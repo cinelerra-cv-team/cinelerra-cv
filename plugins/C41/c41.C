@@ -103,7 +103,6 @@ class C41Window : public PluginWindow
 public:
 	C41Window(C41Effect *plugin, int x, int y);
 	void create_objects();
-	int close_event();
 	void update();
 	void update_magic();
 	C41Enable *active;
@@ -376,7 +375,6 @@ void C41Window::update_magic()
 	gamma_b->update(plugin->values.gamma_b);
 }
 
-WINDOW_CLOSE_EVENT(C41Window);
 PLUGIN_THREAD_OBJECT(C41Effect, C41Thread, C41Window);
 
 // C41Effect

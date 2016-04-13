@@ -200,7 +200,6 @@ public:
 	~Color3WayWindow();
 
 	void create_objects();
-	int close_event();
 	void update();
 
 	Color3WayMain *plugin;

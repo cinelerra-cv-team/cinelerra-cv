@@ -71,7 +71,6 @@ public:
 	~FreezeFrameWindow();
 	
 	int create_objects();
-	int close_event();
 	
 	FreezeFrameMain *client;
 	FreezeFrameToggle *enabled;

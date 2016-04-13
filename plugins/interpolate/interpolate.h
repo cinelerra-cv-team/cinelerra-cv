@@ -72,7 +72,6 @@ public:
 	~InterpolatePixelsWindow();
 	
 	int create_objects();
-	int close_event();
 
 	InterpolatePixelsMain *client;
 	InterpolatePixelsOffset *x_offset;

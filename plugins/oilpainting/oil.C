@@ -87,7 +87,6 @@ public:
 	OilWindow(OilEffect *plugin, int x, int y);
 	~OilWindow();
 	void create_objects();
-	int close_event();
 	OilEffect *plugin;
 	OilRadius *radius;
 	OilIntensity *intensity;
@@ -285,7 +284,6 @@ void OilWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(OilWindow)
 
 
 

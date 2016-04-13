@@ -83,7 +83,6 @@ void UnsharpWindow::update()
 }
 
 
-WINDOW_CLOSE_EVENT(UnsharpWindow)
 
 
 

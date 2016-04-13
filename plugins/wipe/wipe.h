@@ -66,7 +66,6 @@ class WipeWindow : public PluginWindow
 public:
 	WipeWindow(WipeMain *plugin, int x, int y);
 	void create_objects();
-	int close_event();
 	WipeMain *plugin;
 	WipeLeft *left;
 	WipeRight *right;

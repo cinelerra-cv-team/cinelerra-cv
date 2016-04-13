@@ -42,7 +42,6 @@ public:
 	~HoloWindow();
 
 	int create_objects();
-	int close_event();
 
 	HoloMain *client;
 };

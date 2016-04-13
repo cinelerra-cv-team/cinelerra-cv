@@ -210,7 +210,6 @@ public:
 	int get_label_width();
 	int get_widget_area_height();
 	void create_objects();
-	int close_event();
 	void allocate_bitmaps();
 	void draw_labels();
 
@@ -454,7 +453,6 @@ void VideoScopeWindow::create_objects()
 	
 }
 
-WINDOW_CLOSE_EVENT(VideoScopeWindow)
 
 void VideoScopeWaveform::redraw()
 {

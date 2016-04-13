@@ -141,7 +141,6 @@ void SoundLevelWindow::create_objects()
 //printf("SoundLevelWindow::create_objects 2\n");
 }
 
-WINDOW_CLOSE_EVENT(SoundLevelWindow)
 
 
 

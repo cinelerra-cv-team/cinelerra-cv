@@ -157,7 +157,6 @@ public:
 	DenoiseMJPEGWindow(DenoiseMJPEG *plugin, int x, int y);
 
 	void create_objects();
-	int close_event();
 	void update_mode(int value);
 
 	DenoiseMJPEG *plugin;

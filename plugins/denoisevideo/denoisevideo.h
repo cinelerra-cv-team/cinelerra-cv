@@ -92,7 +92,6 @@ public:
 	DenoiseVideoWindow(DenoiseVideo *plugin, int x, int y);
 
 	void create_objects();
-	int close_event();
 	
 	DenoiseVideo *plugin;
 	DenoiseVideoFrames *frames;

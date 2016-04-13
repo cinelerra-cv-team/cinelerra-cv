@@ -69,7 +69,6 @@ class InvertVideoWindow : public PluginWindow
 public:
 	InvertVideoWindow(InvertVideoEffect *plugin, int x, int y);
 	void create_objects();
-	int close_event();
 	InvertVideoEnable *r, *g, *b, *a;
 	InvertVideoEffect *plugin;
 };
@@ -196,7 +195,6 @@ void InvertVideoWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(InvertVideoWindow)
 
 
 

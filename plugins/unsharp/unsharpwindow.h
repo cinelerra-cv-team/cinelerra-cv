@@ -58,7 +58,6 @@ public:
 	~UnsharpWindow();
 
 	int create_objects();
-	int close_event();
 	void update();
 
 	UnsharpRadius *radius;

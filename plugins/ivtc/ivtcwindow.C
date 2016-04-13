@@ -95,7 +95,6 @@ int IVTCWindow::create_objects()
 	return 0;
 }
 
-WINDOW_CLOSE_EVENT(IVTCWindow)
 
 IVTCOffset::IVTCOffset(IVTCMain *client, int x, int y)
  : BC_TextBox(x, 

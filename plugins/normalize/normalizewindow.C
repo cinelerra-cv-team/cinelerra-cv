@@ -57,12 +57,6 @@ int NormalizeWindow::create_objects(float *db_over, int *separate_tracks)
 	return 0;
 }
 
-int NormalizeWindow::close_event()
-{
-	set_done(1);
-	return 1;
-}
-
 NormalizeWindowOverload::NormalizeWindowOverload(int x, int y, float *db_over)
  : BC_TextBox(x, y, 200, 1, *db_over)
 {

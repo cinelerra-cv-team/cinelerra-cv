@@ -204,12 +204,6 @@ void DenoiseVideoWindow::create_objects()
 	flush();
 }
 
-int DenoiseVideoWindow::close_event()
-{
-	set_done(1);
-	return 1;
-}
-
 
 
 

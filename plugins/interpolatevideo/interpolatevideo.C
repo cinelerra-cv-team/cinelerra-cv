@@ -102,7 +102,6 @@ public:
 	~InterpolateVideoWindow();
 
 	void create_objects();
-	int close_event();
 	void update_enabled();
 
 	ArrayList<BC_ListBoxItem*> frame_rates;
@@ -243,7 +242,6 @@ void InterpolateVideoWindow::update_enabled()
 	}
 }
 
-WINDOW_CLOSE_EVENT(InterpolateVideoWindow)
 
 
 

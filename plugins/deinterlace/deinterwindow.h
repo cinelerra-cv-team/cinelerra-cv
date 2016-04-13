@@ -48,7 +48,6 @@ public:
 	~DeInterlaceWindow();
 	
 	int create_objects();
-	int close_event();
 	int set_mode(int mode, int recursive);
 	void get_status_string(char *string, int changed_rows);
 	DeInterlaceMain *client;

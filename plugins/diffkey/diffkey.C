@@ -94,8 +94,6 @@ public:
 
 
 	void create_objects();
-	int close_event();
-
 
 	DiffKeyThreshold *threshold;
 	DiffKeySlope *slope;
@@ -311,7 +309,6 @@ void DiffKeyGUI::create_objects()
 	show_window();
 }
 
-WINDOW_CLOSE_EVENT(DiffKeyGUI)
 
 
 PLUGIN_THREAD_OBJECT(DiffKey, DiffKeyThread, DiffKeyGUI)

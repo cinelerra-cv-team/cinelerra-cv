@@ -62,7 +62,6 @@ public:
 	void update();
 	void update_textboxes();
 	void update_canvas();
-	int close_event();
 	void draw_scales();
 	
 	

@@ -101,7 +101,6 @@ class WhirlWindow : public PluginWindow
 public:
 	WhirlWindow(WhirlEffect *plugin, int x, int y);
 	void create_objects();
-	int close_event();
 	WhirlEffect *plugin;
 	WhirlRadius *radius;
 	WhirlPinch *pinch;
@@ -269,11 +268,6 @@ void WhirlWindow::create_objects()
 	flush();
 }
 
-int WhirlWindow::close_event()
-{
-	set_done(1);
-	return 1;
-}
 
 
 

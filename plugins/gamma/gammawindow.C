@@ -163,7 +163,6 @@ void GammaWindow::update_histogram()
 	histogram->flash();
 }
 
-WINDOW_CLOSE_EVENT(GammaWindow)
 
 MaxSlider::MaxSlider(GammaMain *client, 
 	GammaWindow *gui, 

@@ -224,12 +224,6 @@ void ColorWindow::change_values()
 }
 
 
-int ColorWindow::close_event()
-{
-	set_done(0);
-	return 1;
-}
-
 
 void ColorWindow::update_rgb()
 {

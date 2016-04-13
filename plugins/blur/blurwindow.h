@@ -50,7 +50,6 @@ public:
 	~BlurWindow();
 	
 	int create_objects();
-	int close_event();
 	
 	BlurMain *client;
 	BlurVertical *vertical;

@@ -171,7 +171,6 @@ void ChromaKeyWindow::update_sample()
 
 
 
-WINDOW_CLOSE_EVENT(ChromaKeyWindow)
 
 
 

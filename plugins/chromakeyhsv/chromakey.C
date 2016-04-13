@@ -289,7 +289,6 @@ ChromaKeyWindow::update_sample ()
 
 
 
-WINDOW_CLOSE_EVENT (ChromaKeyWindow)
   ChromaKeyColor::ChromaKeyColor (ChromaKeyHSV * plugin,
 				  ChromaKeyWindow * gui, int x, int y):
 BC_GenericButton (x, y, _("Color..."))

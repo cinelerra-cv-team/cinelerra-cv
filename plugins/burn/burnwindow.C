@@ -60,6 +60,5 @@ int BurnWindow::create_objects()
 	return 0;
 }
 
-WINDOW_CLOSE_EVENT(BurnWindow)
 
 

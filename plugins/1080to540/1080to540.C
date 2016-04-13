@@ -100,8 +100,6 @@ int _1080to540Window::create_objects()
 	return 0;
 }
 
-WINDOW_CLOSE_EVENT(_1080to540Window)
-
 int _1080to540Window::set_first_field(int first_field, int send_event)
 {
 	odd_first->update(first_field == 1);

@@ -126,7 +126,6 @@ public:
 	~PluginAClientWindow();
 	
 	void create_objects();
-	int close_event();
 
 
 

@@ -147,7 +147,6 @@ public:
 	~PerspectiveWindow();
 
 	int create_objects();
-	int close_event();
 	int resize_event(int x, int y);
 	void update_canvas();
 	void update_mode();

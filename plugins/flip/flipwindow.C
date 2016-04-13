@@ -67,11 +67,6 @@ void FlipWindow::create_objects()
 	flush();
 }
 
-int FlipWindow::close_event()
-{
-	set_done(1);
-	return 1;
-}
 
 FlipToggle::FlipToggle(FlipMain *client, int *output, char *string, int x, int y)
  : BC_CheckBox(x, y, *output, string)

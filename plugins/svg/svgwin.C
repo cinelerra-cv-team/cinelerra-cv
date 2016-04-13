@@ -134,11 +134,6 @@ int SvgWin::create_objects()
 	return 0;
 }
 
-int SvgWin::close_event()
-{
-	set_done(1);
-	return 1;
-}
 
 SvgCoord::SvgCoord(SvgWin *win, 
 	SvgMain *client, 

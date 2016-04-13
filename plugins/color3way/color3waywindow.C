@@ -34,7 +34,6 @@
 
 
 
-WINDOW_CLOSE_EVENT(Color3WayWindow)
 
 
 Color3WayWindow::Color3WayWindow(Color3WayMain *plugin, int x, int y)

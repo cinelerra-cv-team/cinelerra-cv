@@ -57,7 +57,6 @@ int HoloWindow::create_objects()
 	return 0;
 }
 
-WINDOW_CLOSE_EVENT(HoloWindow)
 
 
 

@@ -112,7 +112,6 @@ public:
 	~DecimateWindow();
 
 	void create_objects();
-	int close_event();
 
 	ArrayList<BC_ListBoxItem*> frame_rates;
 	Decimate *plugin;
@@ -281,7 +280,6 @@ void DecimateWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(DecimateWindow)
 
 
 

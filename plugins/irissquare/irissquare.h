@@ -66,7 +66,6 @@ class IrisSquareWindow : public PluginWindow
 public:
 	IrisSquareWindow(IrisSquareMain *plugin, int x, int y);
 	void create_objects();
-	int close_event();
 	IrisSquareMain *plugin;
 	IrisSquareIn *in;
 	IrisSquareOut *out;

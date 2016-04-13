@@ -112,7 +112,6 @@ class FrameFieldWindow : public PluginWindow
 public:
 	FrameFieldWindow(FrameField *plugin, int x, int y);
 	void create_objects();
-	int close_event();
 	FrameField *plugin;
 	FrameFieldTop *top;
 	FrameFieldBottom *bottom;
@@ -216,7 +215,6 @@ void FrameFieldWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(FrameFieldWindow)
 
 
 

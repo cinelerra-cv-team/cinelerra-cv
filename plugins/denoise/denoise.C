@@ -805,12 +805,6 @@ void DenoiseWindow::create_objects()
 	flush();
 }
 
-int DenoiseWindow::close_event()
-{
-// Set result to 1 to indicate a client side close
-	set_done(1);
-	return 1;
-}
 
 void DenoiseWindow::update()
 {

@@ -96,7 +96,6 @@ public:
 	~ScaleWin();
 
 	int create_objects();
-	int close_event();
 
 	ScaleMain *client;
 	ScaleWidth *width;

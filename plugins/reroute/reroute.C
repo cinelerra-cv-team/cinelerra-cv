@@ -100,7 +100,6 @@ public:
 	~RerouteWindow();
 
 	void create_objects();
-	int close_event();
 
 	Reroute *plugin;
 	RerouteOperation *operation;
@@ -219,7 +218,6 @@ void RerouteWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(RerouteWindow)
 
 
 

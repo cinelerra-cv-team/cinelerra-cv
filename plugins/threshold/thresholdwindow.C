@@ -539,7 +539,6 @@ void ThresholdWindow::update_high_color()
 
 
 
-WINDOW_CLOSE_EVENT(ThresholdWindow)
 
 
 

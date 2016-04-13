@@ -117,11 +117,6 @@ int TranslateWin::create_objects()
 	return 0;
 }
 
-int TranslateWin::close_event()
-{
-	set_done(1);
-	return 1;
-}
 
 TranslateCoord::TranslateCoord(TranslateWin *win, 
 	TranslateMain *client, 

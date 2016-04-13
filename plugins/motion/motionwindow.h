@@ -309,7 +309,6 @@ public:
 	~MotionWindow();
 
 	int create_objects();
-	int close_event();
 	void update_mode();
 	char* get_radius_title();
 

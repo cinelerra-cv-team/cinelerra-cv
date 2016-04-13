@@ -49,7 +49,6 @@ public:
 	~AgingWindow();
 
 	int create_objects();
-	int close_event();
 
 	AgingMain *client;
 	

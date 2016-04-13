@@ -64,7 +64,6 @@ int TimeAvgWindow::create_objects()
 	return 0;
 }
 
-WINDOW_CLOSE_EVENT(TimeAvgWindow)
 
 TimeAvgSlider::TimeAvgSlider(TimeAvgMain *client, int x, int y)
  : BC_ISlider(x, 

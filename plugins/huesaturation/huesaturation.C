@@ -99,7 +99,6 @@ class HueWindow : public PluginWindow
 public:
 	HueWindow(HueEffect *plugin, int x, int y);
 	void create_objects();
-	int close_event();
 	HueEffect *plugin;
 	HueSlider *hue;
 	SaturationSlider *saturation;
@@ -336,7 +335,6 @@ void HueWindow::create_objects()
 }
 
 
-WINDOW_CLOSE_EVENT(HueWindow)
 
 
 

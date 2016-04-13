@@ -400,7 +400,6 @@ void PitchWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(PitchWindow)
 
 void PitchWindow::update()
 {

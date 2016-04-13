@@ -71,7 +71,6 @@ int DeInterlaceWindow::create_objects()
 	return 0;
 }
 
-WINDOW_CLOSE_EVENT(DeInterlaceWindow)
 
 void DeInterlaceWindow::get_status_string(char *string, int changed_rows)
 {

@@ -516,7 +516,6 @@ void TimeStretchWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(TimeStretchWindow)
 
 void TimeStretchWindow::update()
 {

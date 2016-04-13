@@ -149,7 +149,6 @@ public:
         int slider_bottom_w_tumblers;
 
 	int create_objects();
-	int close_event();
         void enter_config_change();
         void commit_config_change();
         void leave_config_change();

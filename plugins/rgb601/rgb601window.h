@@ -53,7 +53,6 @@ public:
 	~RGB601Window();
 	
 	int create_objects();
-	int close_event();
 	void update();
 
 	RGB601Main *client;

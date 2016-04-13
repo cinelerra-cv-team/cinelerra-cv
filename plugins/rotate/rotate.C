@@ -160,7 +160,6 @@ public:
 	RotateWindow(RotateEffect *plugin, int x, int y);
 
 	int create_objects();
-	int close_event();
 	int update();
 	int update_fine();
 	int update_text();
@@ -538,7 +537,6 @@ int RotateWindow::create_objects()
 	return 0;
 }
 
-WINDOW_CLOSE_EVENT(RotateWindow)
 
 int RotateWindow::update()
 {

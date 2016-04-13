@@ -102,7 +102,6 @@ class FieldFrameWindow : public PluginWindow
 public:
 	FieldFrameWindow(FieldFrame *plugin, int x, int y);
 	void create_objects();
-	int close_event();
 	FieldFrame *plugin;
 	FieldFrameTop *top;
 	FieldFrameBottom *bottom;
@@ -193,7 +192,6 @@ void FieldFrameWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(FieldFrameWindow)
 
 
 

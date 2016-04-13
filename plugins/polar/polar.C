@@ -90,7 +90,6 @@ class PolarWindow : public PluginWindow
 public:
 	PolarWindow(PolarEffect *plugin, int x, int y);
 	void create_objects();
-	int close_event();
 	PolarEffect *plugin;
 	PolarDepth *depth;
 	PolarAngle *angle;
@@ -225,7 +224,6 @@ void PolarWindow::create_objects()
 	flush();
 }
 
-WINDOW_CLOSE_EVENT(PolarWindow)
 
 PLUGIN_THREAD_OBJECT(PolarEffect, PolarThread, PolarWindow)
 

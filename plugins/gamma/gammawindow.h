@@ -48,7 +48,6 @@ public:
 	GammaWindow(GammaMain *client, int x, int y);
 
 	int create_objects();
-	int close_event();
 	void update();
 	void update_histogram();
 

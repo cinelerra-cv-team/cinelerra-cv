@@ -44,7 +44,6 @@ public:
 	~BrightnessWindow();
 
 	int create_objects();
-	int close_event();
 
 	BrightnessMain *client;
 	BrightnessSlider *brightness;

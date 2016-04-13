@@ -77,7 +77,6 @@ void RGB601Window::update()
 	reverse->update(client->config.direction == 2);
 }
 
-WINDOW_CLOSE_EVENT(RGB601Window)
 
 RGB601Direction::RGB601Direction(RGB601Window *window, int x, int y, int *output, int true_value, char *text)
  : BC_CheckBox(x, y, *output == true_value, text)

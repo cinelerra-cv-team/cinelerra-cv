@@ -75,12 +75,6 @@ int BlurWindow::create_objects()
 	return 0;
 }
 
-int BlurWindow::close_event()
-{
-// Set result to 1 to indicate a client side close
-	set_done(1);
-	return 1;
-}
 
 BlurRadius::BlurRadius(BlurMain *client, int x, int y)
  : BC_IPot(x, 

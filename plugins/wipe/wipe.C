@@ -102,12 +102,6 @@ WipeWindow::WipeWindow(WipeMain *plugin, int x, int y)
 }
 
 
-int WipeWindow::close_event()
-{
-	set_done(1);
-	return 1;
-}
-
 void WipeWindow::create_objects()
 {
 	int x = 10, y = 10;

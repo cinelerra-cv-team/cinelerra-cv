@@ -200,7 +200,6 @@ int PerspectiveWindow::create_objects()
 	return 0;
 }
 
-WINDOW_CLOSE_EVENT(PerspectiveWindow)
 
 int PerspectiveWindow::resize_event(int w, int h)
 {
