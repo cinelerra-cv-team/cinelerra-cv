@@ -603,12 +603,12 @@ int TIFFConfigVideo::create_objects()
 {
 	int x = 10, y = 10;
 
-	add_subwindow(new BC_Title(x, y, "Colorspace:"));
+	add_subwindow(new BC_Title(x, y, _("Colorspace:")));
 	TIFFColorspace *menu1;
 	add_subwindow(menu1 = new TIFFColorspace(this, x + 150, y, 200));
 	menu1->create_objects();
 	y += 40;
-	add_subwindow(new BC_Title(x, y, "Compression:"));
+	add_subwindow(new BC_Title(x, y, _("Compression:")));
 	TIFFCompression *menu2;
 	add_subwindow(menu2 = new TIFFCompression(this, x + 150, y, 200));
 	menu2->create_objects();
