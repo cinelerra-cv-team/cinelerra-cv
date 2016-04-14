@@ -264,7 +264,7 @@ void AC3ConfigAudio::create_objects()
 {
 	int x = 10, y = 10;
 	int x1 = 150;
-	add_tool(new BC_Title(x, y, "Bitrate (kbps):"));
+	add_tool(new BC_Title(x, y, _("Bitrate (kbps):")));
 	AC3ConfigAudioBitrate *bitrate;
 	add_tool(bitrate = 
 		new AC3ConfigAudioBitrate(this,
