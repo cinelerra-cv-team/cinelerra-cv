@@ -596,7 +596,7 @@ int EXRConfigVideo::create_objects()
 	add_subwindow(new EXRUseAlpha(this, x, y));
 	y += 30;
 	EXRCompression *menu;
-	add_subwindow(new BC_Title(x, y, "Compression:"));
+	add_subwindow(new BC_Title(x, y, _("Compression:")));
 	x += 110;
 	add_subwindow(menu = new EXRCompression(this, x, y, 100));
 	menu->create_objects();
