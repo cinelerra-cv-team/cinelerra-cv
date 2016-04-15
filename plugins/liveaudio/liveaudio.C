@@ -142,7 +142,7 @@ void LiveAudioWindow::create_objects()
 	int x = 10, y = 10;
 
 	BC_Title *title;
-	add_subwindow(title = new BC_Title(x, y, "Live audio"));
+	add_subwindow(title = new BC_Title(x, y, _("Live audio")));
 	show_window();
 	flush();
 }
