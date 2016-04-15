@@ -158,7 +158,7 @@ int OverlayAudioWindow::create_objects()
 {
 	int x = 10, y = 10;
 	BC_Title *title;
-	add_subwindow(title = new BC_Title(x, y, "Output track:"));
+	add_subwindow(title = new BC_Title(x, y, _("Output track:")));
 	x += title->get_w() + 10;
 	add_subwindow(output = new OutputTrack(plugin, x, y));
 	output->create_objects();
