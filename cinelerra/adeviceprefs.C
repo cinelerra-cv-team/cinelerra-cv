@@ -513,7 +513,7 @@ int ADevicePrefs::create_firewire_objs()
 
 	if(output_int)
 	{
-		dialog->add_subwindow(syt_title = new BC_Title(x1, y, _("Syt Offset:"), MEDIUMFONT, resources->text_default));
+		dialog->add_subwindow(syt_title = new BC_Title(x1, y, _("SYT Offset:"), MEDIUMFONT, resources->text_default));
 		dialog->add_subwindow(firewire_syt = new ADeviceIntBox(x1, y + 20, output_int));
 		x1 += firewire_syt->get_w() + 5;
 	}
