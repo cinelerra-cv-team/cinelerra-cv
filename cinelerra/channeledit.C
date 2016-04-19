@@ -1047,7 +1047,7 @@ SET_TRACE
 // 		!channel_usage->use_norm && 
 // 		!channel_usage->use_input))
 // 	{
-// 		add_subwindow(new BC_Title(x, y, "Device has no input selection."));
+// 		add_subwindow(new BC_Title(x, y, _("Device has no input selection.")));
 // 		y += 30;
 // 	}
 // 	else
@@ -1510,7 +1510,7 @@ SET_TRACE
 		!picture_usage->use_whiteness &&
 		!channel_picker->get_controls()))
 	{
-		add_subwindow(new BC_Title(x, y, "Device has no picture controls."));
+		add_subwindow(new BC_Title(x, y, _("Device has no picture controls.")));
 		y += 50;
 	}
 
