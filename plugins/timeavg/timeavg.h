@@ -60,16 +60,10 @@ public:
 		int64_t start_position,
 		double frame_rate);
 	int is_realtime();
-	const char* plugin_title();
-	VFrame* new_picon();
-	int show_gui();
-	int load_configuration();
-	int set_string();
 	int load_defaults();
 	int save_defaults();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
-	void raise_window();
 	void update_gui();
 	void clear_accum(int w, int h, int color_model);
 	void subtract_accum(VFrame *frame);
@@ -82,17 +76,12 @@ public:
 	int64_t *history_frame;
 	int *history_valid;
 	unsigned char *accumulation;
-
-// a thread for the GUI
-	TimeAvgThread *thread;
-	TimeAvgConfig config;
 	int history_size;
 // Starting frame of history in requested framerate
 	int64_t history_start;
 // When subtraction is disabled, this detects no change for paranoid mode.
 	int64_t prev_frame;
-
-	BC_Hash *defaults;
+	PLUGIN_CLASS_MEMBERS(TimeAvgConfig, TimeAvgThread)
 };
 
 

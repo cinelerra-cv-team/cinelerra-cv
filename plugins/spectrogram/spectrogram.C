@@ -330,12 +330,13 @@ void Spectrogram::render_gui(void *data, int size)
 	}
 }
 
-void Spectrogram::load_configuration()
+int Spectrogram::load_configuration()
 {
 	KeyFrame *prev_keyframe;
 	prev_keyframe = get_prev_keyframe(get_source_position());
 
  	read_data(prev_keyframe);
+	return 0;
 }
 
 void Spectrogram::read_data(KeyFrame *keyframe)

@@ -102,8 +102,9 @@ int DotMain::save_defaults()
 	return 0;
 }
 
-void DotMain::load_configuration()
+int DotMain::load_configuration()
 {
+	return 0;
 }
 
 

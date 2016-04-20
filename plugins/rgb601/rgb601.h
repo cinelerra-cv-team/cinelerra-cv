@@ -53,25 +53,17 @@ public:
 		int64_t start_position,
 		double frame_rate);
 	int is_realtime();
-	const char* plugin_title();
-	int show_gui();
 	void update_gui();
-	void raise_window();
-	int set_string();
-	void load_configuration();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
 	int load_defaults();
 	int save_defaults();
-	VFrame* new_picon();
 	int handle_opengl();
 
 	void create_table(VFrame *input_ptr);
 	void process(int *table, VFrame *input_ptr, VFrame *output_ptr);
-	
-	RGB601Thread *thread;
-	RGB601Config config;
-	BC_Hash *defaults;
+
+	PLUGIN_CLASS_MEMBERS(RGB601Config, RGB601Thread)
 	int forward_table[0x10000], reverse_table[0x10000];
 };
 

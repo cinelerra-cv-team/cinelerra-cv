@@ -84,22 +84,14 @@ public:
 		int64_t start_position,
 		double frame_rate);
 	int is_realtime();
-	const char* plugin_title();
-	VFrame* new_picon();
 	int load_defaults();
 	int save_defaults();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
 	void update_gui();
-	int show_gui();
-	void raise_window();
-	int set_string();
-	int load_configuration();
 	int handle_opengl();
 
-	InvertVideoConfig config;
-	InvertVideoThread *thread;
-	BC_Hash *defaults;
+	PLUGIN_CLASS_MEMBERS(InvertVideoConfig, InvertVideoThread)
 };
 
 

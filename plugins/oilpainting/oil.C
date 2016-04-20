@@ -139,25 +139,17 @@ public:
 
 	int process_realtime(VFrame *input, VFrame *output);
 	int is_realtime();
-	const char* plugin_title();
-	VFrame* new_picon();
-	int load_configuration();
 	int load_defaults();
 	int save_defaults();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
-	int show_gui();
-	int set_string();
-	void raise_window();
 	void update_gui();
 
-	OilConfig config;
 	VFrame *temp_frame;
 	VFrame *input, *output;
-	BC_Hash *defaults;
-	OilThread *thread;
 	OilServer *engine;
 	int need_reconfigure;
+	PLUGIN_CLASS_MEMBERS(OilConfig, OilThread)
 };
 
 

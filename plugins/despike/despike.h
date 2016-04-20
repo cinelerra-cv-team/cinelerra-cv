@@ -52,30 +52,17 @@ public:
 	~Despike();
 
 	void update_gui();
-	int load_configuration();
-	
-// data for despike
-	DespikeConfig config;
-	
 	DB db;
-
-	const char* plugin_title();
-	VFrame* new_picon();
 	int is_realtime();
 	int process_realtime(int64_t size, double *input_ptr, double *output_ptr);
-	int show_gui();
-	int set_string();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
-	void raise_window();
 
 // non realtime support
 	int load_defaults();
 	int save_defaults();
-	BC_Hash *defaults;
-	
-	DespikeThread *thread;
 	double last_sample;
+	PLUGIN_CLASS_MEMBERS(DespikeConfig, DespikeThread)
 };
 
 #endif

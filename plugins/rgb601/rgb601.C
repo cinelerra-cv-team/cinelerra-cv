@@ -97,13 +97,14 @@ int RGB601Main::save_defaults()
 	return 0;
 }
 
-void RGB601Main::load_configuration()
+int RGB601Main::load_configuration()
 {
 	KeyFrame *prev_keyframe;
 
 	prev_keyframe = get_prev_keyframe(get_source_position());
 // Must also switch between interpolation between keyframes and using first keyframe
 	read_data(prev_keyframe);
+	return 0;
 }
 
 

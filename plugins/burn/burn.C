@@ -96,9 +96,10 @@ int BurnMain::save_defaults()
 	return 0;
 }
 
-void BurnMain::load_configuration()
+int  BurnMain::load_configuration()
 {
 //printf("BurnMain::load_configuration %d\n", source_position);
+	return 0;
 }
 
 

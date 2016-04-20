@@ -81,17 +81,11 @@ public:
 // required for all realtime plugins
 	int process_realtime(VFrame *input_ptr, VFrame *output_ptr);
 	int is_realtime();
-	const char* plugin_title();
-	int show_gui();
-	void raise_window();
-	int set_string();
-	void load_configuration();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
 	
 	int load_defaults();
 	int save_defaults();
-	VFrame* new_picon();
 
 
 
@@ -104,11 +98,7 @@ public:
 		int *b,
 		int color_model);
 	void make_palette(int color_model);
-
-// a thread for the GUI
-	BurnThread *thread;
 	BurnServer *burn_server;
-	BurnConfig config;
 
 	int palette[3][256];
 	unsigned char *buffer;
@@ -116,9 +106,9 @@ public:
 	int total;
 
 	EffectTV *effecttv;
-	BC_Hash *defaults;
 	VFrame *input_ptr, *output_ptr;
 	YUV *yuv;
+	PLUGIN_CLASS_MEMBERS(BurnConfig, BurnThread)
 };
 
 

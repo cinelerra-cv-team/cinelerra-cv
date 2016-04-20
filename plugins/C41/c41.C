@@ -134,28 +134,19 @@ public:
 			int64_t start_position,
 			double frame_rate);
 	int is_realtime();
-	const char* plugin_title();
-	VFrame* new_picon();
+	PLUGIN_CLASS_MEMBERS(C41Config, C41Thread)
 	int load_defaults();
 	int save_defaults();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
 	void update_gui();
 	void render_gui(void* data);
-	int show_gui();
-	void raise_window();
-	int set_string();
-	int load_configuration();
 	float myLog2(float i) __attribute__ ((optimize(0)));
 	float myPow2(float i) __attribute__ ((optimize(0)));
 	float myPow(float a, float b);
 	double difftime_nano(timespec start, timespec end);
 
 	struct magic values;
-
-	C41Config config;
-	C41Thread *thread;
-	BC_Hash *defaults;
 };
 
 

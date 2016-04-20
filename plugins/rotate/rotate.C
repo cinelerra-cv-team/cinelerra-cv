@@ -192,24 +192,15 @@ public:
 		int64_t start_position,
 		double frame_rate);
 	int is_realtime();
-	const char* plugin_title();
-	VFrame* new_picon();
-	int show_gui();
-	void raise_window();
 	void update_gui();
-	int set_string();
-	int load_configuration();
 	int load_defaults();
 	int save_defaults();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
 	int handle_opengl();
-
-	RotateConfig config;
 	AffineEngine *engine;
-	RotateThread *thread;
-	BC_Hash *defaults;
 	int need_reconfigure;
+	PLUGIN_CLASS_MEMBERS(RotateConfig, RotateThread)
 };
 
 

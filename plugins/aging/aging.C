@@ -98,8 +98,9 @@ int AgingMain::save_defaults()
 	return 0;
 }
 
-void AgingMain::load_configuration()
+int AgingMain::load_configuration()
 {
+	return 0;
 }
 
 

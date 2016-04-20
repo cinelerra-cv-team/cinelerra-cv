@@ -272,23 +272,15 @@ public:
 
 	int process_realtime(VFrame *input, VFrame *output);
 	int is_realtime();
-	const char* plugin_title();
-	VFrame* new_picon();
 	int load_defaults();
 	int save_defaults();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
-	int show_gui();
-	int set_string();
-	void raise_window();
 	void render_gui(void *input);
-	int load_configuration();
 
 	VFrame *input;
-	VideoScopeConfig config;
 	VideoScopeEngine *engine;
-	BC_Hash *defaults;
-	VideoScopeThread *thread;
+	PLUGIN_CLASS_MEMBERS(VideoScopeConfig, VideoScopeThread)
 };
 
 

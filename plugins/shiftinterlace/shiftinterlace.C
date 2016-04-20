@@ -106,15 +106,9 @@ public:
 // required for all realtime plugins
 	int process_realtime(VFrame *input_ptr, VFrame *output_ptr);
 	int is_realtime();
-	const char* plugin_title();
-	VFrame* new_picon();
-	int show_gui();
-	void raise_window();
 	void update_gui();
-	int set_string();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
-	int load_configuration();
 	int load_defaults();
 	int save_defaults();
 
@@ -124,12 +118,7 @@ public:
 		int offset,
 		int row);
 
-
-
-
-	ShiftInterlaceConfig config;
-	ShiftInterlaceThread *thread;
-	BC_Hash *defaults;
+	PLUGIN_CLASS_MEMBERS(ShiftInterlaceConfig, ShiftInterlaceThread)
 };
 
 

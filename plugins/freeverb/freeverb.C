@@ -155,34 +155,21 @@ class FreeverbEffect : public PluginAClient
 public:
 	FreeverbEffect(PluginServer *server);
 	~FreeverbEffect();
-
-	VFrame* new_picon();
-	const char* plugin_title();
-	int show_gui();
-	void raise_window();
-	int set_string();
 	int is_realtime();
 	int is_multichannel();
 	void read_data(KeyFrame *keyframe);
 	void save_data(KeyFrame *keyframe);
 	int process_realtime(int64_t size, double **input_ptr, double **output_ptr);
 
-
-
-
 	int load_defaults();
 	int save_defaults();
-	int load_configuration();
 	void update_gui();
 
-
-	BC_Hash *defaults;
-	FreeverbThread *thread;
-	FreeverbConfig config;
 	revmodel *engine;
 	float **temp;
 	float **temp_out;
 	int temp_allocated;
+	PLUGIN_CLASS_MEMBERS(FreeverbConfig, FreeverbThread)
 };
 
 

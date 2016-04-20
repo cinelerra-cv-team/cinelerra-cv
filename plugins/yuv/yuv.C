@@ -81,21 +81,12 @@ public:
 	~YUVEffect();
 	int process_realtime(VFrame *input, VFrame *output);
 	int is_realtime();
-	const char* plugin_title();
-	VFrame* new_picon();
 	int load_defaults();
 	int save_defaults();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
 	void update_gui();
-	int show_gui();
-	void raise_window();
-	int set_string();
-	int load_configuration();
-
-	YUVConfig config;
-	YUVThread *thread;
-	BC_Hash *defaults;
+	PLUGIN_CLASS_MEMBERS(YUVConfig, YUVThread)
 };
 
 

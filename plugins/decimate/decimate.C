@@ -137,16 +137,10 @@ public:
 		int64_t start_position,
 		double frame_rate);
 	int is_realtime();
-	const char* plugin_title();
-	VFrame* new_picon();
-	int show_gui();
-	int load_configuration();
-	int set_string();
 	int load_defaults();
 	int save_defaults();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
-	void raise_window();
 	void update_gui();
 	void render_gui(void *data);
 
@@ -176,10 +170,7 @@ public:
 	double lookahead_rate;
 // Last requested position
 	int64_t last_position;
-
-	DecimateThread *thread;
-	DecimateConfig config;
-	BC_Hash *defaults;
+	PLUGIN_CLASS_MEMBERS(DecimateConfig, DecimateThread)
 };
 
 

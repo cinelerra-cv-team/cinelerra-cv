@@ -304,12 +304,13 @@ void SwapMain::update_gui()
 }
 
 
-void SwapMain::load_configuration()
+int SwapMain::load_configuration()
 {
 	KeyFrame *prev_keyframe;
 	prev_keyframe = get_prev_keyframe(get_source_position());
 	
  	read_data(prev_keyframe);
+	return 0;
 }
 
 

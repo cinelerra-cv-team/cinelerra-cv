@@ -61,11 +61,6 @@ public:
 	void update_gui();
 	int load_from_file(char *data);
 	int save_to_file(char *data);
-	int load_configuration();
-	
-// data for reverb
-	ReverbConfig config;
-	
 	char config_directory[1024];
 
 	double **main_in, **main_out;
@@ -77,28 +72,20 @@ public:
 // skirts for lowpass filter
 	double **lowpass_in1, **lowpass_in2;
 	DB db;
-// required for all realtime/multichannel plugins
 
 	int process_realtime(int64_t size, double **input_ptr, double **output_ptr);
 	int is_realtime();
 	int is_synthesis();
 	int is_multichannel();
-	const char* plugin_title();
-	int show_gui();
-	int set_string();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
-	void raise_window();
-	VFrame* new_picon();
-
 // non realtime support
 	int load_defaults();
 	int save_defaults();
-	BC_Hash *defaults;
-	
-	ReverbThread *thread;
+
 	ReverbEngine **engine;
 	int initialized;
+	PLUGIN_CLASS_MEMBERS(ReverbConfig, ReverbThread)
 };
 
 class ReverbEngine : public Thread

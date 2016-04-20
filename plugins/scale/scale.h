@@ -126,24 +126,14 @@ public:
 		float &out_y2);
 	int handle_opengl();
 	int is_realtime();
-	const char* plugin_title();
-	int show_gui();
-	void raise_window();
-	int set_string();
 	void update_gui();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
-	VFrame* new_picon();
 	int load_defaults();
 	int save_defaults();
-	int load_configuration();
-
-// a thread for the GUI
-	ScaleThread *thread;
 
 	OverlayFrame *overlayer;   // To scale images
-	BC_Hash *defaults;
-	ScaleConfig config;
+	PLUGIN_CLASS_MEMBERS(ScaleConfig, ScaleThread)
 };
 
 

@@ -149,13 +149,7 @@ public:
 
 	int process_realtime(VFrame *input, VFrame *output);
 	int is_realtime();
-	const char* plugin_title();
-	VFrame* new_picon();
-	int show_gui();
-	void raise_window();
 	void update_gui();
-	int set_string();
-	int load_configuration();
 	int load_defaults();
 	int save_defaults();
 	void save_data(KeyFrame *keyframe);
@@ -164,10 +158,8 @@ public:
 	WhirlEngine *engine;
 	VFrame *temp_frame;
 	VFrame *input, *output;
-	WhirlConfig config;
-	BC_Hash *defaults;
-	WhirlThread *thread;
 	int need_reconfigure;
+	PLUGIN_CLASS_MEMBERS(WhirlConfig, WhirlThread)
 };
 
 
