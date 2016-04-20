@@ -239,6 +239,7 @@ cinelerra_SOURCES = aattachmentpoint.C \
 		    plugintclient.C \
 		    plugintoggles.C \
 		    pluginvclient.C \
+		    pluginwindow.C \
 		    preferences.C \
 		    preferencesthread.C \
 		    question.C \

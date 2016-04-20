@@ -80,14 +80,19 @@ public: \
 
 #define PLUGIN_THREAD_OBJECT(plugin_class, thread_class, window_class) \
 thread_class::thread_class(plugin_class *plugin) \
- : Thread(0, 0, 1) \
+ : Thread(1, 0, 0) \
 { \
 	this->plugin = plugin; \
+	window = 0; \
 } \
  \
 thread_class::~thread_class() \
 { \
-	delete window; \
+	if(window) \
+	{ \
+		join(); \
+		delete window; \
+	} \
 } \
  \
 void thread_class::run() \
@@ -129,13 +134,9 @@ void thread_class::run() \
 #define PLUGIN_DESTRUCTOR_MACRO \
 	if(thread) \
 	{ \
-/* This is needed when the GUI is closed from elsewhere than itself */ \
-/* Since we now use autodelete, this is all that has to be done, thread will take care of itself ... */ \
-/* Thread join will wait if this was not called from the thread itself or go on if it was */ \
-		thread->window->lock_window("PLUGIN_DESTRUCTOR_MACRO"); \
-		thread->window->set_done(0); \
-		thread->window->unlock_window(); \
-		thread->join(); \
+		if(!thread->window->window_done) \
+			thread->window->set_done(0); \
+		delete thread; \
 	} \
  \
  \

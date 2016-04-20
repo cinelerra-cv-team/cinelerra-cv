@@ -1,6 +1,6 @@
 
 /*
- * Copyright (C) 2015 Einar Rünkaru <einarry at smail dot ee>
+ * Copyright (C) 2016 Einar Rünkaru <einarrunkaru at gmail dot com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,18 +18,20 @@
  *
  */
 
-#ifndef PLUGINWINDOW_H
-#define PLUGINWINDOW_H
+#include "bcsignals.h"
+#include "pluginwindow.h"
 
-#include "bcwindow.h"
-
-class PluginWindow : public BC_Window
+PluginWindow::PluginWindow(const char *title, int x, int y, int w, int h)
+ : BC_Window(title, x, y, w, h, w, h,
+	0, 0, 1, -1, 0, 1, WINDOW_UTF8)
 {
-public:
-	PluginWindow(const char *title, int x, int y, int w, int h);
-
-	int close_event();
-
-	int window_done;
+	window_done = 0;
 };
-#endif
+
+int PluginWindow::close_event()
+{
+	if(window_done)
+		return 0;
+	window_done = 1;
+	return BC_Window::close_event();
+}
