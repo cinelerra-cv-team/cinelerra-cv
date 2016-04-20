@@ -80,7 +80,6 @@ public:
 		int64_t start_position,
 		double frame_rate);
 	int is_realtime();
-	int hide_gui();
 	void update_gui();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);

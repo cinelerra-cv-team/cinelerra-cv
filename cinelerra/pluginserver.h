@@ -125,6 +125,7 @@ public:
 // cause the plugin to show the GUI
 // Called by MWindow::show_plugin
 	void show_gui();          
+	void hide_gui();
 // Update GUI with keyframe settings
 	void update_gui();
 	void update_title();

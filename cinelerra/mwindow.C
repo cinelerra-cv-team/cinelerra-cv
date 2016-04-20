@@ -194,7 +194,9 @@ SET_TRACE
 	delete cwindow;
 	delete lwindow;
 	plugin_guis->remove_all_objects();
+	removed_guis->remove_all_objects();
 	delete plugin_guis;
+	delete removed_guis;
 	delete plugin_gui_lock;
 }
 
@@ -1441,6 +1443,7 @@ SET_TRACE
 	undo = new MainUndo(this);
 
 	plugin_guis = new ArrayList<PluginServer*>;
+	removed_guis = new ArrayList<PluginServer*>;
 
 SET_TRACE
 	if(session->show_vwindow) vwindow->gui->show_window();
@@ -1770,9 +1773,9 @@ void MWindow::hide_plugin(Plugin *plugin, int lock)
 		{
 			PluginServer *ptr = plugin_guis->values[i];
 			plugin_guis->remove(ptr);
+			ptr->hide_gui();
+			removed_guis->append(ptr);
 			if(lock) plugin_gui_lock->unlock();
-// Last command executed in client side close
-			delete ptr;
 			return;
 		}
 	}
@@ -1784,6 +1787,7 @@ void MWindow::hide_plugins()
 {
 	plugin_gui_lock->lock("MWindow::hide_plugins");
 	plugin_guis->remove_all_objects();
+	removed_guis->remove_all_objects();
 	plugin_gui_lock->unlock();
 }
 
@@ -1881,6 +1885,7 @@ void MWindow::update_plugin_states()
 			i--;
 		}
 	}
+	removed_guis->remove_all_objects();
 	plugin_gui_lock->unlock();
 }
 

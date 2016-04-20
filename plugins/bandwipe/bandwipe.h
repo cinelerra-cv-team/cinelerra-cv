@@ -102,6 +102,7 @@ public:
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
 	int show_gui();
+	void hide_gui();
 	void raise_window();
 	int uses_gui();
 	int is_transition();

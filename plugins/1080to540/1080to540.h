@@ -91,7 +91,6 @@ public:
 // required for all realtime plugins
 	int process_realtime(VFrame *input, VFrame *output);
 	int is_realtime();
-	int hide_gui();
 	void update_gui();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);

@@ -101,6 +101,7 @@ void thread_class::run() \
 /* Only set it here so tracking doesn't update it until everything is created. */ \
  	plugin->thread = this; \
 	int result = window->run_window(); \
+	window->hide_window(); \
 /* This is needed when the GUI is closed from itself */ \
 	if(result) plugin->client_side_close(); \
 }
@@ -113,6 +114,7 @@ void thread_class::run() \
 	VFrame* new_picon(); \
 	const char* plugin_title(); \
 	int show_gui(); \
+	void hide_gui(); \
 	int set_string(); \
 	void raise_window(); \
 	BC_Hash *defaults; \
@@ -150,6 +152,12 @@ int plugin_class::show_gui() \
 	thread_class *new_thread = new thread_class(this); \
 	new_thread->start(); \
 	return 0; \
+} \
+ \
+void plugin_class::hide_gui() \
+{ \
+	if(thread && thread->window) \
+		thread->window->close_event(); \
 }
 
 #define RAISE_WINDOW_MACRO(plugin_class) \
@@ -301,6 +309,7 @@ public:
 	virtual int show_gui();               
 // cause the plugin to hide the gui
 	void client_side_close();
+	virtual void hide_gui() {};
 	void update_display_title();
 // Raise the GUI
 	virtual void raise_window() {};
@@ -308,7 +317,6 @@ public:
 	virtual void save_data(KeyFrame *keyframe) {};    // write the plugin settings to text in text format
 	virtual void read_data(KeyFrame *keyframe) {};    // read the plugin settings from the text
 	int send_hide_gui();                                    // should be sent when the GUI recieves a close event from the user
-
 	int get_configure_change();                             // get propogated configuration change from a send_configure_change
 
 // Called by plugin server to update GUI with rendered data.

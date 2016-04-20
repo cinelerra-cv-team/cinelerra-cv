@@ -470,7 +470,8 @@ public:
 	ArrayList<PluginServer*> *plugindb;
 // Currently visible plugins
 	ArrayList<PluginServer*> *plugin_guis;
-
+// Closed plugin guis ready to remove
+       ArrayList<PluginServer*> *removed_guis;
 
 // Adjust sample position to line up with frames.
 	int fix_timing(int64_t &samples_out, 
