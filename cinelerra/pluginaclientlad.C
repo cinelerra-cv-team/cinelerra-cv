@@ -338,15 +338,11 @@ int PluginACLientFreq::handle_event()
 PluginAClientWindow::PluginAClientWindow(PluginAClientLAD *plugin, 
 	int x, 
 	int y)
- : BC_Window(plugin->gui_string, 
+ : PluginWindow(plugin->gui_string,
  	x,
 	y,
 	500, 
-	plugin->config.total_ports * 30 + 60, 
-	500, 
-	plugin->config.total_ports * 30 + 60, 
-	0, 
-	1)
+	plugin->config.total_ports * 30 + 60)
 {
 	this->plugin = plugin;
 }
@@ -481,6 +477,8 @@ void PluginAClientWindow::create_objects()
 	y += 20;
 	sprintf(string, _("License: %s"), server->lad_descriptor->Copyright);
 	add_subwindow(new BC_Title(x, y, string));
+	show_window();
+	flush();
 }
 
 

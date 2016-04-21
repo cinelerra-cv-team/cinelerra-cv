@@ -27,6 +27,7 @@
 #include "ladspa.h"
 #include "pluginaclient.h"
 #include "pluginaclientlad.inc"
+#include "pluginwindow.h"
 
 
 class PluginAClientConfig
@@ -117,7 +118,7 @@ public:
 };
 
 
-class PluginAClientWindow : public BC_Window
+class PluginAClientWindow : public PluginWindow
 {
 public:
 	PluginAClientWindow(PluginAClientLAD *plugin, 
