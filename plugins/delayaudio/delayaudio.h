@@ -50,20 +50,7 @@ public:
 };
 
 
-
-class DelayAudioThread : public Thread
-{
-public:
-	DelayAudioThread(DelayAudio *plugin);
-	~DelayAudioThread();
-	
-	void run();
-	
-	Mutex completion;
-	DelayAudioWindow *window;
-	DelayAudio *plugin;
-};
-
+PLUGIN_THREAD_HEADER(DelayAudio, DelayAudioThread, DelayAudioWindow)
 
 
 class DelayAudioWindow : public PluginWindow
@@ -102,31 +89,16 @@ public:
 	DelayAudio(PluginServer *server);
 	~DelayAudio();
 
-	VFrame* new_picon();
-	const char* plugin_title();
 	int is_realtime();
 	int load_defaults();
 	int save_defaults();
 	void read_data(KeyFrame *keyframe);
 	void save_data(KeyFrame *keyframe);
 	int process_realtime(int64_t size, double *input_ptr, double *output_ptr);
-	int show_gui();
-	void raise_window();
-	int set_string();
-
-
-
-
-
-	void load_configuration();
 	void update_gui();
 
-
-
 	std::vector<double> buffer;
-	DelayAudioThread *thread;
-	BC_Hash *defaults;
-	DelayAudioConfig config;
+	PLUGIN_CLASS_MEMBERS(DelayAudioConfig, DelayAudioThread)
 };
 
 
