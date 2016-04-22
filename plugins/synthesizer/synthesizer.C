@@ -22,6 +22,7 @@
 #include "bcdisplayinfo.h"
 #include "clip.h"
 #include "bchash.h"
+#include "bcsignals.h"
 #include "filexml.h"
 #include "picon_png.h"
 #include "synthesizer.h"
@@ -50,31 +51,18 @@ Synth::Synth(PluginServer *server)
  : PluginAClient(server)
 {
 	reset();
-	load_defaults();
+	PLUGIN_CONSTRUCTOR_MACRO
 }
 
 
 
 Synth::~Synth()
 {
-	if(thread)
-	{
-		thread->window->set_done(0);
-		thread->completion.lock();
-		delete thread;
-	}
-
-	save_defaults();
-	delete defaults;
-	
 	if(dsp_buffer) delete [] dsp_buffer;
+	PLUGIN_DESTRUCTOR_MACRO
 }
 
-VFrame* Synth::new_picon()
-{
-	return new VFrame(picon_png);
-}
-
+NEW_PICON_MACRO(Synth)
 
 const char* Synth::plugin_title() { return N_("Synthesizer"); }
 int Synth::is_realtime() { return 1; }
@@ -83,7 +71,6 @@ int Synth::is_synthesis() { return 1; }
 
 void Synth::reset()
 {
-	thread = 0;
 	need_reconfigure = 1;
 	dsp_buffer = 0;
 }
@@ -200,29 +187,9 @@ int Synth::save_defaults()
 	return 0;
 }
 
-int Synth::show_gui()
-{
-	load_configuration();
-	
-	thread = new SynthThread(this);
-	thread->start();
-	return 0;
-}
-
-int Synth::set_string()
-{
-	if(thread) thread->window->set_utf8title(gui_string);
-	return 0;
-}
-
-void Synth::raise_window()
-{
-	if(thread)
-	{
-		thread->window->raise_window();
-		thread->window->flush();
-	}
-}
+SHOW_GUI_MACRO(Synth, SynthThread)
+SET_STRING_MACRO(Synth)
+RAISE_WINDOW_MACRO(Synth)
 
 void Synth::update_gui()
 {
@@ -492,60 +459,7 @@ void Synth::reconfigure()
 	waveform_sample = 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SynthThread::SynthThread(Synth *synth)
- : Thread()
-{
-	this->synth = synth;
-	set_synchronous(0);
-	completion.lock();
-}
-
-SynthThread::~SynthThread()
-{
-	delete window;
-}
-
-void SynthThread::run()
-{
-	BC_DisplayInfo info;
-	window = new SynthWindow(synth, 
-		info.get_abs_cursor_x() - 125, 
-		info.get_abs_cursor_y() - 115);
-	window->create_objects();
-	int result = window->run_window();
-	completion.unlock();
-// Last command executed in thread
-	if(result) synth->client_side_close();
-}
-
-
-
-
-
-
-
-
-
+PLUGIN_THREAD_OBJECT(Synth, SynthThread, SynthWindow)
 
 
 SynthWindow::SynthWindow(Synth *synth, int x, int y)

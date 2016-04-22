@@ -422,19 +422,7 @@ private:
 	float get_next_prime(float number);
 };
 
-
-class SynthThread : public Thread
-{
-public:
-	SynthThread(Synth *synth);
-	~SynthThread();
-
-	void run();
-
-	Mutex completion;
-	Synth *synth;
-	SynthWindow *window;
-};
+PLUGIN_THREAD_HEADER(Synth, SynthThread, SynthWindow)
 
 class SynthOscillatorConfig
 {
@@ -491,16 +479,10 @@ public:
 
 	int is_realtime();
 	int is_synthesis();
-	int load_configuration();
 	int load_defaults();
-	VFrame* new_picon();
-	const char* plugin_title();
 	void read_data(KeyFrame *keyframe);
 	void save_data(KeyFrame *keyframe);
 	int save_defaults();
-	int show_gui();
-	void raise_window();
-	int set_string();
 	int process_realtime(int64_t size, double *input_ptr, double *output_ptr);
 
 
@@ -535,14 +517,12 @@ public:
 
 	double *dsp_buffer;
 	int need_reconfigure;
-	BC_Hash *defaults;
-	SynthThread *thread;
-	SynthConfig config;
 	DB db;
 	int64_t waveform_length;           // length of loop buffer
 	int64_t waveform_sample;           // current sample in waveform of loop
 	int64_t samples_rendered;          // samples of the dsp_buffer rendered since last buffer redo
 	float period;            // number of samples in a period for this frequency
+	PLUGIN_CLASS_MEMBERS(SynthConfig, SynthThread)
 };
 
 
