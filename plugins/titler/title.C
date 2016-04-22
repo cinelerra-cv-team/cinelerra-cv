@@ -1088,11 +1088,7 @@ const char* TitleMain::plugin_title() { return N_("Title"); }
 int TitleMain::is_realtime() { return 1; }
 int TitleMain::is_synthesis() { return 1; }
 
-VFrame* TitleMain::new_picon()
-{
-	return new VFrame(picon_png);
-}
-
+NEW_PICON_MACRO(TitleMain)
 
 int TitleMain::load_freetype_face(FT_Library &freetype_library,
 	FT_Face &freetype_face,
@@ -1758,28 +1754,9 @@ int TitleMain::process_realtime(VFrame *input_ptr, VFrame *output_ptr)
 	return 0;
 }
 
-int TitleMain::show_gui()
-{
-	load_configuration();
-	thread = new TitleThread(this);
-	thread->start();
-	return 0;
-}
-
-int TitleMain::set_string()
-{
-	if(thread) thread->window->set_utf8title(gui_string);
-	return 0;
-}
-
-void TitleMain::raise_window()
-{
-	if(thread)
-	{
-		thread->window->raise_window();
-		thread->window->flush();
-	}
-}
+SHOW_GUI_MACRO(TitleMain, TitleThread)
+SET_STRING_MACRO(TitleMain)
+RAISE_WINDOW_MACRO(TitleMain)
 
 void TitleMain::update_gui()
 {

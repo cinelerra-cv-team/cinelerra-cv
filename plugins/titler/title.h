@@ -322,17 +322,11 @@ public:
 	int process_realtime(VFrame *input_ptr, VFrame *output_ptr);
 	int is_realtime();
 	int is_synthesis();
-	const char* plugin_title();
-	int show_gui();
-	void raise_window();
 	void update_gui();
-	int set_string();
-	int load_configuration();
 	void save_data(KeyFrame *keyframe);
 	void read_data(KeyFrame *keyframe);
 	int load_defaults();
 	int save_defaults();
-	VFrame* new_picon();
 	void draw_glyphs();
 	int draw_mask();
 	void overlay_mask();
@@ -347,12 +341,7 @@ public:
 
 	static char* motion_to_text(int motion);
 	static int text_to_motion(char *text);
-// a thread for the GUI
-	TitleThread *thread;
-// Current configuration
-	TitleConfig config;
-
-	BC_Hash *defaults;
+	PLUGIN_CLASS_MEMBERS(TitleConfig, TitleThread)
 	ArrayList<TitleGlyph*> glyphs;
 	Mutex glyph_lock;
 
