@@ -43,7 +43,7 @@ BrowseButton::BrowseButton(MWindow *mwindow,
 {
 	this->parent_window = parent_window;
 	this->want_directory = want_directory;
-	this->title = title;
+	strcpy(this->title, title);
 	this->caption = caption;
 	this->init_directory = init_directory;
 	this->textbox = textbox;

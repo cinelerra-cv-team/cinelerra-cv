@@ -48,7 +48,7 @@ public:
 	void run();
 	int want_directory;
 	char result[1024];
-	const char *title;
+	char title[BCTEXTLEN];
 	const char *caption;
 	const char *init_directory;
 	BC_TextBox *textbox;
