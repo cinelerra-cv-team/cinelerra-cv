@@ -53,7 +53,6 @@ public:
 	int ccontrast;
 	int deinterlace;
 	int mode;
-	int delay;
 };
 
 
@@ -142,14 +141,6 @@ public:
 	DenoiseMJPEGWindow *gui;
 };
 
-class DenoiseMJPEGDelay : public BC_IPot
-{
-public:
-	DenoiseMJPEGDelay(DenoiseMJPEG *plugin, int x, int y);
-	int handle_event();
-	DenoiseMJPEG *plugin;
-};
-
 
 class DenoiseMJPEGWindow : public PluginWindow
 {
@@ -170,7 +161,6 @@ public:
 	DenoiseMJPEGModeInterlaced *interlaced;
 	DenoiseMJPEGModeProgressive *progressive;
 	DenoiseMJPEGModeFast *fast;
-	DenoiseMJPEGDelay *delay;
 };
 
 

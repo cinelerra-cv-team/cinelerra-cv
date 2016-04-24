@@ -59,7 +59,6 @@ DenoiseMJPEGConfig::DenoiseMJPEGConfig()
 	ccontrast = 100;
 	deinterlace = 0;
 	mode = 0;
-	delay = 3;
 }
 
 int DenoiseMJPEGConfig::equivalent(DenoiseMJPEGConfig &that)
@@ -72,8 +71,7 @@ int DenoiseMJPEGConfig::equivalent(DenoiseMJPEGConfig &that)
 		that.lcontrast == lcontrast && 
 		that.ccontrast == ccontrast && 
 		that.deinterlace == deinterlace && 
-		that.mode == mode && 
-		that.delay == delay;
+		that.mode == mode;
 }
 
 void DenoiseMJPEGConfig::copy_from(DenoiseMJPEGConfig &that)
@@ -86,7 +84,6 @@ void DenoiseMJPEGConfig::copy_from(DenoiseMJPEGConfig &that)
 	ccontrast = that.ccontrast;
 	deinterlace = that.deinterlace;
 	mode = that.mode;
-	delay = that.delay;
 }
 
 void DenoiseMJPEGConfig::interpolate(DenoiseMJPEGConfig &prev, 
@@ -106,7 +103,6 @@ void DenoiseMJPEGConfig::interpolate(DenoiseMJPEGConfig &prev,
 	this->ccontrast = (int)(prev.ccontrast * prev_scale + next.ccontrast * next_scale);
 	this->deinterlace = prev.deinterlace;
 	this->mode = prev.mode;
-	this->delay = (int)(prev.delay * prev_scale + next.delay * next_scale);
 }
 
 
@@ -332,43 +328,12 @@ int DenoiseMJPEGModeFast::handle_event()
 
 
 
-
-
-
-DenoiseMJPEGDelay::DenoiseMJPEGDelay(DenoiseMJPEG *plugin, int x, int y)
- : BC_IPot(x, 
- 	y, 
-	plugin->config.delay,
-	1,
-	8)
-{
-	this->plugin = plugin;
-}
-
-int DenoiseMJPEGDelay::handle_event()
-{
-	int result = get_value();
-	plugin->config.delay = result;
-	plugin->send_configure_change();
-	return 1;
-}
-
-
-
-
-
-
-
-
-
-
-
 DenoiseMJPEGWindow::DenoiseMJPEGWindow(DenoiseMJPEG *plugin, int x, int y)
  : PluginWindow(plugin->gui_string,
  	x, 
 	y, 
 	250, 
-	350)
+	320)
 {
 	this->plugin = plugin;
 }
@@ -399,10 +364,6 @@ void DenoiseMJPEGWindow::create_objects()
 	y2 += margin;
 	add_subwindow(new BC_Title(x1, y1, _("Chroma contrast:")));
 	add_subwindow(ccontrast = new DenoiseMJPEGCContrast(plugin, x3, y2));
-	y1 += margin;
-	y2 += margin;
-	add_subwindow(new BC_Title(x1, y1, _("Delay frames:")));
-	add_subwindow(delay = new DenoiseMJPEGDelay(plugin, x2, y2));
 	y1 += margin;
 	y2 += margin;
 	add_subwindow(new BC_Title(x1, y1, _("Mode:")));
@@ -484,7 +445,6 @@ void DenoiseMJPEG::update_gui()
 	{
 		load_configuration();
 		thread->window->lock_window();
-		thread->window->delay->update(config.delay);
 		thread->window->threshold1->update(config.threshold);
 		thread->window->unlock_window();
 	}
@@ -514,7 +474,6 @@ int DenoiseMJPEG::load_defaults()
 	config.ccontrast = defaults->get("CCONTRAST", config.ccontrast);
 	config.deinterlace = defaults->get("DEINTERLACE", config.deinterlace);
 	config.mode = defaults->get("MODE", config.mode);
-	config.delay = defaults->get("DELAY", config.delay);
 	return 0;
 }
 
@@ -528,7 +487,6 @@ int DenoiseMJPEG::save_defaults()
 	defaults->update("CCONTRAST", config.ccontrast);
 	defaults->update("DEINTERLACE", config.deinterlace);
 	defaults->update("MODE", config.mode);
-	defaults->update("DELAY", config.delay);
 	defaults->save();
 	return 0;
 }
@@ -548,7 +506,6 @@ void DenoiseMJPEG::save_data(KeyFrame *keyframe)
 	output.tag.set_property("CCONTRAST", config.ccontrast);
 	output.tag.set_property("DEINTERLACE", config.deinterlace);
 	output.tag.set_property("MODE", config.mode);
-	output.tag.set_property("DELAY", config.delay);
 	output.append_tag();
 	output.tag.set_title("/DENOISE_VIDEO2");
 	output.append_tag();
@@ -575,7 +532,6 @@ void DenoiseMJPEG::read_data(KeyFrame *keyframe)
 			config.ccontrast = input.tag.get_property("CCONTRAST", config.ccontrast);
 			config.deinterlace = input.tag.get_property("DEINTERLACE", config.deinterlace);
 			config.mode = input.tag.get_property("MODE", config.mode);
-			config.delay = input.tag.get_property("DELAY", config.delay);
 		}
 	}
 }
