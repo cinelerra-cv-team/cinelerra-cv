@@ -85,7 +85,8 @@ public:
 	void updateutf8(const char *text);
 	int update(int64_t value);
 	int update(float value);
-	void disable();
+// options: do not dim the text when the box is disabled
+	void disable(int options = 0);
 	void enable();
 	int get_enabled();
 
@@ -179,6 +180,7 @@ private:
 	int *positions;
 	int active;
 	int enabled;
+	int defaultcolor;
 	int precision;
 	int keypress_draw;
 // Cause the repeater to skip a cursor refresh if a certain event happened

@@ -174,6 +174,7 @@ int BC_TextBox::reset_parameters(int rows, int has_border, int font)
 	keypress_draw = 1;
 	last_keypress = 0;
 	separators = 0;
+	defaultcolor = 0;
 	wtext_len = 0;
 	positions = 0;
 	return 0;
@@ -312,11 +313,12 @@ int BC_TextBox::update(float value)
 	return 0;
 }
 
-void BC_TextBox::disable()
+void BC_TextBox::disable(int options)
 {
 	if(enabled)
 	{
 		enabled = 0;
+		defaultcolor = options;
 		if(top_level)
 		{
 			if(active) top_level->deactivate();
@@ -330,6 +332,7 @@ void BC_TextBox::enable()
 	if(!enabled)
 	{
 		enabled = 1;
+		defaultcolor = 0;
 		if(top_level)
 		{
 			draw();
@@ -537,7 +540,7 @@ void BC_TextBox::draw()
 			}
 
 // Draw text over highlight
-			if(enabled)
+			if(enabled || defaultcolor)
 				set_color(resources->text_default);
 			else
 				set_color(MEGREY);
