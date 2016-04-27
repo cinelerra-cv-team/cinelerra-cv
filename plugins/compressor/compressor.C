@@ -1373,12 +1373,12 @@ const char* CompressorInput::value_to_text(int value)
 {
 	switch(value)
 	{
-		case CompressorConfig::TRIGGER: return "Trigger";
-		case CompressorConfig::MAX: return "Maximum";
-		case CompressorConfig::SUM: return "Total";
+		case CompressorConfig::TRIGGER: return _("Trigger");
+		case CompressorConfig::MAX: return _("Maximum");
+		case CompressorConfig::SUM: return _("Total");
 	}
 
-	return "Trigger";
+	return _("Trigger");
 }
 
 int CompressorInput::text_to_value(char *text)
