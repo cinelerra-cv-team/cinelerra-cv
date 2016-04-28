@@ -124,6 +124,7 @@ cinelerra/tipwindow.C
 # cinelerra/toggleauto.C
 cinelerra/trackcanvas.C
 cinelerra/transitionpopup.C
+cinelerra/vdevicebuz.C
 # cinelerra/vdevicelml.C
 cinelerra/vdeviceprefs.C
 cinelerra/viewmenu.C
