@@ -324,8 +324,8 @@ int VDeviceBUZ::close_all()
 	return 0;
 }
 
-#define COMPOSITE_TEXT "Composite"
-#define SVIDEO_TEXT "S-Video"
+#define COMPOSITE_TEXT _("Composite")
+#define SVIDEO_TEXT _("S-Video")
 #define BUZ_COMPOSITE 0
 #define BUZ_SVIDEO 1
 
