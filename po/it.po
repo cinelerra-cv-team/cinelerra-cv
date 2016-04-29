@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cinelerra 2.3\n"
 "Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
-"POT-Creation-Date: 2016-04-07 13:24-0400\n"
-"PO-Revision-Date: 2016-04-07 13:35-0400\n"
+"POT-Creation-Date: 2016-04-29 14:32-0400\n"
+"PO-Revision-Date: 2016-04-29 15:44-0400\n"
 "Last-Translator: Nicola Ferralis <feranick@hotmail.com>\n"
 "Language-Team: feranick@hotmail.com\n"
 "Language: it_IT\n"
@@ -27,9 +27,8 @@ msgstr ""
 "Versione Libmpeg3  %d.%d.%d\n"
 
 #: cinelerra/aboutprefs.C:95
-#, fuzzy
 msgid "Credits:"
-msgstr "Bits:"
+msgstr "Crediti:"
 
 #: cinelerra/aboutprefs.C:143
 msgid "License:"
@@ -68,16 +67,16 @@ msgstr ""
 #: cinelerra/vdeviceprefs.C:268 cinelerra/vdeviceprefs.C:390
 #: cinelerra/vdeviceprefs.C:401 cinelerra/vdeviceprefs.C:413
 msgid "Device path:"
-msgstr "Percorso perif.:"
+msgstr "Percorso Disp:"
 
 #: cinelerra/adeviceprefs.C:285 cinelerra/adeviceprefs.C:359
-#: cinelerra/assetedit.C:318 cinelerra/fileformat.C:85
+#: cinelerra/assetedit.C:319 cinelerra/fileformat.C:85
 msgid "Bits:"
 msgstr "Bits:"
 
 #: cinelerra/adeviceprefs.C:337
 msgid "Device:"
-msgstr "Periferica:"
+msgstr "Dispositivo:"
 
 #: cinelerra/adeviceprefs.C:380
 msgid "Stop playback locks up."
@@ -95,7 +94,7 @@ msgstr "Porta:"
 
 #: cinelerra/adeviceprefs.C:454 cinelerra/vdeviceprefs.C:318
 msgid "Device Path:"
-msgstr "Percorso Periferica:"
+msgstr "Percorso Dispositivo:"
 
 #: cinelerra/adeviceprefs.C:493 cinelerra/channeledit.C:1063
 #: cinelerra/vdeviceprefs.C:354
@@ -103,8 +102,8 @@ msgid "Channel:"
 msgstr "Canale:"
 
 #: cinelerra/adeviceprefs.C:516 cinelerra/vdeviceprefs.C:377
-msgid "Syt Offset:"
-msgstr "Registra Syt:"
+msgid "SYT Offset:"
+msgstr "Offset SYT:"
 
 #. couldn't open source file / skip the edit
 #: cinelerra/amodule.C:237 cinelerra/amodule.C:316
@@ -113,7 +112,6 @@ msgid "VirtualAConsole::load_track Couldn't open %s.\n"
 msgstr "VirtualAConsole::load_track Non posso aprire %s.\n"
 
 #: cinelerra/apatchgui.C:249 cinelerra/vpatchgui.C:211
-#: plugins/bluebanana/bluebananawindow.C:2004
 msgid "fade"
 msgstr "sfuma"
 
@@ -121,127 +119,128 @@ msgstr "sfuma"
 msgid "pan"
 msgstr "filtro"
 
-#: cinelerra/assetedit.C:153
+#: cinelerra/assetedit.C:154
 msgid "Asset Info"
 msgstr "Informazioni elemento"
 
-#: cinelerra/assetedit.C:210
+#: cinelerra/assetedit.C:211
 msgid "Asset path"
 msgstr "Percorso elemento"
 
-#: cinelerra/assetedit.C:210
+#: cinelerra/assetedit.C:211
 msgid "Select a file for this asset:"
 msgstr "File per questo elemento:"
 
-#: cinelerra/assetedit.C:213
+#: cinelerra/assetedit.C:214
 msgid "File format:"
 msgstr "Formato file:"
 
-#: cinelerra/assetedit.C:231
+#: cinelerra/assetedit.C:232
 msgid "Bytes:"
 msgstr "Bytes:"
 
-#: cinelerra/assetedit.C:250
+#: cinelerra/assetedit.C:251
 msgid "Bitrate (bits/sec):"
 msgstr "Bitrate (bits/sec):"
 
-#: cinelerra/assetedit.C:264 cinelerra/formattools.C:171
+#: cinelerra/assetedit.C:265 cinelerra/formattools.C:171
 msgid "Audio:"
 msgstr "Audio:"
 
-#: cinelerra/assetedit.C:270 cinelerra/assetedit.C:409
-#: cinelerra/filemov.C:1453 cinelerra/filemov.C:1744
-#: cinelerra/filesndfile.C:398 cinelerra/filetga.C:931
+#: cinelerra/assetedit.C:271 cinelerra/assetedit.C:410
+#: cinelerra/fileexr.C:599 cinelerra/filemov.C:1453
+#: cinelerra/filemov.C:1744 cinelerra/filesndfile.C:398
+#: cinelerra/filetga.C:931 cinelerra/filetiff.C:611
 msgid "Compression:"
 msgstr "Compressione:"
 
-#: cinelerra/assetedit.C:281 cinelerra/fileformat.C:73
+#: cinelerra/assetedit.C:282 cinelerra/fileformat.C:73
 #: cinelerra/new.C:277 cinelerra/setformat.C:374
-#: plugins/livevideo/livevideo.C:226
+#: plugins/livevideo/livevideo.C:225
 msgid "Channels:"
 msgstr "Canali:"
 
-#: cinelerra/assetedit.C:298 cinelerra/fileformat.C:79
+#: cinelerra/assetedit.C:299 cinelerra/fileformat.C:79
 msgid "Sample rate:"
 msgstr "Campiona:"
 
-#: cinelerra/assetedit.C:339 cinelerra/fileformat.C:98
+#: cinelerra/assetedit.C:340 cinelerra/fileformat.C:98
 msgid "Header length:"
 msgstr "Lunghezza intestazione:"
 
 #. printf("FileFormat::create_objects_ 1 %d\n", asset->byte_order);
-#: cinelerra/assetedit.C:351 cinelerra/fileformat.C:105
+#: cinelerra/assetedit.C:352 cinelerra/fileformat.C:105
 #: cinelerra/filesndfile.C:417
 msgid "Byte order:"
 msgstr "Ordine Byte:"
 
-#: cinelerra/assetedit.C:372 cinelerra/assetedit.C:777
+#: cinelerra/assetedit.C:373 cinelerra/assetedit.C:728
 msgid "Lo-Hi"
 msgstr "Lo-Hi"
 
-#: cinelerra/assetedit.C:374 cinelerra/assetedit.C:794
+#: cinelerra/assetedit.C:375 cinelerra/assetedit.C:745
 msgid "Hi-Lo"
 msgstr "Hi-Lo"
 
-#: cinelerra/assetedit.C:388
+#: cinelerra/assetedit.C:389
 msgid "Values are unsigned"
 msgstr "Valori deselezionati"
 
-#: cinelerra/assetedit.C:390 cinelerra/assetedit.C:811
+#: cinelerra/assetedit.C:391 cinelerra/assetedit.C:762
 #: cinelerra/fileformat.C:188
 msgid "Values are signed"
 msgstr "Valori selezionati"
 
 #. printf("FormatTools::create_objects 8\n");
-#: cinelerra/assetedit.C:402 cinelerra/formattools.C:208
+#: cinelerra/assetedit.C:403 cinelerra/formattools.C:208
 msgid "Video:"
 msgstr "Video:"
 
-#: cinelerra/assetedit.C:420 cinelerra/setformat.C:414
+#: cinelerra/assetedit.C:421 cinelerra/setformat.C:414
 msgid "Frame rate:"
 msgstr "Fotogrammi al secondo:"
 
-#: cinelerra/assetedit.C:430 cinelerra/setformat.C:429
-#: plugins/freeverb/freeverb.C:344
+#: cinelerra/assetedit.C:431 cinelerra/setformat.C:429
+#: plugins/freeverb/freeverb.C:330
 msgid "Width:"
 msgstr "Larghezza:"
 
-#: cinelerra/assetedit.C:437 cinelerra/setformat.C:436
+#: cinelerra/assetedit.C:438 cinelerra/setformat.C:436
 msgid "Height:"
 msgstr "Altezza:"
 
-#: cinelerra/assetedit.C:446
+#: cinelerra/assetedit.C:447
 msgid "Subtitle tracks:"
 msgstr "Traccie sottotitoli:"
 
 #. --------------------
-#: cinelerra/assetedit.C:454
+#: cinelerra/assetedit.C:455
 msgid "Fix interlacing:"
 msgstr "Aggiusta Interlaccio:"
 
 #. --------------------
-#: cinelerra/assetedit.C:459
+#: cinelerra/assetedit.C:460
 msgid "Asset's interlacing:"
-msgstr "Migliora interlaccio"
+msgstr "Interlaccio Elemento"
 
 #. --------------------
-#: cinelerra/assetedit.C:473
+#: cinelerra/assetedit.C:475
 msgid "Interlace correction:"
 msgstr "Correzione Interlaccio:"
 
-#: cinelerra/assetedit.C:487 cinelerra/loadfile.C:486
+#: cinelerra/assetedit.C:490 cinelerra/loadfile.C:486
 msgid "Reel Name:"
 msgstr "Nome nastro:"
 
-#: cinelerra/assetedit.C:493 cinelerra/loadfile.C:500
+#: cinelerra/assetedit.C:496 cinelerra/loadfile.C:500
 msgid "Reel Number:"
 msgstr "Numero nastro:"
 
-#: cinelerra/assetedit.C:499
+#: cinelerra/assetedit.C:502
 msgid "Time Code Start:"
 msgstr "Inizio Esecuzione:"
 
-#: cinelerra/assetedit.C:593
+#: cinelerra/assetedit.C:596
 msgid "Automatically Fix Interlacing"
 msgstr "Auto-Aggiusta Interlaccio"
 
@@ -379,7 +378,7 @@ msgstr "Cancella elemento dal progetto"
 
 #: cinelerra/awindowgui.C:1579
 msgid "Edit information on asset"
-msgstr "Edita le informazioni sull'elemento"
+msgstr "Modifica le informazioni sull'elemento"
 
 #: cinelerra/awindowgui.C:1593
 msgid "Redraw index"
@@ -439,17 +438,18 @@ msgstr "Con contatore"
 
 #: cinelerra/batch.C:183 cinelerra/batchrender.C:905
 #: cinelerra/file.C:1335 cinelerra/filemov.C:1246
-#: cinelerra/loadmode.C:84 plugins/timefront/timefront.C:427
+#: cinelerra/loadmode.C:84 cinelerra/mwindow.C:837
+#: cinelerra/mwindow.C:848 plugins/timefront/timefront.C:421
 msgid "Unknown"
 msgstr "Sconosciuto"
 
 #: cinelerra/batchrender.C:52 plugins/freezeframe/freezeframe.C:98
-#: plugins/reverseaudio/reverseaudio.C:149
-#: plugins/reversevideo/reversevideo.C:147
+#: plugins/reverseaudio/reverseaudio.C:147
+#: plugins/reversevideo/reversevideo.C:145
 msgid "Enabled"
 msgstr "Abilitato"
 
-#: cinelerra/batchrender.C:53 plugins/compressor/compressor.C:1063
+#: cinelerra/batchrender.C:53 plugins/compressor/compressor.C:1062
 msgid "Output"
 msgstr "Uscita"
 
@@ -528,7 +528,7 @@ msgstr "Nuovo"
 
 #: cinelerra/batchrender.C:1028 cinelerra/channeledit.C:614
 #: cinelerra/cwindowtool.C:1607 cinelerra/recordgui.C:1026
-#: plugins/synthesizer/synthesizer.C:883
+#: plugins/synthesizer/synthesizer.C:790
 msgid "Delete"
 msgstr "Cancella"
 
@@ -703,7 +703,7 @@ msgstr "PAL_IRELAND"
 msgid "PAL_NEWZEALAND"
 msgstr "PAL_NEWZEALAND"
 
-#: cinelerra/channeledit.C:169 plugins/videoscope/videoscope.C:703
+#: cinelerra/channeledit.C:169 plugins/videoscope/videoscope.C:693
 msgid "NTSC"
 msgstr "NTSC"
 
@@ -796,7 +796,7 @@ msgstr "Modifica Canale"
 #. !channel_usage->use_norm &&
 #. !channel_usage->use_input))
 #. {
-#. add_subwindow(new BC_Title(x, y, "Device has no input selection."));
+#. add_subwindow(new BC_Title(x, y, _("Device has no input selection.")));
 #. y += 30;
 #. }
 #. else
@@ -813,6 +813,10 @@ msgstr "Fine:"
 msgid "Picture"
 msgstr "Immagine"
 
+#: cinelerra/channeledit.C:1513
+msgid "Device has no picture controls."
+msgstr "Dispositivo non ha controlli immagine"
+
 #: cinelerra/channeledit.C:1520 plugins/brightness/brightnesswindow.C:51
 msgid "Brightness:"
 msgstr "Luminosità:"
@@ -826,7 +830,7 @@ msgstr "Contrasto:"
 msgid "Color:"
 msgstr "Colore:"
 
-#: cinelerra/channeledit.C:1548 plugins/huesaturation/huesaturation.C:326
+#: cinelerra/channeledit.C:1548 plugins/huesaturation/huesaturation.C:317
 msgid "Hue:"
 msgstr "Saturazione:"
 
@@ -995,16 +999,16 @@ msgstr "Telecamera"
 
 #: cinelerra/cwindowtool.C:665 cinelerra/cwindowtool.C:1118
 #: cinelerra/cwindowtool.C:1964 cinelerra/zoombar.C:478
-#: plugins/radialblur/radialblur.C:279 plugins/titler/titlewindow.C:212
-#: plugins/zoomblur/zoomblur.C:294
+#: plugins/radialblur/radialblur.C:278 plugins/titler/titlewindow.C:212
+#: plugins/zoomblur/zoomblur.C:293
 msgid "X:"
 msgstr "X:"
 
 #: cinelerra/cwindowtool.C:674 cinelerra/cwindowtool.C:1127
 #: cinelerra/cwindowtool.C:1972 cinelerra/zoombar.C:480
 #: plugins/perspective/perspective.C:150
-#: plugins/radialblur/radialblur.C:283 plugins/titler/titlewindow.C:217
-#: plugins/yuv/yuv.C:189 plugins/zoomblur/zoomblur.C:298
+#: plugins/radialblur/radialblur.C:282 plugins/titler/titlewindow.C:217
+#: plugins/yuv/yuv.C:179 plugins/zoomblur/zoomblur.C:297
 msgid "Y:"
 msgstr "Y:"
 
@@ -1068,14 +1072,14 @@ msgid "Mask"
 msgstr "Maschera"
 
 #: cinelerra/cwindowtool.C:1937 cinelerra/recordgui.C:178
-#: plugins/denoisemjpeg/denoisemjpeg.C:408 plugins/lens/lens.C:634
-#: plugins/overlay/overlay.C:263
+#: plugins/denoisemjpeg/denoisemjpeg.C:369 plugins/lens/lens.C:634
+#: plugins/overlay/overlay.C:262
 msgid "Mode:"
 msgstr "Modo:"
 
 #: cinelerra/cwindowtool.C:1945 cinelerra/fileavi.C:942
-#: plugins/color3way/color3waywindow.C:135
-#: plugins/huesaturation/huesaturation.C:332
+#: plugins/color3way/color3waywindow.C:134
+#: plugins/huesaturation/huesaturation.C:323
 msgid "Value:"
 msgstr "Valore:"
 
@@ -1104,8 +1108,8 @@ msgid "Distance:"
 msgstr "Distanza:"
 
 #: cinelerra/cwindowtool.C:2133 plugins/gradient/gradient.C:241
-#: plugins/linearblur/linearblur.C:292 plugins/polar/polar.C:221
-#: plugins/radialblur/radialblur.C:287 plugins/timefront/timefront.C:203
+#: plugins/linearblur/linearblur.C:291 plugins/polar/polar.C:211
+#: plugins/radialblur/radialblur.C:286 plugins/timefront/timefront.C:203
 msgid "Angle:"
 msgstr "Angolo:"
 
@@ -1125,7 +1129,7 @@ msgstr "Premi Alt per tradurre il righello"
 
 #: cinelerra/dcoffset.C:61
 msgid "DC Offset"
-msgstr "Regola DC"
+msgstr "Offset DC"
 
 #: cinelerra/deleteallindexes.C:38
 msgid "Delete existing indexes"
@@ -1352,7 +1356,7 @@ msgstr "Apple/SGI AIFF"
 
 #: cinelerra/file.inc:108
 msgid "MPEG Audio"
-msgstr "MPEG Audio"
+msgstr "Audio MPEG"
 
 #. For encoding only
 #: cinelerra/file.inc:109
@@ -1385,11 +1389,11 @@ msgstr "AVI Lavtools"
 
 #: cinelerra/file.inc:116
 msgid "Raw DV"
-msgstr "Raw DV"
+msgstr "DV Raw"
 
 #: cinelerra/file.inc:117
 msgid "JPEG Sequence"
-msgstr "JPEG Sequence"
+msgstr "Sequenza JPEG"
 
 #: cinelerra/file.inc:118
 msgid "JPEG"
@@ -1399,18 +1403,18 @@ msgstr "JPEG"
 msgid "Quicktime for Linux"
 msgstr "Quicktime per Linux"
 
-#: cinelerra/file.inc:120 plugins/videoscope/videoscope.C:687
+#: cinelerra/file.inc:120 plugins/videoscope/videoscope.C:677
 msgid "MPEG"
 msgstr "MPEG"
 
 #. For decoding only
 #: cinelerra/file.inc:121
 msgid "Raw PCM"
-msgstr "Raw PCM"
+msgstr "PCM raw"
 
 #: cinelerra/file.inc:122
 msgid "PNG Sequence"
-msgstr "PNG Sequence"
+msgstr "Sequenza PNG"
 
 #: cinelerra/file.inc:123 cinelerra/filemov.C:49
 msgid "PNG"
@@ -1438,7 +1442,7 @@ msgstr "Sequenza TIFF"
 
 #: cinelerra/file.inc:129
 msgid "MPEG Video"
-msgstr "MPEG Video"
+msgstr "Video MPEG"
 
 #. For encoding only
 #: cinelerra/file.inc:130 cinelerra/file.inc:134
@@ -1505,6 +1509,10 @@ msgstr "PNG ALPHA"
 #: cinelerra/filevorbis.C:554
 msgid "Audio Compression"
 msgstr "Compressione audio"
+
+#: cinelerra/fileac3.C:267
+msgid "Bitrate (kbps):"
+msgstr "Bitrate (kbps):"
 
 #: cinelerra/fileavi.C:744
 msgid "Audio compression"
@@ -1661,12 +1669,12 @@ msgstr "MP3"
 
 #: cinelerra/filemov.C:70
 msgid "MPEG-4 Audio"
-msgstr "MPEG Audio"
+msgstr "MPEG-4 Audio"
 
 #. Fix up the Quicktime file.
 #: cinelerra/filemov.C:300
-msgid "Made with Cinelerra for Linux"
-msgstr "Creato con Cinelerra per Linux"
+msgid "Made with Cinelerra-CV for Linux"
+msgstr "Creato con Cinelerra-CV per Linux"
 
 #: cinelerra/filemov.C:1485
 msgid "Bits per channel:"
@@ -1705,7 +1713,7 @@ msgstr "Max bitrate:"
 
 #: cinelerra/filemov.C:1567
 msgid "Quantization Quality (%):"
-msgstr "Quantizzazione Qualità (%):"
+msgstr "Qualità Quantizzazione (%):"
 
 #: cinelerra/filemov.C:1867 cinelerra/filemov.C:1908
 #: cinelerra/filempeg.C:1819
@@ -1716,7 +1724,7 @@ msgstr "Quantizzazione:"
 msgid "Bitrate tolerance:"
 msgstr "Tolleranza bitrate:"
 
-#: cinelerra/filemov.C:1922 plugins/denoisemjpeg/denoisemjpeg.C:300
+#: cinelerra/filemov.C:1922 plugins/denoisemjpeg/denoisemjpeg.C:296
 msgid "Interlaced"
 msgstr "Interlacciato"
 
@@ -1726,7 +1734,7 @@ msgstr "Intervallo di fotogrammi chiave"
 
 #: cinelerra/filemov.C:1955
 msgid "Quantizer:"
-msgstr "Quantizzazione:"
+msgstr "Quantizzatore:"
 
 #: cinelerra/filemov.C:1969
 msgid "RC Period:"
@@ -1734,7 +1742,7 @@ msgstr "Periodo RC:"
 
 #: cinelerra/filemov.C:1976
 msgid "Reaction Ratio:"
-msgstr "Varia Reazione:"
+msgstr "Rapporto Reazione:"
 
 #: cinelerra/filemov.C:1983
 msgid "Reaction Period:"
@@ -1788,7 +1796,7 @@ msgstr "III"
 #: cinelerra/filempeg.C:1734 cinelerra/new.C:374
 #: cinelerra/setformat.C:477
 msgid "Color model:"
-msgstr "Formato colore:"
+msgstr "Modello colore:"
 
 #: cinelerra/filempeg.C:1800
 msgid "Format Preset:"
@@ -1806,10 +1814,10 @@ msgstr "Distanza fotogrammi I:"
 msgid "P frame distance:"
 msgstr "distanza fotogrammi P:"
 
-#: cinelerra/filempeg.C:1840 plugins/deinterlace/deinterwindow.C:113
-#: plugins/deinterlace/deinterwindow.C:119
-#: plugins/fieldframe/fieldframe.C:242
-#: plugins/framefield/framefield.C:264
+#: cinelerra/filempeg.C:1840 plugins/deinterlace/deinterwindow.C:112
+#: plugins/deinterlace/deinterwindow.C:118
+#: plugins/fieldframe/fieldframe.C:240
+#: plugins/framefield/framefield.C:262
 msgid "Bottom field first"
 msgstr "Area inferiore prima"
 
@@ -1876,11 +1884,11 @@ msgstr "DVD"
 #: cinelerra/filempeg.C:2014 cinelerra/fileogg.C:2262
 #: cinelerra/filevorbis.C:615
 msgid "Fixed bitrate"
-msgstr "Bitrate ottimizzato"
+msgstr "Bitrate fissato"
 
 #: cinelerra/filempeg.C:2028
 msgid "Fixed quantization"
-msgstr "Ottimizza quantizzazione"
+msgstr " Quantizzazione fissata"
 
 #: cinelerra/filempeg.C:2131 cinelerra/filempeg.C:2139
 msgid "YUV 4:2:0"
@@ -1895,23 +1903,21 @@ msgid "Average bitrate"
 msgstr "Bitrate medio"
 
 #: cinelerra/fileogg.C:2212
-#, fuzzy
 msgid "Keyframe frequency:"
-msgstr "Frequenza Base:"
+msgstr "Frequenza Fotogramma Chiave:"
 
 #: cinelerra/fileogg.C:2218
-#, fuzzy
 msgid "Keyframe force frequency:"
-msgstr "Frequenza Base:"
+msgstr "Forza Frequenza Fotogramma Chiave:"
 
-#: cinelerra/fileogg.C:2224 plugins/denoisemjpeg/denoisemjpeg.C:392
+#: cinelerra/fileogg.C:2224 plugins/denoisemjpeg/denoisemjpeg.C:357
 #: plugins/greycstoration/greycstorationwindow.C:57
 msgid "Sharpness:"
 msgstr "Chiarezza:"
 
 #: cinelerra/fileogg.C:2276
 msgid "Fixed quality"
-msgstr "Fissa qualità:"
+msgstr "Qualità fissata:"
 
 #: cinelerra/filesndfile.C:415
 msgid "Signed"
@@ -1933,9 +1939,13 @@ msgstr "RGB non compresso"
 msgid "RGBA uncompressed"
 msgstr "RGBA non compresso"
 
+#: cinelerra/filetiff.C:606
+msgid "Colorspace:"
+msgstr "Colorazione:"
+
 #: cinelerra/fileyuv.C:365
 msgid "YUV4MPEG Stream"
-msgstr ""
+msgstr "Trasmissione YUV4MPEG"
 
 #: cinelerra/fileyuv.C:386
 msgid "Output Path:"
@@ -1983,7 +1993,7 @@ msgstr "Cambia il formato del file"
 
 #: cinelerra/formatpresets.C:64
 msgid "User Defined"
-msgstr "Personalizzazione"
+msgstr "Personalizzato dall’utente"
 
 #: cinelerra/formatpresets.C:75
 msgid "Presets:"
@@ -2030,14 +2040,12 @@ msgid "Create new file at each label"
 msgstr "Crea nuovo file ad ogni etichetta"
 
 #: cinelerra/gwindowgui.C:42
-#, fuzzy
 msgid "Overlays"
-msgstr "Sovarpposizione"
+msgstr "Sovarpposizioni"
 
 #: cinelerra/gwindowgui.C:58
-#, fuzzy
 msgid "Assets"
-msgstr "Scarica Elementi"
+msgstr "Elementi"
 
 #: cinelerra/gwindowgui.C:59
 msgid "Titles"
@@ -2045,7 +2053,7 @@ msgstr "Titoli"
 
 #: cinelerra/gwindowgui.C:60
 msgid "Transitions"
-msgstr "transizioni"
+msgstr "Transizioni"
 
 #: cinelerra/gwindowgui.C:61 cinelerra/viewmenu.C:143
 msgid "Plugin Autos"
@@ -2053,7 +2061,7 @@ msgstr "Plugin Autos"
 
 #: cinelerra/gwindowgui.C:66 cinelerra/mainmenu.C:196
 msgid "Mute"
-msgstr "Muto"
+msgstr "Muta"
 
 #: cinelerra/gwindowgui.C:67 cinelerra/mainmenu.C:201
 msgid "Camera X"
@@ -2094,7 +2102,7 @@ msgstr "Modo"
 
 #: cinelerra/gwindowgui.C:77 cinelerra/patchgui.C:748
 msgid "Nudge"
-msgstr "Pacca"
+msgstr "Colpetto"
 
 #: cinelerra/indexfile.C:304
 #, c-format
@@ -2112,7 +2120,7 @@ msgstr "Sposta modifiche seguenti"
 
 #: cinelerra/interfaceprefs.C:34
 msgid "Drag only one edit"
-msgstr "Sposta questa modifica"
+msgstr "Sposta solo questa modifica"
 
 #: cinelerra/interfaceprefs.C:35
 msgid "Drag source only"
@@ -2124,7 +2132,7 @@ msgstr "Nessun effetto"
 
 #: cinelerra/interfaceprefs.C:60
 msgid "Time Format"
-msgstr "Formato file:"
+msgstr "Formato orario:"
 
 #: cinelerra/interfaceprefs.C:108
 msgid "frames per foot"
@@ -2324,7 +2332,7 @@ msgstr "Carica backup"
 
 #: cinelerra/loadfile.C:439
 msgid "load backup"
-msgstr "carico backup"
+msgstr "carica backup"
 
 #: cinelerra/loadfile.C:453
 msgid "Please enter the reel name and number"
@@ -2443,13 +2451,14 @@ msgstr "Si sono verificati i seguenti errori:"
 
 #: cinelerra/mainindexes.C:228 cinelerra/threadindexer.C:136
 msgid "Building Indexes..."
-msgstr "Creazione Indici..."
+msgstr "Creazione Indici in corso…"
 
-#: cinelerra/mainmenu.C:90 plugins/reverb/reverbwindow.C:245
+#: cinelerra/mainmenu.C:90 guicast/bcfilebox.C:885
+#: plugins/reverb/reverbwindow.C:244
 msgid "File"
 msgstr "File"
 
-#: cinelerra/mainmenu.C:121 plugins/svg/svgwin.C:277
+#: cinelerra/mainmenu.C:121 plugins/svg/svgwin.C:272
 msgid "Edit"
 msgstr "Modifica"
 
@@ -2485,19 +2494,19 @@ msgstr "Finestra"
 
 #: cinelerra/mainmenu.C:495
 msgid "Dump CICache"
-msgstr "Scarica CICache"
+msgstr "Scarta CICache"
 
 #: cinelerra/mainmenu.C:505
 msgid "Dump EDL"
-msgstr "Scarica EDL"
+msgstr "Scarta EDL"
 
 #: cinelerra/mainmenu.C:519
 msgid "Dump Plugins"
-msgstr "Scarica Plugins"
+msgstr "Scarta Plugins"
 
 #: cinelerra/mainmenu.C:534
 msgid "Dump Assets"
-msgstr "Scarica Elementi"
+msgstr "Scarta Elementi"
 
 #. ================================================= edit
 #: cinelerra/mainmenu.C:545
@@ -2562,8 +2571,8 @@ msgstr "Taglia"
 msgid "Copy"
 msgstr "Copia"
 
-#: cinelerra/mainmenu.C:743 plugins/compressor/compressor.C:1401
-#: plugins/synthesizer/synthesizer.C:954
+#: cinelerra/mainmenu.C:743 plugins/compressor/compressor.C:1400
+#: plugins/synthesizer/synthesizer.C:861
 msgid "Clear"
 msgstr "Cancella"
 
@@ -2766,45 +2775,76 @@ msgstr "Prompt di effetto"
 msgid "Show meters"
 msgstr "Mostra misuratori"
 
-#: cinelerra/mwindow.C:413 cinelerra/mwindow.C:451
+#: cinelerra/mwindow.C:415 cinelerra/mwindow.C:453
 #, c-format
 msgid "MWindow::init_plugins: couldn't open %s directory\n"
 msgstr "MWindow::init_plugins: non posso aprire la cartella %s\n"
 
-#: cinelerra/mwindow.C:701
-#, fuzzy, c-format
+#: cinelerra/mwindow.C:703
+#, c-format
 msgid ""
 "MWindow::init_theme: Default theme %s not exists.\n"
 "Maybe an install problem\n"
-msgstr "MWindow::init_theme: Il Tema di default %s non è stato trovato.\n"
+msgstr ""
+"MWindow::init_theme: Il Tema di default %s non è stato trovato.\n"
+"Possibilmente un problema di istallazione\n"
 
-#: cinelerra/mwindow.C:1034
+#: cinelerra/mwindow.C:840
+msgid "Top Fields First"
+msgstr "Area superiore per prima"
+
+#: cinelerra/mwindow.C:843
+msgid "Bottom Fields First"
+msgstr "Area inferiore per prima"
+
+#: cinelerra/mwindow.C:846
+msgid "Not Interlaced"
+msgstr "Non interlacciato"
+
+#: cinelerra/mwindow.C:856 plugins/deinterlace/deinterwindow.C:284
+#: plugins/motion/motionwindow.C:878 plugins/motion/motionwindow.C:898
+msgid "Do Nothing"
+msgstr "Non fare nulla"
+
+#: cinelerra/mwindow.C:859
+msgid "Shift Up 1 pixel"
+msgstr "Sposta Su 1 pixel"
+
+#: cinelerra/mwindow.C:862
+msgid "Shift Down 1 pixel"
+msgstr "Sposta Giù 1 pixel"
+
+#: cinelerra/mwindow.C:864
+msgid "Error!"
+msgstr "Errore!"
+
+#: cinelerra/mwindow.C:1083
 #, c-format
 msgid "Failed to open %s"
-msgstr "Fallita apertura %s"
+msgstr "Apertura %s non rieuscita"
 
-#: cinelerra/mwindow.C:1082
+#: cinelerra/mwindow.C:1131
 msgid "'s format couldn't be determined."
 msgstr "non può essere stabilito il formato 's."
 
-#: cinelerra/mwindow.C:1263
+#: cinelerra/mwindow.C:1312
 msgid "load"
 msgstr "carica"
 
-#: cinelerra/mwindow.C:1406
+#: cinelerra/mwindow.C:1455
 msgid "Initializing GUI"
 msgstr "Avvio GUI"
 
-#: cinelerra/mwindow.C:2049
+#: cinelerra/mwindow.C:2101
 #, c-format
 msgid "Couldn't open %s for writing."
 msgstr "Non posso aprire in scrittura %s ."
 
-#: cinelerra/mwindow.C:2138
+#: cinelerra/mwindow.C:2190
 msgid "remove assets"
 msgstr "rimuovi elementi"
 
-#: cinelerra/mwindow.C:2296
+#: cinelerra/mwindow.C:2348
 #, c-format
 msgid "Using %s."
 msgstr "%s in uso."
@@ -2824,11 +2864,11 @@ msgstr ""
 
 #: cinelerra/mwindowedit.C:180
 msgid "asset to size"
-msgstr "elemento dimensione"
+msgstr "elemento a dimensione"
 
 #: cinelerra/mwindowedit.C:200
 msgid "asset to rate"
-msgstr "elemento percentuali"
+msgstr "elemento a tasso percentuale"
 
 #: cinelerra/mwindowedit.C:221
 msgid "clear"
@@ -3045,11 +3085,11 @@ msgstr "Campiona:"
 
 #: cinelerra/new.C:311 cinelerra/recordgui.C:258
 msgid "Framerate:"
-msgstr "Freq.fotogrammi:"
+msgstr "Freq. fotogrammi:"
 
 #: cinelerra/new.C:337 cinelerra/setformat.C:426
 msgid "Canvas size:"
-msgstr "Formato:"
+msgstr "Dimensione Tela:"
 
 #: cinelerra/new.C:356 cinelerra/setformat.C:494
 msgid "Aspect ratio:"
@@ -3058,9 +3098,9 @@ msgstr "Dimensione:"
 #. --------------------
 #: cinelerra/new.C:384 cinelerra/setformat.C:521
 msgid "Interlace mode:"
-msgstr "Interlaccio:"
+msgstr "Modo interlaccio:"
 
-#: cinelerra/new.C:909
+#: cinelerra/new.C:903
 msgid "Auto aspect ratio"
 msgstr "Proporzione aspetto automatica"
 
@@ -3241,7 +3281,7 @@ msgstr "Uscita Audio"
 
 #: cinelerra/playbackprefs.C:80
 msgid "Playback buffer size:"
-msgstr "Memoria riproduzione:"
+msgstr "Dimensione buffer di riproduzione:"
 
 #: cinelerra/playbackprefs.C:103
 msgid "Audio offset (sec):"
@@ -3249,7 +3289,7 @@ msgstr "Taratura Audio (sec):"
 
 #: cinelerra/playbackprefs.C:117
 msgid "Audio Driver:"
-msgstr "Usa Driver:"
+msgstr "Driver Audio:"
 
 #: cinelerra/playbackprefs.C:140
 msgid "Video Out"
@@ -3257,7 +3297,7 @@ msgstr "Uscita Video"
 
 #: cinelerra/playbackprefs.C:146
 msgid "Framerate achieved:"
-msgstr "Campioni in archivio:"
+msgstr "Frequenza fotogrammi archiviata: "
 
 #: cinelerra/playbackprefs.C:147 cinelerra/zoombar.C:118
 #: cinelerra/zoombar.C:120
@@ -3270,7 +3310,7 @@ msgstr "Equazione ridimensionamento:"
 
 #: cinelerra/playbackprefs.C:189
 msgid "Preload buffer for Quicktime:"
-msgstr "Memoria di precaricamento Quicktime:"
+msgstr "Precarica buffer in Quicktime:"
 
 #: cinelerra/playbackprefs.C:192
 msgid "DVD Subtitle to display:"
@@ -3278,7 +3318,7 @@ msgstr "Numero sottotitoli DVD:"
 
 #: cinelerra/playbackprefs.C:239
 msgid "Timecode offset:"
-msgstr "Taratura tempo:"
+msgstr "Offset tempo:"
 
 #: cinelerra/playbackprefs.C:243 cinelerra/playbackprefs.C:246
 #: cinelerra/playbackprefs.C:249 cinelerra/setformat.C:502
@@ -3361,12 +3401,12 @@ msgstr "Avanti per fotogramma ( 1 )"
 msgid "Fast forward ( Enter )"
 msgstr "Avanti veloce ( Enter )"
 
-#: cinelerra/pluginaclientlad.C:479
+#: cinelerra/pluginaclientlad.C:475
 #, c-format
 msgid "Author: %s"
 msgstr "Autore: %s"
 
-#: cinelerra/pluginaclientlad.C:482
+#: cinelerra/pluginaclientlad.C:478
 #, c-format
 msgid "License: %s"
 msgstr "Licenza: %s"
@@ -3379,7 +3419,7 @@ msgstr "%s..."
 #: cinelerra/pluginarray.C:215
 #, c-format
 msgid "%s took %s"
-msgstr "%s preso %s"
+msgstr "%s ci ha messo %s"
 
 #: cinelerra/pluginclient.C:190
 #, c-format
@@ -3459,7 +3499,7 @@ msgid "Preferences"
 msgstr "Preferenze"
 
 #: cinelerra/preferencesthread.C:531 cinelerra/preferencesthread.C:533
-#: cinelerra/setformat.C:929
+#: cinelerra/setformat.C:930
 msgid "Apply"
 msgstr "Applica"
 
@@ -3615,7 +3655,7 @@ msgstr "Riempi fotogrammi"
 
 #: cinelerra/recordgui.C:815
 msgid "Write extra frames when behind."
-msgstr "Scrivi fotogrammi supplementari in dietro."
+msgstr "Scrivi fotogrammi supplementari se in ritardo."
 
 #: cinelerra/recordgui.C:826
 msgid "Monitor video"
@@ -3654,7 +3694,7 @@ msgid ""
 "Make the highlighted\n"
 "clip active."
 msgstr ""
-"Creare spezzone attivo\n"
+"Attivare spezzone\n"
 "evidenziato."
 
 #: cinelerra/recordgui.C:1083
@@ -3670,9 +3710,8 @@ msgid "Rewind batch and overwrite?"
 msgstr "Riavvolgi in batch e sovrascrivi?"
 
 #: cinelerra/recordmonitor.C:206
-#, fuzzy
 msgid "Video in"
-msgstr "Ingresso video"
+msgstr "Ingresso Video"
 
 #: cinelerra/recordmonitor.C:310
 msgid "00:00:00:00"
@@ -3713,7 +3752,7 @@ msgstr "Ingresso video"
 
 #: cinelerra/recordprefs.C:172
 msgid "Frames to record to disk at a time:"
-msgstr "Frame da scrivere sul disco alla volta:"
+msgstr "Frame da registrare sul disco alla volta:"
 
 #: cinelerra/recordprefs.C:176
 msgid "Frames to buffer in device:"
@@ -3721,11 +3760,11 @@ msgstr "Frame per buffer sul dispositivo:"
 
 #: cinelerra/recordprefs.C:192
 msgid "Size of captured frame:"
-msgstr "Dim.ne frame catturato:"
+msgstr "Dimensione frame catturato:"
 
 #: cinelerra/recordprefs.C:197
 msgid "Frame rate for recording:"
-msgstr "Freq.fotogr. registrazione:"
+msgstr "Freq. fotogr. registrazione:"
 
 #: cinelerra/recordprefs.C:239
 msgid "Images"
@@ -3762,7 +3801,7 @@ msgstr "Anteprima registrazione"
 
 #: cinelerra/recordtransport.C:229
 msgid "Stop operation"
-msgstr "ferma operazione"
+msgstr "Ferma operazione"
 
 #: cinelerra/recordtransport.C:255
 msgid "Start over"
@@ -3936,7 +3975,7 @@ msgstr "Scala:"
 msgid ""
 "ResourcePixmap::draw_audio_source: failed to check out %s for drawing.\n"
 msgstr ""
-"ResourcePixmap::draw_audio_source: failed to check out %s for drawing.\n"
+"ResourcePixmap::draw_audio_source: checkout disegno di %s non riuscito.\n"
 
 #: cinelerra/savefile.C:41
 msgid "Save backup"
@@ -3987,18 +4026,18 @@ msgstr "Posizione del canale:"
 
 #: cinelerra/setformat.C:459
 msgid "W Ratio:"
-msgstr "Dim. W:"
+msgstr "Rapporto L:"
 
 #: cinelerra/setformat.C:468
 msgid "H Ratio:"
-msgstr "Dim. H:"
+msgstr "Rapporto A:"
 
-#: cinelerra/setformat.C:712
+#: cinelerra/setformat.C:713
 #, c-format
 msgid "%d degrees"
 msgstr "%d gradi"
 
-#: cinelerra/setformat.C:891
+#: cinelerra/setformat.C:892
 msgid "Auto"
 msgstr "Auto"
 
@@ -4011,8 +4050,8 @@ msgid "Loading..."
 msgstr "Caricamento in corso..."
 
 #: cinelerra/statusbar.C:112
-msgid "Welcome to Cinelerra."
-msgstr "Benvenuto su Cinelerra."
+msgid "Welcome to Cinelerra-CV."
+msgstr "Benvenuto su Cinelerra-CV."
 
 #: cinelerra/statusbar.C:120
 msgid "Cancel operation"
@@ -4164,6 +4203,14 @@ msgstr "Aggiungi..."
 msgid "Length"
 msgstr "Durata"
 
+#: cinelerra/vdevicebuz.C:327
+msgid "Composite"
+msgstr "Composito"
+
+#: cinelerra/vdevicebuz.C:328
+msgid "S-Video"
+msgstr "S-Video"
+
 #: cinelerra/vdeviceprefs.C:218
 msgid "Host:"
 msgstr "Host:"
@@ -4201,30 +4248,31 @@ msgid "mode"
 msgstr "modo"
 
 #: cinelerra/vpatchgui.C:356 cinelerra/vpatchgui.C:384
+#: plugins/overlay/overlay.C:181 plugins/overlay/overlay.C:209
 msgid "Normal"
 msgstr "Normale"
 
-#: cinelerra/vpatchgui.C:360
+#: cinelerra/vpatchgui.C:360 plugins/overlay/overlay.C:185
 msgid "Replace"
 msgstr "Rimpiazza"
 
-#: cinelerra/vpatchgui.C:364
+#: cinelerra/vpatchgui.C:364 plugins/overlay/overlay.C:189
 msgid "Addition"
 msgstr "Aggiungi"
 
-#: cinelerra/vpatchgui.C:368
+#: cinelerra/vpatchgui.C:368 plugins/overlay/overlay.C:193
 msgid "Subtract"
 msgstr "Sottrai"
 
-#: cinelerra/vpatchgui.C:372
+#: cinelerra/vpatchgui.C:372 plugins/overlay/overlay.C:197
 msgid "Multiply"
 msgstr "Moltiplica"
 
-#: cinelerra/vpatchgui.C:376
+#: cinelerra/vpatchgui.C:376 plugins/overlay/overlay.C:201
 msgid "Divide"
 msgstr "Dividi"
 
-#: cinelerra/vpatchgui.C:380
+#: cinelerra/vpatchgui.C:380 plugins/overlay/overlay.C:205
 msgid "Max"
 msgstr "Max"
 
@@ -4291,7 +4339,7 @@ msgstr "??"
 
 #: cinelerra/zoombar.C:513
 msgid "Automation range"
-msgstr "Scalatura automatica"
+msgstr "Intervallo automazione"
 
 #: cinelerra/zoombar.C:573
 msgid "Selection start time"
@@ -4357,11 +4405,23 @@ msgstr "Cancella i file"
 msgid "Refresh"
 msgstr "Aggiorna"
 
-#: guicast/bcfilebox.C:1189
+#: guicast/bcfilebox.C:888
+msgid "Size"
+msgstr "Dimensione"
+
+#: guicast/bcfilebox.C:891
+msgid "Date"
+msgstr "Data"
+
+#: guicast/bcfilebox.C:894
+msgid "Ext."
+msgstr "Ext."
+
+#: guicast/bcfilebox.C:1188
 msgid ": New folder"
 msgstr ": Nuova cartella"
 
-#: guicast/bcfilebox.C:1204
+#: guicast/bcfilebox.C:1203
 msgid ": Delete"
 msgstr ": Cancellato"
 
@@ -4431,7 +4491,7 @@ msgid "BC_Theme::check_used: Images aren't used.\n"
 msgstr "BC_Theme::check_used: Immagini non usate.\n"
 
 #: plugins/1080to540/1080to540.C:94 plugins/720to480/720to480.C:72
-#: plugins/ivtc/ivtcwindow.C:123
+#: plugins/ivtc/ivtcwindow.C:122
 msgid "Odd field first"
 msgstr "Area dispari prima"
 
@@ -4439,63 +4499,63 @@ msgstr "Area dispari prima"
 msgid "Even field first"
 msgstr "Area pari prima"
 
-#: plugins/1080to540/1080to540.C:167
+#: plugins/1080to540/1080to540.C:165
 msgid "1080 to 540"
 msgstr "1080 per 480"
 
-#: plugins/720to480/720to480.C:190
+#: plugins/720to480/720to480.C:188
 msgid "720 to 480"
 msgstr "720 per 480"
 
-#: plugins/C41/c41.C:252 plugins/colorbalance/colorbalancewindow.C:151
+#: plugins/C41/c41.C:242 plugins/colorbalance/colorbalancewindow.C:150
 msgid "Lock parameters"
 msgstr "Blocca Parametri"
 
-#: plugins/C41/c41.C:284
+#: plugins/C41/c41.C:274
 msgid "Activate processing"
 msgstr "Attiva elaborazione"
 
-#: plugins/C41/c41.C:287
+#: plugins/C41/c41.C:277
 msgid "Compute negfix values"
 msgstr "Calcola valori negfix"
 
-#: plugins/C41/c41.C:289
+#: plugins/C41/c41.C:279
 msgid "(uncheck for faster rendering)"
 msgstr "(deseleziona per rendering veloce)"
 
-#: plugins/C41/c41.C:292
+#: plugins/C41/c41.C:282
 msgid "Computed negfix values:"
 msgstr "Valori negfix calcolati:"
 
-#: plugins/C41/c41.C:295 plugins/C41/c41.C:326
+#: plugins/C41/c41.C:285 plugins/C41/c41.C:316
 msgid "Min R:"
-msgstr ""
+msgstr "Min R:"
 
-#: plugins/C41/c41.C:299 plugins/C41/c41.C:330
+#: plugins/C41/c41.C:289 plugins/C41/c41.C:320
 msgid "Min G:"
-msgstr ""
+msgstr "Min G:"
 
-#: plugins/C41/c41.C:303 plugins/C41/c41.C:334
+#: plugins/C41/c41.C:293 plugins/C41/c41.C:324
 msgid "Min B:"
-msgstr ""
+msgstr "Min B:"
 
-#: plugins/C41/c41.C:307 plugins/C41/c41.C:338
+#: plugins/C41/c41.C:297 plugins/C41/c41.C:328
 msgid "Light:"
 msgstr "Luce:"
 
-#: plugins/C41/c41.C:311 plugins/C41/c41.C:342
+#: plugins/C41/c41.C:301 plugins/C41/c41.C:332
 msgid "Gamma G:"
-msgstr ""
+msgstr "Gamma G:"
 
-#: plugins/C41/c41.C:315 plugins/C41/c41.C:346
+#: plugins/C41/c41.C:305 plugins/C41/c41.C:336
 msgid "Gamma B:"
-msgstr ""
+msgstr "Gamma B:"
 
-#: plugins/C41/c41.C:323
+#: plugins/C41/c41.C:313
 msgid "negfix values to apply:"
 msgstr "valori negfix da applicare"
 
-#: plugins/C41/c41.C:395
+#: plugins/C41/c41.C:384
 msgid "C41"
 msgstr "C41"
 
@@ -4511,19 +4571,19 @@ msgstr ""
 "Film antico per EffectTV\n"
 "Copyright (C) 2001 FUKUCHI Kentarou"
 
-#: plugins/aging/agingwindow.C:88
+#: plugins/aging/agingwindow.C:87
 msgid "Grain"
 msgstr "Grano"
 
-#: plugins/aging/agingwindow.C:103
+#: plugins/aging/agingwindow.C:102
 msgid "Scratch"
 msgstr "Graffio"
 
-#: plugins/aging/agingwindow.C:145
+#: plugins/aging/agingwindow.C:144
 msgid "Pits"
 msgstr "Cavità"
 
-#: plugins/aging/agingwindow.C:187
+#: plugins/aging/agingwindow.C:186
 msgid "Dust"
 msgstr "Polvere"
 
@@ -4537,21 +4597,21 @@ msgstr "Ingresso"
 msgid "Out"
 msgstr "Uscita"
 
-#: plugins/bandslide/bandslide.C:142 plugins/bandwipe/bandwipe.C:141
+#: plugins/bandslide/bandslide.C:136 plugins/bandwipe/bandwipe.C:135
 msgid "Bands:"
 msgstr "Bande:"
 
-#: plugins/bandslide/bandslide.C:152 plugins/irissquare/irissquare.C:114
-#: plugins/shapewipe/shapewipe.C:201 plugins/slide/slide.C:161
-#: plugins/slide/slide.C:175 plugins/wipe/wipe.C:114
+#: plugins/bandslide/bandslide.C:146 plugins/irissquare/irissquare.C:109
+#: plugins/shapewipe/shapewipe.C:196 plugins/slide/slide.C:155
+#: plugins/slide/slide.C:169 plugins/wipe/wipe.C:108
 msgid "Direction:"
 msgstr "Direzione:"
 
-#: plugins/bandslide/bandslide.C:191
+#: plugins/bandslide/bandslide.C:185
 msgid "BandSlide"
 msgstr "StiraturaBande"
 
-#: plugins/bandwipe/bandwipe.C:189
+#: plugins/bandwipe/bandwipe.C:183
 msgid "BandWipe"
 msgstr "SchiaraBande"
 
@@ -4571,12 +4631,16 @@ msgstr "Seleziona"
 #: plugins/bluebanana/bluebananawindow.C:1414
 #: plugins/bluebanana/bluebananawindow.C:1422
 #: plugins/bluebanana/bluebananawindow.C:2047
-#: plugins/color3way/color3waywindow.C:616
-#: plugins/colorbalance/colorbalancewindow.C:217
-#: plugins/histogram/histogramwindow.C:590
-#: plugins/perspective/perspective.C:521
+#: plugins/color3way/color3waywindow.C:615
+#: plugins/colorbalance/colorbalancewindow.C:216
+#: plugins/histogram/histogramwindow.C:589
+#: plugins/perspective/perspective.C:520
 msgid "Reset"
 msgstr "Resetta"
+
+#: plugins/bluebanana/bluebananawindow.C:1758
+msgid " End Mask"
+msgstr "Maschera Finale"
 
 #: plugins/bluebanana/bluebananawindow.C:1841
 msgid " Mask Selection"
@@ -4618,6 +4682,10 @@ msgstr "verde"
 msgid "blue"
 msgstr "blu"
 
+#: plugins/bluebanana/bluebananawindow.C:2004
+msgid "opacity"
+msgstr "opacità"
+
 #: plugins/bluebanana/bluebananawindow.C:2017
 msgid "pre-erode"
 msgstr "Attenua"
@@ -4643,33 +4711,33 @@ msgstr "-*-helvetica-medium-r-normal-*-14-*"
 msgid "Blur"
 msgstr "Sfoca"
 
-#: plugins/blur/blurwindow.C:63 plugins/whirl/whirl.C:256
+#: plugins/blur/blurwindow.C:63 plugins/whirl/whirl.C:247
 msgid "Radius"
 msgstr "Raggio"
 
-#: plugins/blur/blurwindow.C:108 plugins/downsample/downsample.C:291
+#: plugins/blur/blurwindow.C:102 plugins/downsample/downsample.C:290
 #: plugins/flip/flipwindow.C:57
 msgid "Vertical"
 msgstr "Verticale"
 
-#: plugins/blur/blurwindow.C:127 plugins/downsample/downsample.C:273
+#: plugins/blur/blurwindow.C:121 plugins/downsample/downsample.C:272
 #: plugins/flip/flipwindow.C:63
 msgid "Horizontal"
 msgstr "Orizzontale"
 
-#: plugins/blur/blurwindow.C:146
+#: plugins/blur/blurwindow.C:140
 msgid "Blur alpha"
 msgstr "Sfocatura alpha"
 
-#: plugins/blur/blurwindow.C:158
+#: plugins/blur/blurwindow.C:152
 msgid "Blur red"
 msgstr "Sfocatura Rosso"
 
-#: plugins/blur/blurwindow.C:170
+#: plugins/blur/blurwindow.C:164
 msgid "Blur green"
 msgstr "Sfocatura verde"
 
-#: plugins/blur/blurwindow.C:182
+#: plugins/blur/blurwindow.C:176
 msgid "Blur blue"
 msgstr "Sfocatura blu"
 
@@ -4678,25 +4746,25 @@ msgstr "Sfocatura blu"
 msgid "Brightness/Contrast"
 msgstr "Luminosità/Contrasto"
 
-#: plugins/brightness/brightnesswindow.C:132
+#: plugins/brightness/brightnesswindow.C:126
 msgid "Boost luminance only"
 msgstr "Incrementa solo la luminosità"
 
 #: plugins/burn/burn.C:80
 msgid "BurningTV"
-msgstr "BruciatoTV"
+msgstr "BurningTV"
 
 #: plugins/burn/burnwindow.C:54
 msgid ""
 "BurningTV from EffectTV\n"
 "Copyright (C) 2001 FUKUCHI Kentarou"
 msgstr ""
-"BruciatoTV da EffectTV\n"
+"BurningTV da EffectTV\n"
 "Copyright (C) 2001 FUKUCHI Kentarou"
 
 #: plugins/cdripper/cdripper.C:58
 msgid "CD Ripper"
-msgstr "Estrai CD"
+msgstr "Estrattore CD"
 
 #: plugins/cdripper/cdripper.C:135
 msgid "Can't open cdrom drive."
@@ -4740,7 +4808,7 @@ msgstr "Min"
 
 #: plugins/cdripper/cdripwindow.C:52 plugins/cdripper/cdripwindow.C:56
 msgid "Sec"
-msgstr "Seg"
+msgstr "Sec"
 
 #: plugins/cdripper/cdripwindow.C:73
 msgid "From"
@@ -4748,48 +4816,48 @@ msgstr "Da"
 
 #: plugins/cdripper/cdripwindow.C:75
 msgid "To"
-msgstr "per"
+msgstr "A"
 
 #: plugins/cdripper/cdripwindow.C:78
 msgid "CD Device:"
-msgstr "Dispositivo del CD:"
+msgstr "Dispositivo CD:"
 
-#: plugins/chromakey/chromakey.C:136 plugins/diffkey/diffkey.C:302
+#: plugins/chromakey/chromakey.C:136 plugins/diffkey/diffkey.C:300
 msgid "Slope:"
-msgstr "Inclina:"
+msgstr "pendenza:"
 
 #: plugins/chromakey/chromakey.C:140
-#: plugins/denoisevideo/denoisevideo.C:192 plugins/diffkey/diffkey.C:297
+#: plugins/denoisevideo/denoisevideo.C:192 plugins/diffkey/diffkey.C:295
 #: plugins/histogram/histogramwindow.C:194
 #: plugins/unsharp/unsharpwindow.C:67
 msgid "Threshold:"
 msgstr "Soglia:"
 
-#: plugins/chromakey/chromakey.C:187 plugins/chromakeyhsv/chromakey.C:295
-#: plugins/titler/titlewindow.C:504
+#: plugins/chromakey/chromakey.C:186 plugins/chromakeyhsv/chromakey.C:294
+#: plugins/titler/titlewindow.C:498
 msgid "Color..."
 msgstr "Colore..."
 
-#: plugins/chromakey/chromakey.C:247
+#: plugins/chromakey/chromakey.C:246
 msgid "Use value"
 msgstr "Usa valore"
 
-#: plugins/chromakey/chromakey.C:263 plugins/chromakeyhsv/chromakey.C:467
+#: plugins/chromakey/chromakey.C:262 plugins/chromakeyhsv/chromakey.C:466
 msgid "Use color picker"
 msgstr "Usa cattura colore"
 
-#: plugins/chromakey/chromakey.C:283 plugins/chromakeyhsv/chromakey.C:526
-#: plugins/gradient/gradient.C:506
+#: plugins/chromakey/chromakey.C:282 plugins/chromakeyhsv/chromakey.C:525
+#: plugins/gradient/gradient.C:499
 msgid "Inner color"
 msgstr "Colore interno"
 
-#: plugins/chromakey/chromakey.C:577
+#: plugins/chromakey/chromakey.C:576
 msgid "Chroma key"
 msgstr "Chiave cromatica"
 
 #: plugins/chromakeyhsv/chromakey.C:195
 msgid "Key parameters:"
-msgstr "Chiave Parametri:"
+msgstr "Parametri Chiave:"
 
 #: plugins/chromakeyhsv/chromakey.C:197
 msgid "Hue Tolerance:"
@@ -4817,11 +4885,11 @@ msgstr "Maschera distorsione:"
 
 #: plugins/chromakeyhsv/chromakey.C:217
 msgid "In Slope:"
-msgstr "Salita:"
+msgstr "Pendenza in entrata:"
 
 #: plugins/chromakeyhsv/chromakey.C:220
 msgid "Out Slope:"
-msgstr "Discesa:"
+msgstr "Pendensa in uscita:"
 
 #: plugins/chromakeyhsv/chromakey.C:223
 msgid "Alpha Offset:"
@@ -4829,21 +4897,21 @@ msgstr "Compensa Alpha:"
 
 #: plugins/chromakeyhsv/chromakey.C:231
 msgid "Spill light control:"
-msgstr "Controllo puntini luminosi"
+msgstr "Riverso controlli luminosi"
 
 #: plugins/chromakeyhsv/chromakey.C:233
 msgid "Spill Threshold:"
-msgstr "Soglia Puntini:"
+msgstr "Soglia Riverso:"
 
 #: plugins/chromakeyhsv/chromakey.C:236
 msgid "Spill Compensation:"
-msgstr "Compensazione Puntini"
+msgstr "Compensazione Riverso"
 
-#: plugins/chromakeyhsv/chromakey.C:451
+#: plugins/chromakeyhsv/chromakey.C:450
 msgid "Show Mask"
 msgstr "Mostra Maschera"
 
-#: plugins/chromakeyhsv/chromakey.C:904
+#: plugins/chromakeyhsv/chromakey.C:903
 msgid "Chroma key (HSV)"
 msgstr "Chiave Cromatica (HSV)"
 
@@ -4851,29 +4919,29 @@ msgstr "Chiave Cromatica (HSV)"
 msgid "Color 3 Way"
 msgstr "Color 3 Way"
 
-#: plugins/color3way/color3waywindow.C:114
+#: plugins/color3way/color3waywindow.C:113
 msgid "Shadows"
 msgstr "Ombre"
 
-#: plugins/color3way/color3waywindow.C:115
+#: plugins/color3way/color3waywindow.C:114
 msgid "Midtones"
 msgstr "Toni Medi"
 
-#: plugins/color3way/color3waywindow.C:116
+#: plugins/color3way/color3waywindow.C:115
 msgid "Highlights"
 msgstr "Alte Luci"
 
-#: plugins/color3way/color3waywindow.C:146
-#: plugins/huesaturation/huesaturation.C:329
+#: plugins/color3way/color3waywindow.C:145
+#: plugins/huesaturation/huesaturation.C:320
 msgid "Saturation:"
 msgstr "Saturazione:"
 
-#: plugins/color3way/color3waywindow.C:645
+#: plugins/color3way/color3waywindow.C:644
 msgid "Copy to all"
 msgstr "Copia su tutti"
 
-#: plugins/color3way/color3waywindow.C:670
-#: plugins/colorbalance/colorbalancewindow.C:171
+#: plugins/color3way/color3waywindow.C:669
+#: plugins/colorbalance/colorbalancewindow.C:170
 msgid "White balance"
 msgstr "Bilanciamento Bianco"
 
@@ -4890,13 +4958,13 @@ msgstr "Ciano"
 #: plugins/colorbalance/colorbalancewindow.C:57
 #: plugins/colors/colorpicker.C:186
 #: plugins/denoisevideo/denoisevideo.C:196
-#: plugins/downsample/downsample.C:313
+#: plugins/downsample/downsample.C:312
 #: plugins/histogram/histogramwindow.C:77
-#: plugins/linearblur/linearblur.C:300
-#: plugins/radialblur/radialblur.C:295
+#: plugins/linearblur/linearblur.C:299
+#: plugins/radialblur/radialblur.C:294
 #: plugins/swapchannels/swapchannels.C:445
 #: plugins/swapchannels/swapchannels.C:470
-#: plugins/zoomblur/zoomblur.C:310
+#: plugins/zoomblur/zoomblur.C:309
 msgid "Red"
 msgstr "Rosso"
 
@@ -4908,13 +4976,13 @@ msgstr "Magenta"
 #: plugins/colorbalance/colorbalancewindow.C:61
 #: plugins/colors/colorpicker.C:192
 #: plugins/denoisevideo/denoisevideo.C:198
-#: plugins/downsample/downsample.C:319
+#: plugins/downsample/downsample.C:318
 #: plugins/histogram/histogramwindow.C:83
-#: plugins/linearblur/linearblur.C:302
-#: plugins/radialblur/radialblur.C:297
+#: plugins/linearblur/linearblur.C:301
+#: plugins/radialblur/radialblur.C:296
 #: plugins/swapchannels/swapchannels.C:448
 #: plugins/swapchannels/swapchannels.C:471
-#: plugins/zoomblur/zoomblur.C:312
+#: plugins/zoomblur/zoomblur.C:311
 msgid "Green"
 msgstr "Verde"
 
@@ -4926,17 +4994,17 @@ msgstr "Giallo"
 #: plugins/colorbalance/colorbalancewindow.C:65
 #: plugins/colors/colorpicker.C:198
 #: plugins/denoisevideo/denoisevideo.C:200
-#: plugins/downsample/downsample.C:325
+#: plugins/downsample/downsample.C:324
 #: plugins/histogram/histogramwindow.C:89
-#: plugins/linearblur/linearblur.C:304
-#: plugins/radialblur/radialblur.C:299
+#: plugins/linearblur/linearblur.C:303
+#: plugins/radialblur/radialblur.C:298
 #: plugins/swapchannels/swapchannels.C:451
 #: plugins/swapchannels/swapchannels.C:472
-#: plugins/zoomblur/zoomblur.C:314
+#: plugins/zoomblur/zoomblur.C:313
 msgid "Blue"
 msgstr "Blu"
 
-#: plugins/colorbalance/colorbalancewindow.C:132
+#: plugins/colorbalance/colorbalancewindow.C:131
 msgid "Preserve luminosity"
 msgstr "Preserva luminosità"
 
@@ -4961,12 +5029,12 @@ msgstr "Valore"
 
 #: plugins/colors/colorpicker.C:206
 #: plugins/denoisevideo/denoisevideo.C:202
-#: plugins/downsample/downsample.C:331
-#: plugins/linearblur/linearblur.C:306
-#: plugins/radialblur/radialblur.C:301
+#: plugins/downsample/downsample.C:330
+#: plugins/linearblur/linearblur.C:305
+#: plugins/radialblur/radialblur.C:300
 #: plugins/swapchannels/swapchannels.C:454
 #: plugins/swapchannels/swapchannels.C:473
-#: plugins/zoomblur/zoomblur.C:316
+#: plugins/zoomblur/zoomblur.C:315
 msgid "Alpha"
 msgstr "Alpha"
 
@@ -4994,15 +5062,29 @@ msgstr "Scatto:"
 msgid "Point:"
 msgstr "Punto:"
 
-#: plugins/compressor/compressor.C:1064
+#: plugins/compressor/compressor.C:1063
 msgid "Input level"
 msgstr "Livello ingresso"
 
-#: plugins/compressor/compressor.C:1066
+#: plugins/compressor/compressor.C:1065
 msgid "Input"
 msgstr "Ingresso"
 
-#: plugins/compressor/compressor.C:1418
+#: plugins/compressor/compressor.C:1376
+#: plugins/compressor/compressor.C:1381
+msgid "Trigger"
+msgstr "Scatto"
+
+#: plugins/compressor/compressor.C:1377
+#: plugins/synthesizer/synthesizer.C:1064
+msgid "Maximum"
+msgstr "Massimo"
+
+#: plugins/compressor/compressor.C:1378
+msgid "Total"
+msgstr "Totale"
+
+#: plugins/compressor/compressor.C:1417
 msgid "Smooth only"
 msgstr "Smussa solo"
 
@@ -5010,21 +5092,21 @@ msgstr "Smussa solo"
 msgid "Crossfade"
 msgstr "Dissolvenza"
 
-#: plugins/decimate/decimate.C:258
-#: plugins/interpolatevideo/interpolatevideo.C:213
+#: plugins/decimate/decimate.C:248
+#: plugins/interpolatevideo/interpolatevideo.C:212
 msgid "Input frames per second:"
 msgstr "Fotogramma in ingresso al secondo:"
 
-#: plugins/decimate/decimate.C:269
+#: plugins/decimate/decimate.C:259
 msgid "Last frame dropped: "
-msgstr "Ultimo fotogramma aggiunto:"
+msgstr "Ultimo fotogramma rimosso:"
 
-#: plugins/decimate/decimate.C:760
+#: plugins/decimate/decimate.C:749
 msgid "Decimate"
 msgstr "Decima"
 
 #: plugins/deinterlace/deinterlace.C:100
-#: plugins/denoisemjpeg/denoisemjpeg.C:259
+#: plugins/denoisemjpeg/denoisemjpeg.C:255
 msgid "Deinterlace"
 msgstr "Deinterlaccia"
 
@@ -5032,85 +5114,80 @@ msgstr "Deinterlaccia"
 msgid "Select deinterlacing mode"
 msgstr "Metodo di deinterlaccio"
 
-#: plugins/deinterlace/deinterwindow.C:78
+#: plugins/deinterlace/deinterwindow.C:77
 #, c-format
 msgid "Changed rows: %d\n"
 msgstr "Righe modificate: %d\n"
 
-#: plugins/deinterlace/deinterwindow.C:99
+#: plugins/deinterlace/deinterwindow.C:98
 msgid "Keep top field"
 msgstr "Tieni aree superiori"
 
-#: plugins/deinterlace/deinterwindow.C:101
+#: plugins/deinterlace/deinterwindow.C:100
 msgid "Keep bottom field"
 msgstr "Tieni aree inferiori"
 
-#: plugins/deinterlace/deinterwindow.C:105
+#: plugins/deinterlace/deinterwindow.C:104
 msgid "Average top fields"
-msgstr "Media campi superiori"
+msgstr "Media aree superiori"
 
-#: plugins/deinterlace/deinterwindow.C:107
+#: plugins/deinterlace/deinterwindow.C:106
 msgid "Average bottom fields"
-msgstr "Media campi in basso"
+msgstr "Media aree in basso"
 
-#: plugins/deinterlace/deinterwindow.C:111
-#: plugins/deinterlace/deinterwindow.C:117
-#: plugins/fieldframe/fieldframe.C:217
-#: plugins/framefield/framefield.C:239
+#: plugins/deinterlace/deinterwindow.C:110
+#: plugins/deinterlace/deinterwindow.C:116
+#: plugins/fieldframe/fieldframe.C:215
+#: plugins/framefield/framefield.C:237
 msgid "Top field first"
 msgstr "Prima area superiore"
 
-#: plugins/deinterlace/deinterwindow.C:139
+#: plugins/deinterlace/deinterwindow.C:138
 #: plugins/threshold/threshold.C:138
 msgid "Threshold"
 msgstr "Soglia"
 
-#: plugins/deinterlace/deinterwindow.C:144
+#: plugins/deinterlace/deinterwindow.C:143
 msgid "Bob Threshold"
 msgstr "Soglia Bob"
 
-#: plugins/deinterlace/deinterwindow.C:187
+#: plugins/deinterlace/deinterwindow.C:186
 msgid "Adaptive"
 msgstr "Adattativo"
 
-#: plugins/deinterlace/deinterwindow.C:273
+#: plugins/deinterlace/deinterwindow.C:272
 msgid "Duplicate one field"
-msgstr "Duplica un area"
+msgstr "Duplica un’area"
 
-#: plugins/deinterlace/deinterwindow.C:275
+#: plugins/deinterlace/deinterwindow.C:274
 msgid "Average one field"
-msgstr "Media un area"
+msgstr "Media una sola area"
 
-#: plugins/deinterlace/deinterwindow.C:277
+#: plugins/deinterlace/deinterwindow.C:276
 msgid "Average both fields"
-msgstr "Media due aree"
+msgstr "Media entrambe aree"
 
-#: plugins/deinterlace/deinterwindow.C:279
+#: plugins/deinterlace/deinterwindow.C:278
 msgid "Bob & Weave"
 msgstr "Bob e Weave"
 
-#: plugins/deinterlace/deinterwindow.C:281
+#: plugins/deinterlace/deinterwindow.C:280
 msgid "Spatial field swap"
 msgstr "Area scambio spazio"
 
-#: plugins/deinterlace/deinterwindow.C:283
+#: plugins/deinterlace/deinterwindow.C:282
 msgid "Temporal field swap"
 msgstr "Area scambio temporale"
 
-#: plugins/deinterlace/deinterwindow.C:285
-#: plugins/motion/motionwindow.C:879 plugins/motion/motionwindow.C:899
-msgid "Do Nothing"
-msgstr "Non fare nulla"
-
-#: plugins/delayaudio/delayaudio.C:72
+#: plugins/delayaudio/delayaudio.C:55
 msgid "Delay audio"
 msgstr "Ritardo audio"
 
-#: plugins/delayaudio/delayaudio.C:290 plugins/delayvideo/delayvideo.C:92
+#: plugins/delayaudio/delayaudio.C:205 plugins/delayvideo/delayvideo.C:92
 msgid "Delay seconds:"
 msgstr "Ritardo secondi:"
 
-#: plugins/delayvideo/delayvideo.C:249
+#: plugins/delayvideo/delayvideo.C:248
 msgid "Delay Video"
 msgstr "Ritardo Video"
 
@@ -5119,55 +5196,51 @@ msgstr "Ritardo Video"
 msgid "Level:"
 msgstr "Livello:"
 
-#: plugins/denoisefft/denoisefft.C:248
+#: plugins/denoisefft/denoisefft.C:247
 msgid "Denoise power:"
 msgstr "Intensità migliora:"
 
-#: plugins/denoisefft/denoisefft.C:251
+#: plugins/denoisefft/denoisefft.C:250
 msgid "Number of samples for reference:"
 msgstr "Numero dei campioni da riferire:"
 
-#: plugins/denoisefft/denoisefft.C:253
+#: plugins/denoisefft/denoisefft.C:252
 msgid "The keyframe is the start of the reference"
 msgstr "Il fotogramma chiave è l'inizio del riferimento"
 
-#: plugins/denoisefft/denoisefft.C:325
+#: plugins/denoisefft/denoisefft.C:323
 msgid "DenoiseFFT"
 msgstr "AntidisturboFFT"
 
-#: plugins/denoisemjpeg/denoisemjpeg.C:281
+#: plugins/denoisemjpeg/denoisemjpeg.C:277
 msgid "Progressive"
 msgstr "Progressivo"
 
-#: plugins/denoisemjpeg/denoisemjpeg.C:319
+#: plugins/denoisemjpeg/denoisemjpeg.C:315
 msgid "Fast"
 msgstr "Veloce"
 
-#: plugins/denoisemjpeg/denoisemjpeg.C:380
+#: plugins/denoisemjpeg/denoisemjpeg.C:345
 msgid "Search radius:"
 msgstr "Cercare raggio:"
 
-#: plugins/denoisemjpeg/denoisemjpeg.C:384
+#: plugins/denoisemjpeg/denoisemjpeg.C:349
 msgid "Pass 1 threshold:"
 msgstr "Passo 1 soglia:"
 
-#: plugins/denoisemjpeg/denoisemjpeg.C:388
+#: plugins/denoisemjpeg/denoisemjpeg.C:353
 msgid "Pass 2 threshold:"
 msgstr "Passo 2 soglia:"
 
-#: plugins/denoisemjpeg/denoisemjpeg.C:396
+#: plugins/denoisemjpeg/denoisemjpeg.C:361
 msgid "Luma contrast:"
 msgstr "Contrasto Luma:"
 
-#: plugins/denoisemjpeg/denoisemjpeg.C:400
+#: plugins/denoisemjpeg/denoisemjpeg.C:365
 msgid "Chroma contrast:"
 msgstr "Contrasto Chroma:"
 
-#: plugins/denoisemjpeg/denoisemjpeg.C:404
-msgid "Delay frames:"
-msgstr "Ritardo fotogrammi:"
-
-#: plugins/denoisemjpeg/denoisemjpeg.C:476
+#: plugins/denoisemjpeg/denoisemjpeg.C:430
 msgid "Denoise video2"
 msgstr "Antidisturbo video2"
 
@@ -5178,7 +5251,7 @@ msgstr "Media Temporale Selettiva"
 #: plugins/denoiseseltempavg/seltempavgwindow.C:50
 #: plugins/timeavg/timeavgwindow.C:49
 msgid "Frames to average"
-msgstr "Media Fotogrammi"
+msgstr "Fotogrammi da calc. media"
 
 #: plugins/denoiseseltempavg/seltempavgwindow.C:55
 msgid "Use Method:"
@@ -5213,17 +5286,17 @@ msgid "B / V"
 msgstr "B / V"
 
 #: plugins/denoiseseltempavg/seltempavgwindow.C:87
-#: plugins/timeavg/timeavgwindow.C:132
+#: plugins/timeavg/timeavgwindow.C:131
 msgid "Average"
 msgstr "Media"
 
 #: plugins/denoiseseltempavg/seltempavgwindow.C:89
 msgid "Standard Deviation"
-msgstr "Scarto quadratico medio"
+msgstr "Deviazione Standard"
 
 #: plugins/denoiseseltempavg/seltempavgwindow.C:92
 msgid "First frame in average:"
-msgstr "Primo frame nella media"
+msgstr "Primo fotogramma in media"
 
 #: plugins/denoiseseltempavg/seltempavgwindow.C:94
 msgid "Fixed offset: "
@@ -5235,24 +5308,24 @@ msgstr "Riavvia sistema marcatori:"
 
 #: plugins/denoiseseltempavg/seltempavgwindow.C:106
 msgid "Other Options:"
-msgstr "Altre Opzioni"
+msgstr "Altre Opzioni:"
 
 #: plugins/denoiseseltempavg/seltempavgwindow.C:112
-#: plugins/freeverb/freeverb.C:324
+#: plugins/freeverb/freeverb.C:310
 msgid "Gain:"
 msgstr "Guadagno:"
 
-#: plugins/denoiseseltempavg/seltempavgwindow.C:287
-#: plugins/timeavg/timeavgwindow.C:174
+#: plugins/denoiseseltempavg/seltempavgwindow.C:286
+#: plugins/timeavg/timeavgwindow.C:173
 msgid "Reprocess frame again"
-msgstr "Riprocessa il frame nuovamente"
+msgstr "Riprocessa il fotogramma nuovamente"
 
-#: plugins/denoiseseltempavg/seltempavgwindow.C:304
-#: plugins/timeavg/timeavgwindow.C:194
+#: plugins/denoiseseltempavg/seltempavgwindow.C:303
+#: plugins/timeavg/timeavgwindow.C:193
 msgid "Disable subtraction"
 msgstr "Disabilita sottrazione"
 
-#: plugins/denoiseseltempavg/seltempavgwindow.C:349
+#: plugins/denoiseseltempavg/seltempavgwindow.C:348
 msgid "This Frame is a start of a section"
 msgstr "Questo frame si trova a inizio sezione"
 
@@ -5260,7 +5333,7 @@ msgstr "Questo frame si trova a inizio sezione"
 msgid "Frames to accumulate:"
 msgstr "Frame da accumulare:"
 
-#: plugins/denoisevideo/denoisevideo.C:342
+#: plugins/denoisevideo/denoisevideo.C:336
 msgid "Denoise video"
 msgstr "Antidisturbo video"
 
@@ -5276,11 +5349,11 @@ msgstr "Livello massimo"
 msgid "Maximum rate of change:"
 msgstr "Tasso massimo della modifica:"
 
-#: plugins/diffkey/diffkey.C:260
+#: plugins/diffkey/diffkey.C:258
 msgid "Use Value"
 msgstr "Utilizza valori"
 
-#: plugins/diffkey/diffkey.C:341
+#: plugins/diffkey/diffkey.C:338
 msgid "Difference key"
 msgstr "Chiave Differente"
 
@@ -5300,31 +5373,31 @@ msgstr ""
 "DotTV de EffectTV\n"
 "Copyright (C) 2001 FUKUCHI Kentarou"
 
-#: plugins/downsample/downsample.C:282
+#: plugins/downsample/downsample.C:281
 msgid "Horizontal offset"
 msgstr "Compensazione orizzontale"
 
-#: plugins/downsample/downsample.C:300
+#: plugins/downsample/downsample.C:299
 msgid "Vertical offset"
 msgstr "Compensazione verticale"
 
-#: plugins/downsample/downsample.C:420 plugins/reframert/reframert.C:303
+#: plugins/downsample/downsample.C:412 plugins/reframert/reframert.C:301
 msgid "Downsample"
-msgstr "Ricampiona"
+msgstr "Riduci campionamento"
 
-#: plugins/fieldframe/fieldframe.C:341
+#: plugins/fieldframe/fieldframe.C:339
 msgid "Fields to frames"
-msgstr "Campi per Fotogramma"
+msgstr "Campi a Fotogrammi"
 
 #: plugins/findobject/findobject.C:204
 msgid "Find Object"
 msgstr "Trova Oggetto"
 
-#: plugins/findobject/findobjectwindow.C:54
+#: plugins/findobject/findobjectwindow.C:53
 msgid "Algorithm:"
 msgstr "Algoritmo:"
 
-#: plugins/findobject/findobjectwindow.C:65
+#: plugins/findobject/findobjectwindow.C:64
 msgid ""
 "Search radius:\n"
 "(W/H Percent of image)"
@@ -5332,7 +5405,7 @@ msgstr ""
 "Cerca il raggio di spostamento:\n"
 "(A/L in percentuale immagine)"
 
-#: plugins/findobject/findobjectwindow.C:78
+#: plugins/findobject/findobjectwindow.C:77
 msgid ""
 "Object size:\n"
 "(W/H Percent of image)"
@@ -5340,78 +5413,78 @@ msgstr ""
 "Rotazione dei blocchi:\n"
 "(A/L percentuale immagine)"
 
-#: plugins/findobject/findobjectwindow.C:89
+#: plugins/findobject/findobjectwindow.C:88
 #: plugins/motion/motionwindow.C:138
 msgid "Block X:"
 msgstr "Blocco X:"
 
-#: plugins/findobject/findobjectwindow.C:104
+#: plugins/findobject/findobjectwindow.C:103
 #: plugins/motion/motionwindow.C:149
 msgid "Block Y:"
 msgstr "Blocco Y:"
 
-#: plugins/findobject/findobjectwindow.C:145
+#: plugins/findobject/findobjectwindow.C:144
 msgid "Object layer:"
-msgstr "Uscita livello:"
+msgstr "Livello oggetto:"
 
-#: plugins/findobject/findobjectwindow.C:154
+#: plugins/findobject/findobjectwindow.C:153
 msgid "Replacement object layer:"
-msgstr "Sostituisci il progetto corrente"
+msgstr "Sostituisci livello oggetto:"
 
-#: plugins/findobject/findobjectwindow.C:163
+#: plugins/findobject/findobjectwindow.C:162
 msgid "Output/scene layer:"
 msgstr "Uscita livello:"
 
-#: plugins/findobject/findobjectwindow.C:173
+#: plugins/findobject/findobjectwindow.C:172
 msgid "Object blend amount:"
-msgstr "Scala in percentuale:"
+msgstr "Quantità miscela oggetti:"
 
-#: plugins/findobject/findobjectwindow.C:181
+#: plugins/findobject/findobjectwindow.C:180
 msgid "Camshift VMIN:"
 msgstr ""
 
-#: plugins/findobject/findobjectwindow.C:188
+#: plugins/findobject/findobjectwindow.C:187
 msgid "Camshift VMAX:"
 msgstr ""
 
-#: plugins/findobject/findobjectwindow.C:195
+#: plugins/findobject/findobjectwindow.C:194
 msgid "Camshift SMIN:"
 msgstr ""
 
-#: plugins/findobject/findobjectwindow.C:337
+#: plugins/findobject/findobjectwindow.C:336
 msgid "Draw border"
-msgstr "Disegna vettori"
+msgstr "Disegna bordi"
 
-#: plugins/findobject/findobjectwindow.C:362
+#: plugins/findobject/findobjectwindow.C:361
 msgid "Draw keypoints"
 msgstr "Disegna cardine"
 
-#: plugins/findobject/findobjectwindow.C:385
+#: plugins/findobject/findobjectwindow.C:384
 msgid "Replace object"
-msgstr "Sostituisci il progetto corrente"
+msgstr "Sostituisci oggetto"
 
-#: plugins/findobject/findobjectwindow.C:410
+#: plugins/findobject/findobjectwindow.C:409
 msgid "Draw object border"
-msgstr "Disegna vettori"
+msgstr "Disegna bordo oggetti"
 
-#: plugins/findobject/findobjectwindow.C:496
-#: plugins/findobject/findobjectwindow.C:510
-#: plugins/motion/motionwindow.C:947 plugins/motion/motionwindow.C:958
+#: plugins/findobject/findobjectwindow.C:495
+#: plugins/findobject/findobjectwindow.C:509
+#: plugins/motion/motionwindow.C:946 plugins/motion/motionwindow.C:957
 msgid "Don't Calculate"
 msgstr "Non Calcolare"
 
-#: plugins/findobject/findobjectwindow.C:498
-#: plugins/findobject/findobjectwindow.C:514
+#: plugins/findobject/findobjectwindow.C:497
+#: plugins/findobject/findobjectwindow.C:513
 msgid "SURF"
 msgstr ""
 
-#: plugins/findobject/findobjectwindow.C:500
-#: plugins/findobject/findobjectwindow.C:522
+#: plugins/findobject/findobjectwindow.C:499
+#: plugins/findobject/findobjectwindow.C:521
 msgid "CAMSHIFT"
 msgstr ""
 
-#: plugins/findobject/findobjectwindow.C:501
-#: plugins/findobject/findobjectwindow.C:518
+#: plugins/findobject/findobjectwindow.C:500
+#: plugins/findobject/findobjectwindow.C:517
 msgid "Blob"
 msgstr "Blob"
 
@@ -5423,35 +5496,35 @@ msgstr "Flash"
 msgid "Flip"
 msgstr "Inverti"
 
-#: plugins/framefield/framefield.C:577
+#: plugins/framefield/framefield.C:575
 msgid "Frames to fields"
 msgstr "Fotogrammi > Settori"
 
-#: plugins/freeverb/freeverb.C:288
+#: plugins/freeverb/freeverb.C:274
 msgid "Freeze"
 msgstr "Congela"
 
-#: plugins/freeverb/freeverb.C:328
+#: plugins/freeverb/freeverb.C:314
 msgid "Roomsize:"
 msgstr "Dimensione Stanza:"
 
-#: plugins/freeverb/freeverb.C:332
+#: plugins/freeverb/freeverb.C:318
 msgid "Damp:"
-msgstr "Nebbia:"
+msgstr "Umido:"
 
-#: plugins/freeverb/freeverb.C:336
+#: plugins/freeverb/freeverb.C:322
 msgid "Wet:"
 msgstr "Bagnato:"
 
-#: plugins/freeverb/freeverb.C:340
+#: plugins/freeverb/freeverb.C:326
 msgid "Dry:"
 msgstr "Asciutto:"
 
-#: plugins/freeverb/freeverb.C:488
+#: plugins/freeverb/freeverb.C:468
 msgid "Freeverb"
 msgstr "Freeverb"
 
-#: plugins/freezeframe/freezeframe.C:168
+#: plugins/freezeframe/freezeframe.C:167
 msgid "Freeze Frame"
 msgstr "Congela fotogramma"
 
@@ -5471,23 +5544,23 @@ msgstr "Massimo"
 msgid "Gamma:"
 msgstr "Gamma: "
 
-#: plugins/gamma/gammawindow.C:266
-#: plugins/histogram/histogramwindow.C:772 plugins/ivtc/ivtc.C:37
+#: plugins/gamma/gammawindow.C:265
+#: plugins/histogram/histogramwindow.C:771 plugins/ivtc/ivtc.C:37
 #: plugins/ivtc/ivtcwindow.C:34
 msgid "Automatic"
 msgstr "Automatico"
 
-#: plugins/gamma/gammawindow.C:280
-#: plugins/histogram/histogramwindow.C:790
+#: plugins/gamma/gammawindow.C:279
+#: plugins/histogram/histogramwindow.C:789
 #: plugins/threshold/thresholdwindow.C:102
 msgid "Plot histogram"
 msgstr "Disegna Istogramma"
 
-#: plugins/gamma/gammawindow.C:296
+#: plugins/gamma/gammawindow.C:295
 msgid "Use Color Picker"
 msgstr "Usa cattura colore"
 
-#: plugins/gradient/gradient.C:184 plugins/shapewipe/shapewipe.C:213
+#: plugins/gradient/gradient.C:184 plugins/shapewipe/shapewipe.C:208
 msgid "Shape:"
 msgstr "Forma:"
 
@@ -5516,39 +5589,36 @@ msgstr "Centro X:"
 msgid "Center Y:"
 msgstr "Centro Y:"
 
-#: plugins/gradient/gradient.C:316 plugins/gradient/gradient.C:406
-#: plugins/timefront/timefront.C:376 plugins/timefront/timefront.C:518
+#: plugins/gradient/gradient.C:309 plugins/gradient/gradient.C:399
+#: plugins/timefront/timefront.C:370 plugins/timefront/timefront.C:512
 msgid "Linear"
 msgstr "Lineare"
 
-#: plugins/gradient/gradient.C:318 plugins/timefront/timefront.C:382
+#: plugins/gradient/gradient.C:311 plugins/timefront/timefront.C:376
 msgid "Radial"
 msgstr "Radiale"
 
-#: plugins/gradient/gradient.C:408 plugins/timefront/timefront.C:520
-msgid "Log"
-msgstr "Log"
+#: plugins/gradient/gradient.C:401 plugins/timefront/timefront.C:514
+msgid "Logarithmic"
+msgstr "Logaritmico"
 
-#: plugins/gradient/gradient.C:410 plugins/synthesizer/synthesizer.C:736
-#: plugins/synthesizer/synthesizer.C:989
-#: plugins/timefront/timefront.C:522
-#, c-format
-msgid "Square"
-msgstr "Quadrato"
+#: plugins/gradient/gradient.C:403 plugins/timefront/timefront.C:516
+msgid "Squared"
+msgstr "Squadrato"
 
-#: plugins/gradient/gradient.C:472
+#: plugins/gradient/gradient.C:465
 msgid "Inner color:"
 msgstr "Colore interno:"
 
-#: plugins/gradient/gradient.C:488
+#: plugins/gradient/gradient.C:481
 msgid "Outer color:"
 msgstr "Colore esterno"
 
-#: plugins/gradient/gradient.C:538
+#: plugins/gradient/gradient.C:531
 msgid "Outer color"
 msgstr "Colore esterno"
 
-#: plugins/gradient/gradient.C:595
+#: plugins/gradient/gradient.C:588
 msgid "Gradient"
 msgstr "Gradiente"
 
@@ -5560,13 +5630,13 @@ msgstr "Gradiente"
 #. add_subwindow(reflective = new WaveReflective(plugin, x1, y));
 #. y += 30;
 #: plugins/greycstoration/greycstorationwindow.C:53
-#: plugins/wave/wave.C:417
+#: plugins/wave/wave.C:407
 msgid "Amplitude:"
 msgstr "Ampiezza:"
 
 #: plugins/greycstoration/greycstorationwindow.C:61
 msgid "Anisotropy:"
-msgstr ""
+msgstr "Anisotropia"
 
 #: plugins/greycstoration/greycstorationwindow.C:65
 msgid "Noise scale:"
@@ -5592,7 +5662,7 @@ msgstr "Uscita min: "
 msgid "Output Max:"
 msgstr "Uscita Max:"
 
-#: plugins/histogram/histogramwindow.C:808
+#: plugins/histogram/histogramwindow.C:807
 msgid "Split output"
 msgstr "Uscita Separata"
 
@@ -5608,13 +5678,13 @@ msgstr ""
 "HolographicTV de EffectTV\n"
 "Copyright (C) 2001 FUKUCHI Kentarou"
 
-#: plugins/huesaturation/huesaturation.C:589
+#: plugins/huesaturation/huesaturation.C:579
 msgid "Hue saturation"
 msgstr "Saturazione tonalità"
 
 #: plugins/interpolateaudio/interpolateaudio.C:98
-#: plugins/interpolatevideo/interpolatevideo.C:535
-#: plugins/reframert/reframert.C:321
+#: plugins/interpolatevideo/interpolatevideo.C:533
+#: plugins/reframert/reframert.C:319
 msgid "Interpolate"
 msgstr "Interpolare"
 
@@ -5626,11 +5696,11 @@ msgstr "Regola X:"
 msgid "Y Offset:"
 msgstr "Regola Y:"
 
-#: plugins/interpolate/interpolate.C:174
+#: plugins/interpolate/interpolate.C:173
 msgid "Interpolate Pixels"
 msgstr "Interpolare Punti"
 
-#: plugins/interpolatevideo/interpolatevideo.C:322
+#: plugins/interpolatevideo/interpolatevideo.C:320
 msgid "Use keyframes as input"
 msgstr "Utilizza fotogramma chiave come ingresso"
 
@@ -5638,27 +5708,27 @@ msgstr "Utilizza fotogramma chiave come ingresso"
 msgid "Invert Audio"
 msgstr "Invertire Audio"
 
-#: plugins/invertvideo/invert.C:187
+#: plugins/invertvideo/invert.C:178
 msgid "Invert R"
 msgstr "Invertire R"
 
-#: plugins/invertvideo/invert.C:189
+#: plugins/invertvideo/invert.C:180
 msgid "Invert G"
 msgstr "Invertire G"
 
-#: plugins/invertvideo/invert.C:191
+#: plugins/invertvideo/invert.C:182
 msgid "Invert B"
 msgstr "Invertire B"
 
-#: plugins/invertvideo/invert.C:193
+#: plugins/invertvideo/invert.C:184
 msgid "Invert A"
 msgstr "Invertire A"
 
-#: plugins/invertvideo/invert.C:222
+#: plugins/invertvideo/invert.C:212
 msgid "Invert Video"
 msgstr "Invertire Video"
 
-#: plugins/irissquare/irissquare.C:151
+#: plugins/irissquare/irissquare.C:146
 msgid "IrisSquare"
 msgstr "IrisQuadrato"
 
@@ -5676,13 +5746,13 @@ msgstr "Telecinema Inverso"
 
 #: plugins/ivtc/ivtcwindow.C:63
 msgid "Pattern offset:"
-msgstr "Regola modello:"
+msgstr "Offset Motivo:"
 
 #: plugins/ivtc/ivtcwindow.C:71
 msgid "Pattern:"
-msgstr "Modello:"
+msgstr "Motivo:"
 
-#: plugins/ivtc/ivtcwindow.C:139
+#: plugins/ivtc/ivtcwindow.C:138
 msgid "Automatic IVTC"
 msgstr "IVTC Automatico"
 
@@ -5703,25 +5773,25 @@ msgid "Rectilinear Shrink"
 msgstr "Compressione Rettangolare"
 
 #: plugins/lens/lens.C:328 plugins/perspective/perspective.C:180
-#: plugins/reframert/reframert.C:284
+#: plugins/reframert/reframert.C:282
 msgid "Stretch"
 msgstr "Stira"
 
 #: plugins/lens/lens.C:493
 msgid "R Field of View:"
-msgstr "Compensa aggiustato:"
+msgstr "Campo visivo R:"
 
 #: plugins/lens/lens.C:494
 msgid "G Field of View:"
-msgstr "Compensa aggiustato:"
+msgstr "Campo visivo G:"
 
 #: plugins/lens/lens.C:495
 msgid "B Field of View:"
-msgstr "Compensa aggiustato:"
+msgstr "Campo visivo B:"
 
 #: plugins/lens/lens.C:496
 msgid "A Field of View:"
-msgstr "Compensa aggiustato:"
+msgstr "Campo visivo A:"
 
 #: plugins/lens/lens.C:523
 msgid "Lock"
@@ -5729,16 +5799,16 @@ msgstr "Bloccato"
 
 #: plugins/lens/lens.C:530
 msgid "Aspect Ratio:"
-msgstr "Dimensione:"
+msgstr "Rapporto Lung/Altezza"
 
-#: plugins/lens/lens.C:551 plugins/oilpainting/oil.C:279
-#: plugins/unsharp/unsharpwindow.C:55 plugins/zoomblur/zoomblur.C:302
+#: plugins/lens/lens.C:551 plugins/oilpainting/oil.C:270
+#: plugins/unsharp/unsharpwindow.C:55 plugins/zoomblur/zoomblur.C:301
 msgid "Radius:"
 msgstr "Raggio:"
 
 #: plugins/lens/lens.C:630
 msgid "Draw center"
-msgstr "Disegna vettori"
+msgstr "Disegna centro"
 
 #: plugins/lens/lens.C:703
 msgid "Lens"
@@ -5756,50 +5826,54 @@ msgstr "Livello massimo del suono (dB):"
 msgid "RMS soundlevel (dB):"
 msgstr "Livello del suono RMS (dB):"
 
-#: plugins/level/leveleffect.C:202
+#: plugins/level/leveleffect.C:201
 msgid "SoundLevel"
 msgstr "Livello sonoro"
 
-#: plugins/linearblur/linearblur.C:288
-#: plugins/motionblur/motionblur.C:254
+#: plugins/linearblur/linearblur.C:287
+#: plugins/motionblur/motionblur.C:253
 msgid "Length:"
-msgstr "Compressione:"
+msgstr "Lunghezza:"
 
-#: plugins/linearblur/linearblur.C:296
-#: plugins/motionblur/motionblur.C:258
-#: plugins/radialblur/radialblur.C:291 plugins/zoomblur/zoomblur.C:306
+#: plugins/linearblur/linearblur.C:295
+#: plugins/motionblur/motionblur.C:257
+#: plugins/radialblur/radialblur.C:290 plugins/zoomblur/zoomblur.C:305
 msgid "Steps:"
 msgstr "Passi:"
 
-#: plugins/linearblur/linearblur.C:399
+#: plugins/linearblur/linearblur.C:397
 msgid "Linear Blur"
 msgstr "Sfocatura Lineare"
 
-#: plugins/liveaudio/liveaudio.C:349
+#: plugins/liveaudio/liveaudio.C:145
+msgid "Live audio"
+msgstr "Audio Live"
+
+#: plugins/liveaudio/liveaudio.C:347
 msgid "Live Audio"
 msgstr "Invertire Audio"
 
-#: plugins/livevideo/livevideo.C:559
+#: plugins/livevideo/livevideo.C:557
 msgid "Live Video"
 msgstr "Video dal vivo"
 
-#: plugins/loopaudio/loopaudio.C:125
+#: plugins/loopaudio/loopaudio.C:124
 msgid "Samples to loop:"
 msgstr "Campioni da ripetere:"
 
-#: plugins/loopaudio/loopaudio.C:185
+#: plugins/loopaudio/loopaudio.C:183
 msgid "Loop audio"
 msgstr "Ripetizione audio"
 
-#: plugins/loopvideo/loopvideo.C:124
+#: plugins/loopvideo/loopvideo.C:123
 msgid "Frames to loop:"
 msgstr "Fotogrammi da ripetere:"
 
-#: plugins/loopvideo/loopvideo.C:183
+#: plugins/loopvideo/loopvideo.C:181
 msgid "Loop video"
 msgstr "Ripeti video"
 
-#: plugins/motionblur/motionblur.C:319
+#: plugins/motionblur/motionblur.C:317
 msgid "Motion Blur"
 msgstr "Sfocatura di Movimento"
 
@@ -5875,88 +5949,88 @@ msgstr "Azione:"
 msgid "Calculation:"
 msgstr "Calcolo:"
 
-#: plugins/motion/motionwindow.C:490
+#: plugins/motion/motionwindow.C:489
 msgid "Add (loaded) offset from tracked frame"
 msgstr "Aggiungi offset (salvato) da fotogramma "
 
-#: plugins/motion/motionwindow.C:511
+#: plugins/motion/motionwindow.C:510
 msgid "Track translation"
 msgstr "Traccia spostamento"
 
-#: plugins/motion/motionwindow.C:531
+#: plugins/motion/motionwindow.C:530
 msgid "Track rotation"
 msgstr "Traccia rotazione"
 
-#: plugins/motion/motionwindow.C:666
+#: plugins/motion/motionwindow.C:665
 msgid "Draw vectors"
 msgstr "Disegna vettori"
 
-#: plugins/motion/motionwindow.C:693
+#: plugins/motion/motionwindow.C:692
 msgid "Track single frame"
 msgstr "Traccia singolo fotogramma"
 
-#: plugins/motion/motionwindow.C:747
+#: plugins/motion/motionwindow.C:746
 msgid "Track previous frame"
 msgstr "Traccia fotogramma precedente"
 
-#: plugins/motion/motionwindow.C:776
+#: plugins/motion/motionwindow.C:775
 msgid "Previous frame same block"
 msgstr "Stesso blocco per il frame precedente"
 
-#: plugins/motion/motionwindow.C:823 plugins/motion/motionwindow.C:829
-#: plugins/overlayaudio/overlayaudio.C:136 plugins/overlay/overlay.C:230
-#: plugins/reroute/reroute.C:170 plugins/titler/titlewindow.C:811
+#: plugins/motion/motionwindow.C:822 plugins/motion/motionwindow.C:828
+#: plugins/overlayaudio/overlayaudio.C:135 plugins/overlay/overlay.C:229
+#: plugins/reroute/reroute.C:169 plugins/titler/titlewindow.C:805
 msgid "Top"
 msgstr "Superiore"
 
-#: plugins/motion/motionwindow.C:829
-#: plugins/overlayaudio/overlayaudio.C:137 plugins/overlay/overlay.C:231
-#: plugins/reroute/reroute.C:171 plugins/titler/titlewindow.C:839
+#: plugins/motion/motionwindow.C:828
+#: plugins/overlayaudio/overlayaudio.C:136 plugins/overlay/overlay.C:230
+#: plugins/reroute/reroute.C:170 plugins/titler/titlewindow.C:833
 msgid "Bottom"
 msgstr "Inferiore"
 
-#: plugins/motion/motionwindow.C:875 plugins/motion/motionwindow.C:887
+#: plugins/motion/motionwindow.C:874 plugins/motion/motionwindow.C:886
 msgid "Track Subpixel"
 msgstr "Traccia Sottopunti"
 
-#: plugins/motion/motionwindow.C:876 plugins/motion/motionwindow.C:890
+#: plugins/motion/motionwindow.C:875 plugins/motion/motionwindow.C:889
 msgid "Track Pixel"
 msgstr "Traccia Punti"
 
-#: plugins/motion/motionwindow.C:877 plugins/motion/motionwindow.C:893
+#: plugins/motion/motionwindow.C:876 plugins/motion/motionwindow.C:892
 msgid "Stabilize Subpixel"
 msgstr "Stabilizza Sottopunti"
 
-#: plugins/motion/motionwindow.C:878 plugins/motion/motionwindow.C:896
+#: plugins/motion/motionwindow.C:877 plugins/motion/motionwindow.C:895
 msgid "Stabilize Pixel"
 msgstr "Stabilizza Punti"
 
-#: plugins/motion/motionwindow.C:948 plugins/motion/motionwindow.C:961
+#: plugins/motion/motionwindow.C:947 plugins/motion/motionwindow.C:960
 msgid "Recalculate"
 msgstr "Ricalcola"
 
-#: plugins/motion/motionwindow.C:949 plugins/motion/motionwindow.C:964
+#: plugins/motion/motionwindow.C:948 plugins/motion/motionwindow.C:963
 msgid "Save coords to /tmp"
 msgstr "Salva coordinate su /tmp"
 
-#: plugins/motion/motionwindow.C:950 plugins/motion/motionwindow.C:967
+#: plugins/motion/motionwindow.C:949 plugins/motion/motionwindow.C:966
 msgid "Load coords from /tmp"
 msgstr "Carica coordinate da /tmp"
 
-#: plugins/motion/motionwindow.C:1025 plugins/sharpen/sharpenwindow.C:125
+#: plugins/motion/motionwindow.C:1024 plugins/sharpen/sharpenwindow.C:119
 msgid "Horizontal only"
 msgstr "Solo Orizzontale"
 
-#: plugins/motion/motionwindow.C:1026
+#: plugins/motion/motionwindow.C:1025
 msgid "Vertical only"
 msgstr "Solo Verticale"
 
-#: plugins/motion/motionwindow.C:1027
+#: plugins/motion/motionwindow.C:1026
 msgid "Both"
 msgstr "Entrambi"
 
 #: plugins/normalize/normalize.C:58
-#: plugins/synthesizer/synthesizer.C:1178
+#: plugins/synthesizer/synthesizer.C:1085
 msgid "Normalize"
 msgstr "Normalizzare"
 
@@ -5964,35 +6038,39 @@ msgstr "Normalizzare"
 msgid "Enter the DB to overload by:"
 msgstr "Inserisci il DB per informazioni scaricate da:"
 
-#: plugins/normalize/normalizewindow.C:84
+#: plugins/normalize/normalizewindow.C:78
 msgid "Treat tracks independantly"
 msgstr "Considera Tracce indipendentemente"
 
-#: plugins/oilpainting/oil.C:245
+#: plugins/oilpainting/oil.C:236
 msgid "Use intensity"
 msgstr "Usa intensità"
 
-#: plugins/oilpainting/oil.C:320
+#: plugins/oilpainting/oil.C:310
 msgid "Oil painting"
 msgstr "Pittura ad olio"
 
-#: plugins/overlayaudio/overlayaudio.C:235 plugins/overlay/overlay.C:711
+#: plugins/overlayaudio/overlayaudio.C:161
+msgid "Output track:"
+msgstr "Traccia di Uscita:"
+
+#: plugins/overlayaudio/overlayaudio.C:233 plugins/overlay/overlay.C:709
 msgid "Overlay"
 msgstr "Sovarpposizione"
 
-#: plugins/overlay/overlay.C:220
+#: plugins/overlay/overlay.C:219
 msgid "Bottom first"
 msgstr "Prima Sotto"
 
-#: plugins/overlay/overlay.C:221
+#: plugins/overlay/overlay.C:220
 msgid "Top first"
 msgstr "Prima sopra"
 
-#: plugins/overlay/overlay.C:270
+#: plugins/overlay/overlay.C:269
 msgid "Layer order:"
 msgstr "Ordine livello:"
 
-#: plugins/overlay/overlay.C:277
+#: plugins/overlay/overlay.C:276
 msgid "Output layer:"
 msgstr "Uscita livello:"
 
@@ -6017,17 +6095,17 @@ msgid "Qual"
 msgstr "Qual"
 
 #: plugins/parametric/parametric.C:377
-#: plugins/synthesizer/synthesizer.C:571
-#: plugins/synthesizer/synthesizer.C:629
+#: plugins/synthesizer/synthesizer.C:485
+#: plugins/synthesizer/synthesizer.C:543
 msgid "Level"
 msgstr "Livello"
 
 #: plugins/parametric/parametric.C:387
-#: plugins/synthesizer/synthesizer.C:620
+#: plugins/synthesizer/synthesizer.C:534
 msgid "Wetness:"
 msgstr "Umidità:"
 
-#: plugins/parametric/parametric.C:651
+#: plugins/parametric/parametric.C:645
 msgid "EQ Parametric"
 msgstr "EQ Parametrica"
 
@@ -6036,13 +6114,13 @@ msgid "Current X:"
 msgstr "X attuale:"
 
 #: plugins/perspective/perspective.C:167
-#: plugins/perspective/perspective.C:617
+#: plugins/perspective/perspective.C:616
 msgid "Perspective"
 msgstr "Prospettiva"
 
 #: plugins/perspective/perspective.C:173
 msgid "Sheer"
-msgstr "Sottile"
+msgstr "Puro"
 
 #: plugins/perspective/perspective.C:184
 msgid "Perspective direction:"
@@ -6060,15 +6138,15 @@ msgstr "Indietro"
 msgid "Pitch shift"
 msgstr "Sposta tono"
 
-#: plugins/polar/polar.C:218
+#: plugins/polar/polar.C:208
 msgid "Depth:"
 msgstr "Profondità:"
 
-#: plugins/polar/polar.C:297
+#: plugins/polar/polar.C:286
 msgid "Polar"
-msgstr "Polarità"
+msgstr "Polare"
 
-#: plugins/radialblur/radialblur.C:387
+#: plugins/radialblur/radialblur.C:385
 msgid "Radial Blur"
 msgstr "Sfocatura Radiale"
 
@@ -6080,35 +6158,35 @@ msgstr "Riforma"
 msgid "Scale factor:"
 msgstr "Fattore di Scala:"
 
-#: plugins/reframert/reframert.C:220
+#: plugins/reframert/reframert.C:219
 msgid "Scale by amount:"
 msgstr "Scala in percentuale:"
 
-#: plugins/reframert/reframert.C:350
+#: plugins/reframert/reframert.C:348
 msgid "ReframeRT"
 msgstr "RiformaRT"
 
-#: plugins/reroute/reroute.C:159
+#: plugins/reroute/reroute.C:158
 msgid "replace Target"
 msgstr "rimpiazza Obiettivo"
 
-#: plugins/reroute/reroute.C:160
+#: plugins/reroute/reroute.C:159
 msgid "Components only"
 msgstr "solo i componenti"
 
-#: plugins/reroute/reroute.C:161
+#: plugins/reroute/reroute.C:160
 msgid "Alpha replace"
 msgstr "rimpiazza Alpha"
 
-#: plugins/reroute/reroute.C:203
+#: plugins/reroute/reroute.C:202
 msgid "Target track:"
-msgstr "Tracce condivise:"
+msgstr "Traccia Obiettivo:"
 
-#: plugins/reroute/reroute.C:212
+#: plugins/reroute/reroute.C:211
 msgid "Operation:"
 msgstr "Operazione:"
 
-#: plugins/reroute/reroute.C:484
+#: plugins/reroute/reroute.C:482
 msgid "Reroute"
 msgstr "Ridireziona"
 
@@ -6157,41 +6235,41 @@ msgstr "Inizio banda passa-basso:"
 msgid "End band for lowpass:"
 msgstr "Fine banda passa-basso:"
 
-#: plugins/reverb/reverbwindow.C:342
+#: plugins/reverb/reverbwindow.C:341
 msgid "Load..."
 msgstr "Carica..."
 
-#: plugins/reverb/reverbwindow.C:359
+#: plugins/reverb/reverbwindow.C:358
 msgid "Save..."
 msgstr "Salva..."
 
-#: plugins/reverb/reverbwindow.C:376
+#: plugins/reverb/reverbwindow.C:375
 msgid "Set default"
 msgstr "Impostare predefinita"
 
-#: plugins/reverb/reverbwindow.C:438
+#: plugins/reverb/reverbwindow.C:437
 msgid "Save reverb"
 msgstr "Salva riverbero"
 
-#: plugins/reverb/reverbwindow.C:439
+#: plugins/reverb/reverbwindow.C:438
 msgid "Select the reverb file to save as"
 msgstr "Selezionare file del riverbero da salvare come"
 
-#: plugins/reverb/reverbwindow.C:521
+#: plugins/reverb/reverbwindow.C:520
 msgid "Load reverb"
 msgstr "Carica riverbero"
 
-#: plugins/reverb/reverbwindow.C:522
+#: plugins/reverb/reverbwindow.C:521
 msgid "Select the reverb file to load from"
 msgstr "Selezionare file del riverbero da caricare"
 
-#: plugins/reverseaudio/reverseaudio.C:181
+#: plugins/reverseaudio/reverseaudio.C:179
 msgid "Reverse audio"
-msgstr "Audio Inverso"
+msgstr "Inverti Audio"
 
-#: plugins/reversevideo/reversevideo.C:179
+#: plugins/reversevideo/reversevideo.C:177
 msgid "Reverse video"
-msgstr "Video Inverso"
+msgstr "Inverti Video"
 
 #: plugins/rgb601/rgb601.C:55
 msgid "RGB - 601"
@@ -6205,21 +6283,21 @@ msgstr "RGB -> 601 compresso"
 msgid "601 -> RGB expansion"
 msgstr "601 -> RGB espanso"
 
-#: plugins/rotate/rotate.C:324
+#: plugins/rotate/rotate.C:314
 msgid "Draw pivot"
 msgstr "Disegna cardine"
 
-#: plugins/rotate/rotate.C:472 plugins/rotate/rotate.C:625
+#: plugins/rotate/rotate.C:462 plugins/rotate/rotate.C:614
 msgid "Rotate"
 msgstr "Rotazione"
 
-#: plugins/rotate/rotate.C:516
+#: plugins/rotate/rotate.C:506
 msgid "Degrees"
 msgstr "Gradi"
 
-#: plugins/rotate/rotate.C:523
+#: plugins/rotate/rotate.C:513
 msgid "Pivot (x,y):"
-msgstr "Centro (x,y):"
+msgstr "Cardine(x,y):"
 
 #: plugins/scale/scale.C:92
 msgid "Scale"
@@ -6233,7 +6311,7 @@ msgstr "Scala X:"
 msgid "Y Scale:"
 msgstr "Scala Y:"
 
-#: plugins/scale/scalewin.C:158
+#: plugins/scale/scalewin.C:153
 msgid "Constrain ratio"
 msgstr "Percentuale vincolo"
 
@@ -6243,7 +6321,7 @@ msgstr "Bianco > Nero"
 
 #: plugins/shapewipe/shapewipe.C:68
 msgid "Black to White"
-msgstr "Nero > bianco"
+msgstr "Nero > Bianco"
 
 #: plugins/shapewipe/shapewipe.C:87
 msgid "Anti-aliasing"
@@ -6265,7 +6343,7 @@ msgstr "Scegli figura"
 msgid "Choose a Wipe Shape"
 msgstr "Scegli una figura vuota"
 
-#: plugins/shapewipe/shapewipe.C:268
+#: plugins/shapewipe/shapewipe.C:263
 msgid "Shape Wipe"
 msgstr "Figura Vuota"
 
@@ -6277,41 +6355,41 @@ msgstr "Nitidezza"
 msgid "Sharpness"
 msgstr "Nitidezza"
 
-#: plugins/sharpen/sharpenwindow.C:107
+#: plugins/sharpen/sharpenwindow.C:101
 msgid "Interlace"
 msgstr "Interlaccio"
 
-#: plugins/sharpen/sharpenwindow.C:142
+#: plugins/sharpen/sharpenwindow.C:136
 msgid "Luminance only"
 msgstr "Solo luminosità"
 
-#: plugins/shiftinterlace/shiftinterlace.C:202
+#: plugins/shiftinterlace/shiftinterlace.C:190
 msgid "Odd offset:"
 msgstr "Compensa dispari:"
 
-#: plugins/shiftinterlace/shiftinterlace.C:205
+#: plugins/shiftinterlace/shiftinterlace.C:193
 msgid "Even offset:"
 msgstr "Compensa pari:"
 
-#: plugins/shiftinterlace/shiftinterlace.C:280
+#: plugins/shiftinterlace/shiftinterlace.C:267
 msgid "ShiftInterlace"
 msgstr "SpostaInterlaccio"
 
-#: plugins/slide/slide.C:53 plugins/titler/titlewindow.C:767
+#: plugins/slide/slide.C:53 plugins/titler/titlewindow.C:761
 #: plugins/wipe/wipe.C:50
 msgid "Left"
 msgstr "Sinistra"
 
-#: plugins/slide/slide.C:75 plugins/titler/titlewindow.C:795
+#: plugins/slide/slide.C:75 plugins/titler/titlewindow.C:789
 #: plugins/wipe/wipe.C:72
 msgid "Right"
 msgstr "Destra"
 
-#: plugins/slide/slide.C:214
+#: plugins/slide/slide.C:208
 msgid "Slide"
 msgstr "Diapositiva"
 
-#: plugins/spectrogram/spectrogram.C:218
+#: plugins/spectrogram/spectrogram.C:217
 msgid "Spectrogram"
 msgstr "Spettrogramma"
 
@@ -6319,17 +6397,17 @@ msgstr "Spettrogramma"
 msgid "SVG via Inkscape"
 msgstr "SVG tramite Inkscape"
 
-#: plugins/svg/svg.C:285
+#: plugins/svg/svg.C:290
 #, c-format
 msgid "Running command %s\n"
 msgstr "Eseguo il comando %s\n"
 
-#: plugins/svg/svg.C:291
+#: plugins/svg/svg.C:296
 #, c-format
 msgid "Export of %s to %s failed\n"
 msgstr "Esportazione di %s per %s fallita\n"
 
-#: plugins/svg/svg.C:305
+#: plugins/svg/svg.C:310
 #, c-format
 msgid ""
 "The file %s that was generated from %s is not in RAWC format. Try to delete "
@@ -6338,7 +6416,7 @@ msgstr ""
 "Il file %s che è stato generato da %s non è in formato RAWC. Prova a "
 "cancellare tutti i file *.raw.\n"
 
-#: plugins/svg/svg.C:312
+#: plugins/svg/svg.C:317
 #, c-format
 msgid ""
 "Unsupported version of RAWC file %s. This means your Inkscape uses newer "
@@ -6355,42 +6433,42 @@ msgstr "Fuori X:"
 msgid "Out Y:"
 msgstr "Fuori Y:"
 
-#: plugins/svg/svgwin.C:175
+#: plugins/svg/svgwin.C:170
 msgid "New/Open SVG..."
 msgstr "Nuova/Aprire SVG..."
 
-#: plugins/svg/svgwin.C:355
+#: plugins/svg/svgwin.C:350
 #, c-format
 msgid "Inkscape has exited\n"
 msgstr "Inkscape si è chiuso\n"
 
-#: plugins/svg/svgwin.C:358
+#: plugins/svg/svgwin.C:353
 #, c-format
 msgid "Plugin window has closed\n"
 msgstr "La finestra plugin è stata chiusa\n"
 
-#: plugins/svg/svgwin.C:395
+#: plugins/svg/svgwin.C:390
 #, c-format
 msgid "Running external SVG editor: %s\n"
 msgstr "Eseguo editor SVG esterno: %s\n"
 
-#: plugins/svg/svgwin.C:398
+#: plugins/svg/svgwin.C:393
 #, c-format
 msgid "External SVG editor finished\n"
 msgstr "Editor SVG esterno ha finito\n"
 
-#: plugins/svg/svgwin.C:415
+#: plugins/svg/svgwin.C:410
 msgid "SVG Plugin: Pick SVG file"
 msgstr "Plugin SVG: Scegli un file SVG"
 
-#: plugins/svg/svgwin.C:416
+#: plugins/svg/svgwin.C:411
 msgid "Open an existing SVG file or create a new one"
 msgstr "Aprire un file SVG esistente o crearne uno nuovo"
 
 #: plugins/swapchannels/swapchannels.C:102
-#: plugins/swapchannels/swapchannels.C:212
+#: plugins/swapchannels/swapchannels.C:211
 msgid "Swap channels"
-msgstr "Rimpiazza canali"
+msgstr "Scambia canali"
 
 #: plugins/swapchannels/swapchannels.C:104
 msgid "-> Red"
@@ -6418,115 +6496,117 @@ msgstr "0%"
 msgid "100%"
 msgstr "100%"
 
-#: plugins/synthesizer/synthesizer.C:79
+#: plugins/synthesizer/synthesizer.C:67
 msgid "Synthesizer"
 msgstr "Sintetizzatore"
 
-#: plugins/synthesizer/synthesizer.C:572
-#: plugins/synthesizer/synthesizer.C:631
+#: plugins/synthesizer/synthesizer.C:486
+#: plugins/synthesizer/synthesizer.C:545
 msgid "Phase"
 msgstr "Fase"
 
-#: plugins/synthesizer/synthesizer.C:573
-#: plugins/synthesizer/synthesizer.C:633
+#: plugins/synthesizer/synthesizer.C:487
+#: plugins/synthesizer/synthesizer.C:547
 msgid "Harmonic"
 msgstr "Armonica"
 
-#: plugins/synthesizer/synthesizer.C:594
+#: plugins/synthesizer/synthesizer.C:508
 msgid "Waveform"
 msgstr "Forma d'onda"
 
-#: plugins/synthesizer/synthesizer.C:596
+#: plugins/synthesizer/synthesizer.C:510
 msgid "Wave Function"
 msgstr "Funzione d'onda:"
 
-#: plugins/synthesizer/synthesizer.C:611
+#: plugins/synthesizer/synthesizer.C:525
 msgid "Base Frequency:"
 msgstr "Frequenza Base:"
 
-#: plugins/synthesizer/synthesizer.C:733
+#: plugins/synthesizer/synthesizer.C:640
 #, c-format
 msgid "DC"
 msgstr "DC"
 
 #. add_item(new SynthWaveFormItem(synth, _("DC"), DC));
-#: plugins/synthesizer/synthesizer.C:734
-#: plugins/synthesizer/synthesizer.C:987
-#: plugins/synthesizer/synthesizer.C:1283
-#: plugins/synthesizer/synthesizer.C:1353
+#: plugins/synthesizer/synthesizer.C:641
+#: plugins/synthesizer/synthesizer.C:894
+#: plugins/synthesizer/synthesizer.C:1190
+#: plugins/synthesizer/synthesizer.C:1260
 #, c-format
 msgid "Sine"
 msgstr "Seno"
 
-#: plugins/synthesizer/synthesizer.C:735
-#: plugins/synthesizer/synthesizer.C:988
+#: plugins/synthesizer/synthesizer.C:642
+#: plugins/synthesizer/synthesizer.C:895
 #, c-format
 msgid "Sawtooth"
 msgstr "Sawtooth"
 
-#: plugins/synthesizer/synthesizer.C:737
-#: plugins/synthesizer/synthesizer.C:990
+#: plugins/synthesizer/synthesizer.C:643
+#: plugins/synthesizer/synthesizer.C:896
+#, c-format
+msgid "Square"
+msgstr "Quadrato"
+
+#: plugins/synthesizer/synthesizer.C:644
+#: plugins/synthesizer/synthesizer.C:897
 #, c-format
 msgid "Triangle"
 msgstr "Triangolo"
 
-#: plugins/synthesizer/synthesizer.C:738
-#: plugins/synthesizer/synthesizer.C:991
+#: plugins/synthesizer/synthesizer.C:645
+#: plugins/synthesizer/synthesizer.C:898
 #, c-format
 msgid "Pulse"
 msgstr "Pulsa"
 
-#: plugins/synthesizer/synthesizer.C:739
-#: plugins/synthesizer/synthesizer.C:992
+#: plugins/synthesizer/synthesizer.C:646
+#: plugins/synthesizer/synthesizer.C:899
 #, c-format
 msgid "Noise"
 msgstr "Disturbo"
 
-#: plugins/synthesizer/synthesizer.C:862
+#: plugins/synthesizer/synthesizer.C:769
 msgid "Add"
 msgstr "Aggiungi"
 
-#: plugins/synthesizer/synthesizer.C:1135
-#: plugins/synthesizer/synthesizer.C:1332
+#: plugins/synthesizer/synthesizer.C:1042
+#: plugins/synthesizer/synthesizer.C:1239
 msgid "Zero"
 msgstr "Zero"
 
-#: plugins/synthesizer/synthesizer.C:1157
-msgid "Maximum"
-msgstr "Massimo"
-
-#: plugins/synthesizer/synthesizer.C:1215
+#: plugins/synthesizer/synthesizer.C:1122
 msgid "Slope"
-msgstr "Discesa"
+msgstr "Pendenza"
 
-#: plugins/synthesizer/synthesizer.C:1239
-#: plugins/synthesizer/synthesizer.C:1377
-#: plugins/synthesizer/synthesizer.C:1403
+#: plugins/synthesizer/synthesizer.C:1146
+#: plugins/synthesizer/synthesizer.C:1284
+#: plugins/synthesizer/synthesizer.C:1310
 msgid "Random"
 msgstr "Casuale"
 
-#: plugins/synthesizer/synthesizer.C:1261
-#: plugins/synthesizer/synthesizer.C:1310
+#: plugins/synthesizer/synthesizer.C:1168
+#: plugins/synthesizer/synthesizer.C:1217
 msgid "Invert"
 msgstr "Invertire"
 
-#: plugins/synthesizer/synthesizer.C:1425
+#: plugins/synthesizer/synthesizer.C:1332
 msgid "Enumerate"
 msgstr "Numera"
 
-#: plugins/synthesizer/synthesizer.C:1446
+#: plugins/synthesizer/synthesizer.C:1353
 msgid "Even"
 msgstr "Pari"
 
-#: plugins/synthesizer/synthesizer.C:1470
+#: plugins/synthesizer/synthesizer.C:1377
 msgid "Odd"
 msgstr "Dispari"
 
-#: plugins/synthesizer/synthesizer.C:1489
+#: plugins/synthesizer/synthesizer.C:1396
 msgid "Fibonnacci"
 msgstr "Fibonnacci"
 
-#: plugins/synthesizer/synthesizer.C:1514
+#: plugins/synthesizer/synthesizer.C:1421
 msgid "Prime"
 msgstr "Prima"
 
@@ -6566,11 +6646,11 @@ msgstr "Max:"
 msgid "Time Average"
 msgstr "Tempo Medio"
 
-#: plugins/timeavg/timeavgwindow.C:109
+#: plugins/timeavg/timeavgwindow.C:108
 msgid "Accumulate"
 msgstr "Accumula"
 
-#: plugins/timeavg/timeavgwindow.C:153
+#: plugins/timeavg/timeavgwindow.C:152
 msgid "Inclusive Or"
 msgstr "Or Inclusivo"
 
@@ -6580,37 +6660,37 @@ msgstr "Testo:"
 
 #: plugins/timefront/timefront.C:167
 msgid "Time range:"
-msgstr "Intervallo tempo :"
+msgstr "Intervallo tempo:"
 
 #: plugins/timefront/timefront.C:294
 msgid "As timefront use:"
 msgstr "Come cronofronte usa:"
 
-#: plugins/timefront/timefront.C:378
+#: plugins/timefront/timefront.C:372
 msgid "Other track as timefront"
 msgstr "Altra traccia come cronofronte"
 
-#: plugins/timefront/timefront.C:380
+#: plugins/timefront/timefront.C:374
 msgid "Alpha as timefront"
 msgstr "Alpha come cronofronte"
 
-#: plugins/timefront/timefront.C:423
+#: plugins/timefront/timefront.C:417
 msgid "Intensity"
 msgstr "Intensità"
 
-#: plugins/timefront/timefront.C:425
+#: plugins/timefront/timefront.C:419
 msgid "Alpha mask"
 msgstr "Maschera Alpha"
 
-#: plugins/timefront/timefront.C:608
+#: plugins/timefront/timefront.C:602
 msgid "Inversion"
 msgstr "Inversione"
 
-#: plugins/timefront/timefront.C:624
+#: plugins/timefront/timefront.C:618
 msgid "Show grayscale (for tuning"
-msgstr "Mostra scala grigi (per raffinare)"
+msgstr "Mostra scala grigi (per raffinare"
 
-#: plugins/timefront/timefront.C:657
+#: plugins/timefront/timefront.C:651
 msgid "TimeFront"
 msgstr "CronoFronte"
 
@@ -6629,32 +6709,32 @@ msgid "GlyphUnit::process_package FT_New_Face failed.\n"
 msgstr "GlyphUnit::process_package FT_New_Face failed.\n"
 
 #: plugins/titler/title.C:262
-#, fuzzy, c-format
+#, c-format
 msgid "GlyphUnit::process_package FT_Load_Char failed - char: %li.\n"
-msgstr "GlyphUnit::process_package FT_Load_Char failed - char: %i.\n"
+msgstr "GlyphUnit::process_package FT_Load_Char non riuscito - char: %li.\n"
 
-#: plugins/titler/title.C:1113
+#: plugins/titler/title.C:1109
 #, c-format
 msgid "TitleMain::load_freetype_face %s failed.\n"
 msgstr "TitleMain::load_freetype_face %s failed.\n"
 
-#: plugins/titler/title.C:1618
+#: plugins/titler/title.C:1614
 msgid "No motion"
 msgstr "Senza movimento"
 
-#: plugins/titler/title.C:1619
+#: plugins/titler/title.C:1615
 msgid "Bottom to top"
 msgstr "Dal basso in alto"
 
-#: plugins/titler/title.C:1620
+#: plugins/titler/title.C:1616
 msgid "Top to bottom"
 msgstr "Dall'alto in basso"
 
-#: plugins/titler/title.C:1621
+#: plugins/titler/title.C:1617
 msgid "Right to left"
 msgstr "Da destra a sinistra"
 
-#: plugins/titler/title.C:1622
+#: plugins/titler/title.C:1618
 msgid "Left to right"
 msgstr "Da sinistra a destra"
 
@@ -6696,37 +6776,37 @@ msgstr "Testo:"
 
 #: plugins/titler/titlewindow.C:284
 msgid "Outline width:"
-msgstr "Dimensione Outline:"
+msgstr "Spessore Outline:"
 
-#: plugins/titler/titlewindow.C:430
+#: plugins/titler/titlewindow.C:424
 msgid "Bold"
 msgstr "Grassetto"
 
-#: plugins/titler/titlewindow.C:444
+#: plugins/titler/titlewindow.C:438
 msgid "Italic"
 msgstr "Italico"
 
-#: plugins/titler/titlewindow.C:457
+#: plugins/titler/titlewindow.C:451
 msgid "Outline"
 msgstr "Profilo"
 
-#: plugins/titler/titlewindow.C:516
+#: plugins/titler/titlewindow.C:510
 msgid "Outline color..."
 msgstr "Colore Profili..."
 
-#: plugins/titler/titlewindow.C:549
+#: plugins/titler/titlewindow.C:543
 msgid "Loop"
 msgstr "Cicla"
 
-#: plugins/titler/titlewindow.C:561
+#: plugins/titler/titlewindow.C:555
 msgid "Stamp timecode"
 msgstr "Stampa codice orario"
 
-#: plugins/titler/titlewindow.C:781
+#: plugins/titler/titlewindow.C:775
 msgid "Center"
 msgstr "Centralizzato"
 
-#: plugins/titler/titlewindow.C:825
+#: plugins/titler/titlewindow.C:819
 msgid "Mid"
 msgstr "Med"
 
@@ -6766,73 +6846,82 @@ msgstr "Attenua Contorni"
 msgid "Amount:"
 msgstr "Ammontare:"
 
-#: plugins/videoscope/videoscope.C:671
+#: plugins/videoscope/videoscope.C:661
 msgid "HDTV"
 msgstr "HDTV"
 
-#: plugins/videoscope/videoscope.C:719
+#: plugins/videoscope/videoscope.C:709
 msgid "Inverse"
 msgstr "Inverso"
 
-#: plugins/videoscope/videoscope.C:769
+#: plugins/videoscope/videoscope.C:759
 msgid "VideoScope"
 msgstr "CampoVideo"
 
-#: plugins/wave/wave.C:277
+#: plugins/wave/wave.C:267
 msgid "Smear"
 msgstr "Sfuma"
 
-#: plugins/wave/wave.C:294
+#: plugins/wave/wave.C:284
 msgid "Blacken"
 msgstr "Oscura"
 
-#: plugins/wave/wave.C:313
+#: plugins/wave/wave.C:303
 msgid "Reflective"
 msgstr "Riflessiva"
 
-#: plugins/wave/wave.C:420
+#: plugins/wave/wave.C:410
 msgid "Phase:"
 msgstr "Fase:"
 
-#: plugins/wave/wave.C:423
+#: plugins/wave/wave.C:413
 msgid "Wavelength:"
 msgstr "Lunghezza d'onda:"
 
-#: plugins/wave/wave.C:470
+#: plugins/wave/wave.C:454
 msgid "Wave"
 msgstr "Onda"
 
-#: plugins/whirl/whirl.C:260
+#: plugins/whirl/whirl.C:251
 msgid "Pinch"
 msgstr "Pizzica"
 
-#: plugins/whirl/whirl.C:264
+#: plugins/whirl/whirl.C:255
 msgid "Angle"
 msgstr "Angolo"
 
-#: plugins/whirl/whirl.C:384
+#: plugins/whirl/whirl.C:370
 msgid "Whirl"
 msgstr "Vortice"
 
-#: plugins/wipe/wipe.C:151
+#: plugins/wipe/wipe.C:145
 msgid "Wipe"
-msgstr "Cancella"
+msgstr "Pulisci"
 
-#: plugins/yuv/yuv.C:192
+#: plugins/yuv/yuv.C:182
 msgid "U:"
 msgstr "U:"
 
-#: plugins/yuv/yuv.C:195
+#: plugins/yuv/yuv.C:185
 msgid "V:"
 msgstr "V:"
 
-#: plugins/yuv/yuv.C:230
+#: plugins/yuv/yuv.C:213
 msgid "YUV"
 msgstr "YUV"
 
-#: plugins/zoomblur/zoomblur.C:414
+#: plugins/zoomblur/zoomblur.C:406
 msgid "Zoom Blur"
 msgstr "Sfocatura Zoom"
+
+#~ msgid "Syt Offset:"
+#~ msgstr "Registra Syt:"
+
+#~ msgid "Delay frames:"
+#~ msgstr "Ritardo fotogrammi:"
+
+#~ msgid "Log"
+#~ msgstr "Log"
 
 #~ msgid "Audio playback in real time priority (root only)"
 #~ msgstr "Esegui audio con priorità real-time (solo root)"
