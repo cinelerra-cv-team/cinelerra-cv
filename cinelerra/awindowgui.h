@@ -82,7 +82,6 @@ public:
 
 	int in_use;
 
-
 	int persistent;
 	PluginServer *plugin;
 	Label *label;
@@ -171,16 +170,13 @@ public:
 	int create_custom_xatoms();
 // Function to overload to recieve customly defined atoms
 	virtual int recieve_custom_xatoms(xatom_event *event); 
-	
-	
-	
+
 private:
 	void update_folder_list();
 	void update_asset_list();
 	void filter_displayed_assets();
 	Atom UpdateAssetsXAtom;
 	void update_assets();
-
 };
 
 class AWindowAssets : public BC_ListBox
@@ -221,7 +217,7 @@ class AWindowFolders : public BC_ListBox
 public:
 	AWindowFolders(MWindow *mwindow, AWindowGUI *gui, int x, int y, int w, int h);
 	~AWindowFolders();
-	
+
 	int selection_changed();
 	int button_press_event();
 
