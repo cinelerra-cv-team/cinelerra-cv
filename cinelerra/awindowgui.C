@@ -45,7 +45,6 @@
 #include "mainsession.h"
 #include "mwindowgui.h"
 #include "mwindow.h"
-#include "newfolder.h"
 #include "preferences.h"
 #include "theme.h"
 #include "vframe.h"
@@ -341,7 +340,6 @@ AWindowGUI::~AWindowGUI()
 	delete audio_icon;
 	delete folder_icon;
 	delete clip_icon;
-	delete newfolder_thread;
 	delete asset_menu;
 	delete label_menu;
 	delete assetlist_menu;
@@ -378,7 +376,6 @@ int AWindowGUI::create_objects()
 		mwindow->theme->get_image("clip_icon"),
 		PIXMAP_ALPHA);
 
-// Mandatory folders
 	folders.append(picon = new AssetPicon(mwindow,
 		this,
 		AEFFECT_FOLDER));
@@ -398,6 +395,14 @@ int AWindowGUI::create_objects()
 	folders.append(picon = new AssetPicon(mwindow,
 		this,
 		LABEL_FOLDER));
+	picon->persistent = 1;
+	folders.append(picon = new AssetPicon(mwindow,
+		this,
+		CLIP_FOLDER));
+	picon->persistent = 1;
+	folders.append(picon = new AssetPicon(mwindow,
+		this,
+		MEDIA_FOLDER));
 	picon->persistent = 1;
 
 	create_label_folder();
@@ -434,8 +439,6 @@ int AWindowGUI::create_objects()
 
 	x = mwindow->theme->abuttons_x;
 	y = mwindow->theme->abuttons_y;
-
-	newfolder_thread = new NewFolderThread(mwindow, this);
 
 	add_subwindow(asset_menu = new AssetPopup(mwindow, this));
 	asset_menu->create_objects();
@@ -565,51 +568,6 @@ void AWindowGUI::async_update_assets()
 	xatom_event event;
 	event.message_type = UpdateAssetsXAtom;
 	send_custom_xatom(&event);
-}
-
-void AWindowGUI::update_folder_list()
-{
-	for(int i = 0; i < folders.total; i++)
-	{
-		AssetPicon *picon = (AssetPicon*)folders.values[i];
-		picon->in_use--;
-	}
-
-// Search assets for folders
-	for(int i = 0; i < mwindow->edl->folders.total; i++)
-	{
-		char *folder = mwindow->edl->folders.values[i];
-		int exists = 0;
-
-		for(int j = 0; j < folders.total; j++)
-		{
-			AssetPicon *picon = (AssetPicon*)folders.values[j];
-			if(!strcasecmp(picon->get_text(), folder))
-			{
-				exists = 1;
-				picon->in_use = 1;
-				break;
-			}
-		}
-
-		if(!exists)
-		{
-			AssetPicon *picon = new AssetPicon(mwindow, this, folder);
-			picon->create_objects();
-			folders.append(picon);
-		}
-	}
-
-// Delete excess
-	for(int i = folders.total - 1; i >= 0; i--)
-	{
-		AssetPicon *picon = (AssetPicon*)folders.values[i];
-		if(!picon->in_use && !picon->persistent)
-		{
-			delete picon;
-			folders.remove_number(i);
-		}
-	}
 }
 
 void AWindowGUI::create_persistent_folder(ArrayList<BC_ListBoxItem*> *output, 
@@ -883,7 +841,6 @@ void AWindowGUI::filter_displayed_assets()
 
 void AWindowGUI::update_assets()
 {
-	update_folder_list();
 	update_asset_list();
 	labellist.remove_all_objects();
 	create_label_folder();
@@ -912,7 +869,6 @@ void AWindowGUI::update_assets()
 		0);
 
 	flush();
-	return;
 }
 
 int AWindowGUI::current_folder_number()
@@ -1311,54 +1267,6 @@ int AWindowAssets::column_resize_event()
 {
 	mwindow->edl->session->asset_columns[0] = get_column_width(0);
 	mwindow->edl->session->asset_columns[1] = get_column_width(1);
-	return 1;
-}
-
-
-AWindowNewFolder::AWindowNewFolder(MWindow *mwindow, AWindowGUI *gui, int x, int y)
- : BC_Button(x, y, mwindow->theme->newbin_data)
-{
-	this->mwindow = mwindow;
-	this->gui = gui;
-	set_tooltip(_("New bin"));
-}
-
-int AWindowNewFolder::handle_event()
-{
-	gui->newfolder_thread->start_new_folder();
-	return 1;
-}
-
-
-AWindowDeleteFolder::AWindowDeleteFolder(MWindow *mwindow, AWindowGUI *gui, int x, int y)
- : BC_Button(x, y, mwindow->theme->deletebin_data)
-{
-	this->mwindow = mwindow;
-	this->gui = gui;
-	set_tooltip(_("Delete bin"));
-}
-
-int AWindowDeleteFolder::handle_event()
-{
-	if(gui->folder_list->get_selection(0, 0))
-	{
-		BC_ListBoxItem *folder = gui->folder_list->get_selection(0, 0);
-		mwindow->delete_folder(folder->get_text());
-	}
-	return 1;
-}
-
-
-AWindowRenameFolder::AWindowRenameFolder(MWindow *mwindow, AWindowGUI *gui, int x, int y)
- : BC_Button(x, y, mwindow->theme->renamebin_data)
-{
-	this->mwindow = mwindow;
-	this->gui = gui;
-	set_tooltip(_("Rename bin"));
-}
-
-int AWindowRenameFolder::handle_event()
-{
 	return 1;
 }
 

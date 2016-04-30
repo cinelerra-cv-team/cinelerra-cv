@@ -294,7 +294,6 @@ public:
 	static const char *ilacemode_to_text(int ilacemode);
 	static const char *ilacefixmethod_to_text(int fixmethod);
 
-	void delete_folder(char *folder);
 	void delete_inpoint();
 	void delete_outpoint();    
 
@@ -348,7 +347,6 @@ public:
 	void move_track_up(Track *track);
 	void move_tracks_up();
 	void mute_selection();
-	void new_folder(char *new_folder);
 	void overwrite(EDL *source);
 // For clipboard commands
 	void paste();

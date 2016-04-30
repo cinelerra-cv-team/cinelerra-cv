@@ -2175,20 +2175,6 @@ void MWindow::undo_entry(BC_WindowBase *calling_window_gui)
 	    		   1);
 }
 
-
-
-void MWindow::new_folder(char *new_folder)
-{
-	edl->new_folder(new_folder);
-	undo->update_undo(_("new folder"), LOAD_ALL);
-	awindow->gui->async_update_assets();
-}
-
-void MWindow::delete_folder(char *folder)
-{
-//	undo->update_undo(_("delete folder"), LOAD_ALL);
-}
-
 void MWindow::select_point(double position)
 {
 	edl->local_session->set_selectionstart(position);

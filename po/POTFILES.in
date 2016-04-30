@@ -80,7 +80,7 @@ cinelerra/mwindow.h
 cinelerra/mwindowedit.C
 cinelerra/mwindowgui.C
 cinelerra/new.C
-cinelerra/newfolder.C
+# cinelerra/newfolder.C
 cinelerra/packagerenderer.C
 cinelerra/patchbay.C
 cinelerra/patchgui.C

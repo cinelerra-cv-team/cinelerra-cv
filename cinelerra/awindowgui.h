@@ -32,14 +32,10 @@
 #include "guicast.h"
 #include "labels.h"
 #include "mwindow.inc"
-#include "newfolder.inc"
 #include "pluginserver.inc"
 
 class AWindowAssets;
 class AWindowFolders;
-class AWindowNewFolder;
-class AWindowDeleteFolder;
-class AWindowRenameFolder;
 class AWindowDeleteDisk;
 class AWindowDeleteProject;
 class AWindowDivider;
@@ -154,7 +150,6 @@ public:
 	BC_Pixmap *audio_icon;
 	BC_Pixmap *video_icon;
 	BC_Pixmap *clip_icon;
-	NewFolderThread *newfolder_thread;
 
 // Popup menus
 	AssetPopup *asset_menu;
@@ -172,7 +167,6 @@ public:
 	virtual int recieve_custom_xatoms(xatom_event *event); 
 
 private:
-	void update_folder_list();
 	void update_asset_list();
 	void filter_displayed_assets();
 	Atom UpdateAssetsXAtom;
@@ -223,36 +217,6 @@ public:
 
 	MWindow *mwindow;
 	AWindowGUI *gui;
-};
-
-class AWindowNewFolder : public BC_Button
-{
-public:
-	AWindowNewFolder(MWindow *mwindow, AWindowGUI *gui, int x, int y);
-	int handle_event();
-	MWindow *mwindow;
-	AWindowGUI *gui;
-	int x, y;
-};
-
-class AWindowDeleteFolder : public BC_Button
-{
-public:
-	AWindowDeleteFolder(MWindow *mwindow, AWindowGUI *gui, int x, int y);
-	int handle_event();
-	MWindow *mwindow;
-	AWindowGUI *gui;
-	int x, y;
-};
-
-class AWindowRenameFolder : public BC_Button
-{
-public:
-	AWindowRenameFolder(MWindow *mwindow, AWindowGUI *gui, int x, int y);
-	int handle_event();
-	MWindow *mwindow;
-	AWindowGUI *gui;
-	int x, y;
 };
 
 class AWindowDeleteDisk : public BC_Button
