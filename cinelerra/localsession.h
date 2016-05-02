@@ -79,7 +79,7 @@ public:
 	char clip_title[BCTEXTLEN];
 	char clip_notes[BCTEXTLEN];
 // Folder in parent EDL of clip
-	char folder[BCTEXTLEN];
+	int awindow_folder;
 
 	int loop_playback;
 	double loop_start;

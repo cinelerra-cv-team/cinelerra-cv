@@ -100,7 +100,7 @@ public:
 	float ruler_x2, ruler_y2;
 // Ruler points relative to the output frame.
 // Current folder in resource window
-	char current_folder[BCTEXTLEN];
+	int awindow_folder;
 // align cursor on frame boundaries
 	int cursor_on_frames;
 // Destination item for CWindow
@@ -204,10 +204,6 @@ public:
 // number of frames to write to disk at a time during video recording.
 	int video_write_length;
 	int view_follows_playback;
-// Source item for VWindow
-// Uniquely identify vwindow clip without pointers
-	char vwindow_folder[BCTEXTLEN];
-	int vwindow_source;
 // Use the vwindow meter or not
 	int vwindow_meter;
 	float vwindow_zoom;

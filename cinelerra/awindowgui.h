@@ -57,7 +57,7 @@ public:
 	AssetPicon(MWindow *mwindow, AWindowGUI *gui, EDL *edl);
 	AssetPicon(MWindow *mwindow, AWindowGUI *gui, PluginServer *plugin);
 	AssetPicon(MWindow *mwindow, AWindowGUI *gui, Label *plugin);
-	AssetPicon(MWindow *mwindow, AWindowGUI *gui, const char *folder);
+	AssetPicon(MWindow *mwindow, AWindowGUI *gui, int folder);
 	virtual ~AssetPicon();
 
 	void create_objects();
@@ -67,6 +67,7 @@ public:
 	AWindowGUI *gui;
 	BC_Pixmap *icon;
 	VFrame *icon_vframe;
+	int foldernum;
 // ID of thing pointed to
 	int id;
 
@@ -78,7 +79,6 @@ public:
 
 	int in_use;
 
-	int persistent;
 	PluginServer *plugin;
 	Label *label;
 };
@@ -98,7 +98,7 @@ public:
 	void async_update_assets();     // Sends update asset event
 	void sort_assets();
 	void reposition_objects();
-	int current_folder_number();
+	static int folder_number(const char *name);
 // Call back for MWindow entry point
 	int drag_motion();
 	int drag_stop();
@@ -112,9 +112,8 @@ public:
 	void create_label_folder();
 	void copy_picons(ArrayList<BC_ListBoxItem*> *dst, 
 		ArrayList<BC_ListBoxItem*> *src, 
-		char *folder);
-	void sort_picons(ArrayList<BC_ListBoxItem*> *src, 
-		char *folder);
+		int folder);
+	void sort_picons(ArrayList<BC_ListBoxItem*> *src);
 // Return the selected asset in asset_list
 	Asset* selected_asset();
 	PluginServer* selected_plugin();
@@ -165,6 +164,7 @@ public:
 	int create_custom_xatoms();
 // Function to overload to recieve customly defined atoms
 	virtual int recieve_custom_xatoms(xatom_event *event); 
+	static const char *folder_names[];
 
 private:
 	void update_asset_list();

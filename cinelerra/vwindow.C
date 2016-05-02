@@ -167,23 +167,6 @@ void VWindow::change_source(Asset *asset)
 	gui->change_source(mwindow->edl->vwindow_edl, title);
 	update_position(CHANGE_ALL, 1, 1);
 
-
-// Update master session
-	strcpy(mwindow->edl->session->vwindow_folder, MEDIA_FOLDER);
-	mwindow->edl->session->vwindow_source = 0;
-	int i = 0;
-	for(Asset *current = mwindow->edl->assets->first; 
-		current;
-		current = NEXT)
-	{
-		if(this->asset->equivalent(*current, 0, 0))
-		{
-			mwindow->edl->session->vwindow_source = i;
-			break;
-		}
-		i++;
-	}
-
 //printf("VWindow::change_source 2\n");
 }
 
@@ -207,11 +190,6 @@ void VWindow::change_source(EDL *edl)
 // Update GUI
 		gui->change_source(edl, edl->local_session->clip_title);
 		update_position(CHANGE_ALL, 1, 1);
-
-// Update master session
-		strcpy(mwindow->edl->session->vwindow_folder, CLIP_FOLDER);
-		mwindow->edl->session->vwindow_source = 
-			mwindow->edl->clips.number_of(edl);
 	}
 	else
 		gui->change_source(edl, _("Viewer"));
@@ -223,43 +201,6 @@ void VWindow::remove_source()
 	delete_edl();
 	gui->change_source(0, _("Viewer"));
 }
-
-void VWindow::change_source(char *folder, int item)
-{
-//printf("VWindow::change_source(char *folder, int item) 1\n");
-	int result = 0;
-// Search EDLs
-	if(!strcasecmp(folder, CLIP_FOLDER))
-	{
-		if(item < mwindow->edl->clips.total)
-		{
-			change_source(mwindow->edl->clips.values[item]);
-			result = 1;
-		}
-	}
-	else
-// Search media
-	if(!strcasecmp(folder, MEDIA_FOLDER))
-	{
-		if(item < mwindow->edl->assets->total())
-		{
-			change_source(mwindow->edl->assets->get_item_number(item));
-			result = 1;
-		}
-	}
-	else
-// Search extra clip folders
-	{
-	}
-	
-	if(!result)
-	{
-		remove_source();
-	}
-}
-
-
-
 
 void VWindow::goto_start()
 {

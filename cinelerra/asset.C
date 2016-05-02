@@ -22,6 +22,7 @@
 
 #include "asset.h"
 #include "assets.h"
+#include "awindowgui.h"
 #include "bchash.h"
 #include "bcsignals.h"
 #include "clip.h"
@@ -74,7 +75,7 @@ Asset::~Asset()
 int Asset::init_values()
 {
 	path[0] = 0;
-	strcpy(folder, MEDIA_FOLDER);
+	awindow_folder = AW_MEDIA_FOLDER;
 //	format = FILE_MOV;
 // Has to be unknown for file probing to succeed
 	format = FILE_UNKNOWN;
@@ -218,7 +219,7 @@ void Asset::copy_from(Asset *asset, int do_index)
 void Asset::copy_location(Asset *asset)
 {
 	strcpy(this->path, asset->path);
-	strcpy(this->folder, asset->folder);
+	awindow_folder = asset->awindow_folder;
 }
 
 void Asset::copy_format(Asset *asset, int do_index)
@@ -519,7 +520,11 @@ int Asset::read(FileXML *file,
 			else
 			if(file->tag.title_is("FOLDER"))
 			{
-				strcpy(folder, file->read_text());
+				char *string = file->tag.get_property("NUMBER");
+				if(string)
+					awindow_folder = atoi(string);
+				else
+					awindow_folder = AWindowGUI::folder_number(file->read_text());
 			}
 			else
 			if(file->tag.title_is("VIDEO"))
@@ -742,8 +747,8 @@ int Asset::write(FileXML *file,
 	file->append_newline();
 
 	file->tag.set_title("FOLDER");
+	file->tag.set_property("NUMBER", awindow_folder);
 	file->append_tag();
-	file->append_text(folder);
 	file->tag.set_title("/FOLDER");
 	file->append_tag();
 	file->append_newline();

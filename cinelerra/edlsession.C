@@ -22,6 +22,7 @@
 #include "asset.h"
 #include "assets.h"
 #include "autoconf.h"
+#include "awindowgui.h"
 #include "colormodels.h"
 #include "bchash.h"
 #include "edl.h"
@@ -53,8 +54,7 @@ EDLSession::EDLSession(EDL *edl)
 
 	playback_config = new PlaybackConfig;
 	auto_conf = new AutoConf;
-	strcpy(vwindow_folder, "");
-	strcpy(current_folder, "");
+	awindow_folder = AW_MEDIA_FOLDER;
 	strcpy(default_atransition, "");
 	strcpy(default_vtransition, "");
 	default_transition_length = 1.0;
@@ -191,8 +191,7 @@ int EDLSession::load_defaults(BC_Hash *defaults)
 	ruler_x2 = defaults->get("RULER_X2", 0.0);
 	ruler_y1 = defaults->get("RULER_Y1", 0.0);
 	ruler_y2 = defaults->get("RULER_Y2", 0.0);
-	sprintf(current_folder, MEDIA_FOLDER);
-	defaults->get("CURRENT_FOLDER", current_folder);
+	awindow_folder = defaults->get("AWINDOW_FOLDER", awindow_folder);
 	cursor_on_frames = defaults->get("CURSOR_ON_FRAMES", 1);
 	cwindow_dest = defaults->get("CWINDOW_DEST", 0);
 	cwindow_mask = defaults->get("CWINDOW_MASK", 0);
@@ -284,8 +283,6 @@ int EDLSession::load_defaults(BC_Hash *defaults)
 	decode_subtitles = defaults->get("DECODE_SUBTITLES", decode_subtitles);
 	subtitle_number = defaults->get("SUBTITLE_NUMBER", subtitle_number);
 
-	vwindow_folder[0] = 0;
-	vwindow_source = -1;
 	vwindow_zoom = defaults->get("VWINDOW_ZOOM", (float)1);
 	boundaries();
 
@@ -330,7 +327,7 @@ int EDLSession::save_defaults(BC_Hash *defaults)
 	defaults->update("RULER_X2", ruler_x2);
 	defaults->update("RULER_Y1", ruler_y1);
 	defaults->update("RULER_Y2", ruler_y2);
-	defaults->update("CURRENT_FOLDER", current_folder);
+	defaults->update("AWINDOW_FOLDER", awindow_folder);
 	defaults->update("CURSOR_ON_FRAMES", cursor_on_frames);
 	defaults->update("CWINDOW_DEST", cwindow_dest);
 	defaults->update("CWINDOW_MASK", cwindow_mask);
@@ -458,11 +455,10 @@ void EDLSession::boundaries()
 	if(brender_start < 0) brender_start = 0.0;
 
 	Workarounds::clamp(subtitle_number, 0, 31);
-	
+	Workarounds::clamp(awindow_folder, 0, AWINDOW_FOLDERS - 1);
 // Correct framerates
 	frame_rate = Units::fix_framerate(frame_rate);
 //printf("EDLSession::boundaries 1 %p %p\n", edl->assets, edl->tracks);
-//	if(vwindow_source < 0 || vwindow_source >= edl->assets->total() + 1) vwindow_source = 0;
 //	if(cwindow_dest < 0 || cwindow_dest > edl->tracks->total()) cwindow_dest = 0;
 //printf("EDLSession::boundaries 2\n");
 }
@@ -546,7 +542,11 @@ int EDLSession::load_xml(FileXML *file,
 		ruler_y1 = file->tag.get_property("RULER_Y1", ruler_y1);
 		ruler_x2 = file->tag.get_property("RULER_X2", ruler_x2);
 		ruler_y2 = file->tag.get_property("RULER_Y2", ruler_y2);
-		file->tag.get_property("CURRENT_FOLDER", current_folder);
+		string[0] = 0;
+		file->tag.get_property("CURRENT_FOLDER", string);
+		if(string[0])
+			awindow_folder = AWindowGUI::folder_number(string);
+		file->tag.get_property("AWINDOW_FOLDER", awindow_folder);
 		cursor_on_frames = file->tag.get_property("CURSOR_ON_FRAMES", cursor_on_frames);
 		cwindow_dest = file->tag.get_property("CWINDOW_DEST", cwindow_dest);
 		cwindow_mask = file->tag.get_property("CWINDOW_MASK", cwindow_mask);
@@ -579,8 +579,6 @@ int EDLSession::load_xml(FileXML *file,
 		nudge_seconds = file->tag.get_property("NUDGE_FORMAT", nudge_seconds);
 		tool_window = file->tag.get_property("TOOL_WINDOW", tool_window);
 		vwindow_meter = file->tag.get_property("VWINDOW_METER", vwindow_meter);
-		file->tag.get_property("VWINDOW_FOLDER", vwindow_folder);
-		vwindow_source = file->tag.get_property("VWINDOW_SOURCE", vwindow_source);
 		vwindow_zoom = file->tag.get_property("VWINDOW_ZOOM", vwindow_zoom);
 
 		decode_subtitles = file->tag.get_property("DECODE_SUBTITLES", decode_subtitles);
@@ -614,7 +612,7 @@ int EDLSession::save_xml(FileXML *file)
 	file->tag.set_property("RULER_Y1", ruler_y1);
 	file->tag.set_property("RULER_X2", ruler_x2);
 	file->tag.set_property("RULER_Y2", ruler_y2);
-	file->tag.set_property("CURRENT_FOLDER", current_folder);
+	file->tag.set_property("AWINDOW_FOLDER", awindow_folder);
 	file->tag.set_property("CURSOR_ON_FRAMES", cursor_on_frames);
 	file->tag.set_property("CWINDOW_DEST", cwindow_dest);
 	file->tag.set_property("CWINDOW_MASK", cwindow_mask);
@@ -647,8 +645,6 @@ int EDLSession::save_xml(FileXML *file)
 	file->tag.set_property("NUDGE_SECONDS", nudge_seconds);
 	file->tag.set_property("TOOL_WINDOW", tool_window);
 	file->tag.set_property("VWINDOW_METER", vwindow_meter);
-	file->tag.set_property("VWINDOW_FOLDER", vwindow_folder);
-	file->tag.set_property("VWINDOW_SOURCE", vwindow_source);
 	file->tag.set_property("VWINDOW_ZOOM", vwindow_zoom);
 
 
@@ -753,7 +749,7 @@ int EDLSession::copy(EDLSession *session)
 	ruler_y1 = session->ruler_y1;
 	ruler_x2 = session->ruler_x2;
 	ruler_y2 = session->ruler_y2;
-	strcpy(current_folder, session->current_folder);
+	awindow_folder = session->awindow_folder;
 	cursor_on_frames = session->cursor_on_frames;
 	cwindow_dest = session->cwindow_dest;
 	cwindow_mask = session->cwindow_mask;
@@ -830,8 +826,6 @@ int EDLSession::copy(EDLSession *session)
 	video_write_length = session->video_write_length;	
 	view_follows_playback = session->view_follows_playback;
 	vwindow_meter = session->vwindow_meter;
-	strcpy(vwindow_folder, session->vwindow_folder);
-	vwindow_source = session->vwindow_source;
 	vwindow_zoom = session->vwindow_zoom;
 
 	subtitle_number = session->subtitle_number;
