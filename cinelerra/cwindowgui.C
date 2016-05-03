@@ -1400,9 +1400,6 @@ int CWindowCanvas::do_mask(int &redraw,
 					+ 3 * tpow2 * invt     * y2 
 					+     tpow3            * y3);
 
-				x = (x - half_track_w) * projector_z + projector_x;
-				y = (y - half_track_h) * projector_z + projector_y;
-
 
 // Test new point addition
 				if(button_press)
@@ -1441,6 +1438,9 @@ int CWindowCanvas::do_mask(int &redraw,
 						shortest_point = (i >= points.total - 1) ? 0 : (i + 1);
 					}
 				}
+
+				x = (x - half_track_w) * projector_z + projector_x;
+				y = (y - half_track_h) * projector_z + projector_y;
 
 				output_to_canvas(mwindow->edl, 0, x, y);
 
