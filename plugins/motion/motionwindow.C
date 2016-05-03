@@ -38,7 +38,7 @@ MotionWindow::MotionWindow(MotionMain *plugin, int x, int y)
  : PluginWindow(plugin->gui_string,
  	x,
 	y,
-	610, 
+	815,
 	650)
 {
 	this->plugin = plugin; 
@@ -51,7 +51,7 @@ MotionWindow::~MotionWindow()
 int MotionWindow::create_objects()
 {
 	int x1 = 10, x = 10, y = 10;
-	int x2 = 310;
+	int x2 = 410;
 	BC_Title *title;
 
 
@@ -75,7 +75,7 @@ int MotionWindow::create_objects()
 		y,
 		&plugin->config.global_range_w));
 	add_subwindow(global_range_h = new GlobalRange(plugin, 
-		x1 + title->get_w() + 10 + global_range_w->get_w(), 
+		x1 + title->get_w() + 30 + global_range_w->get_w(),
 		y,
 		&plugin->config.global_range_h));
 
@@ -95,7 +95,7 @@ int MotionWindow::create_objects()
 		y,
 		&plugin->config.global_block_w));
 	add_subwindow(global_block_h = new BlockSize(plugin, 
-		x1 + title->get_w() + 10 + global_block_w->get_w(), 
+		x1 + title->get_w() + 30 + global_block_w->get_w(),
 		y,
 		&plugin->config.global_block_h));
 
@@ -107,7 +107,7 @@ int MotionWindow::create_objects()
 		y,
 		&plugin->config.rotation_block_w));
 	add_subwindow(rotation_block_h = new BlockSize(plugin, 
-		x2 + title->get_w() + 10 + rotation_block_w->get_w(), 
+		x2 + title->get_w() + 30 + rotation_block_w->get_w(),
 		y,
 		&plugin->config.rotation_block_h));
 
@@ -191,7 +191,7 @@ int MotionWindow::create_objects()
 		y));
 	add_subwindow(addtrackedframeoffset = new AddTrackedFrameOffset(plugin,
 		this,
-		x + track_single->get_w() + title->get_w() + 20 + track_frame_number->get_w(),
+		x + track_single->get_w() + title->get_w() + 30 + track_frame_number->get_w(),
 		y));
 
 
