@@ -307,7 +307,6 @@ PROGRAM_NAME " is free software, covered by the GNU General Public License,\n"
 // run the program
 			mwindow.start();
 			mwindow.save_defaults();
-DISABLE_BUFFER
 			break;
 		}
 	}

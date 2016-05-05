@@ -58,7 +58,7 @@ void Condition::reset()
 void Condition::lock(const char *location)
 {
 #ifndef NO_GUICAST
-	SET_LOCK(this, title, location);
+	SET_CLOCK(this, title, location);
 #endif
     pthread_mutex_lock(&mutex);
     while(value <= 0) pthread_cond_wait(&cond, &mutex);
@@ -74,10 +74,6 @@ void Condition::lock(const char *location)
 
 void Condition::unlock()
 {
-// The lock trace is created and removed by the acquirer
-//#ifndef NO_GUICAST
-//	UNSET_LOCK(this);
-//#endif
     pthread_mutex_lock(&mutex);
     if(is_binary)
 		value = 1;
@@ -94,7 +90,7 @@ int Condition::timed_lock(int microseconds, const char *location)
     int result = 0;
 
 #ifndef NO_GUICAST
-	SET_LOCK(this, title, location);
+	SET_CLOCK(this, title, location);
 #endif
     pthread_mutex_lock(&mutex);
     gettimeofday(&now, 0);

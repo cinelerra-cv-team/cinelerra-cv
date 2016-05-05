@@ -2757,7 +2757,7 @@ int BC_WindowBase::lock_window(const char *location)
 	else
 	if(top_level)
 	{
-		SET_LOCK(this, title, location);
+		SET_XLOCK(this, title, location);
 		XLockDisplay(top_level->display);
 		SET_LOCK2
 		top_level->window_lock = 1;

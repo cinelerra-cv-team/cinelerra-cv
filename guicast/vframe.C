@@ -235,7 +235,6 @@ int VFrame::clear_objects(int do_opengl)
 // Memory check
 //int size = calculate_data_size(this->w, this->h, this->bytes_per_line, this->color_model);
 //if(size > 2560 * 1920)
-UNBUFFER(data);
 		if(data) delete [] data;
 		data = 0;
 	}
@@ -455,7 +454,6 @@ int VFrame::allocate_compressed_data(long bytes)
 	{
 		unsigned char *new_data = new unsigned char[bytes];
 		bcopy(data, new_data, compressed_allocated);
-UNBUFFER(data);
 		delete [] data;
 		data = new_data;
 		compressed_allocated = bytes;

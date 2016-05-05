@@ -30,126 +30,85 @@ BC_Signals* BC_Signals::global_signals = 0;
 static int signal_done = 0;
 static int table_id = 0;
 
-static bc_locktrace_t* new_bc_locktrace(void *ptr, 
-	const char *title, 
-	const char *location)
+// After successfully locking, the table is flagged as being the owner of the lock.
+// In the unlock function, the table flagged as the owner of the lock is deleted.
+typedef struct
 {
-	bc_locktrace_t *result = (bc_locktrace_t*)malloc(sizeof(bc_locktrace_t));
+	void *ptr;
+	const char *title;
+	const char *location;
+	int is_owner;
+	int id;
+	pthread_t tid;
+	int ltype;
+} bc_locktrace_t;
+
+#ifdef ENABLE_TRACE
+#define TOTAL_LOCKS 100
+#else
+#define TOTAL_LOCKS 1
+#endif
+
+static bc_locktrace_t locktable[TOTAL_LOCKS];
+static bc_locktrace_t *lastlockt = locktable;
+
+static bc_locktrace_t* new_bc_locktrace(void *ptr,
+	const char *title,
+	const char *location,
+	int ltype)
+{
+	bc_locktrace_t *result;
+
+	if(lastlockt >= &locktable[TOTAL_LOCKS])
+		lastlockt = locktable;
+
+	result = lastlockt++;
+
 	result->ptr = ptr;
 	result->title = title;
 	result->location = location;
 	result->is_owner = 0;
 	result->id = table_id++;
+	result->tid = pthread_self();
+	result->ltype = ltype;
+
 	return result;
 }
 
+static void clear_lock_entry(bc_locktrace_t *tbl)
+{
+	while(++tbl < lastlockt)
+		tbl[-1] = tbl[0];
+	if(--lastlockt < locktable)
+		lastlockt = locktable;
+}
 
-
-
+#ifdef ENABLE_TRACE
+#define TOTAL_TRACES 16
+#else
+#define TOTAL_TRACES 1
+#endif
 
 typedef struct
 {
-	int size;
-	void *ptr;
-	const char *location;
-} bc_buffertrace_t;
+	const char *fname;
+	const char *funct;
+	int line;
+	pthread_t tid;
+} bc_functrace_t;
 
-static bc_buffertrace_t* new_bc_buffertrace(int size, void *ptr, const char *location)
-{
-	bc_buffertrace_t *result = (bc_buffertrace_t*)malloc(sizeof(bc_buffertrace_t));
-	result->size = size;
-	result->ptr = ptr;
-	result->location = location;
-	return result;
-}
+static bc_functrace_t functable[TOTAL_TRACES];
+static bc_functrace_t *lastfunct = functable;
 
+#define TMP_FNAMES 10
+#define MX_TMPFNAME 256
 
-
-
-
-
-// Need our own table to avoid recursion with the memory manager
-typedef struct
-{
-	void **values;
-	int size;
-	int allocation;
-// This points to the next value to replace if the table wraps around
-	int current_value;
-} bc_table_t;
-
-static void* append_table(bc_table_t *table, void *ptr)
-{
-	if(table->allocation <= table->size)
-	{
-		if(table->allocation)
-		{
-			int new_allocation = table->allocation * 2;
-			void **new_values = (void**)calloc(new_allocation, sizeof(void*));
-			memcpy(new_values, table->values, sizeof(void*) * table->size);
-			free(table->values);
-			table->values = new_values;
-			table->allocation = new_allocation;
-		}
-		else
-		{
-			table->allocation = 4096;
-			table->values = (void**)calloc(table->allocation, sizeof(void*));
-		}
-	}
-
-	table->values[table->size++] = ptr;
-	return ptr;
-}
-
-// Replace item in table pointed to by current_value and advance
-// current_value
-static void* overwrite_table(bc_table_t *table, void *ptr)
-{
-	free(table->values[table->current_value]);
-	table->values[table->current_value++] = ptr;
-	if(table->current_value >= table->size) table->current_value = 0;
-}
-
-static void clear_table(bc_table_t *table, int delete_objects)
-{
-	if(delete_objects)
-	{
-		for(int i = 0; i < table->size; i++)
-		{
-			free(table->values[i]);
-		}
-	}
-	table->size = 0;
-}
-
-static void clear_table_entry(bc_table_t *table, int number, int delete_object)
-{
-	if(delete_object) free(table->values[number]);
-	for(int i = number; i < table->size - 1; i++)
-	{
-		table->values[i] = table->values[i + 1];
-	}
-	table->size--;
-}
-
-
-// Table of functions currently running.
-static bc_table_t execution_table = { 0, 0, 0, 0 };
-
-// Table of locked positions
-static bc_table_t lock_table = { 0, 0, 0, 0 };
-
-// Table of buffers
-static bc_table_t memory_table = { 0, 0, 0, 0 };
-
-static bc_table_t temp_files = { 0, 0, 0, 0 };
+static char tmp_fnames[TMP_FNAMES][MX_TMPFNAME];
+static int ltmpname;
 
 // Can't use Mutex because it would be recursive
 static pthread_mutex_t lock;
 static pthread_mutex_t handler_lock;
-// Don't trace memory until this is true to avoid initialization
-static int trace_memory = 0;
 
 
 static const char* signal_titles[] =
@@ -190,11 +149,10 @@ static void signal_entry(int signum)
 	printf("signal_entry: got %s my pid=%d execution table size=%d:\n", 
 		signal_titles[signum],
 		getpid(),
-		execution_table.size);
+		TOTAL_TRACES);
 
 	BC_Signals::dump_traces();
 	BC_Signals::dump_locks();
-	BC_Signals::dump_buffers();
 	BC_Signals::delete_temps();
 
 // Call user defined signal handler
@@ -217,75 +175,79 @@ BC_Signals::BC_Signals()
 void BC_Signals::dump_traces()
 {
 // Dump trace table
-	if(execution_table.size)
+	printf("Execution table size %d\n", TOTAL_TRACES);
+	if(TOTAL_TRACES > 1)
 	{
-		for(int i = execution_table.current_value; i < execution_table.size; i++)
-			printf("    %s\n", (char*)execution_table.values[i]);
-		for(int i = 0; i < execution_table.current_value; i++)
-			printf("    %s\n", (char*)execution_table.values[i]);
+		for(bc_functrace_t *tbl = functable;
+			tbl < &functable[TOTAL_TRACES]; tbl++)
+		{
+			int c = (tbl == lastfunct)? '>' : ' ';
+			if(tbl->fname)
+			{
+				if(tbl->funct)
+					printf(" %c %#lx %s %s %d\n",
+						c, tbl->tid, tbl->fname,
+						tbl->funct, tbl->line);
+				else
+					printf(" %c %#lx %s\n",
+					c, tbl->tid, tbl->fname);
+			}
+		}
 	}
-
 }
 
 void BC_Signals::dump_locks()
 {
 // Dump lock table
-	printf("signal_entry: lock table size=%d\n", lock_table.size);
-	for(int i = 0; i < lock_table.size; i++)
+	printf("signal_entry: lock table size=%d\n", lastlockt - &locktable[0]);
+	for(bc_locktrace_t *table = &locktable[0]; table < lastlockt; table++)
 	{
-		bc_locktrace_t *table = (bc_locktrace_t*)lock_table.values[i];
-		printf("    %p %s %s %s\n", 
+		printf(" %c%c %6d %#lx %p %s - %s\n",
+			table->is_owner ? '*' : ' ',
+			table->ltype,
+			table->id,
+			table->tid,
 			table->ptr,
 			table->title,
-			table->location,
-			table->is_owner ? "*" : "");
+			table->location);
 	}
-
-}
-
-void BC_Signals::dump_buffers()
-{
-	pthread_mutex_lock(&lock);
-// Dump buffer table
-	printf("BC_Signals::dump_buffers: buffer table size=%d\n", memory_table.size);
-	for(int i = 0; i < memory_table.size; i++)
-	{
-		bc_buffertrace_t *entry = (bc_buffertrace_t*)memory_table.values[i];
-		printf("    %d %p %s\n", entry->size, entry->ptr, entry->location);
-	}
-	pthread_mutex_unlock(&lock);
 }
 
 void BC_Signals::delete_temps()
 {
-	pthread_mutex_lock(&lock);
-	printf("BC_Signals::delete_temps: deleting %d temp files\n", temp_files.size);
-	for(int i = 0; i < temp_files.size; i++)
+	printf("BC_Signals::delete_temps: deleting %d temp files\n", ltmpname);
+	for(int i = 0; i < ltmpname; i++)
 	{
-		printf("    %s\n", (char*)temp_files.values[i]);
-		remove((char*)temp_files.values[i]);
+		printf("    %s\n", tmp_fnames[i]);
+		remove(tmp_fnames[i]);
 	}
 	pthread_mutex_unlock(&lock);
 }
 
-void BC_Signals::set_temp(char *string)
+void BC_Signals::set_temp(const char *string)
 {
-	char *new_string = strdup(string);
-	append_table(&temp_files, new_string);
+	pthread_mutex_lock(&lock);
+	if(ltmpname >= TMP_FNAMES)
+		printf("Too many temp files in BC_signals\n");
+	else
+		strncpy(tmp_fnames[ltmpname++], string,  MX_TMPFNAME-1);
+	pthread_mutex_unlock(&lock);
 }
 
-void BC_Signals::unset_temp(char *string)
+void BC_Signals::unset_temp(const char *string)
 {
-	for(int i = 0; i < temp_files.size; i++)
+	int i;
+
+	pthread_mutex_lock(&lock);
+	for(i = 0; i < ltmpname; i++)
 	{
-		if(!strcmp((char*)temp_files.values[i], string))
-		{
-			clear_table_entry(&temp_files, i, 1);
-			break;
-		}
+		for(i++; i < ltmpname; i++)
+			strncpy(tmp_fnames[i], tmp_fnames[i+1],  MX_TMPFNAME-1);
+		ltmpname--;
+		break;
 	}
+	pthread_mutex_unlock(&lock);
 }
-
 
 void BC_Signals::initialize()
 {
@@ -322,58 +284,69 @@ const char* BC_Signals::sig_to_str(int number)
 	return signal_titles[number];
 }
 
-#define TOTAL_TRACES 16
-
 void BC_Signals::new_trace(const char *text)
 {
 	if(!global_signals) return;
 	pthread_mutex_lock(&lock);
 
+	bc_functrace_t *tbl = lastfunct++;
+
 // Wrap around
-	if(execution_table.size >= TOTAL_TRACES)
-	{
-		overwrite_table(&execution_table, strdup(text));
-//		clear_table(&execution_table, 1);
-	}
-	else
-	{
-		append_table(&execution_table, strdup(text));
-	}
+	if(lastfunct >= &functable[TOTAL_TRACES])
+		lastfunct = &functable[0];
+
+	tbl->fname = text;
+	tbl->funct = 0;
+	tbl->line = 0;
+	tbl->tid = pthread_self();
+
 	pthread_mutex_unlock(&lock);
 }
 
 void BC_Signals::new_trace(const char *file, const char *function, int line)
 {
-	char string[BCTEXTLEN];
-	snprintf(string, BCTEXTLEN, "%s: %s: %d", file, function, line);
-	new_trace(string);
+	if(!global_signals) return;
+
+	pthread_mutex_lock(&lock);
+	bc_functrace_t *tbl = lastfunct++;
+
+// Wrap around
+	if(lastfunct >= &functable[TOTAL_TRACES])
+		lastfunct = &functable[0];
+
+	tbl->fname = file;
+	tbl->funct = function;
+	tbl->line = line;
+	tbl->tid = pthread_self();
+	pthread_mutex_unlock(&lock);
 }
 
 void BC_Signals::delete_traces()
 {
 	if(!global_signals) return;
+
 	pthread_mutex_lock(&lock);
-	clear_table(&execution_table, 0);
+	for(bc_functrace_t *tbl = functable; tbl < &functable[TOTAL_TRACES];
+		tbl++)
+	tbl->fname = 0;
+
+	lastfunct = &functable[0];
 	pthread_mutex_unlock(&lock);
 }
 
-#define TOTAL_LOCKS 100
-
 int BC_Signals::set_lock(void *ptr, 
 	const char *title, 
-	const char *location)
+	const char *location,
+	int type)
 {
 	if(!global_signals) return 0;
-	bc_locktrace_t *table = 0;
-	int id_return = 0;
+	bc_locktrace_t *table;
+	int id_return;
 
 	pthread_mutex_lock(&lock);
-	if(lock_table.size >= TOTAL_LOCKS)
-		clear_table(&lock_table, 0);
 
 // Put new lock entry
-	table = new_bc_locktrace(ptr, title, location);
-	append_table(&lock_table, table);
+	table = new_bc_locktrace(ptr, title, location, type);
 	id_return = table->id;
 
 	pthread_mutex_unlock(&lock);
@@ -384,11 +357,11 @@ void BC_Signals::set_lock2(int table_id)
 {
 	if(!global_signals) return;
 
-	bc_locktrace_t *table = 0;
+	bc_locktrace_t *table;
 	pthread_mutex_lock(&lock);
-	for(int i = lock_table.size - 1; i >= 0; i--)
+
+	for(table = lastlockt - 1; table >= &locktable[0]; table--)
 	{
-		table = (bc_locktrace_t*)lock_table.values[i];
 // Got it.  Hasn't been unlocked/deleted yet.
 		if(table->id == table_id)
 		{
@@ -404,14 +377,13 @@ void BC_Signals::unset_lock2(int table_id)
 {
 	if(!global_signals) return;
 
-	bc_locktrace_t *table = 0;
+	bc_locktrace_t *table;
 	pthread_mutex_lock(&lock);
-	for(int i = lock_table.size - 1; i >= 0; i--)
+	for(table = lastlockt - 1; table >= &locktable[0]; table--)
 	{
-		table = (bc_locktrace_t*)lock_table.values[i];
 		if(table->id == table_id)
 		{
-			clear_table_entry(&lock_table, i, 1);
+			clear_lock_entry(table);
 			pthread_mutex_unlock(&lock);
 			return;
 		}
@@ -423,136 +395,39 @@ void BC_Signals::unset_lock(void *ptr)
 {
 	if(!global_signals) return;
 
-	bc_locktrace_t *table = 0;
+	bc_locktrace_t *table;
 	pthread_mutex_lock(&lock);
 
 // Take off currently held entry
-	for(int i = 0; i < lock_table.size; i++)
+	for(table = lastlockt - 1; table >= &locktable[0]; table--)
 	{
-		table = (bc_locktrace_t*)lock_table.values[i];
 		if(table->ptr == ptr)
 		{
 			if(table->is_owner)
 			{
-				clear_table_entry(&lock_table, i, 1);
+				clear_lock_entry(table);
 				pthread_mutex_unlock(&lock);
 				return;
 			}
 		}
 	}
-
 	pthread_mutex_unlock(&lock);
 }
-
 
 void BC_Signals::unset_all_locks(void *ptr)
 {
 	if(!global_signals) return;
+
+	bc_locktrace_t *table;
 	pthread_mutex_lock(&lock);
 // Take off previous lock entry
-	for(int i = 0; i < lock_table.size; i++)
+	for(table = lastlockt - 1; table >= &locktable[0]; table--)
 	{
-		bc_locktrace_t *table = (bc_locktrace_t*)lock_table.values[i];
 		if(table->ptr == ptr)
-		{
-			clear_table_entry(&lock_table, i, 1);
-		}
+			clear_lock_entry(table);
 	}
 	pthread_mutex_unlock(&lock);
 }
 
 
-void BC_Signals::enable_memory()
-{
-	trace_memory = 1;
-}
 
-void BC_Signals::disable_memory()
-{
-	trace_memory = 0;
-}
-
-
-void BC_Signals::set_buffer(int size, void *ptr, const char* location)
-{
-	if(!global_signals) return;
-	if(!trace_memory) return;
-
-//printf("BC_Signals::set_buffer %p %s\n", ptr, location);
-	pthread_mutex_lock(&lock);
-	append_table(&memory_table, new_bc_buffertrace(size, ptr, location));
-	pthread_mutex_unlock(&lock);
-}
-
-int BC_Signals::unset_buffer(void *ptr)
-{
-	if(!global_signals) return 0;
-	if(!trace_memory) return 0;
-
-	pthread_mutex_lock(&lock);
-	for(int i = 0; i < memory_table.size; i++)
-	{
-		if(((bc_buffertrace_t*)memory_table.values[i])->ptr == ptr)
-		{
-//printf("BC_Signals::unset_buffer %p\n", ptr);
-			clear_table_entry(&memory_table, i, 1);
-			pthread_mutex_unlock(&lock);
-			return 0;
-		}
-	}
-
-	pthread_mutex_unlock(&lock);
-//	fprintf(stderr, "BC_Signals::unset_buffer buffer %p not found.\n", ptr);
-	return 1;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-#ifdef TRACE_MEMORY
-
-// void* operator new(size_t size) 
-// {
-// //printf("new 1 %d\n", size);
-//     void *result = malloc(size);
-// 	BUFFER(size, result, "new");
-// //printf("new 2 %d\n", size);
-// 	return result;
-// }
-// 
-// void* operator new[](size_t size) 
-// {
-// //printf("new [] 1 %d\n", size);
-//     void *result = malloc(size);
-// 	BUFFER(size, result, "new []");
-// //printf("new [] 2 %d\n", size);
-// 	return result;
-// }
-// 
-// void operator delete(void *ptr) 
-// {
-// //printf("delete 1 %p\n", ptr);
-// 	UNBUFFER(ptr);
-// //printf("delete 2 %p\n", ptr);
-//     free(ptr);
-// }
-// 
-// void operator delete[](void *ptr) 
-// {
-// //printf("delete [] 1 %p\n", ptr);
-// 	UNBUFFER(ptr);
-//     free(ptr);
-// //printf("delete [] 2 %p\n", ptr);
-// }
-
-
-#endif
