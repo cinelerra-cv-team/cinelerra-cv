@@ -146,8 +146,8 @@ static bc_table_t memory_table = { 0, 0, 0, 0 };
 static bc_table_t temp_files = { 0, 0, 0, 0 };
 
 // Can't use Mutex because it would be recursive
-static pthread_mutex_t *lock = 0;
-static pthread_mutex_t *handler_lock = 0;
+static pthread_mutex_t lock;
+static pthread_mutex_t handler_lock;
 // Don't trace memory until this is true to avoid initialization
 static int trace_memory = 0;
 
@@ -176,15 +176,15 @@ static void signal_entry(int signum)
 {
 	signal(signum, SIG_DFL);
 
-	pthread_mutex_lock(handler_lock);
+	pthread_mutex_lock(&handler_lock);
 	if(signal_done)
 	{
-		pthread_mutex_unlock(handler_lock);
+		pthread_mutex_unlock(&handler_lock);
 		exit(0);
 	}
 
 	signal_done = 1;
-	pthread_mutex_unlock(handler_lock);
+	pthread_mutex_unlock(&handler_lock);
 
 
 	printf("signal_entry: got %s my pid=%d execution table size=%d:\n", 
@@ -245,7 +245,7 @@ void BC_Signals::dump_locks()
 
 void BC_Signals::dump_buffers()
 {
-	pthread_mutex_lock(lock);
+	pthread_mutex_lock(&lock);
 // Dump buffer table
 	printf("BC_Signals::dump_buffers: buffer table size=%d\n", memory_table.size);
 	for(int i = 0; i < memory_table.size; i++)
@@ -253,19 +253,19 @@ void BC_Signals::dump_buffers()
 		bc_buffertrace_t *entry = (bc_buffertrace_t*)memory_table.values[i];
 		printf("    %d %p %s\n", entry->size, entry->ptr, entry->location);
 	}
-	pthread_mutex_unlock(lock);
+	pthread_mutex_unlock(&lock);
 }
 
 void BC_Signals::delete_temps()
 {
-	pthread_mutex_lock(lock);
+	pthread_mutex_lock(&lock);
 	printf("BC_Signals::delete_temps: deleting %d temp files\n", temp_files.size);
 	for(int i = 0; i < temp_files.size; i++)
 	{
 		printf("    %s\n", (char*)temp_files.values[i]);
 		remove((char*)temp_files.values[i]);
 	}
-	pthread_mutex_unlock(lock);
+	pthread_mutex_unlock(&lock);
 }
 
 void BC_Signals::set_temp(char *string)
@@ -290,10 +290,8 @@ void BC_Signals::unset_temp(char *string)
 void BC_Signals::initialize()
 {
 	BC_Signals::global_signals = this;
-	lock = (pthread_mutex_t*)calloc(1, sizeof(pthread_mutex_t));
-	handler_lock = (pthread_mutex_t*)calloc(1, sizeof(pthread_mutex_t));
-	pthread_mutex_init(lock, 0);
-	pthread_mutex_init(handler_lock, 0);
+	pthread_mutex_init(&lock, 0);
+	pthread_mutex_init(&handler_lock, 0);
 
 	initialize2();
 }
@@ -329,7 +327,7 @@ const char* BC_Signals::sig_to_str(int number)
 void BC_Signals::new_trace(const char *text)
 {
 	if(!global_signals) return;
-	pthread_mutex_lock(lock);
+	pthread_mutex_lock(&lock);
 
 // Wrap around
 	if(execution_table.size >= TOTAL_TRACES)
@@ -341,7 +339,7 @@ void BC_Signals::new_trace(const char *text)
 	{
 		append_table(&execution_table, strdup(text));
 	}
-	pthread_mutex_unlock(lock);
+	pthread_mutex_unlock(&lock);
 }
 
 void BC_Signals::new_trace(const char *file, const char *function, int line)
@@ -354,9 +352,9 @@ void BC_Signals::new_trace(const char *file, const char *function, int line)
 void BC_Signals::delete_traces()
 {
 	if(!global_signals) return;
-	pthread_mutex_lock(lock);
+	pthread_mutex_lock(&lock);
 	clear_table(&execution_table, 0);
-	pthread_mutex_unlock(lock);
+	pthread_mutex_unlock(&lock);
 }
 
 #define TOTAL_LOCKS 100
@@ -369,7 +367,7 @@ int BC_Signals::set_lock(void *ptr,
 	bc_locktrace_t *table = 0;
 	int id_return = 0;
 
-	pthread_mutex_lock(lock);
+	pthread_mutex_lock(&lock);
 	if(lock_table.size >= TOTAL_LOCKS)
 		clear_table(&lock_table, 0);
 
@@ -378,7 +376,7 @@ int BC_Signals::set_lock(void *ptr,
 	append_table(&lock_table, table);
 	id_return = table->id;
 
-	pthread_mutex_unlock(lock);
+	pthread_mutex_unlock(&lock);
 	return id_return;
 }
 
@@ -387,7 +385,7 @@ void BC_Signals::set_lock2(int table_id)
 	if(!global_signals) return;
 
 	bc_locktrace_t *table = 0;
-	pthread_mutex_lock(lock);
+	pthread_mutex_lock(&lock);
 	for(int i = lock_table.size - 1; i >= 0; i--)
 	{
 		table = (bc_locktrace_t*)lock_table.values[i];
@@ -395,11 +393,11 @@ void BC_Signals::set_lock2(int table_id)
 		if(table->id == table_id)
 		{
 			table->is_owner = 1;
-			pthread_mutex_unlock(lock);
+			pthread_mutex_unlock(&lock);
 			return;
 		}
 	}
-	pthread_mutex_unlock(lock);
+	pthread_mutex_unlock(&lock);
 }
 
 void BC_Signals::unset_lock2(int table_id)
@@ -407,18 +405,18 @@ void BC_Signals::unset_lock2(int table_id)
 	if(!global_signals) return;
 
 	bc_locktrace_t *table = 0;
-	pthread_mutex_lock(lock);
+	pthread_mutex_lock(&lock);
 	for(int i = lock_table.size - 1; i >= 0; i--)
 	{
 		table = (bc_locktrace_t*)lock_table.values[i];
 		if(table->id == table_id)
 		{
 			clear_table_entry(&lock_table, i, 1);
-			pthread_mutex_unlock(lock);
+			pthread_mutex_unlock(&lock);
 			return;
 		}
 	}
-	pthread_mutex_unlock(lock);
+	pthread_mutex_unlock(&lock);
 }
 
 void BC_Signals::unset_lock(void *ptr)
@@ -426,7 +424,7 @@ void BC_Signals::unset_lock(void *ptr)
 	if(!global_signals) return;
 
 	bc_locktrace_t *table = 0;
-	pthread_mutex_lock(lock);
+	pthread_mutex_lock(&lock);
 
 // Take off currently held entry
 	for(int i = 0; i < lock_table.size; i++)
@@ -437,20 +435,20 @@ void BC_Signals::unset_lock(void *ptr)
 			if(table->is_owner)
 			{
 				clear_table_entry(&lock_table, i, 1);
-				pthread_mutex_unlock(lock);
+				pthread_mutex_unlock(&lock);
 				return;
 			}
 		}
 	}
 
-	pthread_mutex_unlock(lock);
+	pthread_mutex_unlock(&lock);
 }
 
 
 void BC_Signals::unset_all_locks(void *ptr)
 {
 	if(!global_signals) return;
-	pthread_mutex_lock(lock);
+	pthread_mutex_lock(&lock);
 // Take off previous lock entry
 	for(int i = 0; i < lock_table.size; i++)
 	{
@@ -460,7 +458,7 @@ void BC_Signals::unset_all_locks(void *ptr)
 			clear_table_entry(&lock_table, i, 1);
 		}
 	}
-	pthread_mutex_unlock(lock);
+	pthread_mutex_unlock(&lock);
 }
 
 
@@ -481,9 +479,9 @@ void BC_Signals::set_buffer(int size, void *ptr, const char* location)
 	if(!trace_memory) return;
 
 //printf("BC_Signals::set_buffer %p %s\n", ptr, location);
-	pthread_mutex_lock(lock);
+	pthread_mutex_lock(&lock);
 	append_table(&memory_table, new_bc_buffertrace(size, ptr, location));
-	pthread_mutex_unlock(lock);
+	pthread_mutex_unlock(&lock);
 }
 
 int BC_Signals::unset_buffer(void *ptr)
@@ -491,19 +489,19 @@ int BC_Signals::unset_buffer(void *ptr)
 	if(!global_signals) return 0;
 	if(!trace_memory) return 0;
 
-	pthread_mutex_lock(lock);
+	pthread_mutex_lock(&lock);
 	for(int i = 0; i < memory_table.size; i++)
 	{
 		if(((bc_buffertrace_t*)memory_table.values[i])->ptr == ptr)
 		{
 //printf("BC_Signals::unset_buffer %p\n", ptr);
 			clear_table_entry(&memory_table, i, 1);
-			pthread_mutex_unlock(lock);
+			pthread_mutex_unlock(&lock);
 			return 0;
 		}
 	}
 
-	pthread_mutex_unlock(lock);
+	pthread_mutex_unlock(&lock);
 //	fprintf(stderr, "BC_Signals::unset_buffer buffer %p not found.\n", ptr);
 	return 1;
 }
