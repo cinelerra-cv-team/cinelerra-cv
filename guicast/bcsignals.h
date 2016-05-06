@@ -26,7 +26,7 @@
 #include "bcsignals.inc"
 #include <pthread.h>
 #include <signal.h>
-
+#include <X11/Xlib.h>
 
 // BC_Signals must be initialized at the start of every program using
 // debugging.
@@ -38,6 +38,9 @@ class BC_Signals
 public:
 	BC_Signals();
 	void initialize();
+
+	void initXErrors();
+	static void watchXproto(Display *dpy);
 
 	virtual void signal_handler(int signum) {};
 

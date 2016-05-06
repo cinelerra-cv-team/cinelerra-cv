@@ -28,7 +28,9 @@
 #include <unistd.h>
 #include <ucontext.h>
 #include <execinfo.h>
-
+#include <X11/Xlib.h>
+#include <X11/Xlibint.h>
+#include <errno.h>
 
 BC_Signals* BC_Signals::global_signals = 0;
 static int signal_done = 0;
@@ -324,6 +326,42 @@ static void signal_entry(int signum, siginfo_t *inf, void *ucxt)
 	abort();
 }
 
+// X error handler
+static int xerrorhdlr(Display *display, XErrorEvent *event)
+{
+	char string[1024];
+
+// Ignore BadWindow events
+	if(event->error_code == BadWindow)
+		return 0;
+
+	XGetErrorText(event->display, event->error_code, string, 1024);
+	fprintf(stderr, "X error opcode=%d,%d: '%s'\n",
+		event->request_code,
+		event->minor_code,
+		string);
+	fprintf(stderr, "Display %p XID %#08lx\n", event->display, event->resourceid);
+	signal_entry(0, NULL, NULL);
+}
+
+// XIO error handler
+static int xioerrhdlr(Display *display)
+{
+	fprintf(stderr, "Fatal X IO error %d (%s) on X server '%s'\n",
+		errno, strerror(errno), DisplayString(display));
+	fprintf(stderr, "    with %d events remaining\n", QLength(display));
+	signal_entry(0, NULL, NULL);
+}
+
+// X protocol watcher
+static int xprotowatch(Display *display)
+{
+	fprintf(stderr, "[#%08lx] xprotowatch: %p req %ld/%ld\n",
+		pthread_self(), display,
+		display->request, display->last_request_read);
+	return 0;
+}
+
 BC_Signals::BC_Signals()
 {
 }
@@ -426,6 +464,17 @@ void BC_Signals::initialize()
 	sigaction(SIGBUS, &nact, NULL);
 	sigaction(SIGILL, &nact, NULL);
 	sigaction(SIGABRT, &nact, NULL);
+}
+
+void BC_Signals::initXErrors()
+{
+	XSetErrorHandler(xerrorhdlr);
+	XSetIOErrorHandler(xioerrhdlr);
+}
+
+void BC_Signals::watchXproto(Display *dpy)
+{
+	XSetAfterFunction(dpy, xprotowatch);
 }
 
 void BC_Signals::new_trace(const char *text)
