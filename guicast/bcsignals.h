@@ -38,10 +38,8 @@ class BC_Signals
 public:
 	BC_Signals();
 	void initialize();
-	void initialize2();
 
-
-	virtual void signal_handler(int signum);
+	virtual void signal_handler(int signum) {};
 
 #ifdef ENABLE_TRACE
 // Add a trace
@@ -121,9 +119,6 @@ public:
 
 	static void dump_traces();
 	static void dump_locks();
-
-// Convert signum to text
-	static const char* sig_to_str(int number);
 
 	static BC_Signals *global_signals;
 };
