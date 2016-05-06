@@ -272,7 +272,7 @@ VModePatch::VModePatch(MWindow *mwindow, VPatchGUI *patch, int x, int y)
 	this->patch = patch;
 	this->mode = get_keyframe(mwindow, patch)->value;
 	set_icon(patch->patchbay->mode_to_icon(this->mode));
-	set_tooltip("Overlay mode");
+	set_tooltip(_("Overlay mode"));
 }
 
 int VModePatch::handle_event()
