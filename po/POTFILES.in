@@ -180,7 +180,6 @@ plugins/delayaudio/delayaudio.C
 plugins/delayvideo/delayvideo.C
 plugins/denoise/denoise.C
 plugins/denoisefft/denoisefft.C
-plugins/denoisemjpeg/denoisemjpeg.C
 plugins/denoiseseltempavg/seltempavg.C
 plugins/denoiseseltempavg/seltempavgwindow.C
 plugins/denoisevideo/denoisevideo.C

@@ -725,7 +725,6 @@ AC_OUTPUT(Makefile cinelerra-cvs-current.spec po/Makefile.in \
 	plugins/denoise/Makefile \
 	plugins/denoisefft/Makefile \
 	plugins/denoisevideo/Makefile \
-	plugins/denoisemjpeg/Makefile \
 	plugins/despike/Makefile \
 	plugins/dissolve/Makefile \
 	plugins/dot/Makefile \
