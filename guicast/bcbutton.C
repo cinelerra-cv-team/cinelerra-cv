@@ -261,7 +261,7 @@ BC_OKButton::BC_OKButton(BC_WindowBase *parent_window, VFrame **images)
  	parent_window->get_h() - images[0]->get_h() - 10, 
  	images)
 {
-	set_tooltip("OK");
+	set_tooltip(_("OK"));
 }
 
 BC_OKButton::BC_OKButton(BC_WindowBase *parent_window)
@@ -269,7 +269,7 @@ BC_OKButton::BC_OKButton(BC_WindowBase *parent_window)
  	parent_window->get_h() - BC_WindowBase::get_resources()->ok_images[0]->get_h() - 10, 
  	BC_WindowBase::get_resources()->ok_images)
 {
-	set_tooltip("OK");
+	set_tooltip(_("OK"));
 }
 
 int BC_OKButton::handle_event()
@@ -317,7 +317,7 @@ BC_CancelButton::BC_CancelButton(int x, int y)
  : BC_Button(x, y, 
  	BC_WindowBase::get_resources()->cancel_images)
 {
-	set_tooltip("Cancel");
+	set_tooltip(_("Cancel"));
 }
 
 BC_CancelButton::BC_CancelButton(BC_WindowBase *parent_window)
@@ -325,7 +325,7 @@ BC_CancelButton::BC_CancelButton(BC_WindowBase *parent_window)
  	parent_window->get_h() - BC_WindowBase::get_resources()->cancel_images[0]->get_h() - 10, 
  	BC_WindowBase::get_resources()->cancel_images)
 {
-	set_tooltip("Cancel");
+	set_tooltip(_("Cancel"));
 }
 
 BC_CancelButton::BC_CancelButton(BC_WindowBase *parent_window, VFrame **images)
@@ -333,7 +333,7 @@ BC_CancelButton::BC_CancelButton(BC_WindowBase *parent_window, VFrame **images)
  	parent_window->get_h() - images[0]->get_h() - 10, 
  	images)
 {
-	set_tooltip("Cancel");
+	set_tooltip(_("Cancel"));
 }
 
 int BC_CancelButton::handle_event()
