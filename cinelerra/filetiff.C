@@ -103,13 +103,13 @@ const char* FileTIFF::compression_to_str(int value)
 {
 	switch(value)
 	{
-		case FileTIFF::NONE: return "None"; break;
+		case FileTIFF::NONE: return _("None"); break;
 		case FileTIFF::LZW: return "LZW"; break;
 		case FileTIFF::PACK_BITS: return "Pack Bits"; break;
 		case FileTIFF::DEFLATE: return "Deflate"; break;
 		case FileTIFF::JPEG: return "JPEG"; break;
 		default: 
-			return "None"; 
+			return _("None");
 			break;
 	}
 }
