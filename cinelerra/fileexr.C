@@ -189,14 +189,14 @@ const char* FileEXR::compression_to_str(int compression)
 {
 	switch(compression)
 	{
-		case FileEXR::NONE: return "None"; break;
+		case FileEXR::NONE: return _("None"); break;
 		case FileEXR::PIZ: return "PIZ"; break;
 		case FileEXR::ZIP: return "ZIP"; break;
 		case FileEXR::ZIPS: return "ZIPS"; break;
 		case FileEXR::RLE: return "RLE"; break;
 		case FileEXR::PXR24: return "PXR24"; break;
 	}
-	return "None";
+	return _("None");
 }
 
 int FileEXR::compression_to_exr(int compression)
