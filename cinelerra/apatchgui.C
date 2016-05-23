@@ -306,7 +306,7 @@ APanPatch::APanPatch(MWindow *mwindow, APatchGUI *patch, int x, int y)
 {
 	this->mwindow = mwindow;
 	this->patch = patch;
-	set_tooltip("Pan");
+	set_tooltip(_("Pan"));
 }
 
 int APanPatch::handle_event()
