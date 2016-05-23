@@ -960,7 +960,7 @@ FormatSwapExtents::FormatSwapExtents(MWindow *mwindow,
 	this->mwindow = mwindow;
 	this->thread = thread;
 	this->gui = gui;
-	set_tooltip("Swap dimensions");
+	set_tooltip(_("Swap dimensions"));
 }
 
 int FormatSwapExtents::handle_event()
