@@ -208,7 +208,7 @@ ResizeTrackSwap::ResizeTrackSwap(ResizeTrackWindow *gui,
 {
 	this->thread = thread;
 	this->gui = gui;
-	set_tooltip("Swap dimensions");
+	set_tooltip(_("Swap dimensions"));
 }
 
 int ResizeTrackSwap::handle_event()
