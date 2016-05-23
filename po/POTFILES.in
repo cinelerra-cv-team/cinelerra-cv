@@ -136,6 +136,7 @@ cinelerra/zoombar.C
 guicast/bcbutton.C
 guicast/bccapture.C
 guicast/bcfilebox.C
+guicast/bcrecentlist.C
 guicast/bcresources.C
 guicast/bctheme.C
 # guicast/test.C
