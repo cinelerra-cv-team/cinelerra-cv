@@ -926,7 +926,7 @@ NewSwapExtents::NewSwapExtents(MWindow *mwindow, NewWindow *gui, int x, int y)
 {
 	this->mwindow = mwindow;
 	this->gui = gui;
-	set_tooltip("Swap dimensions");
+	set_tooltip(_("Swap dimensions"));
 }
 
 int NewSwapExtents::handle_event()
