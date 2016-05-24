@@ -75,8 +75,6 @@ EditPanel::EditPanel(MWindow *mwindow,
 	this->use_keyframe = use_keyframe;
 	this->use_splice = use_splice;
 	this->use_overwrite = use_overwrite;
-	this->use_lift = 0;
-	this->use_extract = 0;
 	this->use_copy = use_copy;
 	this->use_paste = use_paste;
 	this->use_undo = use_undo;
@@ -166,16 +164,6 @@ SET_TRACE
 	{
 		subwindow->add_subwindow(overwrite = new EditOverwrite(mwindow, this, x1, y1));
 		x1 += overwrite->get_w();
-	}
-	if(use_lift)
-	{
-		subwindow->add_subwindow(lift = new EditLift(mwindow, this, x1, y1));
-		x1 += lift->get_w();
-	}
-	if(use_extract)
-	{
-		subwindow->add_subwindow(extract = new EditExtract(mwindow, this, x1, y1));
-		x1 += extract->get_w();
 	}
 	if(use_toclip)
 	{
@@ -350,16 +338,6 @@ void EditPanel::reposition_buttons(int x, int y)
 	{
 		overwrite->reposition_window(x1, y1);
 		x1 += overwrite->get_w();
-	}
-	if(use_lift)
-	{
-		lift->reposition_window(x1, y1);
-		x1 += lift->get_w();
-	}
-	if(use_extract)
-	{
-		extract->reposition_window(x1, y1);
-		x1 += extract->get_w();
 	}
 	if(use_toclip)
 	{
@@ -576,21 +554,6 @@ int EditPrevLabel::handle_event()
 	return 1;
 }
 
-EditLift::EditLift(MWindow *mwindow, EditPanel *panel, int x, int y)
- : BC_Button(x, y, mwindow->theme->lift_data)
-{
-	this->mwindow = mwindow;
-	this->panel = panel;
-	set_tooltip(_("Lift"));
-}
-EditLift::~EditLift()
-{
-}
-int EditLift::handle_event()
-{
-	return 1;
-}
-
 EditOverwrite::EditOverwrite(MWindow *mwindow, EditPanel *panel, int x, int y)
  : BC_Button(x, y, mwindow->theme->overwrite_data)
 {
@@ -614,22 +577,6 @@ int EditOverwrite::keypress_event()
 		return 1;
 	}
 	return 0;
-}
-
-EditExtract::EditExtract(MWindow *mwindow, EditPanel *panel, int x, int y)
- : BC_Button(x, y, mwindow->theme->extract_data)
-{
-	this->mwindow = mwindow;
-	this->panel = panel;
-	set_tooltip(_("Extract"));
-}
-EditExtract::~EditExtract()
-{
-}
-int EditExtract::handle_event()
-{
-//	mwindow->extract_selection();
-	return 1;
 }
 
 EditToClip::EditToClip(MWindow *mwindow, EditPanel *panel, int x, int y)
@@ -760,43 +707,6 @@ int EditCopy::handle_event()
 	return 1;
 }
 
-EditAppend::EditAppend(MWindow *mwindow, EditPanel *panel, int x, int y)
- : BC_Button(x, y, mwindow->theme->append_data)
-{
-	this->mwindow = mwindow;
-	this->panel = panel;
-	set_tooltip(_("Append to end of track"));
-}
-EditAppend::~EditAppend()
-{
-}
-
-
-int EditAppend::handle_event()
-{
-	return 1;
-}
-
-
-EditInsert::EditInsert(MWindow *mwindow, EditPanel *panel, int x, int y)
- : BC_Button(x, y, mwindow->theme->insert_data)
-{
-	this->mwindow = mwindow;
-	this->panel = panel;
-	set_tooltip(_("Insert before beginning of track"));
-}
-EditInsert::~EditInsert()
-{
-}
-
-
-int EditInsert::handle_event()
-{
-	
-	return 1;
-}
-
-
 EditPaste::EditPaste(MWindow *mwindow, EditPanel *panel, int x, int y)
  : BC_Button(x, y, mwindow->theme->get_image_set("paste"))
 {
@@ -819,38 +729,6 @@ int EditPaste::handle_event()
 	if(!panel->is_mwindow) mwindow->gui->lock_window("EditPaste::handle_event");
 	mwindow->paste();
 	if(!panel->is_mwindow) mwindow->gui->unlock_window();
-	return 1;
-}
-
-
-
-EditTransition::EditTransition(MWindow *mwindow, EditPanel *panel, int x, int y)
- : BC_Button(x, y, mwindow->theme->transition_data)
-{
-	this->mwindow = mwindow;
-	this->panel = panel;
-	set_tooltip(_("Set transition"));
-}
-EditTransition::~EditTransition()
-{
-}
-int EditTransition::handle_event()
-{
-	return 1;
-}
-
-EditPresentation::EditPresentation(MWindow *mwindow, EditPanel *panel, int x, int y)
- : BC_Button(x, y, mwindow->theme->presentation_data)
-{
-	this->mwindow = mwindow;
-	this->panel = panel;
-	set_tooltip(_("Set presentation up to current position"));
-}
-EditPresentation::~EditPresentation()
-{
-}
-int EditPresentation::handle_event()
-{
 	return 1;
 }
 

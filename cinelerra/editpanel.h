@@ -106,16 +106,6 @@ public:
 	EditPanel *panel;
 };
 
-class EditExtract : public BC_Button
-{
-public:
-	EditExtract(MWindow *mwindow, EditPanel *panel, int x, int y);
-	~EditExtract();
-	int handle_event();
-	MWindow *mwindow;
-	EditPanel *panel;
-};
-
 class EditToClip : public BC_Button
 {
 public:
@@ -165,30 +155,6 @@ public:
 	EditPanel *panel;
 };
 
-class EditAppend : public BC_Button
-{
-public:
-	EditAppend(MWindow *mwindow, EditPanel *panel, int x, int y);
-	~EditAppend();
-
-	int handle_event();
-
-	MWindow *mwindow;
-	EditPanel *panel;
-};
-
-class EditInsert : public BC_Button
-{
-public:
-	EditInsert(MWindow *mwindow, EditPanel *panel, int x, int y);
-	~EditInsert();
-
-	int handle_event();
-
-	MWindow *mwindow;
-	EditPanel *panel;
-};
-
 class EditPaste : public BC_Button
 {
 public:
@@ -198,26 +164,6 @@ public:
 	int keypress_event();
 	int handle_event();
 
-	MWindow *mwindow;
-	EditPanel *panel;
-};
-
-class EditTransition : public BC_Button
-{
-public:
-	EditTransition(MWindow *mwindow, EditPanel *panel, int x, int y);
-	~EditTransition();
-	int handle_event();
-	MWindow *mwindow;
-	EditPanel *panel;
-};
-
-class EditPresentation : public BC_Button
-{
-public:
-	EditPresentation(MWindow *mwindow, EditPanel *panel, int x, int y);
-	~EditPresentation();
-	int handle_event();
 	MWindow *mwindow;
 	EditPanel *panel;
 };
@@ -403,8 +349,6 @@ public:
 	int editing_mode;
 	int use_splice;
 	int use_overwrite;
-	int use_lift;
-	int use_extract;
 	int use_paste;
 	int use_undo;
 	int use_fit;
@@ -421,12 +365,8 @@ public:
 	EditFitAutos *fit_autos;
 	EditInPoint *inpoint;
 	EditOutPoint *outpoint;
-//	EditDelInPoint *delinpoint;
-//	EditDelOutPoint *deloutpoint;
 	EditSplice *splice;
 	EditOverwrite *overwrite;
-	EditLift *lift;
-	EditExtract *extract;
 	EditToClip *clip;
 	EditManualGoto *mangoto;
 	EditCut *cut;
