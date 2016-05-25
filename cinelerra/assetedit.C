@@ -458,7 +458,7 @@ int AssetEditWindow::create_objects()
 
 		// --------------------
 		add_subwindow(title = new BC_Title(x1, y, _("Asset's interlacing:")));
-		add_subwindow(textboxw = textboxw = new BC_TextBox(x2, y, 200, 1, ""));
+		add_subwindow(textboxw = new BC_TextBox(x2, y, 200, 1, ""));
 		textboxw->disable(1);
 		ilacefixoption_chkboxw->ilacemode_textbox = textboxw;
 		add_subwindow(listboxw = new AssetEditInterlacemodePulldown(mwindow,
