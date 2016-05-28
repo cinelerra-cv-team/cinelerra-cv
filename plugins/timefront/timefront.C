@@ -615,7 +615,7 @@ TimeFrontShowGrayscale::TimeFrontShowGrayscale(TimeFrontMain *client, int x, int
  : BC_CheckBox(x, 
  	y, 
 	client->config.show_grayscale, 
-	_("Show grayscale (for tuning"))
+	_("Show grayscale (for tuning)"))
 {
 	this->plugin = client;
 }
