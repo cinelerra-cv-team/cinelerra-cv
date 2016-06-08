@@ -84,7 +84,7 @@ BluebananaMain::~BluebananaMain() {
   delete engine;
 }
 
-const char* BluebananaMain::plugin_title() { return "Blue Banana"; }
+const char* BluebananaMain::plugin_title() { return N_("Blue Banana"); }
 int BluebananaMain::is_realtime() { return 1; }
 
 #include "picon_png.h"
