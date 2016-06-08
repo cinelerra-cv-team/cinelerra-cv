@@ -154,11 +154,15 @@ int FloatAuto::interpolate_from(Auto *a1, Auto *a2, int64_t pos, Auto *templ)
 	{
 		FloatAuto *left = (FloatAuto*)a1;
 		FloatAuto *right = (FloatAuto*)a2;
-		float new_value = FloatAutos::calculate_bezier(left, right, pos);
+
+		if(pos != position)
+		{
+			// this may trigger smoothing
+			this->adjust_to_new_coordinates(pos,
+				FloatAutos::calculate_bezier(left, right, pos));
+		}
+
 		float new_slope = FloatAutos::calculate_bezier_derivation(left, right, pos);
-		
-		this->adjust_to_new_coordinates(pos, new_value); // this may trigger smoothing
-		
 		this->set_control_in_value(new_slope * control_in_position);
 		this->set_control_out_value(new_slope * control_out_position);
 		return 1; //return true: interpolated indeed...
