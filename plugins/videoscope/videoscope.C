@@ -671,7 +671,7 @@ VideoScopeDrawLinesInverse::VideoScopeDrawLinesInverse(VideoScopeEffect *plugin,
  : BC_CheckBox(x, y, plugin->config.draw_lines_inverse, _("Inverse"))
 {
 	this->plugin = plugin;
- 	set_tooltip("Draw graduation lines so points underneath are visible");
+	set_tooltip(_("Draw graduation lines so points underneath are visible"));
 }
 
 int VideoScopeDrawLinesInverse::handle_event()
