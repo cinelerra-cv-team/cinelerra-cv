@@ -407,9 +407,8 @@ int YUVConfigVideo::create_objects()
 	x = init_x + 20;
 	y += 30;
 	add_subwindow(bt = new BC_Title(x, y, _("Interlacing:")));
-	char string[BCTEXTLEN];
-	ilacemode_to_text(string,asset->interlace_mode);
-	add_subwindow(new BC_Title(x + bt->get_w() + 5, y, string, MEDIUMFONT, YELLOW));
+	add_subwindow(new BC_Title(x + bt->get_w() + 5, y,
+		MWindow::ilacemode_to_text(asset->interlace_mode), MEDIUMFONT, YELLOW));
 
 	x = init_x;
 	y += 30;
