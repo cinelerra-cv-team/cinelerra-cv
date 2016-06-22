@@ -154,7 +154,7 @@ AssetEditWindow::AssetEditWindow(MWindow *mwindow, AssetEdit *asset_edit)
  : BC_Window(MWindow::create_title(N_("Asset Info")),
  	mwindow->gui->get_abs_cursor_x(1) - 400 / 2, 
 	mwindow->gui->get_abs_cursor_y(1) - 550 / 2, 
-	400, 
+	410,
 	660,
 	400,
 	560,
@@ -186,7 +186,7 @@ AssetEditWindow::~AssetEditWindow()
 
 int AssetEditWindow::create_objects()
 {
-	int y = 10, x = 10, x1 = 10, x2 = 160;
+	int y = 10, x = 10, x1 = 10, x2 = 170;
 	char string[BCTEXTLEN];
 	int vmargin;
 	int hmargin1 = 180, hmargin2 = 290;
@@ -458,7 +458,7 @@ int AssetEditWindow::create_objects()
 
 		// --------------------
 		add_subwindow(title = new BC_Title(x1, y, _("Asset's interlacing:")));
-		add_subwindow(textboxw = new BC_TextBox(x2, y, 200, 1, ""));
+		add_subwindow(textboxw = new BC_TextBox(x2, y, 190, 1, ""));
 		textboxw->disable(1);
 		ilacefixoption_chkboxw->ilacemode_textbox = textboxw;
 		add_subwindow(listboxw = new AssetEditInterlacemodePulldown(mwindow,
@@ -473,7 +473,7 @@ int AssetEditWindow::create_objects()
 
 		// --------------------
 		add_subwindow(title = new BC_Title(x1, y, _("Interlace correction:")));
-		add_subwindow(textboxw = new BC_TextBox(x2, y, 200, 1, ""));
+		add_subwindow(textboxw = new BC_TextBox(x2, y, 190, 1, ""));
 		textboxw->disable(1);
 		ilacefixoption_chkboxw->ilacefixmethod_textbox = textboxw;
 		add_subwindow(listboxw = new InterlacefixmethodPulldown(mwindow, 
@@ -820,7 +820,7 @@ int AssetEditFormat::handle_event()
 
 
 AssetEditReelName::AssetEditReelName(AssetEditWindow *fwindow, int x, int y)
- : BC_TextBox(x, y, 300, 1, fwindow->asset->reel_name, 1, MEDIUMFONT, 1)
+ : BC_TextBox(x, y, 190, 1, fwindow->asset->reel_name, 1, MEDIUMFONT, 1)
 {
 	this->fwindow = fwindow;
 }
@@ -838,7 +838,7 @@ int AssetEditReelName::handle_event()
 
 
 AssetEditReelNumber::AssetEditReelNumber(AssetEditWindow *fwindow, int x, int y)
- : BC_TextBox(x, y, 200, 1, fwindow->asset->reel_number)
+ : BC_TextBox(x, y, 190, 1, fwindow->asset->reel_number)
 {
 	this->fwindow = fwindow;
 }
