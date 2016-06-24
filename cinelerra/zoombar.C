@@ -85,11 +85,11 @@ int ZoomBar::create_objects()
 	track_zoom->create_objects();
 	track_zoom->zoom_text->set_tooltip(_("Height of tracks in the timeline"));
 	track_zoom->zoom_tumbler->set_tooltip(_("Height of tracks in the timeline"));
-	x += track_zoom->get_w() + 10;
+	x += track_zoom->get_w() + 5;
 
 	add_subwindow(auto_type = new AutoTypeMenu(mwindow, this, x, y));
 	auto_type->create_objects();
-	x += auto_type->get_w() + 10;
+	x += auto_type->get_w() + 5;
 #define DEFAULT_TEXT "000.00 to 000.00"
 	add_subwindow(auto_zoom = new AutoZoom(mwindow, this, x, y, 0));
 	x += auto_zoom->get_w();
@@ -350,7 +350,7 @@ SampleZoomPanel::SampleZoomPanel(MWindow *mwindow,
 	mwindow->edl->local_session->zoom_sample, 
 	x, 
 	y, 
-	110, 
+	105,
 	MIN_ZOOM_TIME, 
 	MAX_ZOOM_TIME, 
 	ZOOM_TIME)
@@ -448,7 +448,7 @@ int AutoZoom::handle_down_event()
 
 
 AutoTypeMenu::AutoTypeMenu(MWindow *mwindow, ZoomBar *zoombar, int x, int y)
-	: BC_PopupMenu(x, y, 120,to_text(mwindow->edl->local_session->zoombar_showautotype), 1)
+	: BC_PopupMenu(x, y, 140,to_text(mwindow->edl->local_session->zoombar_showautotype), 1)
 {
 	this->mwindow = mwindow;
 	this->zoombar = zoombar;
@@ -506,7 +506,7 @@ int AutoTypeMenu::handle_event()
 
 
 ZoomTextBox::ZoomTextBox(MWindow *mwindow, ZoomBar *zoombar, int x, int y, const char *text)
- : BC_TextBox(x, y, 130, 1, text)
+ : BC_TextBox(x, y, 125, 1, text)
 {
 	this->mwindow = mwindow;
 	this->zoombar = zoombar;
