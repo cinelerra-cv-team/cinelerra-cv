@@ -106,9 +106,9 @@ ResizeTrackWindow::ResizeTrackWindow(MWindow *mwindow,
  : BC_Window(MWindow::create_title(N_("Resize Track")),
 				x - 320 / 2,
 				y - get_resources()->ok_images[0]->get_h() + 100 / 2,
-				340, 
+				350,
 				get_resources()->ok_images[0]->get_h() + 100, 
-				340, 
+				350,
 				get_resources()->ok_images[0]->get_h() + 100, 
 				0,
 				0, 
@@ -127,12 +127,12 @@ void ResizeTrackWindow::create_objects()
 	int x = 10, y = 10;
 
 	add_subwindow(new BC_Title(x, y, _("Size:")));
-	x += 50;
+	x += 75;
 	add_subwindow(w = new ResizeTrackWidth(this, 
 		thread,
 		x,
 		y));
-	x += w->get_w() + 10;
+	x += w->get_w() + 5;
 	add_subwindow(new BC_Title(x, y, _("x")));
 	x += 15;
 	add_subwindow(h = new ResizeTrackHeight(this, 
@@ -153,12 +153,12 @@ void ResizeTrackWindow::create_objects()
 	y += 30;
 	x = 10;
 	add_subwindow(new BC_Title(x, y, _("Scale:")));
-	x += 50;
+	x += 75;
 	add_subwindow(w_scale = new ResizeTrackScaleW(this, 
 		thread,
 		x,
 		y));
-	x += 100;
+	x += 85;
 	add_subwindow(new BC_Title(x, y, _("x")));
 	x += 15;
 	add_subwindow(h_scale = new ResizeTrackScaleH(this, 
@@ -228,7 +228,7 @@ ResizeTrackWidth::ResizeTrackWidth(ResizeTrackWindow *gui,
 	ResizeTrackThread *thread,
 	int x,
 	int y)
- : BC_TextBox(x, y, 90, 1, thread->w)
+ : BC_TextBox(x, y, 80, 1, thread->w)
 {
 	this->gui = gui;
 	this->thread = thread;
@@ -244,7 +244,7 @@ ResizeTrackHeight::ResizeTrackHeight(ResizeTrackWindow *gui,
 	ResizeTrackThread *thread,
 	int x,
 	int y)
- : BC_TextBox(x, y, 90, 1, thread->h)
+ : BC_TextBox(x, y, 80, 1, thread->h)
 {
 	this->gui = gui;
 	this->thread = thread;
@@ -261,7 +261,7 @@ ResizeTrackScaleW::ResizeTrackScaleW(ResizeTrackWindow *gui,
 	ResizeTrackThread *thread,
 	int x,
 	int y)
- : BC_TextBox(x, y, 90, 1, (float)thread->w_scale)
+ : BC_TextBox(x, y, 80, 1, (float)thread->w_scale)
 {
 	this->gui = gui;
 	this->thread = thread;
@@ -277,7 +277,7 @@ ResizeTrackScaleH::ResizeTrackScaleH(ResizeTrackWindow *gui,
 	ResizeTrackThread *thread,
 	int x,
 	int y)
- : BC_TextBox(x, y, 90, 1, (float)thread->h_scale)
+ : BC_TextBox(x, y, 80, 1, (float)thread->h_scale)
 {
 	this->gui = gui;
 	this->thread = thread;
