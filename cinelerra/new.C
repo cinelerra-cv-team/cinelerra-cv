@@ -49,8 +49,8 @@
 #include <string.h>
 
 
-#define WIDTH 600
-#define HEIGHT 400
+#define WIDTH 610
+#define HEIGHT 430
 
 
 New::New(MWindow *mwindow)
@@ -294,7 +294,7 @@ int NewWindow::create_objects()
 	y += 30;
 	x1 = x;
 	add_subwindow(new BC_Title(x1, y, _("Tracks:")));
-	x1 += 100;
+	x1 += 115;
 	add_subwindow(vtracks = new NewVTracks(this, "", x1, y));
 	x1 += vtracks->get_w();
 	add_subwindow(new NewVTracksTumbler(this, x1, y));
@@ -309,7 +309,7 @@ int NewWindow::create_objects()
 // 	y += vchannels->get_h() + 5;
 	x1 = x;
 	add_subwindow(new BC_Title(x1, y, _("Framerate:")));
-	x1 += 100;
+	x1 += 115;
 	add_subwindow(frame_rate = new NewFrameRate(this, "", x1, y));
 	x1 += frame_rate->get_w();
 	add_subwindow(new FrameRatePulldown(mwindow, frame_rate, x1, y));
@@ -335,7 +335,7 @@ int NewWindow::create_objects()
 
 	x1 = x;
 	add_subwindow(new BC_Title(x1, y, _("Canvas size:")));
-	x1 += 100;
+	x1 += 115;
 	add_subwindow(output_w_text = new NewOutputW(this, x1, y));
 	x1 += output_w_text->get_w() + 2;
 	add_subwindow(new BC_Title(x1, y, "x"));
@@ -348,13 +348,13 @@ int NewWindow::create_objects()
 		output_h_text, 
 		x1, 
 		y));
-	x1 += pulldown->get_w() + 5;
+	x1 += pulldown->get_w() + 10;
 	add_subwindow(new NewSwapExtents(mwindow, this, x1, y));
 	y += output_h_text->get_h() + 5;
 
 	x1 = x;
 	add_subwindow(new BC_Title(x1, y, _("Aspect ratio:")));
-	x1 += 100;
+	x1 += 115;
 	add_subwindow(aspect_w_text = new NewAspectW(this, "", x1, y));
 	x1 += aspect_w_text->get_w() + 2;
 	add_subwindow(new BC_Title(x1, y, ":"));
@@ -370,25 +370,25 @@ int NewWindow::create_objects()
 	x1 = aspect_w_text->get_x();
 	y += aspect_w_text->get_h() + 5;
 	add_subwindow(new NewAspectAuto(this, x1, y));
-	y += 40;
+	y += 35;
 	add_subwindow(new BC_Title(x, y, _("Color model:")));
-	add_subwindow(textbox = new BC_TextBox(x + 100, y, 200, 1, ""));
+	add_subwindow(textbox = new BC_TextBox(x + 120, y, 130, 1, ""));
 	add_subwindow(color_model = new ColormodelPulldown(mwindow, 
 		textbox, 
 		&new_edl->session->color_model,
-		x + 100 + textbox->get_w(),
+		x + 115 + textbox->get_w(),
 		y));
 	y += textbox->get_h() + 5;
 
 	// --------------------
 	add_subwindow(new BC_Title(x, y, _("Interlace mode:")));
-	add_subwindow(textbox = new BC_TextBox(x + 100, y, 140, 1, ""));
+	add_subwindow(textbox = new BC_TextBox(x + 120, y, 165, 1, ""));
 	textbox->disable(1);
 	add_subwindow(interlace_pulldown = new InterlacemodePulldown(mwindow, 
 		textbox, 
 		&new_edl->session->interlace_mode,
 		(ArrayList<BC_ListBoxItem*>*)&mwindow->interlace_project_modes,
-		x + 100 + textbox->get_w(), 
+		x + 115 + textbox->get_w(),
 		y)); 
 	y += textbox->get_h() + 5;
 
