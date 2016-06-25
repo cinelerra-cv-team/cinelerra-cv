@@ -461,13 +461,13 @@ void BlueDotTheme::initialize()
 	timebar_view_data = new_image("timebar_view.png");
 
 // x, y of Format dialog box
-	setformat_w = 600;
+	setformat_w = 640;
 	setformat_h = 560;
 	setformat_x1 = 15;
-	setformat_x2 = 100;
+	setformat_x2 = 120;
 
 	setformat_x3 = 315;
-	setformat_x4 = 415;
+	setformat_x4 = 435;
 	setformat_y1 = 20;
 	setformat_y2 = 85;
 	setformat_y3 = 125;
