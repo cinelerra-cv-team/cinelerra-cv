@@ -313,6 +313,8 @@ statusbar_right.png \
 stop.png \
 stoprec.png \
 swap_extents.png \
+tan_smooth.png \
+tan_linear.png \
 timebar_bg.png \
 timebar_brender.png \
 timebar_view.png \

@@ -711,6 +711,10 @@ void BlueDotTheme::initialize()
 //	new_toggle("toolwindow.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi,"tool");
 // MIHA: Commented out in favor of default version M4<<
 
+	// toggle for tangent mode (compositor/tool window)
+	new_toggle("tan_smooth.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi, "tan_smooth");
+	new_toggle("tan_linear.png", editpanel_up, editpanel_hi, editpanel_checked, editpanel_dn, editpanel_checkedhi, "tan_linear");
+
 
 	flush_images();
 
