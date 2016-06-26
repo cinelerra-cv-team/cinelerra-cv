@@ -2774,7 +2774,10 @@ int BC_ListBox::button_press_event()
 // Pressed in button
 	if(is_popup && top_level->event_win == win)
 	{
-		current_operation = BUTTON_DN;
+		if (!disabled)
+		{
+			current_operation = BUTTON_DN;
+		}
 		draw_button();
 
 // Deploy listbox
