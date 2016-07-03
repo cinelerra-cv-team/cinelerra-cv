@@ -19,6 +19,7 @@ AM_PROG_AS
 AC_LANG_CPLUSPLUS
 AC_LANG_C
 AC_PROG_CXX
+AX_CXX_COMPILE_STDCXX(11)
 
 dnl
 dnl GREP_CXXFLAGS(flag, cmd_if_missing, cmd_if_present)
