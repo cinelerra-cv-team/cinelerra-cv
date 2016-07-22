@@ -878,7 +878,7 @@ int Mode1::from_text(char *text)
 	if(!strcmp(text, _("Do Nothing"))) return MotionConfig::NOTHING;
 }
 
-char* Mode1::to_text(int mode)
+const char* Mode1::to_text(int mode)
 {
 	switch(mode)
 	{
@@ -898,7 +898,7 @@ char* Mode1::to_text(int mode)
 			return _("Do Nothing");
 			break;
 	}
-	return _("");
+	return "";
 }
 
 int Mode1::calculate_w(MotionWindow *gui)

@@ -44,7 +44,7 @@ public:
 	void create_objects();
 	static int calculate_w(MotionWindow *gui);
 	static int from_text(char *text);
-	static char* to_text(int mode);
+	static const char* to_text(int mode);
 	MotionMain *plugin;
 	MotionWindow *gui;
 };
