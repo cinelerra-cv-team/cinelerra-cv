@@ -115,9 +115,9 @@ int ZoomBar::create_objects()
 	update_formatting(length_value);
 	update_formatting(to_value);
 
-	add_subwindow(playback_value = new BC_Title(x, 100, _("--"), MEDIUMFONT, RED));
+	add_subwindow(playback_value = new BC_Title(x, 100, "--", MEDIUMFONT, RED));
 
-	add_subwindow(zoom_value = new BC_Title(x, 100, _("--"), MEDIUMFONT, BLACK));
+	add_subwindow(zoom_value = new BC_Title(x, 100, "--", MEDIUMFONT, BLACK));
 	update();
 	return 0;
 }
