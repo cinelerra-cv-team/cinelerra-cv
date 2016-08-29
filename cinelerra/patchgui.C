@@ -244,41 +244,48 @@ void PatchGUI::toggle_behavior(int type,
 	if(toggle->shift_down())
 	{
 		int total_selected = mwindow->edl->tracks->total_of(type);
-
+// Default of Mute is inverted
+		if(type == Tracks::MUTE)
+		{
+			total_selected = mwindow->edl->tracks->total() - total_selected;
+			value = 0;
+		}
+		else
+			value = 1;
 // nothing previously selected
 		if(total_selected == 0)
 		{
 			mwindow->edl->tracks->select_all(type,
-				1);
+				value);
 		}
 		else
 		if(total_selected == 1)
 		{
 // this patch was previously the only one on
-			if(*output)
+			if((*output && value) || (!*output && !value))
 			{
 				mwindow->edl->tracks->select_all(type,
-					1);
+					value);
 			}
 // another patch was previously the only one on
 			else
 			{
 				mwindow->edl->tracks->select_all(type,
-					0);
-				*output = 1;
+					!value);
+				*output = value;
 			}
 		}
 		else
 		if(total_selected > 1)
 		{
 			mwindow->edl->tracks->select_all(type,
-				0);
-			*output = 1;
+				!value);
+			*output = value;
 		}
-		toggle->set_value(*output);
+		toggle->set_value(value);
 		patchbay->update();
 		patchbay->drag_operation = type;
-		patchbay->new_status = 1;
+		patchbay->new_status = value;
 		patchbay->button_down = 1;
 	}
 	else
@@ -604,7 +611,6 @@ int MutePatch::button_press_event()
 
 
 		current = (IntAuto*)mute_autos->get_auto_for_editing(position);
-		current->value = get_value();
 
 		patch->toggle_behavior(Tracks::MUTE,
 			get_value(),
