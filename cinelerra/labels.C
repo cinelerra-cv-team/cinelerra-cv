@@ -29,7 +29,6 @@
 #include "patchbay.h"
 #include "recordlabel.h"
 #include "mainsession.h"
-#include "stringfile.h"
 #include "theme.h"
 #include "timebar.h"
 #include <string.h>

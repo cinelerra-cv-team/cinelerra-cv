@@ -69,7 +69,6 @@ libguicast_la_SOURCES = \
 	mutex.C \
 	rotateframe.C \
 	sema.C \
-	stringfile.C \
 	thread.C \
 	units.C \
 	vframe.C \
@@ -199,8 +198,6 @@ noinst_HEADERS = \
 	sema.h \
 	sema.inc \
 	sizes.h \
-	stringfile.h \
-	stringfile.inc \
 	testobject.h \
 	thread.h \
 	units.h \
