@@ -19,288 +19,231 @@
  * 
  */
 
+#include <inttypes.h>
 #include <stdlib.h>
 #include <string.h>
 #include "bchash.h"
 #include "bcsignals.h"
+#include "bcresources.h"
 #include "filesystem.h"
-#include "stringfile.h"
+#include "hashcache.h"
+
+#define HASHLINE_LEN 2048
+#define BUFFER_LENGTH 4096
 
 BC_Hash::BC_Hash()
 {
-	this->filename[0] = 0;
-	total = 0;
-	allocated = 0;
-	names = 0;
-	values = 0;
+	char name[BCTEXTLEN];
+
+	sprintf(name, "%p", this);
+	cache = BC_Resources::hash_cache.allocate_cache(name);
+	cache->no_file = 1;
 }
 
 BC_Hash::BC_Hash(const char *filename)
 {
-	strcpy(this->filename, filename);
-	total = 0;
-	allocated = 0;
-	names = 0;
-	values = 0;
-
 	FileSystem directory;
-	
-	directory.parse_tildas(this->filename);
-	total = 0;
+	char fname[BCTEXTLEN];
+
+	strcpy(fname, filename);
+
+	directory.parse_tildas(fname);
+	cache = BC_Resources::hash_cache.allocate_cache(fname);
 }
 
 BC_Hash::~BC_Hash()
 {
-	for(int i = 0; i < total; i++)
-	{
-		delete [] names[i];
-		delete [] values[i];
-	}
-	delete [] names;
-	delete [] values;
+	if(cache->no_file)
+		delete cache;
 }
 
-void BC_Hash::reallocate_table(int new_total)
+void BC_Hash::load()
 {
-	if(allocated < new_total)
-	{
-		int new_allocated = new_total * 2;
-		char **new_names = new char*[new_allocated];
-		char **new_values = new char*[new_allocated];
+	FILE *in;
+	char bufr[HASHLINE_LEN];
 
-		for(int i = 0; i < total; i++)
+	if(!cache->no_file && !cache->total)
+	{
+		if(in = fopen(cache->filename, "r"))
 		{
-			new_names[i] = names[i];
-			new_values[i] = values[i];
+			while(fgets(bufr, HASHLINE_LEN, in))
+				load_string(bufr);
+
+			fclose(in);
 		}
-
-		delete [] names;
-		delete [] values;
-
-		names = new_names;
-		values = new_values;
-		allocated = new_allocated;
+		cache->changed = 0;
 	}
 }
 
-int BC_Hash::load()
+void BC_Hash::save()
 {
-	StringFile stringfile(filename);
-	load_stringfile(&stringfile);
-	return 0;
 }
 
-void BC_Hash::load_stringfile(StringFile *file)
+void BC_Hash::load_string(char *string)
 {
-	char arg1[1024], arg2[1024];
-	total = 0;
-	while(file->get_pointer() < file->get_length())
+	char *p, *q, *r;
+
+	r = string;
+	while(*r)
 	{
-		file->readline(arg1, arg2);
-		reallocate_table(total + 1);
-		names[total] = new char[strlen(arg1) + 1];
-		values[total] = new char[strlen(arg2) + 1];
-		strcpy(names[total], arg1);
-		strcpy(values[total], arg2);
-		total++;
-	}
-}
-
-void BC_Hash::save_stringfile(StringFile *file)
-{
-	for(int i = 0; i < total; i++)
-	{
-		file->writeline(names[i], values[i], 0);
-	}
-}
-
-int BC_Hash::save()
-{
-	StringFile stringfile;
-	save_stringfile(&stringfile);
-	stringfile.write_to_file(filename);
-	return 0;
-}
-
-int BC_Hash::load_string(const char *string)
-{
-	StringFile stringfile;
-	stringfile.read_from_string(string);
-	load_stringfile(&stringfile);
-	return 0;
-}
-
-int BC_Hash::save_string(char* &string)
-{
-	StringFile stringfile;
-	save_stringfile(&stringfile);
-	string = new char[stringfile.get_length() + 1];
-	memcpy(string, stringfile.string, stringfile.get_length() + 1);
-	return 0;
-}
-
-
-
-int32_t BC_Hash::get(const char *name, int32_t default_)
-{
-	for(int i = 0; i < total; i++)
-	{
-		if(!strcmp(names[i], name))
+		for(q = p = r; *p; p++)
 		{
-			return (int32_t)atol(values[i]);
+			if(*p == ' ')
+			{
+				*p++ = 0;
+				q = p;
+				break;
+			}
 		}
-	}
-	return default_;  // failed
-}
+		if(q == r)
+			return;
 
-int64_t BC_Hash::get(const char *name, int64_t default_)
-{
-	int64_t result = default_;
-	for(int i = 0; i < total; i++)
-	{
-		if(!strcmp(names[i], name))
+		for(; *p; p++)
 		{
-			sscanf(values[i], "%lld", &result);
-			return result;
+			if(*p == '\n')
+			{
+				*p = 0;
+				break;
+			}
 		}
+		cache->update(r, q);
+		r = ++p;
 	}
-	return result;
 }
 
-double BC_Hash::get(const char *name, double default_)
+void BC_Hash::save_string(char* &string)
 {
-	for(int i = 0; i < total; i++)
+	int alen;
+	char *bp;
+
+	alen = BUFFER_LENGTH;
+	bp = string = new char[alen];
+
+	for(int i = 0; i < cache->total; i++)
 	{
-		if(!strcmp(names[i], name))
+		if(bp - string > alen - strlen(cache->names[i]) - strlen(cache->values[i]) - 5)
 		{
-			return atof(values[i]);
+			alen += BUFFER_LENGTH;
+			char *p = new char[alen];
+			strcpy(p, string);
+			bp = &p[bp - string];
+			delete [] string;
+			string = p;
 		}
+		bp += sprintf(bp, "%s %s\n", cache->names[i], cache->values[i]);
 	}
-	return default_;  // failed
 }
 
-float BC_Hash::get(const char *name, float default_)
+int32_t BC_Hash::get(const char *name, int32_t default_value)
 {
-	for(int i = 0; i < total; i++)
-	{
-		if(!strcmp(names[i], name))
-		{
-			return atof(values[i]);
-		}
-	}
-	return default_;  // failed
+	char *val;
+
+	if(val = cache->find_value(name))
+		return atoi(val);
+	return default_value;
 }
 
-char* BC_Hash::get(const char *name, char *default_)
+int64_t BC_Hash::get(const char *name, int64_t default_value)
 {
-	for(int i = 0; i < total; i++)
-	{
-		if(!strcmp(names[i], name))
-		{
-			strcpy(default_, values[i]);
-			return values[i];
-		}
-	}
-	return default_;  // failed
+	char *val;
+
+	if(val = cache->find_value(name))
+		return atoll(val);
+	return default_value;
 }
 
-int BC_Hash::update(const char *name, double value) // update a value if it exists
+double BC_Hash::get(const char *name, double default_value)
+{
+	char *val;
+
+	if(val = cache->find_value(name))
+		return atof(val);
+	return default_value;
+}
+
+float BC_Hash::get(const char *name, float default_value)
+{
+	char *val;
+
+	if(val = cache->find_value(name))
+		return atof(val);
+	return default_value;
+}
+
+char* BC_Hash::get(const char *name, char *default_value)
+{
+	char *val;
+
+	if(val = cache->find_value(name))
+{
+		if(default_value)
+			strcpy(default_value, val);
+		return val;
+}
+	return default_value;
+}
+
+int BC_Hash::update(const char *name, double value)
 {
 	char string[1024];
 	sprintf(string, "%.16e", value);
-	return update(name, string);
+	return cache->update(name, string);
 }
 
-int BC_Hash::update(const char *name, float value) // update a value if it exists
+int BC_Hash::update(const char *name, float value)
 {
 	char string[1024];
 	sprintf(string, "%.6e", value);
-	return update(name, string);
+	return cache->update(name, string);
 }
 
-int32_t BC_Hash::update(const char *name, int32_t value) // update a value if it exists
+int32_t BC_Hash::update(const char *name, int32_t value)
 {
 	char string[1024];
 	sprintf(string, "%d", value);
-	return update(name, string);
+	return cache->update(name, string);
 }
 
-int BC_Hash::update(const char *name, int64_t value) // update a value if it exists
+int BC_Hash::update(const char *name, int64_t value)
 {
 	char string[1024];
-	sprintf(string, "%lld", value);
-	return update(name, string);
+	sprintf(string, "%" PRId64, value);
+	return cache->update(name, string);
 }
 
 int BC_Hash::update(const char *name, const char *value)
 {
-	for(int i = 0; i < total; i++)
-	{
-		if(!strcmp(names[i], name))
-		{
-			delete [] values[i];
-			values[i] = new char[strlen(value) + 1];
-			strcpy(values[i], value);
-			return 0;
-		}
-	}
-
-// didn't find so create new entry
-	reallocate_table(total + 1);
-	names[total] = new char[strlen(name) + 1];
-	strcpy(names[total], name);
-	values[total] = new char[strlen(value) + 1];
-	strcpy(values[total], value);
-	total++;
-	return 1;
+	return cache->update(name, value);
 }
 
+void BC_Hash::delete_key(const char *key)
+{
+	cache->delete_key(key);
+}
+
+void BC_Hash::delete_keys_prefix(const char *key)
+{
+	cache->delete_keys_prefix(key);
+}
 
 void BC_Hash::copy_from(BC_Hash *src)
 {
-// Can't delete because this is used by file decoders after plugins
-// request data.
-// 	for(int i = 0; i < total; i++)
-// 	{
-// 		delete [] names[i];
-// 		delete [] values[i];
-// 	}
-// 	delete [] names;
-// 	delete [] values;
-// 
-// 	allocated = 0;
-// 	names = 0;
-// 	values = 0;
-// 	total = 0;
-
-SET_TRACE
-	reallocate_table(src->total);
-//	total = src->total;
-SET_TRACE
-	for(int i = 0; i < src->total; i++)
-	{
-		update(src->names[i], src->values[i]);
-// 		names[i] = new char[strlen(src->names[i]) + 1];
-// 		values[i] = new char[strlen(src->values[i]) + 1];
-// 		strcpy(names[i], src->names[i]);
-// 		strcpy(values[i], src->values[i]);
-	}
-SET_TRACE
+	cache = src->cache;
 }
 
 int BC_Hash::equivalent(BC_Hash *src)
 {
-	for(int i = 0; i < total && i < src->total; i++)
-	{
-		if(strcmp(names[i], src->names[i]) ||
-			strcmp(values[i], src->values[i])) return 0;
-	}
-	return 1;
+	return cache == src->cache;
 }
 
-void BC_Hash::dump()
+void BC_Hash::dump(int indent)
 {
-	printf("BC_Hash::dump\n");
-	for(int i = 0; i < total; i++)
-		printf("	key=%s value=%s\n", names[i], values[i]);
+	printf("%*sBC_Hash %p dump: cache %p\n", indent, "", this, cache);
+	if(cache)
+	{
+		indent += 2;
+		printf("%*sName: '%s' no_file %d\n", indent, "", cache->filename, cache->no_file);
+		for(int i = 0; i < cache->total; i++)
+			printf("%*s%s='%s'\n", indent, "", cache->names[i], cache->values[i]);
+	}
 }

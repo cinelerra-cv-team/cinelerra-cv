@@ -30,6 +30,7 @@
 #include "colors.h"
 #include "colormodels.h"
 #include "fonts.h"
+#include "hashcache.h"
 #include "language.h"
 #include "vframe.h"
 
@@ -109,6 +110,7 @@ suffix_to_type_t BC_Resources::suffix_to_type[] =
 
 BC_Signals* BC_Resources::signal_handler = 0;
 Mutex BC_Resources::fontconfig_lock("BC_Resources::fonconfig_lock");
+HashCache BC_Resources::hash_cache;
 
 int BC_Resources::x_error_handler(Display *display, XErrorEvent *event)
 {
