@@ -767,7 +767,7 @@ void NudgePatch::set_value(int64_t value)
 	if(patch->track->gang)
 		patch->patchbay->synchronize_nudge(patch->track->nudge, patch->track);
 
-	mwindow->undo->update_undo("nudge", LOAD_AUTOMATION, this);
+	mwindow->undo->update_undo(_("nudge"), LOAD_AUTOMATION, this);
 
 	mwindow->gui->unlock_window();
 	if(patch->track->data_type == TRACK_VIDEO)
