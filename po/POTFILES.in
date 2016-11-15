@@ -24,6 +24,7 @@ cinelerra/confirmquit.C
 cinelerra/confirmsave.C
 cinelerra/cpanel.C
 # cinelerra/cropvideo.C
+cinelerra/cwindow.C
 cinelerra/cwindowgui.C
 cinelerra/cwindowtool.C
 cinelerra/dcoffset.C
@@ -135,6 +136,7 @@ cinelerra/vwindowgui.C
 cinelerra/zoombar.C
 guicast/bcbutton.C
 guicast/bccapture.C
+guicast/bcdelete.C
 guicast/bcfilebox.C
 guicast/bcnewfolder.C
 guicast/bcrecentlist.C
