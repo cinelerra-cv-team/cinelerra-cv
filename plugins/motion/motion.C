@@ -2469,18 +2469,29 @@ void RotateScanUnit::process_package(LoadPackage *package)
 		rotater->rotate(temp,
 			server->previous_frame,
 			pkg->angle);
+// Clamp coordinates
+		int x1 = server->scan_x;
+		int y1 = server->scan_y;
+		int x2 = x1 + server->scan_w;
+		int y2 = y1 + server->scan_h;
+		x2 = MIN(temp->get_w(), x2);
+		y2 = MIN(temp->get_h(), y2);
+		x2 = MIN(server->current_frame->get_w(), x2);
+		y2 = MIN(server->current_frame->get_h(), y2);
+		x1 = MAX(0, x1);
+		y1 = MAX(0, y1);
 
-// Scan reduced block size
-//plugin->output_frame->copy_from(server->current_frame);
-//plugin->output_frame->copy_from(temp);
-		pkg->difference = plugin->abs_diff(
-			temp->get_rows()[server->scan_y] + server->scan_x * pixel_size,
-			server->current_frame->get_rows()[server->scan_y] + server->scan_x * pixel_size,
+		if(x2 > x1 && y2 > y1)
+		{
+			pkg->difference = plugin->abs_diff(
+				temp->get_rows()[y1] + x1 * pixel_size,
+				server->current_frame->get_rows()[y1] + x1 * pixel_size,
 			row_bytes,
-			server->scan_w,
-			server->scan_h,
+				x2 - x1,
+				y2 - y1,
 			color_model);
-		server->put_cache(pkg->angle, pkg->difference);
+			server->put_cache(pkg->angle, pkg->difference);
+		}
 
 // printf("RotateScanUnit::process_package 10 x=%d y=%d w=%d h=%d block_x=%d block_y=%d angle=%f scan_w=%d scan_h=%d diff=%lld\n", 
 // server->block_x1, 
