@@ -5491,7 +5491,7 @@ namespace cimg_library {
                    tmp,
                    cimg::t_normal,
 #ifdef cimg_imagemagick_path
-                   cimg::t_purple,"=\""cimg_imagemagick_path"\"",
+                   cimg::t_purple,"=\"" cimg_imagemagick_path "\"",
 #else
                    cimg::t_purple," undefined",
 #endif
@@ -5503,7 +5503,7 @@ namespace cimg_library {
                    tmp,
                    cimg::t_normal,
 #ifdef cimg_graphicsmagick_path
-                   cimg::t_purple,"=\""cimg_graphicsmagick_path"\"",
+                   cimg::t_purple,"=\"" cimg_graphicsmagick_path "\"",
 #else
                    cimg::t_purple," undefined",
 #endif
@@ -5515,7 +5515,7 @@ namespace cimg_library {
                    tmp,
                    cimg::t_normal,
 #ifdef cimg_medcon_path
-                   cimg::t_purple,"=\""cimg_medcon_path"\"",
+                   cimg::t_purple,"=\"" cimg_medcon_path "\"",
 #else
                    cimg::t_purple," undefined",
 #endif
@@ -5527,7 +5527,7 @@ namespace cimg_library {
                    tmp,
                    cimg::t_normal,
 #ifdef cimg_temporary_path
-                   cimg::t_purple,"=\""cimg_temporary_path"\"",
+                   cimg::t_purple,"=\"" cimg_temporary_path "\"",
 #else
                    cimg::t_purple," undefined",
 #endif
