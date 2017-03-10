@@ -28,13 +28,13 @@
 #include "filexml.h"
 #include "keyframe.h"
 #include "language.h"
+#include "picon_png.h"
 #include "findobject.h"
 #include "findobjectwindow.h"
 #include "mutex.h"
 #include "overlayframe.h"
 #include "surfscan.h"
 #include "transportque.h"
-#include "bchash.h"
 #include "bcdisplayinfo.h"
 
 // Needed with OpenCV version 2.4.8
@@ -208,12 +208,11 @@ int FindObjectMain::is_multichannel() { return 1; }
 
 PLUGIN_THREAD_OBJECT(FindObjectMain, FindObjectThread, FindObjectWindow)
 
+NEW_PICON_MACRO(FindObjectMain)
 SHOW_GUI_MACRO(FindObjectMain, FindObjectThread)
 RAISE_WINDOW_MACRO(FindObjectMain)
 SET_STRING_MACRO(FindObjectMain)
 LOAD_CONFIGURATION_MACRO(FindObjectMain, FindObjectConfig)
-
-VFrame* FindObjectMain::new_picon() { return NULL; }
 
 void FindObjectMain::update_gui()
 {
