@@ -1,6 +1,30 @@
 xx.xxx.2015
-Changes since Cinelerra-cv 2.2:
+Changes since official release of Cinelerra-cv 2.3:
  * to be finalized for the release of cinelerra-cv next *
+ - Replaced autogen.h.
+ - Removed internal outdated fonts. Cinelerra relies on system fonts now.
+ - Extensive changes to translations: Russian, Italian, German, Spanish, French
+ - More strings are translatable (mostly on plugins)
+ - Removed unused classes and features: StringFile, dynamic folders, 
+   PluginClientWindow, 
+ - Fixed crashes in plugins: Motion, find Object, reverb
+ - Consistent behavior on PatcGUI Mute button
+ - New plugin icons and images for: Find Object, Color3Way, Blue Dot, Color 3-way
+ - Reduced disk writing by caching configuration defaults.
+ - Fixed Layout of Zoombar, Asset Info, Resize Track, SetFormat, 
+   new project, YUVA colormodel, Videoscope
+ - Bug fixes: OverlayFrame (restored limits on coordinates), Translate, CD Ripper,
+   Title, Delay audio, Synthesizer, HolographicTV, BrowseButton, Synthesizer, 
+   GreyCStoration
+ - Fixed titles in plugins to show correctly.
+ - Debian: Updated build dependencies and removed redundant or obsolete files
+ - Renamed ‘Cinelerra’ references to ‘Cinelerra-CV’
+ - Added H.264 preset to YUV4MPEG options
+ - Updated user manuals
+ - Bug fixes to core functionalities
+
+13.aug.2015
+Official release of Cinelerra-cv 2.3:
  - Updated infrastructure to reflect the CV nature of the software.
  - Updated debian-specific building infrastructure.
  - Several bug fixes: 
