@@ -4,7 +4,7 @@
 # Translators:
 # Copyright (C) 2004 Herman Robak <herman.robak@gmail.com>
 # Copyright (C) 2014-2015 Petter Reinholdtsen <pere@hungry.com>
-# Copyright (C) 2007-2015 Cinelerra-CV.
+# Copyright (C) 2007-2017 Cinelerra-CV.
 msgid ""
 msgstr ""
 "Project-Id-Version: Cinelerra CV\n"

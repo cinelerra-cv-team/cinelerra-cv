@@ -1,7 +1,7 @@
 # translation of cinelerra_eu.po to Basque
 # Basque translation of cinelerra-cv.
 # Copyright (C) 2007 Heroine Warrior Inc.
-# Copyright (C) 2007-2015 Cinelerra-CV.
+# Copyright (C) 2007-2017 Cinelerra-CV.
 # This file is distributed under the same license as the cinelerra-cv package.
 #
 # Mesedez, itzulpen hau hobetzeko gai bazara, lagun iezadazu!
