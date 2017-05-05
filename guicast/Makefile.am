@@ -1,9 +1,9 @@
-lib_LTLIBRARIES = libguicast.la
+lib_LTLIBRARIES = libguicastcv.la
 noinst_PROGRAMS = bootstrap pngtoh
 
-libguicast_la_LIBADD = $(OPENGL_LIBS) -lXxf86vm -lXv -lXext -lX11 -lpng $(X_EXTRA_LIBS) $(XFT_LIBS)
-libguicast_la_LDFLAGS = $(X_LIBS) -version-info 1:0:0 
-libguicast_la_SOURCES = \
+libguicastcv_la_LIBADD = $(OPENGL_LIBS) -lXxf86vm -lXv -lXext -lX11 -lpng $(X_EXTRA_LIBS) $(XFT_LIBS)
+libguicastcv_la_LDFLAGS = $(X_LIBS) -version-info 1:0:0
+libguicastcv_la_SOURCES = \
 	bcbar.C \
 	bcbitmap.C \
 	bcbutton.C \

@@ -1,7 +1,7 @@
 SUBDIRS = encore50 @FFMPEG_FOLDER@
 
 
-lib_LTLIBRARIES = libquicktimehv.la
+lib_LTLIBRARIES = libquicktimecv.la
 AM_CFLAGS = \
 	$(LARGEFILE_CFLAGS) \
 	$(CPU_CFLAGS) \
@@ -12,9 +12,9 @@ AM_CFLAGS = \
 	-DENCORE_INCLUDE=\"encore50/encore.h\" \
 	@FFMPEG_CFLAGS@
 
-libquicktimehv_la_LDFLAGS = -version-info 1:0:0 -release 1.6.0 -Wl,--no-undefined 
+libquicktimecv_la_LDFLAGS = -version-info 1:0:0 -release 1.6.0 -Wl,--no-undefined
 
-libquicktimehv_la_LIBADD = \
+libquicktimecv_la_LIBADD = \
 	@FFMPEG_LIBS@ \
 	$(XIPH_LIBS) \
 	-lmp3lame \
@@ -27,7 +27,7 @@ libquicktimehv_la_LIBADD = \
 	-ljpeg -lpng \
 	-lz -lpthread -lm
 
-libquicktimehv_la_SOURCES = \
+libquicktimecv_la_SOURCES = \
 	atom.c \
 	avcc.c \
 	avi_hdrl.c \

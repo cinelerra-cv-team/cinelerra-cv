@@ -125,7 +125,7 @@ AC_CHECK_HEADER([linux/videodev2.h],
 AC_ARG_WITH(plugindir,
 						AC_HELP_STRING([--with-plugindir], [sets the directory where the plugins should be installed]),
 						[ plugindir=$withval ],
-						[ plugindir="\${exec_prefix}/lib/cinelerra" ])
+						[ plugindir="\${exec_prefix}/lib/cinelerra-cv" ])
 AC_SUBST(plugindir)
 ############## END OF SPECIAL DIRECTORIES
 
@@ -424,7 +424,7 @@ void test() { mpeg3io_eof(0); }]])],
 fi
 else
 	LIBMPEG3_CFLAGS="-I\$(top_srcdir)/libmpeg3"
-	LIBMPEG3_LIBS="\$(top_builddir)/libmpeg3/libmpeg3hv.la"
+	LIBMPEG3_LIBS="\$(top_builddir)/libmpeg3/libmpeg3cv.la"
 	libmpeg3_mpeg3io_eof=1
 	AC_SUBST(LIBMPEG3_CFLAGS)
 	AC_SUBST(LIBMPEG3_LIBS)
@@ -544,8 +544,8 @@ if test "x$with_external_ffmpeg" = "xyes"; then
 else
      FFMPEG_FOLDER=ffmpeg
      FFMPEG_CFLAGS="-I\$(top_srcdir)/quicktime/ffmpeg"
-     FFMPEG_LIBS="-L\$(top_builddir)/quicktime/ffmpeg/libavcodec -lavcodec-cinelerra \
-		-L\$(top_builddir)/quicktime/ffmpeg/libavutil -lavutil-cinelerra"
+     FFMPEG_LIBS="-L\$(top_builddir)/quicktime/ffmpeg/libavcodec -lavcodec-cv \
+		-L\$(top_builddir)/quicktime/ffmpeg/libavutil -lavutil-cv"
      FFMPEG_EXTERNALTEXT="Internal ffmpeg"
 fi
 
@@ -561,7 +561,7 @@ if test "x$with_external_ffmpeg" = "xyes"; then
 	echo Using external ffmpeg - no configuration needed
 else
 	ff_conf_args="--disable-ffmpeg --disable-ffserver --disable-ffplay \
-		--disable-static --enable-shared --build-suffix=-cinelerra"
+		--disable-static --enable-shared --build-suffix=-cv"
 
 	if test "x$enable_mmx" = "xno"; then
 		ff_conf_args="$ff_conf_args --disable-mmx"
