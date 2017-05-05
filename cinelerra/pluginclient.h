@@ -24,8 +24,6 @@
 
 // Base class inherited by all the different types of plugins.
 
-#define BCASTDIR "~/.bcast/"
-
 class PluginClient;
 
 
@@ -37,6 +35,7 @@ class PluginClient;
 #include "maxbuffers.h"
 #include "plugincommands.h"
 #include "pluginserver.inc"
+#include "preferences.inc"
 #include "theme.inc"
 #include "vframe.h"
 
