@@ -29,6 +29,7 @@
 #include <ctype.h>
 #include "cursors.h"
 #include "keys.h"
+#include <inttypes.h>
 #include <math.h>
 #include "bctimer.h"
 #include "vframe.h"
@@ -102,7 +103,7 @@ BC_TextBox::BC_TextBox(int x,
 {
 	skip_cursor = 0;
 	reset_parameters(rows, has_border, font);
-	sprintf(ntext, "%lld", text);
+	sprintf(ntext, "%" PRId64, text);
 	convert_number();
 }
 
@@ -297,7 +298,7 @@ void BC_TextBox::update(const wchar_t *text)
 int BC_TextBox::update(int64_t value)
 {
 	char string[BCTEXTLEN];
-	sprintf(string, "%lld", value);
+	sprintf(string, "%" PRId64, value);
 
 
 	update(string);

@@ -31,6 +31,7 @@
 #include "filesystem.h"
 #include "language.h"
 #include "mutex.h"
+#include <inttypes.h>
 #include <string.h>
 #include <sys/stat.h>
 
@@ -779,7 +780,7 @@ int BC_FileBox::create_tables()
 // 		{
 			if(!is_dir)
 			{
-				sprintf(string, "%lld", file_item->size);
+				sprintf(string, "%" PRId64, file_item->size);
 				new_item = new BC_ListBoxItem(string, get_resources()->file_color);
 			}
 			else
