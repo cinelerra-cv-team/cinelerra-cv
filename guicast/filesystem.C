@@ -700,7 +700,7 @@ int FileSystem::extract_name(char *out, const char *in, int test_dir)
 	int i;
 
 	if(test_dir && is_dir(in))
-		string[0] = 0;    // complete string is directory
+		out[0] = 0;    // complete string is directory
 	else
 	{
 		for(i = strlen(in)-1; i > 0 && in[i] != '/'; i--)
