@@ -1,3 +1,3 @@
 debian/cinelerra-cv.1
-debian/mplexhi.1
-debian/mplexlo.1
+debian/mplexhicv.1
+debian/mplexlocv.1

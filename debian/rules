@@ -33,7 +33,7 @@ build: build-arch build-indep
 build-arch: build-stamp
 build-indep: build-stamp
 
-build-stamp: debian/cinelerra-cv.1 debian/mplexhi.1 debian/mplexlo.1
+build-stamp: debian/cinelerra-cv.1 debian/mplexhicv.1 debian/mplexlocv.1
 	dh_testdir
 	@if [ ! -e configure ] ; then ./autogen.sh; fi
 	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" LDFLAGS="$(LDFLAGS)" \
@@ -43,10 +43,10 @@ build-stamp: debian/cinelerra-cv.1 debian/mplexhi.1 debian/mplexlo.1
 
 debian/cinelerra-cv.1: debian/cinelerra-cv.sgml
 	docbook-to-man debian/cinelerra-cv.sgml > debian/cinelerra-cv.1
-debian/mplexhi.1: debian/mplexhi.sgml
-	docbook-to-man debian/mplexhi.sgml > debian/mplexhi.1
-debian/mplexlo.1: debian/mplexlo.sgml
-	docbook-to-man debian/mplexlo.sgml > debian/mplexlo.1
+debian/mplexhicv.1: debian/mplexhicv.sgml
+	docbook-to-man debian/mplexhicv.sgml > debian/mplexhicv.1
+debian/mplexlocv.1: debian/mplexlocv.sgml
+	docbook-to-man debian/mplexlocv.sgml > debian/mplexlocv.1
 
 clean:
 	dh_testdir
@@ -55,8 +55,8 @@ clean:
 	[ ! -f Makefile ] || $(MAKE) distclean
 	dh_clean -a
 	-rm -f debian/cinelerra-cv.1
-	-rm -f debian/mplexhi.1
-	-rm -f debian/mplexlo.1
+	-rm -f debian/mplexhicv.1
+	-rm -f debian/mplexlocv.1
 	-rm -f build-stamp
 
 install: build
@@ -71,8 +71,8 @@ install: build
 
 	install -D -m644 debian/cinelerra-cv.sysctl.d debian/cinelerra-cv/etc/sysctl.d/cinelerra-cv.conf
 
-	chmod -x debian/tmp/usr/lib/cinelerra/*
-	chmod +x debian/tmp/usr/lib/cinelerra/shapewipe
+	chmod -x debian/tmp/usr/lib/cinelerra-cv/*
+	chmod +x debian/tmp/usr/lib/cinelerra-cv/shapewipe
 
 binary-indep: build install
 
@@ -87,7 +87,7 @@ binary-arch: build install
 	dh_link -a
 	dh_icons -a
 	dh_strip -a
-	strip -x -s -R .comment -R .note debian/$(package)/usr/lib/cinelerra/*.so
+	strip -x -s -R .comment -R .note debian/$(package)/usr/lib/cinelerra-cv/*.so
 	dh_compress -a
 	dh_fixperms -a
 	dh_makeshlibs -a

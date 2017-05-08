@@ -16,7 +16,7 @@ manpage.1: manpage.sgml
   <!ENTITY dhemail     "<email>sylvain.joyeux@m4x.org</email>">
   <!ENTITY dhusername  "Sylvain Joyeux">
   <!ENTITY dhucpackage "<refentrytitle>CINELERRA-CV</refentrytitle>">
-  <!ENTITY dhpackage   "cinelerra">
+  <!ENTITY dhpackage   "cinelerra-cv">
 
   <!ENTITY debian      "<productname>Debian GNU/Linux</productname>">
   <!ENTITY gnu         "<acronym>GNU</acronym>">
