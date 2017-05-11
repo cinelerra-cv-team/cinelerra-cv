@@ -46,6 +46,7 @@
 #include "edl.h"
 #include "edlsession.h"
 
+#include <inttypes.h>
 #include <string.h>
 
 
@@ -230,7 +231,7 @@ int AssetEditWindow::create_objects()
 		bytes = fs.get_size(asset->path);
 	}
 	add_subwindow(new BC_Title(x, y, _("Bytes:")));
-	sprintf(string, "%lld", bytes);
+	sprintf(string, "%" PRId64, bytes);
 	Units::punctuate(string);
 	
 
@@ -249,7 +250,7 @@ int AssetEditWindow::create_objects()
 	else
 		bitrate = bytes;
 	add_subwindow(new BC_Title(x, y, _("Bitrate (bits/sec):")));
-	sprintf(string, "%lld", bitrate);
+	sprintf(string, "%" PRId64, bitrate);
 
 	Units::punctuate(string);
 	add_subwindow(new BC_Title(x2, y, string, MEDIUMFONT, mwindow->theme->edit_font_color));

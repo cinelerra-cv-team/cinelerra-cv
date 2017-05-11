@@ -43,6 +43,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include <inttypes.h>
 
 // Needed for packaging engine
 #include "preferences.h"
@@ -1466,16 +1467,16 @@ int FileOGG::read_frame(VFrame *frame)
 	{
 		if (!ogg_seek_to_keyframe(tf->videosync, tf->to.serialno, next_frame_position, &ogg_frame_position))
 		{
-			eprintf("Error while seeking to frame's keyframe (frame: %lli, keyframe: %lli)\n", next_frame_position, ogg_frame_position);
+			eprintf("Error while seeking to frame's keyframe (frame: %" PRId64 ", keyframe: %" PRId64 ")\n", next_frame_position, ogg_frame_position);
 			return 1;
 		}
-//		printf("For frame: %lli, keyframe is: %lli\n", next_frame_position,ogg_frame_position);
+//		printf("For frame: %" PRId64 ", keyframe is: %" PRId64 "\n", next_frame_position,ogg_frame_position);
 		// skip frames must be > 0 here
 		decode_frames = next_frame_position - ogg_frame_position + 1; 
 		ogg_frame_position --; // ogg_frame_position is at last decoded frame, so it will point right 
 		if (decode_frames <= 0) 
 		{
-			eprintf("Error while seeking to keyframe, wrong keyframe number (frame: %lli, keyframe: %lli)\n", next_frame_position, ogg_frame_position);
+			eprintf("Error while seeking to keyframe, wrong keyframe number (frame: %" PRId64 ", keyframe: %" PRId64 ")\n", next_frame_position, ogg_frame_position);
 			return 1;
 			
 		}

@@ -111,7 +111,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
-
+#include <inttypes.h>
 
 
 extern "C"
@@ -1410,12 +1410,12 @@ void MWindow::init_shm()
 	}
 
 	int64_t result = 0;
-	fscanf(fd, "%lld", &result);
+	fscanf(fd, "%" SCNd64, &result);
 	fclose(fd);
 	fd = 0;
 	if(result < 0x7fffffff)
 	{
-		eprintf("WARNING: /proc/sys/kernel/shmmax is 0x%llx, which is too low.\n"
+		eprintf("WARNING: /proc/sys/kernel/shmmax is 0x%" PRIx64 ", which is too low.\n"
 			"Before running Cinelerra do the following as root:\n"
 			"echo \"0x7fffffff\" > /proc/sys/kernel/shmmax\n",
 			result);

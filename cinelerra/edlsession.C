@@ -35,6 +35,8 @@
 #include "tracks.h"
 #include "workarounds.h"
 
+#include <inttypes.h>
+
 int EDLSession::current_id = 0;
 
 EDLSession::EDLSession(EDL *edl)
@@ -846,7 +848,7 @@ int64_t EDLSession::get_frame_offset()
 void EDLSession::dump()
 {
 	printf("EDLSession::dump\n");
-	printf("    audio_tracks=%d audio_channels=%d sample_rate=%lld\n"
+	printf("    audio_tracks=%d audio_channels=%d sample_rate=%" PRId64 "\n"
 			"video_tracks=%d frame_rate=%f output_w=%d output_h=%d aspect_w=%f aspect_h=%f decode subtitles=%d subtitle_number=%d\n", 
 		audio_tracks, 
 		audio_channels, 

@@ -28,6 +28,7 @@
 #include "recordconfig.h"
 
 #include <errno.h>
+#include <inttypes.h>
 
 #ifdef HAVE_ALSA
 
@@ -456,7 +457,7 @@ int AudioALSA::read_buffer(char *buffer, int size)
 			buffer, 
 			size / (device->in_bits / 8) / device->get_ichannels()) < 0)
 		{
-			printf("AudioALSA::read_buffer overrun at sample %lld\n", 
+			printf("AudioALSA::read_buffer overrun at sample %" PRId64 "\n",
 				device->total_samples_read);
 //			snd_pcm_resume(get_input());
 			close_input();
@@ -492,7 +493,7 @@ int AudioALSA::write_buffer(char *buffer, int size)
 			samples) < 0)
 		{
 			device->Thread::disable_cancel();
-			printf("AudioALSA::write_buffer underrun at sample %lld\n",
+			printf("AudioALSA::write_buffer underrun at sample %" PRId64 "\n",
 				device->current_position());
 //			snd_pcm_resume(get_output());
 			close_output();

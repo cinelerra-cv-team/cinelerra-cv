@@ -43,6 +43,8 @@
 #include "transportque.h"
 #include "vframe.h"
 
+#include <inttypes.h>
+
 
 
 PatchGUI::PatchGUI(MWindow *mwindow, 
@@ -367,7 +369,7 @@ int64_t PatchGUI::calculate_nudge(char *string)
 	else
 	{
 		int64_t temp;
-		sscanf(string, "%lld", &temp);
+		sscanf(string, "%" SCNd64, &temp);
 		return temp;
 	}
 }

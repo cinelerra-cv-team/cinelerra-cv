@@ -41,7 +41,7 @@
 #include "virtualaconsole.h"
 #include "virtualanode.h"
 
-
+#include <inttypes.h>
 #include <string.h>
 
 VirtualANode::VirtualANode(RenderEngine *renderengine, 
@@ -119,7 +119,7 @@ int VirtualANode::read_data(double *output_temp,
 
 
 	if(vconsole->debug_tree) 
-		printf("  VirtualANode::read_data position=%lld rate=%lld title=%s parent_node=%p parent_edit=%p\n", 
+		printf("  VirtualANode::read_data position=%" PRId64 " rate=%" PRId64 " title=%s parent_node=%p parent_edit=%p\n",
 				start_position,
 				sample_rate,
 				track->title,

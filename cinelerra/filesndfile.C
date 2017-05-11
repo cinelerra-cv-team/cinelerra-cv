@@ -30,6 +30,8 @@
 #include "mwindow.h"
 #include "mainerror.h"
 
+#include <inttypes.h>
+
 FileSndFile::FileSndFile(Asset *asset, File *file)
  : FileBase(asset, file)
 {
@@ -267,7 +269,7 @@ int FileSndFile::set_audio_position(int64_t sample)
 // Commented out /* && psf->dataoffset */ in sndfile.c: 761
 	if(sf_seek(fd, sample, SEEK_SET) < 0)
 	{
-		eprintf("sf_seek() to sample %lld failed, reason: %s\n", sample, sf_strerror(fd));
+		eprintf("sf_seek() to sample %" PRId64 " failed, reason: %s\n", sample, sf_strerror(fd));
 		return 1;
 	}
 	return 0;

@@ -32,6 +32,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <limits.h>
+#include <inttypes.h>
 
 #include "feather.h"
 
@@ -760,7 +761,7 @@ SET_TRACE
 				ptr->row2); 
 		}
 		int64_t dif= get_difference(&start_time);
-		printf("diff: %lli\n", dif);
+		printf("diff: %" PRId64 "\n", dif);
 	} else
 	if (engine->feather <= 0) {
 		engine->realfeather = 0;

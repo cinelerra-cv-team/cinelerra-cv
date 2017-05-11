@@ -54,7 +54,7 @@
 #include "vtrack.h"
 
 #include <string.h>
-
+#include <inttypes.h>
 
 VirtualVNode::VirtualVNode(RenderEngine *renderengine, 
 		VirtualConsole *vconsole, 
@@ -115,7 +115,7 @@ int VirtualVNode::read_data(VFrame *output_temp,
 		printf("VirtualVNode::read_data output_temp=%p\n", output_temp);
 
 	if(vconsole->debug_tree) 
-		printf("  VirtualVNode::read_data position=%lld rate=%f title=%s opengl=%d\n", 
+		printf("  VirtualVNode::read_data position=%" PRId64 " rate=%f title=%s opengl=%d\n",
 			start_position,
 			frame_rate,
 			track->title, 

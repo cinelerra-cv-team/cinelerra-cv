@@ -30,6 +30,8 @@
 #include "localsession.h"
 #include "transportque.inc"
 
+#include <inttypes.h>
+
 FloatAutos::FloatAutos(EDL *edl,
 				Track *track, 
 				float default_)
@@ -434,12 +436,12 @@ void FloatAutos::get_extents(float *min,
 void FloatAutos::dump()
 {
 	printf("	FloatAutos::dump %p\n", this);
-	printf("	Default: position %lld value=%f\n", 
+	printf("	Default: position %" PRId64 " value=%f\n",
 		default_auto->position, 
 		((FloatAuto*)default_auto)->get_value());
 	for(Auto* current = first; current; current = NEXT)
 	{
-		printf("	position %lld value=%7.3f invalue=%7.3f outvalue=%7.3f %s\n", 
+		printf("	position %" PRId64 " value=%7.3f invalue=%7.3f outvalue=%7.3f %s\n",
 			current->position, 
 			((FloatAuto*)current)->get_value(),
 			((FloatAuto*)current)->get_control_in_value(),

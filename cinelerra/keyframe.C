@@ -24,7 +24,7 @@
 
 #include <stdio.h>
 #include <string.h>
-
+#include <inttypes.h>
 
 
 KeyFrame::KeyFrame()
@@ -116,6 +116,6 @@ char* KeyFrame::get_data()
 
 void KeyFrame::dump()
 {
-	printf("     position: %lld\n", position);
+	printf("     position: %" PRId64 "\n", position);
 	printf("     data: %s\n", data);
 }

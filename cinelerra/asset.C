@@ -36,6 +36,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <inttypes.h>
 
 
 Asset::Asset()
@@ -1262,12 +1263,12 @@ int Asset::dump()
 	printf("   format %d\n", format);
 	printf("   audio_data %d channels %d samplerate %d bits %d byte_order %d signed %d header %d dither %d acodec %c%c%c%c\n",
 		audio_data, channels, sample_rate, bits, byte_order, signed_, header, dither, acodec[0], acodec[1], acodec[2], acodec[3]);
-	printf("   audio_length %lld\n", audio_length);
+	printf("   audio_length %" PRId64 "\n", audio_length);
 	char string[BCTEXTLEN];
 	ilacemode_to_xmltext(string, interlace_mode);
 	printf("   video_data %d layers %d framerate %f width %d height %d vcodec %c%c%c%c aspect_ratio %f interlace_mode %s\n",
 	       video_data, layers, frame_rate, width, height, vcodec[0], vcodec[1], vcodec[2], vcodec[3], aspect_ratio, string);
-	printf("   video_length %lld \n", video_length);
+	printf("   video_length %" PRId64 "\n", video_length);
 	printf("   reel_name %s reel_number %i tcstart %jd tcend %jd tcf %d\n",
 		reel_name, reel_number, tcstart, tcend, tcformat);
 	

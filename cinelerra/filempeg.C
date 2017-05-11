@@ -44,6 +44,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <inttypes.h>
 
 #define MPEG_YUV420 0
 #define MPEG_YUV422 1
@@ -598,7 +599,7 @@ int FileMPEG::create_index()
 				int64_t eta = total_seconds - elapsed_seconds;
 				progress->update(bytes_processed, 1);
 				sprintf(string, 
-					"%sETA: %lldm%llds",
+					"%sETA: %" PRId64 "m%" PRId64 "s",
 					progress_title,
 					eta / 60,
 					eta % 60);

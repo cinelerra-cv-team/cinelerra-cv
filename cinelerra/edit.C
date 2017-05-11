@@ -35,7 +35,7 @@
 #include "tracks.h"
 #include "transition.h"
 #include <string.h>
-
+#include <inttypes.h>
 
 Edit::Edit()
 {
@@ -332,7 +332,7 @@ int Edit::dump()
 		printf("      TRANSITION %p\n", transition);
 		transition->dump();
 	}
-	printf("      startsource %lld startproject %lld length %lld\n", startsource, startproject, length); fflush(stdout);
+	printf("      startsource %" PRId64 " startproject %" PRId64 " length %" PRId64 "\n", startsource, startproject, length); fflush(stdout);
 	return 0;
 }
 

@@ -37,6 +37,7 @@
 #include "tracks.h"
 #include "virtualnode.h"
 
+#include <inttypes.h>
 
 Plugin::Plugin(EDL *edl, 
 		Track *track, 
@@ -618,7 +619,7 @@ void Plugin::dump()
 		on, 
 		shared_location.module, 
 		shared_location.plugin);
-	printf("    startproject %lld length %lld\n", startproject, length);
+	printf("    startproject %" PRId64 " length %" PRId64 "\n", startproject, length);
 
 	keyframes->dump();
 }

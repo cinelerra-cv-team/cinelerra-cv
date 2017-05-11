@@ -54,6 +54,8 @@
 #include "maskengine.h"
 #include "automation.h"
 
+#include <inttypes.h>
+
 VModule::VModule(RenderEngine *renderengine, 
 	CommonRender *commonrender, 
 	PluginArray *plugin_array,
@@ -448,7 +450,7 @@ int VModule::render(VFrame *output,
 	VEdit* previous_edit = 0;
 
 	if(debug_render)
-		printf("    VModule::render %d %lld %s transition=%p opengl=%d current_edit=%p output=%p\n", 
+		printf("    VModule::render %d %" PRId64 " %s transition=%p opengl=%d current_edit=%p output=%p\n",
 			use_nudge, 
 			start_position_project,
 			track->title,

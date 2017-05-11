@@ -39,6 +39,7 @@
 #include "transition.h"
 #include "transportque.inc"
 
+#include <inttypes.h>
 #include <string.h>
 
 Edits::Edits(EDL *edl, Track *track, Edit *default_edit)
@@ -246,7 +247,7 @@ Edit* Edits::split_edit(int64_t position)
 		} else
 		{  // now we are now surely in situation where we have a) broken edit list or b) negative position... report error!
 			printf("ERROR!\n");       
-			printf("Trying to insert edit at position, but failed: %lli\n", position);
+			printf("Trying to insert edit at position, but failed: %" PRId64 "\n", position);
 			printf("Dump is here:\n");
 			track->dump();
 			return 0;
