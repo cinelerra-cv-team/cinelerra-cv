@@ -309,7 +309,6 @@ int TimeAvgMain::process_buffer(VFrame *frame,
 				i,
 				frame_rate);
 			add_accum(frame);
-printf("TimeAvgMain::process_buffer 1 %lld %lld %lld\n", prev_frame, start_position, i);
 		}
 
 		prev_frame = start_position;

@@ -864,12 +864,6 @@ int MotionMain::process_buffer(VFrame **frame,
 	int color_model = frame[0]->get_color_model();
 	w = frame[0]->get_w();
 	h = frame[0]->get_h();
-	
-
-#ifdef DEBUG
-printf("MotionMain::process_buffer 1 start_position=%lld\n", start_position);
-#endif
-
 
 // Calculate the source and destination pointers for each of the operations.
 // Get the layer to track motion in.

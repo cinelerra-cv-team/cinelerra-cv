@@ -299,7 +299,6 @@ int FreezeFrameMain::process_buffer(VFrame *frame,
 				frame->get_w(), 
 				frame->get_h(),
 				frame->get_color_model());
-printf("FreezeFrameMain::process_buffer 1 %lld\n", first_frame_position);
 		read_frame(first_frame, 
 				0, 
 				first_frame_position,
