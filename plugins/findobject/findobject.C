@@ -23,6 +23,7 @@
 // This is mainly a test for object tracking
 
 #include "affine.h"
+#include "bchash.h"
 #include "cicolors.h"
 #include "clip.h"
 #include "filexml.h"
