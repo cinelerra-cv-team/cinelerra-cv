@@ -1320,28 +1320,25 @@ int FileOGG::ogg_seek_to_keyframe(sync_window_t *sw, long serialno, int64_t fram
 
 int FileOGG::check_sig(Asset *asset)
 {
-
+	int rs;
 	FILE *fd = fopen(asset->path, "rb");
 
 // Test for "OggS"
 	fseek(fd, 0, SEEK_SET);
 	char data[4];
 
-	fread(data, 4, 1, fd);
+	rs = fread(data, 4, 1, fd) != 1;
 
-	if(data[0] == 'O' &&
+	fclose(fd);
+
+	if(!rs && data[0] == 'O' &&
 		data[1] == 'g' &&
 		data[2] == 'g' &&
 		data[3] == 'S')
 	{
-
-		fclose(fd);
-//		printf("Yay, we have an ogg file\n");
-
 		return 1;
 	}
 
-	fclose(fd);
 
 	return 0;
 	
