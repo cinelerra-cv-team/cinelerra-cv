@@ -138,7 +138,7 @@ SET_TEMP(socket_path);
 void BRender::run()
 {
 	char string[BCTEXTLEN];
-	int size;
+	size_t size;
 	FILE *fd;
 //printf("BRender::run 1 %d\n", getpid());
 
@@ -147,7 +147,12 @@ void BRender::run()
 	fd = fopen("/proc/self/cmdline", "r");
 	if(fd)
 	{
-		fread(string, 1, BCTEXTLEN, fd);
+		size = fread(string, 1, BCTEXTLEN, fd);
+		if(size <= 0)
+		{
+			perror(_("BRender::fork_background: can't read /proc/self/cmdline"));
+			exit(1);
+		}
 		fclose(fd);
 	}
 	else
