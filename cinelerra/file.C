@@ -361,7 +361,11 @@ int File::open_file(Preferences *preferences,
 			}
 
 			char test[16];
-			fread(test, 16, 1, stream);
+			if(fread(test, 16, 1, stream) != 1)
+			{
+				fclose(stream);
+				return 1;
+			}
 
 			if(FileDV::check_sig(this->asset))
 			{
