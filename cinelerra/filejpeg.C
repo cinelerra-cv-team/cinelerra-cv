@@ -49,13 +49,17 @@ FileJPEG::~FileJPEG()
 
 int FileJPEG::check_sig(Asset *asset)
 {
+	int rs;
 	FILE *stream = fopen(asset->path, "rb");
 
 	if(stream)
 	{
 		char test[10];
-		fread(test, 10, 1, stream);
+		rs = fread(test, 10, 1, stream) != 1;
 		fclose(stream);
+
+		if(rs)
+			return 1;
 
 		if(test[6] == 'J' && test[7] == 'F' && test[8] == 'I' && test[9] == 'F')
 		{
