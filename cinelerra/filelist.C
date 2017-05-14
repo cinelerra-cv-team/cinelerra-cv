@@ -104,11 +104,15 @@ int FileList::open_file(int rd, int wr)
 		if(asset->use_header)
 		{
 			FILE *stream = fopen(asset->path, "rb");
+
 			if(stream)
 			{
 				char string[BCTEXTLEN];
-				fread(string, strlen(list_prefix), 1, stream);
+				result = fread(string, strlen(list_prefix), 1, stream) != 1;
 				fclose(stream);
+
+				if(result)
+					return result;
 
 				if(!strncasecmp(string, list_prefix, strlen(list_prefix)))
 				{
@@ -215,8 +219,9 @@ int FileList::read_list_header()
 // Get information about the frames
 		do
 		{
-			fgets(string, BCTEXTLEN, stream);
-		}while(!feof(stream) && (string[0] == '#' || string[0] == ' ' || isalpha(string[0])));
+			if(!fgets(string, BCTEXTLEN, stream))
+				return 1;
+		}while(string[0] == '#' || string[0] == ' ' || isalpha(string[0]));
 
 // Don't want a user configured frame rate to get destroyed
 		if(asset->frame_rate == 0)
@@ -224,25 +229,27 @@ int FileList::read_list_header()
 
 		do
 		{
-			fgets(string, BCTEXTLEN, stream);
-		}while(!feof(stream) && (string[0] == '#' || string[0] == ' '));
+			if(!fgets(string, BCTEXTLEN, stream))
+				return 1;
+		}while(string[0] == '#' || string[0] == ' ');
 		asset->width = atol(string);
 
 		do
 		{
-			fgets(string, BCTEXTLEN, stream);
-		}while(!feof(stream) && (string[0] == '#' || string[0] == ' '));
+			if(!fgets(string, BCTEXTLEN, stream))
+				return 1;
+		}while(string[0] == '#' || string[0] == ' ');
 		asset->height = atol(string);
 
 		asset->interlace_mode = BC_ILACE_MODE_UNDETECTED;  // May be good to store the info in the list?
 		asset->layers = 1;
 		asset->audio_data = 0;
 		asset->video_data = 1;
-
 // Get all the paths
 		while(!feof(stream))
 		{
-			fgets(string, BCTEXTLEN, stream);
+			if(!fgets(string, BCTEXTLEN, stream) && !feof(stream))
+				return 1;
 			if(strlen(string) && string[0] != '#' && string[0] != ' ' && !feof(stream))
 			{
 				string[strlen(string) - 1] = 0;
@@ -304,13 +311,14 @@ int FileList::read_frame(VFrame *frame)
 				case BC_COMPRESSED:
 					frame->allocate_compressed_data(ostat.st_size);
 					frame->set_compressed_size(ostat.st_size);
-					fread(frame->get_data(), ostat.st_size, 1, in);
+					result = fread(frame->get_data(), ostat.st_size, 1, in) != 1;
 					break;
 				default:
 					data->allocate_compressed_data(ostat.st_size);
 					data->set_compressed_size(ostat.st_size);
-					fread(data->get_data(), ostat.st_size, 1, in);
-					result = read_frame(frame, data);
+					result = fread(data->get_data(), ostat.st_size, 1, in) != 1;
+					if(!result)
+						result = read_frame(frame, data);
 					break;
 			}
 
@@ -338,17 +346,20 @@ int FileList::read_frame(VFrame *frame)
 					case BC_COMPRESSED:
 						frame->allocate_compressed_data(ostat.st_size);
 						frame->set_compressed_size(ostat.st_size);
-						fread(frame->get_data(), ostat.st_size, 1, fd);
+						result = fread(frame->get_data(), ostat.st_size, 1, fd) != 1;
 						break;
 					default:
 						data->allocate_compressed_data(ostat.st_size);
 						data->set_compressed_size(ostat.st_size);
-						fread(data->get_data(), ostat.st_size, 1, fd);
-						temp = new VFrame(0, 
-							asset->width, 
-							asset->height, 
-							frame->get_color_model());
-						read_frame(temp, data);
+						result = fread(data->get_data(), ostat.st_size, 1, fd) != 1;
+						if(!result)
+						{
+							temp = new VFrame(0,
+								asset->width,
+								asset->height,
+								frame->get_color_model());
+							read_frame(temp, data);
+						}
 						break;
 				}
 
