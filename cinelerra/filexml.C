@@ -333,7 +333,12 @@ int FileXML::read_from_file(const char *filename, int ignore_error)
 		int new_length = ftell(in);
 		fseek(in, 0, SEEK_SET);
 		reallocate_string(new_length + 1);
-		fread(string, new_length, 1, in);
+		if(fread(string, new_length, 1, in) != 1)
+		{
+			if(!ignore_error)
+				eprintf("Failed to read '%s'\n", filename);
+			return 1;
+		}
 		string[new_length] = 0;
 		position = 0;
 		length = new_length;
