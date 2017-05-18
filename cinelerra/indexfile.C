@@ -510,7 +510,11 @@ int IndexFile::draw_index(ResourcePixmap *pixmap, Edit *edit, int x, int w)
 			if(startfile + length_read > file_length)
 				length_read = file_length - startfile;
 
-			fread(buffer, length_read + sizeof(float), 1, file);
+			if(fread(buffer, length_read, 1, file) != 1)
+			{
+				printf("Error reading indexfile\n");
+				length_read = 0;
+			}
 		}
 
 		if(length_read < lengthfile)
@@ -619,20 +623,24 @@ int IndexFile::read_info(Asset *test_asset)
 	if(test_asset->index_status == INDEX_NOTTESTED)
 	{
 // read start of index data
-		fread((char*)&(test_asset->index_start), sizeof(int64_t), 1, file);
+		if(fread((char*)&(test_asset->index_start), sizeof(int64_t), 1, file) != 1)
+			return 1;
 
 // read test_asset info from index
 		char *data;
+		int rs;
 		
 		data = new char[test_asset->index_start];
-		fread(data, test_asset->index_start - sizeof(int64_t), 1, file);
-		data[test_asset->index_start - sizeof(int64_t)] = 0;
-		FileXML xml;
-		xml.read_from_string(data);
-		test_asset->read(&xml);
+		if(rs = (fread(data, test_asset->index_start - sizeof(int64_t), 1, file) == 1))
+		{
+			data[test_asset->index_start - sizeof(int64_t)] = 0;
+			FileXML xml;
+			xml.read_from_string(data);
+			test_asset->read(&xml);
+		}
 
 		delete [] data;
-		if(test_asset->format == FILE_UNKNOWN)
+		if(!rs || test_asset->format == FILE_UNKNOWN)
 		{
 			return 1;
 		}
