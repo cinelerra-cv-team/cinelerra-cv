@@ -1814,7 +1814,7 @@ int TitleMain::load_defaults()
 		fseek(fd, 0, SEEK_END);
 		int64_t len = ftell(fd);
 		fseek(fd, 0, SEEK_SET);
-		if(len && fread(config.text, len, 1, fd) < 0)
+		if(len && fread(config.text, len, 1, fd) < 1)
 			len = 0;
 		config.text[len] = 0;
 //printf("TitleMain::load_defaults %s\n", config.text);
