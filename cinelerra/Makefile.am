@@ -276,7 +276,6 @@ cinelerracv_SOURCES = aattachmentpoint.C \
 		    splashgui.C \
 		    statusbar.C \
 		    theme.C \
-		    threadexec.C \
 		    threadfork.C \
 		    threadindexer.C \
 		    threadloader.C \
@@ -601,7 +600,6 @@ noinst_HEADERS = aattachmentpoint.h \
 		 statusbar.h \
 		 testobject.h \
 		 theme.h \
-		 threadexec.h \
 		 threadfork.h \
 		 threadindexer.h \
 		 threadloader.h \
