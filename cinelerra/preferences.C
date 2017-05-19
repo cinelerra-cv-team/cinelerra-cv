@@ -608,7 +608,8 @@ int Preferences::calculate_processors(int interactive)
 		char string[BCTEXTLEN];
 		while(!feof(proc))
 		{
-			fgets(string, BCTEXTLEN, proc);
+			if(!fgets(string, BCTEXTLEN, proc))
+				break;
 			if(!strncasecmp(string, "processor", 9))
 			{
 				char *ptr = strchr(string, ':');
