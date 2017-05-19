@@ -343,7 +343,7 @@ void ShapeWipeMain::load_configuration()
 int ShapeWipeMain::read_pattern_image(int new_frame_width, int new_frame_height)
 {
 	png_byte header[8];
-	int is_png;
+	int is_png = 0;
 	int row;
 	int col;
 	int scaled_row;
@@ -367,8 +367,8 @@ int ShapeWipeMain::read_pattern_image(int new_frame_width, int new_frame_height)
 		return 1;
 	}
 
-	fread(header, 1, 8, fp);
-	is_png = !png_sig_cmp(header, 0, 8);
+	if(fread(header, 1, 8, fp) == 8)
+		is_png = !png_sig_cmp(header, 0, 8);
 
 	if (!is_png)
 	{
