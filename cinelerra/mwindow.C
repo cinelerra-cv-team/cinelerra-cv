@@ -1410,10 +1410,11 @@ void MWindow::init_shm()
 	}
 
 	int64_t result = 0;
-	fscanf(fd, "%" SCNd64, &result);
+	int rs;
+	rs = fscanf(fd, "%" SCNd64, &result);
 	fclose(fd);
 	fd = 0;
-	if(result < 0x7fffffff)
+	if(rs == 1 && result < 0x7fffffff)
 	{
 		eprintf("WARNING: /proc/sys/kernel/shmmax is 0x%" PRIx64 ", which is too low.\n"
 			"Before running Cinelerra do the following as root:\n"
