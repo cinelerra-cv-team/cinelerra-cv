@@ -2048,10 +2048,8 @@ void MotionScan::scan_frame(VFrame *previous_frame,
 			FILE *input = fopen(string, "r");
 			if(input)
 			{
-				fscanf(input, 
-					"%d %d", 
-					&dx_result,
-					&dy_result);
+				if(fscanf(input, "%d %d", &dx_result, &dy_result) != 2)
+					dx_result = dy_result = 0;
 				fclose(input);
 				skip = 1;
 			}
@@ -2301,10 +2299,8 @@ void MotionScan::scan_frame(VFrame *previous_frame,
 		  FILE *input = fopen(string, "r");
 		  if(input)
 		    {
-		      fscanf(input, 
-			     "%d %d", 
-			     &tf_dx_result,
-			     &tf_dy_result);
+			if(fscanf(input, "%d %d", &tf_dx_result, &tf_dy_result) != 2)
+				tf_dx_result = tf_dy_result = 0;
 		      dx_result += tf_dx_result;
 		      dy_result += tf_dy_result;
 		      fclose(input);
@@ -2586,7 +2582,8 @@ float RotateScan::scan_frame(VFrame *previous_frame,
 			FILE *input = fopen(string, "r");
 			if(input)
 			{
-				fscanf(input, "%f", &result);
+				if(fscanf(input, "%f", &result) != 1)
+					result = 0;
 				fclose(input);
 				skip = 1;
 			}
