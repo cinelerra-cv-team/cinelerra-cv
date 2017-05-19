@@ -281,7 +281,8 @@ EditSvgButton::~EditSvgButton() {
 	fifo_buf.pid = getpid();
 	fifo_buf.action = 3;
 	quit_now = 1;
-	write (fh_fifo, &fifo_buf, sizeof(fifo_buf)); // break the thread out of reading from fifo
+	if(write(fh_fifo, &fifo_buf, sizeof(fifo_buf))) // break the thread out of reading from fifo
+		printf("EditSvgButton fifo write failed\n");
 }
 
 int EditSvgButton::handle_event()
@@ -332,7 +333,8 @@ void EditSvgButton::run()
 	inkscape_thread->start();
 	while (inkscape_thread->running() && (!quit_now)) { 
 //		pausetimer.delay(200); // poll file every 200ms
-		read(fh_fifo, &fifo_buf, sizeof(fifo_buf));
+		if(read(fh_fifo, &fifo_buf, sizeof(fifo_buf)) != sizeof(fifo_buf))
+			printf("EditSvgButton: fifo read failed.\n");
 
 		if (fifo_buf.action == 1) {
 			result = stat (filename_raw, &st_raw);
@@ -389,13 +391,15 @@ void SvgInkscapeThread::run()
 		filename_raw, client->config.svg_file);
 	printf(_("Running external SVG editor: %s\n"), command);		
 	enable_cancel();
-	system(command);
+	if(system(command) < 0)
+		perror("SvgInkscapeThread");
 	printf(_("External SVG editor finished\n"));
 	{
 		struct fifo_struct fifo_buf;
 		fifo_buf.pid = getpid();
 		fifo_buf.action = 2;
-		write (fh_fifo, &fifo_buf, sizeof(fifo_buf));
+		if(write(fh_fifo, &fifo_buf, sizeof(fifo_buf)) != sizeof(fifo_buf))
+			printf("Failed to write to fifo\n");
 	}
 	disable_cancel();
 	return;
