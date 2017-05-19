@@ -292,9 +292,6 @@ int Reverb::load_defaults()
 	config.lowpass1 = defaults->get("LOWPASS1", 20000);
 	config.lowpass2 = defaults->get("LOWPASS2", 20000);
 
-	sprintf(config_directory, "~");
-	defaults->get("CONFIG_DIRECTORY", config_directory);
-
 //printf("Reverb::load_defaults config.ref_level2 %f\n", config.ref_level2);
 	return 0;
 }
@@ -309,7 +306,6 @@ int Reverb::save_defaults()
 	defaults->update("REF_LENGTH", config.ref_length);
 	defaults->update("LOWPASS1", config.lowpass1);
 	defaults->update("LOWPASS2", config.lowpass2);
-	defaults->update("CONFIG_DIRECTORY", config_directory);
 	defaults->save();
 	return 0;
 }
@@ -390,75 +386,6 @@ void Reverb::update_gui()
 		thread->window->lowpass2->update(config.lowpass2);
 		thread->window->unlock_window();
 	}
-}
-
-
-
-
-int Reverb::load_from_file(char *path)
-{
-	FILE *in;
-	int result = 0;
-	int length;
-	char string[1024];
-	
-	if(in = fopen(path, "rb"))
-	{
-		fseek(in, 0, SEEK_END);
-		length = ftell(in);
-		fseek(in, 0, SEEK_SET);
-		fread(string, length, 1, in);
-		fclose(in);
-//		read_data(string);
-	}
-	else
-	{
-		perror("fopen:");
-// failed
-		ErrorBox errorbox("");
-		char string[1024];
-		sprintf(string, _("Couldn't open %s."), path);
-		errorbox.create_objects(string);
-		errorbox.run_window();
-		result = 1;
-	}
-	
-	return result;
-}
-
-int Reverb::save_to_file(char *path)
-{
-	FILE *out;
-	int result = 0;
-	char string[1024];
-	
-	{
-// 		ConfirmSave confirm;
-// 		result = confirm.test_file("", path);
-	}
-	
-	if(!result)
-	{
-		if(out = fopen(path, "wb"))
-		{
-//			save_data(string);
-			fwrite(string, strlen(string), 1, out);
-			fclose(out);
-		}
-		else
-		{
-			result = 1;
-// failed
-			ErrorBox errorbox("");
-			char string[1024];
-			sprintf(string, _("Couldn't save %s."), path);
-			errorbox.create_objects(string);
-			errorbox.run_window();
-			result = 1;
-		}
-	}
-	
-	return result;
 }
 
 ReverbEngine::ReverbEngine(Reverb *plugin)

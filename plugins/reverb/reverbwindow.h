@@ -46,7 +46,6 @@ class ReverbRefTotal;
 class ReverbRefLength;
 class ReverbLowPass1;
 class ReverbLowPass2;
-class ReverbMenu;
 
 class ReverbWindow : public PluginWindow
 {
@@ -65,7 +64,6 @@ public:
 	ReverbRefLength *ref_length;
 	ReverbLowPass1 *lowpass1;
 	ReverbLowPass2 *lowpass2;
-	ReverbMenu *menu;
 };
 
 class ReverbLevelInit : public BC_FPot
@@ -140,126 +138,6 @@ public:
 	Reverb *reverb;
 };
 
-
-class ReverbLoad;
-class ReverbSave;
-class ReverbSetDefault;
-class ReverbLoadPrev;
-class ReverbLoadPrevThread;
-
-class ReverbMenu : public BC_MenuBar
-{
-public:
-	ReverbMenu(Reverb *reverb, ReverbWindow *window);
-	~ReverbMenu();
-	
-	int create_objects(BC_Hash *defaults);
-	int load_defaults(BC_Hash *defaults);
-	int save_defaults(BC_Hash *defaults);
-// most recent loads
-	int add_load(char *path);
-	ReverbLoadPrevThread *prev_load_thread;
-	
-	int total_loads;
-	BC_Menu *filemenu;
-	ReverbWindow *window;
-	Reverb *reverb;
-	ReverbLoad *load;
-	ReverbSave *save;
-	ReverbSetDefault *set_default;
-	ReverbLoadPrev *prev_load[TOTAL_LOADS];
-};
-
-class ReverbSaveThread;
-class ReverbLoadThread;
-
-class ReverbLoad : public BC_MenuItem
-{
-public:
-	ReverbLoad(Reverb *reverb, ReverbMenu *menu);
-	~ReverbLoad();
-	int handle_event();
-	Reverb *reverb;
-	ReverbLoadThread *thread;
-	ReverbMenu *menu;
-};
-
-class ReverbSave : public BC_MenuItem
-{
-public:
-	ReverbSave(Reverb *reverb, ReverbMenu *menu);
-	~ReverbSave();
-	int handle_event();
-	Reverb *reverb;
-	ReverbSaveThread *thread;
-	ReverbMenu *menu;
-};
-
-class ReverbSetDefault : public BC_MenuItem
-{
-public:
-	ReverbSetDefault();
-	int handle_event();
-};
-
-class ReverbLoadPrev : public BC_MenuItem
-{
-public:
-	ReverbLoadPrev(Reverb *reverb, ReverbMenu *menu, char *filename, char *path);
-	ReverbLoadPrev(Reverb *reverb, ReverbMenu *menu);
-	int handle_event();
-	void set_path(char *path);
-	char path[1024];
-	Reverb *reverb;
-	ReverbMenu *menu;
-};
-
-
-class ReverbLoadPrevThread : public Thread
-{
-public:
-	ReverbLoadPrevThread(Reverb *reverb, ReverbMenu *menu);
-	~ReverbLoadPrevThread();
-	void run();
-	int set_path(char *path);
-	char path[1024];
-	Reverb *reverb;
-	ReverbMenu *menu;
-};
-
-
-
-class ReverbSaveThread : public Thread
-{
-public:
-	ReverbSaveThread(Reverb *reverb, ReverbMenu *menu);
-	~ReverbSaveThread();
-	void run();
-	Reverb *reverb;
-	ReverbMenu *menu;
-};
-
-class ReverbSaveDialog : public BC_FileBox
-{
-public:
-	ReverbSaveDialog(Reverb *reverb);
-	~ReverbSaveDialog();
-	
-	int ok_event();
-	int cancel_event();
-	Reverb *reverb;
-};
-
-
-class ReverbLoadThread : public Thread
-{
-public:
-	ReverbLoadThread(Reverb *reverb, ReverbMenu *menu);
-	~ReverbLoadThread();
-	void run();
-	Reverb *reverb;
-	ReverbMenu *menu;
-};
 
 class ReverbLoadDialog : public BC_FileBox
 {

@@ -59,9 +59,6 @@ public:
 	~Reverb();
 
 	void update_gui();
-	int load_from_file(char *data);
-	int save_to_file(char *data);
-	char config_directory[1024];
 
 	double **main_in, **main_out;
 	double **dsp_in;
