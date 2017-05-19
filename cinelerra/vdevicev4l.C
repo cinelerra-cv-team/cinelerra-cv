@@ -555,7 +555,8 @@ SET_TRACE
 	}
 	else
 	{
-		read(input_fd, capture_buffer, capture_params.size);
+		if(read(input_fd, capture_buffer, capture_params.size) <= 0)
+			printf("Error reading frame\n");
 	}
 	got_first_frame = 1;
 SET_TRACE
