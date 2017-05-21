@@ -1,5 +1,5 @@
 lib_LTLIBRARIES = libmpeg3cv.la
-AM_CFLAGS = $(CPU_CFLAGS) $(LARGEFILE_CFLAGS) $(CSS_CFLAGS)
+AM_CFLAGS = $(CPU_CFLAGS) $(LARGEFILE_CFLAGS) $(CSS_CFLAGS) -Wno-implicit-function-declaration
 libmpeg3cv_la_LDFLAGS = -version-info 1:0:0 -release 1.5.0 -Wl,--no-undefined
 libmpeg3cv_la_LIBADD = -la52 video/libmpeg3_video.la audio/libmpeg3_audio.la -lm \
 		     -lpthread
