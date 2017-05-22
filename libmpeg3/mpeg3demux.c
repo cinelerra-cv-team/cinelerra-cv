@@ -4,6 +4,7 @@
 #include "workarounds.h"
 
 #include <errno.h>
+#include <inttypes.h>
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
@@ -290,7 +291,7 @@ static int get_transport_pes_packet(mpeg3_demuxer_t *demuxer)
 
 		if(demuxer->dump)
 		{
-			printf("get_transport_pes_packet: offset=%llx 0x%x bytes AC3 custom_id=0x%x astream=0x%x do_audio=%d\n", 
+			printf("get_transport_pes_packet: offset=%" PRIx64 " 0x%x bytes AC3 custom_id=0x%x astream=0x%x do_audio=%d\n",
 				mpeg3io_tell(demuxer->titles[demuxer->current_title]->fs),
 				demuxer->raw_size - demuxer->raw_offset,
 				demuxer->custom_id,
@@ -449,7 +450,7 @@ static int get_payload(mpeg3_demuxer_t *demuxer)
 
 			if(demuxer->dump)
 			{
-				printf("get_payload: offset=%llx 0x%x bytes AC3 pid=0x%x\n", 
+				printf("get_payload: offset=%" PRIx64 " 0x%x bytes AC3 pid=0x%x\n",
 					mpeg3io_tell(demuxer->titles[demuxer->current_title]->fs),
 					demuxer->raw_size - demuxer->raw_offset,
 					demuxer->pid);
@@ -598,7 +599,7 @@ demuxer->dump = 0;
 
 	if(demuxer->dump)
 	{
-		printf("offset=0x%llx pid=0x%02x continuity=0x%02x padding=%d adaptation=%d unit_start=%d\n", 
+		printf("offset=0x%" PRIx64 " pid=0x%02x continuity=0x%02x padding=%d adaptation=%d unit_start=%d\n",
 			demuxer->program_byte,
 			demuxer->pid,
 			demuxer->continuity_counter,
@@ -1216,7 +1217,7 @@ static int get_program_pes_packet(mpeg3_demuxer_t *demuxer, unsigned int header)
 				decryption_offset = mpeg3io_tell(title->fs) - demuxer->last_packet_start;
 				if(demuxer->dump)
 				{
-					printf(" MP2 audio data offset=%llx custom_id=%x size=%x\n", 
+					printf(" MP2 audio data offset=%" PRIx64 " custom_id=%x size=%x\n",
 						demuxer->program_byte, 
 						demuxer->custom_id,
 						pes_packet_length);
@@ -1257,7 +1258,7 @@ static int get_program_pes_packet(mpeg3_demuxer_t *demuxer, unsigned int header)
 				decryption_offset = mpeg3io_tell(title->fs) - demuxer->last_packet_start;
 				if(demuxer->dump)
 				{
-					printf(" video offset=%llx custom_id=%x size=%x\n", 
+					printf(" video offset=%" PRIx64 " custom_id=%x size=%x\n",
 						demuxer->program_byte,
 						demuxer->custom_id,
 						pes_packet_length);
@@ -1903,10 +1904,10 @@ int mpeg3_read_prev_packet(mpeg3_demuxer_t *demuxer)
 /* Transport stream or elementary stream case */
 		if(file->packet_size > 0)
 		{
-printf("mpeg3_read_prev_packet 1 result=%d title=%d tell=%llx program_byte=%llx\n", result, demuxer->current_title, mpeg3io_tell(title->fs), demuxer->program_byte);
+printf("mpeg3_read_prev_packet 1 result=%d title=%d tell=%" PRIx64 " program_byte=%" PRIx64 "\n", result, demuxer->current_title, mpeg3io_tell(title->fs), demuxer->program_byte);
 			demuxer->program_byte -= file->packet_size;
 			result = mpeg3_seek_phys(demuxer);
-printf("mpeg3_read_prev_packet 100 result=%d title=%d tell=%llx program_byte=%llx\n", result, demuxer->current_title, mpeg3io_tell(title->fs), demuxer->program_byte);
+printf("mpeg3_read_prev_packet 100 result=%d title=%d tell=%" PRIx64 " program_byte=%" PRIx64 "\n", result, demuxer->current_title, mpeg3io_tell(title->fs), demuxer->program_byte);
 		}
 		else
 		{

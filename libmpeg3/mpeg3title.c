@@ -2,7 +2,7 @@
 #include "mpeg3protos.h"
 #include "mpeg3title.h"
 
-
+#include <inttypes.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -53,14 +53,14 @@ int mpeg3_dump_title(mpeg3_title_t *title)
 {
 	int i;
 	
-	printf("mpeg3_dump_title path %s %llx-%llx cell_table_size %d\n", 
+	printf("mpeg3_dump_title path %s %" PRIx64 "-%" PRIx64 " cell_table_size %d\n",
 		title->fs->path, 
 		title->start_byte,
 		title->end_byte,
 		title->cell_table_size);
 	for(i = 0; i < title->cell_table_size; i++)
 	{
-		printf("%llx-%llx %llx-%llx %x\n", 
+		printf("%" PRIx64 "-%" PRIx64 " %" PRIx64 "-%" PRIx64 " %x\n",
 			title->cell_table[i].title_start, 
 			title->cell_table[i].title_end, 
 			title->cell_table[i].program_start, 
@@ -186,7 +186,7 @@ int mpeg3demux_print_cells(mpeg3_title_t *title, FILE *output)
 		{
 			cell = &title->cell_table[i];
 
-			fprintf(output, "REGION: %llx-%llx %llx-%llx %f %f %d\n",
+			fprintf(output, "REGION: %" PRIx64 "-%" PRIx64 " %" PRIx64 "-%" PRIx64 " %d\n",
 				cell->program_start,
 				cell->program_end,
 				cell->title_start,

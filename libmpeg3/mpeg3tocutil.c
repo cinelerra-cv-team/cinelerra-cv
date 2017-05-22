@@ -2,6 +2,7 @@
 #include "mpeg3protos.h"
 
 #include <errno.h>
+#include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -293,7 +294,7 @@ const int debug = 0;
 					file->video_eof[i] = read_int64(buffer, &position);
 					file->total_frame_offsets[i] = read_int32(buffer, &position);
 					file->frame_offsets[i] = malloc(file->total_frame_offsets[i] * sizeof(int64_t));
-if(debug) printf("mpeg3_read_toc 62 %d %d %lld\n", 
+if(debug) printf("mpeg3_read_toc 62 %d %d %d\n",
 file->total_frame_offsets[i], position, buffer_size);
 					for(j = 0; j < file->total_frame_offsets[i]; j++)
 					{

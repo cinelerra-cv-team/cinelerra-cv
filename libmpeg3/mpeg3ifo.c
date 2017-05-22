@@ -1,5 +1,6 @@
 #include <byteswap.h>
 #include <dirent.h>
+#include <inttypes.h>
 #include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
@@ -693,7 +694,7 @@ return;
 	printf("finaltable\n");
 	for(i = 0; i < final_cells->total_cells; i++)
 	{
-		printf(" vob id: %x cell id: %x start: %llx end: %llx program: %x\n", 
+		printf(" vob id: %x cell id: %x start: %" PRIx64 " end: %" PRIx64 " program: %x\n",
 			final_cells->cells[i].vob_id, final_cells->cells[i].cell_id, (int64_t)final_cells->cells[i].start_byte, (int64_t)final_cells->cells[i].end_byte, final_cells->cells[i].program);
 	}
 }
@@ -808,7 +809,7 @@ int mpeg3_read_ifo(mpeg3_t *file,
 			else
 			{
 				fprintf(stderr, 
-					"read_ifo: cell length and title length don't match! title=%d cell=%d cell_start=%llx cell_end=%llx.\n",
+					"read_ifo: cell length and title length don't match! title=%d cell=%d cell_start=%" PRIx64 " cell_end=%" PRIx64 ".\n",
 					current_title,
 					current_cell,
 					cell_start - title_start_byte,
