@@ -163,8 +163,8 @@ void mpeg3io_read_buffer(mpeg3_fs_t *fs)
 
 
 		fseeko64(fs->fd, new_buffer_position, SEEK_SET);
-		fread(fs->buffer, 1, remainder_start, fs->fd);
-
+		if(fread(fs->buffer, 1, remainder_start, fs->fd) < 1)
+			fprintf(stderr, "mpeg3io_read_buffer:Failed to read from file.\n");
 
 		fs->buffer_position = new_buffer_position;
 		fs->buffer_size = new_buffer_size;
