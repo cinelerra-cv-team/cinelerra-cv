@@ -202,7 +202,7 @@ static uint8_t *bufalloc( size_t size )
 	{
 		error("malloc failed\n");
 	}
-	adjust = BUFFER_ALIGN-((int)buf)%BUFFER_ALIGN;
+	adjust = BUFFER_ALIGN-((intptr_t)buf)%BUFFER_ALIGN;
 	if( adjust == BUFFER_ALIGN )
 		adjust = 0;
 	return (uint8_t*)(buf+adjust);
@@ -354,9 +354,8 @@ int calculate_smp()
 	if(proc = fopen("/proc/cpuinfo", "r"))
 	{
 		char string[1024];
-		while(!feof(proc))
+		while(fgets(string, 1024, proc))
 		{
-			fgets(string, 1024, proc);
 			if(!strncasecmp(string, "processor", 9))
 			{
 				char *ptr = strchr(string, ':');
@@ -446,8 +445,8 @@ static void readcmdline(int argc, char *argv[])
 //printf("readcmdline 2\n");
 
 
-	sprintf(tplorg, "");
-	sprintf(out_path, "");
+	tplorg[0] = 0;
+	out_path[0] = 0;
 
 #define INTTOYES(x) ((x) ? "Yes" : "No")
 // This isn't used anymore as this is a library entry point.
@@ -740,10 +739,11 @@ INTTOYES(prog_seq));
 		unsigned char data[1024];
 		nframes =                  0x7fffffff;
 		
-		fgets(data, 1024, stdin_fd);
-		horizontal_size =          atol(data);
-		fgets(data, 1024, stdin_fd);
-		vertical_size =            atol(data);
+		horizontal_size = vertical_size = 0;
+		if(fgets(data, 1024, stdin_fd))
+			horizontal_size = atol(data);
+		if(fgets(data, 1024, stdin_fd))
+			vertical_size = atol(data);
 	}
 	else
 	if(do_buffers)
@@ -822,9 +822,9 @@ INTTOYES(prog_seq));
 	{
 		char data[1024];
 		
-		fgets(data, 1024, stdin_fd);
-		
-		input_frame_rate = atof(data);
+		input_frame_rate = 0;
+		if(fgets(data, 1024, stdin_fd))
+			input_frame_rate = atof(data);
 	}
 	
 	
@@ -858,7 +858,7 @@ INTTOYES(prog_seq));
 // Show status
 	if(verbose)
 	{
-		printf("Encoding: %s frames %ld\n", out_path, nframes);
+		printf("Encoding: %s frames %d\n", out_path, nframes);
 
     	if(fixed_mquant == 0) 
     		printf("   bitrate %.0f\n", bit_rate);
