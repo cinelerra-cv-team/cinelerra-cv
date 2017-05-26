@@ -56,7 +56,6 @@ SUBDIRS= \
 	histogram \
 	holo \
 	huesaturation \
-	interpolate \
 	interpolateaudio \
 	interpolatevideo \
 	invertaudio \

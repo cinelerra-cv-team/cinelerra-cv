@@ -739,7 +739,6 @@ AC_OUTPUT(Makefile cinelerra-cvs-current.spec po/Makefile.in \
 	plugins/greycstoration/Makefile \
 	plugins/holo/Makefile \
 	plugins/huesaturation/Makefile \
-	plugins/interpolate/Makefile \
 	plugins/interpolateaudio/Makefile \
 	plugins/interpolatevideo/Makefile \
 	plugins/invertaudio/Makefile \

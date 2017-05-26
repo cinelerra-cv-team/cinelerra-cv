@@ -93,8 +93,7 @@ public:
 	int save_defaults();
 	int handle_opengl();
 
-	void get_aggregation(int *aggregate_interpolate,
-		int *aggregate_gamma);
+	void get_aggregation(int *aggregate_gamma);
 	PLUGIN_CLASS_MEMBERS(ColorBalanceConfig, ColorBalanceThread)
 
 	int64_t calculate_slider(float in);

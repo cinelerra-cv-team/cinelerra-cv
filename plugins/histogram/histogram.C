@@ -42,7 +42,6 @@
 
 #include "aggregated.h"
 #include "../colorbalance/aggregated.h"
-#include "../interpolate/aggregated.h"
 #include "../gamma/aggregated.h"
 
 class HistogramMain;
@@ -870,11 +869,9 @@ int HistogramMain::handle_opengl()
 	int aggregate_colorbalance = 0;
 // All aggregation possibilities must be accounted for because unsupported
 // effects can get in between the aggregation members.
-	if(!strcmp(get_output()->get_prev_effect(2), "Interpolate Pixels") &&
-		!strcmp(get_output()->get_prev_effect(1), "Gamma") &&
+	if(!strcmp(get_output()->get_prev_effect(1), "Gamma") &&
 		!strcmp(get_output()->get_prev_effect(0), "Color Balance"))
 	{
-		aggregate_interpolation = 1;
 		aggregate_gamma = 1;
 		aggregate_colorbalance = 1;
 	}
@@ -886,23 +883,6 @@ int HistogramMain::handle_opengl()
 		aggregate_colorbalance = 1;
 	}
 	else
-	if(!strcmp(get_output()->get_prev_effect(1), "Interpolate Pixels") &&
-		!strcmp(get_output()->get_prev_effect(0), "Gamma"))
-	{
-		aggregate_interpolation = 1;
-		aggregate_gamma = 1;
-	}
-	else
-	if(!strcmp(get_output()->get_prev_effect(1), "Interpolate Pixels") &&
-		!strcmp(get_output()->get_prev_effect(0), "Color Balance"))
-	{
-		aggregate_interpolation = 1;
-		aggregate_colorbalance = 1;
-	}
-	else
-	if(!strcmp(get_output()->get_prev_effect(0), "Interpolate Pixels"))
-		aggregate_interpolation = 1;
-	else
 	if(!strcmp(get_output()->get_prev_effect(0), "Gamma"))
 		aggregate_gamma = 1;
 	else
@@ -911,22 +891,17 @@ int HistogramMain::handle_opengl()
 
 
 // The order of processing is fixed by this sequence
-	if(aggregate_interpolation)
-		INTERPOLATE_COMPILE(shader_stack, 
-			current_shader)
-
 	if(aggregate_gamma)
 		GAMMA_COMPILE(shader_stack, 
-			current_shader, 
-			aggregate_interpolation)
+			current_shader, 0);
 
 	if(aggregate_colorbalance)
 		COLORBALANCE_COMPILE(shader_stack, 
 			current_shader, 
-			aggregate_interpolation || aggregate_gamma)
+			aggregate_gamma)
 
 
-	if(aggregate_interpolation || aggregate_gamma || aggregate_colorbalance)
+	if(aggregate_gamma || aggregate_colorbalance)
 		shader_stack[current_shader++] = histogram_get_pixel1;
 	else
 		shader_stack[current_shader++] = histogram_get_pixel2;
@@ -967,13 +942,6 @@ int HistogramMain::handle_opengl()
 		shader_stack[14],
 		shader_stack[15],
 		0);
-
-printf("HistogramMain::handle_opengl %d %d %d %d shader=%d\n", 
-aggregate_interpolation, 
-aggregate_gamma,
-aggregate_colorbalance,
-current_shader,
-shader);
 
 	float input_min_r[2] = { 0, 0 };
 	float input_min_g[2] = { 0, 0 };
@@ -1025,7 +993,6 @@ shader);
 		glUseProgram(shader);
 		glUniform1i(glGetUniformLocation(shader, "tex"), 0);
 		if(aggregate_gamma) GAMMA_UNIFORMS(shader)
-		if(aggregate_interpolation) INTERPOLATE_UNIFORMS(shader)
 		if(aggregate_colorbalance) COLORBALANCE_UNIFORMS(shader)
 		glUniform2fv(glGetUniformLocation(shader, "input_min_r"), 1, input_min_r);
 		glUniform2fv(glGetUniformLocation(shader, "input_min_g"), 1, input_min_g);

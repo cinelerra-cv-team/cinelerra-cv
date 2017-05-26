@@ -122,8 +122,7 @@ public:
 	void read_data(KeyFrame *keyframe);
 	int handle_opengl();
 
-	void get_aggregation(int *aggregate_interpolate,
-		int *aggregate_gamma);
+	void get_aggregation(int *aggregate_gamma);
 
 	void calculate_factors(float *r, float *g, float *b, int section);
 	void calculate_factors(float *r, float *g, float *b, float x, float y);
