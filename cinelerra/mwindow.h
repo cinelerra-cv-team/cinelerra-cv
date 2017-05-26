@@ -73,7 +73,6 @@
 #include "theme.inc"
 #include "thread.h"
 #include "timebar.inc"
-#include "timebomb.h"
 #include "tipwindow.inc"
 #include "track.inc"
 #include "tracking.inc"
@@ -566,7 +565,6 @@ public:
 	void delete_plugins();
 // 
 	void clean_indexes();
-//	TimeBomb timebomb;
 	SigHandler *sighandler;
 };
 

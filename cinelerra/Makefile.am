@@ -595,7 +595,6 @@ noinst_HEADERS = aattachmentpoint.h \
 		 testobject.h \
 		 theme.h \
 		 timebar.h \
-		 timebomb.h \
 		 timeentry.h \
 		 tipwindow.h \
 		 trackcanvas.h \
