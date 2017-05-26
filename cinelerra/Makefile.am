@@ -116,7 +116,6 @@ cinelerracv_SOURCES = aattachmentpoint.C \
 		    cwindowtool.C \
 		    dcoffset.C \
 		    defaultformats.h \
-		    dcraw.c \
 		    deleteallindexes.C \
 		    devicedvbinput.C \
 		    drivesync.C \
@@ -138,7 +137,6 @@ cinelerracv_SOURCES = aattachmentpoint.C \
 		    filebaseima4.C \
 		    filebaseulaw.C \
 		    file.C \
-		    filecr2.C \
 		    filedv.C \
 		    fileogg.C \
 		    fileexr.C \
@@ -446,7 +444,6 @@ noinst_HEADERS = aattachmentpoint.h \
 		 filebase.h \
 		 fileformat.h \
 		 file.h \
-		 filecr2.h \
 	    filedv.h \
 	    fileogg.h \
 		 fileexr.h \
