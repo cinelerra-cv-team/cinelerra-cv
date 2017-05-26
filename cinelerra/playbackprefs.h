@@ -33,7 +33,6 @@ class PlaybackDisableNoEdits;
 class PlaybackHead;
 class PlaybackHeadCount;
 class PlaybackHost;
-class PlaybackInterpolateRaw;
 class PlaybackModuleFragment;
 class PlaybackNearest;
 class PlaybackOutBits;
@@ -81,8 +80,6 @@ public:
 	PlaybackBicubicBilinear *cubic_linear;
 	PlaybackBilinearBilinear *linear_linear;
 	PlaybackDeblock *mpeg4_deblock;
-	PlaybackInterpolateRaw *interpolate_raw;
-	PlaybackWhiteBalanceRaw *white_balance_raw;
 	VideoAsynchronous *asynchronous;
 
 	BC_Title *vdevice_title;
@@ -233,30 +230,6 @@ public:
 		PreferencesWindow *pwindow, 
 		PlaybackPrefs *playback, 
 		char *text);
-	int handle_event();
-	PreferencesWindow *pwindow;
-	PlaybackPrefs *playback;
-};
-
-class PlaybackInterpolateRaw : public BC_CheckBox
-{
-public:
-	PlaybackInterpolateRaw(int x, 
-		int y, 
-		PreferencesWindow *pwindow, 
-		PlaybackPrefs *playback);
-	int handle_event();
-	PreferencesWindow *pwindow;
-	PlaybackPrefs *playback;
-};
-
-class PlaybackWhiteBalanceRaw : public BC_CheckBox
-{
-public:
-	PlaybackWhiteBalanceRaw(int x, 
-		int y, 
-		PreferencesWindow *pwindow, 
-		PlaybackPrefs *playback);
 	int handle_event();
 	PreferencesWindow *pwindow;
 	PlaybackPrefs *playback;

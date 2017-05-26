@@ -213,23 +213,6 @@ SET_TRACE
 		this));
 	y += subtitle_number->get_h();
 
-
-	add_subwindow(interpolate_raw = new PlaybackInterpolateRaw(
-		x, 
-		y,
-		pwindow,
-		this));
-	y += interpolate_raw->get_h();
-
-	add_subwindow(white_balance_raw = new PlaybackWhiteBalanceRaw(
-		x, 
-		y,
-		pwindow,
-		this));
-	if(!pwindow->thread->edl->session->interpolate_raw) 
-		white_balance_raw->disable();
-
-
 SET_TRACE
 //	y += 30;
 //	add_subwindow(new PlaybackDeblock(pwindow, 10, y));
@@ -250,7 +233,7 @@ SET_TRACE
 	sprintf(string, "%d", pwindow->thread->edl->session->timecode_offset[0]);
 	add_subwindow(new TimecodeOffset(win->get_x() + win->get_w(), y, pwindow, this, string, 0));
 	x = x2;
-	y += white_balance_raw->get_h() + 5;
+	y += 5;
 	add_subwindow(vdevice_title = new BC_Title(x, y, _("Video Driver:")));
 	y += vdevice_title->get_h();
 	video_device = new VDevicePrefs(55,
@@ -464,65 +447,6 @@ int PlaybackPreload::handle_event()
 	pwindow->thread->edl->session->playback_preload = atol(get_text()); 
 	return 1;
 }
-
-
-PlaybackInterpolateRaw::PlaybackInterpolateRaw(
-	int x, 
-	int y, 
-	PreferencesWindow *pwindow, 
-	PlaybackPrefs *playback)
- : BC_CheckBox(x, 
- 	y, 
-	pwindow->thread->edl->session->interpolate_raw, 
-	_("Interpolate CR2 images"))
-{
-	this->pwindow = pwindow;
-	this->playback = playback;
-}
-
-int PlaybackInterpolateRaw::handle_event()
-{
-	pwindow->thread->edl->session->interpolate_raw = get_value();
-	if(!pwindow->thread->edl->session->interpolate_raw)
-	{
-		playback->white_balance_raw->update(0, 0);
-		playback->white_balance_raw->disable();
-	}
-	else
-	{
-		playback->white_balance_raw->update(pwindow->thread->edl->session->white_balance_raw, 0);
-		playback->white_balance_raw->enable();
-	}
-	return 1;
-}
-
-
-
-
-PlaybackWhiteBalanceRaw::PlaybackWhiteBalanceRaw(
-	int x, 
-	int y, 
-	PreferencesWindow *pwindow, 
-	PlaybackPrefs *playback)
- : BC_CheckBox(x, 
- 	y, 
-	pwindow->thread->edl->session->interpolate_raw &&
-		pwindow->thread->edl->session->white_balance_raw, 
-	_("White balance CR2 images"))
-{
-	this->pwindow = pwindow;
-	this->playback = playback;
-	if(!pwindow->thread->edl->session->interpolate_raw) disable();
-}
-
-int PlaybackWhiteBalanceRaw::handle_event()
-{
-	pwindow->thread->edl->session->white_balance_raw = get_value();
-	return 1;
-}
-
-
-
 
 
 
