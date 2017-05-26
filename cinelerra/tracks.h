@@ -29,7 +29,6 @@
 #include "filexml.inc"
 #include "linklist.h"
 #include "pluginserver.inc"
-#include "threadindexer.inc"
 #include "track.h"
 #include "trackcanvas.inc"
 #include "transition.inc"
