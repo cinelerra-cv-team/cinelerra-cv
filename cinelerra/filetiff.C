@@ -79,6 +79,10 @@ int FileTIFF::check_sig(Asset *asset)
 
 		if(test[0] == 'I' && test[1] == 'I')
 		{
+			// Reject cr2, libtif fails with it
+			if(test[4] == 0x10 && !test[5] && !test[6] && !test[7] &&
+					test[8] == 'C' && test[9] == 'R')
+				return 0;
 			return 1;
 		}
 		else
