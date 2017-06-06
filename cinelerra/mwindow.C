@@ -1389,39 +1389,6 @@ void MWindow::test_plugins(EDL *new_edl, char *path)
 	}
 }
 
-
-void MWindow::init_shm()
-{
-// Fix shared memory
-	FILE *fd = fopen("/proc/sys/kernel/shmmax", "w");
-	if(fd)
-	{
-		fprintf(fd, "0x7fffffff");
-		fclose(fd);
-	}
-	fd = 0;
-
-	fd = fopen("/proc/sys/kernel/shmmax", "r");
-	if(!fd)
-	{
-		MainError::show_error("MWindow::init_shm: couldn't open /proc/sys/kernel/shmmax for reading.\n");
-		return;
-	}
-
-	int64_t result = 0;
-	int rs;
-	rs = fscanf(fd, "%" SCNd64, &result);
-	fclose(fd);
-	fd = 0;
-	if(rs == 1 && result < 0x7fffffff)
-	{
-		eprintf("WARNING: /proc/sys/kernel/shmmax is 0x%" PRIx64 ", which is too low.\n"
-			"Before running Cinelerra do the following as root:\n"
-			"echo \"0x7fffffff\" > /proc/sys/kernel/shmmax\n",
-			result);
-	}
-}
-
 void MWindow::create_objects(int want_gui, 
 	int want_new,
 	char *config_path)
@@ -1519,8 +1486,6 @@ SET_TRACE
 SET_TRACE
 
 	hide_splash();
-SET_TRACE
-	init_shm();
 }
 
 
