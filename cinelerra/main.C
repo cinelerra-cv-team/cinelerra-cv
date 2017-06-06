@@ -224,9 +224,8 @@ PROGRAM_NAME " is free software, covered by the GNU General Public License,\n"
 "and you are welcome to change it and/or distribute copies of it under\n"
 "certain conditions. There is absolutely no warranty for " PROGRAM_NAME ".\n");
 
-
-
-
+	if(!getuid() || !geteuid())
+		printf("Running " PROGRAM_NAME " as root is not supported.\n");
 
 	switch(operation)
 	{
