@@ -262,10 +262,9 @@ void FileSystem::alphabetize()
 	sort_table(&dir_list);
 }
 
-int FileSystem::is_root_dir(char *path)
+int FileSystem::is_root_dir(const char *path)
 {
-	if(!strcmp(current_dir, "/")) return 1;
-	return 0;
+	return !strcmp(path, "/");
 }
 
 int FileSystem::test_filter(FileItem *file)
