@@ -31,6 +31,7 @@
 #include <time.h>
 #include <unistd.h>
 
+#include "bcresources.h"
 #include "filesystem.h"
 
 FileItem::FileItem()
@@ -101,8 +102,6 @@ int FileItem::set_name(char *name)
 FileSystem::FileSystem()
 {
 	reset_parameters();
-	getcwd(current_dir, BCTEXTLEN);
-	
 }
 
 FileSystem::~FileSystem()
@@ -115,7 +114,7 @@ int FileSystem::reset_parameters()
  	show_all_files = 0;
 	want_directory = 0;
 	strcpy(filter, "");
-	strcpy(current_dir, "");
+	strcpy(current_dir, BC_Resources::working_directory);
 	sort_order = SORT_ASCENDING;
 	sort_field = SORT_PATH;
 	return 0;

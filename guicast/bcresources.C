@@ -111,6 +111,7 @@ suffix_to_type_t BC_Resources::suffix_to_type[] =
 BC_Signals* BC_Resources::signal_handler = 0;
 Mutex BC_Resources::fontconfig_lock("BC_Resources::fonconfig_lock");
 HashCache BC_Resources::hash_cache;
+char BC_Resources::working_directory[BCTEXTLEN];
 
 int BC_Resources::x_error_handler(Display *display, XErrorEvent *event)
 {
@@ -564,8 +565,9 @@ BC_Resources::BC_Resources()
 
 	drag_radius = 10;
 	recursive_resizing = 1;
-
-	
+	working_directory[0] = 0;
+	if(!getcwd(working_directory, BCTEXTLEN))
+		perror("get current working directory");
 }
 
 BC_Resources::~BC_Resources()

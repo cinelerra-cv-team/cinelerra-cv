@@ -354,6 +354,8 @@ public:
 	Mutex *create_window_lock;
 // Cache of parameters
 	static HashCache hash_cache;
+// Current directory
+	static char working_directory[BCTEXTLEN];
 
 private:
 // Test for availability of shared memory pixmaps
