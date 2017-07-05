@@ -372,7 +372,6 @@ int BC_WindowBase::wcharpos(const wchar_t *text, XftFont *font, int length,
 		int *charpos)
 {
 	XGlyphInfo extents;
-	int bpos = charpos[-1];
 
 	if(charpos)
 	{
