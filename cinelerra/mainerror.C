@@ -19,6 +19,9 @@
  * 
  */
 
+#include "bcbutton.h"
+#include "bclistbox.h"
+#include "bclistboxitem.h"
 #include "bcdisplayinfo.h"
 #include "bcsignals.h"
 #include "language.h"
@@ -26,8 +29,11 @@
 #include "mainsession.h"
 #include "mutex.h"
 #include "mwindow.h"
+#include "theme.h"
 
 #include <string.h>
+#include <ctype.h>
+#include <stdarg.h>
 
 MainError* MainError::main_error = 0;
 
@@ -57,6 +63,7 @@ void MainErrorGUI::create_objects()
 	add_subwindow(button = new BC_OKButton(this));
 	int x = 10, y = 10;
 
+	set_icon(mwindow->theme->get_image("mwindow_icon"));
 	add_subwindow(title = new BC_Title(x, y, _("The following errors occurred:")));
 	y += title->get_h() + 5;
 	add_subwindow(list = new BC_ListBox(x,
@@ -180,8 +187,195 @@ void MainError::show_error(const char *string)
 		main_error->show_error_local(string);
 	else
 	{
-		printf("%s", string);
+		fprintf(stderr, "ERROR: %s", string);
 		if(string[strlen(string) - 1] != '\n')
-			printf("\n");
+			fputc('\n', stderr);
+	}
+}
+
+const char *MainError::StringBreaker(int font, const char *text, int boxwidth,
+		BC_Window *win)
+{
+	int txlen = strlen(text);
+	char *p, *q, *r;
+	static char msgbuf[BCTEXTLEN];
+
+	if(win->get_text_width(font, text) < boxwidth)
+		return text;
+
+	p = strncpy(msgbuf, text, sizeof(msgbuf)-1);
+
+	while (*p)
+	{
+		if(q = strchr(p, '\n'))
+		{
+			if(win->get_text_width(font, p, q - p) < boxwidth)
+			{
+				p = ++q;
+				continue;
+			}
+		}
+
+		if(win->get_text_width(font, msgbuf) < boxwidth)
+			return msgbuf;
+
+		r = &msgbuf[txlen];
+		q = p;
+		while(*q)
+		{
+			if(isspace(*q))
+			{
+				if(win->get_text_width(font, p, q - p) > boxwidth)
+				{
+					*r = '\n';
+					p = ++r;
+					break;
+				}
+				else
+					r = q;
+			}
+			if(*++q == 0)
+			{
+// There was a very long word if we reach here
+				*r = '\n';
+				return msgbuf;
+			}
+		}
+	}
+	return msgbuf;
+}
+
+int MainError::show_boxmsg(const char *title, const char *message, int confirm)
+{
+	char bufr[BCTEXTLEN];
+	int res;
+	int x, y;
+
+	if(main_error)
+	{
+		BC_DisplayInfo display_info;
+		x = display_info.get_abs_cursor_x();
+		y = display_info.get_abs_cursor_y();
+
+		bufr[0] = 0;
+		if(title)
+		{
+			strcpy(bufr, title);
+			strcat(bufr, " - ");
+		}
+		strcat(bufr, PROGRAM_NAME);
+		MainErrorBox ebox(main_error->mwindow,
+			bufr, message, confirm, x, y);
+		res = ebox.run_window();
+	}
+	else
+	{
+		if(title)
+			fprintf(stderr, "%s: %s", title, message);
+		else
+			fprintf(stderr, "%s", message);
+		if(confirm)
+		{
+			int ch;
+			fputs(" [Yn]", stderr);
+			ch = getchar();
+			if(ch == 'y' || ch == 'Y' || ch == '\n')
+				res = 0;
+			else
+				res = 1;
+		}
+		else
+			fputc('\n', stderr);
+	}
+	if(confirm)
+		return res;
+	return 0;
+}
+
+void MainError::ErrorBoxMsg(const char *fmt, ...)
+{
+	char bufr[BCTEXTLEN];
+	va_list ap;
+
+	va_start(ap, fmt);
+	vsnprintf(bufr, BCTEXTLEN, fmt, ap);
+	va_end(ap);
+	show_boxmsg(_("Error"), bufr);
+}
+
+void MainError::ErrorMsg(const char *fmt, ...)
+{
+	char bufr[BCTEXTLEN];
+	va_list ap;
+
+	va_start(ap, fmt);
+	vsnprintf(bufr, BCTEXTLEN, fmt, ap);
+	va_end(ap);
+	show_error(bufr);
+}
+
+void MainError::MessageBox(const char *fmt, ...)
+{
+	char bufr[BCTEXTLEN];
+	va_list ap;
+
+	va_start(ap, fmt);
+	vsnprintf(bufr, BCTEXTLEN, fmt, ap);
+	va_end(ap);
+	show_boxmsg(_("Message"), bufr);
+}
+
+int MainError::ConfirmBox(const char *fmt, ...)
+{
+	char bufr[BCTEXTLEN];
+	va_list ap;
+
+	va_start(ap, fmt);
+	vsnprintf(bufr, BCTEXTLEN, fmt, ap);
+	va_end(ap);
+	return show_boxmsg(_("Confirmation"), bufr, 1);
+}
+
+int MainError::va_MessageBox(const char *hdr, const char *fmt, va_list ap)
+{
+	char bufr[BCTEXTLEN];
+
+	vsnprintf(bufr, BCTEXTLEN, fmt, ap);
+	return show_boxmsg(hdr, bufr);
+}
+
+MainErrorBox::MainErrorBox(MWindow *mwindow,
+	const char *title, const char *text, int confirm,
+	int x, int y, int w, int h)
+ : BC_Window(PROGRAM_NAME, x, y, w, h, w, h, 0)
+{
+	const char *btext;
+
+	set_icon(mwindow->theme->get_image("mwindow_icon"));
+
+	if(title)
+		set_title(title);
+
+	btext = MainError::StringBreaker(MEDIUMFONT, text, get_w() - 30, this);
+
+	add_subwindow(new BC_Title(get_w() / 2,
+		10,
+		btext,
+		MEDIUMFONT,
+		get_resources()->default_text_color,
+		1));
+
+	y = get_h() - 50;
+	if(confirm)
+	{
+		x = get_w() / 4;
+		add_tool(new BC_OKButton(x - 30, y));
+		x *= 3;
+		add_tool(new BC_CancelButton(x - 30, y));
+	}
+	else
+	{
+		x = get_w() / 2 - 30;
+		add_tool(new BC_OKButton(x, y));
 	}
 }
