@@ -29,67 +29,43 @@
 
 #include <string.h>
 
-
-
-
 MainError* MainError::main_error = 0;
-
-
-
-
 
 
 MainErrorGUI::MainErrorGUI(MWindow *mwindow, MainError *thread, int x, int y)
  : BC_Window(MWindow::create_title(N_("Errors")),
-        x,
-        y,
-        mwindow->session->ewindow_w,
-        mwindow->session->ewindow_h,
-        50,
-        50,
-        1,
-        0,
-        1,
-        -1,
-        "",
-        1)
+	x,
+	y,
+	mwindow->session->ewindow_w,
+	mwindow->session->ewindow_h,
+	50,
+	50,
+	1,
+	0,
+	1,
+	-1,
+	"",
+	1)
 {
 	this->mwindow = mwindow;
 	this->thread = thread;
 }
 
-MainErrorGUI::~MainErrorGUI()
-{
-}
-
 void MainErrorGUI::create_objects()
 {
-SET_TRACE
-
 	BC_Button *button;
 	add_subwindow(button = new BC_OKButton(this));
 	int x = 10, y = 10;
-SET_TRACE
+
 	add_subwindow(title = new BC_Title(x, y, _("The following errors occurred:")));
 	y += title->get_h() + 5;
-SET_TRACE
 	add_subwindow(list = new BC_ListBox(x,
-                y,
-                get_w() - 20,
-                button->get_y() - y - 5,
-                LISTBOX_TEXT,                   // Display text list or icons
-                &thread->errors, // Each column has an ArrayList of BC_ListBoxItems.
-                0,             // Titles for columns.  Set to 0 for no titles
-                0,                // width of each column
-                1,                      // Total columns.  Only 1 in icon mode
-                0,                    // Pixel of top of window.
-                0,                     // If this listbox is a popup window with a button
-                LISTBOX_SINGLE,  // Select one item or multiple items
-                ICON_LEFT,        // Position of icon relative to text of each item
-                0));
-SET_TRACE
+		y,
+		get_w() - 20,
+		button->get_y() - y - 5,
+		LISTBOX_TEXT,                   // Display text list or icons
+		&thread->errors));               // Each column has an ArrayList of BC_ListBoxItems.
 	show_window();
-SET_TRACE
 }
 
 int MainErrorGUI::resize_event(int w, int h)
@@ -111,10 +87,6 @@ int MainErrorGUI::resize_event(int w, int h)
 }
 
 
-
-
-
-
 MainError::MainError(MWindow *mwindow)
  : BC_DialogThread()
 {
@@ -131,8 +103,8 @@ MainError::~MainError()
 BC_Window* MainError::new_gui()
 {
 	BC_DisplayInfo display_info;
-        int x = display_info.get_abs_cursor_x();
-        int y = display_info.get_abs_cursor_y();
+	int x = display_info.get_abs_cursor_x();
+	int y = display_info.get_abs_cursor_y();
 
 	MainErrorGUI *gui = new MainErrorGUI(mwindow, this, x, y);
 	gui->create_objects();
@@ -173,18 +145,13 @@ void MainError::append_error(const char *string)
 
 void MainError::show_error_local(const char *string)
 {
-SET_TRACE
 // assume user won't get to closing the GUI here
 	lock_window("MainError::show_error_local");
-SET_TRACE
 	if(get_gui())
 	{
-SET_TRACE
 		MainErrorGUI *gui = (MainErrorGUI*)get_gui();
 		gui->lock_window("MainError::show_error_local");
-SET_TRACE
 		append_error(string);
-SET_TRACE
 		gui->list->update(&errors,
 			0,
 			0,
@@ -194,26 +161,18 @@ SET_TRACE
 			gui->list->get_highlighted_item(),  // Flat index of item cursor is over
 			0,     // set all autoplace flags to 1
 			1);
-SET_TRACE
 		gui->unlock_window();
 		unlock_window();
-SET_TRACE
 		start();
-SET_TRACE
 	}
 	else
 	{
 		unlock_window();
-SET_TRACE
 		errors.remove_all_objects();
-SET_TRACE
 		append_error(string);
-SET_TRACE
 		start();
-SET_TRACE
 	}
 }
-
 
 void MainError::show_error(const char *string)
 {
@@ -226,10 +185,3 @@ void MainError::show_error(const char *string)
 			printf("\n");
 	}
 }
-
-
-
-
-
-
-

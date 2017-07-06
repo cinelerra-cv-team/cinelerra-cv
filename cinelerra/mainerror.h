@@ -39,12 +39,10 @@
 #define eprintf(...) {char error_string[1024]; 	sprintf(error_string, "%s: ", __PRETTY_FUNCTION__); sprintf(error_string + strlen(error_string), __VA_ARGS__); MainError::show_error(error_string); }
 
 
-
 class MainErrorGUI : public BC_Window
 {
 public:
 	MainErrorGUI(MWindow *mwindow, MainError *thread, int x, int y);
-	~MainErrorGUI();
 
 	void create_objects();
 	int resize_event(int w, int h);
@@ -66,17 +64,14 @@ public:
 
 	BC_Window* new_gui();
 
-
 // Display error message to command line or GUI, depending on what exists.
 	static void show_error(const char *string);
-
 
 private:
 	void show_error_local(const char *string);
 
 // Split errors into multiple lines based on carriage returns.
 	void append_error(const char *string);
-
 
 	MWindow *mwindow;
 	ArrayList<BC_ListBoxItem*> errors;
@@ -85,8 +80,5 @@ private:
 // Main error dialog.  Won't exist if no GUI.
 	static MainError *main_error;
 };
-
-
-
 
 #endif
