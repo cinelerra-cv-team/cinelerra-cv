@@ -103,7 +103,8 @@ public:
 
 	long set_shm_offset(long offset);
 	long get_shm_offset();
-
+// copy with color conversion and resizing
+	void transfer_from(VFrame *frame);
 // direct copy with no alpha
 	int copy_from(VFrame *frame);
 // Required for YUV
