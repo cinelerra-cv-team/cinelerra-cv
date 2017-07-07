@@ -50,7 +50,9 @@ public:
 	int read_frame_header(char *path);
 	FrameWriterUnit* new_writer_unit(FrameWriter *writer);
 
-	void *decompressor;
+private:
+	void show_jpeg_error(j_common_ptr cinfo);
+	VFrame *temp_frame;
 };
 
 
@@ -60,8 +62,8 @@ public:
 	JPEGUnit(FileJPEG *file, FrameWriter *writer);
 	~JPEGUnit();
 
-	FileJPEG *file;
-	void *compressor;
+	VFrame *temp_frame;
+	unsigned char *compressed;
 };
 
 class JPEGConfigVideo : public BC_Window

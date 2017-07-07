@@ -34,18 +34,89 @@
 #include "vframe.h"
 #include "videodevice.inc"
 
+#include <setjmp.h>
+
+#if JPEG_LIB_VERSION < 80 && !defined(MEM_SRCDST_SUPPORTED)
+struct my_src_mgr
+{
+	struct jpeg_source_mgr jpeg_src;
+	unsigned char *src_data;
+	size_t src_size;
+};
+
+struct my_dst_mgr
+{
+	struct jpeg_destination_mgr jpeg_dst;
+	unsigned char *dst_data;
+	size_t dst_size;
+	size_t dst_filled;
+};
+
+static void init_jpeg_src(j_decompress_ptr cinfo)
+{
+	struct my_src_mgr *ms = (struct my_src_mgr *)cinfo->src;
+
+	cinfo->src->next_input_byte = ms->src_data;
+	cinfo->src->bytes_in_buffer = ms->src_size;
+}
+
+static boolean fill_jpeg_src(j_decompress_ptr cinfo)
+{
+	return TRUE;
+}
+
+static void skip_jpeg_src(j_decompress_ptr cinfo, long num_bytes)
+{
+}
+
+static void term_jpeg_src(j_decompress_ptr cinfo)
+{
+}
+
+static void init_jpeg_dst(j_compress_ptr cinfo)
+{
+	struct my_dst_mgr *ms = (struct my_dst_mgr *)cinfo->dest;
+
+	cinfo->dest->next_output_byte = ms->dst_data;
+	cinfo->dest->free_in_buffer = ms->dst_size;
+	ms->dst_filled = 0;
+}
+
+static boolean empty_jpeg_dst(j_compress_ptr cinfo)
+{
+	return TRUE;
+}
+
+static void term_jpeg_dst(j_compress_ptr cinfo)
+{
+	struct my_dst_mgr *ms = (struct my_dst_mgr *)cinfo->dest;
+
+	ms->dst_filled = ms->dst_size - cinfo->dest->free_in_buffer;
+}
+#endif
+
+struct error_mgr
+{
+	struct jpeg_error_mgr jpeglib_err;
+	jmp_buf setjmp_buffer;
+};
+
+void jpg_err_exit(j_common_ptr cinfo)
+{
+	struct error_mgr *mgp = (struct error_mgr *)cinfo->err;
+	longjmp(mgp->setjmp_buffer, 1);
+}
 
 FileJPEG::FileJPEG(Asset *asset, File *file)
  : FileList(asset, file, "JPEGLIST", ".jpg", FILE_JPEG, FILE_JPEG_LIST)
 {
-	decompressor = 0;
+	temp_frame = 0;
 }
 
 FileJPEG::~FileJPEG()
 {
-	if(decompressor) mjpeg_delete((mjpeg_t*)decompressor);
+	delete temp_frame;
 }
-
 
 int FileJPEG::check_sig(Asset *asset)
 {
@@ -59,7 +130,7 @@ int FileJPEG::check_sig(Asset *asset)
 		fclose(stream);
 
 		if(rs)
-			return 1;
+			return 0;
 
 		if(test[6] == 'J' && test[7] == 'F' && test[8] == 'I' && test[9] == 'F')
 		{
@@ -99,15 +170,6 @@ void FileJPEG::get_parameters(BC_WindowBase *parent_window,
 
 int FileJPEG::can_copy_from(Edit *edit, int64_t position)
 {
-	if(edit->asset->format == FILE_MOV)
-	{
-		if(match4(edit->asset->vcodec, QUICKTIME_JPEG)) return 1;
-	}
-	else
-	if(edit->asset->format == FILE_JPEG || 
-		edit->asset->format == FILE_JPEG_LIST)
-		return 1;
-
 	return 0;
 }
 
@@ -152,39 +214,104 @@ int FileJPEG::get_best_colormodel(Asset *asset, int driver)
 	return BC_YUV420P;
 }
 
+void FileJPEG::show_jpeg_error(j_common_ptr cinfo)
+{
+	char buffer[JMSG_LENGTH_MAX];
+
+	(*cinfo->err->format_message)(cinfo, buffer);
+	errormsg("libjpeg error: %s", buffer);
+}
+
 int FileJPEG::write_frame(VFrame *frame, VFrame *data, FrameWriterUnit *unit)
 {
-	int result = 0;
+	VFrame *work_frame;
+	JSAMPROW row_pointer[1];
+	struct jpeg_compress_struct cinfo;
+	struct error_mgr jpeg_error;
+	unsigned long clength;
 	JPEGUnit *jpeg_unit = (JPEGUnit*)unit;
 
-	if(!jpeg_unit->compressor)
-		jpeg_unit->compressor = mjpeg_new(asset->width, 
-			asset->height, 
-			1);
-	mjpeg_set_quality((mjpeg_t*)jpeg_unit->compressor, asset->jpeg_quality);
+	if(frame->get_color_model() != BC_RGB888)
+	{
+		if(jpeg_unit->temp_frame && (jpeg_unit->temp_frame->get_w() != frame->get_w() ||
+			jpeg_unit->temp_frame->get_h() != frame->get_h()))
+		{
+			delete jpeg_unit->temp_frame;
+			jpeg_unit->temp_frame = 0;
+		}
+		if(!jpeg_unit->temp_frame)
+			jpeg_unit->temp_frame = new VFrame(0, frame->get_w(),
+				frame->get_h(), BC_RGB888);
+		jpeg_unit->temp_frame->transfer_from(frame);
+		work_frame = jpeg_unit->temp_frame;
+	}
+	else
+		work_frame = frame;
 
-	mjpeg_compress((mjpeg_t*)jpeg_unit->compressor, 
-		frame->get_rows(), 
-		frame->get_y(), 
-		frame->get_u(), 
-		frame->get_v(),
-		frame->get_color_model(),
-		1);
+	if(jpeg_unit->compressed)
+		free(jpeg_unit->compressed);
 
-	data->allocate_compressed_data(mjpeg_output_size((mjpeg_t*)jpeg_unit->compressor));
-	data->set_compressed_size(mjpeg_output_size((mjpeg_t*)jpeg_unit->compressor));
-	memcpy(data->get_data(), 
-		mjpeg_output_buffer((mjpeg_t*)jpeg_unit->compressor), 
-		mjpeg_output_size((mjpeg_t*)jpeg_unit->compressor));
+	cinfo.err = jpeg_std_error(&jpeg_error.jpeglib_err);
+	jpeg_error.jpeglib_err.error_exit = jpg_err_exit;
 
-	return result;
+	if(setjmp(jpeg_error.setjmp_buffer))
+	{
+		show_jpeg_error((j_common_ptr)&cinfo);
+		jpeg_destroy_compress(&cinfo);
+		return 1;
+	}
+
+	jpeg_create_compress(&cinfo);
+
+#if JPEG_LIB_VERSION >= 80 || defined(MEM_SRCDST_SUPPORTED)
+	jpeg_unit->compressed = 0;
+	clength = 0;
+	jpeg_mem_dest(&cinfo, &jpeg_unit->compressed, &clength);
+#else
+	struct my_dst_mgr my_dst;
+	size_t sz = work_frame->get_w() * work_frame->get_h() * 3;
+
+	jpeg_unit->compressed = my_dst.dst_data = (unsigned char*)malloc(sz);
+	my_dst.dst_size = sz;
+
+	my_dst.jpeg_dst.init_destination = init_jpeg_dst;
+	my_dst.jpeg_dst.empty_output_buffer = empty_jpeg_dst;
+	my_dst.jpeg_dst.term_destination = term_jpeg_dst;
+
+	cinfo.dest = (jpeg_destination_mgr *)&my_dst;
+#endif
+
+	cinfo.image_width = work_frame->get_w();
+	cinfo.image_height = work_frame->get_h();
+	cinfo.input_components = 3;
+	cinfo.in_color_space = JCS_RGB;
+
+	jpeg_set_defaults(&cinfo);
+	jpeg_set_quality(&cinfo, asset->jpeg_quality, TRUE);
+	jpeg_start_compress(&cinfo, TRUE);
+	for(int i; i < cinfo.image_height; i++)
+	{
+		row_pointer[0] = work_frame->get_data() + i * work_frame->get_bytes_per_line();
+		jpeg_write_scanlines(&cinfo, row_pointer, 1);
+	}
+	jpeg_finish_compress(&cinfo);
+	jpeg_destroy_compress(&cinfo);
+
+#if JPEG_LIB_VERSION >= 80 || defined(MEM_SRCDST_SUPPORTED)
+	data->set_compressed_memory(jpeg_unit->compressed, clength, clength);
+#else
+	data->set_compressed_memory(jpeg_unit->compressed, my_dst.dst_filled,
+		my_dst.dst_size);
+#endif
+	return 0;
 }
 
 int FileJPEG::read_frame_header(char *path)
 {
 	int result = 0;
-
 	FILE *stream;
+	struct jpeg_decompress_struct jpeg_decompress;
+	struct error_mgr jpeg_error;
 
 	if(!(stream = fopen(path, "rb")))
 	{
@@ -192,10 +319,16 @@ int FileJPEG::read_frame_header(char *path)
 		return 1;
 	}
 
-	struct jpeg_decompress_struct jpeg_decompress;
-	struct jpeg_error_mgr jpeg_error;
+	jpeg_decompress.err = jpeg_std_error(&jpeg_error.jpeglib_err);
+	jpeg_error.jpeglib_err.error_exit = jpg_err_exit;
 
-	jpeg_decompress.err = jpeg_std_error(&jpeg_error);
+	if(setjmp(jpeg_error.setjmp_buffer))
+	{
+		show_jpeg_error((j_common_ptr)&jpeg_decompress);
+		jpeg_destroy_decompress(&jpeg_decompress);
+		return 1;
+	}
+
 	jpeg_create_decompress(&jpeg_decompress);
 
 	jpeg_stdio_src(&jpeg_decompress, stream);
@@ -206,7 +339,7 @@ int FileJPEG::read_frame_header(char *path)
 
 	asset->interlace_mode = BC_ILACE_MODE_NOTINTERLACED;
 
-	jpeg_destroy((j_common_ptr)&jpeg_decompress);
+	jpeg_destroy_decompress(&jpeg_decompress);
 	fclose(stream);
 
 	return result;
@@ -214,20 +347,73 @@ int FileJPEG::read_frame_header(char *path)
 
 int FileJPEG::read_frame(VFrame *output, VFrame *input)
 {
-	if(!decompressor) decompressor = mjpeg_new(asset->width, 
-		asset->height, 
-		1);
-	mjpeg_decompress((mjpeg_t*)decompressor, 
-		input->get_data(), 
-		input->get_compressed_size(),
-		0,  
-		output->get_rows(), 
-		output->get_y(), 
-		output->get_u(), 
-		output->get_v(),
-		output->get_color_model(),
-		1);
+	struct jpeg_decompress_struct jpeg_decompress;
+	struct error_mgr jpeg_error;
+	VFrame *work_frame;
+	JSAMPROW row_pointer[1];
 
+	if(output->get_color_model() != BC_RGB888)
+	{
+		if(temp_frame && (temp_frame->get_w() != output->get_w() ||
+			temp_frame->get_h() != output->get_h()))
+		{
+			delete temp_frame;
+			temp_frame = 0;
+		}
+		if(!temp_frame)
+			temp_frame = new VFrame(0, output->get_w(),
+				output->get_h(), BC_RGB888);
+		work_frame = temp_frame;
+	}
+	else
+		work_frame = output;
+
+	jpeg_decompress.err = jpeg_std_error(&jpeg_error.jpeglib_err);
+	jpeg_error.jpeglib_err.error_exit = jpg_err_exit;
+
+	if(setjmp(jpeg_error.setjmp_buffer))
+	{
+		show_jpeg_error((j_common_ptr)&jpeg_decompress);
+		jpeg_destroy_decompress(&jpeg_decompress);
+		return 1;
+	}
+	jpeg_create_decompress(&jpeg_decompress);
+
+#if JPEG_LIB_VERSION >= 80 || defined(MEM_SRCDST_SUPPORTED)
+	jpeg_mem_src(&jpeg_decompress, input->get_data(),
+		input->get_compressed_size());
+#else
+	struct my_src_mgr my_src;
+
+	my_src.src_data = input->get_data();
+	my_src.src_size = input->get_compressed_size();
+
+	my_src.jpeg_src.init_source = init_jpeg_src;
+	my_src.jpeg_src.fill_input_buffer = fill_jpeg_src;
+	my_src.jpeg_src.skip_input_data = skip_jpeg_src;
+	my_src.jpeg_src.resync_to_restart = jpeg_resync_to_restart;
+	my_src.jpeg_src.term_source = term_jpeg_src;
+
+	jpeg_decompress.src = (struct jpeg_source_mgr *)&my_src;
+#endif
+
+	jpeg_decompress.output_width = work_frame->get_w();
+	jpeg_decompress.output_height = work_frame->get_h();
+
+	jpeg_read_header(&jpeg_decompress, TRUE);
+	jpeg_start_decompress(&jpeg_decompress);
+
+	for(int i = 0; i < jpeg_decompress.output_height; i++)
+	{
+		row_pointer[0] = work_frame->get_data() + i * work_frame->get_bytes_per_line();
+		jpeg_read_scanlines(&jpeg_decompress, row_pointer, 1);
+	}
+
+	if(work_frame != output)
+		output->transfer_from(temp_frame);
+
+	jpeg_finish_decompress(&jpeg_decompress);
+	jpeg_destroy_decompress(&jpeg_decompress);
 	return 0;
 }
 
@@ -240,13 +426,14 @@ FrameWriterUnit* FileJPEG::new_writer_unit(FrameWriter *writer)
 JPEGUnit::JPEGUnit(FileJPEG *file, FrameWriter *writer)
  : FrameWriterUnit(writer)
 {
-	this->file = file;
-	compressor = 0;
+	temp_frame = 0;
+	compressed = 0;
 }
 
 JPEGUnit::~JPEGUnit()
 {
-	if(compressor) mjpeg_delete((mjpeg_t*)compressor);
+	delete temp_frame;
+	free(compressed);
 }
 
 
@@ -282,6 +469,3 @@ int JPEGConfigVideo::create_objects()
 	add_subwindow(new BC_OKButton(this));
 	return 0;
 }
-
-
-
