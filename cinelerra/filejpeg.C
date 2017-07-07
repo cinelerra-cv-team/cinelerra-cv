@@ -24,15 +24,16 @@
 #include "edit.h"
 #include "file.h"
 #include "filejpeg.h"
+#include "mainerror.h"
 #include "interlacemodes.h"
 #include "jpegwrapper.h"
 #include "language.h"
 #include "libmjpeg.h"
 #include "mwindow.h"
 #include "quicktime.h"
+#include "theme.h"
 #include "vframe.h"
 #include "videodevice.inc"
-#include "mainerror.h"
 
 
 FileJPEG::FileJPEG(Asset *asset, File *file)
@@ -81,8 +82,6 @@ int FileJPEG::check_sig(Asset *asset)
 	return 0;
 }
 
-
-
 void FileJPEG::get_parameters(BC_WindowBase *parent_window, 
 	Asset *asset, 
 	BC_WindowBase* &format_window,
@@ -99,10 +98,8 @@ void FileJPEG::get_parameters(BC_WindowBase *parent_window,
 	}
 }
 
-
 int FileJPEG::can_copy_from(Edit *edit, int64_t position)
 {
-//printf("FileJPEG::can_copy_from %d %s\n", asset->format, asset->vcodec);
 	if(edit->asset->format == FILE_MOV)
 	{
 		if(match4(edit->asset->vcodec, QUICKTIME_JPEG)) return 1;
@@ -120,44 +117,41 @@ int FileJPEG::colormodel_supported(int colormodel)
 	return colormodel;
 }
 
-
 int FileJPEG::get_best_colormodel(Asset *asset, int driver)
 {
 	switch(driver)
 	{
 		case PLAYBACK_X11:
 			return BC_RGB888;
-			break;
+
 		case PLAYBACK_X11_XV:
 		case PLAYBACK_DV1394:
 		case PLAYBACK_FIREWIRE:
 		case PLAYBACK_ASYNCHRONOUS:
 			return BC_YUV420P;
-			break;
+
 		case PLAYBACK_X11_GL:
 			return BC_YUV888;
-			break;
+
 		case PLAYBACK_LML:
 		case PLAYBACK_BUZ:
 			return BC_YUV422P;
-			break;
+
 		case VIDEO4LINUX:
 		case VIDEO4LINUX2:
 			return BC_YUV420P;
-			break;
+
 		case CAPTURE_BUZ:
 		case CAPTURE_LML:
 		case VIDEO4LINUX2JPEG:
 			return BC_YUV422;
-			break;
+
 		case CAPTURE_FIREWIRE:
 		case CAPTURE_IEC61883:
 			return BC_YUV420P;
-			break;
 	}
 	return BC_YUV420P;
 }
-
 
 int FileJPEG::write_frame(VFrame *frame, VFrame *data, FrameWriterUnit *unit)
 {
@@ -169,8 +163,7 @@ int FileJPEG::write_frame(VFrame *frame, VFrame *data, FrameWriterUnit *unit)
 			asset->height, 
 			1);
 	mjpeg_set_quality((mjpeg_t*)jpeg_unit->compressor, asset->jpeg_quality);
-	
-	
+
 	mjpeg_compress((mjpeg_t*)jpeg_unit->compressor, 
 		frame->get_rows(), 
 		frame->get_y(), 
@@ -178,29 +171,19 @@ int FileJPEG::write_frame(VFrame *frame, VFrame *data, FrameWriterUnit *unit)
 		frame->get_v(),
 		frame->get_color_model(),
 		1);
-	
+
 	data->allocate_compressed_data(mjpeg_output_size((mjpeg_t*)jpeg_unit->compressor));
 	data->set_compressed_size(mjpeg_output_size((mjpeg_t*)jpeg_unit->compressor));
 	memcpy(data->get_data(), 
 		mjpeg_output_buffer((mjpeg_t*)jpeg_unit->compressor), 
 		mjpeg_output_size((mjpeg_t*)jpeg_unit->compressor));
-	
+
 	return result;
 }
-
-
-
-
-
-
-
-
-
 
 int FileJPEG::read_frame_header(char *path)
 {
 	int result = 0;
-
 
 	FILE *stream;
 
@@ -209,8 +192,6 @@ int FileJPEG::read_frame_header(char *path)
 		eprintf("Error while opening \"%s\" for reading. \n%m\n", asset->path);
 		return 1;
 	}
-	
-	
 
 	struct jpeg_decompress_struct jpeg_decompress;
 	struct jpeg_error_mgr jpeg_error;
@@ -228,13 +209,9 @@ int FileJPEG::read_frame_header(char *path)
 
 	jpeg_destroy((j_common_ptr)&jpeg_decompress);
 	fclose(stream);
-	
-	
-	
+
 	return result;
 }
-
-
 
 int FileJPEG::read_frame(VFrame *output, VFrame *input)
 {
@@ -252,7 +229,6 @@ int FileJPEG::read_frame(VFrame *output, VFrame *input)
 		output->get_color_model(),
 		1);
 
-
 	return 0;
 }
 
@@ -262,31 +238,23 @@ FrameWriterUnit* FileJPEG::new_writer_unit(FrameWriter *writer)
 }
 
 
-
-
-
-
 JPEGUnit::JPEGUnit(FileJPEG *file, FrameWriter *writer)
  : FrameWriterUnit(writer)
 {
 	this->file = file;
 	compressor = 0;
 }
+
 JPEGUnit::~JPEGUnit()
 {
 	if(compressor) mjpeg_delete((mjpeg_t*)compressor);
 }
 
 
-
-
-
-
-
 JPEGConfigVideo::JPEGConfigVideo(BC_WindowBase *parent_window, Asset *asset)
  : BC_Window(MWindow::create_title(N_("Video Compression")),
- 	parent_window->get_abs_cursor_x(1),
- 	parent_window->get_abs_cursor_y(1),
+	parent_window->get_abs_cursor_x(1),
+	parent_window->get_abs_cursor_y(1),
 	400,
 	100)
 {
@@ -294,14 +262,11 @@ JPEGConfigVideo::JPEGConfigVideo(BC_WindowBase *parent_window, Asset *asset)
 	this->asset = asset;
 }
 
-JPEGConfigVideo::~JPEGConfigVideo()
-{
-}
-
 int JPEGConfigVideo::create_objects()
 {
 	int x = 10, y = 10;
 
+	set_icon(theme_global->get_image("mwindow_icon"));
 	add_subwindow(new BC_Title(x, y, _("Quality:")));
 	add_subwindow(new BC_ISlider(x + 80, 
 		y,
@@ -317,12 +282,6 @@ int JPEGConfigVideo::create_objects()
 
 	add_subwindow(new BC_OKButton(this));
 	return 0;
-}
-
-int JPEGConfigVideo::close_event()
-{
-	set_done(0);
-	return 1;
 }
 
 

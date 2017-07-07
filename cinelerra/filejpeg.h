@@ -66,10 +66,8 @@ class JPEGConfigVideo : public BC_Window
 {
 public:
 	JPEGConfigVideo(BC_WindowBase *parent_window, Asset *asset);
-	~JPEGConfigVideo();
 
 	int create_objects();
-	int close_event();
 
 	BC_WindowBase *parent_window;
 	Asset *asset;
