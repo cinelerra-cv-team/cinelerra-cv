@@ -44,6 +44,9 @@
 
 #include <locale.h>
 
+MWindow *mwindow_global;
+Theme *theme_global;
+
 enum
 {
 	DO_GUI,
@@ -288,24 +291,24 @@ PROGRAM_NAME " is free software, covered by the GNU General Public License,\n"
 
 		case DO_GUI:
 		{
-			MWindow mwindow;
-			mwindow.create_objects(1, 
+			mwindow_global = new MWindow();
+			mwindow_global->create_objects(1,
 				!filenames.total,
 				config_path);
 
 // load the initial files on seperate tracks
 			if(filenames.total)
 			{
-				mwindow.gui->lock_window("main");
-				mwindow.load_filenames(&filenames, LOAD_REPLACE);
+				mwindow_global->gui->lock_window("main");
+				mwindow_global->load_filenames(&filenames, LOAD_REPLACE);
 				if(filenames.total == 1)
-					mwindow.gui->mainmenu->add_load(filenames.values[0]);
-				mwindow.gui->unlock_window();
+					mwindow_global->gui->mainmenu->add_load(filenames.values[0]);
+				mwindow_global->gui->unlock_window();
 			}
 
 // run the program
-			mwindow.start();
-			mwindow.save_defaults();
+			mwindow_global->start();
+			mwindow_global->save_defaults();
 			break;
 		}
 	}
@@ -315,6 +318,7 @@ PROGRAM_NAME " is free software, covered by the GNU General Public License,\n"
 	EDL::id_lock = 0;
 	delete Garbage::garbage;
 	Garbage::garbage = 0;
+	delete mwindow_global;
 	return 0;
 }
 

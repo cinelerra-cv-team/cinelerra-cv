@@ -712,6 +712,7 @@ void MWindow::init_theme()
 	init_menus();
 
 	theme->check_used();
+	theme_global = theme;
 }
 
 void MWindow::init_3d()
