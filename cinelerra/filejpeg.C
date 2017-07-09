@@ -26,7 +26,6 @@
 #include "filejpeg.h"
 #include "mainerror.h"
 #include "interlacemodes.h"
-#include "jpegwrapper.h"
 #include "language.h"
 #include "libmjpeg.h"
 #include "mwindow.h"

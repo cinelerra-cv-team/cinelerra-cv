@@ -26,6 +26,8 @@
 #include "filelist.h"
 #include "vframe.inc"
 
+#include <jpeglib.h>
+
 class FileJPEG : public FileList
 {
 public:
