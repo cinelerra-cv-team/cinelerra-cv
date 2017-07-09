@@ -356,6 +356,8 @@ public:
 	static HashCache hash_cache;
 // Current directory
 	static char working_directory[BCTEXTLEN];
+// Colorspace conversions
+	static BC_CModels colormodels;
 
 private:
 // Test for availability of shared memory pixmaps

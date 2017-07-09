@@ -112,6 +112,7 @@ BC_Signals* BC_Resources::signal_handler = 0;
 Mutex BC_Resources::fontconfig_lock("BC_Resources::fonconfig_lock");
 HashCache BC_Resources::hash_cache;
 char BC_Resources::working_directory[BCTEXTLEN];
+BC_CModels BC_Resources::colormodels;
 
 int BC_Resources::x_error_handler(Display *display, XErrorEvent *event)
 {
