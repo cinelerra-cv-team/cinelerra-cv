@@ -22,6 +22,9 @@
 #ifndef FILEEXR_H
 #define FILEEXR_H
 
+#include "config.h"
+
+#ifdef HAVE_OPENEXR
 
 #include "file.inc"
 #include "filelist.h"
@@ -121,4 +124,5 @@ public:
 	int value;
 };
 
+#endif
 #endif

@@ -19,6 +19,7 @@
  * 
  */
 
+#include "config.h"
 #include "bcsignals.h"
 #include "file.inc"
 #include "formatpopup.h"
@@ -63,8 +64,10 @@ int FormatPopup::create_objects()
 	if(!use_brender)
 	{
 		format_items.append(new BC_ListBoxItem(_(AVI_NAME)));
+#ifdef HAVE_OPENEXR
 		format_items.append(new BC_ListBoxItem(_(EXR_NAME)));
 		format_items.append(new BC_ListBoxItem(_(EXR_LIST_NAME)));
+#endif
 		format_items.append(new BC_ListBoxItem(_(YUV_NAME)));
 		format_items.append(new BC_ListBoxItem(_(WAV_NAME)));
 		format_items.append(new BC_ListBoxItem(_(MOV_NAME)));

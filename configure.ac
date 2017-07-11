@@ -282,9 +282,14 @@ AC_CHECK_HEADERS(sndfile.h,[libsndfileh=yes])
 ############## END OF LIBSNDFILE
 
 ############## OpenEXR
+AH_TEMPLATE(HAVE_OPENEXR, [Define 1 if OpenEXR is used])
 PKG_CHECK_MODULES(OPENEXR, OpenEXR,[libOpenEXR=yes],:)
-AC_SUBST(OPENEXR_CFLAGS)
-AC_SUBST(OPENEXR_LIBS)
+if test "$libOpenEXR" = "yes"; then
+    AC_SUBST(OPENEXR_CFLAGS)
+    AC_SUBST(OPENEXR_LIBS)
+    AC_DEFINE(HAVE_OPENEXR)
+fi
+AM_CONDITIONAL(NEED_OPENEXR, test "x$libOpenEXR" = "xyes")
 ############## END OF OpenEXR
 
 ############## LIBFAAD, LIBFAAC
@@ -781,7 +786,6 @@ RPT(libvorbis,libvorbis)
 RPT(libvorbisenc,libvorbisenc)
 RPT(libvorbisfile,libvorbisfile)
 RPT(libtheora,libtheora)
-RPT(libOpenEXR,OpenEXR)
 RPT(libdv,libdv)
 RPT(libpng,libpng)
 RPT(libjpeg,libjpeg libraries)
@@ -832,6 +836,7 @@ ORPT(enable_firewire,Firewire,--disable-firewire,
 ORPT(enable_opengl,Hardware acceleration using OpenGL 2.0,--disable-opengl,
 	RPT(libGL,OpenGL 2.0 libraries)
 )
+RPT(libOpenEXR,OpenEXR)
 
 if test "x$mandatory" = "xno"; then
 	echo

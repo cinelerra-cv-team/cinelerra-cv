@@ -197,6 +197,7 @@ int File::get_options(FormatTools *format,
 				audio_options, 
 				video_options);
 			break;
+#ifdef HAVE_OPENEXR
 		case FILE_EXR:
 		case FILE_EXR_LIST:
 			FileEXR::get_parameters(parent_window, 
@@ -205,6 +206,7 @@ int File::get_options(FormatTools *format,
 				audio_options, 
 				video_options);
 			break;
+#endif
 	        case FILE_YUV:
 			FileYUV::get_parameters(parent_window,
 				asset,
@@ -370,6 +372,7 @@ int File::open_file(Preferences *preferences,
 				file = new FileJPEG(this->asset, this);
 			}
 			else
+#ifdef HAVE_OPENEXR
 			if(FileEXR::check_sig(this->asset, test))
 			{
 // EXR file
@@ -377,6 +380,7 @@ int File::open_file(Preferences *preferences,
 				file = new FileEXR(this->asset, this);
 			}
 			else
+#endif
 			if(FileYUV::check_sig(this->asset))
 			{
 // YUV file
@@ -473,12 +477,12 @@ int File::open_file(Preferences *preferences,
 		case FILE_JPEG_LIST:
 			file = new FileJPEG(this->asset, this);
 			break;
-
+#ifdef HAVE_OPENEXR
 		case FILE_EXR:
 		case FILE_EXR_LIST:
 			file = new FileEXR(this->asset, this);
 			break;
-
+#endif
 		case FILE_YUV:
 			file = new FileYUV(this->asset, this);
 			break;
@@ -1153,10 +1157,12 @@ int File::strtoformat(ArrayList<PluginServer*> *plugindb, char *format)
 	else
 	if(!strcasecmp(format, _(JPEG_LIST_NAME))) return FILE_JPEG_LIST;
 	else
+#ifdef HAVE_OPENEXR
 	if(!strcasecmp(format, _(EXR_NAME))) return FILE_EXR;
 	else
 	if(!strcasecmp(format, _(EXR_LIST_NAME))) return FILE_EXR_LIST;
 	else
+#endif
 	if(!strcasecmp(format, _(YUV_NAME))) return FILE_YUV;
 	else
 	if(!strcasecmp(format, _(MPEG_NAME))) return FILE_MPEG;
@@ -1220,12 +1226,14 @@ const char* File::formattostr(ArrayList<PluginServer*> *plugindb, int format)
 		case FILE_JPEG_LIST:
 			return _(JPEG_LIST_NAME);
 			break;
+#ifdef HAVE_OPENEXR
 		case FILE_EXR:
 			return _(EXR_NAME);
 			break;
 		case FILE_EXR_LIST:
 			return _(EXR_LIST_NAME);
 			break;
+#endif
 		case FILE_YUV:
 			return _(YUV_NAME);
 			break;
@@ -1391,12 +1399,12 @@ int File::get_best_colormodel(Asset *asset, int driver)
 		case FILE_JPEG_LIST:
 			return FileJPEG::get_best_colormodel(asset, driver);
 			break;
-
+#ifdef HAVE_OPENEXR
 		case FILE_EXR:
 		case FILE_EXR_LIST:
 			return FileEXR::get_best_colormodel(asset, driver);
 			break;
-		
+#endif
 		case FILE_YUV:
 			return FileYUV::get_best_colormodel(asset, driver);
 			break;
@@ -1468,8 +1476,10 @@ int File::supports_video(int format)
 		case FILE_MOV:
 		case FILE_JPEG:
 		case FILE_JPEG_LIST:
+#ifdef HAVE_OPENEXR
 		case FILE_EXR:
 		case FILE_EXR_LIST:
+#endif
 	        case FILE_YUV:
 		case FILE_PNG:
 		case FILE_PNG_LIST:
@@ -1523,8 +1533,10 @@ const char* File::get_tag(int format)
 		case FILE_AU:           return "au";
 		case FILE_AVI:          return "avi";
 		case FILE_RAWDV:        return "dv";
+#ifdef HAVE_OPENEXR
 		case FILE_EXR:          return "exr";
 		case FILE_EXR_LIST:     return "exr";
+#endif
 		case FILE_JPEG:         return "jpg";
 		case FILE_JPEG_LIST:    return "jpg";
 		case FILE_MOV:          return "mov";
