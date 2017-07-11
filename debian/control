@@ -40,9 +40,6 @@ Build-Depends: debhelper (>= 9),
 	libxv-dev,
 	libxxf86vm-dev,
 	libglu1-mesa-dev,
-	libopencv-core-dev,
-	libopencv-objdetect-dev,
-	libopencv-legacy-dev,
 	nasm,
 	uuid-dev
 Homepage: http://www.cinelerra-cv.org/

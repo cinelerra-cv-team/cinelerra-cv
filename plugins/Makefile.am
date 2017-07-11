@@ -3,11 +3,6 @@ THEMES= \
 	bluedottheme \
 	defaulttheme
 
-if ENABLE_FINDOBJECT
-MAYBE_FINDOBJECT = \
-	findobject 
-endif
-
 SUBDIRS= \
 	$(THEMES) \
 	libfourier \
@@ -110,8 +105,7 @@ SUBDIRS= \
 	whirl \
 	wipe \
 	yuv \
-	zoomblur \
-	$(MAYBE_FINDOBJECT)
+	zoomblur
 
 AUTOMAKE_OPTIONS=foreign
 
