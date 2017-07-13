@@ -932,18 +932,6 @@ int FileDV::colormodel_supported(int colormodel)
 	return colormodel;
 }
 
-int FileDV::can_copy_from(Edit *edit, int64_t position)
-{
-	if(edit->asset->format == FILE_RAWDV ||
-			(edit->asset->format == FILE_MOV &&
-				(match4(edit->asset->vcodec, QUICKTIME_DV) ||
-				match4(edit->asset->vcodec, QUICKTIME_DVSD) ||
-				match4(edit->asset->vcodec, QUICKTIME_DVCP))))
-		return 1;
-
-	return 0;
-}
-
 int FileDV::get_best_colormodel(Asset *asset, int driver)
 {
 	switch(driver)

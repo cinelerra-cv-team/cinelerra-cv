@@ -102,7 +102,6 @@ public:
 // use.
 	virtual int colormodel_supported(int colormodel) { return BC_RGB888; };
 // This file can copy compressed frames directly from the asset
-	virtual int can_copy_from(Edit *edit, int64_t position) { return 0; }; 
 	virtual int get_render_strategy(ArrayList<int>* render_strategies) { return VRENDER_VPIXEL; };
 
 protected:

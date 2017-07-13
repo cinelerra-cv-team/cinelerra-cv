@@ -295,25 +295,6 @@ int FileYUV::check_sig(Asset *asset)
         return 0;
 }
 
-// NOTE: this is called on the write stream, not the read stream!
-//       as such, I have no idea what one is supposed to do with position.
-int FileYUV::can_copy_from(Edit *edit, int64_t position)
-{
-	// NOTE: width and height already checked in file.C
-
-	// FUTURE: is the incoming asset already available somewhere?
-	incoming_asset = edit->asset;
-
-	if (edit->asset->format == FILE_YUV) return 1;
-
-	// if FFMPEG can decode it, we'll accept it
-	if (FFMPEG::codec_id(edit->asset->vcodec) != CODEC_ID_NONE) return 1;
-
-	incoming_asset = 0;
-
-	return 0;
-}
-
 int FileYUV::get_best_colormodel(Asset *asset, int driver) 
 {
 	// FUTURE: is there a reason to try to accept anything else?  

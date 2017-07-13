@@ -168,11 +168,6 @@ void FileJPEG::get_parameters(BC_WindowBase *parent_window,
 	}
 }
 
-int FileJPEG::can_copy_from(Edit *edit, int64_t position)
-{
-	return 0;
-}
-
 int FileJPEG::colormodel_supported(int colormodel)
 {
 	return colormodel;

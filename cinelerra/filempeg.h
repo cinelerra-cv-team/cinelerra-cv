@@ -99,8 +99,7 @@ public:
 // Direct copy routines
 	static int get_best_colormodel(Asset *asset, int driver);
 	int colormodel_supported(int colormodel);
-// This file can copy frames directly from the asset
-	int can_copy_from(Edit *edit, int64_t position); 
+
 	static const char *strtocompression(char *string);
 	static const char *compressiontostr(char *string);
 

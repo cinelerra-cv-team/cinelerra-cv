@@ -46,7 +46,6 @@ public:
 	static void read_tga(Asset *asset, VFrame *frame, VFrame *data, VFrame* &temp);
 	static void write_tga(Asset *asset, VFrame *frame, VFrame *data, VFrame* &temp);
 
-	int can_copy_from(Edit *edit, int64_t position);
 	static int get_best_colormodel(Asset *asset, int driver);
 	int colormodel_supported(int colormodel);
 	int read_frame(VFrame *frame, VFrame *data);

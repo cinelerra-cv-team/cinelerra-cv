@@ -71,9 +71,6 @@ public:
 	int read_frame(VFrame *frame);
 	
 	int colormodel_supported(int colormodel);
-	
-	int can_copy_from(Edit *edit, int64_t position);
-	
 	static int get_best_colormodel(Asset *asset, int driver);
 	
 	int get_audio_frame(int64_t pos);

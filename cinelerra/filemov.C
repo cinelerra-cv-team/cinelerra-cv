@@ -582,50 +582,6 @@ int FileMOV::get_best_colormodel(Asset *asset, int driver)
 	return BC_RGB888;
 }
 
-int FileMOV::can_copy_from(Edit *edit, int64_t position)
-{
-	if(!fd) return 0;
-
-//printf("FileMOV::can_copy_from 1 %d %s %s\n", edit->asset->format, edit->asset->vcodec, this->asset->vcodec);
-	if(edit->asset->format == FILE_JPEG_LIST && 
-		match4(this->asset->vcodec, QUICKTIME_JPEG))
-		return 1;
-	else
-	if((edit->asset->format == FILE_MOV || 
-		edit->asset->format == FILE_AVI))
-	{
-//printf("FileMOV::can_copy_from %s %s\n", edit->asset->vcodec, this->asset->vcodec);
-		if(match4(edit->asset->vcodec, this->asset->vcodec))
-			return 1;
-// there are combinations where the same codec has multiple fourcc codes
-// check for DV...
-		int is_edit_dv = 0;
-		int is_this_dv = 0;
-		if (match4(edit->asset->vcodec, QUICKTIME_DV) || 
-			match4(edit->asset->vcodec, QUICKTIME_DVSD) || 
-			match4(edit->asset->vcodec, QUICKTIME_DVCP))
-			is_edit_dv = 1;
-		if (match4(this->asset->vcodec, QUICKTIME_DV) || 
-			match4(this->asset->vcodec, QUICKTIME_DVSD) || 
-			match4(this->asset->vcodec, QUICKTIME_DVCP))
-			is_this_dv = 1;
-		if (is_this_dv && is_edit_dv)
-			return 1;
-	}
-	else
-	if(edit->asset->format == FILE_RAWDV)
-	{
-		if(match4(this->asset->vcodec, QUICKTIME_DV) || 
-			match4(this->asset->vcodec, QUICKTIME_DVSD) || 
-			match4(this->asset->vcodec, QUICKTIME_DVCP))
-			return 1;
-	}
-
-
-	return 0;
-}
-
-
 int64_t FileMOV::get_audio_length()
 {
 	if(!fd) return 0;

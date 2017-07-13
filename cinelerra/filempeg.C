@@ -818,12 +818,6 @@ int FileMPEG::get_index(char *index_path)
 	return 1;
 }
 
-
-int FileMPEG::can_copy_from(Edit *edit, int64_t position)
-{
-	return 0;
-}
-
 int FileMPEG::set_audio_position(int64_t sample)
 {
 #if 0

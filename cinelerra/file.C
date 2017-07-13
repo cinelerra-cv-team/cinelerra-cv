@@ -1111,21 +1111,7 @@ int File::read_frame(VFrame *frame, int is_thread)
 		return 1;
 }
 
-int File::can_copy_from(Edit *edit, int64_t position, int output_w, int output_h)
-{
-	if(file)
-	{
-		return edit->asset->width == output_w &&
-			edit->asset->height == output_h &&
-			file->can_copy_from(edit, position);
-	}
-	else
-		return 0;
-}
-
 // Fill in queries about formats when adding formats here.
-
-
 int File::strtoformat(char *format)
 {
 	return strtoformat(0, format);
