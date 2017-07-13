@@ -272,11 +272,3 @@ int VDevice1394::write_buffer(VFrame *frame, EDL *edl)
 	if(output_iec) output_iec->write_frame(frame);
 	return 0;
 }
-
-
-
-
-int VDevice1394::can_copy_from(Asset *asset, int output_w, int output_h)
-{
-	return 0;
-}
