@@ -36,7 +36,6 @@
 #define FILE_AC3                25    // AC3 encoding
 #define FILE_AU         		9
 #define FILE_AVI                24    // Heroine Virtual
-#define FILE_GIF  	    		7
 #define FILE_JPEG 	    		5
 #define FILE_JPEG_LIST  		8
 #define FILE_MOV  	    		3
@@ -69,7 +68,6 @@
 	format == FILE_AC3     ? "AC3" :		\
 	format == FILE_AU      ? "AU" :			\
 	format == FILE_AVI     ? "AVI" :		\
-	format == FILE_GIF     ? "GIF" :		\
 	format == FILE_JPEG    ? "JPEG" :		\
 	format == FILE_JPEG_LIST ? "JPEG_LIST" :	\
 	format == FILE_MOV     ? "MOV" :		\
