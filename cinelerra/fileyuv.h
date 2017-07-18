@@ -27,7 +27,6 @@
 #include "filelist.h"
 #include "vframe.inc"
 #include "formattools.h"
-#include "ffmpeg.h"
 
 class PipeCheckBox;
 class PipePreset;
@@ -60,8 +59,6 @@ private:
 	VFrame *temp;
 	YUVStream *stream;
 	Asset *incoming_asset;
-	FFMPEG *ffmpeg;
-	int pipe_latency;
 };
 
 

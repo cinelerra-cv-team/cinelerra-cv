@@ -44,9 +44,7 @@ FileYUV::FileYUV(Asset *asset, File *file)
 	if (asset->format == FILE_UNKNOWN) asset->format = FILE_YUV;
 	asset->byte_order = 0; // FUTURE: is this always correct?
 	temp = 0;
-	ffmpeg = 0;
 	stream = new YUVStream();
-	pipe_latency = 0;
 }
 
 FileYUV::~FileYUV()
@@ -110,23 +108,7 @@ int FileYUV::open_file(int should_read, int should_write)
 
 int FileYUV::close_file()
 {
-	if (pipe_latency && ffmpeg && stream)
-	{
-		// deal with last frame still in the pipe
-		ensure_temp(incoming_asset->width, incoming_asset->height); 
-		if (ffmpeg->decode(NULL, 0, temp) == 0) 
-		{
-			uint8_t *yuv[3];
-			yuv[0] = temp->get_y();
-			yuv[1] = temp->get_u();
-			yuv[2] = temp->get_v();
-			stream->write_frame(yuv);
-		}
-		pipe_latency = 0;
-	}
 	stream->close_fd();
-	if (ffmpeg) delete ffmpeg;
-	ffmpeg = 0;
 	return 0;
 }
 
@@ -140,17 +122,6 @@ int FileYUV::read_frame(VFrame *frame)
 {
 	int result;
 	VFrame *input = frame;
-
-	// short cut for direct copy routines
-	if (frame->get_color_model() == BC_COMPRESSED)
-	{
-		// w*h + w*h/4 + w*h/4
-		long frame_size = (long)(stream->get_height() * stream->get_width());
-		frame_size += frame_size / 2L;
-		frame->allocate_compressed_data(frame_size);
-		frame->set_compressed_size(frame_size);
-		return stream->read_frame_raw(frame->get_data(), frame_size);
-	}
 
 	// process through a temp frame if necessary
 	if (! cmodel_is_planar(frame->get_color_model()) ||
@@ -171,7 +142,7 @@ int FileYUV::read_frame(VFrame *frame)
 	// transfer from the temp frame to the real one
 	if (input != frame) 
 	{
-		FFMPEG::convert_cmodel(input, frame);
+		frame->transfer_from(input);
 	}
 	return 0;
 }
@@ -188,55 +159,13 @@ int FileYUV::write_frames(VFrame ***layers, int len)
 	{
 		frame = frames[n];
 
-		// short cut for direct copy routines
-		if (frame->get_color_model() == BC_COMPRESSED) 
-		{
-			long frame_size = frame->get_compressed_size();
-			if (incoming_asset->format == FILE_YUV) 
-				return stream->write_frame_raw(frame->get_data(), frame_size);
-
-			// decode and write an encoded frame
-			if (FFMPEG::codec_id(incoming_asset->vcodec) != CODEC_ID_NONE) 
-			{
-				if (! ffmpeg) 
-				{
-					ffmpeg = new FFMPEG(incoming_asset);
-					ffmpeg->init(incoming_asset->vcodec);
-				}
-
-				ensure_temp(incoming_asset->width, incoming_asset->height); 
-				int result = ffmpeg->decode(frame->get_data(), frame_size, temp);
-
-				// some formats are decoded one frame later
-				if (result == FFMPEG_LATENCY) 
-				{
-					// remember to write the last frame
-					pipe_latency++;
-					return 0;
-				}
-
-				if (result) 
-				{
-					delete ffmpeg;
-					ffmpeg = 0;
-					return 1;
-				}
-
-				uint8_t *yuv[3];
-				yuv[0] = temp->get_y();
-				yuv[1] = temp->get_u();
-				yuv[2] = temp->get_v();
-				return stream->write_frame(yuv);
-			}
-		}
-
 		// process through a temp frame only if necessary
 		if (! cmodel_is_planar(frame->get_color_model()) ||
 			(frame->get_w() != stream->get_width()) ||
 			(frame->get_h() != stream->get_height()))
 		{
 			ensure_temp(asset->width, asset->height);
-			FFMPEG::convert_cmodel(frame, temp);
+			temp->transfer_from(frame);
 			frame = temp;
 		}
 
