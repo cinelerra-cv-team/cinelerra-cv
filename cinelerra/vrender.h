@@ -51,10 +51,7 @@ public:
 				int track_h,
 				int output_w,
 				int output_h);
-
 	void run();
-	void wait_for_startup();
-
 	void start_playback();     // start the thread
 
 // get data type for certain commonrender routines
@@ -74,7 +71,6 @@ public:
 		int &use_vconsole,
 		int64_t position);
 
-
 	int get_use_vconsole(Edit* &playable_edit, 
 		int64_t position,
 		int &get_use_vconsole);
@@ -89,16 +85,16 @@ public:
 	double fromunits(int64_t position);
 
 // frames since start of playback
-	int64_t session_frame;           
+	int64_t session_frame;
 
 // console dimensions
-	int track_w, track_h;    
+	int track_w, track_h;
 // video device dimensions
-	int output_w, output_h;    
+	int output_w, output_h;
 // frames to send to console fragment
-	int64_t vmodule_render_fragment;    
+	int64_t vmodule_render_fragment;
 // frames to send to video device (1)
-	int64_t playback_buffer;            
+	int64_t playback_buffer;
 // Output frame
 	VFrame *video_out;
 // Byte offset of video_out
@@ -111,8 +107,6 @@ public:
 // Engine for camera and projector automation
 	OverlayFrame *overlayer;
 
-
-	
 // Total number of frames to render for transitions
 	int64_t source_length;  
 

@@ -54,9 +54,6 @@
 #include "vtrack.h"
 
 
-
-
-
 VRender::VRender(RenderEngine *renderengine)
  : CommonRender(renderengine)
 {
@@ -121,7 +118,6 @@ int VRender::process_buffer(VFrame *video_out,
 
 int VRender::process_buffer(int64_t input_position)
 {
-SET_TRACE
 	Edit *playable_edit = 0;
 	int colormodel;
 	int use_vconsole = 1;
@@ -131,7 +127,6 @@ SET_TRACE
 	int use_asynchronous = 
 		renderengine->command->realtime && 
 		renderengine->edl->session->video_asynchronous;
-SET_TRACE
 
 // Determine the rendering strategy for this frame.
 	use_vconsole = get_use_vconsole(playable_edit, 
@@ -145,18 +140,12 @@ SET_TRACE
 	if(renderengine->command->realtime)
 		renderengine->video->new_output_buffer(&video_out, colormodel);
 
-
-// printf("VRender::process_buffer use_vconsole=%d colormodel=%d video_out=%p\n", 
-// use_vconsole, 
-// colormodel,
-// video_out);
 // Read directly from file to video_out
 	if(!use_vconsole)
 	{
 
 		if(use_brender)
 		{
-SET_TRACE
 			Asset *asset = renderengine->preferences->brender_asset;
 			File *file = renderengine->get_vcache()->check_out(asset,
 				renderengine->edl);
@@ -178,7 +167,6 @@ SET_TRACE
 				if(use_cache) file->set_cache_frames(0);
 				renderengine->get_vcache()->check_in(asset);
 			}
-SET_TRACE
 		}
 		else
 		if(playable_edit)
@@ -204,8 +192,6 @@ SET_TRACE
 // process this buffer now in the virtual console
 		result = ((VirtualVConsole*)vconsole)->process_buffer(input_position);
 	}
-
-
 	return result;
 }
 
@@ -216,13 +202,10 @@ int VRender::get_use_vconsole(Edit* &playable_edit,
 {
 	Track *playable_track;
 
-
 // Background rendering completed
 	if((use_brender = renderengine->brender_available(position, 
 		renderengine->command->get_direction())) != 0) 
 		return 0;
-
-
 
 // Total number of playable tracks is 1
 	if(vconsole->total_exit_nodes != 1) return 1;
@@ -254,7 +237,7 @@ int VRender::get_use_vconsole(Edit* &playable_edit,
 				playable_edit->asset->interlace_autofixoption,
 				playable_edit->asset->interlace_mode,
 				playable_edit->asset->interlace_fixmethod) 
-	    != BC_ILACE_FIXMETHOD_NONE)
+				!= BC_ILACE_FIXMETHOD_NONE)
 		return 1;
 
 // If we get here the frame is going to be directly copied.  Whether it is
@@ -262,24 +245,21 @@ int VRender::get_use_vconsole(Edit* &playable_edit,
 	return 0;
 }
 
-
 int VRender::insert_timecode(Edit* &playable_edit,
-			int64_t position,
-			VFrame *output)
+	int64_t position,
+	VFrame *output)
 {
 	EDLSession *session = renderengine->edl->session;
 	/* Create a vframe with TC and SRC timecode in white
 	 * with a black border */
 	VFrame *input = new VFrame(0,
-								output->get_w(),
-								MIN(output->get_h(), 50),
-								output->get_color_model(),
-								output->get_bytes_per_line());
+		output->get_w(),
+		MIN(output->get_h(), 50),
+		output->get_color_model(),
+		output->get_bytes_per_line());
 	char etc[12];
 	char srctc[12];
 	int src_position = 0;
-
-TRACE("VRender::insert_timecode 10")
 
 	/* Edited TC */
 	Units::totext(etc,
@@ -290,16 +270,12 @@ TRACE("VRender::insert_timecode 10")
 		session->frame_rate,
 		session->frames_per_foot);
 
-TRACE("VRender::insert_timecode 20")
-
 	if(playable_edit)
 	{
-TRACE("VRender::insert_timecode 30")
 		src_position = renderengine->vrender->current_position -
 			playable_edit->startproject +
 			playable_edit->startsource +
 			playable_edit->asset->tcstart;
-TRACE("VRender::insert_timecode 40")
 		Units::totext(srctc,
 			src_position / playable_edit->asset->frame_rate,
 			session->time_format,
@@ -309,42 +285,15 @@ TRACE("VRender::insert_timecode 40")
 	}
 	else
 	{
-TRACE("VRender::insert_timecode 50")
 		Units::totext(srctc,
 			0.0,
-//			(renderengine->vrender->current_position - position) / session->frame_rate,
 			session->time_format,
 			session->sample_rate,
 			session->frame_rate,
 			session->frames_per_foot);
 	}
-TRACE("VRender::insert_timecode 60")
 
-//printf("re position %i position %i\n", 
-//	renderengine->vrender->current_position, position);
-//printf("SRC %s   TC %s\n", srctc, etc);
-
-	/* Insert the timecode data onto the input frame */
-	
-	
-
-/*
-	vrender->overlayer->overlay(output, 
-		input,
-		input->x, 
-		input->y, 
-		input->width, 
-		input->height,
-		output->x, 
-		output->y, 
-		output->width, 
-		output->height, 
-		1,
-		TRANSFER_REPLACE, 
-		renderengine->edl->session->interpolation_type);
-*/
 	delete(input);
-UNTRACE
 }
 
 
@@ -383,12 +332,6 @@ int VRender::get_colormodel(Edit* &playable_edit,
 	return colormodel;
 }
 
-
-
-
-
-
-
 void VRender::run()
 {
 	int reconfigure;
@@ -416,7 +359,6 @@ void VRender::run()
 
 	start_lock->unlock();
 
-
 	while(!done && 
 		!renderengine->video->interrupt && 
 		!last_playback)
@@ -432,9 +374,7 @@ void VRender::run()
 
 		if(reconfigure) restart_playback();
 
-SET_TRACE
 		process_buffer(current_position);
-SET_TRACE
 
 		if(renderengine->command->single_frame())
 		{
@@ -445,7 +385,6 @@ SET_TRACE
 		else
 // Perform synchronization
 		{
-SET_TRACE
 // Determine the delay until the frame needs to be shown.
 			current_sample = (int64_t)(renderengine->sync_position() * 
 				renderengine->command->get_speed());
@@ -457,14 +396,11 @@ SET_TRACE
 			start_sample = Units::tosamples(session_frame - 1, 
 				renderengine->edl->session->sample_rate, 
 				renderengine->edl->session->frame_rate);
-SET_TRACE
 
 			if(first_frame || end_sample < current_sample)
 			{
-SET_TRACE
 // Frame rendered late or this is the first frame.  Flash it now.
 				flash_output();
-SET_TRACE
 
 				if(renderengine->edl->session->video_every_frame)
 				{
@@ -495,7 +431,6 @@ SET_TRACE
 			{
 // Frame rendered early or just in time.
 				frame_step = 1;
-SET_TRACE
 
 				if(delay_countdown > 0)
 				{
@@ -507,24 +442,18 @@ SET_TRACE
 					skip_countdown = VRENDER_THRESHOLD;
 					if(start_sample > current_sample)
 					{
-SET_TRACE
 						int64_t delay_time = (int64_t)((float)(start_sample - current_sample) * 
 							1000 / 
 							renderengine->edl->session->sample_rate);
-SET_TRACE
 						timer.delay(delay_time);
-SET_TRACE
 					}
 					else
 					{
 // Came after the earliest sample so keep going
 					}
 				}
-
 // Flash frame now.
-SET_TRACE
 				flash_output();
-SET_TRACE
 			}
 		}
 
@@ -537,10 +466,8 @@ SET_TRACE
 		}
 
 		session_frame += frame_step;
-
 // advance position in project
 		current_input_length = frame_step;
-
 
 // Subtract frame_step in a loop to allow looped playback to drain
 		while(frame_step && current_input_length && !last_playback)
@@ -573,7 +500,6 @@ SET_TRACE
 		}
 	}
 
-SET_TRACE
 // In case we were interrupted before the first loop
 	renderengine->first_frame_lock->unlock();
 	stop_plugins();
@@ -608,7 +534,6 @@ int VRender::get_datatype()
 	return TRACK_VIDEO;
 }
 
-
 void VRender::start_playback()
 {
 // start reading input and sending to vrenderthread
@@ -618,16 +543,6 @@ void VRender::start_playback()
 		start();
 	}
 }
-
-void VRender::wait_for_startup()
-{
-}
-
-
-
-
-
-
 
 int64_t VRender::tounits(double position, int round)
 {
