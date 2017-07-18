@@ -282,12 +282,6 @@ int File::set_processors(int cpus)   // Set the number of cpus for certain codec
 	return 0;
 }
 
-int File::set_preload(int64_t size)
-{
-	this->playback_preload = size;
-	return 0;
-}
-
 void File::set_subtitle(int value)
 {
 	this->playback_subtitle = value;

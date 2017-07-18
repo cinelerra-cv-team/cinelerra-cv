@@ -147,7 +147,6 @@ public:
     int output_h;
 	int64_t playback_buffer;
 	int playback_cursor_visible;
-	int64_t playback_preload;
 	int decode_subtitles;
 	int subtitle_number;
 	int playback_software_position;

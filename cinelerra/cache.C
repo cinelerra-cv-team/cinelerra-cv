@@ -374,7 +374,6 @@ CICacheItem::CICacheItem(CICache *cache, EDL *edl, Asset *asset)
 
 	file = new File;
 	file->set_processors(cache->preferences->processors);
-	file->set_preload(edl->session->playback_preload);
 	file->set_subtitle(edl->session->decode_subtitles ? 
 		edl->session->subtitle_number : -1);
 

@@ -58,7 +58,7 @@ int PlaybackPrefs::create_objects()
 	BC_WindowBase *window;
 	BC_Resources *resources = BC_WindowBase::get_resources();
 	BC_WindowBase *win;
-	int maxw, curw, ybix[2];
+	int maxw, curw;
 
 	playback_config = pwindow->thread->edl->session->playback_config;
 
@@ -185,18 +185,10 @@ SET_TRACE
 		y));
 
 SET_TRACE
-	ybix[0] = y += 25;
-	win = add_subwindow(new BC_Title(x, y, _("Preload buffer for Quicktime:"), MEDIUMFONT));
-	maxw = win->get_w();
-	ybix[1] = y += win->get_h() + 10;
+	y += 25;
 	win = add_subwindow(title1 = new BC_Title(x, y, _("DVD Subtitle to display:")));
-	if((curw = win->get_w()) > maxw)
-		maxw = curw;
-	maxw += x + 10;
-// Preload buffer for Quicktime
-	sprintf(string, "%jd", pwindow->thread->edl->session->playback_preload);
-	PlaybackPreload *preload;
-	add_subwindow(preload = new PlaybackPreload(maxw, ybix[0], pwindow, this, string));
+	maxw += x + 10 + win->get_w();
+
 // DVD Subtitle to display
 	PlaybackSubtitleNumber *subtitle_number;
 	subtitle_number = new PlaybackSubtitleNumber(maxw,
@@ -429,25 +421,6 @@ int PlaybackBilinearBilinear::handle_event()
 	prefs->update(LINEAR_LINEAR);
 	return 1;
 }
-
-
-PlaybackPreload::PlaybackPreload(int x, 
-	int y, 
-	PreferencesWindow *pwindow, 
-	PlaybackPrefs *playback, 
-	char *text)
- : BC_TextBox(x, y, 100, 1, text)
-{ 
-	this->pwindow = pwindow; 
-	this->playback = playback; 
-}
-
-int PlaybackPreload::handle_event() 
-{ 
-	pwindow->thread->edl->session->playback_preload = atol(get_text()); 
-	return 1;
-}
-
 
 
 VideoAsynchronous::VideoAsynchronous(PreferencesWindow *pwindow, int x, int y)

@@ -107,8 +107,7 @@ char* EDLSession::get_cwindow_display()
 
 int EDLSession::need_rerender(EDLSession *ptr)
 {
-	return (playback_preload != ptr->playback_preload) ||
-		(interpolation_type != ptr->interpolation_type) ||
+	return (interpolation_type != ptr->interpolation_type) ||
 		(video_every_frame != ptr->video_every_frame) ||
 		(video_asynchronous != ptr->video_asynchronous) ||
 		(real_time_playback != ptr->real_time_playback) ||
@@ -221,7 +220,6 @@ int EDLSession::load_defaults(BC_Hash *defaults)
 	output_w = defaults->get("OUTPUTW", output_w);
 	output_h = defaults->get("OUTPUTH", output_h);
 	playback_buffer = defaults->get("PLAYBACK_BUFFER", 4096);
-	playback_preload = defaults->get("PLAYBACK_PRELOAD", 0);
 	playback_software_position = defaults->get("PLAYBACK_SOFTWARE_POSITION", 0);
 	delete playback_config;
 	playback_config = new PlaybackConfig;
@@ -356,7 +354,7 @@ int EDLSession::save_defaults(BC_Hash *defaults)
 	defaults->update("OUTPUTW", output_w);
 	defaults->update("OUTPUTH", output_h);
     defaults->update("PLAYBACK_BUFFER", playback_buffer);
-	defaults->update("PLAYBACK_PRELOAD", playback_preload);
+	defaults->delete_key("PLAYBACK_PRELOAD");
     defaults->update("PLAYBACK_SOFTWARE_POSITION", playback_software_position);
 	playback_config->save_defaults(defaults);
     defaults->update("PLAYBACK_REALTIME", real_time_playback);
@@ -557,7 +555,6 @@ int EDLSession::load_xml(FileXML *file,
 		labels_follow_edits = file->tag.get_property("LABELS_FOLLOW_EDITS", labels_follow_edits);
 		mpeg4_deblock = file->tag.get_property("MPEG4_DEBLOCK", mpeg4_deblock);
 		plugins_follow_edits = file->tag.get_property("PLUGINS_FOLLOW_EDITS", plugins_follow_edits);
-		playback_preload = file->tag.get_property("PLAYBACK_PRELOAD", playback_preload);
 		safe_regions = file->tag.get_property("SAFE_REGIONS", safe_regions);
 		show_assets = file->tag.get_property("SHOW_ASSETS", 1);
 		show_titles = file->tag.get_property("SHOW_TITLES", 1);
@@ -623,7 +620,6 @@ int EDLSession::save_xml(FileXML *file)
 	file->tag.set_property("LABELS_FOLLOW_EDITS", labels_follow_edits);
 	file->tag.set_property("MPEG4_DEBLOCK", mpeg4_deblock);
 	file->tag.set_property("PLUGINS_FOLLOW_EDITS", plugins_follow_edits);
-	file->tag.set_property("PLAYBACK_PRELOAD", playback_preload);
 	file->tag.set_property("SAFE_REGIONS", safe_regions);
 	file->tag.set_property("SHOW_ASSETS", show_assets);
 	file->tag.set_property("SHOW_TITLES", show_titles);
@@ -777,7 +773,6 @@ int EDLSession::copy(EDLSession *session)
 	playback_config = new PlaybackConfig;
 	playback_config->copy_from(session->playback_config);
 	playback_cursor_visible = session->playback_cursor_visible;
-	playback_preload = session->playback_preload;
 	playback_software_position = session->playback_software_position;
 	real_time_playback = session->real_time_playback;
 	real_time_record = session->real_time_record;
