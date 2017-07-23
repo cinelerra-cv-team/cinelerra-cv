@@ -463,7 +463,6 @@ noinst_HEADERS = aattachmentpoint.h \
 		 formatpopup.h \
 		 formatpresets.h \
 		 formattools.h \
-		 formatwindow.h \
 		 framecache.h \
 		 garbage.h \
 		 gwindow.h \
