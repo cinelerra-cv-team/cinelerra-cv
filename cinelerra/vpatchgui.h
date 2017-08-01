@@ -55,9 +55,11 @@ class VFadePatch : public BC_ISlider
 {
 public:
 	VFadePatch(MWindow *mwindow, VPatchGUI *patch, int x, int y, int w);
+
 	int handle_event();
 	float update_edl();
 	static FloatAuto* get_keyframe(MWindow *mwindow, VPatchGUI *patch);
+
 	MWindow *mwindow;
 	VPatchGUI *patch;
 };
@@ -87,6 +89,5 @@ public:
 	VModePatch *popup;
 	int mode;
 };
-
 
 #endif

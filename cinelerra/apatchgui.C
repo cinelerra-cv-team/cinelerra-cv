@@ -40,15 +40,13 @@
 #include "trackcanvas.h"
 
 
-
-
 APatchGUI::APatchGUI(MWindow *mwindow, 
 	PatchBay *patchbay, 
 	ATrack *track, 
 	int x, 
 	int y)
  : PatchGUI(mwindow, 
- 	patchbay, 
+	patchbay,
 	track, 
 	x, 
 	y)
@@ -59,11 +57,12 @@ APatchGUI::APatchGUI(MWindow *mwindow,
 	pan = 0;
 	fade = 0;
 }
+
 APatchGUI::~APatchGUI()
 {
-	if(fade) delete fade;
-	if(meter) delete meter;
-	if(pan) delete pan;
+	delete fade;
+	delete meter;
+	delete pan;
 }
 
 int APatchGUI::create_objects()
@@ -120,9 +119,9 @@ int APatchGUI::update(int x, int y)
 				previous, 
 				next);
 			fade->update(fade->get_w(),
-				     value, 
-				     mwindow->edl->local_session->automation_mins[AUTOGROUPTYPE_AUDIO_FADE],
-				     mwindow->edl->local_session->automation_maxs[AUTOGROUPTYPE_AUDIO_FADE]);
+				value,
+				mwindow->edl->local_session->automation_mins[AUTOGROUPTYPE_AUDIO_FADE],
+				mwindow->edl->local_session->automation_maxs[AUTOGROUPTYPE_AUDIO_FADE]);
 		}
 	}
 	else
@@ -219,16 +218,15 @@ void APatchGUI::synchronize_fade(float value_change)
 }
 
 
-
 AFadePatch::AFadePatch(MWindow *mwindow, APatchGUI *patch, int x, int y, int w)
  : BC_FSlider(x, 
-			y, 
-			0, 
-			w, 
-			w, 
-			mwindow->edl->local_session->automation_mins[AUTOGROUPTYPE_AUDIO_FADE], 
-			mwindow->edl->local_session->automation_maxs[AUTOGROUPTYPE_AUDIO_FADE], 
-			get_keyframe(mwindow, patch)->get_value())
+	y,
+	0,
+	w,
+	w,
+	mwindow->edl->local_session->automation_mins[AUTOGROUPTYPE_AUDIO_FADE],
+	mwindow->edl->local_session->automation_maxs[AUTOGROUPTYPE_AUDIO_FADE],
+	get_keyframe(mwindow, patch)->get_value())
 {
 	this->mwindow = mwindow;
 	this->patch = patch;
@@ -252,7 +250,6 @@ float AFadePatch::update_edl()
 
 	return result;
 }
-
 
 int AFadePatch::handle_event()
 {
@@ -295,14 +292,14 @@ FloatAuto* AFadePatch::get_keyframe(MWindow *mwindow, APatchGUI *patch)
 
 APanPatch::APanPatch(MWindow *mwindow, APatchGUI *patch, int x, int y)
  : BC_Pan(x, 
-		y, 
-		PAN_RADIUS, 
-		MAX_PAN, 
-		mwindow->edl->session->audio_channels, 
-		mwindow->edl->session->achannel_positions, 
-		get_keyframe(mwindow, patch)->handle_x, 
-		get_keyframe(mwindow, patch)->handle_y,
- 		get_keyframe(mwindow, patch)->values)
+	y,
+	PAN_RADIUS,
+	MAX_PAN,
+	mwindow->edl->session->audio_channels,
+	mwindow->edl->session->achannel_positions,
+	get_keyframe(mwindow, patch)->handle_x,
+	get_keyframe(mwindow, patch)->handle_y,
+	get_keyframe(mwindow, patch)->values)
 {
 	this->mwindow = mwindow;
 	this->patch = patch;
@@ -349,19 +346,17 @@ PanAuto* APanPatch::get_keyframe(MWindow *mwindow, APatchGUI *patch)
 }
 
 
-
-
 AMeterPatch::AMeterPatch(MWindow *mwindow, APatchGUI *patch, int x, int y)
  : BC_Meter(x, 
-			y, 
-			METER_HORIZ, 
-			patch->patchbay->get_w() - 10, 
-			mwindow->edl->session->min_meter_db, 
-			mwindow->edl->session->max_meter_db, 
-			mwindow->edl->session->meter_format, 
-			0,
-			TRACKING_RATE * 10,
-			TRACKING_RATE)
+	y,
+	METER_HORIZ,
+	patch->patchbay->get_w() - 10,
+	mwindow->edl->session->min_meter_db,
+	mwindow->edl->session->max_meter_db,
+	mwindow->edl->session->meter_format,
+	0,
+	TRACKING_RATE * 10,
+	TRACKING_RATE)
 {
 	this->mwindow = mwindow;
 	this->patch = patch;
@@ -374,11 +369,5 @@ int AMeterPatch::button_press_event()
 		mwindow->reset_meters();
 		return 1;
 	}
-
 	return 0;
 }
-
-
-
-
-

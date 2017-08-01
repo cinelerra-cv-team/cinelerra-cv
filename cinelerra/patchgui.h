@@ -28,9 +28,6 @@
 #include "intauto.inc"
 #include "track.inc"
 
-
-
-
 class TitlePatch;
 class PlayPatch;
 class RecordPatch;
@@ -77,7 +74,6 @@ public:
 	TitlePatch *title;
 	RecordPatch *record;
 	PlayPatch *play;
-//	AutoPatch *automate;
 	GangPatch *gang;
 	DrawPatch *draw;
 	MutePatch *mute;
@@ -87,13 +83,14 @@ public:
 };
 
 
-
 class PlayPatch : public BC_Toggle
 {
 public:
 	PlayPatch(MWindow *mwindow, PatchGUI *patch, int x, int y);
+
 	int button_press_event();
 	int button_release_event();
+
 	MWindow *mwindow;
 	PatchGUI *patch;
 };
@@ -102,8 +99,10 @@ class RecordPatch : public BC_Toggle
 {
 public:
 	RecordPatch(MWindow *mwindow, PatchGUI *patch, int x, int y);
+
 	int button_press_event();
 	int button_release_event();
+
 	MWindow *mwindow;
 	PatchGUI *patch;
 };
@@ -112,17 +111,9 @@ class TitlePatch : public BC_TextBox
 {
 public:
 	TitlePatch(MWindow *mwindow, PatchGUI *patch, int x, int y);
-	int handle_event();
-	MWindow *mwindow;
-	PatchGUI *patch;
-};
 
-class AutoPatch : public BC_Toggle
-{
-public:
-	AutoPatch(MWindow *mwindow, PatchGUI *patch, int x, int y);
-	int button_press_event();
-	int button_release_event();
+	int handle_event();
+
 	MWindow *mwindow;
 	PatchGUI *patch;
 };
@@ -131,8 +122,10 @@ class GangPatch : public BC_Toggle
 {
 public:
 	GangPatch(MWindow *mwindow, PatchGUI *patch, int x, int y);
+
 	int button_press_event();
 	int button_release_event();
+
 	MWindow *mwindow;
 	PatchGUI *patch;
 };
@@ -141,8 +134,10 @@ class DrawPatch : public BC_Toggle
 {
 public:
 	DrawPatch(MWindow *mwindow, PatchGUI *patch, int x, int y);
+
 	int button_press_event();
 	int button_release_event();
+
 	MWindow *mwindow;
 	PatchGUI *patch;
 };
@@ -151,9 +146,11 @@ class MutePatch : public BC_Toggle
 {
 public:
 	MutePatch(MWindow *mwindow, PatchGUI *patch, int x, int y);
+
 	int button_press_event();
 	int button_release_event();
 	static IntAuto* get_keyframe(MWindow *mwindow, PatchGUI *patch);
+
 	MWindow *mwindow;
 	PatchGUI *patch;
 };
@@ -162,8 +159,10 @@ class ExpandPatch : public BC_Toggle
 {
 public:
 	ExpandPatch(MWindow *mwindow, PatchGUI *patch, int x, int y);
+
 	int button_press_event();
 	int button_release_event();
+
 	MWindow *mwindow;
 	PatchGUI *patch;
 };
@@ -172,6 +171,7 @@ class NudgePatch : public BC_TextBox
 {
 public:
 	NudgePatch(MWindow *mwindow, PatchGUI *patch, int x, int y, int w);
+
 	int handle_event();
 	int button_press_event();
 	void update();
@@ -181,6 +181,5 @@ public:
 	MWindow *mwindow;
 	PatchGUI *patch;
 };
-
 
 #endif
