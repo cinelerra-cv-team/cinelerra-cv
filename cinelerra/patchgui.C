@@ -174,6 +174,7 @@ int PatchGUI::update(int x, int y)
 			delete expand;
 			play = 0;
 			record = 0;
+			gang = 0;
 			draw = 0;
 			mute = 0;
 			expand = 0;
