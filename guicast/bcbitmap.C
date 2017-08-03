@@ -117,15 +117,14 @@ int BC_Bitmap::initialize(BC_WindowBase *parent_window,
 
 int BC_Bitmap::match_params(int w, int h, int color_model, int use_shm)
 {
-	if(this->w /* != */ < w ||
-		this->h /* != */ < h ||
+	if(this->w < w ||
+		this->h < h ||
 		this->color_model != color_model ||
 		this->use_shm != use_shm)
 	{
 		delete_data();
 		initialize(parent_window, w, h, color_model, use_shm);
 	}
-
 	return 0;
 }
 
@@ -177,11 +176,9 @@ int BC_Bitmap::allocate_data()
 // setting ximage->data stops BadValue
 				xv_image[0]->data = shm_info.shmaddr = (char*)data[0];
 				shm_info.readOnly = 0;
-
 // Get the real parameters
 				w = xv_image[0]->width;
 				h = xv_image[0]->height;
-
 // Create remaining X Images
 				for(int i = 1; i < ring_buffers; i++)
 				{
@@ -242,15 +239,14 @@ int BC_Bitmap::allocate_data()
 				{
 					data[i] = data[0] + h * ximage[0]->bytes_per_line * i;
 					ximage[i] = XShmCreateImage(top_level->display, 
-											top_level->vis, 
-											get_default_depth(), 
-											get_default_depth() == 1 ? XYBitmap : ZPixmap, 
-											(char*)data[i], 
-											&shm_info, 
-											w, 
-											h);
+						top_level->vis,
+						get_default_depth(),
+						get_default_depth() == 1 ? XYBitmap : ZPixmap,
+						(char*)data[i],
+						&shm_info,
+						w,
+						h);
 					ximage[i]->data = (char*)data[i];
-//printf("BC_Bitmap::allocate_data %p\n", ximage[i]);
 				}
 				break;
 		}
@@ -271,46 +267,37 @@ int BC_Bitmap::allocate_data()
 		data[0] = 0;
 
 // Use RGB frame
-//printf("BCBitmap::allocate_data 1\n");
 		ximage[0] = XCreateImage(top_level->display, 
-					top_level->vis, 
-					get_default_depth(), 
-					get_default_depth() == 1 ? XYBitmap : ZPixmap, 
-					0, 
-					(char*)data[0], 
-					w, 
-					h, 
-					8, 
-					0);
-//printf("BCBitmap::allocate_data 1 %d\n", h * ximage[0]->bytes_per_line + 4);
-
+			top_level->vis,
+			get_default_depth(),
+			get_default_depth() == 1 ? XYBitmap : ZPixmap,
+			0,
+			(char*)data[0],
+			w,
+			h,
+			8,
+			0);
 		data[0] = (unsigned char*)malloc(h * ximage[0]->bytes_per_line + 4);
-//printf("BCBitmap::allocate_data 2\n");
 
 		XDestroyImage(ximage[0]);
-//printf("BCBitmap::allocate_data 1\n");
-
 		ximage[0] = XCreateImage(top_level->display, 
-					top_level->vis, 
-					get_default_depth(), 
-					get_default_depth() == 1 ? XYBitmap : ZPixmap, 
-					0, 
-					(char*)data[0], 
-					w, 
-					h, 
-					8, 
-					0);
-//printf("BCBitmap::allocate_data 1\n");
+			top_level->vis,
+			get_default_depth(),
+			get_default_depth() == 1 ? XYBitmap : ZPixmap,
+			0,
+			(char*)data[0],
+			w,
+			h,
+			8,
+			0);
 // This differs from the depth parameter of the top_level.
 		bits_per_pixel = ximage[0]->bits_per_pixel;
 		bytes_per_line = ximage[0]->bytes_per_line;
-//printf("BCBitmap::allocate_data 2\n");
 	}
 
 // Create row pointers
 	if(want_row_pointers)
 	{
-//printf("BC_Bitmap::allocate 1 %d %d %d %d\n", w, h, get_default_depth(), bytes_per_line);
 		for(int j = 0; j < ring_buffers; j++)
 		{
 			row_data[j] = new unsigned char*[h];
@@ -334,7 +321,6 @@ int BC_Bitmap::delete_data()
 				case BC_YUV420P:
 				case BC_YUV422P:
 				case BC_YUV422:
-//printf("BC_Bitmap::delete_data 1\n");
 					if(last_pixmap_used) XvStopVideo(top_level->display, xv_portid, last_pixmap);
 					for(int i = 0; i < ring_buffers; i++)
 					{
@@ -381,7 +367,6 @@ int BC_Bitmap::get_default_depth()
 		return top_level->default_depth;
 }
 
-
 int BC_Bitmap::set_bg_color(int color)
 {
 	this->bg_color = color;
@@ -400,14 +385,14 @@ int BC_Bitmap::invert()
 }
 
 int BC_Bitmap::write_drawable(Drawable &pixmap, 
-							GC &gc,
-							int dest_x, 
-							int dest_y, 
-							int source_x, 
-							int source_y, 
-							int dest_w, 
-							int dest_h,
-							int dont_wait)
+	GC &gc,
+	int dest_x,
+	int dest_y,
+	int source_x,
+	int source_y,
+	int dest_w,
+	int dest_h,
+	int dont_wait)
 {
 	return write_drawable(pixmap, 
 		gc,
@@ -447,19 +432,6 @@ int BC_Bitmap::write_drawable(Drawable &pixmap,
 
 		if(hardware_scaling())
 		{
-// printf("BC_Bitmap::write_drawable %d %d %d %d -> %d %d %d %d\n", source_x, 
-// 				source_y, 
-// 				source_w, 
-// 				source_h, 
-// 				dest_x, 
-// 				dest_y, 
-// 				dest_w, 
-// 				dest_h);
-//for(int i = 0; i < 1000; i++) xv_image[current_ringbuffer]->data[i] = 255;
-//printf("BC_Bitmap::write_drawable 2 %d %d %p %p\n", xv_portid, 
-//	pixmap, 
-//	gc,
-//	xv_image[current_ringbuffer]);
 			XvShmPutImage(top_level->display, 
 				xv_portid, 
 				pixmap, 
@@ -480,15 +452,7 @@ int BC_Bitmap::write_drawable(Drawable &pixmap,
 		}
 		else
 		{
-// printf("BC_Bitmap::write_drawable %d %d %d %d -> %d %d %d %d\n", source_x, 
-// 				source_y, 
-// 				source_w, 
-// 				source_h, 
-// 				dest_x, 
-// 				dest_y, 
-// 				dest_w, 
-// 				dest_h);
-        	XShmPutImage(top_level->display, 
+			XShmPutImage(top_level->display,
 				pixmap, 
 				gc, 
 				ximage[current_ringbuffer], 
@@ -500,15 +464,13 @@ int BC_Bitmap::write_drawable(Drawable &pixmap,
 				dest_h, 
 				False);
 		}
-
 // Force the X server into processing all requests.
 // This allows the shared memory to be written to again.
 		if(!dont_wait) XSync(top_level->display, False);
-//TRACE("BC_Bitmap::write_drawable 5");
 	}
-    else
+	else
 	{
-        XPutImage(top_level->display, 
+		XPutImage(top_level->display,
 			pixmap, 
 			gc, 
 			ximage[current_ringbuffer], 
@@ -519,16 +481,10 @@ int BC_Bitmap::write_drawable(Drawable &pixmap,
 			dest_w, 
 			dest_h);
 	}
-
-//printf("BC_Bitmap %d\n", current_ringbuffer);
 	current_ringbuffer++;
 	if(current_ringbuffer >= ring_buffers) current_ringbuffer = 0;
-//printf("BC_Bitmap::write_drawable 2\n");fflush(stdout);
 	return 0;
 }
-
-
-
 
 // the bitmap must be wholly contained in the source during a GetImage
 int BC_Bitmap::read_drawable(Drawable &pixmap, int source_x, int source_y)
@@ -541,7 +497,6 @@ int BC_Bitmap::read_drawable(Drawable &pixmap, int source_x, int source_y)
 }
 
 // ============================ Decoding VFrames
-
 int BC_Bitmap::read_frame(VFrame *frame, 
 	int x1, 
 	int y1, 
@@ -594,19 +549,6 @@ int BC_Bitmap::read_frame(VFrame *frame,
 
 // Software only
 		default:
-// printf("BC_Bitmap::read_frame %d -> %d %d %d %d %d -> %d %d %d %d\n",
-// 				frame->get_color_model(), 
-// 				color_model,
-// 				in_x, 
-// 				in_y, 
-// 				in_w, 
-// 				in_h,
-// 				out_x, 
-// 				out_y, 
-// 				out_w, 
-// 				out_h);
-//if(color_model == 6 && frame->get_color_model() == 19)
-//printf("BC_Bitmap::read_frame 1 %d %d %d %d\n", frame->get_w(), frame->get_h(), get_w(), get_h());
 			cmodel_transfer(row_data[current_ringbuffer], 
 				frame->get_rows(),
 				get_y_plane(),
@@ -632,14 +574,8 @@ int BC_Bitmap::read_frame(VFrame *frame,
 // so buffer bitswaped here if needed.
 				if ((color_model == BC_TRANSPARENCY) && (!top_level->server_byte_order))
 					transparency_bitswap();
-
-
-//if(color_model == 6 && frame->get_color_model() == 19)
-//printf("BC_Bitmap::read_frame 2\n");
 			break;
 	}
-
-
 	return 0;
 }
 
@@ -715,7 +651,6 @@ long BC_Bitmap::get_v_offset()
 		return 0;
 }
 
-
 unsigned char** BC_Bitmap::get_row_pointers()
 {
 	return row_data[current_ringbuffer];
@@ -725,9 +660,9 @@ int BC_Bitmap::get_bytes_per_line()
 {
 	return bytes_per_line;
 }
+
 unsigned char* BC_Bitmap::get_data()
 {
-//printf("BC_Bitmap::get_data %d %p\n",current_ringbuffer , data[current_ringbuffer]);
 	return data[current_ringbuffer];
 }
 
@@ -771,11 +706,18 @@ int BC_Bitmap::hardware_scaling()
 		get_color_model() == BC_YUV422);
 }
 
-int BC_Bitmap::get_w() { return w; }
+int BC_Bitmap::get_w()
+{
+	return w;
+}
 
-int BC_Bitmap::get_h() { return h; }
+int BC_Bitmap::get_h()
+{
+	return h;
+}
 
-char BC_Bitmap::byte_bitswap(char src) {
+char BC_Bitmap::byte_bitswap(char src)
+{
 	int i;
 	char dst;
 
@@ -799,7 +741,8 @@ char BC_Bitmap::byte_bitswap(char src) {
 	return(dst);
 }
 
-void BC_Bitmap::transparency_bitswap() {
+void BC_Bitmap::transparency_bitswap()
+{
 	unsigned char *buf;
 	int i, width, height;
 	int len;
@@ -812,22 +755,27 @@ void BC_Bitmap::transparency_bitswap() {
 		width = width + 8 - (width % 8);
 	len = width * height / 8;
 
-	for(i=0 ; i+8<=len ; i+=8){
-		buf[i+0] = byte_bitswap(buf[i+0]);
-		buf[i+1] = byte_bitswap(buf[i+1]);
-		buf[i+2] = byte_bitswap(buf[i+2]);
-		buf[i+3] = byte_bitswap(buf[i+3]);
-		buf[i+4] = byte_bitswap(buf[i+4]);
-		buf[i+5] = byte_bitswap(buf[i+5]);
-		buf[i+6] = byte_bitswap(buf[i+6]);
-		buf[i+7] = byte_bitswap(buf[i+7]);
+	for(i = 0; i + 8 <= len; i += 8)
+	{
+		buf[i + 0] = byte_bitswap(buf[i + 0]);
+		buf[i + 1] = byte_bitswap(buf[i + 1]);
+		buf[i + 2] = byte_bitswap(buf[i + 2]);
+		buf[i + 3] = byte_bitswap(buf[i + 3]);
+		buf[i + 4] = byte_bitswap(buf[i + 4]);
+		buf[i + 5] = byte_bitswap(buf[i + 5]);
+		buf[i + 6] = byte_bitswap(buf[i + 6]);
+		buf[i + 7] = byte_bitswap(buf[i + 7]);
 	}
-	for( ; i<len ; i++){
-		buf[i+0] = byte_bitswap(buf[i+0]);
+	for(; i < len ; i++)
+	{
+		buf[i] = byte_bitswap(buf[i]);
 	}
 }
 
-int BC_Bitmap::get_color_model() { return color_model; }
+int BC_Bitmap::get_color_model()
+{
+	return color_model;
+}
 
 
 

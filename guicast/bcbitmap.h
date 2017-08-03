@@ -33,7 +33,6 @@
 #include "sizes.h"
 #include "vframe.inc"
 
-//#define BITMAP_RING 1
 #define BITMAP_RING 4
 
 class BC_Bitmap
@@ -71,29 +70,28 @@ public:
 // If dont_wait is true, the XSync comes before the flash.
 // For YUV bitmaps, the image is scaled to fill dest_x ... w * dest_y ... h
 	int write_drawable(Drawable &pixmap, 
-			GC &gc,
-			int source_x, 
-			int source_y, 
-			int source_w,
-			int source_h,
-			int dest_x, 
-			int dest_y, 
-			int dest_w, 
-			int dest_h, 
-			int dont_wait);
+		GC &gc,
+		int source_x,
+		int source_y,
+		int source_w,
+		int source_h,
+		int dest_x,
+		int dest_y,
+		int dest_w,
+		int dest_h,
+		int dont_wait);
 	int write_drawable(Drawable &pixmap, 
-			GC &gc,
-			int dest_x, 
-			int dest_y, 
-			int source_x, 
-			int source_y, 
-			int dest_w, 
-			int dest_h, 
-			int dont_wait);
+		GC &gc,
+		int dest_x,
+		int dest_y,
+		int source_x,
+		int source_y,
+		int dest_w,
+		int dest_h,
+		int dont_wait);
 // the bitmap must be wholly contained in the source during a GetImage
 	int read_drawable(Drawable &pixmap, int source_x, int source_y);
 
-	int rotate_90(int side);
 	int get_w();
 	int get_h();
 	void transparency_bitswap();
@@ -143,9 +141,9 @@ private:
 	BC_WindowBase *top_level;
 	BC_WindowBase *parent_window;
 // Points directly to the frame buffer
-	unsigned char *data[BITMAP_RING];   
+	unsigned char *data[BITMAP_RING];
 // Row pointers to the frame buffer
-	unsigned char **row_data[BITMAP_RING];   
+	unsigned char **row_data[BITMAP_RING];
 	int xv_portid;
 // This differs from the depth parameter of top_level
 	int bits_per_pixel;
@@ -165,11 +163,5 @@ private:
 	XvImage *xv_image[BITMAP_RING];
 	XShmSegmentInfo shm_info;
 };
-
-
-
-
-
-
 
 #endif
