@@ -22,6 +22,7 @@
 #include "asset.h"
 #include "bcsignals.h"
 #include "condition.h"
+#include "colormodels.h"
 #include "file.h"
 #include "filethread.h"
 #include "mutex.h"

@@ -24,7 +24,7 @@
 #include "bcsynchronous.h"
 #include "bctexture.h"
 #include "bcwindowbase.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 
 
 BC_Texture::BC_Texture(int w, int h, int colormodel)
@@ -87,7 +87,7 @@ void BC_Texture::create_texture(int w, int h, int colormodel)
 // Calculate dimensions of texture
 	int new_w = calculate_texture_size(w, &max_texture_size);
 	int new_h = calculate_texture_size(h, &max_texture_size);
-	int new_components = cmodel_components(colormodel);
+	int new_components = BC_CModels::components(colormodel);
 
 
 	if(new_w < w || new_h < h)

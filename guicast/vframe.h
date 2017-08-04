@@ -27,7 +27,6 @@
 #include "bcpbuffer.inc"
 #include "bctexture.inc"
 #include "bcwindowbase.inc"
-#include "colormodels.h"
 #include "bccmodels.h"
 #include "vframe.inc"
 

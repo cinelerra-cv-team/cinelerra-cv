@@ -26,6 +26,7 @@
 
 #include "affine.h"
 #include "bcdisplayinfo.h"
+#include "colormodels.h"
 #include "clip.h"
 #include "bchash.h"
 #include "filexml.h"

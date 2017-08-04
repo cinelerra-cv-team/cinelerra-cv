@@ -23,6 +23,7 @@
 #include "bcsignals.h"
 #include "chromakey.h"
 #include "clip.h"
+#include "colormodels.h"
 #include "bchash.h"
 #include "filexml.h"
 #include "guicast.h"

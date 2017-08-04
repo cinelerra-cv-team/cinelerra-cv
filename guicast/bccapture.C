@@ -20,9 +20,9 @@
  */
 
 #include "bccapture.h"
+#include "bccmodels.h"
 #include "bcresources.h"
 #include "bcwindowbase.h"
-#include "colormodels.h"
 #include "language.h"
 #include "vframe.h"
 #include <stdlib.h>
@@ -207,7 +207,7 @@ int BC_Capture::capture_frame(VFrame *frame, int &x1, int &y1)
 	else
 		XGetSubImage(display, rootwin, x1, y1, w, h, 0xffffffff, ZPixmap, ximage, 0, 0);
 
-	cmodel_transfer(frame->get_rows(), 
+	BC_CModels::transfer(frame->get_rows(), 
 		row_data,
 		frame->get_y(),
 		frame->get_u(),

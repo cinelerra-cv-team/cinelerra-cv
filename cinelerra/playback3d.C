@@ -26,6 +26,7 @@
 #include "canvas.h"
 #include "clip.h"
 #include "condition.h"
+#include "colormodels.h"
 #include "maskautos.h"
 #include "maskauto.h"
 #include "mutex.h"

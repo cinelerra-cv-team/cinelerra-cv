@@ -26,6 +26,7 @@
 #include "bcdisplayinfo.h"
 #include "clip.h"
 #include "bchash.h"
+#include "colormodels.h"
 #include "filexml.h"
 #include "gradient.h"
 #include "keyframe.h"

@@ -21,6 +21,7 @@
 
 #include "clip.h"
 #include "bchash.h"
+#include "colormodels.h"
 #include "filexml.h"
 #include "histogramengine.h"
 #include "language.h"

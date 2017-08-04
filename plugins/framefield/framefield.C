@@ -22,6 +22,7 @@
 #include "bcdisplayinfo.h"
 #include "bcsignals.h"
 #include "bchash.h"
+#include "colormodels.h"
 #include "filexml.h"
 #include "guicast.h"
 #include "keyframe.h"

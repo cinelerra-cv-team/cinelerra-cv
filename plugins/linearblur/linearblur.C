@@ -25,6 +25,7 @@
 
 #include "bcdisplayinfo.h"
 #include "clip.h"
+#include "colormodels.h"
 #include "bchash.h"
 #include "filexml.h"
 #include "keyframe.h"

@@ -132,7 +132,7 @@ private:
 
 	int ring_buffers, current_ringbuffer;
 	int w, h;
-// Color model from colormodels.h
+// Color model from bccmodels.h
 	int color_model;
 // Background color for using pngs
 	int bg_color;

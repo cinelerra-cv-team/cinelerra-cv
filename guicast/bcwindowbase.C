@@ -35,7 +35,7 @@
 #include "bcwidgetgrid.h"
 #include "bcwindowbase.h"
 #include "bcwindowevents.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "colors.h"
 #include "condition.h"
 #include "cursors.h"
@@ -2587,7 +2587,7 @@ int BC_WindowBase::grab_port_id(BC_WindowBase *window, int color_model)
 	if(!get_resources()->use_xvideo) return -1;
 
 // Translate from color_model to X color model
-	x_color_model = cmodel_bc_to_x(color_model);
+	x_color_model = BC_CModels::bc_to_x(color_model);
 
 // Only local server is fast enough.
 	if(!resources.use_shm) return -1;

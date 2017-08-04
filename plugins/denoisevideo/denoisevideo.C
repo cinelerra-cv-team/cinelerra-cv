@@ -20,6 +20,7 @@
  */
 
 #include "clip.h"
+#include "colormodels.h"
 #include "bchash.h"
 #include "denoisevideo.h"
 #include "filexml.h"

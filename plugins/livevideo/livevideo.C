@@ -25,6 +25,7 @@
 #include "channel.h"
 #include "channeldb.h"
 #include "clip.h"
+#include "colormodels.h"
 #include "bchash.h"
 #include "edlsession.h"
 #include "filexml.h"

@@ -31,6 +31,7 @@
 #include "channel.h"
 #include "chantables.h"
 #include "clip.h"
+#include "colormodels.h"
 #include "file.h"
 #include "picture.h"
 #include "preferences.h"

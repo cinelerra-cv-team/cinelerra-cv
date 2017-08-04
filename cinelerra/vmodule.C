@@ -24,6 +24,7 @@
 #include "cache.h"
 #include "clip.h"
 #include "commonrender.h"
+#include "colormodels.h"
 #include "edits.h"
 #include "edl.h"
 #include "edlsession.h"

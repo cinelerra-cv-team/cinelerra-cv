@@ -21,6 +21,7 @@
 
 #include "bcdisplayinfo.h"
 #include "bcsignals.h"
+#include "clip.h"
 #include "keys.h"
 #include "language.h"
 #include "mainsession.h"

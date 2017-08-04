@@ -31,7 +31,7 @@
 #include "bctexture.h"
 #include "bcwindowbase.h"
 #include "clip.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "vframe.h"
 
 class PngReadFunction
@@ -279,7 +279,7 @@ int VFrame::get_keyframe()
 
 int VFrame::calculate_bytes_per_pixel(int color_model)
 {
-	return cmodel_calculate_pixelsize(color_model);
+	return BC_CModels::calculate_pixelsize(color_model);
 }
 
 long VFrame::get_bytes_per_line()
@@ -295,8 +295,7 @@ long VFrame::get_data_size()
 
 long VFrame::calculate_data_size(int w, int h, int bytes_per_line, int color_model)
 {
-	return cmodel_calculate_datasize(w, h, bytes_per_line, color_model);
-	return 0;
+	return BC_CModels::calculate_datasize(w, h, bytes_per_line, color_model);
 }
 
 void VFrame::create_row_pointers()

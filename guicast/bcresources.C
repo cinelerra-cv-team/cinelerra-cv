@@ -20,6 +20,7 @@
  */
 
 #include "bcdisplayinfo.h"
+#include "bccmodels.h"
 #include "bcipc.h"
 #include "bclistbox.inc"
 #include "bcfontentry.h"

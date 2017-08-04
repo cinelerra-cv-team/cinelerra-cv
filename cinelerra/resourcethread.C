@@ -24,6 +24,7 @@
 #include "bctimer.h"
 #include "cache.h"
 #include "clip.h"
+#include "colormodels.h"
 #include "condition.h"
 #include "datatype.h"
 #include "edl.h"

@@ -20,6 +20,7 @@
  */
 
 #include "clip.h"
+#include "colormodels.h"
 #include "filexml.h"
 #include "picon_png.h"
 #include "svg.h"
