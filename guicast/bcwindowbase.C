@@ -44,7 +44,6 @@
 #include "keys.h"
 #include "language.h"
 #include "mutex.h"
-#include "sizes.h"
 #include "vframe.h"
 
 #ifdef HAVE_GL

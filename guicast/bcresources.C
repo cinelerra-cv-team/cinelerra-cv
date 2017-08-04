@@ -21,7 +21,6 @@
 
 #include "bcdisplayinfo.h"
 #include "bccmodels.h"
-#include "bcipc.h"
 #include "bclistbox.inc"
 #include "bcfontentry.h"
 #include "bcresources.h"
@@ -33,6 +32,7 @@
 #include "fonts.h"
 #include "hashcache.h"
 #include "language.h"
+#include "mutex.h"
 #include "vframe.h"
 
 #include <string.h>

@@ -61,8 +61,6 @@ libguicastcv_la_SOURCES = \
 	bcwindowdraw.C \
 	bcwindowevents.C \
 	condition.C \
-	debug.h \
-        error.h \
 	errorbox.C \
 	filesystem.C \
 	hashcache.C \
@@ -104,7 +102,6 @@ noinst_HEADERS = \
 	bcfontentry.inc \
 	bchash.h \
 	bchash.inc \
-	bcipc.h \
 	bclistbox.h \
 	bclistbox.inc \
 	bclistboxitem.h \
@@ -197,8 +194,6 @@ noinst_HEADERS = \
 	rotateframe.inc \
 	sema.h \
 	sema.inc \
-	sizes.h \
-	testobject.h \
 	thread.h \
 	units.h \
 	vframe.h \
