@@ -30,7 +30,6 @@ class BC_DragWindow : public BC_Popup
 public:
 	BC_DragWindow(BC_WindowBase *parent_window, BC_Pixmap *pixmap, int icon_x, int icon_y);
 	BC_DragWindow(BC_WindowBase *parent_window, VFrame *frame, int icon_x, int icon_y);
-	~BC_DragWindow();
 
 	int cursor_motion_event();
 	int drag_failure_event();
