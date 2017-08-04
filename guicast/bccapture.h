@@ -51,7 +51,7 @@ private:
 	int delete_data();
 	int get_top_w();
 	int get_top_h();
-	
+
 	inline void import_RGB565_to_RGB888(unsigned char* &output, unsigned char* &input)
 	{
 		*output++ = (*input & 0xf800) >> 8;

@@ -29,14 +29,9 @@
 #include <stdio.h>
 #include <X11/Xutil.h>
 
-
-
-
-
 // Byte orders:
 // 24 bpp packed:         bgr
 // 24 bpp unpacked:       0bgr
-
 
 BC_Capture::BC_Capture(int w, int h, const char *display_path)
 {
@@ -48,7 +43,6 @@ BC_Capture::BC_Capture(int w, int h, const char *display_path)
 	init_window(display_path);
 	allocate_data();
 }
-
 
 BC_Capture::~BC_Capture()
 {
@@ -62,12 +56,11 @@ int BC_Capture::init_window(const char *display_path)
 	if(display_path && display_path[0] == 0) display_path = NULL;
 	if((display = XOpenDisplay(display_path)) == NULL)
 	{
-  		printf(_("cannot connect to X server.\n"));
-  		if(getenv("DISPLAY") == NULL)
-    		printf(_("'DISPLAY' environment variable not set.\n"));
-  		exit(-1);
-		return 1;
- 	}
+		printf(_("cannot connect to X server.\n"));
+		if(getenv("DISPLAY") == NULL)
+			printf(_("'DISPLAY' environment variable not set.\n"));
+		exit(-1);
+	}
 
 	screen = DefaultScreen(display);
 	rootwin = RootWindow(display, screen);
@@ -78,25 +71,25 @@ int BC_Capture::init_window(const char *display_path)
 	char *data = 0;
 	XImage *ximage;
 	ximage = XCreateImage(display, 
-					vis, 
-					default_depth, 
-					ZPixmap, 
-					0, 
-					data, 
-					16, 
-					16, 
-					8, 
-					0);
+		vis,
+		default_depth,
+		ZPixmap,
+		0,
+		data,
+		16,
+		16,
+		8,
+		0);
 	bits_per_pixel = ximage->bits_per_pixel;
 	XDestroyImage(ximage);
 	bitmap_color_model = BC_WindowBase::evaluate_color_model(client_byte_order, server_byte_order, bits_per_pixel);
 
 // test shared memory
 // This doesn't ensure the X Server is on the local host
-    if(use_shm && !XShmQueryExtension(display))
-    {
-        use_shm = 0;
-    }
+	if(use_shm && !XShmQueryExtension(display))
+	{
+		use_shm = 0;
+	}
 	return 0;
 }
 
@@ -105,9 +98,9 @@ int BC_Capture::allocate_data()
 {
 // try shared memory
 	if(!display) return 1;
-    if(use_shm)
+	if(use_shm)
 	{
-	    ximage = XShmCreateImage(display, vis, default_depth, ZPixmap, (char*)NULL, &shm_info, w, h);
+		ximage = XShmCreateImage(display, vis, default_depth, ZPixmap, (char*)NULL, &shm_info, w, h);
 
 		shm_info.shmid = shmget(IPC_PRIVATE, h * ximage->bytes_per_line, IPC_CREAT | 0600);
 		if(shm_info.shmid == -1)
@@ -123,7 +116,7 @@ int BC_Capture::allocate_data()
 // Crashes here if remote server.
 		BC_Resources::error = 0;
 		XShmAttach(display, &shm_info);
-    	XSync(display, False);
+		XSync(display, False);
 		if(BC_Resources::error)
 		{
 			XDestroyImage(ximage);
@@ -176,9 +169,15 @@ int BC_Capture::delete_data()
 	return 0;
 }
 
+int BC_Capture::get_w()
+{
+	return w;
+}
 
-int BC_Capture::get_w() { return w; }
-int BC_Capture::get_h() { return h; }
+int BC_Capture::get_h()
+{
+	return h;
+}
 
 // Capture a frame from the screen
 #define CAPTURE_FRAME_HEAD \
@@ -194,7 +193,6 @@ int BC_Capture::get_h() { return h; }
 	}
 
 
-
 int BC_Capture::capture_frame(VFrame *frame, int &x1, int &y1)
 {
 	if(!display) return 1;
@@ -202,7 +200,6 @@ int BC_Capture::capture_frame(VFrame *frame, int &x1, int &y1)
 	if(y1 < 0) y1 = 0;
 	if(x1 > get_top_w() - w) x1 = get_top_w() - w;
 	if(y1 > get_top_h() - h) y1 = get_top_h() - h;
-
 
 // Read the raw data
 	if(use_shm)
@@ -231,7 +228,6 @@ int BC_Capture::capture_frame(VFrame *frame, int &x1, int &y1)
 		0,
 		frame->get_w(),
 		w);
-
 	return 0;
 }
 
