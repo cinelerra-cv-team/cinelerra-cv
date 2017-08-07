@@ -412,7 +412,6 @@ noinst_HEADERS = aattachmentpoint.h \
 		 confirmsave.h \
 		 cpanel.h \
 		 cplayback.h \
-		 cropvideo.h \
 		 ctimebar.h \
 		 ctracking.h \
 		 cwindowgui.h \
@@ -467,7 +466,6 @@ noinst_HEADERS = aattachmentpoint.h \
 		 garbage.h \
 		 gwindow.h \
 		 gwindowgui.h \
-		 headers.h \
 		 iec61883input.h \
 		 iec61883output.h \
 		 ieee1394-ioctl.h \
@@ -573,7 +571,6 @@ noinst_HEADERS = aattachmentpoint.h \
 		 removethread.h \
 		 renderengine.h \
 		 renderfarmclient.h \
-		 renderfarmfsserver.h \
 		 renderfarm.h \
 		 render.h \
 		 resample.h \
@@ -583,14 +580,12 @@ noinst_HEADERS = aattachmentpoint.h \
 		 resourcethread.h \
 		 samplescroll.h \
 		 savefile.h \
-		 scale.h \
 		 setformat.h \
 		 sharedlocation.h \
 		 shmemory.h \
 		 sighandler.h \
 		 splashgui.h \
 		 statusbar.h \
-		 testobject.h \
 		 theme.h \
 		 timebar.h \
 		 timeentry.h \
@@ -598,7 +593,6 @@ noinst_HEADERS = aattachmentpoint.h \
 		 trackcanvas.h \
 		 track.h \
 		 tracking.h \
-		 tracklist.h \
 		 trackscroll.h \
 		 tracks.h \
 		 transition.h \
@@ -613,7 +607,6 @@ noinst_HEADERS = aattachmentpoint.h \
 		 vdevicebase.h \
 		 vdevicebuz.h \
 		 vdevicedvb.h \
-		 vdevicelml.h \
 		 vdeviceprefs.h \
 		 vdevicev4l.h \
 		 vdevicev4l2.h \
@@ -622,13 +615,9 @@ noinst_HEADERS = aattachmentpoint.h \
 		 vedit.h \
 		 vedits.h \
 		 video1394.h \
-		 videoconfig.h \
 		 videodev.h \
 		 videodevfix.h \
 		 videodevice.h \
-		 videowindowgui.h \
-		 videowindow.h \
-		 viewer.h \
 		 viewmenu.h \
 		 virtualaconsole.h \
 		 virtualanode.h \

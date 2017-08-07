@@ -79,7 +79,6 @@
 #include "tracks.inc"
 #include "transition.inc"
 #include "transportque.inc"
-#include "videowindow.inc"
 #include "vwindow.inc"
 #include "wavecache.inc"
 

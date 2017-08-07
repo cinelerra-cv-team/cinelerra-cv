@@ -34,7 +34,6 @@
 #include "preferences.h"
 #include "renderfarm.h"
 #include "renderfarmclient.h"
-//#include "renderfarmfsclient.h"
 #include "sighandler.h"
 
 #include <arpa/inet.h>

@@ -112,7 +112,6 @@ public:
 	int socket_fd;
 // Read only
 	RenderFarmClient *client;
-//	RenderFarmFSClient *fs_client;
 	double frames_per_second;
 	Mutex *mutex_lock;
 	RenderFarmWatchdog *watchdog;

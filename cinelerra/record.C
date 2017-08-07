@@ -60,11 +60,9 @@
 #include "removethread.h"
 #include "mainsession.h"
 #include "sighandler.h"
-#include "testobject.h"
 #include "theme.h"
 #include "timebar.h"
 #include "tracks.h"
-#include "videoconfig.h"
 #include "videodevice.h"
 
 #include <string.h>
