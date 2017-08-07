@@ -27,7 +27,7 @@
 #include "awindowgui.inc"
 #include "bcsignals.h"
 #include "clip.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "bchash.h"
 #include "edl.h"
 #include "edlsession.h"

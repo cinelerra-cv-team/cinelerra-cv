@@ -845,7 +845,7 @@ int FileMOV::write_frames(VFrame ***frames, int len)
 				VFrame *frame = frames[i][j];
 //printf("FileMOV::write_frames 1 %d\n", frame->get_color_model());
 				quicktime_set_cmodel(fd, frame->get_color_model());
-				if(cmodel_is_planar(frame->get_color_model()))
+				if(BC_CModels::is_planar(frame->get_color_model()))
 				{
 					unsigned char *planes[3];
 					planes[0] = frame->get_y();
@@ -932,7 +932,7 @@ int FileMOV::write_frames(VFrame ***frames, int len)
 				VFrame *frame = frames[i][j];
 				quicktime_set_cmodel(fd, frame->get_color_model());
 //printf("FileMOV::write_frames 5\n");
-				if(cmodel_is_planar(frame->get_color_model()))
+				if(BC_CModels::is_planar(frame->get_color_model()))
 				{
 					unsigned char *planes[3];
 					planes[0] = frame->get_y();

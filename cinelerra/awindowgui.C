@@ -29,7 +29,7 @@
 #include "awindowmenu.h"
 #include "bcsignals.h"
 #include "cache.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "cursors.h"
 #include "cwindowgui.h"
 #include "cwindow.h"
@@ -211,7 +211,7 @@ void AssetPicon::create_objects()
 						pixmap_w, 
 						pixmap_h, 
 						BC_RGB888);
-					cmodel_transfer(icon_vframe->get_rows(), /* Leave NULL if non existent */
+					BC_CModels::transfer(icon_vframe->get_rows(), /* Leave NULL if non existent */
 						gui->temp_picon->get_rows(),
 						0, /* Leave NULL if non existent */
 						0,

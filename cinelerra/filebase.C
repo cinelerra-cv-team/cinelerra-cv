@@ -22,7 +22,6 @@
 #include "asset.h"
 #include "assets.h"
 #include "byteorder.h"
-#include "colormodels.h"
 #include "file.h"
 #include "filebase.h"
 #include "overlayframe.h"

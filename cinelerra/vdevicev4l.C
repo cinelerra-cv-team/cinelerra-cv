@@ -31,7 +31,7 @@
 #include "channel.h"
 #include "chantables.h"
 #include "clip.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "file.h"
 #include "picture.h"
 #include "preferences.h"
@@ -503,27 +503,7 @@ int VDeviceV4L::frame_to_vframe(VFrame *frame, unsigned char *input)
 			inheight, 
 			colormodel, 
 			-1);
-		cmodel_transfer(frame->get_rows(), 
-			in_frame->get_rows(),
-			frame->get_y(),
-			frame->get_u(),
-			frame->get_v(),
-			in_frame->get_y(),
-			in_frame->get_u(),
-			in_frame->get_v(),
-			0, 
-			0, 
-			inwidth, 
-			inheight,
-			0, 
-			0, 
-			frame->get_w(), 
-			frame->get_h(),
-			colormodel, 
-			frame->get_color_model(),
-			0,
-			inwidth,
-			inheight);
+		frame->transfer_from(in_frame);
 	}
 	return 0;
 }

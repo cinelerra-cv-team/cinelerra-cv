@@ -399,29 +399,7 @@ void FileTGA::read_tga(Asset *asset, VFrame *frame, VFrame *data, VFrame* &temp)
 	}
 
 	if(output_frame != frame)
-	{
-		cmodel_transfer(frame->get_rows(), 
-			output_frame->get_rows(),
-			frame->get_y(),
-			frame->get_u(),
-			frame->get_v(),
-			output_frame->get_y(),
-			output_frame->get_u(),
-			output_frame->get_v(),
-			0, 
-			0, 
-			width, 
-			height,
-			0, 
-			0, 
-			frame->get_w(), 
-			frame->get_h(),
-			output_frame->get_color_model(), 
-			frame->get_color_model(),
-			0,
-			width,
-			frame->get_w());
-	}
+		frame->transfer_from(output_frame);
 }
 
 void FileTGA::write_tga(Asset *asset, VFrame *frame, VFrame *data, VFrame* &temp)
@@ -497,27 +475,7 @@ void FileTGA::write_tga(Asset *asset, VFrame *frame, VFrame *data, VFrame* &temp
 		}
 		input_frame = temp;
 
-		cmodel_transfer(input_frame->get_rows(), 
-			frame->get_rows(),
-			input_frame->get_y(),
-			input_frame->get_u(),
-			input_frame->get_v(),
-			frame->get_y(),
-			frame->get_u(),
-			frame->get_v(),
-			0, 
-			0, 
-			frame->get_w(), 
-			frame->get_h(),
-			0, 
-			0, 
-			frame->get_w(), 
-			frame->get_h(),
-			frame->get_color_model(), 
-			input_frame->get_color_model(),
-			0,
-			frame->get_w(),
-			frame->get_w());
+		input_frame->transfer_from(frame);
 	}
 //printf("FileTGA::write_tga 1\n");
 

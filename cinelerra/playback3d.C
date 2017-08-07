@@ -26,7 +26,7 @@
 #include "canvas.h"
 #include "clip.h"
 #include "condition.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "maskautos.h"
 #include "maskauto.h"
 #include "mutex.h"
@@ -630,7 +630,7 @@ void Playback3D::draw_output(Playback3DCommand *command)
 			glUniform1i(variable, 0);
 		}
 
-		if(cmodel_components(command->frame->get_color_model()) == 4)
+		if(BC_CModels::components(command->frame->get_color_model()) == 4)
 		{
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

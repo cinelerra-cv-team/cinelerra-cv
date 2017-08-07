@@ -24,7 +24,6 @@
 #include "cache.h"
 #include "clip.h"
 #include "commonrender.h"
-#include "colormodels.h"
 #include "edits.h"
 #include "edl.h"
 #include "edlsession.h"
@@ -358,7 +357,7 @@ int VModule::import_frame(VFrame *output,
 // of producing green borders in floating point translation of YUV
 					int mode = TRANSFER_REPLACE;
 					if(get_edl()->session->interpolation_type != NEAREST_NEIGHBOR &&
-						cmodel_is_yuv(output->get_color_model()))
+						BC_CModels::is_yuv(output->get_color_model()))
 						mode = TRANSFER_NORMAL;
 
 					overlayer->overlay(output,

@@ -24,7 +24,6 @@
 
 #include "asset.inc"
 #include "assets.inc"
-#include "colormodels.h"
 #include "edit.inc"
 #include "guicast.h"
 #include "file.inc"

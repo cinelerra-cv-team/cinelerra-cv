@@ -1027,28 +1027,7 @@ int FileMPEG::write_frames(VFrame ***frames, int len)
 								temp_h, 
 								output_cmodel);
 						}
-
-						cmodel_transfer(temp_frame->get_rows(), 
-							frame->get_rows(),
-							temp_frame->get_y(),
-							temp_frame->get_u(),
-							temp_frame->get_v(),
-							frame->get_y(),
-							frame->get_u(),
-							frame->get_v(),
-							0,
-							0,
-							asset->width,
-							asset->height,
-							0,
-							0,
-							asset->width,
-							asset->height,
-							frame->get_color_model(), 
-							temp_frame->get_color_model(),
-							0, 
-							frame->get_w(),
-							temp_w);
+						temp_frame->transfer_from(frame);
 
 						mpeg2enc_set_input_buffers(0, 
 							(char*)temp_frame->get_y(),
@@ -1074,28 +1053,7 @@ int FileMPEG::write_frames(VFrame ***frames, int len)
 								asset->height, 
 								output_cmodel);
 						}
-
-						cmodel_transfer(temp_frame->get_rows(), 
-							frame->get_rows(),
-							temp_frame->get_y(),
-							temp_frame->get_u(),
-							temp_frame->get_v(),
-							frame->get_y(),
-							frame->get_u(),
-							frame->get_v(),
-							0,
-							0,
-							asset->width,
-							asset->height,
-							0,
-							0,
-							asset->width,
-							asset->height,
-							frame->get_color_model(), 
-							temp_frame->get_color_model(),
-							0, 
-							frame->get_w(),
-							temp_w);
+						temp_frame->transfer_from(frame);
 
 						mjpeg_y = temp_frame->get_y();
 						mjpeg_u = temp_frame->get_u();
@@ -1242,7 +1200,7 @@ SET_TRACE
 SET_TRACE
 				if(y && u && v)
 				{
-					cmodel_transfer(frame->get_rows(), 
+					BC_CModels::transfer(frame->get_rows(),
 						0,
 						frame->get_y(),
 						frame->get_u(),

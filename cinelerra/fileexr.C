@@ -21,6 +21,7 @@
 
 #include "asset.h"
 #include "bcsignals.h"
+#include "bccmodels.h"
 #include "clip.h"
 #include "fileexr.h"
 #include "filesystem.h"
@@ -335,7 +336,7 @@ int FileEXR::read_frame(VFrame *frame, VFrame *data)
     int dy = dw.min.y;
 	Imf::FrameBuffer framebuffer;
 	float **rows = (float**)frame->get_rows();
-	int components = cmodel_components(frame->get_color_model());
+	int components = BC_CModels::components(frame->get_color_model());
 
 	if(is_yuv)
 	{
@@ -465,7 +466,7 @@ int FileEXR::write_frame(VFrame *frame, VFrame *data, FrameWriterUnit *unit)
 
 
 	int native_cmodel = asset->exr_use_alpha ? BC_RGBA_FLOAT : BC_RGB_FLOAT;
-	int components = cmodel_components(native_cmodel);
+	int components = BC_CModels::components(native_cmodel);
 
 	if(frame->get_color_model() != native_cmodel)
 	{
@@ -473,27 +474,7 @@ int FileEXR::write_frame(VFrame *frame, VFrame *data, FrameWriterUnit *unit)
 			asset->width,
 			asset->height,
 			native_cmodel);
-		cmodel_transfer(exr_unit->temp_frame->get_rows(), /* Leave NULL if non existent */
-			frame->get_rows(),
-			exr_unit->temp_frame->get_y(), /* Leave NULL if non existent */
-			exr_unit->temp_frame->get_u(),
-			exr_unit->temp_frame->get_v(),
-			frame->get_y(), /* Leave NULL if non existent */
-			frame->get_u(),
-			frame->get_v(),
-			0,        /* Dimensions to capture from input frame */
-			0, 
-			asset->width, 
-			asset->height,
-			0,       /* Dimensions to project on output frame */
-			0, 
-			asset->width, 
-			asset->height,
-			frame->get_color_model(), 
-			native_cmodel,
-			0,         /* When transfering BC_RGBA8888 to non-alpha this is the background color in 0xRRGGBB hex */
-			asset->width,       /* For planar use the luma rowspan */
-			asset->height);
+		exr_unit->temp_frame->transfer_from(frame);
 		output_frame = exr_unit->temp_frame;
 	}
 	else
