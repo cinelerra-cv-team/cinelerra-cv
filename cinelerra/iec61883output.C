@@ -25,6 +25,7 @@
 
 #include "audiodevice.h"
 #include "condition.h"
+#include "colormodels.h"
 #include "iec61883output.h"
 #include "mutex.h"
 #include "playbackconfig.h"
