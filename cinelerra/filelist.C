@@ -28,7 +28,6 @@
 #include "mutex.h"
 #include "mwindow.inc"
 #include "render.h"
-#include "renderfarmfsserver.inc"
 #include "vframe.h"
 #include "mainerror.h"
 
@@ -196,11 +195,7 @@ int FileList::write_list_header()
 
 	for(int i = 0; i < path_list.total; i++)
 	{
-// Fix path for VFS but leave leading slash
-		if(!strncmp(path_list.values[i], RENDERFARM_FS_PREFIX, strlen(RENDERFARM_FS_PREFIX)))
-			sprintf(string, "%s\n", path_list.values[i] + strlen(RENDERFARM_FS_PREFIX));
-		else
-			sprintf(string, "%s\n", path_list.values[i]);
+		sprintf(string, "%s\n", path_list.values[i]);
 		fwrite(string, strlen(string), 1, stream);
 	}
 	fclose(stream);
@@ -290,12 +285,7 @@ int FileList::read_frame(VFrame *frame)
 		}
 		FILE *in;
 
-
-// Fix path for VFS
-		if(!strncmp(asset->path, RENDERFARM_FS_PREFIX, strlen(RENDERFARM_FS_PREFIX)))
-			sprintf(string, "%s%s", RENDERFARM_FS_PREFIX, path);
-		else
-			strcpy(string, path);
+		strcpy(string, path);
 
 		if(!(in = fopen(string, "rb")))
 		{

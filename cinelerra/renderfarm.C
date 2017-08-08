@@ -363,10 +363,6 @@ void RenderFarmServerThread::run()
 
 	buffer = 0;
 	buffer_allocated = 0;
-//	fs_server = new RenderFarmFSServer(this);
-//	fs_server->initialize();
-
-
 
 // Send command to run package renderer.
 	write_int64(RENDERFARM_PACKAGES);

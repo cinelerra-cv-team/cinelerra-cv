@@ -37,7 +37,6 @@
 #include "render.inc"
 #include "renderfarm.inc"
 #include "renderfarmclient.inc"
-//#include "renderfarmfsserver.inc"
 #include "thread.h"
 
 #include <stdint.h>
