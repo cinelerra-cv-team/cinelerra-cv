@@ -96,7 +96,6 @@ cinelerracv_SOURCES = aattachmentpoint.C \
 		    bitspopup.C \
 		    brender.C \
 		    browsebutton.C \
-		    byteorderpopup.C \
 		    cache.C \
 		    cachebase.C \
 		    canvas.C \
@@ -393,7 +392,6 @@ noinst_HEADERS = aattachmentpoint.h \
 		 browsebutton.h \
 		 buz.h \
 		 byteorder.h \
-		 byteorderpopup.h \
 		 cache.h \
 		 cachebase.h \
 		 cameraauto.h \
