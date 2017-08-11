@@ -25,7 +25,7 @@
 
 #include "bcdisplayinfo.h"
 #include "clip.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "bchash.h"
 #include "filexml.h"
 #include "keyframe.h"
@@ -525,7 +525,7 @@ int LinearBlurMain::process_buffer(VFrame *frame,
 		get_project_smp() + 1);
 	if(!accum) accum = new unsigned char[frame->get_w() * 
 		frame->get_h() *
-		cmodel_components(frame->get_color_model()) *
+		BC_CModels::components(frame->get_color_model()) *
 		MAX(sizeof(int), sizeof(float))];
 
 	this->input = frame;
@@ -543,7 +543,7 @@ int LinearBlurMain::process_buffer(VFrame *frame,
 	bzero(accum, 
 		frame->get_w() * 
 		frame->get_h() * 
-		cmodel_components(frame->get_color_model()) * 
+		BC_CModels::components(frame->get_color_model()) *
 		MAX(sizeof(int), sizeof(float)));
 	engine->process_packages();
 	return 0;
@@ -673,7 +673,7 @@ int LinearBlurMain::handle_opengl()
 	get_output()->init_screen();
 	get_output()->bind_texture(0);
 
-	int is_yuv = cmodel_is_yuv(get_output()->get_color_model());
+	int is_yuv = BC_CModels::is_yuv(get_output()->get_color_model());
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 	glClear(GL_COLOR_BUFFER_BIT);
 

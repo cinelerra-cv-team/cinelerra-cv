@@ -26,7 +26,7 @@
 #include "bcdisplayinfo.h"
 #include "clip.h"
 #include "bchash.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "filexml.h"
 #include "keyframe.h"
 #include "language.h"
@@ -371,7 +371,7 @@ int MotionBlurMain::process_realtime(VFrame *input_ptr, VFrame *output_ptr)
 		get_project_smp() + 1);
 	if(!accum) accum = new unsigned char[input_ptr->get_w() * 
 		input_ptr->get_h() *
-		cmodel_components(input_ptr->get_color_model()) *
+		BC_CModels::components(input_ptr->get_color_model()) *
 		MAX(sizeof(int), sizeof(float))];
 
 	this->input = input_ptr;
@@ -465,7 +465,7 @@ int MotionBlurMain::process_realtime(VFrame *input_ptr, VFrame *output_ptr)
 	bzero(accum, 
 		input_ptr->get_w() * 
 		input_ptr->get_h() * 
-		cmodel_components(input_ptr->get_color_model()) * 
+		BC_CModels::components(input_ptr->get_color_model()) *
 		MAX(sizeof(int), sizeof(float)));
 	engine->process_packages();
 	return 0;

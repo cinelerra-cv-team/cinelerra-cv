@@ -22,7 +22,7 @@
 #include "affine.h"
 #include "bcdisplayinfo.h"
 #include "clip.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "bchash.h"
 #include "filexml.h"
 #include "keyframe.h"
@@ -1777,7 +1777,7 @@ void MotionScanUnit::process_package(LoadPackage *package)
 	int w = server->current_frame->get_w();
 	int h = server->current_frame->get_h();
 	int color_model = server->current_frame->get_color_model();
-	int pixel_size = cmodel_calculate_pixelsize(color_model);
+	int pixel_size = BC_CModels::calculate_pixelsize(color_model);
 	int row_bytes = server->current_frame->get_bytes_per_line();
 
 
@@ -2439,7 +2439,7 @@ void RotateScanUnit::process_package(LoadPackage *package)
 	{
 //printf("RotateScanUnit::process_package 1\n");
 		int color_model = server->previous_frame->get_color_model();
-		int pixel_size = cmodel_calculate_pixelsize(color_model);
+		int pixel_size = BC_CModels::calculate_pixelsize(color_model);
 		int row_bytes = server->previous_frame->get_bytes_per_line();
 
 		if(!rotater)

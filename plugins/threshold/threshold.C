@@ -21,7 +21,7 @@
 
 #include "clip.h"
 #include "bchash.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "filexml.h"
 #include "histogramengine.h"
 #include "language.h"
@@ -335,8 +335,8 @@ int ThresholdMain::handle_opengl()
 
 	unsigned int shader = 0;
 	int color_model = get_output()->get_color_model();
-	bool is_yuv = cmodel_is_yuv(color_model);
-	bool has_alpha = cmodel_has_alpha(color_model);
+	bool is_yuv = BC_CModels::is_yuv(color_model);
+	bool has_alpha = BC_CModels::has_alpha(color_model);
 	if(is_yuv)
 		shader = VFrame::make_shader(0, yuv_shader, 0);
 	else

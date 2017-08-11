@@ -20,7 +20,7 @@
  */
 
 #include "clip.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "bchash.h"
 #include "denoisevideo.h"
 #include "filexml.h"
@@ -247,15 +247,15 @@ int DenoiseVideo::process_realtime(VFrame *input, VFrame *output)
 
 	if(!accumulation)
 	{
-		accumulation = new float[w * h * cmodel_components(color_model)];
-		bzero(accumulation, sizeof(float) * w * h * cmodel_components(color_model));
+		accumulation = new float[w * h * BC_CModels::components(color_model)];
+		bzero(accumulation, sizeof(float) * w * h * BC_CModels::components(color_model));
 	}
 
 	float *accumulation_ptr = accumulation;
 	float opacity = (float)1.0 / config.frames;
 	float transparency = 1 - opacity;
 	float threshold = (float)config.threshold * 
-		cmodel_calculate_max(color_model);
+		BC_CModels::calculate_max(color_model);
 	int do_it[4] = { config.do_r, config.do_g, config.do_b, config.do_a };
 
 #define DENOISE_MACRO(type, components, max) \

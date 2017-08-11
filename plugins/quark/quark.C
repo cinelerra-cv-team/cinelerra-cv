@@ -19,7 +19,7 @@
  * 
  */
 
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "filexml.h"
 #include "picon_png.h"
 #include "quark.h"
@@ -194,7 +194,7 @@ int SharpenMain::get_luts(int *pos_lut, int *neg_lut, int color_model)
 {
 	int i, inv_sharpness, vmax;
 
-	vmax = cmodel_calculate_max(color_model);
+	vmax = BC_CModels::calculate_max(color_model);
 
 	inv_sharpness = (int)(100 - sharpness);
 	if(horizontal) inv_sharpness /= 2;

@@ -21,7 +21,7 @@
 
 #include "clip.h"
 #include "bchash.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "filexml.h"
 #include "keyframe.h"
 #include "language.h"
@@ -138,7 +138,7 @@ int TimeAvgMain::process_buffer(VFrame *frame,
 	{
 		accumulation = new unsigned char[w * 
 			h * 
-			cmodel_components(color_model) *
+			BC_CModels::components(color_model) *
 			MAX(sizeof(float), sizeof(int))];
 		clear_accum(w, h, color_model);
 	}

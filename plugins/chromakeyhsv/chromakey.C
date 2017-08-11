@@ -23,7 +23,7 @@
 #include "bcsignals.h"
 #include "chromakey.h"
 #include "clip.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "bchash.h"
 #include "filexml.h"
 #include "guicast.h"
@@ -1207,7 +1207,7 @@ SET_TRACE
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-	if(cmodel_components(get_output()->get_color_model()) == 3)
+	if(BC_CModels::components(get_output()->get_color_model()) == 3)
 	{
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

@@ -20,7 +20,7 @@
  */
 
 #include "clip.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "filexml.h"
 #include "picon_png.h"
 #include "svg.h"
@@ -346,7 +346,7 @@ int SvgMain::process_realtime(VFrame *input_ptr, VFrame *output_ptr)
 		for (int i = 0; i < raw_data->height; i++) {
 			raw_rows[i] = raw_buffer + raw_data->struct_size + raw_data->pitch * i * 4;
 		}
-	        cmodel_transfer(temp_frame->get_rows(),
+	        BC_CModels::transfer(temp_frame->get_rows(),
 	                raw_rows,
 	                0,
 	                0,

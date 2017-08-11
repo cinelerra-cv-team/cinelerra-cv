@@ -22,7 +22,7 @@
 #include "bcdisplayinfo.h"
 #include "bcsignals.h"
 #include "bchash.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "filexml.h"
 #include "guicast.h"
 #include "keyframe.h"
@@ -790,7 +790,7 @@ int FrameField::handle_opengl()
 	{
 		if(rgb601_direction == 1)
 		{
-			if(cmodel_is_yuv(get_output()->get_color_model()))
+			if(BC_CModels::is_yuv(get_output()->get_color_model()))
 				shaders[1] = yuv_to_601_frag;
 			else
 				shaders[1] = rgb_to_601_frag;
@@ -798,7 +798,7 @@ int FrameField::handle_opengl()
 		else
 		if(rgb601_direction == 2)
 		{
-			if(cmodel_is_yuv(get_output()->get_color_model()))
+			if(BC_CModels::is_yuv(get_output()->get_color_model()))
 				shaders[1] = _601_to_yuv_frag;
 			else
 				shaders[1] = _601_to_rgb_frag;
