@@ -21,6 +21,7 @@
 
 #include "asset.h"
 #include "bcsignals.h"
+#include "bccmodels.h"
 #include "byteorder.h"
 #include "dv1394.h"
 #include "edit.h"
@@ -34,7 +35,6 @@
 #include "quicktime.h"
 #include "vframe.h"
 #include "videodevice.inc"
-#include "cmodel_permutation.h"
 #include "mainerror.h"
 
 
@@ -649,7 +649,7 @@ int FileDV::write_frames(VFrame ***frames, int len)
 					for(int i = 0; i < asset->height; i++)
 						cmodel_buf[i] = data + asset->width * 2 * i;
 					
-					cmodel_transfer(cmodel_buf,
+					BC_CModels::transfer(cmodel_buf,
 						row_pointers,
 						cmodel_buf[0],
 						cmodel_buf[1],
@@ -889,7 +889,7 @@ TRACE("FileDV::read_frame 69")
 
 TRACE("FileDV::read_frame 70")
 
-			cmodel_transfer(row_pointers,
+			BC_CModels::transfer(row_pointers,
 				temp_pointers,
 				row_pointers[0],
 				row_pointers[1],

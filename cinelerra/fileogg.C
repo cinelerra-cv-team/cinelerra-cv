@@ -21,6 +21,7 @@
 
 #include "asset.h"
 #include "bcsignals.h"
+#include "bccmodels.h"
 #include "byteorder.h"
 #include "clip.h"
 #include "edit.h"
@@ -33,7 +34,6 @@
 #include "quicktime.h"
 #include "vframe.h"
 #include "videodevice.inc"
-#include "cmodel_permutation.h"
 #include "interlacemodes.h"
 #include "mainerror.h"
 
@@ -1534,7 +1534,7 @@ int FileOGG::read_frame(VFrame *frame)
 						- yuv.y_stride);
 		// copy into temp frame...
 		
-		cmodel_transfer(frame->get_rows(),
+		BC_CModels::transfer(frame->get_rows(),
 			temp_frame->get_rows(),
 			frame->get_y(),
 			frame->get_u(),
@@ -1997,7 +1997,7 @@ int FileOGG::write_frames_theora(VFrame ***frames, int len, int e_o_s)
 		} else
 		{
 
-			cmodel_transfer(temp_frame->get_rows(),
+			BC_CModels::transfer(temp_frame->get_rows(),
 				frame->get_rows(),
 				temp_frame->get_y(),
 				temp_frame->get_u(),
