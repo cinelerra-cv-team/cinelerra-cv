@@ -133,10 +133,7 @@ cinelerracv_SOURCES = aattachmentpoint.C \
 		    exportedl.C \
 		    fadeengine.C \
 		    fileac3.C \
-		    filebaseaudio.C \
 		    filebase.C \
-		    filebaseima4.C \
-		    filebaseulaw.C \
 		    file.C \
 		    filedv.C \
 		    fileogg.C \

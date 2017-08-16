@@ -164,7 +164,6 @@ int FileMPEG::reset_parameters_derived()
 	fd = 0;
 	video_out = 0;
 	audio_out = 0;
-	prev_track = 0;
 	temp_frame = 0;
 	toolame_temp = 0;
 	toolame_allocation = 0;

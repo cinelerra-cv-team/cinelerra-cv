@@ -197,7 +197,6 @@ int FileMOV::check_sig(Asset *asset)
 int FileMOV::reset_parameters_derived()
 {
 	fd = 0;
-	prev_track = 0;
 	quicktime_atracks = 0;
 	quicktime_vtracks = 0;
 	depth = 24;

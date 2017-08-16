@@ -41,18 +41,11 @@ public:
 	FileBase(Asset *asset, File *file);
 	virtual ~FileBase();
 
-
 	friend class File;
 	friend class FileList;
 	friend class FrameWriter;
 
-
-
-
-	void get_mode(char *mode, int rd, int wr);
 	void reset_parameters();
-
-
 
 	virtual void get_parameters(BC_WindowBase *parent_window, 
 			Asset *asset, 
@@ -61,8 +54,6 @@ public:
 			int video_options,
 			int lock_compressor) {};
 
-
-
 	virtual int get_index(char *index_path) { return 1; };
 	virtual int check_header() { return 0; };  // Test file to see if it is of this type.
 	virtual int reset_parameters_derived() {};
@@ -70,7 +61,7 @@ public:
 	virtual int open_file(int rd, int wr) {};
 	virtual int close_file();
 	virtual int close_file_derived() {};
-	int set_dither();
+	void set_dither();
 	virtual int seek_end() { return 0; };
 	virtual int seek_start() { return 0; };
 	virtual int64_t get_video_position() { return 0; };
@@ -104,96 +95,12 @@ public:
 	virtual int get_render_strategy(ArrayList<int>* render_strategies) { return VRENDER_VPIXEL; };
 
 protected:
-// Return 1 if the render_strategy is present on the list.
-	static int search_render_strategies(ArrayList<int>* render_strategies, int render_strategy);
-
-// convert samples into file format
-	int64_t samples_to_raw(char *out_buffer, 
-							float **in_buffer, // was **buffer
-							int64_t input_len, 
-							int bits, 
-							int channels,
-							int byte_order,
-							int signed_);
-
-// overwrites the buffer from PCM data depending on feather.
-	int raw_to_samples(float *out_buffer, char *in_buffer, 
-		int64_t samples, int bits, int channels, int channel, int feather, 
-		float lfeather_len, float lfeather_gain, float lfeather_slope);
-
-// Overwrite the buffer from float data using feather.
-	int overlay_float_buffer(float *out_buffer, float *in_buffer, 
-		int64_t samples, 
-		float lfeather_len, float lfeather_gain, float lfeather_slope);
-
-// convert a frame to and from file format
-
-	int64_t frame_to_raw(unsigned char *out_buffer,
-					VFrame *in_frame,
-					int w,
-					int h,
-					int use_alpha,
-					int use_float,
-					int color_model);
-
-// allocate a buffer for translating int to float
-	int get_audio_buffer(char **buffer, int64_t len, int64_t bits, int64_t channels); // audio
-
-// Allocate a buffer for feathering floats
-	int get_float_buffer(float **buffer, int64_t len);
-
-// allocate a buffer for translating video to VFrame
-	int get_video_buffer(unsigned char **buffer, int depth); // video
-	void get_row_pointers(unsigned char *buffer, unsigned char ***pointers, int depth);
 	static int match4(const char *in, const char *out);   // match 4 bytes for a quicktime type
 
-	int64_t ima4_samples_to_bytes(int64_t samples, int channels);
-	int64_t ima4_bytes_to_samples(int64_t bytes, int channels);
-
-	char *audio_buffer_in, *audio_buffer_out;    // for raw audio reads and writes
-	float *float_buffer;          // for floating point feathering
-	unsigned char *video_buffer_in, *video_buffer_out;
-	unsigned char **row_pointers_in, **row_pointers_out;
-	int64_t prev_buffer_position;  // for audio determines if reading raw data is necessary
-	int64_t prev_frame_position;   // for video determines if reading raw video data is necessary
-	int64_t prev_bytes; // determines if new raw buffer is needed and used for getting memory usage
-	int64_t prev_len;
-	int prev_track;
-	int prev_layer;
 	Asset *asset;
 	int wr, rd;
 	int dither;
-	int internal_byte_order;
 	File *file;
-
-private:
-
-
-
-// ================================= Audio compression
-// ULAW
-	float ulawtofloat(char ulaw);
-	char floattoulaw(float value);
-	int generate_ulaw_tables();
-	int delete_ulaw_tables();
-	float *ulawtofloat_table, *ulawtofloat_ptr;
-	unsigned char *floattoulaw_table, *floattoulaw_ptr;
-
-// IMA4
-	void init_ima4();
-	void delete_ima4();
-	int ima4_decode_block(int16_t *output, unsigned char *input);
-	int ima4_decode_sample(int *predictor, int nibble, int *index, int *step);
-	int ima4_encode_block(unsigned char *output, int16_t *input, int step, int channel);
-	int ima4_encode_sample(int *last_sample, int *last_index, int *nibble, int next_sample);
-
-	static int ima4_step[89];
-	static int ima4_index[16];
-	int *last_ima4_samples;
-	int *last_ima4_indexes;
-	int ima4_block_size;
-	int ima4_block_samples;
-	OverlayFrame *overlayer;
 };
 
 #endif
