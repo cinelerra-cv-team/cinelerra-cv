@@ -20,7 +20,7 @@
  */
 
 #include "clip.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "bchash.h"
 #include "filexml.h"
 #include "greycstorationplugin.h"

@@ -21,7 +21,7 @@
 
 #include "filexml.h"
 #include "colorbalance.h"
-#include "colormodels.h"
+#include "bccmodels.h"
 #include "bchash.h"
 #include "language.h"
 #include "picon_png.h"

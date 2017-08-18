@@ -72,7 +72,7 @@ static const char *colorbalance_yuv_preserve_shader =
 		shader_stack[current_shader++] = colorbalance_get_pixel1; \
 	else \
 		shader_stack[current_shader++] = colorbalance_get_pixel2; \
-	if(cmodel_is_yuv(get_output()->get_color_model())) \
+	if(BC_CModels::is_yuv(get_output()->get_color_model())) \
 	{\
 		if(get_output()->get_params()->get("COLORBALANCE_PRESERVE", (int)0)) \
 			shader_stack[current_shader++] = colorbalance_yuv_preserve_shader; \

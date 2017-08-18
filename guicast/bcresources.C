@@ -28,7 +28,6 @@
 #include "bcsynchronous.h"
 #include "bcwindowbase.h"
 #include "colors.h"
-#include "colormodels.h"
 #include "fonts.h"
 #include "hashcache.h"
 #include "language.h"
