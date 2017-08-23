@@ -395,6 +395,7 @@ noinst_HEADERS = aattachmentpoint.h \
 		 canvas.h \
 		 canvastools.h \
 		 cicolors.h \
+		 cinelerra.h \
 		 channeledit.h \
 		 channel.h \
 		 channeldb.h \
