@@ -2059,7 +2059,7 @@ void MWindow::save_backup()
 }
 
 
-int MWindow::create_aspect_ratio(float &w, float &h, int width, int height)
+int MWindow::create_aspect_ratio(double &w, double &h, int width, int height)
 {
 	int denominator;
 	if(!width || !height) return 1;

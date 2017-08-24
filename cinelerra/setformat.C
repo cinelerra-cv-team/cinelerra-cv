@@ -905,8 +905,8 @@ int ScaleAspectAuto::handle_event()
 	return 1;
 }
 
-ScaleAspectText::ScaleAspectText(int x, int y, SetFormatThread *thread, float *output)
- : BC_TextBox(x, y, 70, 1, *output)
+ScaleAspectText::ScaleAspectText(int x, int y, SetFormatThread *thread, double *output)
+ : BC_TextBox(x, y, 70, 1,(float)*output)
 {
 	this->output = output;
 	this->thread = thread;

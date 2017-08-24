@@ -167,11 +167,11 @@ public:
 class ScaleAspectText : public BC_TextBox
 {
 public:
-	ScaleAspectText(int x, int y, SetFormatThread *thread, float *output);
+	ScaleAspectText(int x, int y, SetFormatThread *thread, double *output);
 	~ScaleAspectText();
 	int handle_event();
 	SetFormatThread *thread;
-	float *output;
+	double *output;
 };
 
 class SetFormatApply : public BC_GenericButton
