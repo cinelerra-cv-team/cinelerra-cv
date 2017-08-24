@@ -305,11 +305,29 @@ int BC_TextBox::update(int64_t value)
 	return 0;
 }
 
+int BC_TextBox::update(int value)
+{
+	char string[BCTEXTLEN];
+
+	sprintf(string, "%d", value);
+	update(string);
+	return 0;
+}
+
 int BC_TextBox::update(float value)
 {
 	char string[BCTEXTLEN];
 	sprintf(string, "%0.*f", precision, value);
 
+	update(string);
+	return 0;
+}
+
+int BC_TextBox::update(double value)
+{
+	char string[BCTEXTLEN];
+
+	sprintf(string, "%0.*f", precision, value);
 	update(string);
 	return 0;
 }

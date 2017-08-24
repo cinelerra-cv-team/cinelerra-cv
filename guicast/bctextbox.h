@@ -84,7 +84,9 @@ public:
 	void update(const wchar_t *text);
 	void updateutf8(const char *text);
 	int update(int64_t value);
+	int update(int value);
 	int update(float value);
+	int update(double value);
 // options: do not dim the text when the box is disabled
 	void disable(int options = 0);
 	void enable();
@@ -135,7 +137,10 @@ public:
 // in all cases it returns text_selected after the operation
 	int select_whole_text(int select);
 	void cycle_textboxes(int amout);
-	
+
+protected:
+	int defaultcolor;
+
 private:
 	void convert_number();
 	int reset_parameters(int rows, int has_border, int font);
@@ -180,7 +185,6 @@ private:
 	int *positions;
 	int active;
 	int enabled;
-	int defaultcolor;
 	int precision;
 	int keypress_draw;
 // Cause the repeater to skip a cursor refresh if a certain event happened
