@@ -272,7 +272,7 @@ int BC_PopupMenu::deactivate()
 	return 0;
 }
 
-int BC_PopupMenu::activate_menu()
+int BC_PopupMenu::activate_menu(int init_releases)
 {
 	if(!popup_down)
 	{
@@ -289,7 +289,7 @@ int BC_PopupMenu::activate_menu()
 			button_press_y = top_level->cursor_y;
 		}
 
-		button_releases = 0;
+		button_releases = init_releases;
 		if(use_title)
 		{
 			Window tempwin;

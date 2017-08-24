@@ -68,7 +68,7 @@ public:
 	int draw_title();
 	int reposition_window(int x, int y);
 	int deactivate();
-	int activate_menu();
+	int activate_menu(int init_releases = 0);
 	int deactivate_menu();
 	int focus_out_event();
 	int repeat_event(int64_t duration);
