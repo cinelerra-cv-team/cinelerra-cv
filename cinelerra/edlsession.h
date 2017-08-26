@@ -164,7 +164,7 @@ public:
 	int64_t record_write_length;
 // Show title and action safe regions in CWindow
 	int safe_regions;
-    int64_t sample_rate;
+	int sample_rate;
 	float scrub_speed;
 // Load files as a duration
 	int si_useduration;
