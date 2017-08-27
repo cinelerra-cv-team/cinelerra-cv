@@ -19,7 +19,7 @@ AM_PROG_AS
 AC_LANG_CPLUSPLUS
 AC_LANG_C
 AC_PROG_CXX
-AX_CXX_COMPILE_STDCXX(11)
+AX_CXX_COMPILE_STDCXX(11, ext, optional)
 
 dnl
 dnl GREP_CXXFLAGS(flag, cmd_if_missing, cmd_if_present)
@@ -51,7 +51,6 @@ esac
 if eval "test x$GCC = xyes"; then
   for flag in \
       -Wformat \
-      -Werror=literal-suffix \
       -Werror=format-security
   do
     GREP_CXXFLAGS($flag, [ CXXFLAGS="$CXXFLAGS $flag" ])
@@ -66,7 +65,6 @@ if eval "test x$GCC = xyes"; then
 	AC_HELP_STRING([--with-lots-of-warnings], [ask the compiler to enable lots of warning flags]),[
   for flag in \
       -Wall \
-      -Werror=literal-suffix \
       -Werror=format-security \
       -Wextra \
       -Wcast-qual \
