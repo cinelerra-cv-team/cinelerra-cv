@@ -265,6 +265,7 @@ cinelerracv_SOURCES = aattachmentpoint.C \
 		    resourcethread.C \
 		    samplescroll.C \
 		    savefile.C \
+		    selection.C \
 		    setformat.C \
 		    sharedlocation.C \
 		    shmemory.C \
@@ -576,6 +577,7 @@ noinst_HEADERS = aattachmentpoint.h \
 		 resourcethread.h \
 		 samplescroll.h \
 		 savefile.h \
+		 selection.h \
 		 setformat.h \
 		 sharedlocation.h \
 		 shmemory.h \
