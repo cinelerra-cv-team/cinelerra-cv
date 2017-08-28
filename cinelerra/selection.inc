@@ -34,5 +34,6 @@
 #define SELECTION_VARNUMITEMS  0x40000
 
 class Selection;
+class SampleRateSelection;
 
 #endif

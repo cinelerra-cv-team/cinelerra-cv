@@ -38,6 +38,43 @@
 
 #include <stdlib.h>
 
+const struct selection_int SampleRateSelection::sample_rates[] =
+{
+	{ "8000", 8000 },
+	{ "16000", 16000 },
+	{ "22050", 22050 },
+	{ "32000", 32000 },
+	{ "44100", 44100 },
+	{ "48000", 48000 },
+	{ "96000", 96000 },
+	{ "192000", 192000 },
+	{ 0, 0 }
+};
+
+
+SampleRateSelection::SampleRateSelection(int x, int y, BC_WindowBase *base, int *value)
+ : Selection(x, y , base, sample_rates, value)
+{
+}
+
+int SampleRateSelection::limits(int *rate)
+{
+	int result = 0;
+
+	if(*rate < MIN_SAMPLE_RATE)
+	{
+		*rate = MIN_SAMPLE_RATE;
+		result = -1;
+	}
+
+	if(*rate > MAX_SAMPLE_RATE)
+	{
+		*rate = MAX_SAMPLE_RATE;
+		result = -1;
+	}
+	return result;
+}
+
 
 Selection::Selection(int x, int y, BC_WindowBase *base,
 	const struct selection_int items[], int *value, int options)

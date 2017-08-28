@@ -144,4 +144,14 @@ private:
 };
 
 
+class SampleRateSelection : public Selection
+{
+public:
+	SampleRateSelection(int x, int y, BC_WindowBase *base, int *value);
+
+	static int limits(int *rate);
+private:
+	static const struct selection_int sample_rates[];
+};
+
 #endif
