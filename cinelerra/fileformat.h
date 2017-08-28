@@ -38,6 +38,7 @@ class FileFormatBits;
 #include "file.inc"
 #include "mwindow.inc"
 #include "mwindowgui.inc"
+#include "selection.inc"
 
 class FileFormat : public BC_Window
 {
@@ -56,7 +57,7 @@ public:
 	FileFormatByteOrderHILO *hilo;
 	FileFormatSigned *signed_button;
 	FileFormatHeader *header_button;
-	FileFormatRate *rate_button;
+	Selection *rate_button;
 	FileFormatChannels *channels_button;
 	MWindow *mwindow;
 };
@@ -71,15 +72,6 @@ public:
 	FileFormat *fwindow;
 };
 
-class FileFormatRate : public BC_TextBox
-{
-public:
-	FileFormatRate(int x, int y, FileFormat *fwindow, char *text);
-	
-	int handle_event();
-	
-	FileFormat *fwindow;
-};
 
 class FileFormatHeader : public BC_TextBox
 {

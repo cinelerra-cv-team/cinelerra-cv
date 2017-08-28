@@ -26,7 +26,7 @@
 #include "language.h"
 #include "mwindow.h"
 #include "mwindowgui.h"
-#include "new.h"
+#include "selection.h"
 
 
 
@@ -77,10 +77,10 @@ int FileFormat::create_objects_(char *string2)
 
 	y += 30;
 	add_subwindow(new BC_Title(x, y, _("Sample rate:")));
-	sprintf(string, "%d", asset->sample_rate);
-	add_subwindow(rate_button = new FileFormatRate(x2, y, this, string));
-	add_subwindow(new SampleRatePulldown(mwindow, rate_button, x2 + 100, y));
-	
+	add_subwindow(rate_button = new SampleRateSelection(x2, y,
+		this, &asset->sample_rate));
+	rate_button->update(asset->sample_rate);
+
 	y += 30;
 	add_subwindow(new BC_Title(x, y, _("Bits:")));
 	bitspopup = new BitsPopup(this, 
@@ -132,17 +132,6 @@ int FileFormatChannels::handle_event()
 	return 0;
 }
 
-FileFormatRate::FileFormatRate(int x, int y, FileFormat *fwindow, char *text)
- : BC_TextBox(x, y, 100, 1, text)
-{
-	this->fwindow = fwindow;
-}
-
-int FileFormatRate::handle_event()
-{
-	fwindow->asset->sample_rate = atol(get_text());
-	return 0;
-}
 
 FileFormatHeader::FileFormatHeader(int x, int y, FileFormat *fwindow, char *text)
  : BC_TextBox(x, y, 100, 1, text)

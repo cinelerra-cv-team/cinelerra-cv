@@ -30,6 +30,7 @@
 #include "cache.h"
 #include "channel.h"
 #include "channeldb.h"
+#include "cinelerra.h"
 #include "clip.h"
 #include "bccmodels.h"
 #include "cplayback.h"
@@ -80,6 +81,7 @@
 #include "removethread.h"
 #include "render.h"
 #include "samplescroll.h"
+#include "selection.h"
 #include "sighandler.h"
 #include "splashgui.h"
 #include "statusbar.h"
@@ -1131,6 +1133,10 @@ SET_TRACE
 					FileFormat fwindow(this);
 					fwindow.create_objects(new_asset, string);
 					result = fwindow.run_window();
+
+					if(SampleRateSelection::limits(&new_asset->sample_rate) < 0)
+						errorbox(_("Sample rate is out of limits (%d..%d).\nCorrection applied."),
+							MIN_SAMPLE_RATE, MAX_SAMPLE_RATE);
 
 					defaults->update("AUDIO_CHANNELS", new_asset->channels);
 					defaults->update("SAMPLE_RATE", new_asset->sample_rate);
