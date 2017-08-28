@@ -26,6 +26,7 @@
 #include "bcprogressbox.h"
 #include "bcsignals.h"
 #include "bitspopup.h"
+#include "cinelerra.h"
 #include "cache.h"
 #include "clip.h"
 #include "cplayback.h"
@@ -35,12 +36,14 @@
 #include "filesystem.h"
 #include "indexfile.h"
 #include "language.h"
+#include "mainerror.h"
 #include "mainindexes.h"
 #include "mwindow.h"
 #include "mwindowgui.h"
 #include "theme.h"
 #include "new.h"
 #include "preferences.h"
+#include "selection.h"
 #include "transportque.h"
 #include "interlacemodes.h"
 #include "edl.h"
@@ -100,6 +103,9 @@ void AssetEdit::run()
  		{
  			if(!asset->equivalent(*new_asset, 1, 1))
  			{
+				if(new_asset->audio_data && SampleRateSelection::limits(&new_asset->sample_rate) < 0)
+					errorbox(_("Sample rate is out of limits (%d..%d).\nCorrection applied."),
+						MIN_SAMPLE_RATE, MAX_SAMPLE_RATE);
 				mwindow->gui->lock_window();
 				mwindow->remove_asset_from_caches(asset);
 // Omit index status from copy since an index rebuild may have been
@@ -305,9 +311,9 @@ int AssetEditWindow::create_objects()
 		if(1)
 		{
 			BC_TextBox *textbox;
-			add_subwindow(textbox = new AssetEditRate(this, string, x, y));
-			x += textbox->get_w();
-			add_subwindow(new SampleRatePulldown(mwindow, textbox, x, y));
+			add_subwindow(textbox = new SampleRateSelection(x, y, this,
+				&asset->sample_rate));
+			textbox->update(asset->sample_rate);
 		}
 		else
 		{
@@ -569,17 +575,6 @@ int AssetEditChannels::handle_event()
 	return 1;
 }
 
-AssetEditRate::AssetEditRate(AssetEditWindow *fwindow, char *text, int x, int y)
- : BC_TextBox(x, y, 100, 1, text)
-{
-	this->fwindow = fwindow;
-}
-
-int AssetEditRate::handle_event()
-{
-	fwindow->asset->sample_rate = atol(get_text());
-	return 1;
-}
 
 AssetEditFRate::AssetEditFRate(AssetEditWindow *fwindow, char *text, int x, int y)
  : BC_TextBox(x, y, 100, 1, text)
