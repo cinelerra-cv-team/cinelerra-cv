@@ -156,14 +156,6 @@ public:
 	NewWindow *nwindow;
 };
 
-class NewSampleRate : public BC_TextBox
-{
-public:
-	NewSampleRate(NewWindow *nwindow, const char *text, int x, int y);
-	int handle_event();
-	NewWindow *nwindow;
-};
-
 
 class SampleRatePulldown : public BC_ListBox
 {

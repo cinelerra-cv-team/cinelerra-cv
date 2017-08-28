@@ -19,6 +19,7 @@
  * 
  */
 
+#include "cinelerra.h"
 #include "clip.h"
 #include "cplayback.h"
 #include "cwindow.h"
@@ -29,6 +30,7 @@
 #include "interlacemodes.h"
 #include "language.h"
 #include "levelwindow.h"
+#include "mainerror.h"
 #include "mainundo.h"
 #include "mainmenu.h"
 #include "mutex.h"
@@ -39,6 +41,7 @@
 #include "mainsession.h"
 #include "patchbay.h"
 #include "preferences.h"
+#include "selection.h"
 #include "theme.h"
 #include "transportque.h"
 #include "vplayback.h"
@@ -121,6 +124,11 @@ int New::create_new_project()
 	mwindow->undo->update_undo(_("New"), LOAD_ALL);
 
 	mwindow->hide_plugins();
+
+	if(SampleRateSelection::limits(&new_edl->session->sample_rate) < 0)
+		errorbox(_("Sample rate is out of limits (%d..%d).\nCorrection applied."),
+			MIN_SAMPLE_RATE, MAX_SAMPLE_RATE);
+
 	delete mwindow->edl;
 	mwindow->edl = new_edl;
 	mwindow->save_defaults();
@@ -283,10 +291,8 @@ int NewWindow::create_objects()
 	x1 = x;
 	add_subwindow(new BC_Title(x1, y, _("Samplerate:")));
 	x1 += 100;
-	add_subwindow(sample_rate = new NewSampleRate(this, "", x1, y));
-	x1 += sample_rate->get_w();
-	add_subwindow(new SampleRatePulldown(mwindow, sample_rate, x1, y));
-	
+	add_subwindow(sample_rate = new SampleRateSelection(x1, y, this,
+			&new_edl->session->sample_rate));
 	x += 250;
 	y = y1;
 	add_subwindow(new BC_Title(x, y, _("Video"), LARGEFONT));
@@ -406,7 +412,7 @@ int NewWindow::update()
 	char string[BCTEXTLEN];
 	atracks->update((int64_t)new_edl->session->audio_tracks);
 	achannels->update((int64_t)new_edl->session->audio_channels);
-	sample_rate->update((int64_t)new_edl->session->sample_rate);
+	sample_rate->update(new_edl->session->sample_rate);
 	vtracks->update((int64_t)new_edl->session->video_tracks);
 	frame_rate->update((float)new_edl->session->frame_rate);
 	output_w_text->update((int64_t)new_edl->session->output_w);
@@ -510,18 +516,6 @@ int NewAChannelsTumbler::handle_down_event()
 	return 1;
 }
 
-
-NewSampleRate::NewSampleRate(NewWindow *nwindow, const char *text, int x, int y)
- : BC_TextBox(x, y, 90, 1, text)
-{
-	this->nwindow = nwindow;
-}
-
-int NewSampleRate::handle_event()
-{
-	nwindow->new_edl->session->sample_rate = atol(get_text());
-	return 1;
-}
 
 SampleRatePulldown::SampleRatePulldown(MWindow *mwindow, BC_TextBox *output, int x, int y)
  : BC_ListBox(x,
