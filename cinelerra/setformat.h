@@ -28,6 +28,7 @@
 #include "guicast.h"
 #include "mutex.inc"
 #include "mwindow.inc"
+#include "selection.inc"
 #include "setformat.inc"
 #include "thread.h"
 
@@ -74,14 +75,6 @@ public:
 	int constrain_ratio;
 };
 
-
-class SetSampleRateTextBox : public BC_TextBox
-{
-public:
-	SetSampleRateTextBox(SetFormatThread *thread, int x, int y);
-	int handle_event();
-	SetFormatThread *thread;
-};
 
 class SetChannelsTextBox : public BC_TextBox
 {
@@ -227,7 +220,7 @@ public:
 // Aspect ratio
 	ScaleAspectText *aspect_w;
 	ScaleAspectText *aspect_h;
-	SetSampleRateTextBox *sample_rate;
+	Selection *sample_rate;
 	SetChannelsTextBox *channels;
 	SetFrameRateTextBox *frame_rate;
 	ColormodelPulldown *color_model;
