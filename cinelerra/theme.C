@@ -106,7 +106,6 @@ Theme::~Theme()
 	aspect_ratios.remove_all_objects();
 	frame_rates.remove_all_objects();
 	frame_sizes.remove_all_objects();
-	sample_rates.remove_all_objects();
 	zoom_values.remove_all_objects();
 }
 
@@ -166,14 +165,6 @@ void Theme::build_menus()
 	frame_sizes.append(new BC_ListBoxItem("960x1080"));
 	frame_sizes.append(new BC_ListBoxItem("1920x1080"));
 	frame_sizes.append(new BC_ListBoxItem("1920x1088"));
-	sample_rates.append(new BC_ListBoxItem("8000"));
-	sample_rates.append(new BC_ListBoxItem("16000"));
-	sample_rates.append(new BC_ListBoxItem("22050"));
-	sample_rates.append(new BC_ListBoxItem("32000"));
-	sample_rates.append(new BC_ListBoxItem("44100"));
-	sample_rates.append(new BC_ListBoxItem("48000"));
-	sample_rates.append(new BC_ListBoxItem("96000"));
-	sample_rates.append(new BC_ListBoxItem("192000"));
 	frame_rates.append(new BC_ListBoxItem("1"));
 	frame_rates.append(new BC_ListBoxItem("5"));
 	frame_rates.append(new BC_ListBoxItem("10"));

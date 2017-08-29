@@ -517,44 +517,6 @@ int NewAChannelsTumbler::handle_down_event()
 }
 
 
-SampleRatePulldown::SampleRatePulldown(MWindow *mwindow, BC_TextBox *output, int x, int y)
- : BC_ListBox(x,
- 	y,
-	100,
-	200,
-	LISTBOX_TEXT,
-	&mwindow->theme->sample_rates,
-	0,
-	0,
-	1,
-	0,
-	1)
-{
-	this->mwindow = mwindow;
-	this->output = output;
-}
-int SampleRatePulldown::handle_event()
-{
-	char *text = get_selection(0, 0)->get_text();
-	output->update(text);
-	output->handle_event();
-	return 1;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 NewVTracks::NewVTracks(NewWindow *nwindow, const char *text, int x, int y)
  : BC_TextBox(x, y, 90, 1, text)
 {

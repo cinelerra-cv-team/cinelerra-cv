@@ -113,7 +113,6 @@ public:
 	ArrayList<BC_ListBoxItem*> aspect_ratios;
 	ArrayList<BC_ListBoxItem*> frame_rates;
 	ArrayList<BC_ListBoxItem*> frame_sizes;
-	ArrayList<BC_ListBoxItem*> sample_rates;
 	ArrayList<BC_ListBoxItem*> zoom_values;
 	const char *theme_title;
 
