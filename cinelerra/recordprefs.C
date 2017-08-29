@@ -31,6 +31,7 @@
 #include "preferences.h"
 #include "recordconfig.h"
 #include "recordprefs.h"
+#include "selection.h"
 #include "theme.h"
 #include "vdeviceprefs.h"
 
@@ -134,8 +135,10 @@ int RecordPrefs::create_objects()
 		x2, 
 		ybix[0],
 		string));
-	add_subwindow(textbox = new RecordSampleRate(pwindow, x2, ybix[1]));
-	add_subwindow(new SampleRatePulldown(mwindow, textbox, x2 + textbox->get_w(), ybix[1]));
+
+	add_subwindow(textbox = new SampleRateSelection(x2, ybix[1], this,
+		&pwindow->thread->edl->session->aconfig_in->in_samplerate));
+		textbox->update(pwindow->thread->edl->session->aconfig_in->in_samplerate);
 
 	RecordChannels *channels = new RecordChannels(pwindow, this, x2, ybix[2]);
 	channels->create_objects();
@@ -262,18 +265,6 @@ int RecordWriteLength::handle_event()
 { 
 	pwindow->thread->edl->session->record_write_length = atol(get_text());
 	return 1; 
-}
-
-
-RecordSampleRate::RecordSampleRate(PreferencesWindow *pwindow, int x, int y)
- : BC_TextBox(x, y, 70, 1, pwindow->thread->edl->session->aconfig_in->in_samplerate)
-{
-	this->pwindow = pwindow;
-}
-int RecordSampleRate::handle_event()
-{
-	pwindow->thread->edl->session->aconfig_in->in_samplerate = atol(get_text());
-	return 1;
 }
 
 

@@ -24,6 +24,7 @@
 #include "audiodevice.inc"
 #include "bcsignals.h"
 #include "cache.h"
+#include "cinelerra.h"
 #include "cplayback.h"
 #include "cwindow.h"
 #include "cwindowgui.h"
@@ -48,6 +49,8 @@
 #include "playbackprefs.h"
 #include "preferences.h"
 #include "recordprefs.h"
+#include "recordconfig.h"
+#include "selection.h"
 #include "theme.h"
 #include "trackcanvas.h"
 #include "transportque.h"
@@ -205,6 +208,10 @@ int PreferencesThread::apply_settings()
 			_("This project's dimensions are not multiples of 4 so\n"
 			"it can't be rendered by OpenGL."));
 	}
+
+	if(SampleRateSelection::limits(&mwindow->edl->session->aconfig_in->in_samplerate) < 0)
+		errorbox(_("Recording sample rate is out of limits (%d..%d).\nCorrection applied."),
+			MIN_SAMPLE_RATE, MAX_SAMPLE_RATE);
 
 
 	if(redraw_meters)
