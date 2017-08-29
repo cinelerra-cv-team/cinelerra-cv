@@ -415,8 +415,6 @@ public:
 	double get_project_framerate();
 // Total number of processors - 1
 	int get_project_smp();
-	int get_aspect_ratio(float &aspect_w, float &aspect_h);
-
 
 	int write_frames(int64_t total_frames);  // returns 1 for failure / tells the server that all output channel buffers are ready to go
 	int write_samples(int64_t total_samples);  // returns 1 for failure / tells the server that all output channel buffers are ready to go

@@ -302,7 +302,6 @@ public:
 	void detach_transition(Transition *transition);
 	int feather_edits(int64_t feather_samples, int audio, int video);
 	int64_t get_feather(int audio, int video);
-	float get_aspect_ratio();
 	void insert(double position, 
 		FileXML *file,
 		int edit_labels,

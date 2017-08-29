@@ -118,24 +118,24 @@ BC_WindowBase* Canvas::get_canvas()
 
 
 // Get dimensions given a zoom
-void Canvas::calculate_sizes(float aspect_ratio, 
+void Canvas::calculate_sizes(double aspect_ratio,
 	int output_w, 
 	int output_h, 
-	float zoom, 
+	double zoom,
 	int &w, 
 	int &h)
 {
 // Horizontal stretch
-	if((float)output_w / output_h <= aspect_ratio)
+	if((double)output_w / output_h <= aspect_ratio)
 	{
-		w = (int)((float)output_h * aspect_ratio * zoom);
-		h = (int)((float)output_h * zoom);
+		w = round((double)output_h * aspect_ratio * zoom);
+		h = round((double)output_h * zoom);
 	}
 	else
 // Vertical stretch
 	{
-		h = (int)((float)output_w / aspect_ratio * zoom);
-		w = (int)((float)output_w * zoom);
+		h = round((double)output_w / aspect_ratio * zoom);
+		w = round((double)output_w * zoom);
 	}
 }
 

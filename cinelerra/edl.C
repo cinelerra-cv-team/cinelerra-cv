@@ -905,7 +905,7 @@ void EDL::calculate_conformed_dimensions(int single_channel, float &w, float &h)
 	}
 }
 
-float EDL::get_aspect_ratio()
+double EDL::get_aspect_ratio()
 {
 	return session->aspect_w / session->aspect_h;
 }

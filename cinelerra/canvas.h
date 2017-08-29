@@ -56,10 +56,10 @@ public:
 
 	void reset();
 // Get dimensions given a zoom
-	void calculate_sizes(float aspect_ratio, 
+	void calculate_sizes(double aspect_ratio,
 		int output_w, 
 		int output_h, 
-		float zoom, 
+		double zoom,
 		int &w, 
 		int &h);
 // Lock access to the canvas pointer.
