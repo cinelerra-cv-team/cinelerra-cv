@@ -51,6 +51,19 @@ const struct selection_int SampleRateSelection::sample_rates[] =
 	{ 0, 0 }
 };
 
+const struct selection_2int SampleBitsSelection::sample_bits[] =
+{
+	{ N_("8 Bit Linear"), SBITS_LINEAR8, 8 },
+	{ N_("16 Bit Linear"), SBITS_LINEAR16, 16 },
+	{ N_("24 Bit Linear"), SBITS_LINEAR24, 24 },
+	{ N_("32 Bit Linear"), SBITS_LINEAR32, 32 },
+	{ N_("u Law"), SBITS_ULAW, SBITS_ULAW },
+	{ N_("IMA 4"), SBITS_IMA4, SBITS_IMA4 },
+	{ N_("ADPCM"), SBITS_ADPCM, SBITS_ADPCM },
+	{ N_("Float"), SBITS_FLOAT, SBITS_FLOAT },
+	{ 0, 0, 0 }
+};
+
 
 SampleRateSelection::SampleRateSelection(int x, int y, BC_WindowBase *base, int *value)
  : Selection(x, y , base, sample_rates, value)
@@ -446,4 +459,64 @@ SelectionLeftBox::SelectionLeftBox(int x, int y, Selection *selection)
 int SelectionLeftBox::handle_event()
 {
 	selection->handle_event();
+}
+
+
+SampleBitsSelection::SampleBitsSelection(int x, int y, BC_WindowBase *base, int *value, int bits)
+ : Selection(x, y , base, sample_bits, value, bits | SELECTION_VARBITITEMS | SELECTION_VARWIDTH)
+{
+	disable(1);
+}
+
+int SampleBitsSelection::handle_event()
+{
+	if(current_2int)
+	{
+		*intvalue = current_2int->value2;
+	}
+}
+
+void SampleBitsSelection::update_size(int size)
+{
+	for(int i = 0; sample_bits[i].value2; i++)
+	{
+		if(sample_bits[i].value2 == size)
+			update(sample_bits[i].text);
+	}
+}
+
+int SampleBitsSelection::samlpesize(int flag)
+{
+	if(flag & SBITS_LINEAR8)
+		return 8;
+
+	if(flag & SBITS_LINEAR16)
+		return 16;
+
+	if(flag & SBITS_LINEAR24)
+		return 24;
+
+	if(flag & SBITS_LINEAR32)
+		return 32;
+
+	return 16;
+}
+
+int SampleBitsSelection::sampleflag(int size)
+{
+	switch(size)
+	{
+	case 8:
+		return SBITS_LINEAR8;
+
+	case 16:
+		return SBITS_LINEAR16;
+
+	case 24:
+		return SBITS_LINEAR16;
+
+	case 32:
+		return SBITS_LINEAR32;
+	}
+	return SBITS_LINEAR16;
 }

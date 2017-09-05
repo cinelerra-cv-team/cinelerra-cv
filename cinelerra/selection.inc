@@ -35,5 +35,6 @@
 
 class Selection;
 class SampleRateSelection;
+class SampleBitsSelection;
 
 #endif

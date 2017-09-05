@@ -154,4 +154,20 @@ private:
 	static const struct selection_int sample_rates[];
 };
 
+
+class SampleBitsSelection : public Selection
+{
+public:
+	SampleBitsSelection(int x, int y, BC_WindowBase *base, int *value, int bits);
+
+	int handle_event();
+	void update_size(int size);
+
+// Convert samplesize flag to sample bits
+	static int samlpesize(int flag);
+	static int sampleflag(int size);
+private:
+	static const struct selection_2int sample_bits[];
+};
+
 #endif
