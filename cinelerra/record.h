@@ -28,7 +28,6 @@
 #include "batch.inc"
 #include "channeldb.inc"
 #include "guicast.h"
-#include "bitspopup.h"
 #include "browsebutton.h"
 #include "channel.inc"
 #include "bchash.inc"

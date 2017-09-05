@@ -23,7 +23,6 @@
 #define MENUEFFECTS_H
 
 #include "asset.inc"
-#include "bitspopup.h"
 #include "browsebutton.h"
 #include "compresspopup.h"
 #include "formatpopup.h"
