@@ -22,13 +22,14 @@
 #include "adeviceprefs.h"
 #include "audioalsa.h"
 #include "audiodevice.inc"
-#include "bitspopup.h"
+#include "cinelerra.h"
 #include "edl.h"
 #include "language.h"
 #include "playbackconfig.h"
 #include "preferences.h"
 #include "preferencesthread.h"
 #include "recordconfig.h"
+#include "selection.h"
 #include <string.h>
 
 #define DEVICE_H 50
@@ -72,9 +73,6 @@ void ADevicePrefs::reset()
 	alsa_device = 0;
 	alsa_bits = 0;
 	alsa_workaround = 0;
-
-	cine_bits = 0;
-	cine_path = 0;
 }
 
 int ADevicePrefs::initialize(int creation)
@@ -156,9 +154,6 @@ int ADevicePrefs::delete_objects()
 			break;
 	}
 
-	delete cine_bits;
-	delete cine_path;
-
 	reset();
 	driver = -1;
 	return 0;
@@ -168,6 +163,8 @@ int ADevicePrefs::delete_oss_objs()
 {
 	delete path_title;
 	delete bits_title;
+	if(oss_bits)
+		oss_bits->delete_subwindows();
 	delete oss_bits;
 	for(int i = 0; i < MAXDEVICES; i++)
 	{
@@ -214,8 +211,10 @@ int ADevicePrefs::delete_alsa_objs()
 	delete alsa_drivers;
 	delete path_title;
 	delete bits_title;
-	delete alsa_device;
+	if(alsa_bits)
+		alsa_bits->delete_subwindows();
 	delete alsa_bits;
+	delete alsa_device;
 	delete alsa_workaround;
 #endif
 	return 0;
@@ -283,16 +282,9 @@ int ADevicePrefs::create_oss_objs()
 					break;
 			}
 			if(i == 0) dialog->add_subwindow(bits_title = new BC_Title(x1, y, _("Bits:"), MEDIUMFONT, resources->text_default));
-			oss_bits = new BitsPopup(dialog, 
-				x1, 
-				y1 + 20, 
-				output_int, 
-				0, 
-				0, 
-				0,
-				0,
-				1);
-			oss_bits->create_objects();
+			dialog->add_subwindow(oss_bits = new SampleBitsSelection(x1, y1 + 20,
+				dialog, output_int, SBITS_LINEAR));
+			oss_bits->update_size(*output_int);
 		}
 
 		x1 += oss_bits->get_w() + 5;
@@ -357,16 +349,9 @@ int ADevicePrefs::create_alsa_objs()
 			break;
 	}
 	dialog->add_subwindow(bits_title = new BC_Title(x1, y, _("Bits:"), MEDIUMFONT, resources->text_default));
-	alsa_bits = new BitsPopup(dialog, 
-		x1, 
-		y1 + 20, 
-		output_int, 
-		0, 
-		0, 
-		0,
-		0,
-		1);
-	alsa_bits->create_objects();
+	dialog->add_subwindow(alsa_bits = new SampleBitsSelection(x1, y1 + 20, dialog,
+		output_int, SBITS_LINEAR));
+	alsa_bits->update_size(*output_int);
 
 	y1 += alsa_bits->get_h() + 20 + 5;
 	x1 = x2;

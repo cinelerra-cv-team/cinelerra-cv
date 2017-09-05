@@ -26,11 +26,11 @@
 class OSSEnable;
 class ALSADevice;
 
-#include "bitspopup.inc"
 #include "guicast.h"
 #include "playbackconfig.inc"
 #include "preferencesthread.inc"
 #include "recordconfig.inc"
+#include "selection.inc"
 
 class ADriverMenu;
 class ADeviceTextBox;
@@ -82,7 +82,7 @@ private:
 	BC_Title *server_title, *port_title, *channel_title, *syt_title;
 	OSSEnable *oss_enable[MAXDEVICES];
 	ADeviceTextBox *oss_path[MAXDEVICES];
-	BitsPopup *oss_bits;
+	SampleBitsSelection *oss_bits;
 	ADeviceTextBox *esound_server;
 	ADeviceIntBox *esound_port;
 	ADeviceIntBox *firewire_port;
@@ -92,13 +92,9 @@ private:
 
 
 	ALSADevice *alsa_device;
-	BitsPopup *alsa_bits;
+	SampleBitsSelection *alsa_bits;
 	BC_CheckBox *alsa_workaround;
 	ArrayList<BC_ListBoxItem*> *alsa_drivers;
-
-
-	BitsPopup *cine_bits;
-	ADeviceTextBox *cine_path;
 };
 
 class ADriverMenu : public BC_PopupMenu
