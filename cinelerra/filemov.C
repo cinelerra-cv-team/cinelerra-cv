@@ -21,8 +21,8 @@
 
 #include "asset.h"
 #include "bcsignals.h"
-#include "bitspopup.h"
 #include "byteorder.h"
+#include "cinelerra.h"
 #include "condition.h"
 #include "edit.h"
 #include "file.h"
@@ -34,6 +34,7 @@
 #include "vframe.h"
 #include "videodevice.inc"
 #include "mainerror.h"
+#include "selection.h"
 
 #include <unistd.h>
 #include <libdv/dv.h>
@@ -1363,14 +1364,12 @@ MOVConfigAudio::MOVConfigAudio(BC_WindowBase *parent_window, Asset *asset)
 MOVConfigAudio::~MOVConfigAudio()
 {
 	if(compression_popup) delete compression_popup;
-	if(bits_popup) delete bits_popup;
 	compression_items.remove_all_objects();
 }
 
 
 void MOVConfigAudio::reset()
 {
-	bits_popup = 0;
 	bits_title = 0;
 	dither = 0;
 	vorbis_min_bitrate = 0;
@@ -1418,9 +1417,10 @@ int MOVConfigAudio::create_objects()
 
 void MOVConfigAudio::update_parameters()
 {
+	SampleBitsSelection *bitspopup;
 	int x = 10, y = 70;
+
 	if(bits_title) delete bits_title;
-	if(bits_popup) delete bits_popup;
 	if(dither) delete dither;
 	if(vorbis_min_bitrate) delete vorbis_min_bitrate;
 	if(vorbis_bitrate) delete vorbis_bitrate;
@@ -1438,16 +1438,10 @@ void MOVConfigAudio::update_parameters()
 		!strcasecmp(asset->acodec, QUICKTIME_RAW))
 	{
 		add_subwindow(bits_title = new BC_Title(x, y, _("Bits per channel:")));
-		bits_popup = new BitsPopup(this, 
-			x + 150, 
-			y, 
-			&asset->bits, 
-			0, 
-			0, 
-			0, 
-			0, 
-			0);
-		bits_popup->create_objects();
+		add_subwindow(bitspopup = new SampleBitsSelection(x + 150, y, this, &asset->bits,
+			SBITS_LINEAR8 | SBITS_LINEAR16 | SBITS_LINEAR24));
+		bitspopup->update_size(asset->bits);
+
 		y += 40;
 		add_subwindow(dither = new BC_CheckBox(x, y, &asset->dither, _("Dither")));
 	}
