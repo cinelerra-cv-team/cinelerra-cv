@@ -34,7 +34,6 @@ class FileFormatBits;
 
 #include "asset.inc"
 #include "assets.inc"
-#include "bitspopup.inc"
 #include "file.inc"
 #include "mwindow.inc"
 #include "mwindowgui.inc"
@@ -52,7 +51,6 @@ public:
 
 	Asset *asset; 
 
-	BitsPopup *bitspopup;
 	FileFormatByteOrderLOHI *lohi;
 	FileFormatByteOrderHILO *hilo;
 	FileFormatSigned *signed_button;
