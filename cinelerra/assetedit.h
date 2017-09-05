@@ -25,7 +25,6 @@
 #include "asset.inc"
 #include "awindow.inc"
 #include "guicast.h"
-#include "bitspopup.inc"
 #include "browsebutton.h"
 #include "formatpopup.h"
 #include "language.h"
@@ -66,7 +65,6 @@ class AssetEditWindow : public BC_Window
 {
 public:
 	AssetEditWindow(MWindow *mwindow, AssetEdit *asset_edit);
-	~AssetEditWindow();
 
 	int create_objects();
 	Asset *asset;
@@ -74,7 +72,6 @@ public:
 	AssetEditPath *path_button;
 	AssetEditByteOrderHILO *hilo;
 	AssetEditByteOrderLOHI *lohi;
-	BitsPopup *bitspopup;
 	int allow_edits;
 	MWindow *mwindow;
 	AssetEdit *asset_edit;

@@ -25,7 +25,6 @@
 #include "awindowgui.h"
 #include "bcprogressbox.h"
 #include "bcsignals.h"
-#include "bitspopup.h"
 #include "cinelerra.h"
 #include "cache.h"
 #include "clip.h"
@@ -172,24 +171,11 @@ AssetEditWindow::AssetEditWindow(MWindow *mwindow, AssetEdit *asset_edit)
 	this->mwindow = mwindow;
 	this->asset_edit = asset_edit;
 	this->asset = asset_edit->new_asset;
-	bitspopup = 0;
 	if(asset->format == FILE_PCM)
 		allow_edits = 1;
 	else
 		allow_edits = 0;
 }
-
-
-
-
-
-AssetEditWindow::~AssetEditWindow()
-{
-	if(bitspopup) delete bitspopup;
-}
-
-
-
 
 int AssetEditWindow::create_objects()
 {
@@ -327,16 +313,11 @@ int AssetEditWindow::create_objects()
 		x = x2;
 		if(allow_edits)
 		{
-			bitspopup = new BitsPopup(this, 
-				x, 
-				y, 
-				&asset->bits, 
-				1, 
-				1, 
-				1,
-				0,
-				1);
-			bitspopup->create_objects();
+			SampleBitsSelection *bitspopup;
+			add_subwindow(bitspopup = new SampleBitsSelection(x, y, this,
+				&asset->bits,
+				SBITS_LINEAR| SBITS_ULAW | SBITS_ADPCM | SBITS_IMA4));
+			bitspopup->update_size(asset->bits);
 		}
 		else
 			add_subwindow(new BC_Title(x, y, File::bitstostr(asset->bits), MEDIUMFONT, mwindow->theme->edit_font_color));
