@@ -22,13 +22,14 @@
 #include "asset.h"
 #include "assets.h"
 #include "bcsignals.h"
-#include "bitspopup.h"
+#include "cinelerra.h"
 #include "clip.h"
 #include "file.h"
 #include "filesndfile.h"
 #include "language.h"
 #include "mwindow.h"
 #include "mainerror.h"
+#include "selection.h"
 
 #include <inttypes.h>
 
@@ -383,15 +384,10 @@ SndFileConfig::SndFileConfig(BC_WindowBase *parent_window, Asset *asset)
 	this->asset = asset;
 }
 
-SndFileConfig::~SndFileConfig()
-{
-	if(bits_popup) delete bits_popup;
-}
 int SndFileConfig::create_objects()
 {
 	int x = 10, y = 10;
 
-	bits_popup = 0;
 	switch(asset->format)
 	{
 		case FILE_WAV:
@@ -399,12 +395,17 @@ int SndFileConfig::create_objects()
 		case FILE_AIFF:
 			add_tool(new BC_Title(x, y, _("Compression:")));
 			y += 25;
+
+			int bits = SBITS_LINEAR8 | SBITS_LINEAR16 | SBITS_LINEAR24;
+			SampleBitsSelection *bitspopup;
+
 			if(asset->format == FILE_WAV)
-				bits_popup = new BitsPopup(this, x, y, &asset->bits, 0, 0, 1, 1, 0);
-			else
-				bits_popup = new BitsPopup(this, x, y, &asset->bits, 0, 0, 0, 0, 0);
+				bits |= SBITS_ADPCM | SBITS_FLOAT;
+			add_subwindow(bitspopup = new SampleBitsSelection(x, y, this,
+				&asset->bits, bits));
+			bitspopup->update_size(asset->bits);
+
 			y += 40;
-			bits_popup->create_objects();
 			break;
 	}
 

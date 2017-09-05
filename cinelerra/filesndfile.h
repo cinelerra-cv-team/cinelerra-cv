@@ -22,7 +22,6 @@
 #ifndef FILESNDFILE_H
 #define FILESNDFILE_H
 
-#include "bitspopup.inc"
 #include "filebase.h"
 #include "filesndfile.h"
 #include "sndfile.h"
@@ -87,13 +86,11 @@ class SndFileConfig : public BC_Window
 {
 public:
 	SndFileConfig(BC_WindowBase *parent_window, Asset *asset);
-	~SndFileConfig();
 
 	int create_objects();
 	int close_event();
 
 	BC_WindowBase *parent_window;
-	BitsPopup *bits_popup;
 	SndFileHILO *hilo;
 	SndFileLOHI *lohi;
 	Asset *asset;
