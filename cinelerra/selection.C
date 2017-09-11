@@ -64,6 +64,24 @@ const struct selection_2int SampleBitsSelection::sample_bits[] =
 	{ 0, 0, 0 }
 };
 
+const struct selection_double FrameRateSelection::frame_rates[] =
+{
+	{ "1", 1 },
+	{ "5", 5 },
+	{ "10", 10 },
+	{ "12", 12 },
+	{ "15", 15 },
+	{ "23.97", 24 / 1.001 },
+	{ "24", 24 },
+	{ "25", 25 },
+	{ "29.97", 30 / 1.001 },
+	{ "30", 30 },
+	{ "50", 50 },
+	{ "59.94", 60 / 1.001 },
+	{ "60", 60 },
+	{ 0, 0 }
+};
+
 
 SampleRateSelection::SampleRateSelection(int x, int y, BC_WindowBase *base, int *value)
  : Selection(x, y , base, sample_rates, value)
@@ -85,6 +103,42 @@ int SampleRateSelection::limits(int *rate)
 		*rate = MAX_SAMPLE_RATE;
 		result = -1;
 	}
+	return result;
+}
+
+FrameRateSelection::FrameRateSelection(int x, int y, BC_WindowBase *base, double *value)
+ : Selection(x, y , base, frame_rates, value)
+{
+}
+
+int FrameRateSelection::limits(double *rate)
+{
+	int result = 0;
+	double value = *rate;
+
+	if(value < MIN_FRAME_RATE)
+	{
+		value = MIN_FRAME_RATE;
+		result = -1;
+	}
+
+	if(value > MAX_FRAME_RATE)
+	{
+		value = MAX_FRAME_RATE;
+		result = -1;
+	}
+
+	if(value > 29.5 && value < 30)
+		value = (double)30000 / (double)1001;
+	else
+	if(value > 59.5 && value < 60)
+		value = (double)60000 / (double)1001;
+	else
+	if(value > 23.5 && value < 24)
+		value = (double)24000 / (double)1001;
+	if(!result && !EQUIV(value, *rate))
+		result = 1;
+	*rate = value;
 	return result;
 }
 

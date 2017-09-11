@@ -155,6 +155,17 @@ private:
 };
 
 
+class FrameRateSelection : public Selection
+{
+public:
+	FrameRateSelection(int x, int y, BC_WindowBase *base, double *value);
+
+	static int limits(double *rate);
+private:
+	static const struct selection_double frame_rates[];
+};
+
+
 class SampleBitsSelection : public Selection
 {
 public:
