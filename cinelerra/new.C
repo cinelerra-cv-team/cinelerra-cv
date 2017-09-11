@@ -128,6 +128,9 @@ int New::create_new_project()
 	if(SampleRateSelection::limits(&new_edl->session->sample_rate) < 0)
 		errorbox(_("Sample rate is out of limits (%d..%d).\nCorrection applied."),
 			MIN_SAMPLE_RATE, MAX_SAMPLE_RATE);
+	if(FrameRateSelection::limits(&new_edl->session->frame_rate) < 0)
+		errorbox(_("Frame rate is out of limits (%d..%d).\nCorrection applied."),
+			MIN_FRAME_RATE, MAX_FRAME_RATE);
 
 	delete mwindow->edl;
 	mwindow->edl = new_edl;
@@ -315,9 +318,8 @@ int NewWindow::create_objects()
 	x1 = x;
 	add_subwindow(new BC_Title(x1, y, _("Framerate:")));
 	x1 += 115;
-	add_subwindow(frame_rate = new NewFrameRate(this, "", x1, y));
-	x1 += frame_rate->get_w();
-	add_subwindow(new FrameRatePulldown(mwindow, frame_rate, x1, y));
+	add_subwindow(frame_rate = new FrameRateSelection(x1, y, this,
+		&new_edl->session->frame_rate));
 	y += frame_rate->get_h() + 5;
 
 //	x1 = x;
@@ -581,17 +583,6 @@ int NewVChannelsTumbler::handle_down_event()
 	return 1;
 }
 
-NewFrameRate::NewFrameRate(NewWindow *nwindow, const char *text, int x, int y)
- : BC_TextBox(x, y, 90, 1, text)
-{
-	this->nwindow = nwindow;
-}
-
-int NewFrameRate::handle_event()
-{
-	nwindow->new_edl->session->frame_rate = Units::atoframerate(get_text());
-	return 1;
-}
 
 FrameRatePulldown::FrameRatePulldown(MWindow *mwindow, 
 	BC_TextBox *output, 
