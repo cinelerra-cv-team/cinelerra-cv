@@ -230,9 +230,9 @@ int RecordPrefs::create_objects()
 
 	y = ybix[3];
 	x = maxw;
-	add_subwindow(textbox = new RecordFrameRate(pwindow, x, y));
-	x += 75;
-	add_subwindow(new FrameRatePulldown(mwindow, textbox, x, y));
+	add_subwindow(textbox = new FrameRateSelection(x, y, this,
+		&pwindow->thread->edl->session->vconfig_in->in_framerate));
+	textbox->update(pwindow->thread->edl->session->vconfig_in->in_framerate);
 	y = ybix[4];
 	x = 5;
 
@@ -300,18 +300,6 @@ int RecordH::handle_event()
 	pwindow->thread->edl->session->vconfig_in->h = atol(get_text());
 	return 1;
 }
-
-RecordFrameRate::RecordFrameRate(PreferencesWindow *pwindow, int x, int y)
- : BC_TextBox(x, y, 70, 1, pwindow->thread->edl->session->vconfig_in->in_framerate)
-{
-	this->pwindow = pwindow;
-}
-int RecordFrameRate::handle_event()
-{
-	pwindow->thread->edl->session->vconfig_in->in_framerate = atof(get_text());
-	return 1;
-}
-
 
 
 RecordChannels::RecordChannels(PreferencesWindow *pwindow, BC_SubWindow *gui, int x, int y)
