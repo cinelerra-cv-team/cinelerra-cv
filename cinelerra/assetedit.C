@@ -105,6 +105,9 @@ void AssetEdit::run()
 				if(new_asset->audio_data && SampleRateSelection::limits(&new_asset->sample_rate) < 0)
 					errorbox(_("Sample rate is out of limits (%d..%d).\nCorrection applied."),
 						MIN_SAMPLE_RATE, MAX_SAMPLE_RATE);
+				if(new_asset->video_data && FrameRateSelection::limits(&new_asset->frame_rate) < 0)
+					errorbox(_("Frame rate is out of limits (%d..%d).\nCorrection applied."),
+						MIN_FRAME_RATE, MAX_FRAME_RATE);
 				mwindow->gui->lock_window();
 				mwindow->remove_asset_from_caches(asset);
 // Omit index status from copy since an index rebuild may have been
@@ -410,10 +413,11 @@ int AssetEditWindow::create_objects()
 		x = x2;
 		sprintf(string, "%.2f", asset->frame_rate);
 		BC_TextBox *framerate;
-		add_subwindow(framerate = new AssetEditFRate(this, string, x, y));
-		x += 105;
-		add_subwindow(new FrameRatePulldown(mwindow, framerate, x, y));
-		
+
+		add_subwindow(framerate = new FrameRateSelection(x, y, this,
+			&asset->frame_rate));
+		framerate->update(asset->frame_rate);
+
 		y += 30;
 		x = x1;
 		add_subwindow(new BC_Title(x, y, _("Width:")));
@@ -556,18 +560,6 @@ int AssetEditChannels::handle_event()
 	return 1;
 }
 
-
-AssetEditFRate::AssetEditFRate(AssetEditWindow *fwindow, char *text, int x, int y)
- : BC_TextBox(x, y, 100, 1, text)
-{
-	this->fwindow = fwindow;
-}
-
-int AssetEditFRate::handle_event()
-{
-	fwindow->asset->frame_rate = atof(get_text());
-	return 1;
-}
 
 Interlaceautofix::Interlaceautofix(MWindow *mwindow,AssetEditWindow *fwindow, int x, int y)
  : BC_CheckBox(x, y, fwindow->asset->interlace_autofixoption, _("Automatically Fix Interlacing"))
