@@ -151,6 +151,9 @@ void SetFormatThread::apply_changes()
 	if(SampleRateSelection::limits(&new_settings->session->sample_rate) < 0)
 		errorbox(_("Sample rate is out of limits (%d..%d).\nCorrection applied."),
 			MIN_SAMPLE_RATE, MAX_SAMPLE_RATE);
+	if(FrameRateSelection::limits(&new_settings->session->frame_rate) < 0)
+		errorbox(_("Frame rate is out of limits (%d..%d).\nCorrection applied."),
+			MIN_FRAME_RATE, MAX_FRAME_RATE);
 
 	mwindow->edl->copy_session(new_settings, 1);
 	mwindow->edl->session->output_w = dimension[0];
@@ -414,13 +417,11 @@ void SetFormatWindow::create_objects()
 	add_subwindow(new BC_Title(mwindow->theme->setformat_x3, 
 		y, 
 		_("Frame rate:")));
-	add_subwindow(frame_rate = new SetFrameRateTextBox(thread, 
-		mwindow->theme->setformat_x4, 
-		y));
-	add_subwindow(new FrameRatePulldown(mwindow, 
-		frame_rate, 
-		mwindow->theme->setformat_x4 + frame_rate->get_w(), 
-		y));
+
+	add_subwindow(frame_rate = new FrameRateSelection(
+		mwindow->theme->setformat_x4, y, this,
+		&thread->new_settings->session->frame_rate));
+	frame_rate->update(thread->new_settings->session->frame_rate);
 
 	y += mwindow->theme->setformat_margin;
 	add_subwindow(new BC_Title(mwindow->theme->setformat_x3, 
@@ -779,26 +780,6 @@ int SetChannelsCanvas::cursor_motion_event()
 		return 1;
 	}
 	return 0;
-}
-
-
-
-
-
-
-
-
-
-SetFrameRateTextBox::SetFrameRateTextBox(SetFormatThread *thread, int x, int y)
- : BC_TextBox(x, y, 100, 1, (float)thread->new_settings->session->frame_rate)
-{
-	this->thread = thread;
-}
-
-int SetFrameRateTextBox::handle_event()
-{
-	thread->new_settings->session->frame_rate = Units::atoframerate(get_text());
-	return 1;
 }
 
 
