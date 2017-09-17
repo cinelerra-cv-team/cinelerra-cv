@@ -82,6 +82,23 @@ const struct selection_double FrameRateSelection::frame_rates[] =
 	{ 0, 0 }
 };
 
+const struct selection_2int FrameSizeSelection::frame_sizes[] =
+{
+	{ "160 x 120", 160, 120 },
+	{ "240 x 180", 240, 180 },
+	{ "320 x 240", 320, 240 },
+	{ "360 x 240", 360, 240 },
+	{ "400 x 300", 400, 300 },
+	{ "512 x 384", 512, 384 },
+	{ "640 x 480", 640, 480 },
+	{ "720 x 480", 720, 480 },
+	{ "720 x 576", 720, 576 },
+	{ "1280 x 720", 1280, 720 },
+	{ "960 x 1080", 960, 1080 },
+	{ "1920 x 1080", 1920, 1080 },
+	{ "1920 x 1088", 1920, 1088 },
+	{ 0, 0, 0 }
+};
 
 SampleRateSelection::SampleRateSelection(int x, int y, BC_WindowBase *base, int *value)
  : Selection(x, y , base, sample_rates, value)
@@ -139,6 +156,74 @@ int FrameRateSelection::limits(double *rate)
 	if(!result && !EQUIV(value, *rate))
 		result = 1;
 	*rate = value;
+	return result;
+}
+
+
+FrameSizeSelection::FrameSizeSelection(int x1, int y1, int x2, int y2,
+	BC_WindowBase *base, int *value1, int *value2, int swapvalues)
+ : Selection(x1, y1, x2, y2, base, frame_sizes, value1, value2, 'x')
+{
+	if(swapvalues)
+	{
+		int x = x2 + SELECTION_TB_WIDTH +
+		get_resources()->listbox_button[0]->get_w();
+		base->add_subwindow(new SwapValues(x, y2, this, value1, value2));
+	}
+}
+
+void FrameSizeSelection::update(int value1, int value2)
+{
+	firstbox->update(value1);
+	BC_TextBox::update(value2);
+}
+
+void FrameSizeSelection::handle_swapvalues(int value1, int value2)
+{
+	update(value1, value2);
+}
+
+int FrameSizeSelection::limits(int *width, int *height)
+{
+	int v, result = 0;
+
+	if(width)
+	{
+		v = *width;
+		if(v > MAX_FRAME_WIDTH)
+		{
+			result = -1;
+			v = MAX_FRAME_WIDTH;
+		}
+		if(v < MIN_FRAME_WIDTH)
+		{
+			result = -1;
+			v = MIN_FRAME_WIDTH;
+		}
+		v &= ~1;
+		if(!result && v != *width)
+			result = 1;
+		*width = v;
+	}
+
+	if(height)
+	{
+		v = *height;
+		if(v < MIN_FRAME_HEIGHT)
+		{
+			result = -1;
+			v = MIN_FRAME_WIDTH;
+		}
+		if(v > MAX_FRAME_WIDTH)
+		{
+			result = -1;
+			v = MAX_FRAME_WIDTH;
+		}
+		v &= ~1;
+		if(!result && v != *height)
+			result = 1;
+		*height = v;
+	}
 	return result;
 }
 
@@ -503,6 +588,26 @@ int SelectionItem::handle_event()
 	output->handle_event();
 	return 1;
 }
+
+
+SwapValues::SwapValues(int x, int y, FrameSizeSelection *output, int *value1, int *value2)
+ : BC_Button(x, y, theme_global->get_image_set("swap_extents"))
+{
+	this->value1 = value1;
+	this->value2 = value2;
+	this->output = output;
+	set_tooltip(_("Swap dimensions"));
+}
+
+int SwapValues::handle_event()
+{
+	int v = *value1;
+
+	*value1 = *value2;
+	*value2 = v;
+	output->handle_swapvalues(*value1, *value2);
+}
+
 
 SelectionLeftBox::SelectionLeftBox(int x, int y, Selection *selection)
  : BC_TextBox(x, y, SELECTION_TB_WIDTH, 1, "")

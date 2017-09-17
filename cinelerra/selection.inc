@@ -37,5 +37,6 @@ class Selection;
 class SampleRateSelection;
 class SampleBitsSelection;
 class FrameRateSelection;
+class FrameSizeSelection;
 
 #endif
