@@ -30,6 +30,7 @@
 #include "bchash.inc"
 #include "formatpresets.h"
 #include "mwindow.inc"
+#include "selection.inc"
 #include "thread.h"
 
 class NewThread;
@@ -95,7 +96,7 @@ public:
 	BC_TextBox *vchannels;
 	BC_TextBox *frame_rate;
 	BC_TextBox *aspect_w_text, *aspect_h_text;
-	BC_TextBox *output_w_text, *output_h_text;
+	FrameSizeSelection *framesize_selection;
 	InterlacemodePulldown *interlace_pulldown;
 	ColormodelPulldown *color_model;
 	NewPresets *format_presets;
@@ -109,17 +110,6 @@ public:
 	int handle_event();
 	EDL* get_edl();
 };
-
-
-class NewSwapExtents : public BC_Button
-{
-public:
-	NewSwapExtents(MWindow *mwindow, NewWindow *gui, int x, int y);
-	int handle_event();
-	MWindow *mwindow;
-	NewWindow *gui;
-};
-
 
 
 class NewATracks : public BC_TextBox
@@ -220,22 +210,6 @@ public:
 	MWindow *mwindow;
 	BC_TextBox *output_w;
 	BC_TextBox *output_h;
-};
-
-class NewOutputW : public BC_TextBox
-{
-public:
-	NewOutputW(NewWindow *nwindow, int x, int y);
-	int handle_event();
-	NewWindow *nwindow;
-};
-
-class NewOutputH : public BC_TextBox
-{
-public:
-	NewOutputH(NewWindow *nwindow, int x, int y);
-	int handle_event();
-	NewWindow *nwindow;
 };
 
 class NewAspectAuto : public BC_CheckBox

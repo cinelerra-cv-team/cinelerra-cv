@@ -131,6 +131,10 @@ int New::create_new_project()
 	if(FrameRateSelection::limits(&new_edl->session->frame_rate) < 0)
 		errorbox(_("Frame rate is out of limits (%d..%d).\nCorrection applied."),
 			MIN_FRAME_RATE, MAX_FRAME_RATE);
+	if(FrameSizeSelection::limits(&new_edl->session->output_w,
+			&new_edl->session->output_h) < 0)
+		errorbox(_("Frame size is out of limits (%d..%dx%d..%d).\nCorrection applied."),
+			MIN_FRAME_WIDTH, MAX_FRAME_WIDTH, MIN_FRAME_HEIGHT, MAX_FRAME_WIDTH);
 
 	delete mwindow->edl;
 	mwindow->edl = new_edl;
@@ -343,21 +347,10 @@ int NewWindow::create_objects()
 	x1 = x;
 	add_subwindow(new BC_Title(x1, y, _("Canvas size:")));
 	x1 += 115;
-	add_subwindow(output_w_text = new NewOutputW(this, x1, y));
-	x1 += output_w_text->get_w() + 2;
-	add_subwindow(new BC_Title(x1, y, "x"));
-	x1 += 10;
-	add_subwindow(output_h_text = new NewOutputH(this, x1, y));
-	x1 += output_h_text->get_w();
-	FrameSizePulldown *pulldown;
-	add_subwindow(pulldown = new FrameSizePulldown(mwindow, 
-		output_w_text, 
-		output_h_text, 
-		x1, 
-		y));
-	x1 += pulldown->get_w() + 10;
-	add_subwindow(new NewSwapExtents(mwindow, this, x1, y));
-	y += output_h_text->get_h() + 5;
+	add_subwindow(framesize_selection = new FrameSizeSelection(x1, y,
+		x1 + SELECTION_TB_WIDTH + 10, y,
+		this, &new_edl->session->output_w, &new_edl->session->output_h));
+	y += framesize_selection->get_h() + 5;
 
 	x1 = x;
 	add_subwindow(new BC_Title(x1, y, _("Aspect ratio:")));
@@ -417,8 +410,8 @@ int NewWindow::update()
 	sample_rate->update(new_edl->session->sample_rate);
 	vtracks->update((int64_t)new_edl->session->video_tracks);
 	frame_rate->update((float)new_edl->session->frame_rate);
-	output_w_text->update((int64_t)new_edl->session->output_w);
-	output_h_text->update((int64_t)new_edl->session->output_h);
+	framesize_selection->update(new_edl->session->output_w,
+		new_edl->session->output_h);
 	aspect_w_text->update((float)new_edl->session->aspect_w);
 	aspect_h_text->update((float)new_edl->session->aspect_h);
 	interlace_pulldown->update(new_edl->session->interlace_mode);
@@ -629,29 +622,6 @@ int FrameSizePulldown::handle_event()
 	return 1;
 }
 
-NewOutputW::NewOutputW(NewWindow *nwindow, int x, int y)
- : BC_TextBox(x, y, 70, 1, nwindow->new_edl->session->output_w)
-{
-	this->nwindow = nwindow;
-}
-int NewOutputW::handle_event()
-{
-	nwindow->new_edl->session->output_w = MAX(1,atol(get_text()));
-	nwindow->new_thread->update_aspect();
-	return 1;
-}
-
-NewOutputH::NewOutputH(NewWindow *nwindow, int x, int y)
- : BC_TextBox(x, y, 70, 1, nwindow->new_edl->session->output_h)
-{
-	this->nwindow = nwindow;
-}
-int NewOutputH::handle_event()
-{
-	nwindow->new_edl->session->output_h = MAX(1, atol(get_text()));
-	nwindow->new_thread->update_aspect();
-	return 1;
-}
 
 NewAspectW::NewAspectW(NewWindow *nwindow, const char *text, int x, int y)
  : BC_TextBox(x, y, 70, 1, text)
@@ -832,34 +802,3 @@ int NewAspectAuto::handle_event()
 	nwindow->new_thread->update_aspect();
 	return 1;
 }
-
-
-
-
-
-
-
-
-NewSwapExtents::NewSwapExtents(MWindow *mwindow, NewWindow *gui, int x, int y)
- : BC_Button(x, y, mwindow->theme->get_image_set("swap_extents"))
-{
-	this->mwindow = mwindow;
-	this->gui = gui;
-	set_tooltip(_("Swap dimensions"));
-}
-
-int NewSwapExtents::handle_event()
-{
-	int w = gui->new_edl->session->output_w;
-	int h = gui->new_edl->session->output_h;
-	gui->new_edl->session->output_w = h;
-	gui->new_edl->session->output_h = w;
-	gui->output_w_text->update((int64_t)h);
-	gui->output_h_text->update((int64_t)w);
-	gui->new_thread->update_aspect();
-	return 1;
-}
-
-
-
-
