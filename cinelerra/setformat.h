@@ -28,7 +28,7 @@
 #include "guicast.h"
 #include "mutex.inc"
 #include "mwindow.inc"
-#include "selection.inc"
+#include "selection.h"
 #include "setformat.inc"
 #include "thread.h"
 
@@ -119,17 +119,6 @@ private:
 };
 
 
-class ScaleSizeText : public BC_TextBox
-{
-public:
-	ScaleSizeText(int x, int y, SetFormatThread *thread, int *output);
-	~ScaleSizeText();
-	int handle_event();
-	SetFormatThread *thread;
-	int *output;
-};
-
-
 class ScaleRatioText : public BC_TextBox
 {
 public:
@@ -176,19 +165,20 @@ public:
 	EDL* get_edl();
 };
 
-class FormatSwapExtents : public BC_Button
+
+class SetFrameSize : public FrameSizeSelection
 {
 public:
-	FormatSwapExtents(MWindow *mwindow, 
-		SetFormatThread *thread,
-		SetFormatWindow *gui, 
-		int x, 
-		int y);
+	SetFrameSize(int x1, int y1, int x2, int y2,
+		BC_WindowBase *base, int *value1, int *value2, SetFormatThread *thread);
+ 
 	int handle_event();
-	MWindow *mwindow;
+
+	int oldvalue1;
+	int oldvalue2;
 	SetFormatThread *thread;
-	SetFormatWindow *gui;
 };
+
 
 class SetFormatWindow : public BC_Window
 {
@@ -204,8 +194,7 @@ public:
 	MWindow *mwindow;
 	SetFormatThread *thread;
 	SetChannelsCanvas *canvas;
-// Screen size width, height
-	ScaleSizeText* dimension[2];
+	SetFrameSize *framesize_selection;
 	SetFormatPresets *presets;
 // Size ratio width, height
 	ScaleRatioText* ratio[2];

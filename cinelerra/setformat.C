@@ -154,6 +154,9 @@ void SetFormatThread::apply_changes()
 	if(FrameRateSelection::limits(&new_settings->session->frame_rate) < 0)
 		errorbox(_("Frame rate is out of limits (%d..%d).\nCorrection applied."),
 			MIN_FRAME_RATE, MAX_FRAME_RATE);
+	if(FrameSizeSelection::limits(&dimension[0], &dimension[1]) < 0)
+		errorbox(_("Frame size is out of limits (%d..%dx%d..%d).\nCorrection applied."),
+			MIN_FRAME_WIDTH, MAX_FRAME_WIDTH, MIN_FRAME_HEIGHT, MAX_FRAME_WIDTH);
 
 	mwindow->edl->copy_session(new_settings, 1);
 	mwindow->edl->session->output_w = dimension[0];
@@ -222,9 +225,8 @@ void SetFormatThread::update()
 
 	constrain_ratio = 0;
 	dimension[0] = new_settings->session->output_w;
-	window->dimension[0]->update((int64_t)dimension[0]);
 	dimension[1] = new_settings->session->output_h;
-	window->dimension[1]->update((int64_t)dimension[1]);
+	window->framesize_selection->update(dimension[0], dimension[1]);
 
 	ratio[0] = (float)dimension[0] / orig_dimension[0];
 	window->ratio[0]->update(ratio[0]);
@@ -241,59 +243,26 @@ void SetFormatThread::update()
 
 void SetFormatThread::update_window()
 {
-	int i, result, modified_item, dimension_modified = 0, ratio_modified = 0;
+	int i, dimension_modified = 0;
 
-	for(i = 0, result = 0; i < 2 && !result; i++)
+	for(i = 0; i < 2; i++)
 	{
 		if(dimension[i] < 0)
 		{
 			dimension[i] *= -1;
-			result = 1;
-			modified_item = i;
-			dimension_modified = 1;
+			ratio[i] = (double)dimension[i] / orig_dimension[i];
+			window->ratio[i]->update(ratio[i]);
 		}
-		if(ratio[i] < 0)
+		else if(ratio[i] < 0)
 		{
 			ratio[i] *= -1;
-			result = 1;
-			modified_item = i;
-			ratio_modified = 1;
+			dimension[i] = (int)(orig_dimension[i] * ratio[i]);
+			dimension_modified = 1;
 		}
 	}
 
-	if(result)
-	{
-		if(dimension_modified)
-			ratio[modified_item] = (float)dimension[modified_item] / orig_dimension[modified_item];
-
-		if(ratio_modified && !constrain_ratio)
-		{
-			dimension[modified_item] = (int)(orig_dimension[modified_item] * ratio[modified_item]);
-			window->dimension[modified_item]->update((int64_t)dimension[modified_item]);
-		}
-
-		for(i = 0; i < 2; i++)
-		{
-			if(dimension_modified ||
-				(i != modified_item && ratio_modified))
-			{
-				if(constrain_ratio) ratio[i] = ratio[modified_item];
-				window->ratio[i]->update(ratio[i]);
-			}
-
-			if(ratio_modified ||
-				(i != modified_item && dimension_modified))
-			{
-				if(constrain_ratio) 
-				{
-					dimension[i] = (int)(orig_dimension[i] * ratio[modified_item]);
-					window->dimension[i]->update((int64_t)dimension[i]);
-				}
-			}
-		}
-	}
-
-	update_aspect();
+	if(dimension_modified)
+		window->framesize_selection->update(dimension[0], dimension[1]);
 }
 
 void SetFormatThread::update_aspect()
@@ -428,34 +397,18 @@ void SetFormatWindow::create_objects()
 		y, 
 		_("Canvas size:")));
 
-	y += mwindow->theme->setformat_margin;
+	int y0 = y += mwindow->theme->setformat_margin;
 	add_subwindow(title = new BC_Title(mwindow->theme->setformat_x3, y, _("Width:")));
-	add_subwindow(dimension[0] = new ScaleSizeText(mwindow->theme->setformat_x4, 
-		y, 
-		thread, 
-		&(thread->dimension[0])));
 
 	y += mwindow->theme->setformat_margin;
 	add_subwindow(new BC_Title(mwindow->theme->setformat_x3, y, _("Height:")));
-	add_subwindow(dimension[1] = new ScaleSizeText(mwindow->theme->setformat_x4, 
-		y, 
-		thread, 
-		&(thread->dimension[1])));
 
-	x = mwindow->theme->setformat_x4 + dimension[0]->get_w();
-	FrameSizePulldown *pulldown;
-	add_subwindow(pulldown = new FrameSizePulldown(mwindow, 
-		dimension[0], 
-		dimension[1], 
-		x, 
-		y - mwindow->theme->setformat_margin));
+	add_subwindow(framesize_selection = new SetFrameSize(
+		mwindow->theme->setformat_x4, y0,
+		mwindow->theme->setformat_x4, y,
+		this, &thread->dimension[0], &thread->dimension[1], thread));
+	framesize_selection->update(thread->dimension[0], thread->dimension[1]);
 
-	add_subwindow(new FormatSwapExtents(mwindow, 
-		thread, 
-		this, 
-		x + pulldown->get_w() + 15,
-		y - mwindow->theme->setformat_margin));
-		
 	y += mwindow->theme->setformat_margin;
 	add_subwindow(new BC_Title(mwindow->theme->setformat_x3, 
 		y, 
@@ -796,31 +749,6 @@ int SetChannelsCanvas::cursor_motion_event()
 // }
 
 
-
-
-ScaleSizeText::ScaleSizeText(int x, int y, SetFormatThread *thread, int *output)
- : BC_TextBox(x, y, 100, 1, *output)
-{ 
-	this->thread = thread; 
-	this->output = output; 
-}
-ScaleSizeText::~ScaleSizeText()
-{
-}
-int ScaleSizeText::handle_event()
-{
-	*output = atol(get_text());
-	*output /= 2;
-	*output *= 2;
-	if(*output <= 0) *output = 2;
-	if(*output > 10000) *output = 10000;
-	*output *= -1;
-	thread->update_window();
-	return 1;
-}
-
-
-
 ScaleRatioText::ScaleRatioText(int x, 
 	int y, 
 	SetFormatThread *thread, 
@@ -897,43 +825,28 @@ int SetFormatApply::handle_event()
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-FormatSwapExtents::FormatSwapExtents(MWindow *mwindow, 
-	SetFormatThread *thread,
-	SetFormatWindow *gui, 
-	int x, 
-	int y)
- : BC_Button(x, y, mwindow->theme->get_image_set("swap_extents"))
+SetFrameSize::SetFrameSize(int x1, int y1, int x2, int y2,
+	BC_WindowBase *base, int *value1, int *value2, SetFormatThread *thread)
+ : FrameSizeSelection(x1, y1, x2, y2, base, value1, value2)
 {
-	this->mwindow = mwindow;
 	this->thread = thread;
-	this->gui = gui;
-	set_tooltip(_("Swap dimensions"));
+	oldvalue1 = *value1;
+	oldvalue2 = *value2;
 }
 
-int FormatSwapExtents::handle_event()
+int SetFrameSize::handle_event()
 {
-	int w = thread->dimension[0];
-	int h = thread->dimension[1];
-	thread->dimension[0] = -h;
-	gui->dimension[0]->update((int64_t)h);
-	gui->dimension[1]->update((int64_t)w);
-	thread->update_window();
-	thread->dimension[1] = -w;
+	Selection::handle_event();
+	if(oldvalue1 != *intvalue2)
+	{
+		oldvalue1 = *intvalue2;
+		*intvalue2 = -(*intvalue2);
+	}
+	if(oldvalue2 != *intvalue)
+	{
+		oldvalue2 = *intvalue;
+		*intvalue = -(*intvalue);
+	}
 	thread->update_window();
 	return 1;
 }
-
-
-
-
