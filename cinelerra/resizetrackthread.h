@@ -29,6 +29,7 @@
 #include "guicast.h"
 #include "mutex.inc"
 #include "mwindow.inc"
+#include "selection.h"
 #include "thread.h"
 #include "track.inc"
 
@@ -55,43 +56,6 @@ public:
 
 
 class ResizeTrackWindow;
-
-
-class ResizeTrackWidth : public BC_TextBox
-{
-public:
-	ResizeTrackWidth(ResizeTrackWindow *gui, 
-		ResizeTrackThread *thread,
-		int x,
-		int y);
-	int handle_event();
-	ResizeTrackWindow *gui;
-	ResizeTrackThread *thread;
-};
-
-class ResizeTrackSwap : public BC_Button
-{
-public:
-	ResizeTrackSwap(ResizeTrackWindow *gui, 
-		ResizeTrackThread *thread, 
-		int x, 
-		int y);
-	int handle_event();
-	ResizeTrackWindow *gui;
-	ResizeTrackThread *thread;
-};
-
-class ResizeTrackHeight : public BC_TextBox
-{
-public:
-	ResizeTrackHeight(ResizeTrackWindow *gui, 
-		ResizeTrackThread *thread,
-		int x,
-		int y);
-	int handle_event();
-	ResizeTrackWindow *gui;
-	ResizeTrackThread *thread;
-};
 
 
 class ResizeTrackScaleW : public BC_TextBox
@@ -130,17 +94,24 @@ public:
 	
 	void create_objects();
 	void update(int changed_scale, 
-		int changed_size, 
-		int changed_all);
+		int changed_size);
 	
 	MWindow *mwindow;
 	ResizeTrackThread *thread;
-	ResizeTrackWidth *w;
-	ResizeTrackHeight *h;
+	FrameSizeSelection *framesize_selection;
 	ResizeTrackScaleW *w_scale;
 	ResizeTrackScaleH *h_scale;
 };
 
+class SetTrackFrameSize : public FrameSizeSelection
+{
+public:
+	SetTrackFrameSize(int x1, int y1, int x2, int y2,
+		ResizeTrackWindow *base, int *value1, int *value2);
 
+	int handle_event();
+private:
+	ResizeTrackWindow *gui;
+};
 
 #endif

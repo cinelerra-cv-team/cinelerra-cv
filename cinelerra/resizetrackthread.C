@@ -82,6 +82,7 @@ void ResizeTrackThread::run()
 
 		if(track)
 		{
+			FrameSizeSelection::limits(&w, &h);
 			mwindow->resize_track(track, w, h);
 		}
 	}
@@ -128,27 +129,11 @@ void ResizeTrackWindow::create_objects()
 
 	add_subwindow(new BC_Title(x, y, _("Size:")));
 	x += 75;
-	add_subwindow(w = new ResizeTrackWidth(this, 
-		thread,
-		x,
-		y));
-	x += w->get_w() + 5;
-	add_subwindow(new BC_Title(x, y, _("x")));
-	x += 15;
-	add_subwindow(h = new ResizeTrackHeight(this, 
-		thread,
-		x,
-		y));
-	x += h->get_w() + 5;
-	FrameSizePulldown *pulldown;
-	add_subwindow(pulldown = new FrameSizePulldown(mwindow, 
-		w, 
-		h, 
-		x, 
-		y));
-	x += pulldown->get_w() + 5;
-	add_subwindow(new ResizeTrackSwap(this, thread, x, y));
 
+	add_subwindow(framesize_selection = new SetTrackFrameSize(x, y,
+		x + SELECTION_TB_WIDTH + 25, y,
+		this, &thread->w, &thread->h));
+	framesize_selection->update(thread->w, thread->h);
 
 	y += 30;
 	x = 10;
@@ -174,19 +159,17 @@ void ResizeTrackWindow::create_objects()
 }
 
 void ResizeTrackWindow::update(int changed_scale, 
-	int changed_size, 
-	int changed_all)
+	int changed_size)
 {
 //printf("ResizeTrackWindow::update %d %d %d\n", changed_scale, changed_size, changed_all);
-	if(changed_scale || changed_all)
+	if(changed_scale)
 	{
 		thread->w = (int)(thread->w1 * thread->w_scale);
-		w->update((int64_t)thread->w);
 		thread->h = (int)(thread->h1 * thread->h_scale);
-		h->update((int64_t)thread->h);
+		framesize_selection->update(thread->w, thread->h);
 	}
 	else
-	if(changed_size || changed_all)
+	if(changed_size)
 	{
 		thread->w_scale = (double)thread->w / thread->w1;
 		w_scale->update((float)thread->w_scale);
@@ -194,68 +177,6 @@ void ResizeTrackWindow::update(int changed_scale,
 		h_scale->update((float)thread->h_scale);
 	}
 }
-
-
-
-
-
-
-ResizeTrackSwap::ResizeTrackSwap(ResizeTrackWindow *gui, 
-	ResizeTrackThread *thread, 
-	int x, 
-	int y)
- : BC_Button(x, y, thread->mwindow->theme->get_image_set("swap_extents"))
-{
-	this->thread = thread;
-	this->gui = gui;
-	set_tooltip(_("Swap dimensions"));
-}
-
-int ResizeTrackSwap::handle_event()
-{
-	int w = thread->w;
-	int h = thread->h;
-	thread->w = h;
-	thread->h = w;
-	gui->w->update((int64_t)h);
-	gui->h->update((int64_t)w);
-	gui->update(0, 1, 0);
-	return 1;
-}
-
-
-ResizeTrackWidth::ResizeTrackWidth(ResizeTrackWindow *gui, 
-	ResizeTrackThread *thread,
-	int x,
-	int y)
- : BC_TextBox(x, y, 80, 1, thread->w)
-{
-	this->gui = gui;
-	this->thread = thread;
-}
-int ResizeTrackWidth::handle_event()
-{
-	thread->w = atol(get_text());
-	gui->update(0, 1, 0);
-	return 1;
-}
-
-ResizeTrackHeight::ResizeTrackHeight(ResizeTrackWindow *gui, 
-	ResizeTrackThread *thread,
-	int x,
-	int y)
- : BC_TextBox(x, y, 80, 1, thread->h)
-{
-	this->gui = gui;
-	this->thread = thread;
-}
-int ResizeTrackHeight::handle_event()
-{
-	thread->h = atol(get_text());
-	gui->update(0, 1, 0);
-	return 1;
-}
-
 
 ResizeTrackScaleW::ResizeTrackScaleW(ResizeTrackWindow *gui, 
 	ResizeTrackThread *thread,
@@ -269,7 +190,7 @@ ResizeTrackScaleW::ResizeTrackScaleW(ResizeTrackWindow *gui,
 int ResizeTrackScaleW::handle_event()
 {
 	thread->w_scale = atof(get_text());
-	gui->update(1, 0, 0);
+	gui->update(1, 0);
 	return 1;
 }
 
@@ -285,13 +206,20 @@ ResizeTrackScaleH::ResizeTrackScaleH(ResizeTrackWindow *gui,
 int ResizeTrackScaleH::handle_event()
 {
 	thread->h_scale = atof(get_text());
-	gui->update(1, 0, 0);
+	gui->update(1, 0);
 	return 1;
 }
 
+SetTrackFrameSize::SetTrackFrameSize(int x1, int y1, int x2, int y2,
+	ResizeTrackWindow *base, int *value1, int *value2)
+ : FrameSizeSelection(x1, y1, x2, y2, base, value1, value2)
+{
+	this->gui = base;
+}
 
-
-
-
-
+int SetTrackFrameSize::handle_event()
+{
+	Selection::handle_event();
+	gui->update(0, 1);
+}
 
