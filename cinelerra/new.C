@@ -335,11 +335,6 @@ int NewWindow::create_objects()
 // 	x1 += 10;
 // 	add_subwindow(canvas_h_text = new NewTrackH(this, x1, y));
 // 	x1 += canvas_h_text->get_w();
-// 	add_subwindow(new FrameSizePulldown(mwindow, 
-// 		canvas_w_text, 
-// 		canvas_h_text, 
-// 		x1, 
-// 		y));
 //	x1 += 100;
 //	add_subwindow(new NewCloneToggle(mwindow, this, x1, y));
 //	y += canvas_h_text->get_h() + 5;
@@ -573,52 +568,6 @@ int NewVChannelsTumbler::handle_down_event()
 	nwindow->new_edl->session->video_channels--;
 	nwindow->new_edl->boundaries();
 	nwindow->update();
-	return 1;
-}
-
-
-FrameSizePulldown::FrameSizePulldown(MWindow *mwindow, 
-		BC_TextBox *output_w, 
-		BC_TextBox *output_h, 
-		int x, 
-		int y)
- : BC_ListBox(x,
- 	y,
-	100,
-	200,
-	LISTBOX_TEXT,
-	&mwindow->theme->frame_sizes,
-	0,
-	0,
-	1,
-	0,
-	1)
-{
-	this->mwindow = mwindow;
-	this->output_w = output_w;
-	this->output_h = output_h;
-}
-int FrameSizePulldown::handle_event()
-{
-	char *text = get_selection(0, 0)->get_text();
-	char string[BCTEXTLEN];
-	int64_t w, h;
-	char *ptr;
-	
-	strcpy(string, text);
-	ptr = strrchr(string, 'x');
-	if(ptr)
-	{
-		ptr++;
-		h = atol(ptr);
-		
-		*--ptr = 0;
-		w = atol(string);
-		output_w->update(w);
-		output_h->update(h);
-		output_w->handle_event();
-		output_h->handle_event();
-	}
 	return 1;
 }
 
