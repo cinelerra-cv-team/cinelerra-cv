@@ -100,6 +100,21 @@ const struct selection_2int FrameSizeSelection::frame_sizes[] =
 	{ 0, 0, 0 }
 };
 
+const struct selection_2double AspectRatioSelection::aspect_ratios[] =
+{
+	{ "Auto", -1., -1 },
+	{ "3 : 2", 3.0, 2.0 },
+	{ "4 : 3", 4.0, 3.0 },
+	{ "16 : 9", 16.0, 9.0 },
+	{ "2.10 : 1", 2.1, 1.0 },
+	{ "2.20 : 1", 2.2, 1.0 },
+	{ "2.25 : 1", 2.25, 1.0 },
+	{ "2.30 : 1", 2.30, 1.0 },
+	{ "21 : 9", 21, 9.0 },
+	{ "2.66 : 1", 2.66, 1.0 },
+	{ 0, 0, 0 }
+};
+
 SampleRateSelection::SampleRateSelection(int x, int y, BC_WindowBase *base, int *value)
  : Selection(x, y , base, sample_rates, value)
 {
@@ -227,6 +242,25 @@ int FrameSizeSelection::limits(int *width, int *height)
 	return result;
 }
 
+AspectRatioSelection::AspectRatioSelection(int x1, int y1, int x2, int y2,
+	BC_WindowBase *base, double *value1, double *value2, int *frame_w, int *frame_h)
+ : Selection(x1, y1, x2, y2, base, aspect_ratios, value1, value2, ':')
+{
+	this->frame_w = frame_w;
+	this->frame_h = frame_h;
+}
+
+void AspectRatioSelection::update_auto(double value1, double value2)
+{
+	if(value1 < 0 || value2 < 0)
+		MWindow::create_aspect_ratio(value1, value2, *frame_w, *frame_h);
+
+	*doublevalue = value2;
+	*doublevalue2 = value1;
+
+	firstbox->update(value1);
+	BC_TextBox::update(value2);
+}
 
 Selection::Selection(int x, int y, BC_WindowBase *base,
 	const struct selection_int items[], int *value, int options)

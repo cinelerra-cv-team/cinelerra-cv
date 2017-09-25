@@ -38,5 +38,6 @@ class SampleRateSelection;
 class SampleBitsSelection;
 class FrameRateSelection;
 class FrameSizeSelection;
+class AspectRatioSelection;
 
 #endif

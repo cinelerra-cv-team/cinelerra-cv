@@ -180,6 +180,20 @@ private:
 	static const struct selection_2int frame_sizes[];
 };
 
+class AspectRatioSelection : public Selection
+{
+public:
+	AspectRatioSelection(int x1, int y1, int x2, int y2,
+		BC_WindowBase *base, double *value1, double *value2,
+		int *frame_w, int *frame_h);
+
+	void update_auto(double value1, double value2);
+
+private:
+	int *frame_w;
+	int *frame_h;
+	static const struct selection_2double aspect_ratios[];
+};
 
 class SwapValues : public BC_Button
 {
