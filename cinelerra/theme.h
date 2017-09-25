@@ -110,7 +110,6 @@ public:
 //	unsigned char* get_image(char *title);
 	void flush_images();
 
-	ArrayList<BC_ListBoxItem*> aspect_ratios;
 	ArrayList<BC_ListBoxItem*> zoom_values;
 	const char *theme_title;
 

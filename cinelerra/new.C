@@ -530,50 +530,6 @@ int NewVChannelsTumbler::handle_down_event()
 	return 1;
 }
 
-AspectPulldown::AspectPulldown(MWindow *mwindow, 
-		BC_TextBox *output_w, 
-		BC_TextBox *output_h, 
-		int x, 
-		int y)
- : BC_ListBox(x,
- 	y,
-	100,
-	200,
-	LISTBOX_TEXT,
-	&mwindow->theme->aspect_ratios,
-	0,
-	0,
-	1,
-	0,
-	1)
-{
-	this->mwindow = mwindow;
-	this->output_w = output_w;
-	this->output_h = output_h;
-}
-int AspectPulldown::handle_event()
-{
-	char *text = get_selection(0, 0)->get_text();
-	char string[BCTEXTLEN];
-	float w, h;
-	char *ptr;
-	
-	strcpy(string, text);
-	ptr = strrchr(string, ':');
-	if(ptr)
-	{
-		ptr++;
-		h = atof(ptr);
-		
-		*--ptr = 0;
-		w = atof(string);
-		output_w->update(w);
-		output_h->update(h);
-		output_w->handle_event();
-		output_h->handle_event();
-	}
-	return 1;
-}
 
 ColormodelItem::ColormodelItem(const char *text, int value)
  : BC_ListBoxItem(text)

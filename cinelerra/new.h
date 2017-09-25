@@ -193,19 +193,6 @@ public:
 	NewWindow *nwindow;
 };
 
-class AspectPulldown : public BC_ListBox
-{
-public:
-	AspectPulldown(MWindow *mwindow, 
-		BC_TextBox *output_w, 
-		BC_TextBox *output_h, 
-		int x, 
-		int y);
-	int handle_event();
-	MWindow *mwindow;
-	BC_TextBox *output_w;
-	BC_TextBox *output_h;
-};
 
 class ColormodelItem : public BC_ListBoxItem
 {
