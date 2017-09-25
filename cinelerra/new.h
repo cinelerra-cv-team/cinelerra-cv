@@ -66,11 +66,6 @@ public:
 	
 	void run();
 
-	int load_defaults();
-	int save_defaults();
-	int update_aspect();
-	int auto_aspect;
-	int auto_sizes;
 	NewWindow *nwindow;
 	MWindow *mwindow;
 	New *new_project;
@@ -95,7 +90,7 @@ public:
 	BC_TextBox *vtracks;
 	BC_TextBox *vchannels;
 	BC_TextBox *frame_rate;
-	BC_TextBox *aspect_w_text, *aspect_h_text;
+	AspectRatioSelection *aspectratio_selection;
 	FrameSizeSelection *framesize_selection;
 	InterlacemodePulldown *interlace_pulldown;
 	ColormodelPulldown *color_model;
@@ -194,32 +189,6 @@ class NewTrackH : public BC_TextBox
 {
 public:
 	NewTrackH(NewWindow *nwindow, int x, int y);
-	int handle_event();
-	NewWindow *nwindow;
-};
-
-
-class NewAspectAuto : public BC_CheckBox
-{
-public:
-	NewAspectAuto(NewWindow *nwindow, int x, int y);
-	~NewAspectAuto();
-	int handle_event();
-	NewWindow *nwindow;
-};
-
-class NewAspectW : public BC_TextBox
-{
-public:
-	NewAspectW(NewWindow *nwindow, const char *text, int x, int y);
-	int handle_event();
-	NewWindow *nwindow;
-};
-
-class NewAspectH : public BC_TextBox
-{
-public:
-	NewAspectH(NewWindow *nwindow, const char *text, int x, int y);
 	int handle_event();
 	NewWindow *nwindow;
 };

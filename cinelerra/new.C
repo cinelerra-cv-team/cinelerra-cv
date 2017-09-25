@@ -164,7 +164,6 @@ NewThread::~NewThread()
 void NewThread::run()
 {
 	int result = 0;
-	load_defaults();
 
 	int x = mwindow->gui->get_root_w(0, 1) / 2 - WIDTH / 2;
 	int y = mwindow->gui->get_root_h(1) / 2 - HEIGHT / 2;
@@ -194,38 +193,6 @@ void NewThread::run()
 		new_project->create_new_project();
 	}
 }
-
-int NewThread::load_defaults()
-{
-	auto_aspect = mwindow->defaults->get("AUTOASPECT", 0);
-	return 0;
-}
-
-int NewThread::save_defaults()
-{
-	mwindow->defaults->update("AUTOASPECT", auto_aspect);
-	return 0;
-}
-
-int NewThread::update_aspect()
-{
-	if(auto_aspect)
-	{
-		char string[BCTEXTLEN];
-		mwindow->create_aspect_ratio(new_project->new_edl->session->aspect_w, 
-			new_project->new_edl->session->aspect_h, 
-			new_project->new_edl->session->output_w, 
-			new_project->new_edl->session->output_h);
-		sprintf(string, "%.02f", new_project->new_edl->session->aspect_w);
-		nwindow->aspect_w_text->update(string);
-		sprintf(string, "%.02f", new_project->new_edl->session->aspect_h);
-		nwindow->aspect_h_text->update(string);
-	}
-	return 0;
-}
-
-
-
 
 #if 0
 N_("Cinelerra: New Project");
@@ -306,7 +273,7 @@ int NewWindow::create_objects()
 	y += 30;
 	x1 = x;
 	add_subwindow(new BC_Title(x1, y, _("Tracks:")));
-	x1 += 115;
+	x1 += 100;
 	add_subwindow(vtracks = new NewVTracks(this, "", x1, y));
 	x1 += vtracks->get_w();
 	add_subwindow(new NewVTracksTumbler(this, x1, y));
@@ -321,7 +288,7 @@ int NewWindow::create_objects()
 // 	y += vchannels->get_h() + 5;
 	x1 = x;
 	add_subwindow(new BC_Title(x1, y, _("Framerate:")));
-	x1 += 115;
+	x1 += 100;
 	add_subwindow(frame_rate = new FrameRateSelection(x1, y, this,
 		&new_edl->session->frame_rate));
 	y += frame_rate->get_h() + 5;
@@ -341,7 +308,7 @@ int NewWindow::create_objects()
 
 	x1 = x;
 	add_subwindow(new BC_Title(x1, y, _("Canvas size:")));
-	x1 += 115;
+	x1 += 100;
 	add_subwindow(framesize_selection = new FrameSizeSelection(x1, y,
 		x1 + SELECTION_TB_WIDTH + 10, y,
 		this, &new_edl->session->output_w, &new_edl->session->output_h));
@@ -349,23 +316,15 @@ int NewWindow::create_objects()
 
 	x1 = x;
 	add_subwindow(new BC_Title(x1, y, _("Aspect ratio:")));
-	x1 += 115;
-	add_subwindow(aspect_w_text = new NewAspectW(this, "", x1, y));
-	x1 += aspect_w_text->get_w() + 2;
-	add_subwindow(new BC_Title(x1, y, ":"));
-	x1 += 10;
-	add_subwindow(aspect_h_text = new NewAspectH(this, "", x1, y));
-	x1 += aspect_h_text->get_w();
-	add_subwindow(new AspectPulldown(mwindow, 
-		aspect_w_text, 
-		aspect_h_text, 
-		x1, 
-		y));
+	x1 += 100;
 
-	x1 = aspect_w_text->get_x();
-	y += aspect_w_text->get_h() + 5;
-	add_subwindow(new NewAspectAuto(this, x1, y));
-	y += 35;
+	add_subwindow(aspectratio_selection = new AspectRatioSelection(x1, y,
+		x1 + SELECTION_TB_WIDTH + 10, y,
+		this, &new_edl->session->aspect_w, &new_edl->session->aspect_h,
+		&new_edl->session->output_w, &new_edl->session->output_h));
+
+	y += aspectratio_selection->get_h() + 5;
+
 	add_subwindow(new BC_Title(x, y, _("Color model:")));
 	add_subwindow(textbox = new BC_TextBox(x + 120, y, 130, 1, ""));
 	add_subwindow(color_model = new ColormodelPulldown(mwindow, 
@@ -407,8 +366,8 @@ int NewWindow::update()
 	frame_rate->update((float)new_edl->session->frame_rate);
 	framesize_selection->update(new_edl->session->output_w,
 		new_edl->session->output_h);
-	aspect_w_text->update((float)new_edl->session->aspect_w);
-	aspect_h_text->update((float)new_edl->session->aspect_h);
+	aspectratio_selection->update_auto(new_edl->session->aspect_w,
+		new_edl->session->aspect_h);
 	interlace_pulldown->update(new_edl->session->interlace_mode);
 	color_model->update_value(new_edl->session->color_model);
 	return 0;
@@ -571,31 +530,6 @@ int NewVChannelsTumbler::handle_down_event()
 	return 1;
 }
 
-
-NewAspectW::NewAspectW(NewWindow *nwindow, const char *text, int x, int y)
- : BC_TextBox(x, y, 70, 1, text)
-{
-	this->nwindow = nwindow;
-}
-
-int NewAspectW::handle_event()
-{
-	nwindow->new_edl->session->aspect_w = atof(get_text());
-	return 1;
-}
-
-NewAspectH::NewAspectH(NewWindow *nwindow, const char *text, int x, int y)
- : BC_TextBox(x, y, 70, 1, text)
-{
-	this->nwindow = nwindow;
-}
-
-int NewAspectH::handle_event()
-{
-	nwindow->new_edl->session->aspect_h = atof(get_text());
-	return 1;
-}
-
 AspectPulldown::AspectPulldown(MWindow *mwindow, 
 		BC_TextBox *output_w, 
 		BC_TextBox *output_h, 
@@ -733,21 +667,5 @@ int InterlacemodePulldown::update(int interlace_mode)
 {
 	*output_value = interlace_mode;
 	output_text->update(MWindow::ilacemode_to_text(interlace_mode));
-	return 1;
-}
-
-
-NewAspectAuto::NewAspectAuto(NewWindow *nwindow, int x, int y)
- : BC_CheckBox(x, y, nwindow->new_thread->auto_aspect, _("Auto aspect ratio"))
-{
-	this->nwindow = nwindow;
-}
-NewAspectAuto::~NewAspectAuto()
-{
-}
-int NewAspectAuto::handle_event()
-{
-	nwindow->new_thread->auto_aspect = get_value();
-	nwindow->new_thread->update_aspect();
 	return 1;
 }
