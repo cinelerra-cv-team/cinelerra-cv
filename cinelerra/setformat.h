@@ -58,8 +58,6 @@ public:
 	void apply_changes();
 // Update image size based on ratio of dimensions to original.
 	void update_window();
-// Update automatic aspect ratio based in image size
-	void update_aspect();
 // Update all parameters from preset menu
 	void update();
 
@@ -71,7 +69,6 @@ public:
 	float ratio[2];
 	int dimension[2];
 	int orig_dimension[2];
-	int auto_aspect;
 	int constrain_ratio;
 };
 
@@ -129,25 +126,6 @@ public:
 	float *output;
 };
 
-class ScaleAspectAuto : public BC_CheckBox
-{
-public:
-	ScaleAspectAuto(int x, int y, SetFormatThread *thread);
-	~ScaleAspectAuto();
-	int handle_event();
-	SetFormatThread *thread;
-};
-
-class ScaleAspectText : public BC_TextBox
-{
-public:
-	ScaleAspectText(int x, int y, SetFormatThread *thread, double *output);
-	~ScaleAspectText();
-	int handle_event();
-	SetFormatThread *thread;
-	double *output;
-};
-
 class SetFormatApply : public BC_GenericButton
 {
 public:
@@ -199,13 +177,11 @@ public:
 // Size ratio width, height
 	ScaleRatioText* ratio[2];
 // Aspect ratio
-	ScaleAspectText *aspect_w;
-	ScaleAspectText *aspect_h;
+	AspectRatioSelection *aspectratio_selection;
 	Selection *sample_rate;
 	SetChannelsTextBox *channels;
 	FrameRateSelection *frame_rate;
 	ColormodelPulldown *color_model;
-	ScaleAspectAuto *auto_aspect;
 	InterlacemodePulldown *interlace_pulldown;
 };
 
