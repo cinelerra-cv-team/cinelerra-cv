@@ -75,10 +75,10 @@ public:
 		double out_y4,
 		AffineMatrix *result);
 	float transform_cubic(float dx,
-    	float jm1,
-    	float j,
-    	float jp1,
-    	float jp2);
+		float jm1,
+		float j,
+		float jp1,
+		float jp2);
 	AffineEngine *server;
 };
 
@@ -161,7 +161,5 @@ public:
 	int use_opengl;
 	int total_packages;
 };
-
-
 
 #endif
