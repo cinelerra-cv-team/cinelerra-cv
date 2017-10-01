@@ -46,27 +46,26 @@ class FormatTools
 {
 public:
 	FormatTools(MWindow *mwindow,
-				BC_WindowBase *window, 
-				Asset *asset);
+		BC_WindowBase *window,
+		Asset *asset);
 	virtual ~FormatTools();
 
 	int create_objects(int &init_x, 
-						int &init_y, 
-						int do_audio,    // Include tools for audio
-						int do_video,   // Include tools for video
-						int prompt_audio,  // Include checkbox for audio
-						int prompt_video,  // Include checkbox for video
-						int prompt_audio_channels,
-						int prompt_video_compression,
-						const char *locked_compressor,  // Select compressors to be offered
-						int recording, // Change captions for recording
-						int *strategy,  // If nonzero, prompt for insertion strategy
-						int brender,   // Supply file formats for background rendering
-						int horizontal_layout = 0);
+		int &init_y,
+		int do_audio,    // Include tools for audio
+		int do_video,   // Include tools for video
+		int prompt_audio,  // Include checkbox for audio
+		int prompt_video,  // Include checkbox for video
+		int prompt_audio_channels,
+		int prompt_video_compression,
+		const char *locked_compressor,  // Select compressors to be offered
+		int recording, // Change captions for recording
+		int *strategy,  // If nonzero, prompt for insertion strategy
+		int brender,   // Supply file formats for background rendering
+		int horizontal_layout = 0);
 // In recording preferences, aspects of the format are locked 
 // depending on the driver used.
 	void update_driver(int driver);
-
 
 	void reposition_window(int &init_x, int &init_y);
 // Put new asset's parameters in and change asset.
@@ -126,44 +125,46 @@ public:
 };
 
 
-
 class FormatPathText : public BC_TextBox
 {
 public:
 	FormatPathText(int x, int y, FormatTools *format);
-	~FormatPathText();
+
 	int handle_event();
-	
+
 	FormatTools *format;
 };
-
 
 
 class FormatFormat : public FormatPopup
 {
 public:
 	FormatFormat(int x, int y, FormatTools *format);
-	~FormatFormat();
-	
+
 	int handle_event();
+
 	FormatTools *format;
 };
+
 
 class FormatAParams : public BC_Button
 {
 public:
 	FormatAParams(MWindow *mwindow, FormatTools *format, int x, int y);
-	~FormatAParams();
+
 	int handle_event();
+
 	FormatTools *format;
 };
+
 
 class FormatVParams : public BC_Button
 {
 public:
 	FormatVParams(MWindow *mwindow, FormatTools *format, int x, int y);
-	~FormatVParams();
+
 	int handle_event();
+
 	FormatTools *format;
 };
 
@@ -173,40 +174,45 @@ class FormatAThread : public Thread
 public:
 	FormatAThread(FormatTools *format);
 	~FormatAThread();
-	
+
 	void run();
 
 	FormatTools *format;
 	File *file;
 };
+
 
 class FormatVThread : public Thread
 {
 public:
 	FormatVThread(FormatTools *format);
 	~FormatVThread();
-	
+
 	void run();
 
 	FormatTools *format;
 	File *file;
 };
 
+
 class FormatAudio : public BC_CheckBox
 {
 public:
 	FormatAudio(int x, int y, FormatTools *format, int default_);
-	~FormatAudio();
+
 	int handle_event();
+
 	FormatTools *format;
 };
+
 
 class FormatVideo : public BC_CheckBox
 {
 public:
 	FormatVideo(int x, int y, FormatTools *format, int default_);
-	~FormatVideo();
+
 	int handle_event();
+
 	FormatTools *format;
 };
 
@@ -215,30 +221,34 @@ class FormatChannels : public BC_TextBox
 {
 public:
 	FormatChannels(int x, int y, FormatTools *format);
-	~FormatChannels();
+
 	int handle_event();
+
 	FormatTools *format;
 };
+
 
 class FormatToTracks : public BC_CheckBox
 {
 public:
 	FormatToTracks(int x, int y, int *output);
-	~FormatToTracks();
+
 	int handle_event();
+
 	int *output;
 };
+
 
 class FormatMultiple : public BC_CheckBox
 {
 public:
 	FormatMultiple(MWindow *mwindow, int x, int y, int *output);
-	~FormatMultiple();
+
 	int handle_event();
 	void update(int *output);
+
 	int *output;
 	MWindow *mwindow;
 };
-
 
 #endif

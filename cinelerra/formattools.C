@@ -35,8 +35,8 @@
 
 
 FormatTools::FormatTools(MWindow *mwindow,
-				BC_WindowBase *window, 
-				Asset *asset)
+	BC_WindowBase *window,
+	Asset *asset)
 {
 	this->mwindow = mwindow;
 	this->window = window;
@@ -68,19 +68,19 @@ FormatTools::~FormatTools()
 	if(channels_tumbler) delete channels_tumbler;
 }
 
-int FormatTools::create_objects(int &init_x, 
-						int &init_y, 
-						int do_audio,    // Include support for audio
-						int do_video,   // Include support for video
-						int prompt_audio,  // Include checkbox for audio
-						int prompt_video,
-						int prompt_audio_channels,
-						int prompt_video_compression,
-						const char *locked_compressor,
-						int recording,
-						int *strategy,
-						int brender,
-						int horizontal_layout)
+int FormatTools::create_objects(int &init_x,
+	int &init_y,
+	int do_audio,    // Include support for audio
+	int do_video,   // Include support for video
+	int prompt_audio,  // Include checkbox for audio
+	int prompt_video,
+	int prompt_audio_channels,
+	int prompt_video_compression,
+	const char *locked_compressor,
+	int recording,
+	int *strategy,
+	int brender,
+	int horizontal_layout)
 {
 	int x = init_x;
 	int y = init_y;
@@ -96,8 +96,6 @@ int FormatTools::create_objects(int &init_x,
 	this->prompt_video = prompt_video;
 	this->prompt_video_compression = prompt_video_compression;
 	this->strategy = strategy;
-
-//printf("FormatTools::create_objects 1\n");
 
 // Modify strategy depending on render farm
 	if(strategy)
@@ -120,7 +118,6 @@ int FormatTools::create_objects(int &init_x,
 		}
 	}
 
-//printf("FormatTools::create_objects 1\n");
 	if(!recording)
 	{
 		window->add_subwindow(path_textbox = new FormatPathText(x, y, this));
@@ -180,23 +177,9 @@ int FormatTools::create_objects(int &init_x,
 		ylev = y;
 		y += aparams_button->get_h() + 5;
 
-// Audio channels only used for recording.
-// 		if(prompt_audio_channels)
-// 		{
-// 			window->add_subwindow(channels_title = new BC_Title(x, y, _("Number of audio channels to record:")));
-// 			x += 260;
-// 			window->add_subwindow(channels_button = new FormatChannels(x, y, this));
-// 			x += channels_button->get_w() + 5;
-// 			window->add_subwindow(channels_tumbler = new BC_ITumbler(channels_button, 1, MAXCHANNELS, x, y));
-// 			y += channels_button->get_h() + 20;
-// 			x = init_x;
-// 		}
-
-//printf("FormatTools::create_objects 6\n");
 		aparams_thread = new FormatAThread(this);
 	}
 
-//printf("FormatTools::create_objects 7\n");
 	if(do_video)
 	{
 		if(horizontal_layout && do_audio){
@@ -204,7 +187,6 @@ int FormatTools::create_objects(int &init_x,
 			y = ylev;
 		}
 
-//printf("FormatTools::create_objects 8\n");
 		window->add_subwindow(video_title = new BC_Title(x, y, _("Video:"), LARGEFONT,  BC_WindowBase::get_resources()->audiovideo_color));
 		x += 80;
 		if(prompt_video_compression)
@@ -213,7 +195,6 @@ int FormatTools::create_objects(int &init_x,
 			x += vparams_button->get_w() + 10;
 		}
 
-//printf("FormatTools::create_objects 9\n");
 		if(prompt_video)
 		{
 			window->add_subwindow(video_switch = new FormatVideo(x, y, this, asset->video_data));
@@ -224,12 +205,9 @@ int FormatTools::create_objects(int &init_x,
 			y += vparams_button->get_h();
 		}
 
-//printf("FormatTools::create_objects 10\n");
 		y += 10;
 		vparams_thread = new FormatVThread(this);
 	}
-
-//printf("FormatTools::create_objects 11\n");
 
 	x = init_x;
 	if(strategy)
@@ -237,9 +215,6 @@ int FormatTools::create_objects(int &init_x,
 		window->add_subwindow(multiple_files = new FormatMultiple(mwindow, x, y, strategy));
 		y += multiple_files->get_h() + 10;
 	}
-
-//printf("FormatTools::create_objects 12\n");
-
 	init_y = y;
 	return 0;
 }
@@ -250,62 +225,60 @@ void FormatTools::update_driver(int driver)
 
 	switch(driver)
 	{
-		case CAPTURE_DVB:
+	case CAPTURE_DVB:
 // Just give the user information about how the stream is going to be
 // stored but don't change the asset.
 // Want to be able to revert to user settings.
-			if(asset->format != FILE_MPEG)
-			{
-				format_text->update(_("MPEG transport stream"));
-				asset->format = FILE_MPEG;
-			}
-			locked_compressor = 0;
-			audio_switch->update(1);
-			video_switch->update(1);
-			break;
+		if(asset->format != FILE_MPEG)
+		{
+			format_text->update(_("MPEG transport stream"));
+			asset->format = FILE_MPEG;
+		}
+		locked_compressor = 0;
+		audio_switch->update(1);
+		video_switch->update(1);
+		break;
 
-		case CAPTURE_IEC61883:
-		case CAPTURE_FIREWIRE:
-			if(asset->format != FILE_AVI &&
-				asset->format != FILE_MOV)
-			{
-				format_text->update(MOV_NAME);
-				asset->format = FILE_MOV;
-			}
-			else
-				format_text->update(File::formattostr(asset->format));
-			locked_compressor = QUICKTIME_DVSD;
-			strcpy(asset->vcodec, QUICKTIME_DVSD);
-			audio_switch->update(asset->audio_data);
-			video_switch->update(asset->video_data);
-			break;
-
-		case CAPTURE_BUZ:
-		case VIDEO4LINUX2JPEG:
-			if(asset->format != FILE_AVI &&
-				asset->format != FILE_MOV)
-			{
-				format_text->update(MOV_NAME);
-				asset->format = FILE_MOV;
-			}
-			else
-				format_text->update(File::formattostr(asset->format));
-			locked_compressor = QUICKTIME_MJPA;
-			audio_switch->update(asset->audio_data);
-			video_switch->update(asset->video_data);
-			break;
-
-		default:
+	case CAPTURE_IEC61883:
+	case CAPTURE_FIREWIRE:
+		if(asset->format != FILE_AVI &&
+			asset->format != FILE_MOV)
+		{
+			format_text->update(MOV_NAME);
+			asset->format = FILE_MOV;
+		}
+		else
 			format_text->update(File::formattostr(asset->format));
-			locked_compressor = 0;
-			audio_switch->update(asset->audio_data);
-			video_switch->update(asset->video_data);
-			break;
+		locked_compressor = QUICKTIME_DVSD;
+		strcpy(asset->vcodec, QUICKTIME_DVSD);
+		audio_switch->update(asset->audio_data);
+		video_switch->update(asset->video_data);
+		break;
+
+	case CAPTURE_BUZ:
+	case VIDEO4LINUX2JPEG:
+		if(asset->format != FILE_AVI &&
+			asset->format != FILE_MOV)
+		{
+			format_text->update(MOV_NAME);
+			asset->format = FILE_MOV;
+		}
+		else
+			format_text->update(File::formattostr(asset->format));
+		locked_compressor = QUICKTIME_MJPA;
+		audio_switch->update(asset->audio_data);
+		video_switch->update(asset->video_data);
+		break;
+
+	default:
+		format_text->update(File::formattostr(asset->format));
+		locked_compressor = 0;
+		audio_switch->update(asset->audio_data);
+		video_switch->update(asset->video_data);
+		break;
 	}
 	close_format_windows();
 }
-
-
 
 int FormatTools::handle_event()
 {
@@ -415,7 +388,6 @@ void FormatTools::reposition_window(int &init_x, int &init_y)
 		}
 	}
 
-
 	if(do_video)
 	{
 		video_title->reposition_window(x, y);
@@ -449,14 +421,8 @@ void FormatTools::reposition_window(int &init_x, int &init_y)
 	init_y = y;
 }
 
-
 int FormatTools::set_audio_options()
 {
-//	if(video_driver == CAPTURE_DVB)
-//	{
-//		return 0;
-//	}
-
 	if(!aparams_thread->running())
 	{
 		aparams_thread->start();
@@ -470,11 +436,6 @@ int FormatTools::set_audio_options()
 
 int FormatTools::set_video_options()
 {
-//	if(video_driver == CAPTURE_DVB)
-//	{
-//		return 0;
-//	}
-
 	if(!vparams_thread->running())
 	{
 		vparams_thread->start();
@@ -483,12 +444,8 @@ int FormatTools::set_video_options()
 	{
 		vparams_thread->file->raise_window();
 	}
-
 	return 0;
 }
-
-
-
 
 
 FormatAParams::FormatAParams(MWindow *mwindow, FormatTools *format, int x, int y)
@@ -497,14 +454,13 @@ FormatAParams::FormatAParams(MWindow *mwindow, FormatTools *format, int x, int y
 	this->format = format;
 	set_tooltip(_("Configure audio compression"));
 }
-FormatAParams::~FormatAParams() 
-{
-}
+
 int FormatAParams::handle_event() 
 {
 	format->set_audio_options(); 
 	return 1;
 }
+
 
 FormatVParams::FormatVParams(MWindow *mwindow, FormatTools *format, int x, int y)
  : BC_Button(x, y, mwindow->theme->get_image_set("wrench"))
@@ -512,11 +468,9 @@ FormatVParams::FormatVParams(MWindow *mwindow, FormatTools *format, int x, int y
 	this->format = format; 
 	set_tooltip(_("Configure video compression"));
 }
-FormatVParams::~FormatVParams() 
-{
-}
+
 int FormatVParams::handle_event() 
-{ 
+{
 	format->set_video_options(); 
 	return 1;
 }
@@ -538,8 +492,6 @@ void FormatAThread::run()
 {
 	file->get_options(format, 1, 0);
 }
-
-
 
 
 FormatVThread::FormatVThread(FormatTools *format)
@@ -564,9 +516,7 @@ FormatPathText::FormatPathText(int x, int y, FormatTools *format)
 {
 	this->format = format; 
 }
-FormatPathText::~FormatPathText() 
-{
-}
+
 int FormatPathText::handle_event() 
 {
 	strcpy(format->asset->path, get_text());
@@ -575,17 +525,15 @@ int FormatPathText::handle_event()
 }
 
 
-
-
 FormatAudio::FormatAudio(int x, int y, FormatTools *format, int default_)
  : BC_CheckBox(x, 
- 	y, 
+	y,
 	default_, 
 	(char*)(format->recording ? _("Record audio tracks") : _("Render audio tracks")))
 { 
 	this->format = format; 
 }
-FormatAudio::~FormatAudio() {}
+
 int FormatAudio::handle_event()
 {
 	format->asset->audio_data = get_value();
@@ -595,13 +543,13 @@ int FormatAudio::handle_event()
 
 FormatVideo::FormatVideo(int x, int y, FormatTools *format, int default_)
  : BC_CheckBox(x, 
- 	y, 
+	y,
 	default_, 
 	(char*)(format->recording ? _("Record video tracks") : _("Render video tracks")))
 {
-this->format = format; 
+	this->format = format;
 }
-FormatVideo::~FormatVideo() {}
+
 int FormatVideo::handle_event()
 {
 	format->asset->video_data = get_value();
@@ -609,26 +557,23 @@ int FormatVideo::handle_event()
 }
 
 
-
-
 FormatFormat::FormatFormat(int x, 
 	int y, 
 	FormatTools *format)
  : FormatPopup(format->plugindb, 
- 	x, 
+	x,
 	y,
 	format->use_brender)
 { 
 	this->format = format; 
 }
-FormatFormat::~FormatFormat() 
-{
-}
+
 int FormatFormat::handle_event()
 {
 	if(get_selection(0, 0) >= 0)
 	{
 		int new_format = File::strtoformat(format->plugindb, get_selection(0, 0)->get_text());
+
 		if(new_format != format->asset->format)
 		{
 			format->asset->format = new_format;
@@ -644,15 +589,12 @@ int FormatFormat::handle_event()
 }
 
 
-
 FormatChannels::FormatChannels(int x, int y, FormatTools *format)
  : BC_TextBox(x, y, 100, 1, format->asset->channels) 
 { 
- 	this->format = format; 
+	this->format = format;
 }
-FormatChannels::~FormatChannels() 
-{
-}
+
 int FormatChannels::handle_event() 
 {
 	format->asset->channels = atol(get_text());
@@ -664,9 +606,7 @@ FormatToTracks::FormatToTracks(int x, int y, int *output)
 { 
 	this->output = output; 
 }
-FormatToTracks::~FormatToTracks() 
-{
-}
+
 int FormatToTracks::handle_event()
 {
 	*output = get_value();
@@ -676,16 +616,14 @@ int FormatToTracks::handle_event()
 
 FormatMultiple::FormatMultiple(MWindow *mwindow, int x, int y, int *output)
  : BC_CheckBox(x, 
- 	y, 
+	y,
 	(*output == FILE_PER_LABEL) || (*output == FILE_PER_LABEL_FARM), 
 	_("Create new file at each label"))
 { 
 	this->output = output;
 	this->mwindow = mwindow;
 }
-FormatMultiple::~FormatMultiple() 
-{
-}
+
 int FormatMultiple::handle_event()
 {
 	if(get_value())
@@ -714,5 +652,3 @@ void FormatMultiple::update(int *output)
 	else
 		set_value(0);
 }
-
-
