@@ -33,7 +33,6 @@
 #include "edit.inc"
 #include "errorbox.inc"
 #include "file.inc"
-#include "formatpopup.inc"
 #include "formattools.inc"
 #include "guicast.h"
 #include "loadmode.inc"

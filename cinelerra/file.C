@@ -133,7 +133,7 @@ int File::get_options(FormatTools *format,
 	int video_options)
 {
 	BC_WindowBase *parent_window = format->window;
-	ArrayList<PluginServer*> *plugindb = format->plugindb;
+	ArrayList<PluginServer*> *plugindb = mwindow_global->plugindb;
 	Asset *asset = format->asset;
 
 	getting_options = 1;

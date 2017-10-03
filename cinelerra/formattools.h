@@ -27,8 +27,8 @@
 #include "browsebutton.h"
 #include "compresspopup.h"
 #include "file.inc"
-#include "formatpopup.h"
 #include "mwindow.inc"
+#include "selection.h"
 
 class FormatAParams;
 class FormatVParams;
@@ -41,6 +41,17 @@ class FormatFormat;
 class FormatAudio;
 class FormatVideo;
 class FormatMultiple;
+class FormatPopup;
+class ContainerSelection;
+
+struct container_type
+{
+	const char *text;
+	int value;
+	const char *prefix;
+	const char *extension;
+};
+
 
 class FormatTools
 {
@@ -80,6 +91,7 @@ public:
 
 	int set_audio_options();
 	int set_video_options();
+	void format_changed();
 	int get_w();
 
 	BC_WindowBase *window;
@@ -93,8 +105,7 @@ public:
 	FormatPathText *path_textbox;
 	BC_RecentList *path_recent;
 	BC_Title *format_title;
-	FormatFormat *format_button;
-	BC_TextBox *format_text;
+	FormatPopup *format_popup;
 	BC_ITumbler *channels_tumbler;
 
 	BC_Title *audio_title;
@@ -107,7 +118,6 @@ public:
 
 	FormatMultiple *multiple_files;
 
-	ArrayList<PluginServer*> *plugindb;
 	MWindow *mwindow;
 	const char *locked_compressor;
 	int recording;
@@ -129,17 +139,6 @@ class FormatPathText : public BC_TextBox
 {
 public:
 	FormatPathText(int x, int y, FormatTools *format);
-
-	int handle_event();
-
-	FormatTools *format;
-};
-
-
-class FormatFormat : public FormatPopup
-{
-public:
-	FormatFormat(int x, int y, FormatTools *format);
 
 	int handle_event();
 
@@ -250,5 +249,44 @@ public:
 	int *output;
 	MWindow *mwindow;
 };
+
+class FormatPopup
+{
+public:
+	FormatPopup(BC_WindowBase *parent, int x, int y,
+		int *output, FormatTools *tools, int use_brender);
+	~FormatPopup();
+
+	int get_h();
+	void update(int value);
+	void reposition_window(int x, int y);
+
+private:
+	ContainerSelection *selection;
+	static int brender_menu[];
+	static int frender_menu[];
+	struct selection_int *current_menu;
+};
+
+class ContainerSelection : public Selection
+{
+public:
+	ContainerSelection(int x, int y, BC_WindowBase *base,
+		selection_int *menu, int *value, FormatTools *tools);
+
+	void update(int value);
+	const char *format_to_text(int format);
+	int handle_event();
+	static const struct container_type *get_item(int value);
+	static const char *container_to_text(int format);
+	static int text_to_container(char *string);
+	static const char *container_prefix(int format);
+	static const char *container_extension(int format);
+
+private:
+	FormatTools *tools;
+	static const struct container_type media_containers[];
+};
+
 
 #endif

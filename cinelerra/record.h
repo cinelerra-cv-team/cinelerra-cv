@@ -35,7 +35,6 @@
 #include "file.inc"
 #include "filexml.inc"
 #include "filethread.inc"
-#include "formatpopup.h"
 #include "formattools.inc"
 #include "loadmode.inc"
 #include "mwindow.inc"

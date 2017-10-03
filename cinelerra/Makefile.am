@@ -153,7 +153,6 @@ cinelerracv_SOURCES = aattachmentpoint.C \
 		    floatauto.C \
 		    floatautos.C \
 		    formatcheck.C \
-		    formatpopup.C \
 		    formatpresets.C \
 		    formattools.C \
 		    framecache.C \
@@ -454,7 +453,6 @@ noinst_HEADERS = aattachmentpoint.h \
 		 floatauto.h \
 		 floatautos.h \
 		 formatcheck.h \
-		 formatpopup.h \
 		 formatpresets.h \
 		 formattools.h \
 		 framecache.h \

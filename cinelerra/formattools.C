@@ -33,6 +33,51 @@
 #include <string.h>
 #include "pipe.h"
 
+const struct container_type ContainerSelection::media_containers[] =
+{
+	{ N_("AC3"), FILE_AC3, "AC3", "ac3" },
+	{ N_("Apple/SGI AIFF"), FILE_AIFF, "AIFF", "aif" },
+	{ N_("Sun/NeXT AU"), FILE_AU, "AU", "au" },
+	{ N_("JPEG"), FILE_JPEG, "JPEG", "jpg" },
+	{ N_("JPEG Sequence"), FILE_JPEG_LIST, "JPEG_LIST", "list" },
+	{ N_("Microsoft AVI"), FILE_AVI, "AVI", "avi" },
+#ifdef HAVE_OPENEXR
+	{ N_("EXR"), FILE_EXR, "EXR", "exr" },
+	{ N_("EXR Sequence"), FILE_EXR_LIST, "EXR_LIST", "list" },
+#endif
+	{ N_("YUV4MPEG Stream"), FILE_YUV, "YUV", "m2v" },
+	{ N_("Microsoft WAV"), FILE_WAV, "WAV", "wav" },
+	{ N_("QuickTime/MOV"), FILE_MOV, "MOV", "mov" },
+	{ N_("Raw DV"), FILE_RAWDV, "RAWDV", "dv" },
+	{ N_("OGG Theora/Vorbis"), FILE_OGG, "OGG", "ogg" },
+	{ N_("Raw PCM"), FILE_PCM, "PCM", "pcm" },
+	{ N_("PNG"), FILE_PNG, "PNG", "png" },
+	{ N_("PNG Sequence"), FILE_PNG_LIST, "PNG_LIST", "list" },
+	{ N_("TGA"), FILE_TGA, "TGA", "tga" },
+	{ N_("TGA Sequence"), FILE_TGA_LIST, "TGA_LIST", "list" },
+	{ N_("TIFF"), FILE_TIFF, "TIFF", "tif" },
+	{ N_("TIFF Sequence"), FILE_TIFF_LIST, "TIFF_LIST", "list" },
+	{ N_("MPEG"), FILE_MPEG, "MPEG", "mpg" },
+	{ 0, 0 }
+};
+
+#define NUM_MEDIA_CONTAINERS (sizeof(ContainerSelection::media_containers) / sizeof(struct container_type) - 1)
+
+int FormatPopup::brender_menu[] = { FILE_JPEG_LIST,
+	FILE_PNG_LIST, FILE_TIFF_LIST };
+int FormatPopup::frender_menu[] = { FILE_AC3 , FILE_AIFF, FILE_AU,
+	FILE_JPEG, FILE_JPEG_LIST,
+	FILE_AVI,
+#ifdef HAVE_OPENEXR
+	FILE_EXR, FILE_EXR_LIST,
+#endif
+	FILE_YUV, FILE_WAV,
+	FILE_MOV,
+	FILE_RAWDV,
+	FILE_OGG, FILE_PCM,
+	FILE_PNG, FILE_PNG_LIST, FILE_TGA, FILE_TGA_LIST,
+	FILE_TIFF, FILE_TIFF_LIST
+};
 
 FormatTools::FormatTools(MWindow *mwindow,
 	BC_WindowBase *window,
@@ -41,7 +86,6 @@ FormatTools::FormatTools(MWindow *mwindow,
 	this->mwindow = mwindow;
 	this->window = window;
 	this->asset = asset;
-	this->plugindb = mwindow->plugindb;
 
 	aparams_button = 0;
 	vparams_button = 0;
@@ -59,7 +103,7 @@ FormatTools::~FormatTools()
 	delete path_recent;
 	delete path_button;
 	delete path_textbox;
-	delete format_button;
+	delete format_popup;
 
 	if(aparams_button) delete aparams_button;
 	if(vparams_button) delete vparams_button;
@@ -149,20 +193,12 @@ int FormatTools::create_objects(int &init_x,
 
 	x = init_x;
 	window->add_subwindow(format_title = new BC_Title(x, y, _("File Format:")));
-	y += format_title->get_h() + 5;
-	window->add_subwindow(format_text = new BC_TextBox(x, 
-		y, 
-		200, 
-		1, 
-		File::formattostr(asset->format)));
-	x += format_text->get_w();
-	window->add_subwindow(format_button = new FormatFormat(x, 
-		y, 
-		this));
-	format_button->create_objects();
+	x += 90;
+
+	format_popup = new FormatPopup(window, x, y, &asset->format, this, use_brender);
 
 	x = init_x;
-	y += format_button->get_h() + 10;
+	y += format_popup->get_h() + 10;
 	if(do_audio)
 	{
 		window->add_subwindow(audio_title = new BC_Title(x, y, _("Audio:"), LARGEFONT,  BC_WindowBase::get_resources()->audiovideo_color));
@@ -231,7 +267,7 @@ void FormatTools::update_driver(int driver)
 // Want to be able to revert to user settings.
 		if(asset->format != FILE_MPEG)
 		{
-			format_text->update(_("MPEG transport stream"));
+			format_popup->update(FILE_MPEG);
 			asset->format = FILE_MPEG;
 		}
 		locked_compressor = 0;
@@ -244,11 +280,11 @@ void FormatTools::update_driver(int driver)
 		if(asset->format != FILE_AVI &&
 			asset->format != FILE_MOV)
 		{
-			format_text->update(MOV_NAME);
+			format_popup->update(FILE_MOV);
 			asset->format = FILE_MOV;
 		}
 		else
-			format_text->update(File::formattostr(asset->format));
+			format_popup->update(asset->format);
 		locked_compressor = QUICKTIME_DVSD;
 		strcpy(asset->vcodec, QUICKTIME_DVSD);
 		audio_switch->update(asset->audio_data);
@@ -260,18 +296,18 @@ void FormatTools::update_driver(int driver)
 		if(asset->format != FILE_AVI &&
 			asset->format != FILE_MOV)
 		{
-			format_text->update(MOV_NAME);
+			format_popup->update(FILE_MOV);
 			asset->format = FILE_MOV;
 		}
 		else
-			format_text->update(File::formattostr(asset->format));
+			format_popup->update(asset->format);
 		locked_compressor = QUICKTIME_MJPA;
 		audio_switch->update(asset->audio_data);
 		video_switch->update(asset->video_data);
 		break;
 
 	default:
-		format_text->update(File::formattostr(asset->format));
+		format_popup->update(asset->format);
 		locked_compressor = 0;
 		audio_switch->update(asset->audio_data);
 		video_switch->update(asset->video_data);
@@ -322,7 +358,7 @@ void FormatTools::update(Asset *asset, int *strategy)
 
 	if(path_textbox) 
 		path_textbox->update(asset->path);
-	format_text->update(File::formattostr(plugindb, asset->format));
+	format_popup->update(asset->format);
 	if(do_audio && audio_switch) audio_switch->update(asset->audio_data);
 	if(do_video && video_switch) video_switch->update(asset->video_data);
 	if(strategy)
@@ -359,12 +395,10 @@ void FormatTools::reposition_window(int &init_x, int &init_y)
 
 	format_title->reposition_window(x, y);
 	x += 90;
-	format_text->reposition_window(x, y);
-	x += format_text->get_w();
-	format_button->reposition_window(x, y);
+	format_popup->reposition_window(x, y);
 
 	x = init_x;
-	y += format_button->get_h() + 10;
+	y += format_popup->get_h() + 10;
 
 	if(do_audio)
 	{
@@ -445,6 +479,15 @@ int FormatTools::set_video_options()
 		vparams_thread->file->raise_window();
 	}
 	return 0;
+}
+
+void FormatTools::format_changed()
+{
+	if(!use_brender)
+		update_extension();
+	close_format_windows();
+	if(path_recent)
+		path_recent->load_items(ContainerSelection::container_prefix(asset->format));
 }
 
 
@@ -557,38 +600,6 @@ int FormatVideo::handle_event()
 }
 
 
-FormatFormat::FormatFormat(int x, 
-	int y, 
-	FormatTools *format)
- : FormatPopup(format->plugindb, 
-	x,
-	y,
-	format->use_brender)
-{ 
-	this->format = format; 
-}
-
-int FormatFormat::handle_event()
-{
-	if(get_selection(0, 0) >= 0)
-	{
-		int new_format = File::strtoformat(format->plugindb, get_selection(0, 0)->get_text());
-
-		if(new_format != format->asset->format)
-		{
-			format->asset->format = new_format;
-			format->format_text->update(get_selection(0, 0)->get_text());
-			format->update_extension();
-			format->close_format_windows();
-			if (format->path_recent)
-				format->path_recent->load_items
-					(FILE_FORMAT_PREFIX(format->asset->format));
-		}
-	}
-	return 1;
-}
-
-
 FormatChannels::FormatChannels(int x, int y, FormatTools *format)
  : BC_TextBox(x, y, 100, 1, format->asset->channels) 
 { 
@@ -651,4 +662,136 @@ void FormatMultiple::update(int *output)
 		set_value(1);
 	else
 		set_value(0);
+}
+
+FormatPopup::FormatPopup(BC_WindowBase *parent,
+	int x,
+	int y,
+	int *output,
+	FormatTools *tools,
+	int use_brender)
+{
+	int *menu;
+	int length;
+
+	if(use_brender)
+	{
+		menu = brender_menu;
+		length = sizeof(brender_menu) / sizeof(int);
+	}
+	else
+	{
+		menu = frender_menu;
+		length = sizeof(frender_menu) / sizeof(int);
+	}
+	current_menu = new struct selection_int[length + 1];
+
+	for(int i = 0; i < length; i++)
+	{
+		const struct container_type *ct = ContainerSelection::get_item(menu[i]);
+		current_menu[i].text = ct->text;
+		current_menu[i].value = ct->value;
+	}
+	current_menu[length].text = 0;
+
+	parent->add_subwindow(selection = new ContainerSelection(x, y, parent,
+		current_menu, output, tools));
+	selection->update(*output);
+}
+
+FormatPopup::~FormatPopup()
+{
+	delete [] current_menu;
+}
+
+int FormatPopup::get_h()
+{
+	return selection->get_h();
+}
+
+void FormatPopup::update(int value)
+{
+	selection->update(value);
+}
+
+void FormatPopup::reposition_window(int x, int y)
+{
+	selection->reposition_window(x, y);
+}
+
+
+ContainerSelection::ContainerSelection(int x, int y, BC_WindowBase *base,
+	selection_int *menu, int *value, FormatTools *tools)
+ : Selection(x, y , base, menu, value, SELECTION_VARWIDTH)
+{
+	disable(1);
+	this->tools = tools;
+}
+
+void ContainerSelection::update(int value)
+{
+	BC_TextBox::update(_(container_to_text(value)));
+}
+
+int ContainerSelection::handle_event()
+{
+	if(current_int && current_int->value != *intvalue)
+	{
+		*intvalue = current_int->value;
+		tools->format_changed();
+	}
+	return 1;
+}
+
+const char *ContainerSelection::container_to_text(int format)
+{
+	for(int i = 0; i < NUM_MEDIA_CONTAINERS; i++)
+	{
+		if(media_containers[i].value == format)
+			return media_containers[i].text;
+	}
+	return N_("Unknown");
+}
+
+int ContainerSelection::text_to_container(char *string)
+{
+	for(int i = 0; i < NUM_MEDIA_CONTAINERS; i++)
+	{
+		if(!strcmp(media_containers[i].text, string))
+			return media_containers[i].value;
+	}
+// Backward compatibility
+	if(!strcmp(string, "Quicktime for Linux"))
+		return FILE_MOV;
+	return FILE_UNKNOWN;
+}
+
+const struct container_type *ContainerSelection::get_item(int format)
+{
+	for(int i = 0; i < NUM_MEDIA_CONTAINERS; i++)
+	{
+		if(media_containers[i].value == format)
+			return &media_containers[i];
+	}
+	return 0;
+}
+
+const char *ContainerSelection::container_prefix(int format)
+{
+	for(int i = 0; i < NUM_MEDIA_CONTAINERS; i++)
+	{
+		if(media_containers[i].value == format)
+			return media_containers[i].prefix;
+	}
+	return "UNKNOWN";
+}
+
+const char *ContainerSelection::container_extension(int format)
+{
+	for(int i = 0; i < NUM_MEDIA_CONTAINERS; i++)
+	{
+		if(media_containers[i].value == format)
+			return media_containers[i].extension;
+	}
+	return 0;
 }
