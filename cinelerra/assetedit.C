@@ -767,27 +767,6 @@ AssetEditPath::AssetEditPath(MWindow *mwindow, AssetEditWindow *fwindow, BC_Text
 AssetEditPath::~AssetEditPath() {}
 
 
-
-
-
-
-AssetEditFormat::AssetEditFormat(AssetEditWindow *fwindow, char* default_, int y)
- : FormatPopup(fwindow->mwindow->plugindb, 90, y)
-{ 
-	this->fwindow = fwindow; 
-}
-AssetEditFormat::~AssetEditFormat() 
-{
-}
-int AssetEditFormat::handle_event()
-{
-	fwindow->asset->format = File::strtoformat(fwindow->mwindow->plugindb, get_selection(0, 0)->get_text());
-	return 1;
-}
-
-
-
-
 AssetEditReelName::AssetEditReelName(AssetEditWindow *fwindow, int x, int y)
  : BC_TextBox(x, y, 190, 1, fwindow->asset->reel_name, 1, MEDIUMFONT, 1)
 {
