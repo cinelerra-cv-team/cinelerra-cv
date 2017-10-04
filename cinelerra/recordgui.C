@@ -276,8 +276,7 @@ int RecordGUI::create_objects()
 
 	add_subwindow(new BC_Title(x, 
 		y, 
-		File::formattostr(mwindow->plugindb, 
-			record->default_asset->format), 
+		ContainerSelection::container_to_text(record->default_asset->format),
 		MEDIUMFONT, 
 		mwindow->theme->recordgui_fixed_color));
 	y += pad;

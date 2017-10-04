@@ -1085,161 +1085,6 @@ int File::read_frame(VFrame *frame, int is_thread)
 		return 1;
 }
 
-// Fill in queries about formats when adding formats here.
-int File::strtoformat(char *format)
-{
-	return strtoformat(0, format);
-}
-
-int File::strtoformat(ArrayList<PluginServer*> *plugindb, char *format)
-{
-	if(!strcasecmp(format, _(AC3_NAME))) return FILE_AC3;
-	else
-	if(!strcasecmp(format, _(WAV_NAME))) return FILE_WAV;
-	else
-	if(!strcasecmp(format, _(PCM_NAME))) return FILE_PCM;
-	else
-	if(!strcasecmp(format, _(AU_NAME))) return FILE_AU;
-	else
-	if(!strcasecmp(format, _(AIFF_NAME))) return FILE_AIFF;
-	else
-	if(!strcasecmp(format, _(SND_NAME))) return FILE_SND;
-	else
-	if(!strcasecmp(format, _(PNG_NAME))) return FILE_PNG;
-	else
-	if(!strcasecmp(format, _(PNG_LIST_NAME))) return FILE_PNG_LIST;
-	else
-	if(!strcasecmp(format, _(TIFF_NAME))) return FILE_TIFF;
-	else
-	if(!strcasecmp(format, _(TIFF_LIST_NAME))) return FILE_TIFF_LIST;
-	else
-	if(!strcasecmp(format, _(JPEG_NAME))) return FILE_JPEG;
-	else
-	if(!strcasecmp(format, _(JPEG_LIST_NAME))) return FILE_JPEG_LIST;
-	else
-#ifdef HAVE_OPENEXR
-	if(!strcasecmp(format, _(EXR_NAME))) return FILE_EXR;
-	else
-	if(!strcasecmp(format, _(EXR_LIST_NAME))) return FILE_EXR_LIST;
-	else
-#endif
-	if(!strcasecmp(format, _(YUV_NAME))) return FILE_YUV;
-	else
-	if(!strcasecmp(format, _(MPEG_NAME))) return FILE_MPEG;
-	else
-	if(!strcasecmp(format, _(AMPEG_NAME))) return FILE_AMPEG;
-	else
-	if(!strcasecmp(format, _(VMPEG_NAME))) return FILE_VMPEG;
-	else
-	if(!strcasecmp(format, _(TGA_NAME))) return FILE_TGA;
-	else
-	if(!strcasecmp(format, _(TGA_LIST_NAME))) return FILE_TGA_LIST;
-	else
-	if(!strcasecmp(format, _(MOV_NAME))) return FILE_MOV;
-	else
-	if(!strcasecmp(format, _(AVI_NAME))) return FILE_AVI;
-	else
-	if(!strcasecmp(format, _(OGG_NAME))) return FILE_OGG;
-	else
-	if(!strcasecmp(format, _(VORBIS_NAME))) return FILE_VORBIS;
-	else
-	if(!strcasecmp(format, _(RAWDV_NAME))) return FILE_RAWDV;
-	return 0;
-}
-
-const char* File::formattostr(int format)
-{
-	return formattostr(0, format);
-}
-
-const char* File::formattostr(ArrayList<PluginServer*> *plugindb, int format)
-{
-	switch(format)
-	{
-		case FILE_AC3:
-			return _(AC3_NAME);
-			break;
-		case FILE_WAV:
-			return _(WAV_NAME);
-			break;
-		case FILE_PCM:
-			return _(PCM_NAME);
-			break;
-		case FILE_AU:
-			return _(AU_NAME);
-			break;
-		case FILE_AIFF:
-			return _(AIFF_NAME);
-			break;
-		case FILE_SND:
-			return _(SND_NAME);
-			break;
-		case FILE_PNG:
-			return _(PNG_NAME);
-			break;
-		case FILE_PNG_LIST:
-			return _(PNG_LIST_NAME);
-			break;
-		case FILE_JPEG:
-			return _(JPEG_NAME);
-			break;
-		case FILE_JPEG_LIST:
-			return _(JPEG_LIST_NAME);
-			break;
-#ifdef HAVE_OPENEXR
-		case FILE_EXR:
-			return _(EXR_NAME);
-			break;
-		case FILE_EXR_LIST:
-			return _(EXR_LIST_NAME);
-			break;
-#endif
-		case FILE_YUV:
-			return _(YUV_NAME);
-			break;
-		case FILE_MPEG:
-			return _(MPEG_NAME);
-			break;
-		case FILE_AMPEG:
-			return _(AMPEG_NAME);
-			break;
-		case FILE_VMPEG:
-			return _(VMPEG_NAME);
-			break;
-		case FILE_TGA:
-			return _(TGA_NAME);
-			break;
-		case FILE_TGA_LIST:
-			return _(TGA_LIST_NAME);
-			break;
-		case FILE_TIFF:
-			return _(TIFF_NAME);
-			break;
-		case FILE_TIFF_LIST:
-			return _(TIFF_LIST_NAME);
-			break;
-		case FILE_MOV:
-			return _(MOV_NAME);
-			break;
-		case FILE_AVI:
-			return _(AVI_NAME);
-			break;
-		case FILE_OGG:
-			return _(OGG_NAME);
-			break;
-		case FILE_VORBIS:
-			return _(VORBIS_NAME);
-			break;
-		case FILE_RAWDV:
-			return _(RAWDV_NAME);
-			break;
-		default:
-			return _("Unknown");
-			break;
-	}
-	return "Unknown";
-}
-
 int File::strtobits(char *bits)
 {
 	if(!strcasecmp(bits, _(NAME_8BIT))) return BITSLINEAR8;
@@ -1412,7 +1257,7 @@ FrameCache* File::get_frame_cache()
 
 int File::supports_video(ArrayList<PluginServer*> *plugindb, char *format)
 {
-	int i, format_i = strtoformat(plugindb, format);
+	int i, format_i = ContainerSelection::text_to_container(format);
 	
 	return supports_video(format_i);
 	return 0;
@@ -1420,7 +1265,7 @@ int File::supports_video(ArrayList<PluginServer*> *plugindb, char *format)
 
 int File::supports_audio(ArrayList<PluginServer*> *plugindb, char *format)
 {
-	int i, format_i = strtoformat(plugindb, format);
+	int i, format_i = ContainerSelection::text_to_container(format);
 
 	return supports_audio(format_i);
 	return 0;

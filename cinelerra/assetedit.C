@@ -33,6 +33,7 @@
 #include "file.h"
 #include "filempeg.h"
 #include "filesystem.h"
+#include "formattools.h"
 #include "indexfile.h"
 #include "language.h"
 #include "mainerror.h"
@@ -209,7 +210,9 @@ int AssetEditWindow::create_objects()
 
 	add_subwindow(new BC_Title(x, y, _("File format:")));
 	x = x2;
-	add_subwindow(new BC_Title(x, y, File::formattostr(mwindow->plugindb, asset->format), MEDIUMFONT, mwindow->theme->edit_font_color));
+	add_subwindow(new BC_Title(x, y,
+		ContainerSelection::container_to_text(asset->format),
+		MEDIUMFONT, mwindow->theme->edit_font_color));
 	x = x1;
 	y += 20;
 

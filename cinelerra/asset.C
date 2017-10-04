@@ -28,6 +28,7 @@
 #include "clip.h"
 #include "edl.h"
 #include "file.h"
+#include "formattools.h"
 #include "filesystem.h"
 #include "filexml.h"
 #include "quicktime.h"
@@ -520,7 +521,7 @@ int Asset::read(FileXML *file,
 			if(file->tag.title_is("FORMAT"))
 			{
 				char *string = file->tag.get_property("TYPE");
-				format = File::strtoformat(string);
+				format = ContainerSelection::text_to_container(string);
 				use_header = 
 					file->tag.get_property("USE_HEADER", use_header);
 			}
@@ -764,7 +765,7 @@ int Asset::write(FileXML *file,
 	file->tag.set_title("FORMAT");
 
 	file->tag.set_property("TYPE", 
-		File::formattostr(format));
+		ContainerSelection::container_to_text(format));
 	file->tag.set_property("USE_HEADER", use_header);
 
 	file->append_tag();
