@@ -133,7 +133,6 @@ int File::get_options(FormatTools *format,
 	int video_options)
 {
 	BC_WindowBase *parent_window = format->window;
-	ArrayList<PluginServer*> *plugindb = mwindow_global->plugindb;
 	Asset *asset = format->asset;
 
 	getting_options = 1;
@@ -1254,23 +1253,6 @@ FrameCache* File::get_frame_cache()
 {
 	return frame_cache;
 }
-
-int File::supports_video(ArrayList<PluginServer*> *plugindb, char *format)
-{
-	int i, format_i = ContainerSelection::text_to_container(format);
-	
-	return supports_video(format_i);
-	return 0;
-}
-
-int File::supports_audio(ArrayList<PluginServer*> *plugindb, char *format)
-{
-	int i, format_i = ContainerSelection::text_to_container(format);
-
-	return supports_audio(format_i);
-	return 0;
-}
-
 
 int File::supports_video(int format)
 {
