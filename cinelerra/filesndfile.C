@@ -76,7 +76,7 @@ void FileSndFile::asset_to_format()
 // Raw can't be float.
 	switch(asset->bits)
 	{
-		case BITSLINEAR8:
+		case 8:
 			if(asset->format == FILE_WAV)
 				fd_config.format |= SF_FORMAT_PCM_U8;
 			else
@@ -86,7 +86,7 @@ void FileSndFile::asset_to_format()
 				fd_config.format |= SF_FORMAT_PCM_U8;
 			break;
 
-		case BITSLINEAR16:
+		case 16:
 			fd_config.format |= SF_FORMAT_PCM_16;
 
 			if(asset->byte_order || asset->format == FILE_WAV)
@@ -95,7 +95,7 @@ void FileSndFile::asset_to_format()
 				fd_config.format |= SF_ENDIAN_BIG;
 			break;
 
-		case BITSLINEAR24:
+		case 24:
 			fd_config.format |= SF_FORMAT_PCM_24;
 
 			if(asset->byte_order || asset->format == FILE_WAV)
@@ -104,7 +104,7 @@ void FileSndFile::asset_to_format()
 				fd_config.format |= SF_ENDIAN_BIG;
 			break;
 
-		case BITSLINEAR32:
+		case 32:
 			fd_config.format |= SF_FORMAT_PCM_32;
 
 			if(asset->byte_order || asset->format == FILE_WAV)
@@ -113,15 +113,15 @@ void FileSndFile::asset_to_format()
 				fd_config.format |= SF_ENDIAN_BIG;
 			break;
 
-		case BITSULAW: 
+		case SBITS_ULAW:
 			fd_config.format |= SF_FORMAT_ULAW; 
 			break;
 
-		case BITSFLOAT: 
+		case SBITS_FLOAT:
 			fd_config.format |= SF_FORMAT_FLOAT; 
 			break;
 
-		case BITS_ADPCM: 
+		case SBITS_ADPCM:
 			if(fd_config.format == FILE_WAV)
 				fd_config.format |= SF_FORMAT_MS_ADPCM;
 			else
@@ -162,14 +162,14 @@ void FileSndFile::format_to_asset()
 		switch(fd_config.format & SF_FORMAT_SUBMASK)
 		{
 			case SF_FORMAT_FLOAT: 
-				asset->bits = BITSFLOAT; 
+				asset->bits = SBITS_FLOAT;
 				break;
 			case SF_FORMAT_ULAW: 
-				asset->bits = BITSULAW; 
+				asset->bits = SBITS_ULAW;
 				break;
 			case SF_FORMAT_IMA_ADPCM:
 			case SF_FORMAT_MS_ADPCM:
-				asset->bits = BITS_ADPCM;
+				asset->bits = SBITS_ADPCM;
 				break;
 			case SF_FORMAT_PCM_16:
 				asset->signed_ = 1;
@@ -185,11 +185,11 @@ void FileSndFile::format_to_asset()
 				break;
 			case SF_FORMAT_PCM_S8:
 				asset->signed_ = 1;
-				asset->bits = BITSLINEAR8;
+				asset->bits = 8;
 				break;
 			case SF_FORMAT_PCM_U8:
 				asset->signed_ = 0;
-				asset->bits = BITSLINEAR8;
+				asset->bits = 8;
 				break;
 		}
 
@@ -347,7 +347,7 @@ int FileSndFile::write_samples(double **buffer, int64_t len)
 // Libsndfile does not limit values
 //if(sample > 1.0 || sample < -1.0) printf("FileSndFile::write_samples %f\n", sample);
 //printf("FileSndFile::write_samples %d %d\n", asset->bits, BITSFLOAT);
-			if(asset->bits != BITSFLOAT) CLAMP(sample, -1.0, (32767.0 / 32768.0));
+			if(asset->bits != SBITS_FLOAT) CLAMP(sample, -1.0, (32767.0 / 32768.0));
 			temp_double[j * asset->channels + i] = sample;
 		}
 	}

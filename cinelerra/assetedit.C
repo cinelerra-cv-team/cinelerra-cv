@@ -326,9 +326,9 @@ int AssetEditWindow::create_objects()
 			bitspopup->update_size(asset->bits);
 		}
 		else
-			add_subwindow(new BC_Title(x, y, File::bitstostr(asset->bits), MEDIUMFONT, mwindow->theme->edit_font_color));
-
-
+			add_subwindow(new BC_Title(x, y,
+				SampleBitsSelection::name(asset->bits),
+				MEDIUMFONT, mwindow->theme->edit_font_color));
 		x = x1;
 		y += vmargin;
 		add_subwindow(new BC_Title(x, y, _("Header length:")));

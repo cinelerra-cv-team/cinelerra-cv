@@ -20,6 +20,7 @@
  */
 
 #include "asset.h"
+#include "cinelerra.h"
 #include "file.h"
 #include "errorbox.h"
 #include "formatcheck.h"
@@ -65,7 +66,7 @@ int FormatCheck::check_format()
 			result = 1;
 		}
 
-		if(!result && asset->bits == BITSIMA4 && asset->format != FILE_MOV)
+		if(!result && asset->bits == SBITS_IMA4 && asset->format != FILE_MOV)
 		{
 			ErrorBox errorbox(MWindow::create_title(N_("Error")));
 			errorbox.create_objects(_("IMA4 compression is only available in Quicktime movies."));
@@ -73,7 +74,7 @@ int FormatCheck::check_format()
 			result = 1;
 		}
 
-		if(!result && asset->bits == BITSULAW && 
+		if(!result && asset->bits == SBITS_ULAW &&
 			asset->format != FILE_MOV &&
 			asset->format != FILE_PCM)
 		{

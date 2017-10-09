@@ -207,12 +207,8 @@ public:
 	static const char* get_tag(int format);
 	static int supports_video(int format);   // returns 1 if the format supports video or audio
 	static int supports_audio(int format);
-	static int strtobits(char *bits);
-	static const char* bitstostr(int bits);
 	static int str_to_byteorder(char *string);
 	static const char* byteorder_to_str(int byte_order);
-	int bytes_per_sample(int bits); // Convert the bit descriptor into a byte count.
-
 	Asset *asset;    // Copy of asset since File outlives EDL
 	FileBase *file; // virtual class for file type
 // Threads for writing data in the background.

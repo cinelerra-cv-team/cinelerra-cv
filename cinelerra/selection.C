@@ -713,3 +713,11 @@ int SampleBitsSelection::sampleflag(int size)
 	}
 	return SBITS_LINEAR16;
 }
+
+const char *SampleBitsSelection::name(int size)
+{
+	for(int i = 0; sample_bits[i].text; i++)
+		if(sample_bits[i].value2 == size)
+			return _(sample_bits[i].text);
+	return _("Unknown");
+}

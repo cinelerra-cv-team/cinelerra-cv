@@ -1084,54 +1084,6 @@ int File::read_frame(VFrame *frame, int is_thread)
 		return 1;
 }
 
-int File::strtobits(char *bits)
-{
-	if(!strcasecmp(bits, _(NAME_8BIT))) return BITSLINEAR8;
-	if(!strcasecmp(bits, _(NAME_16BIT))) return BITSLINEAR16;
-	if(!strcasecmp(bits, _(NAME_24BIT))) return BITSLINEAR24;
-	if(!strcasecmp(bits, _(NAME_32BIT))) return BITSLINEAR32;
-	if(!strcasecmp(bits, _(NAME_ULAW))) return BITSULAW;
-	if(!strcasecmp(bits, _(NAME_ADPCM))) return BITS_ADPCM;
-	if(!strcasecmp(bits, _(NAME_FLOAT))) return BITSFLOAT;
-	if(!strcasecmp(bits, _(NAME_IMA4))) return BITSIMA4;
-	return BITSLINEAR16;
-}
-
-const char* File::bitstostr(int bits)
-{
-//printf("File::bitstostr\n");
-	switch(bits)
-	{
-		case BITSLINEAR8:
-			return (NAME_8BIT);
-			break;
-		case BITSLINEAR16:
-			return (NAME_16BIT);
-			break;
-		case BITSLINEAR24:
-			return (NAME_24BIT);
-			break;
-		case BITSLINEAR32:
-			return (NAME_32BIT);
-			break;
-		case BITSULAW:
-			return (NAME_ULAW);
-			break;
-		case BITS_ADPCM:
-			return (NAME_ADPCM);
-			break;
-		case BITSFLOAT:
-			return (NAME_FLOAT);
-			break;
-		case BITSIMA4:
-			return (NAME_IMA4);
-			break;
-	}
-	return "Unknown";
-}
-
-
-
 int File::str_to_byteorder(char *string)
 {
 	if(!strcasecmp(string, _("Lo Hi"))) return 1;
@@ -1143,36 +1095,6 @@ const char* File::byteorder_to_str(int byte_order)
 	if(byte_order) return _("Lo Hi");
 	return _("Hi Lo");
 }
-
-int File::bytes_per_sample(int bits)
-{
-	switch(bits)
-	{
-		case BITSLINEAR8:
-			return 1;
-			break;
-		case BITSLINEAR16:
-			return 2;
-			break;
-		case BITSLINEAR24:
-			return 3;
-			break;
-		case BITSLINEAR32:
-			return 4;
-			break;
-		case BITSULAW:
-			return 1;
-			break;
-		case BITSIMA4:
-			return 1;
-			break;
-	}
-	return 1;
-}
-
-
-
-
 
 int File::get_best_colormodel(int driver)
 {

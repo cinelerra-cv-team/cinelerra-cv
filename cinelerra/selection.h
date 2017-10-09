@@ -220,6 +220,7 @@ public:
 // Convert samplesize flag to sample bits
 	static int samlpesize(int flag);
 	static int sampleflag(int size);
+	static const char *name(int size);
 private:
 	static const struct selection_2int sample_bits[];
 };

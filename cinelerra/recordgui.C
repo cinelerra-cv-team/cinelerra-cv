@@ -285,7 +285,7 @@ int RecordGUI::create_objects()
 	{
 		add_subwindow(new BC_Title(x, 
 			y, 
-			File::bitstostr(record->default_asset->bits), 
+			SampleBitsSelection::name(record->default_asset->bits),
 			MEDIUMFONT, 
 			mwindow->theme->recordgui_fixed_color));
 
