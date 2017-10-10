@@ -137,10 +137,11 @@ public:
 class SetFormatPresets : public FormatPresets
 {
 public:
-	SetFormatPresets(MWindow *mwindow, SetFormatWindow *gui, int x, int y);
-	~SetFormatPresets();
+	SetFormatPresets(SetFormatWindow *gui, int x, int y);
+
 	int handle_event();
-	EDL* get_edl();
+
+	SetFormatWindow *format_gui;
 };
 
 

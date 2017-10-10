@@ -117,7 +117,6 @@ cinelerracv_SOURCES = aattachmentpoint.C \
 		    cwindowgui.C \
 		    cwindowtool.C \
 		    dcoffset.C \
-		    defaultformats.h \
 		    deleteallindexes.C \
 		    devicedvbinput.C \
 		    drivesync.C \

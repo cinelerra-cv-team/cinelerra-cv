@@ -28,78 +28,61 @@
 #include "guicast.h"
 #include "mwindow.inc"
 #include "new.inc"
+#include "selection.h"
 #include "setformat.inc"
+
+struct formatpresets
+{
+	const char *name;
+	int audio_channels;
+	int audio_tracks;
+	int sample_rate;
+	int video_channels;
+	int video_tracks;
+	double frame_rate;
+	int output_w;
+	int output_h;
+	int aspect_w;
+	int aspect_h;
+	int interlace_mode;
+	int color_model;
+};
+
+class FormatSelection : public Selection
+{
+public:
+	FormatSelection(int x, int y, BC_WindowBase *base_gui,
+		selection_int *menu, FormatPresets *presets);
+
+	int handle_event();
+private:
+	FormatPresets *presets;
+};
 
 
 class FormatPresets
 {
 public:
-	FormatPresets(MWindow *mwindow,
-		NewWindow *new_gui, 
-		SetFormatWindow *format_gui, 
-		int x, 
-		int y);
+	FormatPresets(BC_WindowBase* base_gui, int x, int y);
 	virtual ~FormatPresets();
 
-	void create_objects();
-	FormatPresetItem* find_preset(EDL *edl);
+// Find the item which corresponds to the values in the edl.
+	struct formatpresets *find_preset(EDL *edl);
 	const char* get_preset_text(EDL *edl);
 
+	static void fill_preset_defaults(const char *preset, EDLSession *session);
+	void set_edl(EDL *edl);
+	void update_edl(const char *preset);
 // New preset selected
-	virtual int handle_event();
-	virtual EDL* get_edl();
-	
-	MWindow *mwindow;
+	virtual int handle_event() { return 0; };
+private:
 	BC_WindowBase *gui_base;
-	NewWindow *new_gui;
-	SetFormatWindow *format_gui;
-	FormatPresetsText *text;
-	FormatPresetsPulldown *pulldown;
-	int x, y;
-	ArrayList<FormatPresetItem*> preset_items;
+	struct selection_int *presets_menu;
+	int selection_value;
+	FormatSelection *selection;
+	EDL *current_edl;
+
+	static struct formatpresets format_presets[];
 };
-
-
-
-class FormatPresetsText : public BC_TextBox
-{
-public:
-	FormatPresetsText(MWindow *mwindow, 
-		FormatPresets *gui,
-		int x, 
-		int y);
-	int handle_event();
-// Find the listbox item which corresponds to the values in the edl.
-	FormatPresets *gui;
-	MWindow *mwindow;
-};
-
-class FormatPresetsPulldown : public BC_ListBox
-{
-public:
-	FormatPresetsPulldown(MWindow *mwindow, 
-		FormatPresets *gui, 
-		int x, 
-		int y);
-	int handle_event();
-	MWindow *mwindow;
-	FormatPresets *gui;
-};
-
-class FormatPresetItem : public BC_ListBoxItem
-{
-public:
-	FormatPresetItem(MWindow *mwindow, FormatPresets *gui, char *text);
-	~FormatPresetItem();
-
-	MWindow *mwindow;
-	FormatPresets *gui;
-// Storage of the values for the preset
-	EDL *edl;
-};
-
-
-
-
 
 #endif
