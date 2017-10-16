@@ -60,6 +60,7 @@ libguicastcv_la_SOURCES = \
 	bcwindowbase.C \
 	bcwindowdraw.C \
 	bcwindowevents.C \
+	colormodels.C \
 	condition.C \
 	errorbox.C \
 	filesystem.C \
@@ -174,6 +175,8 @@ noinst_HEADERS = \
 	bcwindow.h \
 	bcwindow.inc \
 	clip.h \
+	colormodels.h \
+	colormodels.inc \
 	colors.h \
 	condition.inc \
 	cursors.h \
