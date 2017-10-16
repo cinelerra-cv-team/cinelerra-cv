@@ -166,6 +166,7 @@ public:
 		SetFormatThread *thread,
 		int x,
 		int y);
+	~SetFormatWindow();
 
 	void create_objects();
 	const char* get_preset_text();
@@ -182,7 +183,7 @@ public:
 	Selection *sample_rate;
 	SetChannelsTextBox *channels;
 	FrameRateSelection *frame_rate;
-	ColormodelPulldown *color_model;
+	ColormodelSelection *cmodel_selection;
 	InterlacemodePulldown *interlace_pulldown;
 };
 
