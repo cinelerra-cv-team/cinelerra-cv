@@ -736,20 +736,6 @@ void MWindow::init_menus()
 {
 	char string[BCTEXTLEN];
 
-	// Color Models
-	BC_CModels::to_text(string, BC_RGB888);
-	colormodels.append(new ColormodelItem(string, BC_RGB888));
-	BC_CModels::to_text(string, BC_RGBA8888);
-	colormodels.append(new ColormodelItem(string, BC_RGBA8888));
-	BC_CModels::to_text(string, BC_RGB_FLOAT);
-	colormodels.append(new ColormodelItem(string, BC_RGB_FLOAT));
-	BC_CModels::to_text(string, BC_RGBA_FLOAT);
-	colormodels.append(new ColormodelItem(string, BC_RGBA_FLOAT));
-	BC_CModels::to_text(string, BC_YUV888);
-	colormodels.append(new ColormodelItem(string, BC_YUV888));
-	BC_CModels::to_text(string, BC_YUVA8888);
-	colormodels.append(new ColormodelItem(string, BC_YUVA8888));
-
 	// Interlacing Modes
 	// Not included in the list for the project options.
 	interlace_asset_modes.append(

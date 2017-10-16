@@ -93,7 +93,7 @@ public:
 	AspectRatioSelection *aspectratio_selection;
 	FrameSizeSelection *framesize_selection;
 	InterlacemodePulldown *interlace_pulldown;
-	ColormodelPulldown *color_model;
+	ColormodelSelection *cmodel_selection;
 	NewPresets *format_presets;
 };
 
@@ -194,29 +194,6 @@ public:
 	NewWindow *nwindow;
 };
 
-
-class ColormodelItem : public BC_ListBoxItem
-{
-public:
-	ColormodelItem(const char *text, int value);
-	int value;
-};
-
-class ColormodelPulldown : public BC_ListBox
-{
-public:
-	ColormodelPulldown(MWindow *mwindow, 
-		BC_TextBox *output_text, 
-		int *output_value,
-		int x, 
-		int y);
-	int handle_event();
-	const char* colormodel_to_text();
-	void update_value(int value);
-	MWindow *mwindow;
-	BC_TextBox *output_text;
-	int *output_value;
-};
 
 class InterlacemodeItem : public BC_ListBoxItem
 {
