@@ -72,6 +72,14 @@ struct selection_int AInterlaceModeSelection::ilacemode_selection[] =
 	{ 0, 0 }
 };
 
+struct selection_int InterlaceModeSelection::ilacemode_selection[] =
+{
+	{ N_("Top Fields First"), BC_ILACE_MODE_TOP_FIRST },
+	{ N_("Bottom Fields First"), BC_ILACE_MODE_BOTTOM_FIRST },
+	{ N_("Not Interlaced"), BC_ILACE_MODE_NOTINTERLACED },
+	{ 0, 0 }
+};
+
 struct selection_int AInterlaceModeSelection::ilacemode_selection_xml[] =
 {
 	{ "UNKNOWN", BC_ILACE_MODE_UNDETECTED },
@@ -255,3 +263,8 @@ int AInterlaceModeSelection::xml_value(const char *text)
 	return BC_ILACE_MODE_UNDETECTED;
 }
 
+InterlaceModeSelection::InterlaceModeSelection(int x, int y,
+	BC_WindowBase *base_gui, int *value)
+ : IlaceSelection(x, y, base_gui, value, ilacemode_selection)
+{
+}

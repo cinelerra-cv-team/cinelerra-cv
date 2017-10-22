@@ -121,4 +121,13 @@ private:
 	static struct selection_int ilacemode_selection_xml[];
 };
 
+class InterlaceModeSelection : public IlaceSelection
+{
+public:
+	InterlaceModeSelection(int x, int y,
+		BC_WindowBase *base_gui, int *value);
+private:
+	static struct selection_int ilacemode_selection[];
+};
+
 #endif
