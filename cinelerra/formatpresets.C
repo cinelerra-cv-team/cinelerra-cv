@@ -63,6 +63,25 @@ struct selection_int ColormodelSelection::cmodel_selection[] =
 
 #define NUM_CMODEL_SELECTIONS (sizeof(cmodel_selection) / sizeof(struct selection_int) - 1)
 
+struct selection_int AInterlaceModeSelection::ilacemode_selection[] =
+{
+	{ N_("Unknown"), BC_ILACE_MODE_UNDETECTED },
+	{ N_("Top Fields First"), BC_ILACE_MODE_TOP_FIRST },
+	{ N_("Bottom Fields First"), BC_ILACE_MODE_BOTTOM_FIRST },
+	{ N_("Not Interlaced"), BC_ILACE_MODE_NOTINTERLACED },
+	{ 0, 0 }
+};
+
+struct selection_int AInterlaceModeSelection::ilacemode_selection_xml[] =
+{
+	{ "UNKNOWN", BC_ILACE_MODE_UNDETECTED },
+	{ "TOP_FIELD_FIRST", BC_ILACE_MODE_TOP_FIRST },
+	{ "BOTTOM_FIELD_FIRST", BC_ILACE_MODE_BOTTOM_FIRST },
+	{ "NOTINTERLACED", BC_ILACE_MODE_NOTINTERLACED },
+	{ 0, 0 }
+};
+
+
 FormatPresets::FormatPresets(BC_WindowBase* base_gui, int x, int y)
 {
 	gui_base = base_gui;
@@ -187,3 +206,52 @@ void ColormodelSelection::update(int value)
 {
 	selection->update(_(ColorModels::name(value)));
 }
+
+IlaceSelection::IlaceSelection(int x, int y,
+	BC_WindowBase *base_gui, int *value, struct selection_int *menu)
+ : Selection(x, y, base_gui, menu, value, SELECTION_VARWIDTH)
+{
+	disable(1);
+}
+
+void IlaceSelection::update(int value)
+{
+	BC_TextBox::update(_(AInterlaceModeSelection::name(value)));
+}
+
+AInterlaceModeSelection::AInterlaceModeSelection(int x, int y,
+	BC_WindowBase *base_gui, int *value)
+ : IlaceSelection(x, y, base_gui, value, ilacemode_selection)
+{
+}
+
+const char *AInterlaceModeSelection::name(int value)
+{
+	for(int i = 0; ilacemode_selection[i].text; i++)
+	{
+		if(value == ilacemode_selection[i].value)
+			return ilacemode_selection[i].text;
+	}
+	return ilacemode_selection[0].text;
+}
+
+const char *AInterlaceModeSelection::xml_text(int value)
+{
+	for(int i = 0; ilacemode_selection_xml[i].text; i++)
+	{
+		if(value == ilacemode_selection_xml[i].value)
+			return ilacemode_selection_xml[i].text;
+	}
+	return ilacemode_selection_xml[0].text;
+}
+
+int AInterlaceModeSelection::xml_value(const char *text)
+{
+	for(int i = 0; ilacemode_selection_xml[i].text; i++)
+	{
+		if(!strcmp(ilacemode_selection_xml[i].text, text))
+			return ilacemode_selection_xml[i].value;
+	}
+	return BC_ILACE_MODE_UNDETECTED;
+}
+

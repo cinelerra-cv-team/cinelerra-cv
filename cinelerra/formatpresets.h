@@ -98,4 +98,27 @@ private:
 	static struct selection_int cmodel_selection[];
 };
 
+class IlaceSelection : public Selection
+{
+public:
+	IlaceSelection(int x, int y, BC_WindowBase *base_gui, int *value,
+		struct selection_int *menu);
+
+	void update(int value);
+};
+
+class AInterlaceModeSelection : public IlaceSelection
+{
+public:
+	AInterlaceModeSelection(int x, int y,
+		BC_WindowBase *base_gui, int *value);
+
+	static const char *xml_text(int mode);
+	static int xml_value(const char *text);
+	static const char *name(int value);
+private:
+	static struct selection_int ilacemode_selection[];
+	static struct selection_int ilacemode_selection_xml[];
+};
+
 #endif
