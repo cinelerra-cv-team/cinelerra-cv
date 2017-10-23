@@ -24,6 +24,8 @@
 #include "edl.h"
 #include "edlsession.h"
 #include "formatpresets.h"
+#include "interlacemodes.h"
+#include "language.h"
 #include "mwindow.h"
 #include "new.h"
 #include "setformat.h"
