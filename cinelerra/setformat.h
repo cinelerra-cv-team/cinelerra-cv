@@ -184,7 +184,7 @@ public:
 	SetChannelsTextBox *channels;
 	FrameRateSelection *frame_rate;
 	ColormodelSelection *cmodel_selection;
-	InterlacemodePulldown *interlace_pulldown;
+	InterlaceModeSelection *interlace_selection;
 };
 
 	
