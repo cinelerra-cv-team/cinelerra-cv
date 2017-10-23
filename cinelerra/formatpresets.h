@@ -130,4 +130,24 @@ private:
 	static struct selection_int ilacemode_selection[];
 };
 
+class InterlaceFixSelection : public Selection
+{
+public:
+	InterlaceFixSelection(int x, int y,
+		BC_WindowBase *base_gui, int *value);
+
+	void update(int value);
+
+	static const char *name(int value);
+	static const char *xml_text(int mode);
+	static int xml_value(const char *text);
+	static int automode(int projectmode, int assetmode);
+	static int automode2(int projectmode, int assetautofixoption,
+		int assetmode, int assetfixmethod);
+
+private:
+	static struct selection_int ilacefix_selection[];
+	static struct selection_int ilacefix_selection_xml[];
+};
+
 #endif
