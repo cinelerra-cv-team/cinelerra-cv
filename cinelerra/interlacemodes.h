@@ -35,15 +35,4 @@
 #define BC_ILACE_FIXMETHOD_UPONE        1
 #define BC_ILACE_FIXMETHOD_DOWNONE      2
 
-extern "C" {
-int  ilaceautofixmethod(int projectilacemode, int assetilacemode);
-int  ilaceautofixmethod2(int projectilacemode, int assetautofixoption, int assetilacemode, int assetfixmethod);
-void ilacemode_to_text(char *string, int ilacemode);
-int  ilacemode_from_text(char *text, int thedefault);
-void ilacemode_to_xmltext(char *string, int ilacemode);
-int  ilacemode_from_xmltext(char *text, int thedefault);
-int ilace_bc_to_yuv4mpeg(int ilacemode);
-int ilace_yuv4mpeg_to_bc(int ilacemode);
-}
-
 #endif // INTERLACEMODES_H
