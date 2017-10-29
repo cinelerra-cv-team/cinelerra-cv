@@ -30,6 +30,7 @@
 #include "file.h"
 #include "filexml.h"
 #include "floatautos.h"
+#include "formatpresets.h"
 #include "mwindow.h"
 #include "overlayframe.h"
 #include "patch.h"
@@ -194,22 +195,12 @@ int VModule::import_frame(VFrame *output,
 				out_w1, 
 				out_h1);
 
-//
-//			printf("VModule::import_frame 1 [ilace] Project: mode (%d) Asset: autofixoption (%d), mode (%d), method (%d)\n", 
-//			get_edl()->session->interlace_mode,
-//			current_edit->asset->interlace_autofixoption,
-//			current_edit->asset->interlace_mode,
-//			current_edit->asset->interlace_fixmethod);
-
 			// Determine the interlacing method to use.
-			int interlace_fixmethod = ilaceautofixmethod2(get_edl()->session->interlace_mode,
-					current_edit->asset->interlace_autofixoption,
-					current_edit->asset->interlace_mode,
-					current_edit->asset->interlace_fixmethod);
-//
-//			char string[BCTEXTLEN];
-//			ilacefixmethod_to_text(string,interlace_fixmethod);
-//			printf("VModule::import_frame 1 [ilace] Compensating by using: '%s'\n",string);
+			int interlace_fixmethod = InterlaceFixSelection::automode2(
+				get_edl()->session->interlace_mode,
+				current_edit->asset->interlace_autofixoption,
+				current_edit->asset->interlace_mode,
+				current_edit->asset->interlace_fixmethod);
 
 			// Compensate for the said interlacing...
 			switch (interlace_fixmethod) {

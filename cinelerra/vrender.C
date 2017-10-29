@@ -29,6 +29,7 @@
 #include "edl.h"
 #include "edlsession.h"
 #include "file.h"
+#include "formatpresets.h"
 #include "interlacemodes.h"
 #include "localsession.h"
 #include "mainsession.h"
@@ -227,7 +228,8 @@ int VRender::get_use_vconsole(Edit* &playable_edit,
 		return 1;
 
 // Asset and output device must have same resulting de-interlacing method
-	if (ilaceautofixmethod2(renderengine->edl->session->interlace_mode, 
+	if(InterlaceFixSelection::automode2(
+				renderengine->edl->session->interlace_mode,
 				playable_edit->asset->interlace_autofixoption,
 				playable_edit->asset->interlace_mode,
 				playable_edit->asset->interlace_fixmethod) 
