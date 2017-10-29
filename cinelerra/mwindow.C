@@ -677,7 +677,6 @@ void MWindow::init_theme()
 	theme->initialize();
 // Create menus with user colors
 	theme->build_menus();
-	init_menus();
 
 	theme->check_used();
 	theme_global = theme;
@@ -730,84 +729,6 @@ void MWindow::init_channeldb()
 {
 	channeldb_buz->load("channeldb_buz");
 	channeldb_v4l2jpeg->load("channeldb_v4l2jpeg");
-}
-
-void MWindow::init_menus()
-{
-	char string[BCTEXTLEN];
-
-	// Interlacing Modes
-	// Not included in the list for the project options.
-	interlace_asset_modes.append(
-		new InterlacemodeItem(ilacemode_to_text(BC_ILACE_MODE_UNDETECTED),
-			BC_ILACE_MODE_UNDETECTED));
-
-	interlace_asset_modes.append(
-		new InterlacemodeItem(ilacemode_to_text(BC_ILACE_MODE_TOP_FIRST),
-			BC_ILACE_MODE_TOP_FIRST));
-	interlace_project_modes.append(
-		new InterlacemodeItem(ilacemode_to_text(BC_ILACE_MODE_TOP_FIRST),
-			BC_ILACE_MODE_TOP_FIRST));
-
-	interlace_asset_modes.append(
-		new InterlacemodeItem(ilacemode_to_text(BC_ILACE_MODE_BOTTOM_FIRST),
-			BC_ILACE_MODE_BOTTOM_FIRST));
-	interlace_project_modes.append(
-		new InterlacemodeItem(ilacemode_to_text(BC_ILACE_MODE_BOTTOM_FIRST),
-			BC_ILACE_MODE_BOTTOM_FIRST));
-
-	interlace_asset_modes.append(
-		new InterlacemodeItem(ilacemode_to_text(BC_ILACE_MODE_NOTINTERLACED),
-			BC_ILACE_MODE_NOTINTERLACED));
-	interlace_project_modes.append(
-		new InterlacemodeItem(ilacemode_to_text(BC_ILACE_MODE_NOTINTERLACED),
-			BC_ILACE_MODE_NOTINTERLACED));
-
-	// Interlacing Fixing Methods
-	interlace_asset_fixmethods.append(
-		new InterlacefixmethodItem(ilacefixmethod_to_text(BC_ILACE_FIXMETHOD_NONE),
-			BC_ILACE_FIXMETHOD_NONE));
-	interlace_asset_fixmethods.append(
-		new InterlacefixmethodItem(ilacefixmethod_to_text(BC_ILACE_FIXMETHOD_UPONE),
-			BC_ILACE_FIXMETHOD_UPONE));
-	interlace_asset_fixmethods.append(
-		new InterlacefixmethodItem(ilacefixmethod_to_text(BC_ILACE_FIXMETHOD_DOWNONE),
-			BC_ILACE_FIXMETHOD_DOWNONE));
-}
-
-const char *MWindow::ilacemode_to_text(int ilacemode)
-{
-	switch(ilacemode)
-	{
-	case BC_ILACE_MODE_UNDETECTED:
-		return _("Unknown");
-
-	case BC_ILACE_MODE_TOP_FIRST:
-		return _("Top Fields First");
-
-	case BC_ILACE_MODE_BOTTOM_FIRST:
-		return _("Bottom Fields First");
-
-	case BC_ILACE_MODE_NOTINTERLACED:
-		return _("Not Interlaced");
-	}
-	return _("Unknown");
-}
-
-const char *MWindow::ilacefixmethod_to_text(int fixmethod)
-{
-	switch(fixmethod)
-	{
-	case BC_ILACE_FIXMETHOD_NONE:
-		return _("Do Nothing");
-
-	case BC_ILACE_FIXMETHOD_UPONE:
-		return _("Shift Up 1 pixel");
-
-	case BC_ILACE_FIXMETHOD_DOWNONE:
-		return _("Shift Down 1 pixel");
-        }
-	return _("Error!");
 }
 
 void MWindow::init_indexes()

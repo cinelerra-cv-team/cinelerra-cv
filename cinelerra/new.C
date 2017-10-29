@@ -504,10 +504,3 @@ int NewVChannelsTumbler::handle_down_event()
 	nwindow->update();
 	return 1;
 }
-
-
-InterlacemodeItem::InterlacemodeItem(const char *text, int value)
- : BC_ListBoxItem(text)
-{
-	this->value = value;
-}

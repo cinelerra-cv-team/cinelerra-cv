@@ -194,19 +194,4 @@ public:
 	NewWindow *nwindow;
 };
 
-
-class InterlacemodeItem : public BC_ListBoxItem
-{
-public:
-	InterlacemodeItem(const char *text, int value);
-	int value;
-};
-
-class InterlacefixmethodItem : public BC_ListBoxItem
-{
-public:
-	InterlacefixmethodItem(const char *text, int value);
-	int value;
-};
-
 #endif

@@ -289,9 +289,6 @@ public:
 	static void create_defaults_path(char *string);
 // Compose standard window title
 	static char *create_title(const char *name);
-// Interlace(fix)methods to text
-	static const char *ilacemode_to_text(int ilacemode);
-	static const char *ilacefixmethod_to_text(int fixmethod);
 
 	void delete_inpoint();
 	void delete_outpoint();    
@@ -450,12 +447,6 @@ public:
 	BRender *brender;
 	const char *default_standard;
 
-// Menu items
-	ArrayList<InterlaceautofixoptionItem*> interlace_asset_autofixoptions;
-	ArrayList<InterlacemodeItem*>          interlace_project_modes;
-	ArrayList<InterlacemodeItem*>          interlace_asset_modes;
-	ArrayList<InterlacefixmethodItem*>     interlace_asset_fixmethods;
-
 	int reset_meters();
 
 // Channel DB for playback only.  Record channel DB's are in record.C
@@ -550,7 +541,6 @@ public:
 	void init_levelwindow();
 	void init_viewer();
 	void init_cache();
-	void init_menus();
 	void init_indexes();
 	void init_gui();
 	void init_3d();

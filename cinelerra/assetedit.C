@@ -583,12 +583,6 @@ void Interlaceautofix::showhideotherwidgets()
 	}
 }
 
-InterlacefixmethodItem::InterlacefixmethodItem(const char *text, int value)
- : BC_ListBoxItem(text)
-{
-	this->value = value;
-}
-
 AssetInterlaceMode::AssetInterlaceMode(int x, int y, BC_WindowBase *base_gui, int *value)
  : AInterlaceModeSelection(x, y, base_gui, value)
 {
