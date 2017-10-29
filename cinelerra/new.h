@@ -92,7 +92,7 @@ public:
 	BC_TextBox *frame_rate;
 	AspectRatioSelection *aspectratio_selection;
 	FrameSizeSelection *framesize_selection;
-	InterlacemodePulldown *interlace_pulldown;
+	InterlaceModeSelection *interlace_selection;
 	ColormodelSelection *cmodel_selection;
 	NewPresets *format_presets;
 };
@@ -200,23 +200,6 @@ class InterlacemodeItem : public BC_ListBoxItem
 public:
 	InterlacemodeItem(const char *text, int value);
 	int value;
-};
-
-class InterlacemodePulldown : public BC_ListBox
-{
-public:
-	InterlacemodePulldown(MWindow *mwindow, 
-				BC_TextBox *output_text, 
-				int *output_value,
-				ArrayList<BC_ListBoxItem*> *data,
-				int x,
-				int y);
-	int handle_event();
-
-	int update(int value);
-	MWindow *mwindow;
-	BC_TextBox *output_text;
-	int *output_value;
 };
 
 class InterlacefixmethodItem : public BC_ListBoxItem
