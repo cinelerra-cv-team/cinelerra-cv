@@ -25,6 +25,7 @@
 #include "bccmodels.h"
 #include "edit.h"
 #include "file.h"
+#include "formatpresets.h"
 #include "guicast.h"
 #include "guicast.h"
 #include "interlacemodes.h"
@@ -300,7 +301,7 @@ int YUVConfigVideo::create_objects()
 	y += 30;
 	add_subwindow(bt = new BC_Title(x, y, _("Interlacing:")));
 	add_subwindow(new BC_Title(x + bt->get_w() + 5, y,
-		MWindow::ilacemode_to_text(asset->interlace_mode), MEDIUMFONT, YELLOW));
+		AInterlaceModeSelection::name(asset->interlace_mode), MEDIUMFONT, YELLOW));
 
 	x = init_x;
 	y += 30;
