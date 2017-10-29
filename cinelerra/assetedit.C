@@ -589,41 +589,6 @@ InterlacefixmethodItem::InterlacefixmethodItem(const char *text, int value)
 	this->value = value;
 }
 
-
-InterlacefixmethodPulldown::InterlacefixmethodPulldown(MWindow *mwindow, 
-		BC_TextBox *output_text, 
-		int *output_value,
-		ArrayList<BC_ListBoxItem*> *data,
-		int x, 
-		int y)
- : BC_ListBox(x,
- 	y,
-	200,
-	150,
-	LISTBOX_TEXT,
-	data,
-	0,
-	0,
-	1,
-	0,
-	1)
-{
-	char string[BCTEXTLEN];
-
-	this->mwindow = mwindow;
-	this->output_text = output_text;
-	this->output_value = output_value;
-	output_text->update(MWindow::ilacefixmethod_to_text(*output_value));
-}
-
-int InterlacefixmethodPulldown::handle_event()
-{
-	output_text->update(get_selection(0, 0)->get_text());
-	*output_value = ((InterlacefixmethodItem*)get_selection(0, 0))->value;
-	return 1;
-}
-
-
 AssetInterlaceMode::AssetInterlaceMode(int x, int y, BC_WindowBase *base_gui, int *value)
  : AInterlaceModeSelection(x, y, base_gui, value)
 {

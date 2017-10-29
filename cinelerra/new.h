@@ -209,21 +209,4 @@ public:
 	int value;
 };
 
-class InterlacefixmethodPulldown : public BC_ListBox
-{
-public:
-	InterlacefixmethodPulldown(MWindow *mwindow, 
-				   BC_TextBox *output_text, 
-				   int *output_value,
-				   ArrayList<BC_ListBoxItem*> *data,
-				   int x, 
-				   int y);
-	int handle_event();
-
-	MWindow *mwindow;
-	BC_TextBox *output_text;
-	int *output_value;
-};
-
-
 #endif
