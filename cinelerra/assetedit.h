@@ -26,6 +26,7 @@
 #include "awindow.inc"
 #include "guicast.h"
 #include "browsebutton.h"
+#include "formatpresets.h"
 #include "language.h"
 #include "mwindow.h"
 #include "thread.h"
@@ -39,6 +40,7 @@ class AssetEditByteOrderLOHI;
 class AssetEditPath;
 class AssetEditPathText;
 class AssetEditWindow;
+class AssetInterlaceMode;
 
 class AssetEdit : public Thread
 {
@@ -74,6 +76,8 @@ public:
 	int allow_edits;
 	MWindow *mwindow;
 	AssetEdit *asset_edit;
+	AssetInterlaceMode *ilacemode_selection;
+	InterlaceFixSelection *ilacefix_selection;
 };
 
 
@@ -133,23 +137,17 @@ public:
 	BC_ListBox *ilacefixmethod_listbox;
 };
 
-class AssetEditInterlacemodePulldown : public BC_ListBox
+
+class AssetInterlaceMode : public AInterlaceModeSelection
 {
 public:
-	AssetEditInterlacemodePulldown(MWindow *mwindow, 
-				BC_TextBox *output_text, 
-				int *output_value,
-				ArrayList<BC_ListBoxItem*> *data,
-				Interlaceautofix *fixoption_chkbox,
-				int x,
-				int y);
+	AssetInterlaceMode(int x, int y, BC_WindowBase *base_gui, int *value);
+
 	int handle_event();
 
-	MWindow *mwindow;
-	BC_TextBox *output_text;
-	int *output_value;
-	Interlaceautofix *fixoption_chkbox;
+	Interlaceautofix *autofix;
 };
+
 
 class AssetEditHeader : public BC_TextBox
 {

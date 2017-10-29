@@ -24,6 +24,7 @@
 
 
 #include "edl.inc"
+#include "edlsession.inc"
 #include "formatpresets.inc"
 #include "guicast.h"
 #include "mwindow.inc"
