@@ -346,7 +346,7 @@ printf("Render::run 7\n");
 printf("Render::run 8\n");
 					if (! result) {
 						// add to recentlist only on OK
-						window.format_tools->path_recent->add_item(FILE_FORMAT_PREFIX(asset->format), asset->path);
+						window.format_tools->path_recent->add_item(ContainerSelection::container_prefix(asset->format), asset->path);
 					}
 				}
 
