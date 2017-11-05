@@ -44,7 +44,6 @@
 #include "filetga.h"
 #include "filethread.h"
 #include "filetiff.h"
-#include "filevorbis.h"
 #include "fileyuv.h"
 #include "formattools.h"
 #include "framecache.h"
@@ -402,13 +401,6 @@ int File::open_file(Preferences *preferences,
 				file = new FileOGG(this->asset, this);
 			}
 			else
-			if(FileVorbis::check_sig(this->asset))
-			{
-// VorbisFile file
-				fclose(stream);
-				file = new FileVorbis(this->asset, this);
-			}
-			else
 			if(FileOGG::check_sig(this->asset))
 			{
 // OGG file.  Doesn't always work with pure audio files.
@@ -502,10 +494,6 @@ int File::open_file(Preferences *preferences,
 
 		case FILE_OGG:
 			file = new FileOGG(this->asset, this);
-			break;
-
-		case FILE_VORBIS:
-			file = new FileVorbis(this->asset, this);
 			break;
 
 		case FILE_AVI:
@@ -1126,7 +1114,6 @@ int File::supports(int format)
 	case FILE_AU:
 	case FILE_SND:
 	case FILE_WAV:
-	case FILE_VORBIS:
 	case FILE_AMPEG:
 		return SUPPORTS_AUDIO;
 
@@ -1256,7 +1243,6 @@ const char* File::get_tag(int format)
 		case FILE_TIFF:         return "tif";
 		case FILE_TIFF_LIST:    return "tif";
 		case FILE_VMPEG:        return "m2v";
-		case FILE_VORBIS:       return "ogg";
 		case FILE_WAV:          return "wav";
 		case FILE_YUV:          return "m2v";
 	}

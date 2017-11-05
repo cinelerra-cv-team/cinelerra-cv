@@ -43,7 +43,6 @@ cinelerra/filepng.C
 cinelerra/filesndfile.C
 cinelerra/filetga.C
 cinelerra/filetiff.C
-cinelerra/filevorbis.C
 cinelerra/fileyuv.C
 cinelerra/formatcheck.C
 cinelerra/formatpresets.C
