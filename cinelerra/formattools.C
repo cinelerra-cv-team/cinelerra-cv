@@ -328,7 +328,7 @@ Asset* FormatTools::get_asset()
 
 void FormatTools::update_extension()
 {
-	const char *extension = File::get_tag(asset->format);
+	const char *extension = ContainerSelection::container_extension(asset->format);
 	if(extension)
 	{
 		char *ptr = strrchr(asset->path, '.');

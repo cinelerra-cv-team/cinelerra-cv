@@ -1217,38 +1217,6 @@ int File::supports_audio(int format)
 	return supports(format) & SUPPORTS_AUDIO;
 }
 
-const char* File::get_tag(int format)
-{
-	switch(format)
-	{
-		case FILE_AC3:          return "ac3";
-		case FILE_AIFF:         return "aif";
-		case FILE_AMPEG:        return "mp3";
-		case FILE_AU:           return "au";
-		case FILE_AVI:          return "avi";
-		case FILE_RAWDV:        return "dv";
-#ifdef HAVE_OPENEXR
-		case FILE_EXR:          return "exr";
-		case FILE_EXR_LIST:     return "exr";
-#endif
-		case FILE_JPEG:         return "jpg";
-		case FILE_JPEG_LIST:    return "jpg";
-		case FILE_MOV:          return "mov";
-		case FILE_OGG:          return "ogg";
-		case FILE_PCM:          return "pcm";
-		case FILE_PNG:          return "png";
-		case FILE_PNG_LIST:     return "png";
-		case FILE_TGA:          return "tga";
-		case FILE_TGA_LIST:     return "tga";
-		case FILE_TIFF:         return "tif";
-		case FILE_TIFF_LIST:    return "tif";
-		case FILE_VMPEG:        return "m2v";
-		case FILE_WAV:          return "wav";
-		case FILE_YUV:          return "m2v";
-	}
-	return 0;
-}
-
 PackagingEngine *File::new_packaging_engine(Asset *asset)
 {
 	PackagingEngine *result;
