@@ -1096,6 +1096,50 @@ const char* File::byteorder_to_str(int byte_order)
 	return _("Hi Lo");
 }
 
+int File::supports(int format)
+{
+	switch(format)
+	{
+	case FILE_JPEG:
+	case FILE_PNG:
+	case FILE_TIFF:
+#ifdef HAVE_OPENEXR
+	case FILE_EXR:
+#endif
+	case FILE_TGA:
+		return SUPPORTS_VIDEO | SUPPORTS_STILL;
+
+	case FILE_JPEG_LIST:
+	case FILE_PNG_LIST:
+	case FILE_TIFF_LIST:
+#ifdef HAVE_OPENEXR
+	case FILE_EXR_LIST:
+#endif
+	case FILE_TGA_LIST:
+	case FILE_YUV:
+	case FILE_VMPEG:
+		return SUPPORTS_VIDEO;
+
+	case FILE_AC3:
+	case FILE_AIFF:
+	case FILE_PCM:
+	case FILE_AU:
+	case FILE_SND:
+	case FILE_WAV:
+	case FILE_VORBIS:
+	case FILE_AMPEG:
+		return SUPPORTS_AUDIO;
+
+	case FILE_AVI:
+	case FILE_MOV:
+	case FILE_OGG:
+	case FILE_RAWDV:
+		return SUPPORTS_AUDIO | SUPPORTS_VIDEO;
+		break;
+	}
+	return 0;
+}
+
 int File::get_best_colormodel(int driver)
 {
 	return get_best_colormodel(asset, driver);

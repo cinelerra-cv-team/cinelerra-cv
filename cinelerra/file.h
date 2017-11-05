@@ -207,6 +207,8 @@ public:
 	static const char* get_tag(int format);
 	static int supports_video(int format);   // returns 1 if the format supports video or audio
 	static int supports_audio(int format);
+// Returns SUPPORTS_* bits
+	static int supports(int format);
 	static int str_to_byteorder(char *string);
 	static const char* byteorder_to_str(int byte_order);
 	Asset *asset;    // Copy of asset since File outlives EDL
