@@ -1222,58 +1222,12 @@ FrameCache* File::get_frame_cache()
 
 int File::supports_video(int format)
 {
-//printf("File::supports_video %d\n", format);
-	switch(format)
-	{
-		case FILE_OGG:
-		case FILE_MOV:
-		case FILE_JPEG:
-		case FILE_JPEG_LIST:
-#ifdef HAVE_OPENEXR
-		case FILE_EXR:
-		case FILE_EXR_LIST:
-#endif
-	        case FILE_YUV:
-		case FILE_PNG:
-		case FILE_PNG_LIST:
-		case FILE_TGA:
-		case FILE_TGA_LIST:
-		case FILE_TIFF:
-		case FILE_TIFF_LIST:
-		case FILE_VMPEG:
-		case FILE_AVI:
-		case FILE_RAWDV:
-			return 1;
-			break;
-
-		default:
-			return 0;
-			break;
-	}
+	return supports(format) & SUPPORTS_VIDEO;
 }
 
 int File::supports_audio(int format)
 {
-	switch(format)
-	{
-		case FILE_AC3:
-		case FILE_PCM:
-		case FILE_WAV:
-		case FILE_MOV:
-		case FILE_OGG:
-		case FILE_VORBIS:
-		case FILE_AMPEG:
-		case FILE_AU:
-		case FILE_AIFF:
-		case FILE_SND:
-		case FILE_AVI:
-		case FILE_RAWDV:
-			return 1;
-		
-		default:
-			return 0;
-			break;
-	}
+	return supports(format) & SUPPORTS_AUDIO;
 }
 
 const char* File::get_tag(int format)
