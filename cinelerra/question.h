@@ -29,32 +29,20 @@ class QuestionWindow : public BC_Window
 {
 public:
 	QuestionWindow(MWindow *mwindow);
-	~QuestionWindow();
 
-	int create_objects(char *string, int use_cancel);
+	void create_objects(const char *string, int use_cancel = 0);
 	MWindow *mwindow;
 };
 
-class QuestionYesButton : public BC_GenericButton
+class QuestionButton : public BC_GenericButton
 {
 public:
-	QuestionYesButton(MWindow *mwindow, QuestionWindow *window, int x, int y);
+	QuestionButton(const char *label, int value, int x, int y);
 
 	int handle_event();
 	int keypress_event();
 
-	QuestionWindow *window;
-};
-
-class QuestionNoButton : public BC_GenericButton
-{
-public:
-	QuestionNoButton(MWindow *mwindow, QuestionWindow *window, int x, int y);
-
-	int handle_event();
-	int keypress_event();
-
-	QuestionWindow *window;
+	int value;
 };
 
 #endif
