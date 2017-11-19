@@ -107,7 +107,6 @@ cinelerracv_SOURCES = aattachmentpoint.C \
 		    chantables.C \
 		    clipedit.C \
 		    commonrender.C \
-		    confirmquit.C \
 		    confirmsave.C \
 		    cpanel.C \
 		    cplayback.C \
@@ -400,7 +399,6 @@ noinst_HEADERS = aattachmentpoint.h \
 		 clipedit.h \
 		 commonrender.h \
 		 compresspopup.h \
-		 confirmquit.h \
 		 confirmsave.h \
 		 cpanel.h \
 		 cplayback.h \

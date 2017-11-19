@@ -18,7 +18,6 @@ cinelerra/canvas.C
 cinelerra/channeledit.C
 cinelerra/channelpicker.C
 cinelerra/clipedit.C
-cinelerra/confirmquit.C
 cinelerra/confirmsave.C
 cinelerra/cpanel.C
 cinelerra/cwindow.C
