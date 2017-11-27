@@ -99,6 +99,7 @@ cinelerra/renderprofiles.C
 cinelerra/resizetrackthread.C
 cinelerra/resourcepixmap.C
 cinelerra/savefile.C
+cinelerra/selection.C
 cinelerra/setformat.C
 cinelerra/sharedlocation.C
 cinelerra/splashgui.C
