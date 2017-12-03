@@ -74,9 +74,6 @@ public:
 	int delete_all();
 	int dump();
 
-// return the asset containing this path or create a new asset containing this path
-	Asset* update(const char *path);
-
 // Insert the asset into the list if it doesn't exist already but
 // don't create a new asset.
 	void update_ptr(Asset *asset);
@@ -89,8 +86,6 @@ public:
 // return number of the asset
 	int number_of(Asset *asset);
 	Asset* asset_number(int number);
-
-	int update_old_filename(char *old_filename, char *new_filename);
 };
 
 
