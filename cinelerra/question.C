@@ -47,7 +47,7 @@ QuestionWindow::QuestionWindow(MWindow *mwindow)
 void QuestionWindow::create_objects(const char *string, int use_cancel)
 {
 	int x, y;
-	const char *btext;
+	wchar_t *btext;
 	char *yes = _("Yes");
 	char *no = _("No");
 	char *cancel = _("Cancel");
