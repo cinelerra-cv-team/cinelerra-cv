@@ -36,6 +36,13 @@ public:
 		int color = -1, 
 		int centered = 0,
 		int fixed_w = 0);
+	BC_Title(int x,
+		int y,
+		const wchar_t *text,
+		int font = MEDIUMFONT,
+		int color = -1,
+		int centered = 0,
+		int fixed_w = 0);
 	virtual ~BC_Title();
 	
 	int initialize();
@@ -45,14 +52,17 @@ public:
 	int reposition(int x, int y);
 	int set_color(int color);
 	int update(const char *text);
+	void update(const wchar_t *text);
 	void update(float value);
 	char* get_text();
 
 private:
 	int draw();
 	static void get_size(BC_WindowBase *gui, int font, const char *text, int fixed_w, int &w, int &h);
+	static void get_size(BC_WindowBase *gui, int font, const wchar_t *text, int fixed_w, int &w, int &h);
 	
 	char text[BCTEXTLEN];
+	wchar_t *wide_title;
 	int color;
 	int font;
 	int centered;
