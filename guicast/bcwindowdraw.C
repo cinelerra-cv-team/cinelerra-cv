@@ -540,6 +540,22 @@ void BC_WindowBase::draw_center_text(int x, int y, const char *text, int length)
 	draw_text(x, y, text, length);
 }
 
+void BC_WindowBase::draw_center_text(int x, int y, const wchar_t *text, int length)
+{
+	int w;
+
+	if(length < 0) length = wcslen(text);
+
+	if(top_level->get_xft_struct(top_level->current_font))
+	{
+		resize_wide_text(length);
+		wcscpy(wide_text, text);
+		w = get_text_width(current_font, wide_text, length);
+		x -= w / 2;
+		draw_xft_text(x, y, wide_text, length, 0);
+	}
+}
+
 void BC_WindowBase::draw_line(int x1, int y1, int x2, int y2, BC_Pixmap *pixmap)
 {
 	XDrawLine(top_level->display, 
