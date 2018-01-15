@@ -690,7 +690,7 @@ ScaleRatioText::ScaleRatioText(int x,
 	int y, 
 	SetFormatThread *thread, 
 	float *output)
- : BC_TextBox(x, y, 100, 1, *output)
+ : BC_TextBox(x, y, SELECTION_TB_WIDTH, 1, *output)
 { 
 	this->thread = thread; 
 	this->output = output; 
