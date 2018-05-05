@@ -491,11 +491,11 @@ void CWindowEyedropGUI::create_objects()
 	int y = 10;
 	int x2 = 70;
 	BC_Title *title1, *title2, *title3;
-	add_subwindow(title1 = new BC_Title(x, y, "Red:"));
+	add_subwindow(title1 = new BC_Title(x, y, _("Red:")));
 	y += title1->get_h() + 5;
-	add_subwindow(title2 = new BC_Title(x, y, "Green:"));
+	add_subwindow(title2 = new BC_Title(x, y, _("Green:")));
 	y += title2->get_h() + 5;
-	add_subwindow(title3 = new BC_Title(x, y, "Blue:"));
+	add_subwindow(title3 = new BC_Title(x, y, _("Blue:")));
 
 
 	add_subwindow(red = new BC_Title(x2, title1->get_y(), "0"));
@@ -539,25 +539,25 @@ const _TGD Camera_Tan_Smooth =
 	{	FloatAuto::SMOOTH,
 		true,
 		"tan_smooth",
-		_("\"smooth\" Tangent on current Camera Keyframes")
+		N_("\"smooth\" Tangent on current Camera Keyframes")
 	};
 const _TGD Camera_Tan_Linear =
 	{	FloatAuto::LINEAR,
 		true,
 		"tan_linear",
-		_("\"linear\" Tangent on current Camera Keyframes")
+		N_("\"linear\" Tangent on current Camera Keyframes")
 	};
 const _TGD Projector_Tan_Smooth =
 	{	FloatAuto::SMOOTH,
 		false,
 		"tan_smooth",
-		_("\"smooth\" Tangent on current Projector Keyframes")
+		N_("\"smooth\" Tangent on current Projector Keyframes")
 	};
 const _TGD Projector_Tan_Linear =
 	{	FloatAuto::LINEAR,
 		false,
 		"tan_linear",
-		_("\"linear\" Tangent on current Projector Keyframes")
+		N_("\"linear\" Tangent on current Projector Keyframes")
 	};
 	
 	
@@ -588,7 +588,7 @@ CWindowTangentToggle::CWindowTangentToggle(_TGD mode, MWindow *mwindow, CWindowT
 {
 	this->gui = gui;
 	this->mwindow = mwindow;
-	set_tooltip(cfg.tooltip);
+	set_tooltip(_(cfg.tooltip));
 }
 	
 void CWindowTangentToggle::check_toggle_state(FloatAuto *x, FloatAuto *y, FloatAuto *z)
