@@ -253,7 +253,7 @@ int TransitionPopupOn::handle_event()
 
 
 TransitionPopupShow::TransitionPopupShow(MWindow *mwindow, TransitionPopup *popup)
- : BC_MenuItem(_("Show"))
+ : BC_MenuItem(_("Parameters"))
 {
 	this->mwindow = mwindow;
 	this->popup = popup;
