@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cinelerra-CV 2.3\n"
 "Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
-"POT-Creation-Date: 2017-11-28 18:45+0200\n"
+"POT-Creation-Date: 2018-05-06 21:35+0300\n"
 "PO-Revision-Date: 2017-11-28 18:55+0200\n"
 "Last-Translator: Igor Vladimirsky aka igor_ubuntu <sitelve@gmal.com>\n"
 "Language-Team: <sitelve@gmail.com>\n"
@@ -408,35 +408,35 @@ msgstr "Комментарии"
 msgid "Time Stamps"
 msgstr "Отметки времени"
 
-#: ../cinelerra/awindowgui.C:1250
+#: ../cinelerra/awindowgui.C:1249
 msgid "Delete asset from disk"
 msgstr "Удалить ресурс с диска"
 
-#: ../cinelerra/awindowgui.C:1264
+#: ../cinelerra/awindowgui.C:1263
 msgid "Delete asset from project"
 msgstr "Удалить ресурс из проекта"
 
-#: ../cinelerra/awindowgui.C:1278
+#: ../cinelerra/awindowgui.C:1277
 msgid "Edit information on asset"
 msgstr "Редактировать информацию о ресурсе"
 
-#: ../cinelerra/awindowgui.C:1293
+#: ../cinelerra/awindowgui.C:1292
 msgid "Redraw index"
 msgstr "Переиндексировать"
 
-#: ../cinelerra/awindowgui.C:1307
+#: ../cinelerra/awindowgui.C:1306
 msgid "Paste asset on recordable tracks"
 msgstr "Вставить ресурс на дорожки, доступные для правки"
 
-#: ../cinelerra/awindowgui.C:1321
+#: ../cinelerra/awindowgui.C:1320
 msgid "Append asset in new tracks"
 msgstr "Добавить ресурс на новые дорожки"
 
-#: ../cinelerra/awindowgui.C:1335
+#: ../cinelerra/awindowgui.C:1334
 msgid "View asset"
 msgstr "Показать ресурс"
 
-#: ../cinelerra/awindowgui.C:1366 ../cinelerra/channeledit.C:628
+#: ../cinelerra/awindowgui.C:1365 ../cinelerra/channeledit.C:628
 msgid "Edit..."
 msgstr "Правка..."
 
@@ -515,7 +515,7 @@ msgstr "EDL %s не найден.\n"
 #: ../cinelerra/batchrender.C:437 ../cinelerra/clipedit.C:120
 #: ../cinelerra/file.C:252 ../cinelerra/formatcheck.C:52
 #: ../cinelerra/formatcheck.C:63 ../cinelerra/formatcheck.C:71
-#: ../cinelerra/formatcheck.C:81 ../cinelerra/mainerror.C:303
+#: ../cinelerra/formatcheck.C:81 ../cinelerra/mainerror.C:305
 #: ../cinelerra/menueffects.C:135 ../cinelerra/menueffects.C:146
 #: ../cinelerra/menueffects.C:246 ../cinelerra/menueffects.C:254
 #: ../cinelerra/menueffects.C:296 ../cinelerra/menueffects.C:455
@@ -1013,6 +1013,18 @@ msgstr "В.:"
 #: ../cinelerra/cwindowtool.C:478
 msgid "Color"
 msgstr "Цвет"
+
+#: ../cinelerra/cwindowtool.C:494
+msgid "Red:"
+msgstr "Красн.:"
+
+#: ../cinelerra/cwindowtool.C:496
+msgid "Green:"
+msgstr "Зелён.:"
+
+#: ../cinelerra/cwindowtool.C:498
+msgid "Blue:"
+msgstr "Синий:"
 
 #: ../cinelerra/cwindowtool.C:542
 msgid "\"smooth\" Tangent on current Camera Keyframes"
@@ -2397,11 +2409,11 @@ msgstr "Ошибки"
 msgid "The following errors occurred:"
 msgstr "Произошли следующие ошибки:"
 
-#: ../cinelerra/mainerror.C:325
+#: ../cinelerra/mainerror.C:327
 msgid "Message"
 msgstr "Сообщение"
 
-#: ../cinelerra/mainerror.C:336
+#: ../cinelerra/mainerror.C:338
 msgid "Confirmation"
 msgstr "Подтверждение"
 
@@ -2545,11 +2557,11 @@ msgstr "Удалить метки"
 
 #: ../cinelerra/mainmenu.C:792
 msgid "Mute Region"
-msgstr "Заглушить выбранн. участок "
+msgstr "Заглушить выбранный участок "
 
 #: ../cinelerra/mainmenu.C:805
 msgid "Trim Selection"
-msgstr "Обрезать выбранный участок"
+msgstr "Обрезать выбранн. участок по краям"
 
 #: ../cinelerra/mainmenu.C:853 ../cinelerra/mainmenu.C:936
 msgid "Default Transition"
@@ -2569,7 +2581,7 @@ msgstr "Сбросить перемещение"
 
 #: ../cinelerra/mainmenu.C:964
 msgid "Delete tracks"
-msgstr "Удалить дорожки"
+msgstr "Удалить все дорожки"
 
 #: ../cinelerra/mainmenu.C:976
 msgid "Delete last track"
@@ -2749,6 +2761,15 @@ msgstr ""
 "MWindow::init_theme: Default theme %s not exists.\n"
 "Maybe an install problem.\n"
 
+#: ../cinelerra/mwindow.C:910
+#, c-format
+msgid ""
+"%s's resolution is %dx%d.\n"
+"Images with odd dimensions may not decode properly."
+msgstr ""
+"Изображение %s имеет размер %dx%d (в пикселях).\n"
+"Изображения с нечётными размерами не могут быть декодированы должным образом."
+
 #: ../cinelerra/mwindow.C:949
 #, c-format
 msgid "Failed to open %s"
@@ -2843,7 +2864,7 @@ msgstr "вырезать станд. ключ. кадр"
 
 #: ../cinelerra/mwindowedit.C:527
 msgid "delete tracks"
-msgstr "удалить дорожки"
+msgstr "удалить все дорожки"
 
 #: ../cinelerra/mwindowedit.C:542
 msgid "delete track"
@@ -3386,8 +3407,8 @@ msgid "Receive"
 msgstr "Принять"
 
 #: ../cinelerra/pluginpopup.C:188 ../cinelerra/transitionpopup.C:256
-msgid "Show"
-msgstr "Показать"
+msgid "Parameters"
+msgstr "Параметры"
 
 #: ../cinelerra/preferencesthread.C:69
 msgid "Preferences..."
@@ -3912,18 +3933,14 @@ msgstr ""
 msgid "Resize Track"
 msgstr "Размер дорожки"
 
-#: ../cinelerra/resizetrackthread.C:130 ../plugins/titler/titlewindow.C:178
+#: ../cinelerra/resizetrackthread.C:134 ../plugins/titler/titlewindow.C:178
 msgid "Size:"
 msgstr "Размер:"
 
-#: ../cinelerra/resizetrackthread.C:140 ../plugins/pitch/pitch.C:396
+#: ../cinelerra/resizetrackthread.C:144 ../plugins/pitch/pitch.C:396
 #: ../plugins/timestretch/timestretch.C:512
 msgid "Scale:"
 msgstr "Масштаб:"
-
-#: ../cinelerra/resizetrackthread.C:147 ../plugins/compressor/compressor.C:934
-msgid "x"
-msgstr "x"
 
 #: ../cinelerra/resourcepixmap.C:514
 #, c-format
@@ -3962,6 +3979,42 @@ msgstr "Невозможно открыть %s."
 #: ../cinelerra/savefile.C:236
 msgid "Enter a filename to save as"
 msgstr "Введите имя файла для сохранения проекта"
+
+#: ../cinelerra/selection.C:56
+msgid "8 Bit Linear"
+msgstr "8 Bit Linear"
+
+#: ../cinelerra/selection.C:57
+msgid "16 Bit Linear"
+msgstr "16 Bit Linear"
+
+#: ../cinelerra/selection.C:58
+msgid "24 Bit Linear"
+msgstr "24 Bit Linear"
+
+#: ../cinelerra/selection.C:59
+msgid "32 Bit Linear"
+msgstr "32 Bit Linear"
+
+#: ../cinelerra/selection.C:60
+msgid "u Law"
+msgstr "u Law"
+
+#: ../cinelerra/selection.C:61
+msgid "IMA 4"
+msgstr "IMA 4"
+
+#: ../cinelerra/selection.C:62
+msgid "ADPCM"
+msgstr "ADPCM"
+
+#: ../cinelerra/selection.C:63
+msgid "Float"
+msgstr "Float"
+
+#: ../cinelerra/selection.C:633
+msgid "Swap dimensions"
+msgstr "Поменять местами значения"
 
 #: ../cinelerra/setformat.C:52
 msgid "Format..."
@@ -4274,13 +4327,13 @@ msgstr "Отображение дорожек по высоте"
 #: ../cinelerra/zoombar.C:421
 msgid "Automation range maximum"
 msgstr ""
-"Макс. значение\n"
+"Максимальное значение\n"
 "диапазона автоматизации"
 
 #: ../cinelerra/zoombar.C:423
 msgid "Automation range minimum"
 msgstr ""
-"Мин. значение\n"
+"Минимальное значение\n"
 "диапазона автоматизации"
 
 #: ../cinelerra/zoombar.C:455
@@ -5049,6 +5102,10 @@ msgstr "Триггер-трек"
 msgid "Point:"
 msgstr "Точка"
 
+#: ../plugins/compressor/compressor.C:934
+msgid "x"
+msgstr "x"
+
 #: ../plugins/compressor/compressor.C:1063
 msgid "Input level"
 msgstr "Уровень входа"
@@ -5562,7 +5619,7 @@ msgstr "Инверсия аудио"
 
 #: ../plugins/invertvideo/invert.C:178
 msgid "Invert R"
-msgstr "Инерсия красного"
+msgstr "Инверсия красного"
 
 #: ../plugins/invertvideo/invert.C:180
 msgid "Invert G"
@@ -6512,7 +6569,7 @@ msgstr "Интенсивность"
 
 #: ../plugins/timefront/timefront.C:419
 msgid "Alpha mask"
-msgstr "Альфа - маска"
+msgstr "Альфа-маска"
 
 #: ../plugins/timefront/timefront.C:602
 msgid "Inversion"
@@ -6533,14 +6590,16 @@ msgid ""
 "ERROR: TimeFront plugin - If you are using another track for timefront, you "
 "have to have it under shared effects\n"
 msgstr ""
-"Ошибка. Эффект 'Смещение во времени': если Вы используете другой трек как\n"
-"карту смещения, этот трек должен быть задействован как общий эффект.\n"
+"Ошибка! Эффект 'Смещение во времени': если Вы используете другой трек как\n"
+"карту смещения, этот трек должен быть задействован в соответствии с техникой "
+"'Общий эффект'\n"
+"(т.е. примените к этому треку эффект как 'Общий эффект').\n"
 
 #: ../plugins/timefront/timefront.C:793
 #, c-format
 msgid "Sizes of master track and timefront track do not match\n"
 msgstr ""
-"Размеры мастер - трека и трека карты смещения\n"
+"Размеры мастер - трека и трека - карты смещения\n"
 "не соответствуют друг другу.\n"
 
 #: ../plugins/timefront/timefront.C:840
@@ -6549,8 +6608,9 @@ msgid ""
 "TimeFront plugin error: ALPHA used, but project color model does not have "
 "alpha\n"
 msgstr ""
-"Ошибка. Эффект 'Смещение во времени': используется прозрачность, как карта смещения,\n"
-"но цветовая модель проекта не имеет альфа-канала.\n"
+"Ошибка! Эффект 'Смещение во времени': используется прозрачность, как карта "
+"смещения,\n"
+"но цветовая модель проекта не имеет альфа - канала.\n"
 
 #: ../plugins/timefront/timefront.C:900
 #, c-format
@@ -6558,15 +6618,16 @@ msgid ""
 "TimeFront plugin error: ALPHA track used, but project color model does not "
 "have alpha\n"
 msgstr ""
-"Ошибка. Эффект 'Смещение во времени': используются альфа-маска и трек, как карта "
-"смещения,\n"
-"но цветовая модель проекта не имеет альфа-канала.\n"
+"Ошибка! Эффект 'Смещение во времени': как карта смещения используется другой "
+"трек\n"
+"в режиме 'Альфа - маска', но цветовая модель проекта не имеет альфа - "
+"канала.\n"
 
 #: ../plugins/timefront/timefront.C:907
 #, c-format
 msgid "TimeFront plugin error: unsupported track_usage parameter\n"
 msgstr ""
-"Ошибка. Эффект 'Смещение во времени': используемые параметры трека\n"
+"Ошибка! Эффект 'Смещение во времени': используемые параметры трека\n"
 "не поддерживаются.\n"
 
 #: ../plugins/timestretch/timestretch.C:339
