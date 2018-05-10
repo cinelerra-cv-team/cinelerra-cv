@@ -907,7 +907,7 @@ SET_TRACE
 					(new_asset->height % 2)))
 				{
 					char string[BCTEXTLEN];
-					sprintf(string, (_("%s's resolution is %dx%d.\nImages with odd dimensions may not decode properly."),
+					sprintf(string, _("%s's resolution is %dx%d.\nImages with odd dimensions may not decode properly."),
 						new_asset->path,
 						new_asset->width,
 						new_asset->height);
