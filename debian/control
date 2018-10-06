@@ -37,11 +37,10 @@ Build-Depends: debhelper (>= 9),
 	libxext-dev,
 	libxft-dev,
 	libxv-dev,
-	libxxf86vm-dev,
 	libglu1-mesa-dev,
 	nasm,
 	uuid-dev
-Homepage: http://www.cinelerra-cv.org/
+Homepage: https://www.cinelerra-cv.org/
 
 Package: cinelerra-cv
 Section: video
@@ -133,4 +132,3 @@ Description: advanced editing and manipulation of MPEG streams (development file
  This package holds development files for the libmpeg3 library
  .
  For more information, see http://heroinewarrior.com/quicktime.php
-
