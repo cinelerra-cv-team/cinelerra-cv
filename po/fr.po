@@ -1,16 +1,17 @@
 # French translation of cinelerra-cv.
 # Copyright (C) 2003 Heroine Warrior Inc.
-# Copyright (C) 2007-2017 Cinelerra-CV.
+# Copyright (C) 2007-2018 Cinelerra-CV.
 # Eric Seigne <eric.seigne@ryxeo.com>, 2004, 2005.
 # Jean-Luc Coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>, 2005.
+# Olivier Humbert (trebmuh/olinuxx) <trebmuh@tuxfamily.org>, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cinelerra 2.3\n"
 "Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
 "POT-Creation-Date: 2016-02-12 21:12-0500\n"
-"PO-Revision-Date: 2016-02-12 21:16-0500\n"
-"Last-Translator: Jean-Luc Coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>\n"
+"PO-Revision-Date: 2018-10-04 15:24-0500\n"
+"Last-Translator: Olivier Humbert (trebmuh/olinuxx) <trebmuh@tuxfamily.org>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -534,10 +535,10 @@ msgid "BRender::set_video_map called to set NOT_SCANNED\n"
 msgstr "BRender::set_video_map appelé afin de positionner NOT_SCANNED\n"
 
 #: cinelerra/brender.C:281
-#, fuzzy, c-format
+#, c-format
 msgid "BRender::set_video_map %jd: attempt to set beyond end of map %jd.\n"
 msgstr ""
-"BRender::set_video_map %d: tentative d'accès après la fin de la carte %d.\n"
+"BRender::set_video_map %jd: tentative d'accès après la fin de la carte %jd.\n"
 
 #: cinelerra/browsebutton.C:52
 msgid "Look for file"
@@ -1769,7 +1770,7 @@ msgstr "Utiliser les échantillons"
 
 #: cinelerra/fileyuv.C:405
 msgid "Stream Header:"
-msgstr ""
+msgstr "Entête du flux"
 
 #: cinelerra/fileyuv.C:409
 msgid "Interlacing:"
@@ -2117,7 +2118,7 @@ msgid ""
 "\n"
 msgstr ""
 "%s [-f] [-c configuration] [-d port] [-n nice] [-r fichier par lots] "
-"[fichiers]\n"
+"[noms de fichiers]\n"
 "\n"
 
 #: cinelerra/main.C:236
@@ -3055,7 +3056,7 @@ msgstr "L'affichage suit la lecture"
 
 #: cinelerra/playbackprefs.C:365 cinelerra/recordprefs.C:404
 msgid "Disable hardware synchronization"
-msgstr ""
+msgstr "Désactivation de la synchronisation matérielle"
 
 #: cinelerra/playbackprefs.C:379
 msgid "Nearest neighbor enlarge and reduce"
@@ -3636,7 +3637,7 @@ msgid ""
 "This track's dimensions are not multiples of 4 so\n"
 "it can't be rendered by OpenGL."
 msgstr ""
-"Les dimensions de cette piste ne sont pas des miultiples de 4.\n"
+"Les dimensions de cette piste ne sont pas des multiples de 4.\n"
 "Ceci fait qu'elle ne peut être rendue par OpenGL."
 
 #: cinelerra/resizetrackthread.C:129 plugins/titler/titlewindow.C:178
@@ -3960,7 +3961,7 @@ msgid ""
 "%s"
 msgstr ""
 "%s\n"
-" Créé depui :\n"
+" Créé depuis :\n"
 "%s"
 
 #: cinelerra/zoombar.C:72 cinelerra/zoombar.C:73
@@ -5031,11 +5032,11 @@ msgstr "Champs vers images"
 
 #: plugins/findobject/findobject.C:204
 msgid "Find Object"
-msgstr ""
+msgstr "Trouver un objet"
 
 #: plugins/findobject/findobjectwindow.C:54
 msgid "Algorithm:"
-msgstr "Algorithme:"
+msgstr "Algorithme :"
 
 #: plugins/findobject/findobjectwindow.C:65
 msgid ""
