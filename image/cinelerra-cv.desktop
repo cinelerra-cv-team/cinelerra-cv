@@ -1,10 +1,7 @@
 [Desktop Entry]
 Name=Cinelerra-CV
-Name[ja]=Cinelerra-CV
-Name[sl]=Cinelerra-CV
-Name[fr]=Cinelerra-CV
-Name[es]=Cinelerra-CV
 Comment=Video Editor
+Comment[fr]=Éditeur vidéo
 Categories=Application;AudioVideo;Multimedia;VideoEditing;
 Encoding=UTF-8
 Exec=cinelerracv
