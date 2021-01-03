@@ -3,8 +3,8 @@ Cinelerra-CV for Debian
 
 Builds are based on the Community version of Cinelerra-CV:
 
-http://www.cinelerra-cv.org
+http://cinelerra-cv.wikidot.com
 
 The source code is the current stable in git:
 
-git://git.cinelerra-cv.org/CinelerraCV.git
+https://github.com/cinelerra-cv-team/cinelerra-cv

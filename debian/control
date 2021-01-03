@@ -1,7 +1,7 @@
 Source: cinelerra-cv
 Section: video
 Priority: optional
-Maintainer: Cinelerra-CV mailing list <cinelerra@lists.cinelerra-cv.org>
+Maintainer: Cinelerra-CV mailing list <cinelerra-cv-team@freelists.org>
 Standards-Version: 3.9.7
 Build-Depends: debhelper (>= 9),
 	automake,
@@ -40,7 +40,7 @@ Build-Depends: debhelper (>= 9),
 	libglu1-mesa-dev,
 	nasm,
 	uuid-dev
-Homepage: https://www.cinelerra-cv.org/
+Homepage: http://cinelerra-cv.wikidot.com/
 
 Package: cinelerra-cv
 Section: video

@@ -1,10 +1,10 @@
 Cinelerra-CV is the community version of the non-linear video editor Cinelerra, which was 
 originally written by Heroine Virtual Ltd.
 
-Cinelerra-CV is maintained through a community effort: http://cinelerra-cv.org.
+Cinelerra-CV is maintained through a community effort: http://cinelerra-cv.wikidot.com
 
 This package was put together using sources obtained from:
-git://git.cinelerra-cv.org/CinelerraCV.git
+https://github.com/cinelerra-cv-team/cinelerra-cv
 
 Copyright (c) 1996-2006 Heroine Virtual Ltd.
 Copyright (c) 2006-2021 Cinelerra-CV community

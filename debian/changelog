@@ -1,5 +1,18 @@
 cinelerra-cv (1:2.3.0) unstable; urgency=low
 
+  [ Igor Vladimirsky ]
+  * Update the links in changelog, control, copyright,
+    README.Debian, rules files:
+    - the homepage URL to the URL of the new site
+        http://cinelerra-cv.wikidot.com
+    - the git-repo URL to the URL of the new repo on GitHub
+        https://github.com/cinelerra-cv-team/cinelerra-cv
+    - the maintainer contact address to the new mailing list on
+        https://www.freelists.org/list/cinelerra-cv-team
+  * Change copyright year to 2021.
+
+ -- Igor Vladimirsky <sitelve@gmail.com>  Sun, 3 Jan 2021 20:22:24 +0200
+
   [ Nicola Ferralis ]
   * Official release of Cinelerra-CV version 2.3
   * Update maintainer contact address to the new mailing list on
