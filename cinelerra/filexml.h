@@ -106,7 +106,7 @@ public:
 	int read_from_file(const char *filename, int ignore_error = 0);          // read an entire file from disk
 	int read_from_string(char *string);          // read from a string
 
-	int reallocate_string(long new_available);     // change size of string to accomodate new output
+	int reallocate_string(long new_available);     // change size of string to accommodate new output
 	int set_shared_string(char *shared_string, long available);    // force writing to a message buffer
 	int rewind();
 
