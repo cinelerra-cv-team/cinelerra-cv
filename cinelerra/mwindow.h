@@ -385,7 +385,7 @@ public:
 	void trim_selection();
 // Synchronize EDL settings with all playback engines depending on current 
 // operation.  Doesn't redraw anything.
-	void sync_parameters(int change_type = CHANGE_PARAMS);
+	void sync_parameters(unsigned int change_type = CHANGE_PARAMS);
 	void to_clip();
 	int toggle_label(int is_mwindow);
 	void undo_entry(BC_WindowBase *calling_window_gui);

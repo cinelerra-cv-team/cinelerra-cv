@@ -233,7 +233,7 @@ void VWindow::update(int do_timebar)
 		gui->timebar->update();
 }
 
-void VWindow::update_position(int change_type, 
+void VWindow::update_position(unsigned int change_type, 
 	int use_slider, 
 	int update_slider)
 {

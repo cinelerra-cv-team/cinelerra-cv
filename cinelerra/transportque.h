@@ -56,7 +56,7 @@ public:
 	void new_edl();
 
 	int command;
-	int change_type;
+	unsigned int change_type;
 // lowest numbered second in playback range
 	double start_position;
 // highest numbered second in playback range
@@ -82,13 +82,13 @@ public:
 
 	int send_command(int command, 
 // The change type is ORed to accumulate changes.
-		int change_type, 
+		unsigned int change_type, 
 		EDL *new_edl,
 		int realtime,
 // Persistent starting point
 		int resume = 0,
 		int use_inout = 0);
-	void update_change_type(int change_type);
+	void update_change_type(unsigned int change_type);
 
 	TransportCommand command;
 	Condition *input_lock, *output_lock;

@@ -1520,7 +1520,7 @@ void MWindow::set_labels_follow_edits(int value)
 	gui->unlock_window();
 }
 
-void MWindow::sync_parameters(int change_type)
+void MWindow::sync_parameters(unsigned int change_type)
 {
 
 // Sync engines which are playing back

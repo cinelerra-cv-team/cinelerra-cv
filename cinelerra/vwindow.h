@@ -58,7 +58,7 @@ public:
 	Asset* get_asset();
 	void update(int do_timebar);
 		
-	void update_position(int change_type = CHANGE_NONE,
+	void update_position(unsigned int change_type = CHANGE_NONE,
 		int use_slider = 1,
 		int update_slider = 0);
 	void set_inpoint();

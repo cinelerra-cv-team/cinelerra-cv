@@ -285,7 +285,7 @@ TransportQue::~TransportQue()
 }
 
 int TransportQue::send_command(int command, 
-		int change_type, 
+		unsigned int change_type, 
 		EDL *new_edl, 
 		int realtime,
 		int resume,
@@ -325,7 +325,7 @@ int TransportQue::send_command(int command,
 	return 0;
 }
 
-void TransportQue::update_change_type(int change_type)
+void TransportQue::update_change_type(unsigned int change_type)
 {
 	input_lock->lock("TransportQue::update_change_type");
 	this->command.change_type |= change_type;
