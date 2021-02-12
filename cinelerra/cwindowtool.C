@@ -566,7 +566,7 @@ const _TGD Projector_Tan_Linear =
 // This button reflects the state of the "current" keyframe
 // (the nearest keyframe on the left) for all three automation
 // lines together. Clicking on this button (re)sets the tangent
-// mode for the three "current" keyframes simultanously, but
+// mode for the three "current" keyframes simultaneously, but
 // never creates a new keyframe.
 //
 class CWindowTangentToggle : public BC_Toggle

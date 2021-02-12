@@ -145,20 +145,20 @@ AH_TEMPLATE(HAVE_LIBXXF86VM, [Define to 1 if libXxf86vm is available.])
 AC_DEFINE(HAVE_LIBXXF86VM)
 ############## END XLIB
 
-############## UTF8 suppport
+############## UTF8 support
 AC_CHECK_DECL([X_HAVE_UTF8_STRING],,[no_utf=yes],[#include <X11/Xlib.h>])
 if test "$no_utf" = "yes"; then
 	AC_MSG_ERROR([Cinelerra requires utf8 support in X Windows.])
 fi
-############## UTF8 suppport
+############## UTF8 support
 
-############## Freetype2 and fontconfig suppport
+############## Freetype2 and fontconfig support
 PKG_CHECK_MODULES(FREETYPE,freetype2,[freetype2=yes],:)
 PKG_CHECK_MODULES(FONTCONFIG,fontconfig >= 2.4.2,[fontconfig=yes],:)
 if test "x$freetype2" != "xyes" -o "x$fontconfig" != "xyes"; then
 	AC_MSG_ERROR([Cinelerra requires freetype2 and fontconfig ver 2.4.2 or later])
 fi
-############## End of freetype2 and fontconfig suppport
+############## End of freetype2 and fontconfig support
 
 ############# XFT
 AH_TEMPLATE(HAVE_XFT, [Define to 1 if libXft is available.])
@@ -216,7 +216,7 @@ PKG_CHECK_MODULES(MJPEG, mjpegtools,[mjpegtools=yes],:)
 AC_SUBST(MJPEG_CFLAGS)
 AC_SUBST(MJPEG_LIBS)
 AC_MSG_CHECKING([for number of arguments to y4m_write_frame_header])
-# check if mjpegtools has 3 arguements for y4m_write_frame_header
+# check if mjpegtools has 3 arguments for y4m_write_frame_header
 # Note: this test came from transcode...
 save_CFLAGS="$CFLAGS"
 save_LIBS="$LIBS"

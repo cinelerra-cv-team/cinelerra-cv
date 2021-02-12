@@ -939,7 +939,7 @@ void Edits::paste_silence(int64_t start, int64_t end)
 }
 
 // Used by other editing commands so don't optimize
-// This is separate from paste_silence, since it has to wrok also on empty tracks/beyond end of track
+// This is separate from paste_silence, since it has to work also on empty tracks/beyond end of track
 Edit *Edits::create_and_insert_edit(int64_t start, int64_t end)
 {
 	Edit *new_edit = insert_new_edit(start);

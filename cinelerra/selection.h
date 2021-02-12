@@ -76,7 +76,7 @@ public:
 		double *value1, double *value2, int separator);
 
 	int calculate_width();
-// option == 1 - textbox is bright, but not modifable
+// option == 1 - textbox is bright, but not modifiable
 	void disable(int option = 0);
 	void enable(int option = 0);
 	void reposition_window(int x, int y);
