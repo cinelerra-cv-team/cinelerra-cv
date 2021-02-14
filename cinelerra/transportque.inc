@@ -47,7 +47,7 @@
 
 // Level of change.  Changes have to be inclusive of all the lesser changes.
 // Delete cache
-#define CHANGE_ALL            0xffffffff
+#define CHANGE_ALL            0xff
 // Delete render engines
 #define CHANGE_EDL                  0x11
 // Search EDL and synchronize parameters.
