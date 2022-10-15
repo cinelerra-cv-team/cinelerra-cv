@@ -85,7 +85,7 @@ public:
 	int identical(Transition *that);
 
 // Only the show value from the attachment point is used.
-	int set_show_derived(int value) {};
+	int set_show_derived(int value) { return 0; };
 
 	int popup_transition(int x, int y);
 // Update the widgets after loading

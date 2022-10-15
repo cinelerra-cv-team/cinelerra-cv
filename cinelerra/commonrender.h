@@ -93,13 +93,13 @@ public:
 	CommonRender(MWindow *mwindow, RenderEngine *renderengine);
 
 // clean up rendering
-	int virtual stop_rendering() {};
+	int virtual stop_rendering() { return 0; };
 	void wait_for_completion();
-	virtual int wait_device_completion() {};
+	virtual int wait_device_completion() { return 0; };
 // renders to a device when there's a device
-	virtual int process_buffer(int64_t input_len, int64_t input_position) {};
+	virtual int process_buffer(int64_t input_len, int64_t input_position) { return 0; };
 
-	virtual int get_datatype() {};
+	virtual int get_datatype() { return 0;};
 // test region against loop boundaries
 	int get_boundaries(int64_t &current_render_length);
 // test region for playback automation changes
@@ -110,7 +110,7 @@ public:
 // convert to and from the native units of the render engine
 	virtual int64_t tounits(double position, int round);
 	virtual double fromunits(int64_t position);
-	virtual int64_t get_render_length(int64_t current_render_length) {};
+	virtual int64_t get_render_length(int64_t current_render_length) { return 0; };
 
 	MWindow *mwindow;
 

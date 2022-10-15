@@ -56,11 +56,11 @@ public:
 
 	virtual int get_index(char *index_path) { return 1; };
 	virtual int check_header() { return 0; };  // Test file to see if it is of this type.
-	virtual int reset_parameters_derived() {};
-	virtual int read_header() {};     // WAV files for getting header
-	virtual int open_file(int rd, int wr) {};
+	virtual int reset_parameters_derived() { return 0;};
+	virtual int read_header()  { return 0; };     // WAV files for getting header
+	virtual int open_file(int rd, int wr) { return 0; };
 	virtual int close_file();
-	virtual int close_file_derived() {};
+	virtual int close_file_derived() { return 0; };
 	void set_dither();
 	virtual int seek_end() { return 0; };
 	virtual int seek_start() { return 0; };

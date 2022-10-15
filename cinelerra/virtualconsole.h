@@ -117,7 +117,7 @@ public:
 
 
 
-	virtual int init_rendering(int duplicate) {};
+	virtual int init_rendering(int duplicate)  { return 0; };
 // Replaced by pull system
 //	int sort_virtual_console();
 	void delete_virtual_console();

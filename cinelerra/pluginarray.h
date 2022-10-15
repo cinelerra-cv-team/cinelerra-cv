@@ -66,7 +66,7 @@ public:
 	virtual void process_realtime(int module, 
 		int64_t input_position, 
 		int64_t len) {};
-	virtual int process_loop(int module, int64_t &write_length) {};
+	virtual int process_loop(int module, int64_t &write_length) { return 0; };
 	virtual int write_buffers(int64_t len) { return 0; };
 	virtual int64_t get_bufsize() { return 0; };
 	virtual int total_tracks() { return 0; };

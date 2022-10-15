@@ -59,7 +59,7 @@ public:
 // expand plugins
 	int expand(int persistent_plugins, int64_t current_position);
 // create convenience pointers to shared memory depending on the data type
-	virtual int create_buffer_ptrs() {};
+	virtual int create_buffer_ptrs() { return 0; };
 // create a node for a module and expand it
 	int attach_virtual_module(Plugin *plugin, 
 		int plugin_number, 

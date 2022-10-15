@@ -75,7 +75,7 @@ public:
 	virtual int save_derived_attributes(Asset *asset, BC_Hash *defaults) { return 0; };
 	virtual PluginArray* create_plugin_array() { return 0; };
 	virtual int64_t to_units(double position, int round) { return 0; };
-	virtual int fix_menu(char *title) {};
+	virtual int fix_menu(char *title) { return 0; };
 	int test_existence(Asset *asset);
 
 	MWindow *mwindow;
