@@ -18,6 +18,7 @@
 *  Global Variable Definitions
 *
 ***********************************************************************/
+options glopts;
 
 char *mode_names[4] = { "stereo", "j-stereo", "dual-ch", "single-ch" };
 char *version_names[2] = { "MPEG-2 LSF", "MPEG-1" };
