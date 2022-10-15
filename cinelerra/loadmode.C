@@ -162,15 +162,12 @@ LoadModeListBox::~LoadModeListBox()
 
 int LoadModeListBox::handle_event()
 {
-	if(get_selection(0, 0) >= 0)
+	BC_ListBoxItem *selection = get_selection(0, 0);
+	if(selection)
 	{
 		loadmode->textbox->update(get_selection(0, 0)->get_text());
 		*(loadmode->output) = ((LoadModeItem*)get_selection(0, 0))->value;
 	}
 	return 1;
 }
-
-
-
-
 

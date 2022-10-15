@@ -266,7 +266,7 @@ void VDeviceBUZ::close_input_core()
 
 	if(input_buffer)
 	{
-		if(input_buffer > 0)
+		if(input_buffer)
 			munmap(input_buffer, breq.count * breq.size);
 		input_buffer = 0;
 	}
@@ -285,7 +285,7 @@ int VDeviceBUZ::close_output_core()
 	}
 	if(output_buffer)
 	{
-		if(output_buffer > 0)
+		if(output_buffer)
 			munmap(output_buffer, breq.count * breq.size);
 		output_buffer = 0;
 	}

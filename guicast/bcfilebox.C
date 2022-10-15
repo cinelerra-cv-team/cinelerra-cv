@@ -59,6 +59,18 @@ BC_FileBoxRecent::BC_FileBoxRecent(BC_FileBox *filebox, int x, int y)
 	this->filebox = filebox;
 }
 
+
+int BC_FileBoxRecent::handle_event()
+{
+	BC_ListBoxItem *selection = get_selection(0, 0);
+	if( selection != 0 ) {
+		char *path = selection->get_text();
+		filebox->submit_dir(path);
+	}
+	return 1;
+}
+
+/*
 int BC_FileBoxRecent::handle_event()
 {
 	if(get_selection(0, 0) >= 0)
@@ -67,7 +79,7 @@ int BC_FileBoxRecent::handle_event()
 	}
 	return 1;
 }
-
+*/
 
 
 

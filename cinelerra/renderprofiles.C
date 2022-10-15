@@ -177,7 +177,8 @@ RenderProfileListBox::~RenderProfileListBox()
 
 int RenderProfileListBox::handle_event()
 {
-	if(get_selection(0, 0) >= 0)
+	RenderProfileItem *item = (RenderProfileItem *)get_selection(0, 0);
+	if(item)
 	{
 		renderprofile->textbox->update(get_selection(0, 0)->get_text());
 		renderprofile->rwindow->load_profile(((RenderProfileItem*)get_selection(0, 0))->value);
