@@ -696,7 +696,7 @@ int RecordGUIBatches::drag_stop_event()
 		dragging_item = 0;
 		gui->update_batches();
 	}
-
+return 0;
 }
 
 

@@ -213,6 +213,7 @@ FormatSelection::FormatSelection(int x, int y,
 int FormatSelection::handle_event()
 {
 	presets->update_edl(get_text());
+	return 0;
 }
 
 ColormodelSelection::ColormodelSelection(int x, int y,

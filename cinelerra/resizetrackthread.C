@@ -226,5 +226,6 @@ int SetTrackFrameSize::handle_event()
 {
 	Selection::handle_event();
 	gui->update(0, 1);
+	return 1;
 }
 

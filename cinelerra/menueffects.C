@@ -671,6 +671,7 @@ int MenuEffectWindow::resize_event(int w, int h)
 	int y = mwindow->theme->menueffect_tools_y;
 	format_tools->reposition_window(x, y);
 	loadmode->reposition_window(x, y);
+	return 0;
 }
 
 

@@ -589,6 +589,7 @@ CutKeyframes::CutKeyframes(MWindow *mwindow)
 int CutKeyframes::handle_event()
 {
 	mwindow->cut_automation(); 
+	return 0;
 }
 
 CopyKeyframes::CopyKeyframes(MWindow *mwindow)

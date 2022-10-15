@@ -484,6 +484,7 @@ int PluginDialog::resize_event(int w, int h)
 // 		module_change->reposition_window(mwindow->theme->plugindialog_moduleattach_x,
 // 			mwindow->theme->plugindialog_moduleattach_y);
 	flush();
+	return 0;
 }
 
 int PluginDialog::attach_new(int number)
