@@ -1398,6 +1398,7 @@ int FileOGG::close_file()
 		stream = 0;
 
 	}
+return 0;
 }
 
 int FileOGG::close_file_derived()
