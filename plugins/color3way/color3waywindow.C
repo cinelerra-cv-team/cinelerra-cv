@@ -278,6 +278,7 @@ int Color3WayPoint::reposition_window(int x, int y, int radius)
 	delete bg_image;
 	bg_image = 0;
 	draw_face(1, 0);
+return 0;
 }
 
 void Color3WayPoint::draw_face(int flash, int flush)
