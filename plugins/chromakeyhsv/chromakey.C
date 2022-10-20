@@ -1223,7 +1223,7 @@ SET_TRACE
 	glDisable(GL_BLEND);
 
 SET_TRACE
-
+return 0;
 #endif
 }
 
