@@ -559,11 +559,12 @@ int BC_FileBox::create_objects()
 	if(!want_directory)
 	{
 		filter_list.append(new BC_ListBoxItem("*"));
-		filter_list.append(new BC_ListBoxItem("[*.ifo][*.vob]"));
-		filter_list.append(new BC_ListBoxItem("[*.mp2][*.mp3][*.wav]"));
-		filter_list.append(new BC_ListBoxItem("[*.avi][*.mpg][*.m2v][*.m1v][*.mov]"));
-		filter_list.append(new BC_ListBoxItem("heroine*"));
 		filter_list.append(new BC_ListBoxItem("*.xml"));
+		filter_list.append(new BC_ListBoxItem("[*.ifo][*.vob]"));
+		filter_list.append(new BC_ListBoxItem("[*.ac3][*.flac][*.mp2][*.mp3][*.ogg][*.wav]"));
+		filter_list.append(new BC_ListBoxItem("[*.avi][*.AVI][*.mpg][*.MPG][*.mpeg][*.m1v][*.m2v][*.m4v][*.mov][*.MOV][*.mp4][*.MP4]"));
+		filter_list.append(new BC_ListBoxItem("[*.exr][*.jpg][*.JPG][*.jpeg][*.png][*.tiff][*.tga][*.list]"));
+		filter_list.append(new BC_ListBoxItem("*.list"));
 		fs->set_filter(get_resources()->filebox_filter);
 	}
 
