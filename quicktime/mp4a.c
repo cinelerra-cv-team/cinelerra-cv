@@ -69,6 +69,7 @@ static int delete_codec(quicktime_audio_map_t *atrack)
 	}
 
 	free(codec);
+return 0;
 }
 
 static int decode(quicktime_t *file, 

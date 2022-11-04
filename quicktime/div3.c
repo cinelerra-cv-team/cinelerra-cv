@@ -100,6 +100,7 @@ static int delete_codec(quicktime_video_map_t *vtrack)
 	if(codec->temp_frame) free(codec->temp_frame);
 	if(codec->work_buffer) free(codec->work_buffer);
 	free(codec);
+return 0;
 }
 
 static int init_codec(quicktime_div3_codec_t *codec, int width_i, int height_i)
