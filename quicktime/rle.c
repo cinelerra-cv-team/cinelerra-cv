@@ -20,6 +20,7 @@ static int delete_codec(quicktime_video_map_t *vtrack)
 	if(codec->work_buffer) free(codec->work_buffer);
 	if(codec->output_temp) free(codec->output_temp);
 	free(codec);
+return 0;
 }
 
 static int reads_colormodel(quicktime_t *file, 
@@ -61,7 +62,7 @@ static int decode(quicktime_t *file, unsigned char **row_pointers, int track)
 	unsigned char *buffer_end;
 	int code;
 	int r, g, b, i;
-	int need_temp;
+	int need_temp = 0;
 	unsigned char **temp_rows = malloc(sizeof(unsigned char*) * height);
 	int cmodel = source_cmodel(file, track);
 	int skip;
@@ -71,7 +72,7 @@ static int decode(quicktime_t *file, unsigned char **row_pointers, int track)
 	row_bytes = depth / 8 * width;
 	pixel_size = depth / 8;
 
-	if(size <= 8) return 0;
+	if(size <= 8) { free(temp_rows); return 0; }
 	if(codec->buffer_size < size && codec->work_buffer)
 	{
 		free(codec->work_buffer);

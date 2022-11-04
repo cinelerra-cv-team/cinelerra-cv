@@ -243,6 +243,7 @@ static int set_parameter(quicktime_t *file,
 
 	if(!strcasecmp(key, "compression_level"))
 		codec->compression_level = *(int*)value;
+return 0;
 }
 
 static int reads_colormodel(quicktime_t *file, 

@@ -354,7 +354,7 @@ static int allocate_output(quicktime_mp3_codec_t *codec,
 		codec->encoder_output = new_output;
 		codec->encoder_output_allocated = new_size;
 	}
-
+return 0;
 }
 
 

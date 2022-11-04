@@ -486,6 +486,7 @@ static int set_parameter(quicktime_t *file,
 			codec->param.rc.i_bitrate = (*(int*)value) / 1000;
 #endif
 	}
+return 0;
 }
 
 static quicktime_h264_codec_t* init_common(quicktime_video_map_t *vtrack, 
