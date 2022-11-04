@@ -24,7 +24,7 @@ int64_t quicktime_get_file_length(char *path)
 int quicktime_file_open(quicktime_t *file, char *path, int rd, int wr)
 {
 	int exists = 0;
-	char flags[10];
+	char flags[10] = "";
 	if(rd && (file->stream = fopen(path, "rb")))
 	{
 		exists = 1; 
