@@ -97,6 +97,7 @@ ReIndexOkButton::ReIndexOkButton(ReIndexWindow *window)
 ReIndexOkButton::handle_event()
 {
 	window->set_done(0);
+	return 0;
 }
 
 ReIndexOkButton::keypress_event()
@@ -114,6 +115,7 @@ ReIndexCancelButton::ReIndexCancelButton(ReIndexWindow *window)
 ReIndexCancelButton::handle_event()
 {
 	window->set_done(1);
+	return 0;
 }
 
 ReIndexCancelButton::keypress_event()
