@@ -1,12 +1,51 @@
+05. May 2020
+Cinelerra-cv team
+	- Changes can be followed on GitHub:
+        https://github.com/cinelerra-cv-team/cinelerra-cv
+
 13. aug. 2015
 Cinelerra-cv team
-	- Cinelerra-CV version 2.3 released. Changelog:
-	Full UTF-8 support.
-	Complete new overlay engine and resampler.
-	New graphics: About panel, some icons.
-	New plugins: GreyCStoration, C41, Bluebanana, color3way, findobject, lens.
-	Updated translations: German, Italian, French, Norwegian, Portugese.
-	Lots of small bugfixes.
+	Cinelerra-CV version 2.3 released. Changelog:
+	- Updated infrastructure to reflect the CV nature of the software.
+	- Updated debian-specific building infrastructure.
+	- Several bug fixes:
+		- segmentation faults, memory leaks, undefined behavior, compiler warnings.
+	- Full UTF-8 support.
+	- Complete new overlay engine and resampler
+	- Revised plugin infrastructure to be similar to Cinelerra-HV 4.5.
+	- Revised preference panel to better fit locales.
+	- Automated creation of header files for png in plugins.
+	- New plugins: GreyCStoration, C41, 'Blue Banana', 'Color 3 Way', 'Find Object', Lens.
+	- New graphics (About panel, icons).
+	- Added YUV, HSV AffineMartix classes from Cinelerra-HV 4.5.
+	- Fixed colormode conversions.
+	- Fixed Interpolation in Blur and Brightness/Contrast plugins
+	- Ported Ruler GUI implementation from Cinelerra-HV 4.5.
+	- Updated documentation (installation).
+
+13. Nov. 2011
+Cinelerra-cv team
+	Cinelerra-CV version 2.2 released. Changelog:
+	- Merged Bezier Patch created by Hermann Vosseler to get a usable
+        bezier automation for Cinelerra-CV fades, camera and projector.
+        The documenation is located at http://ichthyostega.de/cinelerra/bezier-patch/
+	- Created new defaults for first start of CinelerraCV.
+	- Changed audio infinity to -96db. This change may be conflict with projects saved
+        from previous versions of Cinelerra. Check the places there audio fades to silence.
+	- Fixed loading of multiline comments of labels and clips.
+	- Changes in build sytem:
+        - fixed autodetection of OpenGL in configure
+        - v4l2 is now detected
+
+11. Nov. 2010
+Cinelerra-cv team
+	Cinelerra-CV version 2.1.5 released. Changelog:
+	- SWOT audio is now supported.
+	- Build fixes for newer environments (libpng 1.4.3, libjpeg 7, and others).
+	- PNG with more than 8 bits can be imported, the extra precision is truncated, though.
+	- The YUV4MPEG importer is now much more efficient.
+	- Correct latency calculation with OSS audio driver.
+	- And assorted other fixes, many of them taken from Gentoo and Achlinux.
 
 6. jul. 2014
 Cinelerra-cv team
@@ -52,7 +91,7 @@ minmax
 
 minmax
 	-Added:       cinelerra/hvirtual/po pt_BR.po
-	
+
 	-Modified:    cinelerra/hvirtual/plugins/pitch pitch.C pitch.h
 	-New pitch control plugin code, and based on the same code new
 	 timestretch plugin which is now realtime!
@@ -66,14 +105,14 @@ minmax
 		   fourier.h
 	-New pitch control plugin code, and based on the same code new
 	timestretch plugin which is now realtime!
-	     
+
 	-Modified:    cinelerra/hvirtual/debian control
 	-Add fftw3-dev to debian dependencies
 
-	
+
 28.Aug.2005
 
-minmax	
+minmax
 	-Modified:    cinelerra/hvirtual/plugins/diffkey diffkey.C
 	-Fixed YUV bug in diffkey
 
@@ -83,7 +122,7 @@ minmax	- applied j@v2v.cc patch to ogg muxing to make it standard compliant
 
 	- removed debian dependency to mjpegtools 1.6.3 - since pmdumuid
 	  makes it unneccessary
-	
+
 	- Modified:    cinelerra/hvirtual/cinelerra aboutprefs.C
 	- Add jan to the credits
 pmdumuid
@@ -94,20 +133,20 @@ pmdumuid
 minmax:
 
   	- Modified:    cinelerra/hvirtual/cinelerra interfaceprefs.C
-	               interfaceprefs.h mwindow.h mwindowedit.C preferences.C 
+	               interfaceprefs.h mwindow.h mwindowedit.C preferences.C
 		       preferences.h trackcanvas.C trackcanvas.h tracks.h tracksedit.C
 	- Here it is, infamous ga's patch fixed up and polished and beaten up into
   	  submission "Just Works" (till the first tester comes at least)
-  
+
   	- Modified:    cinelerra/hvirtual/cinelerra trackcanvas.C
   	- Small fix for the dnd patch
-  
+
   	- Modified:    cinelerra/hvirtual/cinelerra edits.C edits.h pluginset.C
 	- Fix a bug when paste_silence didn't return proper editlist
 
   	- Modified:    cinelerra/hvirtual/cinelerra trackcanvas.C tracksedit.C
   	- Make position finding rutines nicer...
-  
+
   	- Modified:    cinelerra/hvirtual/cinelerra interfaceprefs.C
                        interfaceprefs.h mwindowedit.C preferences.C
                        preferences.h trackcanvas.C
@@ -121,17 +160,17 @@ minmax:
 21.Aug.2005
 
 minmax:
-	
+
 	- Modified:    cinelerra/hvirtual/cinelerra maskengine.C
   	- Small fix to mask engine
 
 20.Aug.2005
 
 minmax:
-	
+
 	- Modified:	cinelerra/hvirtual/cinelerra mwindow.h mwindowmove.C
 			trackcanvas.C
-	- Fix for bug 176 - implements sample zooming when holding shift and using 
+	- Fix for bug 176 - implements sample zooming when holding shift and using
 	  scrollwheel
 
 	- Modified:    cinelerra/hvirtual/debian control
@@ -146,7 +185,7 @@ minmax:
 
   	- Modified:    cinelerra/hvirtual/cinelerra asset.C
   	- Forgot to set defaults for theora so they weren't persistent ... now they are
-	
+
 	- Modified:    cinelerra/hvirtual/cinelerra cwindowgui.C
   	- Clear out the debug printf
 
@@ -154,15 +193,15 @@ minmax:
 
 Changelog maintainer:
 
-	- Now we have a changelog maintainer. 
-minmax: 
+	- Now we have a changelog maintainer.
+minmax:
 	- boost up requirement for mjpegtools to 1.6.3 (used to be 1.6.2)
 	  and applying patch for it to work...
 
 	- reworked ga's patch for free dragging
 
 	- fixed a quasi-bug in Edits::paste_silence
-	
+
 	- fixed mask being off the place when changing track size or when
 	  changing project size/aspect ratio
 
@@ -170,7 +209,7 @@ minmax:
 
 
 giskard:
-	- modified debian/control, addedd libtheora-mmx-dev to the 
+	- modified debian/control, addedd libtheora-mmx-dev to the
 	  build-deps.
 j6t:
 
