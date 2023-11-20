@@ -12,7 +12,7 @@
 
 @setfilename cinelerra_cv_manual_en.info
 @documentlanguage en
-@documentencoding ISO-8859-1
+@documentencoding UTF-8
 @settitle Cinelerra CV Manual
 @afourpaper
 @set EDITION 1.63.EN
