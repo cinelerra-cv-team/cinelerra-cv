@@ -1,9 +1,12 @@
 2023-11-20 Igor Vladimirsky <sitelve@gmail.com>
 
-    * 1.63 EN
+    * 1.64 EN
     Updated copyright years in EN manual.
     Changed Documentation coordinator in EN manual.
     Update the links to the new repo, the new ML, the new CV-site in EN manual.
+    Updated edition number of EN manual.
+    Updated the link to the CV-ML in doc/TRANSLATIONS.
+    Changed the encoding of cinelerra_cv_manual_en.texi from ISO-8859-1 to UTF-8.
 
 2016-02-14 Nicola Ferralis <feranick@hotmail.com>
 
