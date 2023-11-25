@@ -1,3 +1,51 @@
+25.11.2023 Igor Vladimirsky <sitelve@gmail.com>
+
+    * 1.65 EN
+    Chapter 1: Introduction
+    - Updated edition number.
+    - Remove space(s) at the end of lines.
+    - Replaced SVN by GIT in the following nodes: "The two versions of Cinelerra", "About this manual".
+    - Updated the list of contributors in the "About this manual" node:
+        added Craig Lawson (updated Videoscope doc, RGB-601 effect doc), Joe Stewart (info about 'Motion Blur'), Igor Vladimirsky.
+    - Fixed broken links (replaced by the links to web.archived pages)
+        in the following nodes: "Tutorials'', "HOWTOs", "Miscellaneous links" (subs. 1.5, 1.6, 1.7)
+    - Added a link to the videotutorial #4 'Episode 3 "Revenge of Cinelerra"'
+         by The Source (Aaron Newcomb) in the "Tutorials" node.
+    - Added a link to the Aaron Newcomb's page in the web.archive.org in the "Tutorials" node.
+
+    Chapter 2: Installation
+    - Fixed/updated broken links in the "Installation" node.
+    - Updated info about Live CDs in the "Live CDs" node:
+         -- updated the links, version ov cv-pkgs
+         -- added Austrumi LiveCD/USB
+    - Changed svn to git in '--with-buildinfo=svn/recompile' option in the "Usual compilation process" node
+    - Updated Arch Linux install command in the "Arch Linux" node:
+          -- 'pacman' was replaced by 'yay'
+          -- replaced @code command by @verbatim
+    - Added a link to cv-2.2 pkgs for Debian 7, Debian 8 in Archive Deb Multimedia in the "Debian binaries" node.
+    - Added a link to a mirror of the ATrpms repository for Fedora in the "Fedora" node.
+    - Updated the link to the Studioware pkgs in the "Slackware" nodes.
+
+    Chapter 14 Realtime effects
+    - Added @xref{GreyCStoration Plugin} in the "GreyCStoration" node (subs. 14.4.23).
+
+    Chapter 15 Rendered effects
+       (Subs. 15.2.2)
+     - Updated information about the current state of
+         the GreyCStoration plugin in the "GreyCStoration Plugin" node.
+     - Updated a link to the GreyCStoration plugin in the "GreyCStoration Plugin'' node.
+
+    Chapter 20. Rendering files
+     - Updated broken/outdated links in the following nodes:
+         "Encoding a video in FLV format for the internet" (subs. 20.7.2)
+         "Quicktime for GNU/Linux compatibility chart" (subs. 20.8)
+
+    Chapter 21. Tips
+     - Updated the links in the following nodes:
+         "Converting HDV and proxy files" (subs. 21.12.5)
+         "Adding subtitles" (subs. 21.13)
+         "Creating DVD video from Lower Quality Footage" (subs. 21.14)
+
 2023-11-20 Igor Vladimirsky <sitelve@gmail.com>
 
     * 1.64 EN
@@ -74,32 +122,32 @@
     - Updated repositories for Ubuntu
 
 2008-03-08 raffa <raffaella.traniello@livecom.it>
-    
+
     * 1.55.EN
     Chapter 1: Introduction
     - Updated edition number
     - Fixed typo (FFMPEG)
     - Fixed broken links
-    
+
     Chapter 2: Installation
     - Added link to Fedora
     - Fixed broken links
     - Added Ubuntu Hardy packages
-    
+
     Chapter 5: Loading and saving files
     - Note on backup.xml with two instances open
-    
+
     Chapter 14: Realtime effects
     - Added title performance tip
     - Fixed formatting
-    
+
     Chapter 16: Transitions
     - Removed footnote, moved content to the glossary.
     - Rewritten most of the content.
 
-    
+
 2008-02-16 raffa <raffaella.traniello@livecom.it>
-    
+
     * 1.54.EN
     Chapter 1: Introduction
     - Updated edition number
@@ -107,36 +155,36 @@
     - Added Norval Watson among the contributors
     - Added Tutorial by Akirad and Howto on transcoding (by cillian)
     - Added FFMPEG compatibility Howto and miscellaneous links on Interlacing and DVD-Video
-    
+
     Chapter 5: Loading and saving files
     - Modified script for resizing images (note by Helge Nert, ML)
     - Added descriptions of Imagemagick resizing
     - Added details to the MPEG1 audio section
-    
+
     Chapter 20: Rendering Files
     - Changed ffmpeg bitrate from -b 430 to -b 430k (by norv)
-    
+
     Chapter 21: Tips
     - Removed description of issues fixed by r1052 (by j6t)
-    
+
 
 2008-02-09 raffa <raffaella.traniello@livecom.it>
-    
+
     Update doc/texinfo.tex to the latest release (04.02.08)
-    
-   
+
+
 2008-01-28 raffa <raffaella.traniello@livecom.it>
-    
+
     * 1.53.EN
     Chapter 1: Introduction
     - Updated edition number
-    
+
     Chapter 2: Installation
     - Improved Ubuntu package description
-    
-    
+
+
 2008-01-06 raffa <raffaella.traniello@livecom.it>
-    
+
     * 1.52.EN
     Chapter 1: Introduction
     - Updated edition number
@@ -146,7 +194,7 @@
     - Pointed to doc/README_en for instructions for building the manual in other formats
     - Pointed to SVN to get the manual sources.
     - Added a tutorial and a miscellany link
-    
+
     Chapter 2: Installation
     - Added ldconfig in the commands for compilation
     - Fixed typo mmx32
@@ -156,10 +204,10 @@
     - Added details about libfaac version for ubuntu 64 (by cillian)
     - Added 2 Howtos for compilation in Ubuntu Gutsy
     - Minor changes
-    
+
     Chapter 3: Configuration
     - How to localize Cinelerra on distributions with only UTF-8 support (by Paolo Rampino)
-    
+
     Chapter 6: Program Window
     - Added a note about sample zoom
     - Added details about the label info dialog
@@ -167,24 +215,24 @@
     - Reordered content (selection of multiple files)
     - Added a list of editing operations
     - Minor changes
-    
+
     Chapter 21: Tips
     - Note about creating charset for localizing Cinelerra on distributions with only UTF-8 support (by Paolo Rampino)
     - Added node 365 about creating DVD video from Lower Quality Footage (by aum)
-    
-    
+
+
 2008-01-06 raffa <raffaella.traniello@livecom.it>
-    
+
     * doc/TRANSLATIONS - Update
     Added details to the translation process.
     Set the Cinelerra CV community as reference for translators.
-       
+
     * README_EN Updated
     Added details in the description of the building of the Manuals from texinfo to all the available formats.
-    
+
 
 2007-11-04 raffa <raffaella.traniello@livecom.it>
-    
+
     * 1.51.EN
 
     Chapter 1: Introduction
@@ -192,47 +240,47 @@
     - Reordered and updated the list of contributors
     - Deleted cogito from the list of application needed to fetch the manual sources
     - Replaced out of date command for fetching manual sources with FIXME
-    
+
     Chapter 2: Installation
     - Rescued forgotten changes about Gentoo installation made by Cillian on Dokuwiki
     - Added Ubuntu Gutsy repos by Valentina Messeri
-    
+
     Chapter 5: Saving project files
     - Added details to for fixing media linkage via GUI.
-    
+
     Chapter 6: Program Window
     - Deleted contradictory informations about in/out points and highlighted areas.
     - Added notes on setting in/out points on highlighted areas.
-    
+
     Chapter 8: Compositor window
     - Added details about cropping and reordered content
-    
+
 
 2007-10-07 raffa <raffaella.traniello@livecom.it>
-    
+
     * 1.50.EN
 
     Updated edition number
-    
-    Chapter 2: Installation    
+
+    Chapter 2: Installation
     - Change mmx to mmx32 for 32 bit Pentiums (by karrak)
     - Add Marillat repository and delete obsolete information (by cosmo)
-    
-    Chapter 6: Program window    
+
+    Chapter 6: Program window
     - Added description of the Label tab of the Resources window
-    
+
     Chapter 20: Rendering files
     - Adding information on converting flv file to swf and more detail on using flv movie players (by cillian)
     - Added subsubsection yuv4mpeg pipe through mpeg2enc (node 363) (by kurts-film)
     - Added subsubsection yuv4mpeg pipe through ffmpeg (node 364) (by kurts-film)
-    
+
     Chapter 21: Tips
     - Added notes on HDV (new dvgrab HDV support and valid XML in recent version of Cinelerra) (by Marcin Kostur)
-    
+
 
 2007-09-27 Raffaella Traniello
 
-     * 1.49.EN 
+     * 1.49.EN
 
 	Chapter 14 Realtime Effects
 	- Included changes from the following svn commits:
@@ -243,36 +291,36 @@
 
 2007-09-04  Raffaella Traniello
 
-    * 1.48.EN 
-     
+    * 1.48.EN
+
     Chapter 1: Introduction
     - Updated edition number
-    
+
     Chapter 2: Installation
     -Added Vales' repo for Ubuntu Feisty 64bit with no OpenGL.
     - Changed order of packages (best working first)
-    
+
     Chapter 5: Loading and saving files
     - Moved Images sequence after Still Images.
     . Added index words to Images sequence.
     - Added subsubsections (FIXME) also for WAV, PCM, AIFF, AC3 audio (nodes 359, 360, 361, 362)
     - Added clarifications in Still images.
     - Heavily modified the content of Images sequence.
-    
+
     Chapter 7: Editing
     - Minor changes in Drag and Drop editing.
-    
+
     Chapter 20: Rendering
     - Added details for newbies in the "Authoring a DVD" and "Burning a DVD" section
     - Added changes and descriptions in "Batch Rendering" as written by David McNab (aum in DokuWiki).
-    
 
-2007-08-26 Raffaella Traniello   
 
-    * 1.47.EN - 1.46.pt_BR 
-    
+2007-08-26 Raffaella Traniello
+
+    * 1.47.EN - 1.46.pt_BR
+
     * 1.47.EN
-    
+
     Chapter 1: Introduction
     - Updated edition number
     - Removed Main Actor from the list of recommended software since maintenance and distribution have been discontinued (see http://www.mainconcept.com/site/consumer-products-4/mainactor-v5-15/information-16.html)
@@ -281,51 +329,51 @@
     - Added node 358: HOWTOs
     - Added two howto on creating fancy titles (by David McNab and Gustavo Iniguez Goya).
     - Added an howto on Chromakey (HSV) plugin (by Jerome Cornet)
-    
+
     Chapter 2: Installation
     - Minor changes
-    - Added "or 60Mb for a read-only checkout" in Usual Compilation Process (by gray-DokuWiki) 
+    - Added "or 60Mb for a read-only checkout" in Usual Compilation Process (by gray-DokuWiki)
     - Minor changes in Arch Linux
     - Ubuntu repos: added Core Duo Intel64 as AMD64 compatible
     - Added packages list for compilation in Debian (by mcarter-Dokuwiki)
-    
+
     Chapter 5: Loading and saving files
     - Improved the description of changing paths from absolute to relative and viceversa
     - Added description of repair of broken media linkage from the GUI.
     - Added @cindex Paths
-    
+
     Chapter 7: Editing
     - minor changes
     - Added @index Three points editing to Two screen editing
-    
+
     Chapter 14: Realtime effects
     - Added hints for animating titles and keyframes support.
-    
-   
+
+
     * 1.46.pt_BR
-    
+
     - Updated to ed. 1.46 (by Flavio Soares)
-    
-    
-2007-08-08 Raffaella Traniello  
+
+
+2007-08-08 Raffaella Traniello
 
     * 1.46.EN  -  make_wiki.sh
-    
+
     * 1.46.EN
-    
+
     Chapter 1: Introduction
     - Updated edition number
-    
+
     Chapter 2: Installation
     - Added instructions for Arch Linux - by gour
-    
+
     - Split Chapter 6 Program Window in two:
       6. Program Window
       7. Editing
     - Renamed subsections to sections (in Editing)
-    
+
     * make_wiki.sh
-    
+
     - Corrected the make_wiki script to fit the new number of pages.
       Replaced
       rm cinelerra_cv_${language}_24.txt
@@ -333,140 +381,140 @@
       rm cinelerra_cv_${language}_25.txt
 
 
-2007-08-07 Raffaella Traniello  
+2007-08-07 Raffaella Traniello
 
     * 1.45.EN
-    
+
     Chapter 1: Introduction
     - Updated edition number
-    
+
     Chapter 2: Installation
     - Added node 357 for ArchLinux (FIXME)
     - Inserted content for ArkLinux (by Herman Robak, ML)
 
 
-2007-08-07 Raffaella Traniello  
+2007-08-07 Raffaella Traniello
 
-    * 1.44.EN 
-      
+    * 1.44.EN
+
     Chapter 1: Introduction
     - Updated edition number
     - Added a link to a French Tutorial on Cin HV by Laurent Bellegarde
     - Added a link to a French Wiki about Open Source video editing
     - Added a link to a screencast about screencast with Cin by Scott Frase
-    
+
     Chapter 2: Installation
     - Added node 89 (number recycled from the last deleted node) for ArkLinux (FIXME)
     - Moved Live CDs node in the firts place for distributions
-    
+
     Chapter 4: Project attributes
     - Added description of image (Channel position widget)
-    
+
     Chapter 5: Loading and saving files
     - Added details to the description of the different insertion strategies.
-    
+
     Chapter 6:
     - Replaced redundant description of the track popup menu with a link to sect
     - Minor changes
-    
+
     Chapter 23: Keyboard shortcut
     - Added details to some descriptions
-    
 
-2007-07-29 Raffaella Traniello  
 
-    * 1.43.EN 
-       
+2007-07-29 Raffaella Traniello
+
+    * 1.43.EN
+
     Chapter 1: Introduction
-    
+
     - Updated edition number
     - Added detailed description of video tutorials
     - Added a miscellaneous link: Colour specification and image coding
     - Minor changes
-    
+
     Chapter 6: Program window
-    
+
     - Added details to the description of curve zoom (The zoom panel) updating it to r908 changes
     - Added details, examples and references to Play track, Mute track, Faders (the patchbay) updating it to r908 changes
     - Replaced 'in/out points' with 'edit boundaries' (Trimming)
     - Minor changes
-    
-    Chapter 7: Compositor Windo  
+
+    Chapter 7: Compositor Windo
 
 - Added a note about OpenGL mask renderer (see bug 418)
-    
+
     Chapter 20: Tips
-    
+
     - Added the option for kernel.shmmax = 2147483647 (Freeing more shared memory)
-    
-    
-2007-07-22 Raffaella Traniello  
-  
+
+
+2007-07-22 Raffaella Traniello
+
     * 1.42.EN
-    
+
     Chapter 1: Introduction
     - Updated edition number
-    
+
     Chapter 2: Installation
     - Minor changes
     - Removed instructions for installing translated .po files (moved to ch.3)
-    
+
     Chapter 3: Configuration
     - Environment variables: added instructions for installing translated .po files.
     - Video out: replaced audio track(s) with video track(s)
-    
+
     Chapter 6: Program window
     - Minor changes
     - Editing: added horizontal scrolling by mouse wheel + CTRL
     - Deleted node 89. Merged subsection Video tracks and audio tracks in subsection Audio and video tracks.
-    
 
-2007-07-19 Raffaella Traniello  
- 
-    * 1.41.EN 
-    
+
+2007-07-19 Raffaella Traniello
+
+    * 1.41.EN
+
     Chapter 1: Introduction
-    
+
     - Updated edition number
     - Added a miscellaneous link: Quick Guide to Digital Video Resolution and Aspect Ratio Conversions
-    
+
     Chapter 6: Program window
-    
+
     - Minor changes
     - Using labels: Reordered content
     - Track navigation: added scrolling by mouse wheel
     - Editing modes: added the shortcut 'e' to toggle between modes
-    
+
     Chapter 13: Realtime effects
 
     - Added node 356: Reroute
     - Added a brief description of the new plugin and a FIXME (the icon is still missing)
-    
+
     Chapter 23: Keyboard shortcuts
-    
+
     - Added 'e': Toggle between Drag-and-Drop and Cut-and-Paste editing modes
 
 
-2007-07-11 Raffaella Traniello  
+2007-07-11 Raffaella Traniello
 
-    * 1.40.EN 
-    
+    * 1.40.EN
+
     - Impoved formatting: textwidth=80
     - Minor changes
-    
+
     Chapter 1: Introduction
-    
+
     - Added Cillian de Ròiste among the contributors
     - Minor changes
-    
+
     - Impoved formatting: textwidth=80
     - Minor changes
-    
 
-2007-07-07 Raffaella Traniello  
 
-    * 1.39.EN 
-  
+2007-07-07 Raffaella Traniello
+
+    * 1.39.EN
+
     Chapter 2: Installation
     - Reordered content in the Ubuntu section
     - Added node 354: Ubuntu packages repositories (subsection)
@@ -474,39 +522,39 @@
     - Added links to two tutorials on compilation on Ubuntu
 
 
-2007-07-06 Raffaella Traniello  
+2007-07-06 Raffaella Traniello
 
-    * 1.38.EN 
+    * 1.38.EN
 
     Merged DokuWiki changes
-    
+
     Chapter 17: Keyframing
     - Introduction: Tweaked the language a little. By cillian
 
 
-2007-06-22 Raffaella Traniello  
+2007-06-22 Raffaella Traniello
 
-    * 1.37.EN (Ed 1.33d) 
-    
+    * 1.37.EN (Ed 1.33d)
+
     Chapter 1: Introduction
     - Added Cinelerra Video tutorial #3 by The source
     Chapter 2: Installation
     - Minor changes in Ubuntu
 
 
-2007-06-21 Raffaella Traniello  
+2007-06-21 Raffaella Traniello
 
     * 1.36.EN (Ed 1.33c)
 
     Merged last changes made on Dokuwiki Chapter 3 between 03/04/07 and 21/06/07
-    
+
     Chapter 1: Introduction
     - Changed from Edition 1.32 to 1.33
     Chapter 3: Configuration
     - Added LANGUAGE as an environment variable to be set for changing language. By cillian
 
 
-2007-06-21 Raffaella Traniello  
+2007-06-21 Raffaella Traniello
 
     * 1.35.EN (Ed 1.33b)
 
@@ -525,12 +573,12 @@
     - Added a note about deleting ganged keyframes. By raffa.
 
 
-2007-06-21 Raffaella Traniello  
+2007-06-21 Raffaella Traniello
 
     * 1.34.EN (Ed 1.33a)
 
     Merged the changes made in Dokuwiki Chapter 2 between 03/04/07 and 21/06/07
-    
+
     Chapter 2: Installation
     - Note that library headers are required. Change Xfree86 to X.org. By anagogue
     - Described the –with-buildinfo=svn/recompile option. By raffa
@@ -541,9 +589,9 @@
     - Added a link to a nice how to for installing vale's Ubuntu AMD64 Feisty package.
 
 
-2007-06-02 Raffaella Traniello  
+2007-06-02 Raffaella Traniello
 
-    * 1.33.EN 
+    * 1.33.EN
 
     Various minor changes and:
     Chapter 2
@@ -579,23 +627,23 @@
 	    source for AMD64 binaries"
 
 2007-03-19  Nicolas Maufrais  <e.conti@gmx.net>
-	
+
 	* 1.30.EN
 	  - Replace "Jack Crossfire" (which is a pseudonym) by "Adam Williams".
 	    Adam Williams is the real name of the main developper of Cinelerra.
 
 2007-03-14  Nicolas Maufrais  <e.conti@gmx.net>
-	
+
 	* 1.24.pt_BR
 	  - Minor changes in texinfo commands
 
 2007-03-14  Nicolas Maufrais  <e.conti@gmx.net>
-	
+
 	* README_pt
 	  - Add this file, which was already in the SVN repository.
 
 2007-03-14  Nicolas Maufrais  <e.conti@gmx.net>
-	
+
 	* 1.24.pt_BR
 	  - Add the translation from English to Brazilian Portuguese (pt_BR)
 	    done by Flavio fREITAS and Wille MARCEL. Thanks to both of them!
@@ -642,7 +690,7 @@
 	    Dapper Drake
 	  - Minor change in the "Live CDs" node
 	  - Rename node "Common sound driver attributes" to "Sound driver
-	    attributes" 
+	    attributes"
 	  - Changes in the "Sound driver attributes" node
 	  - Rename node "Common video driver attributes" to "Video driver
 	    attributes"
@@ -864,7 +912,7 @@
 	  - Up-to-date with 1.06.EN.
 
 2007-01-18  Nicolas Maufrais  <e.conti@gmx.net>
-	
+
 	* 1.05.EN
 	  - Apply changes made by Raffaella Traniello in the wiki, which
 	    weren't applied in the last edition.
