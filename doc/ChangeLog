@@ -1,3 +1,75 @@
+08.01.2024 Igor Vladimirsky <sitelve@gmail.com>
+
+    * 1.66 EN
+    - Update edition number.
+    - Update a link to the Raffa's glossary in the "Miscellaneous links" node. (subs. 1.7)
+    - Add @xref{Safe regions} to the "The title-safe region" node. (subs. 14.4.56.2)
+    - Add @xref{Safe regions} to the "Safe regions tool" node. (subs. 8.1.9)
+    - Add @xref{The title-safe region} to the "Safe regions" node. (subs. 8.2.4)
+    - Add details (from Andraz Tori's msg in the ML) to the "Safe regions" node. (subs. 8.2.4)
+
+    - Add a small note about the pivot in the "Rotate" node (subs. 14.4.46)
+        (ported from the changelog of HV 2.0).
+
+    - Change the "Overlay modes" node:
+       - add @cindex Max overlay mode, @item @b{Max}
+       - add a description of the Max mode (subs. 8.2.5).
+
+    - Add a small note about "Ctrl+Middle mouse click" and "Ctrl+Left mouse click"
+         to the "Interface" node and the "Navigation shortcuts" node (subs. 3.7, 24.1.3).
+    - Add "Left mouse button double click. When done over an applied effect selects the region of the effect."
+         to the "Editing modes" node and the "Editing Media shortcuts" node (subs. 6.1.6, 24.1.1).
+    - Add a small detail (the cursor is over a track) to the "Track Manipulation shortcuts" node (subs. 24.1.6).
+
+    - Add "Force single processor is a preferences option not an EDL parameter."
+         to the "Performance" node (subs. 3.6).
+    - Add a note about Nudge to the "Nudging tracks' node and the "Using background rendering" node
+         (subs. 7.2, 20.10) (ported from the HV changelog).
+
+    - Add details to the "Translate" node. (subs. 14.4.57 - the Translate effect)
+    - Add @xref{Translate} to the "The camera and projector tool window" node (subs. 8.2.1.5).
+    - Add @xref{The camera and projector tool window} to the "Translate" node (subs. 14.4.57).
+
+    - Add mini improvements to the "Live Audio" node (subs. 14.3.12)
+        (ported from the changelog of HV 2.1).
+    - Add mini improvements to the "Live Video" node (subs. 14.4.33)
+        (ported from the changelog of HV 2.1).
+
+    - Create @node CD Ripper:
+       - add @subsection CD Ripper, @cindex CD Ripper effect.
+       - add a decription of the plugin (subs. 15.1.2).
+
+    - Add details about 'shared track effect' to the "Realtime effect types" (subs. 14, 14.1)
+         (ported from the changelog of HV 2.1, from the man. for Bcast2000 (with minor correction)).
+         - add @xref{The patchbay}.
+
+    - Add more info to the 'Reroute' node (subs. 14.4.44).
+    - Add more info to the "TimeFront" node (subs. 14.4.55).
+    - Add details in the description of the settling speed in the "Motion" node (subs. 14.4.35)
+       - fix a mistake in the description of the settling speed
+
+    - Add more info to the "Video attributes" node (subs. 4.4):
+       - add @xref{Track and output sizes}
+       - add @cindex Width, Height, @cindex W Ratio, H Ratio
+       - add @item @b{W Ratio, H Ratio}, @item @b{Width}, @item @b{Height}
+       - add a description of the 'Canvas'
+       - add info that 'canvas size = output size = project size'
+       - add "W and H may be swapped by a single button in the project settings."
+       - add info about Width, Height, W Ratio, H Ratio
+       - add info that the aspect ratio is the display aspect ratio (DAR)
+       - fix a mistake (h/v changed to w/h)
+
+    - Add "Clips created when no region is selected take the entire EDL." to
+         the "Two screen editing" node (subs. 7.7).
+    - Add more the zoom levels values to the "Viewer window" node (subs. 9).
+    - Add a detail "These zoom levels resize the entire window and not just the video."
+         to the "Viewer window" node (subs. 9).
+    - Add more items to the "Popup menu of options" node (subs. 8.2.1.4).
+    - Add more items and @xref{Popup menu of options} to the "Compositor controls" node.
+    - Add @cindex Fullscreen/windowed, @cindex Fullscreen, windowed.
+    - Add @cindex Fullscreen/windowed, @cindex Close source to the "Viewer window" node (subs. 9).
+    - Add more items (Close source and Fullscreen/windowed) to the "Viewer window" node (subs. 9).
+
 25.11.2023 Igor Vladimirsky <sitelve@gmail.com>
 
     * 1.65 EN

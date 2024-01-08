@@ -15,7 +15,7 @@
 @documentencoding UTF-8
 @settitle Cinelerra CV Manual
 @afourpaper
-@set EDITION 1.65.EN
+@set EDITION 1.66.EN
 @set VERSION 2.3
 
 @finalout
@@ -30,7 +30,7 @@
 @vskip 0pt plus 1filll
 Copyright @copyright{} 2003, 2004, 2005, 2006 - 2009 Adam Williams - Heroine Virtual Ltd.
 
-Copyright @copyright{} 2003 - 2023 Cinelerra-CV Team.@*
+Copyright @copyright{} 2003 - 2024 Cinelerra-CV Team.@*
 
 This manual is free; you can redistribute it and/or modify it under the terms
 of the GNU General Public License as published by the Free Software Foundation;
@@ -354,7 +354,7 @@ DVD authoring in general on Linux @*
 Source video editing, especially for Cinelerra HV (among them an Ubuntu package)@*
 @uref{http://fr.lprod.org/wiki/doku.php}
 @item @b{Cinelerra CV Glossary} for newbies@*
-@uref{http://g-raffa.eu/Cinelerra/cin_glossary.html}
+@uref{http://g-raffa.eu/Cinelerra/HOWTO/glossary.html}
 @end itemize
 
 @c cincvdoc_node_number_7
@@ -1681,7 +1681,7 @@ you will only want to use one processor, like in a renderfarm client.  This
 forces only one processor to be used.  In addition, the operating system usually
 uses the second processor for disk access.  So this option is really a
 1.25 processor mode.  The value of this parameter is used in renderfarm
-clients.
+clients. Force single processor is a preferences option not an EDL parameter.
 @end itemize
 
 @menu
@@ -1828,8 +1828,8 @@ These parameters affect purely how the user interface works.
 @itemize @bullet
 @item @b{Time format}@*
 Various representations of time are given.  Select the most convenient one.
-The time representation can also be changed by @key{CTRL} clicking on the
-timebar.
+The time representation can also be changed by @key{CTRL} clicking on the timebar.
+"Ctrl+Left mouse click" selects the next time format. "Ctrl+Middle mouse click" selects the previous time format.
 
 @cindex Index files, location
 @cindex Index files
@@ -2014,15 +2014,35 @@ the same as an individual media file frame rate that you load.  Media is reframe
 project framerate.
 
 @item @b{Canvas size}@*
-Sets the size of the video output.  In addition, each track also has its own frame
-size.  Initially, the @b{New Project} dialog creates video tracks whose size match
-the video output.  The video track sizes can be changed later without
-changing the video output.  @xref{The track popup menu}.
+The canvas is the space of the Compositor where the final (output) video is displayed.
+The setting sets the size (Width, Height) of the video output (canvas size = output size = project size).@*
+In addition, each track also has its own frame size. @xref{Track and output sizes}.@*
+Initially, the @b{New Project} dialog creates video tracks whose size match the video output.
+The video track sizes can be changed later without changing the video output.@*
+@xref{Track and output sizes}, @xref{The track popup menu}.
+
+@cindex Width, Height
+@cindex W Ratio, H Ratio
+@itemize @bullet
+@item @b{Width}@*
+The number of horizontal pixels in the video.
+@item @b{Height}@*
+The number of vertical pixels in the video. W. and H. may be swapped by a single button in the project settings.
+@item @b{W Ratio, H Ratio}@*
+Sets the ratio of the new canvas size (W, H) to the old (previous) canvas size (W, H).
+The new canvas size is recalculated based upon a certain factor in the W Ratio, H Ratio fields.@*
+A practical use-case: The current resolution is 640x480, and for some reason you want it to be 1.33 times wider.
+You don't have to calculate what 640x1.33 is; you type 1.33 into the "W" input instead, and Cinelerra calculates
+it for you.
+This @uref{https://linuxvideoediting.blogspot.com/2023/08/canvas-w-ratio-h-ratio-cinelerra.html, tutorial} explores
+in more detail these settings. It is in Russian but easily translatable with GoogleTranslator, DeepL or similar.
+@end itemize
 
 @item @b{Aspect ratio}@*
-Sets the aspect ratio.  The aspect ratio is applied to the video output.
+Sets the aspect ratio.  This aspect ratio refers to the display aspect ratio (DAR).
+The aspect ratio is applied to the video output (canvas).
 The aspect ratio can be different than the ratio that results from the formula:
-h / v (the number of horizontal pixels divided into the number of vertical
+W / H (the number of horizontal pixels divided into the number of vertical
 pixels).  If the aspect ratio differs from the results of the formula above,
 your output will be in non-square pixels.
 
@@ -2957,6 +2977,7 @@ between modes.
 If the arrow is highlighted, it enables @b{drag and drop mode}.@*
 In drag and drop mode, clicking in the timeline does not reposition the insertion point.@*
 Double-clicking in the timeline selects the entire edit the mouse pointer is over. @*
+Double-clicking on an applied effect selects the region of the effect.
 Dragging in the timeline repositions the edit the mouse pointer is over.  This is useful for reordering audio playlists, sorting movie scenes, moving effects around.@*
 To cut and paste in drag and drop mode you need to set
 @b{in/out points} to define an affected region. @xref{The in/out points}. @*
@@ -3323,6 +3344,9 @@ toggle.
 
 Use the mouse wheel over the nudge textbox to increment and decrement it.
 
+@b{Note:} Background rendering detects a nudge change. The nudge values are updated when the project rate is changed.
+The nudge values can also be changed during playback.
+
 @c cincvdoc_node_number_98
 @node Panning audio tracks
 @section Panning audio tracks
@@ -3508,8 +3532,8 @@ viewer, the destination region will shrink. On the timeline the following edits
 will move to the left.
 @item @b{Create a clip}@*
 @image{manual_images_intl/toclip_button,5mm} Generates a new clip for the resource window
-containing the affected region but does not change the timeline.  Every clip
-has a title and a description.  These are optional.
+containing the affected region but does not change the timeline.  Clips created when no region is selected take the entire EDL.
+Every clip has a title and a description.  These are optional.
 @item @b{Copy}@*
 @xref{Cut and paste editing}, it behaves the same.
 @end itemize
@@ -3831,16 +3855,21 @@ knowing if the output is current.
 
 Right clicking anywhere in the video output brings up a menu with all the zoom
 levels and some other options.  In this particular case the zoom levels resize
-the entire window and not just the video.
+the entire window and not just the video. @xref{Popup menu of options}.
 
 The @b{reset camera} and @b{reset projector} options center the camera and
-projector @xref{Compositing}.
+projector. @xref{Compositing}.
 
 @cindex Hide controls
 @cindex Controls, hide
 The @b{Hide controls} option hides everything except the video.
 
-On the left of the video output is a toolbar specific to the compositor window.
+@cindex Fullscreen/windowed
+@cindex Fullscreen windowed
+The @b{Fullscreen/windowed (f)} option: Video displayed in the Compositor window can be displayed in full screen view.
+Select this menu item (windowed) again to undo full screen mode.
+
+On the left of the video output is a toolbar specific to the Compositor window.
 Here are the functions in the toolbar:
 
 @menu
@@ -4113,14 +4142,21 @@ and future camera positions, not where it is in relation to the source video.
 @subsubsection Popup menu of options
 @cindex Popup menu of options
 @cindex Options, popup menu of
+@cindex Fullscreen/windowed
+@cindex Fullscreen, windowed
 
-In the compositing window, there is a popup menu of options for the camera and
-projector.  Right click over the video portion of the compositing window to
+In the Compositor window, there is a popup menu of options for the camera and
+projector.  Right click over the video portion of the Compositor window to
 bring up the menu.
 
 @itemize @bullet
-@item Reset Camera causes the camera to return to the center position.
-@item Reset Projector causes the projector to return to the center.
+@item Zoom levels: 25%, 33%, 50%, 75%, 100%, 150%, 200%, 300%, 400% of the original media size.
+@item Zooom Auto
+@item Reset Camera: Causes the camera to return to the center position.
+@item Reset Projector: Causes the projector to return to the center.
+@item Hide controls: Shows/hides the controls around the image area.
+@item Fullscreen/windowed (f): Video displayed in the Compositor window can be displayed in full screen view.
+Select this menu item (windowed) again to undo full screen mode.
 @end itemize
 
 @c cincvdoc_node_number_123
@@ -4153,19 +4189,19 @@ aspect ratio adjustment.
 @item @image{manual_images_intl/button_justify_bottom} Bottom
 @end itemize
 
-The translation effect allows simultaneous aspect ratio conversion and
+The Translate effect allows simultaneous aspect ratio conversion and
 reduction but is easier to use if the reduced video is put in the upper left of
 the temporary instead of in the center.  The track size is set to the original
 size of the video and the camera is centered.  The output size is set to the
 reduced size of the video.  Without any effects, this produces just the cropped
 center portion of the video in the output.
 
-The translation effect is dropped onto the video track.  The input dimensions
-of the translation effect are set to the original size and the output
+The Translate effect is dropped onto the video track.  The input dimensions
+of the Translate effect are set to the original size and the output
 dimensions are set to the reduced size.  To put the reduced video in the center
 subsection that the projector shows would require offsetting @b{out x and out y}
 by a complicated calculation.  Instead, we leave @b{out x and out y} at 0 and
-use the projector's tool window.
+use the projector's tool window. @xref{Translate}.
 
 Merely by selecting @image{manual_images_intl/left_justify} left justify and
 @image{manual_images_intl/top_justify} top justify, the projector displays the reduced
@@ -4341,7 +4377,10 @@ cut-off point is a region which is not always square like it is in the
 compositor window.  The borders are intended for scratch room and vertical
 blanking data.  You can show where these borders are by enabling the
 @image{manual_images_intl/titlesafe} safe regions toggle.  Keep titles inside the inner
-rectangle and keep action inside the outer rectangle.
+rectangle and keep action inside the outer rectangle.  There is no generally correct region.
+When you broadcast signals and they are displayed on regular analog TV, televisions have
+varying regions they display. So all that the lines tell you is where approximately you should expect things.
+@xref{The title-safe region}.
 
 @c cincvdoc_node_number_127
 @node Overlay modes
@@ -4394,6 +4433,11 @@ blended into the output.  It usually results in overloaded levels.
 @item @b{Replace}@*
 This mode does no blending and overwrites the output with the current
 track.
+
+@cindex Max overlay mode
+@item @b{Max}@*
+Max computes component-wise maximums of source and destination color components and piks
+the higher (maximum) r, g, b values between the foreground (source) and the background (destination) color components.
 @end itemize
 
 @c cincvdoc_node_number_128
@@ -4525,8 +4569,19 @@ Once your media loads you will see it appear on the display.  To play, rewind or
 forward through it use the @b{slider control} or the @b{transport controls}.
 
 You can change the media display size by right clicking on the screen to
-activate the display zoom menu.  Select zoom levels of 50%, 100% or 200% of the
-original media size.
+activate the display zoom menu.  Select zoom levels of 25%, 33%, 50%, 75%, 100%,
+150%, 200%, 300%, 400% of the original media size.
+These zoom levels resize the entire window and not just the video.
+
+In addition to the Zoom levels option, the popup menu offers the following options:
+
+@cindex Close source
+@b{Close source} - Removes the current media from being displayed.
+
+@cindex Fullscreen/windowed
+@cindex Fullscreen, windowed
+@b{Fullscreen/Windowed (f)} - Video displayed in the Viewer window can be displayed in full screen view.
+Select this menu item (windowed) again to undo full screen mode.
 
 When displaying media, the viewer uses the project's defined output size format
 settings, not the original assets format.  You can change the project's output
@@ -4833,6 +4888,11 @@ effect to appear under the cursor.  Most effects have GUI's but some do not.  If
 the effect does not have a GUI, nothing pops up when the @b{show} option is
 selected.  When you tweak parameters in the effect GUI, the parameters normally
 affect the entire duration of the effect.
+Attaching an effect is straightforward, but if you want to duplicate the effect for several tracks,
+adjusting the settings for every effect can suck. Instead, you can attach one effect to the one track.
+For other tracks, the original effect pops up in the shared list in the attach effect dialog.
+Attaching it as a @b{shared effect} causes the single effect to process data for the second track,
+without a second set of controls.
 
 @menu
 * Realtime effect types::
@@ -4887,6 +4947,11 @@ as the trigger.
 @cindex Bouncing tracks
 @cindex Tracks, bouncing
 @cindex Shared track
+If an output track contains a @b{shared track} but the output track has no
+media, the output track reads the shared track's media.  If the output
+track has media, it reads its own media.  This allows replicating media
+between tracks with @b{shared tracks} instead of copying the media.
+
 When an original track has a @b{shared track} as one of its effects, the shared
 track itself is used as a realtime effect.  This is more commonly known as
 @b{bouncing tracks} but Cinelerra achieves the same operation by attaching
@@ -4902,7 +4967,7 @@ the same data on the output.  Most of the times you do not want the shared track
 to mix the same data as the original track on the output.  You want it to stop
 right before the mixing stage and give the data back to the original track.  Do
 this by enabling the @image{manual_images_intl/mutepatch_up} mute toggle next to each
-track for whom you do not want to mix on the output.
+track for whom you do not want to mix on the output @xref{The patchbay}.
 
 Suppose you were making video and you did want the shared track to composite
 the original track's data on the output a second time.  In the case of video,
@@ -5185,8 +5250,8 @@ FIXME
 
 @image{manual_images_intl/liveaudio,12.5mm}
 
-This effect reads audio directly from the soundcard input.  It replaces any
-audio on the track so it is normally applied to an empty track.
+This effect reads audio directly from the soundcard's input through the timeline, in realtime.
+It replaces any audio on the track so it is normally applied to an empty track.
 
 To use Live Audio, highlight a horizontal region of an audio track or define in
 and out points.  Then drop the Live Audio effect into it.  Create extra tracks
@@ -5202,11 +5267,11 @@ These settings are critical since some sound drivers can not record in the same
 sized buffer they play back in.  Live audio has been most reliable when ALSA is
 the recording driver and the playback fragment size is 2048.
 
-Drop other effects after Live Audio to process soundcard input in realtime.
+Drop other effects after Live Audio to process the soundcard's input in realtime.
 
 Now the bad news.  With live audio there is no read-ahead, so effects like
-compressor will either delay if they have read-ahead enabled or playback will
-under-run.
+compressor requiring read ahead will either delay if they have read-ahead enabled or playback
+will under-run.
 
 Another problem is sometimes the recording clock on the soundcard is slightly
 slower than the playback clock.  The recording eventually falls behind and
@@ -5367,7 +5432,7 @@ FIXME
 * Swap channels::
 * Threshold::         How to get monochrome out of a region of the image
 * Time average::      How to add trail patterns or increase still image quality
-* TimeFront::
+* TimeFront::         A plugin for spatio-temporal video warping
 * Title::             How to add text to a track from inside Cinelerra
 * Translate::
 * Unsharp::           How to unsharp your video
@@ -6130,11 +6195,11 @@ With the video recording configured, highlight a horizontal region of a video
 track or define in and out points.  Then drop the Live Video effect into it.
 Drop other effects after Live Video to process the live video in realtime.  For
 best results, you should use OpenGL and a video card which supports GL shading
-language.  Go to @b{Settings->Preferences->Playback->Video Out} to enable the
-OpenGL driver.
+language.  With OpenGL, the effect allows processing video input through the timeline in realtime.
+Go to @b{Settings->Preferences->Playback->Video Out} to enable the OpenGL driver.
 
-Only one Live Video effect can exist at any time on the timeline.  It can not be
-shared by more than one track.
+Only one Live Video effect can exist at any time on the timeline.  It can't be shared by more than one track.
+The effect can't be used simultaneously with Live Audio if both drivers use DV.
 
 @c cincvdoc_node_number_193
 @node Loop video
@@ -6235,9 +6300,10 @@ the image size.
 
 @item @b{Settling speed}@*
 The motion detected between every frame can be accumulated to form an absolute
-motion vector.  If the settling speed is 100 the absolute vector is added to
-the next frame.  If the settling speed is less than 100 the absolute vector is
-downscaled by the settling amount before being added to the next frame.
+motion vector.  If the settling speed is 0 the absolute vector is added to the next frame.
+If the settling speed is 100 the absolute vector is resets to 0 after every frame.
+If the settling speed is less than 100 the absolute vector is downscaled by
+the settling amount before being added to the next frame.
 
 @item @b{Track rotation}@*
 Enables rotation operations.  The motion tracker tracks rotation in the master
@@ -6385,7 +6451,7 @@ vectors to the footage.  This is faster than a single pass because errors in
 the motion vector calculation can be discovered quickly.
 
 This also allows the motion tracking to use a less demanding colormodel like
-RGB888 in the scanning step and a more demanding colormodel like RGB Float in
+RGB-888 in the scanning step and a more demanding colormodel like RGB Float in
 the action step.  The scanning step takes much longer than action.
 
 This suffers the disadvantage of not being practical for extremely long
@@ -6753,13 +6819,52 @@ differently at the higher frame rate.
 @subsection Reroute
 @cindex Reroute video effect
 
-FIXME
+The plugin "Reroute" is a multitrack video realtime effect, similar to the 'Overlay video' effect (@xref{Overlay video}),
+i.e. it works only as a @b{shared effect}.@*
+The plugin is used for rerouting channels to a different track.
+The plugin enables to selectively transfer the Alpha channel or the Components (RGB or YUV)
+or both from a source track to a target track, partially overwriting the target's contents. The typical usage
+scenario is to build up a possibly animated Mask in one track and then to transfer the Alpha channel
+to another content track.
 
-It enables to selectively transfer the Alpha channel or the Components (RGB or
-YUV) or both from a source track to a target track, partially overwriting the
-target's contents. It works as a shared plugin. The typical usage scenario is
-to build up a possibly animated Mask in one track and then to transfer the Alpha
-channel to another content track.
+You need to use this plugin as a @b{shared effect} applied to both tracks (search for @b{shared effect}
+in the manual for an explanation) @xref{Realtime effect types}.@*
+You can choose which of this tracks will be the target (output) track.
+
+Further, you can choose between three operation modes:
+
+@itemize @bullet
+@item @b{Replace Target:}@*
+just overwrite everything on the target track with the contents of the source track (at the point where the plugins
+are inserted in the render pipeline).
+@item @b{Components only:}@*
+replace the Components (RGB or YUV) of the target track by the Components of the source track
+(again at the point where the plugins are inserted), but retain the Alpha of the target track.
+@item @b{Alpha replace:}@*
+same principle, other way round: overwrite the Alpha of the target and retain the Component content.
+I.e. the plugin Reroute allows you to build up an alpha chanel on one track and then by help of the plugin
+apply this alpha channel to another track. "Apply" here means simply copy it over, replacing the alpha channel
+of the target track.
+@end itemize
+
+See @uref{http://ichthyostega.de/cinelerra/plugin/reroute-demo1.png, the screenshot}.
+Here the Content Track "Top" is pojected to the left, and the Mask track is shown at the right side.
+On the Mask Track we have some some animated fractals. By using Color correction,
+Histogram and Chromakey, we can create an animated Mask out of this.
+We mask out some of the middle blue shades.@*
+The Content Track has its own Mask (applied after plugins of course, otherwise it would be replaced by the new alpha).
+But now we want to apply this mask to the Content Track, which contains quite different footage.@*
+We deliberately don't want to apply Chroma keying to the Content Track, as much as we don't want
+to overlay the Mask Track ontop of the Content Track (which could be done with the Overlay video effect,
+e.g. with "Multiply" mode). We just want the content to use the Alpha Channel of the Mask track.@*
+The Reroute plugin overwrites the Alpha channel of the target Track (which here is the top one) with
+the contents of the Alpha channel in the Mask track.@*
+Needless to say, because the contents of the Mask track can be processed further
+(blur, color correction, further masking) after the plugin, this openes endles masking and compositing possibilities.
+
+A very clear tutorial on the effect can be found
+@uref{https://linuxvideoediting.blogspot.com/2022/01/alpha-matte-with-reroute-in-cinelerra-part1.html, here},
+in Russian but easily translatable with GoogleTranslator, DeepL or similar.
 
 @c cincvdoc_node_number_209
 @node Reverse video
@@ -6791,7 +6896,8 @@ region followed by a forward region.
 @image{manual_images_intl/rotate,13.25mm}
 
 The Rotate filter can rotate the video in 90 degree increments, reverse and
-flip the video.
+flip the video. The effect supports a variable pivot and drawing of the pivot in
+the frame.
 
 @c cincvdoc_node_number_211
 @node SVG via Inkscape
@@ -6972,8 +7078,19 @@ the frame count.
 
 @image{manual_images_intl/timefront,12.5mm}
 
-This is a warping framework plugin based on this article:@*
-@uref{http://www.vision.huji.ac.il/videowarping/HUJI-CSE-LTR-2005-10_etf-tr.pdf}
+This is a spatio-temporal video warping framework plugin based on this article:
+@uref{http://www.vision.huji.ac.il/videowarping/HUJI-CSE-LTR-2005-10_etf-tr.pdf}@*
+The plugin enables to manage evolving timefronts in Cinelerra.
+Basically the idea is that different parts of video move trough time with different speeds
+and those speeds can change also.@*
+Spatio-temporal warping enables time to flow differently at different locations in the video,
+creating new video. Specifically, we manipulate the time flow of a video sequence by sweeping
+an evolving time front surface through the video’s aligned space-time volume.@*
+It is primarily useful for footage from static camera, where you want to speed up/slow down gradually
+just part of the picture. Also possible is an interesting way of embedding titles with that approach, for example
+you can put titles on video of the fire in that way.@*
+Some more advanced stuff (that cannot be done with this plugin) are displayed
+here: @uref{http://www.vision.huji.ac.il/videowarping/}
 
 @c cincvdoc_node_number_220
 @node Title
@@ -7080,7 +7197,7 @@ If the video is displayed on a consumer TV, the outer border is going to be
 cropped by 5% on each side.  Moreover, text which is too close to the edge
 looks sloppy.  Make sure when adding titles to have the @b{title-safe}
 @image{manual_images_intl/titlesafe} tool active in the @b{compositor} window.
-The text should not cross the inner rectangle.
+The text should not cross the inner rectangle. @xref{Safe regions}.
 
 @c cincvdoc_node_number_223
 @node Translate
@@ -7110,9 +7227,17 @@ time.
 
 You can use this effect for many things such as having a cropped inset clip
 move across the screen, or have it change size or stretch while doing so.
+If you don't need to do any kind of cropping of the scenes you are
+split-screening/etc you can use the Translate plugin to move/resize
+each track to where you want it in the output frame. It's a little more
+straightfoward than using camera/projector automation - you can specify
+position/scale of each track by x:y w:h instead of having to tweak the
+position by hand or play with the bezier curves.
+The usage of the effect is also described in the "Compositor window" chapter.
+@xref{The camera and projector tool window}.
+
 Be forewarned though, that for interlaced footage horizontal displacements are
-likely to destroy the field order, resulting in all sort of flickering and
-jumping movements.
+likely to destroy the field order, resulting in all sort of flickering and jumping movements.
 
 @c cincvdoc_node_number_224
 @node Unsharp
@@ -7377,6 +7502,7 @@ the effect is processed.
 
 @menu
 * Resample::        How to reduce the dynamic range of audio.
+* CD Ripper::       Extract audio from CD.
 @end menu
 
 @c cincvdoc_node_number_234
@@ -7394,6 +7520,17 @@ sample and the output file will have half as many samples as the input
 sequence.  If it is 0.5, every 0.5 input samples will be stretched to 1 output
 sample and the output file will have twice as many samples as the input
 sequence.
+
+@node CD Ripper
+@subsection CD Ripper
+@cindex CD Ripper effect
+
+CD Ripper lets you extract digital audio tracks from audio CD.
+It allows you to extract the entire CD as well as only part of the CD or of the track.
+You need to select the range to transfer: from 'Track №', 'Min', 'Sec' to 'Track №', 'Min', 'Sec'.@*
+@b{Note:} The plugin accepts ending tracks higher than the total tracks.
+Put in 100 for the ending track to get the entire disk.
+The plugin rips all tracks of the range to a single audio file.
 
 @c cincvdoc_node_number_235
 @node Rendered video effects
@@ -9071,6 +9208,8 @@ rendered.
 It is often useful to insert an effect or a transition and then select
 settings->set background render right before the effect to preview it at full
 framerates.
+
+@b{Note:} Background rendering detects nudge change.
 
 @c cincvdoc_node_number_269
 @node Tips
@@ -11622,6 +11761,8 @@ can be closed with a @kbd{CTRL-w}.  Most operations can be cancelled with
 @tab Mute region
 @item @kbd{a}
 @tab Select all
+@item @kbd{Left mouse button double click}
+@tab When done over an applied effect selects the region of the effect.
 @item @kbd{SHIFT + click}
 @tab When done over an edit causes the highlighted selection to extend to the
 cursor position.  When done over the boundary of an effect causes the trim
@@ -11698,6 +11839,10 @@ and minimum range of the current highlighted selection
 @tab Move insertion point to beginning of timeline *
 @item @kbd{End}
 @tab Move insertion point to end of timeline *
+@item @kbd{CTRL + Left mouse click}
+@tab On the timebar, selects the next time format.
+@item @kbd{CTRL + Middle mouse click}
+@tab On the timebar, selects the previous time format.
 @end multitable
 
 * You may have to click on the timeline to deactivate any text boxes
@@ -11770,9 +11915,9 @@ or tumblers before these work.
 @item @kbd{SHIFT L}
 @tab Loop playback
 @item @kbd{TAB}
-@tab Toggle single track arming status
+@tab If the cursor is over a track, toggles the single track arming status.
 @item @kbd{SHIFT-TAB}
-@tab Toggle every other track's arming status
+@tab If the cursor is over a track, toggles every other track's arming status.
 @end multitable
 
 @c cincvdoc_node_number_338
