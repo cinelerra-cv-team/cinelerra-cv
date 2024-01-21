@@ -387,7 +387,7 @@ void SetFormatWindow::create_objects()
 	y += mwindow->theme->setformat_margin;
 	add_subwindow(new BC_Title(mwindow->theme->setformat_x3, 
 		y, 
-		_("W Ratio:")));
+		_("W Scale:")));
 	add_subwindow(ratio[0] = new ScaleRatioText(mwindow->theme->setformat_x4, 
 		y, 
 		thread, 
@@ -396,7 +396,7 @@ void SetFormatWindow::create_objects()
 	y += mwindow->theme->setformat_margin;
 	add_subwindow(new BC_Title(mwindow->theme->setformat_x3, 
 		y, 
-		_("H Ratio:")));
+		_("H Scale:")));
 	add_subwindow(ratio[1] = new ScaleRatioText(mwindow->theme->setformat_x4, 
 		y, 
 		thread, 
