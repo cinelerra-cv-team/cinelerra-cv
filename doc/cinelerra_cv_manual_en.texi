@@ -15,7 +15,7 @@
 @documentencoding UTF-8
 @settitle Cinelerra CV Manual
 @afourpaper
-@set EDITION 1.66.EN
+@set EDITION 1.67.EN
 @set VERSION 2.3
 
 @finalout
@@ -350,9 +350,6 @@ Miscellaneous links:
 @item @b{Creating DVD videos on Linux and Unix} - an excellent high level overview of
 DVD authoring in general on Linux @*
 @uref{http://womble.decadent.org.uk/talks/dvd-ukuug06/dvd-talk-ukuug06-paper.html}
-@item @b{lprod - Libre Production} a French Wiki full of resources for Open
-Source video editing, especially for Cinelerra HV (among them an Ubuntu package)@*
-@uref{http://fr.lprod.org/wiki/doku.php}
 @item @b{Cinelerra CV Glossary} for newbies@*
 @uref{http://g-raffa.eu/Cinelerra/HOWTO/glossary.html}
 @end itemize
@@ -1280,7 +1277,7 @@ software-only effects.  All rendering before the last software-only effect is
 done in software.  The core Cinelerra operations like camera and projector are
 OpenGL@.
 @item Not all of the effects support OpenGL acceleration.  The following effects
-support OpenGL: Brightness, Chromakey, Chromakeyhsv, Color balance,
+support OpenGL: Brightness, Chromakey, Chromakey HSV, Color balance,
 Deinterlace, Diffkey, Dissolve, Flip, Frames to fields, Freeze frame, Gamma,
 Gradient, Histogram, Hue saturation, Interpolate Pixels, Invert video, Linear
 blur, Overlay, Perspective, Radial blur, RGB601, Rotate, Scale, Threshold,
@@ -2016,6 +2013,8 @@ project framerate.
 @item @b{Canvas size}@*
 The canvas is the space of the Compositor where the final (output) video is displayed.
 The setting sets the size (Width, Height) of the video output (canvas size = output size = project size).@*
+This setting refers to the Frame Aspect Ratio (= Storage Aspect Ratio = Picture Aspect Ratio) and defines the physical frame size
+(the width and height measured in pixels) of your output video.@*
 In addition, each track also has its own frame size. @xref{Track and output sizes}.@*
 Initially, the @b{New Project} dialog creates video tracks whose size match the video output.
 The video track sizes can be changed later without changing the video output.@*
@@ -2038,18 +2037,36 @@ This @uref{https://linuxvideoediting.blogspot.com/2023/08/canvas-w-ratio-h-ratio
 in more detail these settings. It is in Russian but easily translatable with GoogleTranslator, DeepL or similar.
 @end itemize
 
-@item @b{Aspect ratio}@*
+@item @b{Aspect ratio} (DAR)@*
 Sets the aspect ratio.  This aspect ratio refers to the display aspect ratio (DAR).
-The aspect ratio is applied to the video output (canvas).
+The aspect ratio is applied to the video output (canvas) and determines the shape of the physically displayed image or video
+in the Compositor and Viewer. It's not a render setting and does not affect the rendered output.
+It just changes the display in the Compositor/Viewer and doesn't change anything in the actual video data processed by Cinelerra.
+The numbers in each direction can be any floating point number. When drawn on the screen,
+video pixels are stretched to match the aspect ratio.
 The aspect ratio can be different than the ratio that results from the formula:
 W / H (the number of horizontal pixels divided into the number of vertical
 pixels).  If the aspect ratio differs from the results of the formula above,
-your output will be in non-square pixels.
+your output will be in non-square pixels.@*
+@b{Note:} Cinelerra-CV doesn't automatically set up an output size and an aspect ratio (DAR) for the project to that of the file you load.
+I.e. the program does not auto-detect aspect ratio, and only applies aspect ratio on the output, not on the individual input files.
+So, you always have to choose the format settings (in the Set Format dialog) according to the media info, because in Cinelerra, no matter
+what attributes the media file has, it is played back according to the project attributes. When displaying media, the Viewer/Compositor use
+the project's defined output size format settings, not the original assets format.
+This can be annoying and confusing, but it is by design.@*
+Usually, when you're going to do a project, which is mostly based on anamorphotic footage, you set up
+the correct aspect ratio for the whole project. If you use a non-standard aspect ratio, this has impact on other
+areas like titles, included stills and included non-anamorphotic footage.
+Probably that's the reasoning behind why Cinelerra doesn't do this setting for you. @xref{Gradient}.@*
+@b{Note:} Some file formats, like OGG, write the project aspect ratio to the file. So, what is written in a media file depends mostly on the file format.
 
 @item @b{Auto aspect ratio}@*
 If this option is checked, the @b{New Project} dialog always recalculates the @b{Aspect
-ratio} setting based upon the given @b{Canvas size}.  This ensures pixels are
-always square.
+ratio} setting based upon the given @b{Canvas size}.  This ensures pixels are always square (Sample Aspect Ratio (SAR) = 1:1).
+It's not a render setting. It does not affect the rendered output, only how the video is displayed in the Compositor/Viewer.
+However, the setting is handled e.g. for Ogg/Theora during rendering.@*
+@b{Note:} Cinelerra is oblivious about @b{pixel aspect ratio} of input files and provides no clean way to deal with that.@*
+Besides, if you want to render several versions with different aspect ratios, the Render dialog has no notion of pixel aspect ratio.
 
 @item @b{Color model}@*
 The project will be stored in the color model video intermediates selected in
@@ -2273,15 +2290,17 @@ Note: Make sure you have installed Imagemagick which provides the functions
 'identify' and 'convert' used in the script.
 
 @verbatim
-#/bin/sh
-mkdir resized
-for element in `ls . | grep -i '\.jpe*g$\'`;
+#/bin/bash -v
+mkdir skaliert
+for element in `ls . | grep -i jp*g$`;
 do
-    size=`identify ${element}`
-    width=`echo ${size} | sed '+s+.*JPEG ++' | sed '+s+x.*++'`
-    height=`echo ${size} | sed '+s+.*JPEG [0-9]*x++' | sed '+s+DirectClass.*++'`
-    let new_width=${width}*9375/10000
-    convert -resize "${new_width}x${height}!" -quality 100 ${element} resized/${element}
+size=`identify ${element}`
+width=`echo ${size} | sed '+s+.*JPEG ++' | sed '+s+x.*++'`
+height=`echo ${size} | sed '+s+.*JPEG [0-9]*x++' | sed '+s+ .*++'`
+rat_height=$((${height}/576))
+tmp_width=$((${width} / ${rat_height}))
+new_width=$((${tmp_width}*9375/10000))
+convert -resize "${new_width}x576!" -quality 100 -sharpen 20 ${element} skaliert/x576_${element}
 done
 @end verbatim
 
@@ -5217,9 +5236,9 @@ FIXME
 FIXME
 
 @c cincvdoc_node_number_148
-@node Heroine College
-@subsection Heroine College
-@cindex Heroine College
+@node Heroine College Concert Hall
+@subsection Heroine College Concert Hall
+@cindex Heroine College Concert Hall
 
 @image{manual_images_intl/reverb,12.5mm}
 
@@ -5384,7 +5403,7 @@ FIXME
 * Brightness/contrast::    How to adjust brightness and contrast
 * Burning TV::        How to make your video "burn"
 * Chroma key::        Create transparency based on color similarities
-* Chroma key (HSV)::
+* Chroma key (HSV):: Creates a high quality key and makes it easy to remove color spill.
 * Color balance::
 * Decimate::          How to reduce frame rates by eliminating similar frames
 * Deinterlace::       How to convert interlaced video to progressive video
@@ -5429,7 +5448,7 @@ FIXME
 * Selective temporal averaging::
 * Sharpen::
 * ShiftInterlace::
-* Swap channels::
+* Swap channels:: How to replace an image’s color channel with another or turn channels off.
 * Threshold::         How to get monochrome out of a region of the image
 * Time average::      How to add trail patterns or increase still image quality
 * TimeFront::         A plugin for spatio-temporal video warping
@@ -5493,7 +5512,7 @@ frames.
 This effect is the one to use if you want to achieve an "old movie" or TV show
 look.  It will put moving lines up and down the movie as well as putting "snow"
 on the video.  Use is along with Brightness/Contrast and Color Balance to make
-your movie look like a really old black and white movie.
+your movie look like a really old black and white movie. This is a part of EffectTV:@uref{https://www.effectv.dev}
 
 @c cincvdoc_node_number_164
 @node Blur
@@ -5539,7 +5558,7 @@ are kept intact.
 The video burning effect makes your video "burn" where there are small light
 colored patches of video, on the edge of a white T-shirt for example.  It can
 be a great asset to a music video and just a great outlet to help free your
-imagination in your video.
+imagination in your video. This is a part of EffectTV: @uref{https://www.effectv.dev}
 
 @c cincvdoc_node_number_167
 @node Chroma key
@@ -5581,44 +5600,90 @@ for compressed sources.  A popular softening technique is to use a maximum
 slope and chain a blur effect below the chroma key effect to blur just the
 alpha.
 
+Sometimes if you have jagged edge artifacts you can also add a blur effect to the track
+and adjust it out.
+
 @c cincvdoc_node_number_168
 @node Chroma key (HSV)
 @subsection Chroma key (HSV)
 @cindex Chroma key effect (HSV)
 
-Plugin by Jerome Cornet @uref{http://jcornet.free.fr/linux/chromakey.html}
+Plugin by @uref{http://jcornet.free.fr/linux/chromakey.html, Jerome Cornet}.@*
+The description of the plugin was written by Jerome Cornet, significantly expanded, supplemented and revised by @uref{https://www.youtube.com/watch?v=QATi9J6Q8uw, Igor Vladimirsky}.@*
 This plugin is used to remove a color from a video to composite with another image.
-People refer to is as green screen or blue screen process (because of the color that is keyed out).
-More information: @uref{http://en.wikipedia.org/wiki/Chromakey}@*
-@* @b{Requirements}
+People refer to is as green screen or blue screen process (because of the color that is keyed out).@*
 
-The subject in the movie should have a good background. The lighting is crucial and good lighting during production will save your hide with much less effort than in post-production. Here we assume that we have a good video, filmed on green (or blue) screen that we want to use.
-@b{Important: Make sure you are using an color model that has an alpha channel, such as RGBA8, RGBAFloat, YUVA8.} To change color model, go to Settings->Format->Color Model.
+@b{Requirements}
 
-@* @b{Usage}
+The subject in the movie should have a good background: flat, well lit, and of uniform color. The subject should be well lit and should not contain the color to key out. The lighting is crucial and good lighting during production will save your hide with much less effort than in post-production. Here we assume that we have a good video, filmed on green (or blue) screen that we want to use.@*
+@b{Important: Make sure you are using an color model that has an alpha channel, such as RGBA8, RGBAFloat, YUVA8.} To change color model, go to Settings->Format->Color Model.@*
 
-As any other effect, add it to the timeline in the main window. You can tweak each parameter in order to improve the keying.
+@b{Usage}
 
-Start with Hue Tolerance at 10%, Min Brightness at 0, Max brightness at 100%, Saturation offset at 0, Min Saturation at 0, In Slope at 0, Out Slope at 0, Alpha Offset at 0 (that's mid-way through), Spill Threshold at 0, Spill Compensation at 100%. At any time, you can check what the Mask looks like by clicking on Show Mask. This will output a black and white image of the mask.
+As any other effect, add it to the timeline in the main window.
+You can tweak each parameter in order to improve the keying.
+
+Start with:@*
+Hue Tolerance at 10%, Min Brightness at 0, Max brightness at 100%, Saturation offset at 0, Min Saturation at 0,@*
+In Slope at 0, Out Slope at 0, Alpha Offset at 0 (that's mid-way through),@*
+Spill Threshold at 0, Spill Compensation at 100%.@*
+
+At any time, you can check what the Mask looks like by clicking on Show Mask. This will output a black and white image of the mask.@*
 
 @itemize @bullet
-@item @b{Select the Key color} Select the key color (green, blue, etc) using the color wheel or the color picker. Remember, only the Hue matters, not Saturation or Value. To use the color picker, click on the color picker icon in the Compositor window, then click on the color you want in the Compositor window. Then in the Chromakey (HSV) parameters window, click on "Use Color Picker".
+@item @b{Select the Key color}@*
+Select the key color (green, blue, etc) using the color wheel or the color picker. Remember, only the Hue matters, not Saturation or Value. You can use the RGB (red, green, and blue) parameters to tweak the sampled color. To use the color picker, click on the color picker icon in the Compositor window, then click on the color you want in the Compositor window. Then in the Chromakey (HSV) parameters window, click on "Use Color Picker".
 
-@item @b{Adjust the Hue Tolerance} Because there are slight variations in lighting, the background will not be in a uniform key color hue. Increase or decrease the Hue tolerance to mask out the background. If there are dark spots that are keyed out that shouldn't be, it can be corrected later.
+@item @b{Adjust the Hue Tolerance}@*
+This slider controls the range of hues that will be recognized as belonging to the “key color”.@*
+Values range from 0 to 100.@*
+Lower values key out only pixels with hues very similar to the sampled color (key color), while higher values also key out hues that are less similar.@*
+Moving the slider to the right increases the range of hues that match the color to be removed. Moving the slider to the left decreases the range of hues that match the color to be removed. In the case of a green screen, this means some yellow and cyan tones can also be removed along with the green.@*
+Because there are slight variations in lighting, the background will not be in a uniform key color hue. Increase or decrease the Hue tolerance to mask out the background. If there are dark spots that are keyed out that shouldn't be, it can be corrected later.
 
-@item @b{Adjust the Brightness} Increase Min Brightness so that only the background is masked out, and not parts of the foreground. You can also reduce Max Brightness if some clear areas are keyed out (useful for very dark backgrounds).
+@item @b{Adjust the Brightness} (Min Brightness, Max Brightness)@*
+These control sliders set the minimum / maximum brightness levels for the key color range (the brightness levels between which keying occurs).@*
+Values range from 0 to 100.@*
+Pixels with values below the minimum and above the maximum are opaque; and everything in between the two values is transparent.@*
+The parameters can be used to exclude dark objects or bright objects from being included in the key. Increase Min Brightness so that only the background is masked out, and not parts of the foreground. You can also reduce Max Brightness if some bright areas are keyed out (useful for very dark backgrounds).
 
-@item @b{Adjust the Saturation} Increase Min Saturation so that only the background is masked out, and not parts of the foreground. Saturation Offset can be used to change this, but for now leave it to 0.
+@item @b{Adjust the Saturation} (Saturation Offset, Min Saturation)@*
+The background should be highly and uniformly saturated (pure green or pure blue). In the case Chroma Key works most effectively. If the background is far from ideal, adjusting the Min Saturation level can help.@*
+The "Min Saturation" slider sets the minimum saturation level for the key color range (the saturation level at which keying begins). This level will be treated as a background.@*
+Values range from 0 to 100.@*
+Moving the slider right allows a narrower range of saturation values to be matched.
+Moving the slider left allows a wider range of saturation values to be matched.
+Increase Min Saturation so that only the background is masked out, and not parts of the foreground. Saturation Offset can be used to change this, but for now leave it to 0.@*
+Note: The Saturation Offset parameter only functions if the Min Saturation parameter has been used (its value is > 0).
 
-@item @b{Check what it looks like} At this stage, your mask should be pretty clean. Toggle Show Mask to check what it looks like, it should be OK. If not, repeat steps 1 to 4 to get a better key. The rest of the controls are useful to smear the mask to help compositing later on. They will help you to make your key look much cleaner.
+@item @b{Check what it looks like}@*
+At this stage, your mask should be pretty clean. Toggle Show Mask to check what it looks like and examine problem areas of the key while making adjustments, it should be OK. If not, repeat steps 1 to 4 to get a better key. The rest of the controls are useful to smear the mask to help compositing later on. They will help you to make your key look much cleaner.
 
-@item @b{Adjust the slope} For now, the mask is a full on/ full off mask that can be really harsh and not necessarily what you are looking for. In Slope and Out Slope will help you to smooth that key. In Slope leaves more colors in the mask, Out Slope takes more colors out of the mask. The colors that are borderline in the mask will see their alpha channel reduced by half instead of being completely on or off.
+@item @b{Adjust the slope} (In Slope, Out Slope)@*
+For now, the mask is a full on/ full off mask that can be really harsh and not necessarily what you are looking for. In Slope and Out Slope will help you to smooth that key.@*
+The colors that are borderline in the mask will see their alpha channel reduced by half instead of being completely on or off.@*
+In Slope leaves more colors in the mask.@*
+Controls the falloff (from opaque to transparent) inside of the keyed region. Values range from 0 to 20.@*
+Moving the slider right creates the semi-transparent zone and extends it from the edges of the foreground (the opaque area) towards the keyed region.@*
+Out Slope takes more colors out of the mask.@*
+Controls the falloff (from opaque to transparent) of the pixels outside of the keyed region.
+Values range from 0 to 20.@*
+Moving the slider right creates the semi-transparent zone and extends it from the edges of the transparent zone towards the opaque area outside of the keyed region.@*
 
-@item @b{Adjust the alpha channel} This control offsets the whole alpha channel by some amount. You probably know what you are doing if you change it from 0 (the default value)
+@item @b{Adjust the alpha channel} (Alpha Offset)@*
+This control offsets the whole output alpha channel by some amount. You probably know what you are doing if you change it from 0 (the default value). At a value of -100, the entire image keys out. At a value of 100, the entire image is opaque. You can create a transition by animating this from –100 to 100.
 
-@item @b{Remove spill light} This steps helps you removing the green (or blue) halo around the edges of the mask. It does so by removing the saturation of pixels that have a similar hue to the key color (turning them into grey instead of green or blue). Spill Compensation controls the amount of de-saturation. If you start with Spill Compensation at 100%, slowly increase the Spill Threshold until the remaining green or blue areas turn grey. Then reduce Spill Compensation until the image looks good.
+@item @b{Spill light control} (Spill Threshold, Spill Compensation)@*
+Suppresses the spill from the key color onto foreground objects that often occurs due to color reflection in the scene.
+It does so by removing the saturation of pixels that have a similar hue to the key color (turning them into grey instead of green or blue).
+That can help you remove the green (or blue) halo around the edges of the mask. Adjusting these parameters may help suppress video noise or fringing along the edges of the foreground object.@*
+Spill Threshold is a hue threshold: the colors that have a similar hue (+/- the threshold) to the key color are desaturated depending on how close the colors are to the key color.@*
+Spill Compensation controls the amount of desaturation: the higher spill amount is, the more you desaturate the color.@*
+Note: Spill Compensation only functions if the Spill Threshold parameter has been used (its value is > 0).@*
+We suggest you start with Spill Compensation to the max (at 100%), Spill Threshold to the min. Slowly increase the Spill Threshold until the remaining green or blue areas turn grey. Once you've selected all the spill areas, reduce the Spill Compensation to match the rest of the scene (until the image looks good).
 
-@item @b{Blur the alpha channel} Now the mask is probably still very harsh, so just below the Chromakey (HSV) plugin, add a Blur effect, and select only the Alpha channel, with a radius of 2 or 3 (more if you really want to soften the edges). This will significantly help the keying.
+@item @b{Blur the alpha channel}@*
+Now the mask is probably still very harsh, so just below the Chromakey (HSV) plugin, add the Blur effect, and select only the Alpha channel, with a radius of 2 or 3 (more if you really want to soften the edges). This will significantly help the keying.
 
 @end itemize
 
@@ -5741,7 +5806,7 @@ the transparency border.
 
 @image{manual_images_intl/dot,16.5mm}
 
-DotTV converts gray scale images to set of dots. It is hard to recognize what is shown when your eyes are close to the monitor. This is is part of EffectTV: @uref{http://effectv.sourceforge.net}
+DotTV converts gray scale images to set of dots. It is hard to recognize what is shown when your eyes are close to the monitor. This is a part of EffectTV:@uref{https://www.effectv.dev}
 
 @c cincvdoc_node_number_177
 @node Downsample
@@ -5999,8 +6064,8 @@ more contrasty.
 
 Automatic input transfer is calculated for the R, G, and B channels but not the
 value.@*
-@b{Plot histogram}@*
-@b{Split output}
+@b{Plot histogram} Click the checkbox to enable/disable plotting the histogram. @*
+@b{Split output} Use this to split the output picture into one half that is color-corrected and another that is not.
 
 @c cincvdoc_node_number_185
 @node HolographicTV
@@ -6009,7 +6074,7 @@ value.@*
 
 @image{manual_images_intl/holo,16.25mm}
 
-Incoming objects are projected like holovision seen in the movie "STAR WARS" (remember R2-D2's video message projector). To use, push space key and a picture is taken as a background image. Differences between current picture and the background image are recognized as the incoming objects. Use black clothing for best results. This is is part of EffectTV: @uref{http://effectv.sourceforge.net}
+Incoming objects are projected like holovision seen in the movie "STAR WARS" (remember R2-D2's video message projector). To use, push space key and a picture is taken as a background image. Differences between current picture and the background image are recognized as the incoming objects. Use black clothing for best results. This is a part of EffectTV: @uref{https://www.effectv.dev}
 
 @c cincvdoc_node_number_186
 @node Hue saturation
@@ -6629,22 +6694,27 @@ than with DV footage.
 @subsection Motion blur
 @cindex Motion blur
 
-This real-time effect takes  the X/Y camera automation vectors as input and
+Plugin by @uref{https://github.com/hal0x2328, Joe Stewart}.@*
+Suppose you are using a camera automation to simulate pans/zooms across still screenshots.
+The problem is with faster pans (and to some extent, zooms), there is a fair amount of strobing that takes place that makes viewing unpleasant.
+The motion blur plugin can help you make the jitters a little easier on the eyes during a fast pan.
+
+This real-time effect takes  the X, Y, Z camera automation vectors as input and
 applies a linear blur trailing the direction of the camera automation to fool
- the eye into thinking it is seeing a more natural motion. It is mainly designed
- to remove choppy motion in overlying graphics/SVG.
+the eye into thinking it is seeing a more natural motion. It is mainly designed
+to remove choppy motion in overlying graphics/SVG.
 
- This plugin is not designed for rendering in non real-time applications, for
- example to add motion blur frame-by-frame inside an existing live-action
- video. For the plugin to work, camera automation is required.
+This plugin is not designed for rendering in non real-time applications, for
+example to add motion blur frame-by-frame inside an existing live-action
+video. For the plugin to work, camera automation is required.
 
- @b{Parameters:}
- @itemize @bullet
- @item @i{Length:} sets the distance between the duplicate images
- @item @i{Steps:} number of duplicate images (steps) that are offset from
- the input image to the end of the blur. This lets you set the smoothness of
- the resulting blur.
- @end itemize
+@b{Parameters:}
+@itemize @bullet
+@item @i{Length:} sets the distance between the duplicate images
+@item @i{Steps:} number of duplicate images (steps) that are offset from
+the input image to the end of the blur. This lets you set the smoothness of
+the resulting blur.
+@end itemize
 
 @center @image{manual_images_intl/motionblur,120mm}
 
@@ -6989,7 +7059,53 @@ FIXME
 
 @image{manual_images_intl/swapchannels,12.5mm}
 
-FIXME
+The decription for the Swap Channels effect was made by Igor Vladimirsky.@
+The Swap Channels effect is a color correction plugin which lets you swap the R, G, B, A color channels as well
+as Alpha channel between them to all possible directions in the same image.
+The effect allows you to modify a color channel by adding the values associated to
+the other channels of the same pixels.
+The effect is an analog of the Shift Channels effect in Adobe After Effects.
+The effect works with both images and videos.
+The vertical column on the right side of the effect window represents the Red, Green, Blue, Alpha output channels.
+In the pull-down menus on the left side of the effect window, one for each RGBA output channel, you can select
+from the following options:
+@itemize @bullet
+@item @b{Red}@*
+The red source channel that will be in an output channel.
+@item @b{Green}@*
+The green source channel that will be in an output channel.
+@item @b{Blue}@*
+The blue source channel that will be in an output channel.
+@item @b{Alpha}@*
+The alpha source channel that will be in an output channel.
+Alpha converts a channel to the value of the alpha channel for the original pixel. The intermediate alpha values are also taken into account.
+@item @b{0%}@*
+Negates a source channel value. Sets the minimum value (0) for this channel. For the alpha channel, the pixel is fully transparent
+and the color in the pixel beneath will show through. Set all three R, G, B channels to 0 % to get black output
+(alpha channel input should be set to 100% | Alpha).
+@item @b{100%}@*
+Negates a source channel value. Sets the maximum value (255) for this channel. For the Alpha channel, the pixel is opaque.
+Set all three R, G, B channels to 100 % to get white output (alpha channel input should be set to 100% | Alpha).
+@end itemize
+
+The effect allows you to shuffle and duplicate the channels.
+You can convert an image to grayscale using only a single channel.
+Set every color output channel in the Swap Channels options to the same input color channel. You can use this to see which
+color channel looks better as a black and white image, and choose that version.
+You can convert a grayscale into a certain RGB color.@*
+The effect is very handy for swapping the Blue and Red channels around for instance: if you choose RGB -> BGR,
+the pixels that are red will be made blue, and the blue pixels will be made red. The green pixels stay the same.
+The technique called ‘channel swapping’ one of the most crucial editing steps in infrared photo editing.
+You can fine-tune the result by using additional effects like "Histogram".
+
+The effect allows you to re-route the desired channel into the alpha channel.
+Suppose you are doing an alpha track matte with the Reroute effect (@xref{Reroute}) and you want to use a channel other than the
+alpha channel of the matte track as a matte. In the case, use the Swap Channels effect to re-route the channel you want to the alpha channel slot.
+This can come in handy if you have a channel that defines the desired area of transparency better than the alpha channel
+does or in cases where the source image doesn’t include an alpha channel but you have amazing contrast in maybe the green channel.
+You can simply tell the green channel to be the alpha channel and there it is, you have an alpha matte!
+@uref{https://linuxvideoediting.blogspot.com/2023/08/canvas-w-ratio-h-ratio-cinelerra.html, This tutorial} explores in more detail these settings.
+It is in Russian but easily translatable with GoogleTranslator, DeepL or similar.
 
 @c cincvdoc_node_number_217
 @node Threshold
@@ -7126,8 +7242,9 @@ In addition to the scrolling, @b{Fade in/Fade out} are a second type of
 animation.  If the fade seconds are 0, no fading is done.@*
 @b{Color} picks the color to draw the text in.  Usually white is the only
 practical color.@*
-@b{Stamp timecode} replaces the text with the current position on the timeline
-in seconds and frames.@*
+@b{Stamp timecode} Check the box to display the timecode. It replaces the text with the current position on the timeline.@*
+@b{Format} displays the timecode in various formats (seconds, frames..).
+The timecode is fixed to the playback time. A workaround can be found @uref{https://linuxvideoediting.blogspot.com/2017/01/cinelerra-timecode.html, here}.
 
 Text options can only be applied to all the text as a whole. If you want your
 title text formatted with a mixture of fonts, sizes, styles, alignments etc. you
