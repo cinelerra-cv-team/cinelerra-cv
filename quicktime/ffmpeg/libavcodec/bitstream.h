@@ -56,17 +56,31 @@ extern const uint8_t ff_reverse[256];
 #if defined(ARCH_X86)
 // avoid +32 for shift optimization (gcc should do that ...)
 static inline  int32_t NEG_SSR32( int32_t a, int8_t s){
-    asm ("sarl %1, %0\n\t"
-         : "+r" (a)
-         : "ic" ((uint8_t)(-s))
-    );
+    if (__builtin_constant_p(s)) {
+        asm ("sarl %1, %0\n\t"
+             : "+r" (a)
+             : "i" (-s & 0x1F)
+        );
+    } else {
+        asm ("sarl %1, %0\n\t"
+             : "+r" (a)
+             : "c" ((uint8_t)(-s))
+        );
+    }
     return a;
 }
 static inline uint32_t NEG_USR32(uint32_t a, int8_t s){
-    asm ("shrl %1, %0\n\t"
-         : "+r" (a)
-         : "ic" ((uint8_t)(-s))
-    );
+    if (__builtin_constant_p(s)) {
+        asm ("shrl %1, %0\n\t"
+             : "+r" (a)
+             : "i" (-s & 0x1F)
+        );
+    } else {
+        asm ("shrl %1, %0\n\t"
+             : "+r" (a)
+             : "c" ((uint8_t)(-s))
+        );
+    }
     return a;
 }
 #else
