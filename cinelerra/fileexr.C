@@ -49,8 +49,8 @@ public:
 	~EXRIStream();
 
 	bool read (char c[], int n);
-	Imf::Int64 tellg ();
-	void seekg (Imf::Int64 pos);
+	uint64_t  tellg ();
+	void seekg (uint64_t  pos);
 	void clear ();
 
 private:
@@ -59,15 +59,16 @@ private:
 	int position;
 };
 
+
 class EXROStream : public Imf::OStream
 {
 public:
 	EXROStream(VFrame *data);
 	~EXROStream();
 
-    virtual void write(const char c[], int n);
-    virtual Imf::Int64 tellp();
-    virtual void seekp(Imf::Int64 pos);
+    void write(const char c[], int n);
+    uint64_t 	 tellp();
+    void seekp(uint64_t pos);
 
 private:
 	VFrame *data;
@@ -105,12 +106,14 @@ bool EXRIStream::read(char c[], int n)
 	return position >= size;
 }
 
-Imf::Int64 EXRIStream::tellg ()
+
+uint64_t  EXRIStream::tellg ()
 {
 	return position;
 }
 
-void EXRIStream::seekg(Imf::Int64 pos)
+
+void EXRIStream::seekg(uint64_t pos)
 {
 	position = pos;
 }
@@ -120,24 +123,18 @@ void EXRIStream::clear()
 }
 
 
-
-
-
-
-
-
-
-
-
 EXROStream::EXROStream(VFrame *data)
  : Imf::OStream("mypath")
 {
 	this->data = data;
 	position = 0;
 }
+
+
 EXROStream::~EXROStream()
 {
 }
+
 
 void EXROStream::write(const char c[], int n)
 {
@@ -149,21 +146,15 @@ void EXROStream::write(const char c[], int n)
 	data->set_compressed_size(MAX(position, data->get_compressed_size()));
 }
 
-Imf::Int64 EXROStream::tellp()
+uint64_t  EXROStream::tellp()
 {
 	return position;
 }
 
-void EXROStream::seekp(Imf::Int64 pos)
+void EXROStream::seekp(uint64_t  pos)
 {
 	position = pos;
 }
-
-
-
-
-
-
 
 
 
