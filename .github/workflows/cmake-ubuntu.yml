@@ -22,12 +22,13 @@ jobs:
       run: |
           sudo apt update
           sudo apt install -y git make g++ cmake pkg-config intltool autoconf automake libtool gettext
-          sudo apt install -y nasm libx264-dev libopenexr-dev libfaac-dev libfaad-dev fftw-dev libmp3lame-dev libavc1394-dev
+          sudo apt install -y nasm libx264-dev libopenexr-dev libfaac-dev libfaad-dev fftw-dev  libavc1394-dev
           sudo apt install -y libiec61883-dev libraw1394-dev libsndfile-dev libvorbis-dev libogg-dev libpng-dev libjpeg-dev libtiff-dev
           sudo apt install -y libfreetype6-dev libasound2-dev ladspa-sdk libx11-dev libmjpegtools-dev libdv4-dev
           sudo apt install -y libxcomposite-dev libxcursor-dev libxcursor-dev libxext-dev libxrender-dev liba52-dev
+          sudo apt install -y libxdamage-dev libxrandr-dev libxinerama-dev libxi-dev
 
-    - name: Configure CMake
+    - name: Configure
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
 #      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
