@@ -22,7 +22,7 @@ jobs:
       run: |
           sudo apt update
           sudo apt install -y git make g++ cmake pkg-config intltool autoconf automake libtool gettext
-          sudo apt install -y nasm xlib-dev x264 openexr mjpegtools a52dec faac libfaad-dev fftw-dev lame libavc1394
+          sudo apt install -y nasm x264 openexr mjpegtools a52dec faac libfaad-dev fftw-dev lame libavc1394-dev
           sudo apt install -y libiec61883 libraw1394 libsndfile libvorbis libogg libpng libjpeg libtiff
           sudo apt install -y libfreetype libasound2-dev ladspa-sdk libfreetype6-dev libx11-dev
           sudo apt install -y libxcomposite-dev libxcursor-dev libxcursor-dev libxext-dev libxrender-dev
