@@ -1617,6 +1617,8 @@ char* TitleMain::motion_to_text(int motion)
 		case RIGHT_TO_LEFT: return _("Right to left"); break;
 		case LEFT_TO_RIGHT: return _("Left to right"); break;
 	}
+
+  return 0;
 }
 
 int TitleMain::text_to_motion(char *text)

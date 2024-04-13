@@ -638,11 +638,11 @@ int BlurEngine::transfer_pixels(pixel_f *src1, pixel_f *src2, pixel_f *dest, int
 	return 0;
 }
 
-
+//FIXIT?
 int BlurEngine::multiply_alpha(pixel_f *row, int size)
 {
-	register int i;
-	register float alpha;
+	int i;
+	float alpha;
 
 // 	for(i = 0; i < size; i++)
 // 	{
@@ -656,9 +656,9 @@ int BlurEngine::multiply_alpha(pixel_f *row, int size)
 
 int BlurEngine::separate_alpha(pixel_f *row, int size)
 {
-	register int i;
-	register float alpha;
-	register float result;
+	int i;
+	float alpha;
+	float result;
 	
 // 	for(i = 0; i < size; i++)
 // 	{

@@ -297,6 +297,8 @@ double ZoomPanel::text_to_zoom(char *text, int use_table)
 			break;
 		}
 	}
+
+  return 0.0;
 }
 
 

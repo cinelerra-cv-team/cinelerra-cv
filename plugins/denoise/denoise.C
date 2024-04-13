@@ -284,7 +284,7 @@ int DenoiseEffect::tree_copy(double **output,
 	int length, 
 	int levels)
 {
-	register int i, j, k, l, m;
+	int i, j, k, l, m;
 
 	for(i = 0, k = 1; k < levels; i++, k++)
 	{
@@ -378,7 +378,7 @@ int DenoiseEffect::convolve_int_2(double *input_sequence,
 // insert zeros between each element of the input sequence and
 // convolve with the filter to interpolate the data
 {
-	register int i, j;
+	int i, j;
 	int endpoint = length + filtlen - 2;
 
 	if (sum_output)

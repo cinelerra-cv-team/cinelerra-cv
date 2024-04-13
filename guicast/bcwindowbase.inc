@@ -24,7 +24,8 @@
 
 class BC_WindowBase;
 class BC_WindowList;
-#define BCTEXTLEN 1024
+//#define BCTEXTLEN 1024
+#define BCTEXTLEN 4096
 // Milliseconds before cursor disappears during video playback
 #define VIDEO_CURSOR_TIMEOUT 2000
 

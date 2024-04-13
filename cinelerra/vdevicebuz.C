@@ -450,6 +450,8 @@ int VDeviceBUZ::get_norm(int norm)
 		case PAL:           return VIDEO_MODE_PAL;       break;
 		case SECAM:         return VIDEO_MODE_SECAM;     break;
 	}
+
+  return 0;
 }
 
 int VDeviceBUZ::read_buffer(VFrame *frame)

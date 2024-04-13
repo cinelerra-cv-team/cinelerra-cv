@@ -245,7 +245,7 @@ double Synth::solve_eqn(double *output,
 	if(config->level <= INFINITYGAIN) return 0;
 
 	double result;
-	register double x;
+	double x;
 	double power = this->db.fromdb(config->level) * normalize_constant;
 	double phase_offset = config->phase * this->period;
 	double x3 = x1 + phase_offset;
@@ -340,6 +340,8 @@ double Synth::get_oscillator_point(float x,
 			return function_noise() * power;
 			break;
 	}
+
+   return 0.1;
 }
 
 double Synth::function_square(double x)

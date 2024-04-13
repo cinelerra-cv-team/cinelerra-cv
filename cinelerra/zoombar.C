@@ -495,6 +495,8 @@ int AutoTypeMenu::from_text(char *text)
 		return AUTOGROUPTYPE_X;
 	if(!strcmp(text, to_text(AUTOGROUPTYPE_Y)))
 		return AUTOGROUPTYPE_Y;
+
+ return 0;
 }
 
 int AutoTypeMenu::handle_event()

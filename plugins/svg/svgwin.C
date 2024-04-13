@@ -382,8 +382,8 @@ SvgInkscapeThread::~SvgInkscapeThread()
 void SvgInkscapeThread::run()
 {
 // Runs the inkscape
-	char command[1024];
-	char filename_raw[1024];
+	char command[4096]; //max Linux path
+	char filename_raw[4096];
 	strcpy(filename_raw, client->config.svg_file);
 	strcat(filename_raw, ".raw");
 

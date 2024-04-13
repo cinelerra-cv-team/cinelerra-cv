@@ -544,6 +544,9 @@ int VideoDevice::set_picture(PictureConfig *picture)
 
 		if(input_base) return input_base->set_picture(picture);
 	}
+
+
+  return 0;
 }
 
 int VideoDevice::update_translation()
