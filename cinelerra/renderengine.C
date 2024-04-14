@@ -370,6 +370,8 @@ int64_t RenderEngine::session_position()
 				edl->session->sample_rate /
 				command->get_speed() + 0.5);
 	}
+
+	return 0;
 }
 
 void RenderEngine::reset_sync_position()
@@ -393,6 +395,8 @@ int64_t RenderEngine::sync_position()
 			edl->session->sample_rate);
 		return result;
 	}
+
+	return 0;
 }
 
 PluginServer* RenderEngine::scan_plugindb(char *title, 

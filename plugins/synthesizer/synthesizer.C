@@ -340,6 +340,8 @@ double Synth::get_oscillator_point(float x,
 			return function_noise() * power;
 			break;
 	}
+
+	return 0;
 }
 
 double Synth::function_square(double x)
