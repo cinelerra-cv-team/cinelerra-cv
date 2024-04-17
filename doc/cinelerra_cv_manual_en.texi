@@ -15,7 +15,7 @@
 @documentencoding UTF-8
 @settitle Cinelerra CV Manual
 @afourpaper
-@set EDITION 1.67.EN
+@set EDITION 1.68.EN
 @set VERSION 2.3
 
 @finalout
@@ -28,7 +28,7 @@
 @author Cinelerra CV Team
 @page
 @vskip 0pt plus 1filll
-Copyright @copyright{} 2003, 2004, 2005, 2006 - 2009 Adam Williams - Heroine Virtual Ltd.
+Copyright @copyright{} 2003, 2004, 2005, 2006 - 2009, 2024 'Secrets of CInelerra', by Adam Williams - Heroine Virtual Ltd.
 
 Copyright @copyright{} 2003 - 2024 Cinelerra-CV Team.@*
 
@@ -3859,12 +3859,13 @@ of view in the compositor window.
 If it is unlocked from the window size, middle clicking and dragging anywhere
 in the video pans the point of view.
 
-Hitting the @kbd{+} and @kbd{-} keys zooms in and out of the video output.
+Hitting the @kbd{+} and @kbd{-} keys unlocks the video size from the window size & zooms in and out of the video output.
 
 Underneath the video output are copies of many of the functions available in
 the main window.  In addition there is a @image{manual_images_intl/cwindow_zoom,30mm}
 zoom menu and a @image{manual_images_intl/cwindow_light,8mm} tally light.
 
+Selecting a percentage in the zoom menu unlocks the video size from the window size.
 The zoom menu jumps to all the possible zoom settings and, through the @b{Auto}
 option, locks the video to the window size.  The zoom menu does not affect the
 window size.
@@ -3874,7 +3875,9 @@ knowing if the output is current.
 
 Right clicking anywhere in the video output brings up a menu with all the zoom
 levels and some other options.  In this particular case the zoom levels resize
-the entire window and not just the video. @xref{Popup menu of options}.
+the entire window and not just the video. Selecting a percentage here resizes the window.
+If the video size is locked to the window size, the video changes size. If the video size is unlocked from the window size,
+the video stays the same size. @xref{Popup menu of options}.
 
 The @b{reset camera} and @b{reset projector} options center the camera and
 projector. @xref{Compositing}.
@@ -3889,12 +3892,14 @@ The @b{Fullscreen/windowed (f)} option: Video displayed in the Compositor window
 Select this menu item (windowed) again to undo full screen mode.
 
 On the left of the video output is a toolbar specific to the Compositor window.
+Select a tool to enable it. Select it again to disable it. To protect the video from changes, be sure all the tools are deselected.
 Here are the functions in the toolbar:
 
 @menu
 * Protect video::
 * Magnifying glass::
 * Masks tool::
+* Ruler::
 * Camera::
 * Projector::
 * Crop tool::
@@ -3935,6 +3940,15 @@ This tool @image{manual_images_intl/mask} brings up the mask editing tool @xref{
 Enable the @image{manual_images_intl/toolwindow,2.67mm} tool window to see options
 for this tool.
 
+@c cincvdoc_node_number_110.1
+@node Ruler
+@subsection Ruler tool
+@cindex Ruler tool
+
+The ruler shows pixel coordinates for the cursor & a line.  Click drag in the video output to draw a line to measure.
+Click without dragging to hide the ruler line. Enable the @image{manual_images_intl/toolwindow,2.67mm} tool window
+to see options for this tool.
+
 @c cincvdoc_node_number_111
 @node Camera
 @subsection Camera
@@ -3974,8 +3988,8 @@ it and stores it in a temporary area.  Enabling the
 @image{manual_images_intl/toolwindow,2.67mm} tool info shows the currently selected color.
 Click anywhere in the video output to select the color at that point.@*
 The eyedropper not only lets you see areas which are clipped, but its value can
-be applied to many effects.  Different effects handle the eyedropper
-differently.
+be applied to many effects.  Different effects handle the eyedropper differently.
+They usually have an option called use color picker to use the last scanned eyedropper color.
 
 @c cincvdoc_node_number_115
 @node Tool info
@@ -4231,8 +4245,8 @@ image from the top left corner of the temporary in the center of the output.
 @subsection Masks
 @cindex Masks
 
-Masks select a region of the video for either displaying or hiding.  Masks are
-also used in conjunction with another effect to isolate the effect to a certain
+Masks select a region of the video for either opaque or transparent.  Masks can
+be used in conjunction with another effect to isolate the effect to a certain
 region of the frame.  A copy of one video track may be delayed slightly and
 unmasked in locations where the one copy has interference but the other copy
 does not.  Color correction may be needed in one subsection of a frame but not
@@ -4253,7 +4267,8 @@ the same operation, whether it is multiplication or subtraction.
 @center @b{Compositing pipeline with masks}
 
 To define a mask, go into the Compositor window and enable the
-@image{manual_images_intl/mask} @b{mask} toggle.  Now go over the video and click-drag.
+@image{manual_images_intl/mask} @b{mask} toggle.  Now go over the video and click
+to create a starting point for the mask.
 
 @b{IMPORTANT:} You have to select @b{automatic keyframes} (@xref{Automatic
 keyframes},) if you wish to move a mask over time.  If you do not select
@@ -4262,8 +4277,11 @@ different places on the timeline.
 
 @center @image{manual_images_intl/compositor_mask1,60mm}
 
-Click-drag again in another part of the image to create each new point of the
-mask.  While it is not the conventional Bezier curve behavior, this masking
+Click again in another part of the image to create each new point of the
+mask (the polygon).  Every click creates a new point for a mask.
+The polygon is automatically closed. Knowing which point is the 1st point is essential for
+animating masks, so the 1st point is always drawn filled in while other points are drawn
+as an outline. While it is not the conventional Bezier curve behavior, this masking
 interface performs in realtime what the effect of the mask is going to be.
 Creating each point of the mask expands a rubber band curve.
 
@@ -4321,7 +4339,7 @@ cause another mask to be edited.  The previous mask is still active but only
 the curve overlay for the currently selected mask is visible.
 
 When multiple masks are used, their effects are ORed together.  Every mask in a
-single track uses the same value and mode.
+single track uses the same mode, value, feather.
 
 @cindex Feather mask
 @cindex Mask, feather
@@ -4876,6 +4894,12 @@ All the realtime effects are listed in the resource window, divided into two
 groups: audio effects and video effects.  Audio effects should be dragged from
 the resource window onto audio tracks.  Video effects should be dragged onto
 video tracks.
+
+How to drag several effects at once ? In the Resources window go to the A/V Effects tabs.
+Select an effect. Go to another effect and select it while holding down CTRL.
+This selects one additional effect. Go to another effect and select it while holding down SHIFT.
+This selects every intervening effect. Drag the choosed effects from the Video Effects or the Audio effects
+tabs of the Resources Window. Drop it on the selected portion of the track. A brown bar will appear below the track.
 
 If there is data on the destination track, the effect is applied to the entire
 track.  If there is no data on the track the effect is deleted.  Finally, if a
@@ -5512,7 +5536,10 @@ frames.
 This effect is the one to use if you want to achieve an "old movie" or TV show
 look.  It will put moving lines up and down the movie as well as putting "snow"
 on the video.  Use is along with Brightness/Contrast and Color Balance to make
-your movie look like a really old black and white movie. This is a part of EffectTV:@uref{https://www.effectv.dev}
+your movie look like a really old black and white movie. This is a part of EffectTV:@uref{https://www.effectv.dev}@*
+Note: In the @uref{https://github.com/vanakala/cinelerra-cve, Cin-CVE} fork, the effect allows you to set and adjust the parameters: colorage, scratch, pits, dust.
+The work of the plugin depends mostly on the internal random number generator. It decides the location of dust, pits and scratch.
+The sliders regulate only the density. All passes of the plugin are different.
 
 @c cincvdoc_node_number_164
 @node Blur
@@ -5567,8 +5594,10 @@ imagination in your video. This is a part of EffectTV: @uref{https://www.effectv
 
 @image{manual_images_intl/chromakey,12.5mm}
 
-This effect erases pixels which match the selected color.  They are replaced
-to black if there is no alpha channel and transparency if there is an alpha
+This was the 1-st chroma keyer.
+This effect erases pixels which match (are near) the selected color in the RGB color cube.
+It uses the same algorithm as the Gimp selection tools. It works best with computer generated graphics.
+Colors are replaced with black if there is no alpha channel and transparency if there is an alpha
 channel.  The selection of color model is important to determine the behavior.
 
 @cindex Color picker
@@ -5632,10 +5661,10 @@ At any time, you can check what the Mask looks like by clicking on Show Mask. Th
 
 @itemize @bullet
 @item @b{Select the Key color}@*
-Select the key color (green, blue, etc) using the color wheel or the color picker. Remember, only the Hue matters, not Saturation or Value. You can use the RGB (red, green, and blue) parameters to tweak the sampled color. To use the color picker, click on the color picker icon in the Compositor window, then click on the color you want in the Compositor window. Then in the Chromakey (HSV) parameters window, click on "Use Color Picker".
+Select the key color (green, blue, etc) using the color wheel or the color picker. Remember, only the Hue matters, not Saturation or Value. You can use the RGB (red, green, and blue) parameters to tweak the sampled color. To use the color picker, click on the color picker icon in the Compositor window, then click on the color you want in the Compositor window. Then in the Chromakey (HSV) parameters window, click on "Use Color Picker". Key is the main key colour to be keyed out to reveal the new background. Hue Tolerance can be used if there is considerable variation in the tonal range of the key colour.
 
 @item @b{Adjust the Hue Tolerance}@*
-This slider controls the range of hues that will be recognized as belonging to the “key color”.@*
+This slider controls the range of hues that will be recognized as belonging to the “key color”. Or in other words, Hue Tolerance controls how wide a tonal range is keyed out relative to the tone you originally sampled.@*
 Values range from 0 to 100.@*
 Lower values key out only pixels with hues very similar to the sampled color (key color), while higher values also key out hues that are less similar.@*
 Moving the slider to the right increases the range of hues that match the color to be removed. Moving the slider to the left decreases the range of hues that match the color to be removed. In the case of a green screen, this means some yellow and cyan tones can also be removed along with the green.@*
@@ -5657,7 +5686,7 @@ Increase Min Saturation so that only the background is masked out, and not parts
 Note: The Saturation Offset parameter only functions if the Min Saturation parameter has been used (its value is > 0).
 
 @item @b{Check what it looks like}@*
-At this stage, your mask should be pretty clean. Toggle Show Mask to check what it looks like and examine problem areas of the key while making adjustments, it should be OK. If not, repeat steps 1 to 4 to get a better key. The rest of the controls are useful to smear the mask to help compositing later on. They will help you to make your key look much cleaner.
+The checkbox 'Show Mask' displays the key generated by the effect, making it easier to spot problem areas. At this stage, your mask should be pretty clean. Toggle Show Mask to check what it looks like and examine problem areas of the key while making adjustments, it should be OK. If not, repeat steps 1 to 4 to get a better key. The rest of the controls are useful to smear the mask to help compositing later on. They will help you to make your key look much cleaner.
 
 @item @b{Adjust the slope} (In Slope, Out Slope)@*
 For now, the mask is a full on/ full off mask that can be really harsh and not necessarily what you are looking for. In Slope and Out Slope will help you to smooth that key.@*
@@ -6338,13 +6367,13 @@ the master layer and adjusts X and Y motion in the target layer.
 
 @cindex Motion effect, translation block
 @cindex Translation block
+@item @b{Translation search radius}@*
+The size of the area to scan for the translation block.
+
 @item @b{Translation block size}@*
 For the translation operations, a block is compared to a number of neighboring
 blocks to find the one with the least difference.  The size of the block to
 search for is given by this parameter.
-
-@item @b{Translation search radius}@*
-The size of the area to scan for the translation block.
 
 @item @b{Translation search steps}@*
 Ideally the search operation would compare the translation block with every
@@ -6353,22 +6382,29 @@ subset of the total positions is searched.  Then the search area is narrowed
 and rescanned by the same number of search steps until the motion is known to
 1/4 pixel accuracy.
 
+@item @b{Translation direction}@*
+Determine if motion tracking is only horizontal, vertical, or both.
+
 @item @b{Block X, Y}@*
 These coordinates determine the center of the translation block based on
 percentages of the width and height of the image.  The center of the block
 should be part of the image which is visible at all times.
 
 @item @b{Maximum absolute offset}@*
-The amount of motion detected by the motion tracker is unlimited if this is
-100.  If it is under 100 the amount of motion is limited by that percentage of
-the image size.
+In track previous frame and previous frame same block modes, the motion detected between every frame
+is accumulated to form an absolute motion vector for the entire sequence.
+The amount of motion detected by the motion tracker is unlimited if this is 100.
+If it is under 100 the amount of motion is limited by that percentage of the image size.
+The value must be smaller for larger translation block sizes so there
+is enough area under the block to sense motion with.
 
 @item @b{Settling speed}@*
-The motion detected between every frame can be accumulated to form an absolute
-motion vector.  If the settling speed is 0 the absolute vector is added to the next frame.
+In track previous frame and previous frame same block modes, the motion detected between every
+frame can be accumulated to form an absolute motion vector.
+If the settling speed is 0 the absolute vector is added to the next frame.
 If the settling speed is 100 the absolute vector is resets to 0 after every frame.
 If the settling speed is less than 100 the absolute vector is downscaled by
-the settling amount before being added to the next frame.
+the settling amount before being added to the next frame (i.e. it is reduced slightly before the next frame is added).
 
 @item @b{Track rotation}@*
 Enables rotation operations.  The motion tracker tracks rotation in the master
@@ -7194,6 +7230,7 @@ the frame count.
 
 @image{manual_images_intl/timefront,12.5mm}
 
+Plugin by @uref{https://www.linkedin.com/in/andraz, Andraž Tori}.@*
 This is a spatio-temporal video warping framework plugin based on this article:
 @uref{http://www.vision.huji.ac.il/videowarping/HUJI-CSE-LTR-2005-10_etf-tr.pdf}@*
 The plugin enables to manage evolving timefronts in Cinelerra.
@@ -7202,7 +7239,7 @@ and those speeds can change also.@*
 Spatio-temporal warping enables time to flow differently at different locations in the video,
 creating new video. Specifically, we manipulate the time flow of a video sequence by sweeping
 an evolving time front surface through the video’s aligned space-time volume.@*
-It is primarily useful for footage from static camera, where you want to speed up/slow down gradually
+It is primarily useful for footage taken by a stationary camera, where you want to speed up/slow down gradually
 just part of the picture. Also possible is an interesting way of embedding titles with that approach, for example
 you can put titles on video of the fire in that way.@*
 Some more advanced stuff (that cannot be done with this plugin) are displayed
@@ -7557,6 +7594,11 @@ FIXME
 Another type of effect is performed on a section of the track and the result
 stored somewhere before it is played back.  The result is usually pasted into
 the track to replace the original data.
+
+In 15 years, the only effect we actually ever rendered with this feature was normalize.
+We’ve never rendered an effect which could be applied on the timeline, even though this feature supports rendering realtime effects.
+This feature was implemented back when computers were too slow to play back anything in realtime.
+Decent sounding reverb took a long time & was considered major number crunching.
 
 The rendered effects are not listed in the resource window but instead are
 accessed through the @b{Audio->Render effect} and @b{Video->Render effect} menu
@@ -7932,8 +7974,8 @@ keyframes to the default one is a very convenient technique for creating dynamic
 changes.
 
 In Cinelerra, there are keyframes for almost every compositing parameter and
-effect parameter.@*
-Parameters can be graphically represented in many forms: curves, toggles, modes,
+effect parameter. The fade, mute, mode, pan, mask, speed, camera, projector, transition, or effect data for a track is all stored in keyframes.@*
+Parameters can be graphically represented in many forms: curves, toggles, modes, masks,
 and so on.@*
 The relative keyframe can be represented on the timeline as a little square on a
 curve (e.g. fade) or as a symbol (e.g. mask).@*

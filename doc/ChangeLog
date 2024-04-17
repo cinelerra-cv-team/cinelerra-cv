@@ -1,3 +1,26 @@
+01.03.2024 Igor Vladimirsky <sitelve@gmail.com>
+
+    * 1.68 EN
+    - Add a note to @node Realtime effects (sect. 14)
+          (How to drag several effects at once from the Resources to the timeline)
+    - Add some notes to @node Chroma key (HSV) (subs. 14.4.7)
+    - Add a note about the parameters of the AgingTV eff. in Cin-CVE to @node AgingTV (subs.14.4.2)
+    - Add more info to @node TimeFront (subs. 14.4.55)
+    - Port info from the updated HV-manual:
+          - Add some notes to @node Chroma Key (subs. 14.4.6)
+          - Add a note to @node Rendered effects (sect. 15)
+          - Add more info to @node Motion (subs. 14.4.35)
+              - add @item Translation direction
+              - reorder the items 'Translation search radius' & 'Translation block size'
+              - add notes to 'Maximum absolute offset' & 'Motion settling speed'
+              - reorder the items 'Rotation search radius' & 'Rotation block size'
+          - Add more info to @node Compositor controls (subs. 8.1 Compositor controls)
+          - Add more info to @node Masks tool (subs. 8.1 Compositor controls)
+          - Add @node Ruler (subs. 8.1 Compositor controls)
+          - Add more info to @node Eyedropper (subs. 8.1 Compositor controls)
+          - Add more info to @node Keyframing (sect. 18)
+
+
 10.01.2024 Igor Vladimirsky <sitelve@gmail.com>
 
     * 1.67 EN
@@ -14,7 +37,6 @@
         - the description was significantly expanded, supplemented and revised by IgorV.
     - Add a note about Blur to @node Chroma key (subs. 14.4.6)
     - Add more info to @node Motion blur (subs. 14.4.36)
-    -
 
 08.01.2024 Igor Vladimirsky <sitelve@gmail.com>
 
