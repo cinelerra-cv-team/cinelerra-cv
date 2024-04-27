@@ -560,11 +560,12 @@ int BC_FileBox::create_objects()
 	{
 		filter_list.append(new BC_ListBoxItem("*"));
 		filter_list.append(new BC_ListBoxItem("*.xml"));
-		filter_list.append(new BC_ListBoxItem("[*.ifo][*.vob]"));
 		filter_list.append(new BC_ListBoxItem("[*.ac3][*.flac][*.mp2][*.mp3][*.ogg][*.wav]"));
-		filter_list.append(new BC_ListBoxItem("[*.avi][*.AVI][*.mpg][*.MPG][*.mpeg][*.m1v][*.m2v][*.m4v][*.mov][*.MOV][*.mp4][*.MP4]"));
-		filter_list.append(new BC_ListBoxItem("[*.exr][*.jpg][*.JPG][*.jpeg][*.png][*.tiff][*.tga][*.list]"));
+		filter_list.append(new BC_ListBoxItem("[*.avi][*.dv][*.mpg][*.mpeg][*.m1v][*.m2v][*.m4v][*.m2t][*.mov][*.mp4][*.ogg]"));
+		filter_list.append(new BC_ListBoxItem("[*.AVI][*.MPG][*.MOV][*.MP4]"));
+		filter_list.append(new BC_ListBoxItem("[*.exr][*.jpg][*.JPG][*.jpeg][*.png][*.tif][*.tiff][*.tga][*.list]"));
 		filter_list.append(new BC_ListBoxItem("*.list"));
+		filter_list.append(new BC_ListBoxItem("[*.ifo][*.vob][*.IFO][*.VOB]"));
 		fs->set_filter(get_resources()->filebox_filter);
 	}
 
