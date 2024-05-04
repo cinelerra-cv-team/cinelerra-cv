@@ -1763,7 +1763,7 @@ Displays all the nodes on the renderfarm and shows which ones are active.  Nodes
 added by entering the host name of the node, verifying the value of @b{port}
 and selecting @b{add node}.  If you have hundreds of nodes, experienced
 users may be better off editing the
-@file{~/.bcast/.Cinelerra_rc} file rather than using configuration dialog.
+@file{~/.cinelerra-cv/.Cinelerra_rc} file rather than using configuration dialog.
 Remember that @file{.Cinelerra_rc} is overwritten whenever a copy of Cinelerra
 exits.@*
 Once nodes are created, select the @b{ON} column to activate and deactivate nodes.
@@ -2687,7 +2687,7 @@ The @option{-sameq} option maintains the original quality.
 
 There is one special XML file on disk at all times.  After every editing
 operation, Cinelerra saves the current project to a backup in
-@file{$HOME/.bcast/backup.xml}.  In the event of a crash, the first thing you should do
+@file{$HOME/.cinelerra-cv/backup.xml}.  In the event of a crash, the first thing you should do
 after restarting Cinelerra is select @b{File->Load backup} in order to load the backup.
 This will start Cinelerra at the point in your editing operations directly before the program
 crashed. @*
@@ -5657,14 +5657,14 @@ Hue Tolerance at 10%, Min Brightness at 0, Max brightness at 100%, Saturation of
 In Slope at 0, Out Slope at 0, Alpha Offset at 0 (that's mid-way through),@*
 Spill Threshold at 0, Spill Compensation at 100%.@*
 
-At any time, you can check what the Mask looks like by clicking on Show Mask. This will output a black and white image of the mask.@*
+At any time, you can check what the Mask looks like by clicking on Show Mask. This will output a transparent (the background) and white (the opaque foreground) image of the mask.@*
 
 @itemize @bullet
 @item @b{Select the Key color}@*
 Select the key color (green, blue, etc) using the color wheel or the color picker. Remember, only the Hue matters, not Saturation or Value. You can use the RGB (red, green, and blue) parameters to tweak the sampled color. To use the color picker, click on the color picker icon in the Compositor window, then click on the color you want in the Compositor window. Then in the Chromakey (HSV) parameters window, click on "Use Color Picker". Key is the main key colour to be keyed out to reveal the new background. Hue Tolerance can be used if there is considerable variation in the tonal range of the key colour.
 
 @item @b{Adjust the Hue Tolerance}@*
-This slider controls the range of hues that will be recognized as belonging to the “key color”. Or in other words, Hue Tolerance controls how wide a tonal range is keyed out relative to the tone you originally sampled.@*
+This slider controls the range of hues that will be recognized as belonging to the “key color”. Or in other words, Hue Tolerance controls how wide a tonal range is keyed out relative to the tone you originally sampled. Too narrow and you will see portions of the background reappear in the alpha. Too wide, and portions of the foreground element will start to become transparent.@*
 Values range from 0 to 100.@*
 Lower values key out only pixels with hues very similar to the sampled color (key color), while higher values also key out hues that are less similar.@*
 Moving the slider to the right increases the range of hues that match the color to be removed. Moving the slider to the left decreases the range of hues that match the color to be removed. In the case of a green screen, this means some yellow and cyan tones can also be removed along with the green.@*
@@ -5683,13 +5683,27 @@ Values range from 0 to 100.@*
 Moving the slider right allows a narrower range of saturation values to be matched.
 Moving the slider left allows a wider range of saturation values to be matched.
 Increase Min Saturation so that only the background is masked out, and not parts of the foreground. Saturation Offset can be used to change this, but for now leave it to 0.@*
-Note: The Saturation Offset parameter only functions if the Min Saturation parameter has been used (its value is > 0).
+Note: The Saturation Offset parameter only functions if the Min Saturation parameter has been used (its value is > 0). However, this is not correct behavior. This parameter is currently broken (in Cin-CV/E/GG as of May 2024). The correct work of the parameter can be found only in Cinelerra-HV.@
+
+What should be the correct behavior of the Saturation Offset parameter?@*
+The Saturation Offset value should define the location of the center point of key color wedge. Higher Saturation Offset values should move the entire wedge out from the center of the Color Swatch. Unlike the Min Saturation parameter, Saturation Offset shouldn't change the basic shape of the key wedge.
+Values range from 0 to 100, where 0 should be zero saturation (the center of the Color Swatch) and 100 should be the same saturation value as the key color.
+
+The Min Saturation parameter modifies the shape of the wedge by blunting its point. Increasing the parameter value changes the shape of the keying sector: the vertex of the triangle is cut off and it turns into a trapezoid. That has the effect of retaining low saturation color values across the full hue range defined by the key color wedge.
+Values range from 0 to 100, where 0 should place the point at the location of the Saturation Offset value and 100 should place the line at the location of the Key Color.
+As the value goes up, more unsaturated colors will be excluded from the key, and kept in the image.
+
+So, to recap:@*
+Both of these parameters have to сontrol the saturation at which keying begins.
+Unlike the Min Saturation parameter, Saturation Offset shouldn't change the basic shape of the key wedge.
+Unlike the Min Saturation parameter, Saturation Offset have to restore the low-saturation regions by offsetting the keyed region.
+Saturation Offset is similar to Min Saturation. The difference is that you are not controlling the position of a line where the key kicks in but are instead shifting the entire wedge in and out from the center. Hopefully the Saturation Offset parameter will get fixed.
 
 @item @b{Check what it looks like}@*
 The checkbox 'Show Mask' displays the key generated by the effect, making it easier to spot problem areas. At this stage, your mask should be pretty clean. Toggle Show Mask to check what it looks like and examine problem areas of the key while making adjustments, it should be OK. If not, repeat steps 1 to 4 to get a better key. The rest of the controls are useful to smear the mask to help compositing later on. They will help you to make your key look much cleaner.
 
 @item @b{Adjust the slope} (In Slope, Out Slope)@*
-For now, the mask is a full on/ full off mask that can be really harsh and not necessarily what you are looking for. In Slope and Out Slope will help you to smooth that key.@*
+For now, the mask is a full on / full off mask that can be really harsh and not necessarily what you are looking for. In Slope and Out Slope will help you to smooth that key.@*
 The colors that are borderline in the mask will see their alpha channel reduced by half instead of being completely on or off.@*
 In Slope leaves more colors in the mask.@*
 Controls the falloff (from opaque to transparent) inside of the keyed region. Values range from 0 to 20.@*
@@ -10676,7 +10690,7 @@ right-click its taskbar icon, select @b{Configure Klipper} and ensure
 @cindex Crashes
 
 Do a clean install.  Be sure that you do not have libraries from previous
-installations.  Delete your @file{$HOME/.bcast/} directory too.@*
+installations.  Delete your @file{$HOME/.cinelerra-cv/} directory too.@*
 @command{rm -f /usr/local/lib/libguicast*}@*
 @command{rm -f /usr/lib/libguicast*}@*
 @command{rm -f /usr/local/lib/libquicktimehv*}@*
@@ -10695,8 +10709,8 @@ Theme Blond not found}, then:
 @item You should check for the file @file{defaulttheme.*} in
 @file{/usr/lib/cinelerra} or @file{/usr/local/lib/cinelerra}.  If it does not
 exist, you need to install the plugins again.
-@item Try to delete the @file{$HOME/.bcast/} directory
-@item Look into @file{$HOME/.bcast/Cinelerra_rc} and find THEME, it should be
+@item Try to delete the @file{$HOME/.cinelerra-cv/} directory
+@item Look into @file{$HOME/.cinelerra-cv/Cinelerra_rc} and find THEME, it should be
 => THEME Blond
 @end itemize
 

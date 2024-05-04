@@ -1,3 +1,9 @@
+04.05.2024 Igor Vladimirsky <sitelve@gmail.com>
+
+    * 1.69 EN
+    - Change /.bcast to /.cinelerra-cv
+    - Add more info about Saturation (Min/Offset) to @node Chroma key (HSV) (subs. 14.4.7)
+
 01.03.2024 Igor Vladimirsky <sitelve@gmail.com>
 
     * 1.68 EN
