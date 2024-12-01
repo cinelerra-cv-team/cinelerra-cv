@@ -202,6 +202,9 @@ int64_t IndexFile::get_required_scale(File *source)
 // total length of input file
 	int64_t length_source = source->get_audio_length(0);  
 
+	if(!asset->channels)
+		return 0;
+
 // get scale of index file
 //	if(length_source > mwindow->preferences->index_size)
 //	{
