@@ -1,4 +1,3 @@
-
 /*
  * CINELERRA
  * Copyright (C) 2008 Adam Williams <broadcast at earthling dot net>
@@ -111,6 +110,7 @@ void GammaWindow::update()
 
 void GammaWindow::update_histogram()
 {
+//printf("GammaWindow::update_histogram %d engine=%p\n", __LINE__, client->engine);
 	histogram->clear_box(0, 0, histogram->get_w(), histogram->get_h());
 	if(client->engine)
 	{

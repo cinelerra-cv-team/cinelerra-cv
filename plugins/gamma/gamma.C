@@ -503,18 +503,18 @@ void GammaMain::render_gui(void *data)
 	if(!engine) engine = new GammaEngine(this);
 	if(ptr->engine && ptr->config.automatic)
 	{
+		thread->window->lock_window("GammaMain::render_gui");
 		memcpy(engine->accum, 
 			ptr->engine->accum, 
 			sizeof(int) * HISTOGRAM_SIZE);
-		thread->window->lock_window("GammaMain::render_gui");
 		thread->window->update();
 		thread->window->unlock_window();
 	}
 	else
 	{
+		thread->window->lock_window("GammaMain::render_gui");
 		engine->process_packages(GammaEngine::HISTOGRAM, 
 			ptr->frame);
-		thread->window->lock_window("GammaMain::render_gui");
 		thread->window->update_histogram();
 		thread->window->unlock_window();
 	}
