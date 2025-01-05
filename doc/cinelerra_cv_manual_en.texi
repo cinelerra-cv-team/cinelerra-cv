@@ -2528,7 +2528,7 @@ FIXME
 All data that you work with in Cinelerra is acquired either by @b{recording
 from a device} or by @b{loading from disk}.  This section describes loading.@*
 The loading and playing of files is just as you would expect.  Just go to
-@b{file->Load Files}, select a file for loading, and click @b{ok}.  Depending on
+@b{file->Load Files}, select a file for loading, and click @b{Ok}.  Depending on
 the setting of the Insertion Strategy list box, your file will be either loaded
 on the Resources Media window or directly on the Program window. In this last
 case, click the forward play button and it should start playing, regardless of
@@ -5103,7 +5103,7 @@ effect.
 * EQ Parametric::
 * Freeverb::
 * Gain::
-* Heroine College::
+* Heroine College Concert Hall::
 * Interpolate::
 * Invert Audio::
 * Live audio::        Pass audio from the soundcard directly to the timeline.
@@ -5475,7 +5475,7 @@ FIXME
 * Swap channels:: How to replace an image’s color channel with another or turn channels off.
 * Threshold::         How to get monochrome out of a region of the image
 * Time average::      How to add trail patterns or increase still image quality
-* TimeFront::         A plugin for spatio-temporal video warping
+* TimeFront::         A plugin for temporal video warping
 * Title::             How to add text to a track from inside Cinelerra
 * Translate::
 * Unsharp::           How to unsharp your video
@@ -5638,7 +5638,8 @@ and adjust it out.
 @cindex Chroma key effect (HSV)
 
 Plugin by @uref{http://jcornet.free.fr/linux/chromakey.html, Jerome Cornet}.@*
-The description of the plugin was written by Jerome Cornet, significantly expanded, supplemented and revised by @uref{https://www.youtube.com/watch?v=QATi9J6Q8uw, Igor Vladimirsky}.@*
+The description of the plugin was written by Jerome Cornet, significantly expanded, supplemented and revised by @uref{https://linuxvideoediting.blogspot.com/2024/04/chroma-key-hsv-cinelerra.html, Igor Vladimirsky}.
+Check out the video tutorial @uref{https://www.youtube.com/watch?v=QATi9J6Q8uw, here}.@*
 This plugin is used to remove a color from a video to composite with another image.
 People refer to is as green screen or blue screen process (because of the color that is keyed out).@*
 
@@ -5686,17 +5687,19 @@ Increase Min Saturation so that only the background is masked out, and not parts
 Note: The Saturation Offset parameter only functions if the Min Saturation parameter has been used (its value is > 0). However, this is not correct behavior. This parameter is currently broken (in Cin-CV/E/GG as of May 2024). The correct work of the parameter can be found only in Cinelerra-HV.@
 
 What should be the correct behavior of the Saturation Offset parameter?@*
-The Saturation Offset value should define the location of the center point of key color wedge. Higher Saturation Offset values should move the entire wedge out from the center of the Color Swatch. Unlike the Min Saturation parameter, Saturation Offset shouldn't change the basic shape of the key wedge.
+The Saturation Offset value should define the location of the center point of key color wedge. Higher Saturation Offset values should move the entire wedge out from the center of the Color Swatch. When you increase the Saturation Offset setting, the Hue Tolerance range has to get narrower at the perimeter of the color swatch, keying out a relatively smaller range of hues included in the key color. I.e. the width or spread of the key color wedge should decrease.@*
+Unlike the Min Saturation parameter, Saturation Offset shouldn't change the basic shape of the key wedge.
 Values range from 0 to 100, where 0 should be zero saturation (the center of the Color Swatch) and 100 should be the same saturation value as the key color.
 
-The Min Saturation parameter modifies the shape of the wedge by blunting its point. Increasing the parameter value changes the shape of the keying sector: the vertex of the triangle is cut off and it turns into a trapezoid. That has the effect of retaining low saturation color values across the full hue range defined by the key color wedge.
+The Min Saturation parameter modifies the shape of the wedge by blunting its point. Increasing the parameter value changes the shape of the keying sector: the vertex of the triangle is cut off and it turns into a trapezoid. When you increase the Min Saturation Offset setting, the Hue Tolerance range is not changed. That has the effect of retaining low saturation color values across the full hue range defined by the key color wedge.
 Values range from 0 to 100, where 0 should place the point at the location of the Saturation Offset value and 100 should place the line at the location of the Key Color.
 As the value goes up, more unsaturated colors will be excluded from the key, and kept in the image.
 
 So, to recap:@*
 Both of these parameters have to сontrol the saturation at which keying begins.
 Unlike the Min Saturation parameter, Saturation Offset shouldn't change the basic shape of the key wedge.
-Unlike the Min Saturation parameter, Saturation Offset have to restore the low-saturation regions by offsetting the keyed region.
+Unlike the Min Saturation parameter, Saturation Offset has to restore the low-saturation regions by offsetting the keyed region.
+Unlike the Min Saturation parameter, Saturation Offset should change the Hue Tolerance range.
 Saturation Offset is similar to Min Saturation. The difference is that you are not controlling the position of a line where the key kicks in but are instead shifting the entire wedge in and out from the center. Hopefully the Saturation Offset parameter will get fixed.
 
 @item @b{Check what it looks like}@*
@@ -7154,7 +7157,7 @@ alpha channel of the matte track as a matte. In the case, use the Swap Channels 
 This can come in handy if you have a channel that defines the desired area of transparency better than the alpha channel
 does or in cases where the source image doesn’t include an alpha channel but you have amazing contrast in maybe the green channel.
 You can simply tell the green channel to be the alpha channel and there it is, you have an alpha matte!
-@uref{https://linuxvideoediting.blogspot.com/2023/08/canvas-w-ratio-h-ratio-cinelerra.html, This tutorial} explores in more detail these settings.
+@uref{https://linuxvideoediting.blogspot.com/2024/01/how-to-swap-color-channels-and-create-alpha-matte-in-cinelerra.html, This tutorial} explores in more detail these settings.
 It is in Russian but easily translatable with GoogleTranslator, DeepL or similar.
 
 @c cincvdoc_node_number_217
@@ -7245,19 +7248,197 @@ the frame count.
 @image{manual_images_intl/timefront,12.5mm}
 
 Plugin by @uref{https://www.linkedin.com/in/andraz, Andraž Tori}.@*
-This is a spatio-temporal video warping framework plugin based on this article:
+The description of the plugin was written by @uref{https://linuxvideoediting.blogspot.com, Igor Vladimirsky}.@*
+The plugin enables the management of evolving timefronts in Cinelerra.@*
+This is the initial email announcing it
+@uref{https://lists.cinelerra-cv.org/pipermail/cinelerra-skolelinux/2006-February/005412.html}@*
+The idea is based on this article:
 @uref{http://www.vision.huji.ac.il/videowarping/HUJI-CSE-LTR-2005-10_etf-tr.pdf}@*
-The plugin enables to manage evolving timefronts in Cinelerra.
-Basically the idea is that different parts of video move trough time with different speeds
-and those speeds can change also.@*
-Spatio-temporal warping enables time to flow differently at different locations in the video,
-creating new video. Specifically, we manipulate the time flow of a video sequence by sweeping
-an evolving time front surface through the video’s aligned space-time volume.@*
-It is primarily useful for footage taken by a stationary camera, where you want to speed up/slow down gradually
-just part of the picture. Also possible is an interesting way of embedding titles with that approach, for example
-you can put titles on video of the fire in that way.@*
+Basically the idea is that different parts of video move through time with different speeds and those speeds can change also.
+
+This is a temporal warping plugin.@*
+A temporal warping enables time to flow differently (slowing down, speeding up) at different locations in the video,
+creating a new video. Specifically, we manipulate the time flow of a video sequence by varying the speed at which the
+time front advances in the corresponding regions of the space-time volume.
+
+It is primarily useful for footages (e.g. a swimming competition) taken by a stationary camera, where you want to speed up/slow down gradually
+just part of the picture. With the plugin it is easy to slow down the time flow in a particular spatio-temporal region of the video while speeding it up in another region.
+For example, this makes it possible to modify a competition video to produce a number of new videos, each having a different winner.@*
+Also possible is an interesting way of embedding titles with that approach, for example you can put titles or logos on video of fire, water, or smoke in that way.
+So, the letters or logos are formed over a dynamic texture. That offers an impressive way to animate logos and titles.
+Note that the resulting effect is only visible in dynamic portions of the original video, and works best when there is sufficient fluctuation in brightness or in color.
+An interesting alternative which you can explore is to animate the pattern used to define the displacement.@*
+You can produce a wide variety of effects using this effect. For example, the traditional slit-scan effect, which captures different stages of a moving image across time, can be simulated using this effect.
 Some more advanced stuff (that cannot be done with this plugin) are displayed
 here: @uref{http://www.vision.huji.ac.il/videowarping/}
+
+The "TimeFront" plugin is a multitrack video realtime effect.
+That is, in the 'Other track as timefront' mode it works only as a shared effect.
+
+The plugin is an analogue of the Time Displacement effect in Adobe After Effects.@*
+Like the Time Displacement effect, the Time Front effect uses a displacement map and distorts the image by shifting pixels across time.@*
+The "TimeFront" effect distorts an image by shifting pixels across time based on gray level intensity or alpha values of pixels in the temporal displacement map.@*
+The "Time Front" effect displaces each pixel in the image by replacing a pixel in the image at the current time with the pixel in the same position at another (previous) time.@*
+So, with the Time Front effect in Cinelerra you can manipulate the position of an image pixel based on one of the temporal displacement map properties (gray level intensity or alpha values) associated with that pixel.@*
+A temporal displacement map can be generated on the main track (the layer the effect is applied to) or placed as an image (a grayscale gradient or an alpha gradient) on the track with the shared effect.@*
+
+Although it looks cool and complex, the "Time Front" plugin is a very simple effect to apply. It will definitely take some finessing. The effect consists of two parts: the footage layer and a gradient (TD map), which feeds luminance or alpha levels to the time displacement. And that's all. Let's now dive into its dark waters.@*
+
+@b{Note}:
+The effect works with both videos and static images. Both a static image and a video can be used as a TD map.@*
+The project color model should have alpha.
+
+@*
+
+You can choose between a few operation modes (Type): @b{Linear & Radial, Alpha as timefront, Other track as timefront}.
+
+@b{Linear, Radial}
+
+In Linear & Radial mode, the plugin uses a grayscale map (linear or radial) as a temporal displacement map.
+In this mode, you don't need to share the effect to another track.
+The plugin generates the map on the main track (the track the effect is applied to).
+A grayscale gradient is created by using the parameters of the mode (see below).
+
+The Linear mode generates a linear shape grayscale map. The Radial mode generates a circular shape grayscale map.
+
+A grayscale map generated by the plugin is a gradient with banding (shade bands).
+Grayscale refers to a range of shades from black to white, with varying degrees of gray level intensity.
+Banding refers to the visible change from one shade of grey to another instead of a smooth, fading gradient.
+
+A linear gradient creates a band of grayscale that progresses in a straight line.
+A radial gradient is similar to a linear gradient, except that it radiates out from a central point, it takes the shape of a circle.
+A linear gradient progresses in a linear way, whereas a radial gradient propagates in a circle way.
+
+The gray level intensity values of pixels in the grayscale map (in this mode) are used in order to determine the areas in the frame that are going to be taken from the other time in the same footage (i.e. replaced with the pixels from the other time in the same position in the same footage or a footage that is before the current footage (depending on the value of the TimeRange parameter)).
+
+So, the displacement is determined from the gray level intensity values of pixels in the temporal displacement map.
+The effect distorts an image by shifting pixels across time based intensity (luminance) values of pixels in the temporal displacement map.
+
+The intensity values range from 0 to 255.
+An intensity value of 255 produces maximum displacement defined by the Time Range parameter (see below), meaning that pixels at the current time are replaced by pixels from a previous time.
+An intensity value of 0 produces no displacement.
+Only the value of 255 (maximum intensity) produces the maximum time displacement. All other values produce time displacements of less than the Time Range (see below).
+That is, brighter pixels cause a larger shift and darker pixels cause a smaller shift. White pixels fully apply the given Time Range (see below) and black pixels cause no shift at all.
+
+Check the checkbox @b{Show grayscale for tuning} to show/tune a grayscale map.
+When checked, the plugin shows a linear or radial grayscale shape that lets you see brightness levels more easily, to examine problem areas of the displacement while making adjustments, and to predict how pixels will be displaced.
+
+
+@b{Inner/Outer Radius} allows users to adjust a width and a position of the grayscale bands (similar to the Gradient plugin), so you can choose the areas (pixels) in the frame that will be replaced by pixels in the same position, but at the specified numbers of frames backwards in time in the same footage.@*
+The Inner radius refers to the distance from the center of a circle to its inner edge, while the Outer radius refers to the distance from the center to its outer edge.@*
+Essentially, the inner radius is the radius of the hole or empty space within the circle, while the outer radius is the radius of the entire shape.@*
+The Inner radius cannot be larger than the Outer radius. The Inner radius is always smaller than or equal to the Outer radius, as it represents the distance from the center to a point on the edge of the shape. If the Inner radius were larger than the outer radius, it would mean that the shape is reversed or inside out.@*
+
+@b{Angle} allows users to adjust the gradient band's angle of direction. A value of 0 deg is equivalent to vertical; changing values rotates clockwise & counterclockwise from there.@*
+@b{Rate} controls the slope of the shade transition (Linear, Logarithmic or Squared).@*
+@b{X:Y} allows users to position the center of the radial gradient.
+
+@b{Time range} parameter specifies the maximum amount, in frames (in seconds in Cin-CVE), of displacement of each pixel in the image on the track, meaning that pixels at the current time are replaced by pixels from a previous time. This may be reduced depending on the gray level intensity values of pixels in the temporal displacement map.@*
+That is, the parameter sets the maximum time, in frames (in seconds in Cin-CVE) before the current frame, from which pixels will be taken.
+With Time Range you can set the number (and therefore indirectly a width and a position) of the grayscale bands, so you can choose the temporal range.
+
+@b{Inversion}: This inverts all the pixel brightness values in the grayscale map of the main layer, as if the image were converted into a negative. Dark areas become bright and bright areas become dark. The intermediate values are also taken into account.
+
+@b{Note}:
+In this and all other modes described below, the plugin uses frames before the current frame (pixels from a previous time) and replaces the pixels (areas) of the current frame (at the current time) only by the pixels from a previous frame depending on the values of the pixels in temporal displacement map.  The plugin doesn't use areas of frames after the current frame (pixels at a future time) for replacing the areas of the current frame.@*
+Pixels in the layer that correspond to brighter areas in the displacement map are replaced by pixels in the same areas but at a specified number of frames
+(seconds in cve) backward  in time. Likewise, pixels in the layer that correspond to darker areas in the displacement map are replaced by pixels in the same areas but at a specified number of frames (seconds in cve) forward in time.@*
+But anyway, the areas for the current frame are taken from the other frame (time) before the playback cursor (before the current frame), unlike the Time Displacement effect in After Effects, where the Max Displacement Time parameter can set the maximum time from which pixels are replaced, before or after the current time.@*
+
+
+Let's consider the following mode:
+
+@b{Alpha as timefront}
+
+In this mode, the effect distorts an image by shifting pixels across time based on alpha values of pixels.
+That is, the displacement is determined from the alpha values of pixels.
+In this mode, you don't need to share the effect to another track.
+
+Check the checkbox @b{Show grayscale for tuning} to show the temporal displacement map.
+The map is generated ((on the main track (the track the effect is applied to)) based on the alpha values of pixels of the original image on the main track.
+The map generated in this mode is a black-white image where opaque areas of the original image are displayed in white, transparent areas of the original image are displayed in black.
+The intermediate alpha values of transparency are also taken into account. The ones are displayed as shades of gray.@*
+
+@b{Note}: The mode does not allow to tune the map using the Inner/Outer Radius parameters.
+
+Alpha values range from 0 to 255, with 0 being completely transparent (i.e., 0% opaque) and 255 completely opaque (i.e., 100% opaque).
+
+The @b{Time range parameter} specifies the maximum amount in frames (in seconds in Cin-CVE) of displacement of each pixel in the image on the track, meaning that pixels at the current time are replaced by pixels from a previous time. This may be reduced depending on the intensity of pixels in the temporal displacement map (i.e. alpha of pixels in the original image). I.e. the parameter controls the maximum amount of time from which pixels will be taken.
+That is, the parameter sets the maximum time, in frames (in seconds in Cin-CVE), from which pixels are replaced, before the current frame (time in Cin-CVE).
+With Time Range you can set the number (and therefore indirectly a width and a position) of the grayscale bands, so you can choose the temporal range.
+
+Only an alpha value of 255 (the pixel is opaque) produces the maximum time displacement.
+All other alpha values produce time displacements of less than the Time Range.
+That is, less transparent pixels cause a larger shift and more transparent pixels cause a smaller shift.
+The opaque (white) pixels (an alpha value of 255) fully apply the given Time Range and fully transparent (black) pixels (an alpha value of 0) cause no shift at all.
+The intermediate alpha values are also taken into account.
+
+@b{Inversion}: This inverts all the pixel brightness values in the map, as if the image were converted into a negative.
+Dark areas become bright and bright areas become dark. The intermediate alpha values are also taken into account.@*
+
+Let's consider the last mode:@*
+
+@b{Other track as timefront}@*
+(even more correct would be to say 'Other track as a Temporal Displacement Map'):
+
+In this mode, the effect works only as a shared effect.
+You have to use this plugin as a @b{shared effect} applied to both tracks (search for @b{shared effect}
+in the manual for an explanation) @xref{Realtime effect types}.@*
+
+The mode allows users to select whether Intensity (Luminance) or Alpha mask will be used to calculate the displacement.@*
+@b{As timefront use}:@*
+@b{Intensity}@*
+@b{Alpha mask}
+
+That means that the effect has to be shared to another track that contains a grayscale or an alpha mask image. This image is considered as the temporal displacement map.
+So, to use the TimeFront plugin in the 'Other track as timefront' mode:
+
+@enumerate 1
+@item Create two tracks: A and B. Track A is the top track. Track B is the bottom track.
+@item Add the TimeFront effect to Track A. The track with the main instance of the effect is the layer track you’re distorting.
+@item Choose "attach effect" from the context menu of another track (Track B).
+@item Choose "TimeFront" as a shared plugin, and click @b{Ok}. The track with the shared effect is the displacement map layer.
+@item Manipulate the plugin parameters in Track A.
+@end enumerate
+
+@b{Note}: The track with the main instance of the effect should be on top of the displacement map track.
+
+In the pull-down menu of the @b{As timefront use} item, you can select from the following options:
+@itemize @bullet
+@item @b{Intensity}@*
+In this case, the effect distorts an image by shifting pixels across time based on the gray level intensity (luminance) values of pixels in the temporal displacement map (the track with the shared effect). As a temp. displ. map, you can use an opaque black-and-white graphic (a grayscale image).@*
+Check the checkbox @b{Show grayscale for tuning} to show the map.
+If checked, the plugin displays the image used as the map (a grayscale image on the track with the shared effect) as a gradient (a grayscale image) with banding. The intermediate values (shades) are also taken into account. The calculation occurs in the same way as described above.
+
+@item @b{Alpha mask}@*
+In this case, the effect distorts an image by shifting pixels across time based on alpha values of pixels in the temporal displacement map (the track with the shared effect). As a temp. displ. map, you can use a title, a graphic (logo), a video that contains an Alpha channel.@*
+Check the checkbox @b{Show grayscale for tuning} to show the map.
+If checked, the plugin displays the image used as the map (an alpha mask image on the track with the shared effect) as a gradient (a grayscale image) with banding, where white represents opaque areas of the original image, and black represents transparent areas of the original image. The intermediate values (partially transparent pixels) are also taken into account. The ones are displayed as shades of gray.
+The calculation occurs in the same way as described above.
+@end itemize
+
+@b{Note}: The mode does not allow to tune the map using the Inner/Outer Radius parameters.
+
+The @b{Time range} parameter works in the same way as described above in the 'Linear&Radial' and the 'Alpha as TF' sections.
+
+@b{Inversion}: This inverts all the pixel values in the map on the track with the shared effect. Dark areas become bright and bright areas become dark. The intermediate values are also taken into account.@*
+@*
+
+You can create a displacement map in GIMP or Cinelerra (with the Gradient and Histogram effects).
+Using the displacement map along with the Time Front effect you are able to manipulate time.
+The effect uses an image on the track with the shared effect as a guide to offset the pixels in the image on the main track.
+To change the radial (i.e. the distance to the image's midpoint, the “pole”) and angular coordinates of the pixels of the map, apply the Whirl effect (before shared effect).@*
+
+If you create text titles with the Titles and TimeFront effects, add the Blur effect to create text titles that look like they're made out of glass or ice.@*
+
+@b{Note}: The higher frame rate in your video is the less pixelated your output image will be. The higher frame rate will give the smoothest results.@*
+
+A user may control the Time Front effect by keyframing. E.g. you can animate the gradient. Set the Inner/Outer Radius properly and you can have a movie play forward or backward in time depending on the gray level intensity values of the gradient.
+
+A very clear tutorial on the effect with examples (the article and videos) can be found
+@uref{https://linuxvideoediting.blogspot.com/2024/12/time-displacement-in-cinelerra-timefront-effect.html, here},
+in Russian but easily translatable with GoogleTranslator, DeepL or similar.@*
+@uref{https://youtube.com/playlist?list=PLtsTO5ESlyxD9nUoakilab9PDgCSwdui7&si=FfgOrhiLZm__WTKG, TimeFront effect tutorials playlist on YouTube}
 
 @c cincvdoc_node_number_220
 @node Title
