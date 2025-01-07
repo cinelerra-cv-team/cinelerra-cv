@@ -15,7 +15,7 @@
 @documentencoding UTF-8
 @settitle Cinelerra CV Manual
 @afourpaper
-@set EDITION 1.68.EN
+@set EDITION 1.70.EN
 @set VERSION 2.3
 
 @finalout
@@ -28,9 +28,9 @@
 @author Cinelerra CV Team
 @page
 @vskip 0pt plus 1filll
-Copyright @copyright{} 2003, 2004, 2005, 2006 - 2009, 2024 'Secrets of CInelerra', by Adam Williams - Heroine Virtual Ltd.
+Copyright @copyright{} 2003, 2004, 2005, 2006 - 2009, 2024 - 2025 'Secrets of CInelerra', by Adam Williams - Heroine Virtual Ltd.
 
-Copyright @copyright{} 2003 - 2024 Cinelerra-CV Team.@*
+Copyright @copyright{} 2003 - 2025 Cinelerra-CV Team.@*
 
 This manual is free; you can redistribute it and/or modify it under the terms
 of the GNU General Public License as published by the Free Software Foundation;
