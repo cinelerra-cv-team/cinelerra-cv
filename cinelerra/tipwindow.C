@@ -68,7 +68,9 @@ static const char *tips[] =
 	"Map 5.1:2 maps 6 recordable AC3 tracks to 2 channels.\n"),
 
 	N_("Alt + left moves to the previous edit handle.\n"
-	"Alt + right moves to the next edit handle.\n")
+	"Alt + right moves to the next edit handle.\n"),
+
+	N_("Shift-click on a curve keyframe to snap it to the neighboring values.\n")
 };
 
 static int total_tips = sizeof(tips) / sizeof(char*);
