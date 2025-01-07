@@ -1,15 +1,15 @@
 # translation of cinelerra-cv to Russian
 # Copyright (C) 2008 Heroine Warrior Inc.
-# Copyright (C) 2007-2017 Cinelerra-CV.
+# Copyright (C) 2007-2025 Cinelerra-CV.
 # This file is distributed under the same license as the cinelerra-cv package.
 # Valentin Pesegov <walq64@gmal.com>, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Cinelerra-CV 2.3\n"
-"Report-Msgid-Bugs-To: cinelerra@lists.cinelerra-cv.org\n"
-"POT-Creation-Date: 2018-05-06 21:35+0300\n"
-"PO-Revision-Date: 2017-11-28 18:55+0200\n"
+"Report-Msgid-Bugs-To: https://www.freelists.org/list/cinelerra-cv-team\n"
+"POT-Creation-Date: 2025-01-07 14:25+0200\n"
+"PO-Revision-Date: 2025-01-07 18:55+0200\n"
 "Last-Translator: Igor Vladimirsky aka igor_ubuntu <sitelve@gmal.com>\n"
 "Language-Team: <sitelve@gmail.com>\n"
 "Language: ru_RU\n"
@@ -174,7 +174,7 @@ msgid "Audio:"
 msgstr "Аудио:"
 
 #: ../cinelerra/assetedit.C:270 ../cinelerra/assetedit.C:404
-#: ../cinelerra/fileexr.C:580 ../cinelerra/filemov.C:1407
+#: ../cinelerra/fileexr.C:571 ../cinelerra/filemov.C:1407
 #: ../cinelerra/filemov.C:1693 ../cinelerra/filesndfile.C:396
 #: ../cinelerra/filetga.C:885 ../cinelerra/filetiff.C:588
 msgid "Compression:"
@@ -298,7 +298,7 @@ msgstr "Упорядочить"
 msgid "View"
 msgstr "Вид"
 
-#: ../cinelerra/assetpopup.C:246 ../cinelerra/mainmenu.C:730
+#: ../cinelerra/assetpopup.C:246 ../cinelerra/mainmenu.C:731
 msgid "Paste"
 msgstr "Вставить"
 
@@ -441,12 +441,12 @@ msgid "Edit..."
 msgstr "Правка..."
 
 #: ../cinelerra/awindowmenu.C:77 ../cinelerra/awindowmenu.C:148
-#: ../guicast/bcfilebox.C:353
+#: ../guicast/bcfilebox.C:365
 msgid "Display icons"
 msgstr "Значки"
 
 #: ../cinelerra/awindowmenu.C:77 ../cinelerra/awindowmenu.C:148
-#: ../guicast/bcfilebox.C:340
+#: ../guicast/bcfilebox.C:352
 msgid "Display text"
 msgstr "Текст"
 
@@ -480,7 +480,7 @@ msgstr "Временной"
 #: ../cinelerra/batch.C:183 ../cinelerra/batchrender.C:905
 #: ../cinelerra/filemov.C:1202 ../cinelerra/formatpresets.C:70
 #: ../cinelerra/formattools.C:753 ../cinelerra/loadmode.C:84
-#: ../cinelerra/selection.C:722 ../plugins/timefront/timefront.C:421
+#: ../cinelerra/selection.C:725 ../plugins/timefront/timefront.C:421
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -522,7 +522,7 @@ msgstr "EDL %s не найден.\n"
 #: ../cinelerra/packagerenderer.C:175 ../cinelerra/recordaudio.C:266
 #: ../cinelerra/recordvideo.C:368 ../cinelerra/render.C:254
 #: ../cinelerra/render.C:276 ../cinelerra/render.C:806
-#: ../cinelerra/renderprofiles.C:264 ../cinelerra/savefile.C:96
+#: ../cinelerra/renderprofiles.C:265 ../cinelerra/savefile.C:96
 #: ../cinelerra/savefile.C:198
 msgid "Error"
 msgstr "Ошибка"
@@ -552,13 +552,13 @@ msgstr "Выберите EDL для загрузки:"
 msgid "Batches to render:"
 msgstr "Пакеты для рендеринга:"
 
-#: ../cinelerra/batchrender.C:786 ../cinelerra/batchrender.C:1331
+#: ../cinelerra/batchrender.C:786 ../cinelerra/batchrender.C:1332
 #: ../cinelerra/recordgui.C:1056
 msgid "Stop"
 msgstr "Стоп"
 
-#: ../cinelerra/batchrender.C:791 ../cinelerra/batchrender.C:1350
-#: ../cinelerra/tipwindow.C:270
+#: ../cinelerra/batchrender.C:791 ../cinelerra/batchrender.C:1351
+#: ../cinelerra/tipwindow.C:272
 msgid "Close"
 msgstr "Закрыть"
 
@@ -569,7 +569,7 @@ msgstr "Новый"
 
 #: ../cinelerra/batchrender.C:1028 ../cinelerra/channeledit.C:614
 #: ../cinelerra/cwindowtool.C:1607 ../cinelerra/recordgui.C:1025
-#: ../plugins/synthesizer/synthesizer.C:790
+#: ../plugins/synthesizer/synthesizer.C:792
 msgid "Delete"
 msgstr "Удалить"
 
@@ -607,7 +607,7 @@ msgstr "Загрузка списка пакетного рендеринга"
 msgid "Enter a Batch Render filename to load from:"
 msgstr "Введите имя файла списка пакет. рендеринга:"
 
-#: ../cinelerra/batchrender.C:1315 ../cinelerra/recordgui.C:1040
+#: ../cinelerra/batchrender.C:1316 ../cinelerra/recordgui.C:1040
 msgid "Start"
 msgstr "Старт"
 
@@ -769,8 +769,8 @@ msgstr "SECAM"
 #. mwindow->theme->vsource_x,
 #. mwindow->theme->vsource_y);
 #. source->create_objects();
-#: ../cinelerra/channeledit.C:185 ../cinelerra/fileexr.C:193
-#: ../cinelerra/fileexr.C:200 ../cinelerra/filetiff.C:114
+#: ../cinelerra/channeledit.C:185 ../cinelerra/fileexr.C:184
+#: ../cinelerra/fileexr.C:191 ../cinelerra/filetiff.C:114
 #: ../cinelerra/filetiff.C:120 ../cinelerra/plugindialog.C:279
 #: ../cinelerra/record.C:354 ../cinelerra/recordgui.C:343
 #: ../cinelerra/sharedlocation.C:127 ../cinelerra/sharedlocation.C:132
@@ -880,8 +880,7 @@ msgstr "Контраст:"
 msgid "Color:"
 msgstr "Цвет:"
 
-#: ../cinelerra/channeledit.C:1548
-#: ../plugins/huesaturation/huesaturation.C:317
+#: ../cinelerra/channeledit.C:1548 ../plugins/huesaturation/huesaturation.C:317
 msgid "Hue:"
 msgstr "Тон:"
 
@@ -1305,13 +1304,13 @@ msgstr "Изменить размер дорожки..."
 msgid "Match output size"
 msgstr "По размеру вывода"
 
-#: ../cinelerra/editpopup.C:196 ../cinelerra/mainmenu.C:842
-#: ../cinelerra/mainmenu.C:910
+#: ../cinelerra/editpopup.C:196 ../cinelerra/mainmenu.C:843
+#: ../cinelerra/mainmenu.C:911
 msgid "Delete track"
 msgstr "Удалить дорожку"
 
-#: ../cinelerra/editpopup.C:213 ../cinelerra/mainmenu.C:830
-#: ../cinelerra/mainmenu.C:896
+#: ../cinelerra/editpopup.C:213 ../cinelerra/mainmenu.C:831
+#: ../cinelerra/mainmenu.C:897
 msgid "Add track"
 msgstr "Добавить дорожку"
 
@@ -1388,7 +1387,7 @@ msgstr "Hi Lo"
 
 #: ../cinelerra/fileac3.C:248 ../cinelerra/filedv.C:1002
 #: ../cinelerra/filemov.C:1352 ../cinelerra/filempeg.C:1458
-#: ../cinelerra/fileogg.C:2036 ../cinelerra/filesndfile.C:377
+#: ../cinelerra/fileogg.C:2037 ../cinelerra/filesndfile.C:377
 msgid "Audio Compression"
 msgstr "Сжатие аудио"
 
@@ -1400,9 +1399,9 @@ msgstr "Битрейт (бит/сек):"
 msgid "There are no audio options for this format"
 msgstr "Нет опций аудио для этого формата"
 
-#: ../cinelerra/filedv.C:1036 ../cinelerra/fileexr.C:560
+#: ../cinelerra/filedv.C:1036 ../cinelerra/fileexr.C:551
 #: ../cinelerra/filejpeg.C:436 ../cinelerra/filemov.C:1633
-#: ../cinelerra/filempeg.C:1653 ../cinelerra/fileogg.C:2166
+#: ../cinelerra/filempeg.C:1653 ../cinelerra/fileogg.C:2167
 #: ../cinelerra/filepng.C:404 ../cinelerra/filetga.C:861
 #: ../cinelerra/filetiff.C:565
 msgid "Video Compression"
@@ -1412,7 +1411,7 @@ msgstr "Сжатие видео"
 msgid "There are no video options for this format"
 msgstr "Нет опций видео для этого формата"
 
-#: ../cinelerra/fileexr.C:596 ../cinelerra/filepng.C:434
+#: ../cinelerra/fileexr.C:587 ../cinelerra/filepng.C:434
 msgid "Use alpha"
 msgstr "Использ. альфа-канал"
 
@@ -1425,7 +1424,7 @@ msgid "Assuming raw PCM:"
 msgstr "Предположительно raw PCM:"
 
 #: ../cinelerra/filejpeg.C:451 ../cinelerra/filemov.C:1960
-#: ../cinelerra/filemov.C:1970 ../cinelerra/fileogg.C:2193
+#: ../cinelerra/filemov.C:1970 ../cinelerra/fileogg.C:2194
 msgid "Quality:"
 msgstr "Качество:"
 
@@ -1553,23 +1552,23 @@ msgstr "Дизеринг"
 #: ../cinelerra/filemov.C:1456 ../cinelerra/filemov.C:1507
 #: ../cinelerra/filemov.C:1804 ../cinelerra/filemov.C:1837
 #: ../cinelerra/filemov.C:1891 ../cinelerra/filempeg.C:1764
-#: ../cinelerra/fileogg.C:2188
+#: ../cinelerra/fileogg.C:2189
 msgid "Bitrate:"
 msgstr "Битрейт:"
 
-#: ../cinelerra/filemov.C:1471 ../cinelerra/fileogg.C:2106
+#: ../cinelerra/filemov.C:1471 ../cinelerra/fileogg.C:2107
 msgid "Variable bitrate"
 msgstr "Переменный битрейт"
 
-#: ../cinelerra/filemov.C:1477 ../cinelerra/fileogg.C:2064
+#: ../cinelerra/filemov.C:1477 ../cinelerra/fileogg.C:2065
 msgid "Min bitrate:"
 msgstr "Мин. битрейт:"
 
-#: ../cinelerra/filemov.C:1484 ../cinelerra/fileogg.C:2068
+#: ../cinelerra/filemov.C:1484 ../cinelerra/fileogg.C:2069
 msgid "Avg bitrate:"
 msgstr "Усред. битрейт:"
 
-#: ../cinelerra/filemov.C:1491 ../cinelerra/fileogg.C:2073
+#: ../cinelerra/filemov.C:1491 ../cinelerra/fileogg.C:2074
 msgid "Max bitrate:"
 msgstr "Макс. битрейт:"
 
@@ -1745,7 +1744,7 @@ msgstr "DVD NAV"
 msgid "DVD"
 msgstr "DVD"
 
-#: ../cinelerra/filempeg.C:1965 ../cinelerra/fileogg.C:2260
+#: ../cinelerra/filempeg.C:1965 ../cinelerra/fileogg.C:2261
 msgid "Fixed bitrate"
 msgstr "Фикс. битрейт"
 
@@ -1761,24 +1760,24 @@ msgstr "YUV 4:2:0"
 msgid "YUV 4:2:2"
 msgstr "YUV 4:2:2"
 
-#: ../cinelerra/fileogg.C:2094
+#: ../cinelerra/fileogg.C:2095
 msgid "Average bitrate"
 msgstr "Усред. битрейт"
 
-#: ../cinelerra/fileogg.C:2210
+#: ../cinelerra/fileogg.C:2211
 msgid "Keyframe frequency:"
 msgstr "Частота ключ. кадров"
 
-#: ../cinelerra/fileogg.C:2216
+#: ../cinelerra/fileogg.C:2217
 msgid "Keyframe force frequency:"
 msgstr "Принудит.част. ключ. кадр."
 
-#: ../cinelerra/fileogg.C:2222
+#: ../cinelerra/fileogg.C:2223
 #: ../plugins/greycstoration/greycstorationwindow.C:57
 msgid "Sharpness:"
 msgstr "Резкость:"
 
-#: ../cinelerra/fileogg.C:2274
+#: ../cinelerra/fileogg.C:2275
 msgid "Fixed quality"
 msgstr "Фикс. качество"
 
@@ -1865,7 +1864,7 @@ msgid "Not Interlaced"
 msgstr "Без чередования"
 
 #: ../cinelerra/formatpresets.C:87 ../plugins/deinterlace/deinterwindow.C:284
-#: ../plugins/motion/motionwindow.C:878 ../plugins/motion/motionwindow.C:898
+#: ../plugins/motion/motionwindow.C:878 ../plugins/motion/motionwindow.C:900
 msgid "Do Nothing"
 msgstr "Ничего не делать"
 
@@ -2062,12 +2061,12 @@ msgstr "Режим"
 msgid "Nudge"
 msgstr "Смещение начала/конца дорожки"
 
-#: ../cinelerra/indexfile.C:304
+#: ../cinelerra/indexfile.C:307
 #, c-format
 msgid "Creating %s."
 msgstr "Создание %s."
 
-#: ../cinelerra/indexfile.C:424
+#: ../cinelerra/indexfile.C:427
 #, c-format
 msgid "IndexFile::draw_index: index has 0 zoom\n"
 msgstr "IndexFile::draw_index: index has 0 zoom\n"
@@ -2421,7 +2420,7 @@ msgstr "Подтверждение"
 msgid "Building Indexes..."
 msgstr "Создание индексов..."
 
-#: ../cinelerra/mainmenu.C:89 ../guicast/bcfilebox.C:886
+#: ../cinelerra/mainmenu.C:89 ../guicast/bcfilebox.C:900
 msgid "File"
 msgstr "Файл"
 
@@ -2498,168 +2497,168 @@ msgstr "Повтор %s"
 msgid "Cut keyframes"
 msgstr "Вырезать ключевые кадры"
 
-#: ../cinelerra/mainmenu.C:595
+#: ../cinelerra/mainmenu.C:596
 msgid "Copy keyframes"
 msgstr "Копировать ключевые кадры"
 
-#: ../cinelerra/mainmenu.C:608
+#: ../cinelerra/mainmenu.C:609
 msgid "Paste keyframes"
 msgstr "Вставить ключевые кадры"
 
-#: ../cinelerra/mainmenu.C:621
+#: ../cinelerra/mainmenu.C:622
 msgid "Clear keyframes"
 msgstr "Удалить ключевые кадры"
 
-#: ../cinelerra/mainmenu.C:635
+#: ../cinelerra/mainmenu.C:636
 msgid "Straighten curves"
 msgstr "Выровнять кривые"
 
-#: ../cinelerra/mainmenu.C:654
+#: ../cinelerra/mainmenu.C:655
 msgid "Cut default keyframe"
 msgstr "Вырезать станд. ключевой кадр"
 
-#: ../cinelerra/mainmenu.C:667
+#: ../cinelerra/mainmenu.C:668
 msgid "Copy default keyframe"
 msgstr "Копировать станд. ключевой кадр"
 
-#: ../cinelerra/mainmenu.C:680
+#: ../cinelerra/mainmenu.C:681
 msgid "Paste default keyframe"
 msgstr "Вставить станд. ключевой кадр"
 
-#: ../cinelerra/mainmenu.C:693
+#: ../cinelerra/mainmenu.C:694
 msgid "Clear default keyframe"
 msgstr "Удалить станд. ключевой кадр"
 
-#: ../cinelerra/mainmenu.C:706
+#: ../cinelerra/mainmenu.C:707
 msgid "Cut"
 msgstr "Вырезать"
 
-#: ../cinelerra/mainmenu.C:718
+#: ../cinelerra/mainmenu.C:719
 msgid "Copy"
 msgstr "Копировать"
 
-#: ../cinelerra/mainmenu.C:742 ../plugins/compressor/compressor.C:1400
-#: ../plugins/synthesizer/synthesizer.C:861
+#: ../cinelerra/mainmenu.C:743 ../plugins/compressor/compressor.C:1400
+#: ../plugins/synthesizer/synthesizer.C:863
 msgid "Clear"
 msgstr "Удалить"
 
-#: ../cinelerra/mainmenu.C:756
+#: ../cinelerra/mainmenu.C:757
 msgid "Paste silence"
 msgstr "Вставить пустой участок"
 
-#: ../cinelerra/mainmenu.C:769
+#: ../cinelerra/mainmenu.C:770
 msgid "Select All"
 msgstr "Выделить всё"
 
-#: ../cinelerra/mainmenu.C:780
+#: ../cinelerra/mainmenu.C:781
 msgid "Clear labels"
 msgstr "Удалить метки"
 
-#: ../cinelerra/mainmenu.C:792
+#: ../cinelerra/mainmenu.C:793
 msgid "Mute Region"
 msgstr "Заглушить выбранный участок "
 
-#: ../cinelerra/mainmenu.C:805
+#: ../cinelerra/mainmenu.C:806
 msgid "Trim Selection"
 msgstr "Обрезать выбранн. участок по краям"
 
-#: ../cinelerra/mainmenu.C:853 ../cinelerra/mainmenu.C:936
+#: ../cinelerra/mainmenu.C:854 ../cinelerra/mainmenu.C:937
 msgid "Default Transition"
 msgstr "Стандартный переход"
 
-#: ../cinelerra/mainmenu.C:866
+#: ../cinelerra/mainmenu.C:867
 msgid "Map 1:1"
 msgstr "Сопоставить 1:1"
 
-#: ../cinelerra/mainmenu.C:878
+#: ../cinelerra/mainmenu.C:879
 msgid "Map 5.1:2"
 msgstr "Сопоставить 5.1:2"
 
-#: ../cinelerra/mainmenu.C:923
+#: ../cinelerra/mainmenu.C:924
 msgid "Reset Translation"
 msgstr "Сбросить перемещение"
 
-#: ../cinelerra/mainmenu.C:964
+#: ../cinelerra/mainmenu.C:965
 msgid "Delete tracks"
 msgstr "Удалить все дорожки"
 
-#: ../cinelerra/mainmenu.C:976
+#: ../cinelerra/mainmenu.C:977
 msgid "Delete last track"
 msgstr "Удалить самую нижнюю дорожку"
 
-#: ../cinelerra/mainmenu.C:988
+#: ../cinelerra/mainmenu.C:989
 msgid "Move tracks up"
 msgstr "Дорожки вверх"
 
-#: ../cinelerra/mainmenu.C:1000
+#: ../cinelerra/mainmenu.C:1001
 msgid "Move tracks down"
 msgstr "Дорожки вниз"
 
-#: ../cinelerra/mainmenu.C:1015
+#: ../cinelerra/mainmenu.C:1016
 msgid "Concatenate tracks"
 msgstr "Объединить дорожки"
 
-#: ../cinelerra/mainmenu.C:1032
+#: ../cinelerra/mainmenu.C:1033
 msgid "Loop Playback"
 msgstr "Зациклить воспроизведение"
 
-#: ../cinelerra/mainmenu.C:1051
+#: ../cinelerra/mainmenu.C:1052
 msgid "Set background render"
 msgstr "Фоновый рендеринг"
 
-#: ../cinelerra/mainmenu.C:1069
+#: ../cinelerra/mainmenu.C:1070
 msgid "Edit labels"
 msgstr "Правка меток"
 
-#: ../cinelerra/mainmenu.C:1086
+#: ../cinelerra/mainmenu.C:1087
 msgid "Edit effects"
 msgstr "Правка эффектов"
 
-#: ../cinelerra/mainmenu.C:1103
+#: ../cinelerra/mainmenu.C:1104
 msgid "Autos follow edits"
 msgstr "Ключ. кадры сопровождают правку"
 
-#: ../cinelerra/mainmenu.C:1118
+#: ../cinelerra/mainmenu.C:1119
 msgid "Align cursor on frames"
 msgstr "Выравнивать курсор по границе кадра"
 
-#: ../cinelerra/mainmenu.C:1132 ../cinelerra/mainmenu.C:1142
+#: ../cinelerra/mainmenu.C:1133 ../cinelerra/mainmenu.C:1143
 msgid "Slow Shuttle"
 msgstr "Медленное перемещение (shuttle)"
 
-#: ../cinelerra/mainmenu.C:1147
+#: ../cinelerra/mainmenu.C:1148
 msgid "Fast Shuttle"
 msgstr "Быстрое перемещение (shuttle)"
 
-#: ../cinelerra/mainmenu.C:1152
+#: ../cinelerra/mainmenu.C:1153
 msgid "Save settings now"
 msgstr "Сохранить настройки"
 
-#: ../cinelerra/mainmenu.C:1161
+#: ../cinelerra/mainmenu.C:1162
 msgid "Saved settings."
 msgstr "Настройки сохранены."
 
-#: ../cinelerra/mainmenu.C:1174
+#: ../cinelerra/mainmenu.C:1175
 msgid "Show Viewer"
 msgstr "Окно 'Просмотр'"
 
-#: ../cinelerra/mainmenu.C:1186
+#: ../cinelerra/mainmenu.C:1187
 msgid "Show Resources"
 msgstr "Окно 'Ресурсы'"
 
-#: ../cinelerra/mainmenu.C:1198
+#: ../cinelerra/mainmenu.C:1199
 msgid "Show Compositor"
 msgstr "Окно 'Cоставитель (Вывод)'"
 
-#: ../cinelerra/mainmenu.C:1211
+#: ../cinelerra/mainmenu.C:1212
 msgid "Show Overlays"
 msgstr "Окно меню 'Вид'"
 
-#: ../cinelerra/mainmenu.C:1224
+#: ../cinelerra/mainmenu.C:1225
 msgid "Show Levels"
 msgstr "Окно 'Уровни звука'"
 
-#: ../cinelerra/mainmenu.C:1236
+#: ../cinelerra/mainmenu.C:1237
 msgid "Default positions"
 msgstr "Стандартное расположение"
 
@@ -2733,11 +2732,11 @@ msgstr "Введите имя для первого файла:"
 msgid "Select a file to render to:"
 msgstr "Введите имя для результирующего файла:"
 
-#: ../cinelerra/menueffects.C:748
+#: ../cinelerra/menueffects.C:749
 msgid "Set up effect panel and hit \"OK\""
 msgstr "Настройте эффект и нажмите \"OK\""
 
-#: ../cinelerra/menueffects.C:751
+#: ../cinelerra/menueffects.C:752
 msgid "Effect Prompt"
 msgstr "Указание"
 
@@ -3913,11 +3912,11 @@ msgstr "ПрофильРендеринга:"
 msgid "Render profile:"
 msgstr "Профиль рендеринга:"
 
-#: ../cinelerra/renderprofiles.C:248
+#: ../cinelerra/renderprofiles.C:249
 msgid "Save profile"
 msgstr "Сохранить профиль"
 
-#: ../cinelerra/renderprofiles.C:287
+#: ../cinelerra/renderprofiles.C:288
 msgid "Delete profile"
 msgstr "Удалить профиль"
 
@@ -4033,11 +4032,11 @@ msgid "Channel positions:"
 msgstr "Расположение каналов:"
 
 #: ../cinelerra/setformat.C:390
-msgid "W Ratio:"
+msgid "W Scale:"
 msgstr "Ш. Соотнош."
 
 #: ../cinelerra/setformat.C:399
-msgid "H Ratio:"
+msgid "H Scale:"
 msgstr "В. Соотнош."
 
 #: ../cinelerra/setformat.C:581
@@ -4173,19 +4172,26 @@ msgstr ""
 "Alt + стрелка влево - переход курсора влево к границе редактирования.\n"
 "Alt + стрелка вправо - переход курсора вправо к границе редактирования.\n"
 
-#: ../cinelerra/tipwindow.C:135
+#: ../cinelerra/tipwindow.C:73
+msgid "Shift-click on a curve keyframe to snap it to the neighboring values.\n"
+msgstr ""
+"Удерживая Shift, сместите ключ. кадр на кривой. Произойдёт автоматическое\n"
+"выравнивание его значения по соседнему ключ. кадру\n"
+"с ближайшим к нему значением.\n"
+
+#: ../cinelerra/tipwindow.C:137
 msgid "Tip of the day"
 msgstr "Совет дня"
 
-#: ../cinelerra/tipwindow.C:200
+#: ../cinelerra/tipwindow.C:202
 msgid "Show tip of the day."
 msgstr "Показывать совет дня."
 
-#: ../cinelerra/tipwindow.C:221
+#: ../cinelerra/tipwindow.C:223
 msgid "Next tip"
 msgstr "Следующий совет."
 
-#: ../cinelerra/tipwindow.C:244
+#: ../cinelerra/tipwindow.C:246
 msgid "Previous tip"
 msgstr "Предыдущий совет."
 
@@ -4356,19 +4362,19 @@ msgstr "Z (глубина):"
 msgid "??"
 msgstr "??"
 
-#: ../cinelerra/zoombar.C:513
+#: ../cinelerra/zoombar.C:515
 msgid "Automation range"
 msgstr "Диапазон автоматизации"
 
-#: ../cinelerra/zoombar.C:573
+#: ../cinelerra/zoombar.C:575
 msgid "Selection start time"
 msgstr "Начало выделенного участка"
 
-#: ../cinelerra/zoombar.C:611
+#: ../cinelerra/zoombar.C:613
 msgid "Selection length"
 msgstr "Длина выделенного участка"
 
-#: ../cinelerra/zoombar.C:645
+#: ../cinelerra/zoombar.C:647
 msgid "Selection end time"
 msgstr "Конец выделенного участка"
 
@@ -4386,65 +4392,65 @@ msgstr "Переменная окружения 'DISPLAY' не установл�
 msgid "Really delete the following files?"
 msgstr "Действительно хотите удалить файлы ?"
 
-#: ../guicast/bcfilebox.C:238
+#: ../guicast/bcfilebox.C:250
 msgid "Change the filter"
 msgstr "Изменить маску отображаемых файлов"
 
-#: ../guicast/bcfilebox.C:263
+#: ../guicast/bcfilebox.C:275
 msgid "Cancel the operation"
 msgstr "Прервать операцию"
 
-#: ../guicast/bcfilebox.C:291
+#: ../guicast/bcfilebox.C:303
 msgid "Submit the directory"
 msgstr "Выполнить"
 
-#: ../guicast/bcfilebox.C:316
+#: ../guicast/bcfilebox.C:328
 msgid "Descend directory"
 msgstr "Войти в каталог"
 
-#: ../guicast/bcfilebox.C:318
+#: ../guicast/bcfilebox.C:330
 msgid "Submit the file"
 msgstr "Выполнить"
 
-#: ../guicast/bcfilebox.C:366
+#: ../guicast/bcfilebox.C:378
 msgid "Create new folder"
 msgstr "Создать новую папку"
 
-#: ../guicast/bcfilebox.C:378
+#: ../guicast/bcfilebox.C:390
 msgid "Up a directory"
 msgstr "Родительский каталог"
 
 #. Need a temp so submit_file can expand it
-#: ../guicast/bcfilebox.C:383
+#: ../guicast/bcfilebox.C:395
 #, c-format
 msgid ".."
 msgstr ".."
 
-#: ../guicast/bcfilebox.C:392
+#: ../guicast/bcfilebox.C:404
 msgid "Delete files"
 msgstr "Удалить файлы"
 
-#: ../guicast/bcfilebox.C:406
+#: ../guicast/bcfilebox.C:418
 msgid "Refresh"
 msgstr "Обновить"
 
-#: ../guicast/bcfilebox.C:889
+#: ../guicast/bcfilebox.C:903
 msgid "Size"
 msgstr "Размер:"
 
-#: ../guicast/bcfilebox.C:892
+#: ../guicast/bcfilebox.C:906
 msgid "Date"
 msgstr "Дата"
 
-#: ../guicast/bcfilebox.C:895
+#: ../guicast/bcfilebox.C:909
 msgid "Ext."
 msgstr "Расш."
 
-#: ../guicast/bcfilebox.C:1189
+#: ../guicast/bcfilebox.C:1203
 msgid ": New folder"
 msgstr "Новая папка"
 
-#: ../guicast/bcfilebox.C:1204
+#: ../guicast/bcfilebox.C:1218
 msgid ": Delete"
 msgstr "Удалить"
 
@@ -4668,7 +4674,7 @@ msgstr "Выбор"
 #: ../plugins/bluebanana/bluebananawindow.C:1414
 #: ../plugins/bluebanana/bluebananawindow.C:1422
 #: ../plugins/bluebanana/bluebananawindow.C:2047
-#: ../plugins/color3way/color3waywindow.C:615
+#: ../plugins/color3way/color3waywindow.C:616
 #: ../plugins/colorbalance/colorbalancewindow.C:216
 #: ../plugins/histogram/histogramwindow.C:589
 #: ../plugins/perspective/perspective.C:520
@@ -4872,8 +4878,8 @@ msgstr "Спад:"
 msgid "Threshold:"
 msgstr "Порог:"
 
-#: ../plugins/chromakey/chromakey.C:187
-#: ../plugins/chromakeyhsv/chromakey.C:295 ../plugins/titler/titlewindow.C:498
+#: ../plugins/chromakey/chromakey.C:187 ../plugins/chromakeyhsv/chromakey.C:295
+#: ../plugins/titler/titlewindow.C:498
 msgid "Color..."
 msgstr "Цвет..."
 
@@ -4881,13 +4887,12 @@ msgstr "Цвет..."
 msgid "Use value"
 msgstr "Значение"
 
-#: ../plugins/chromakey/chromakey.C:263
-#: ../plugins/chromakeyhsv/chromakey.C:467
+#: ../plugins/chromakey/chromakey.C:263 ../plugins/chromakeyhsv/chromakey.C:467
 msgid "Use color picker"
 msgstr "Использовать пипетку"
 
-#: ../plugins/chromakey/chromakey.C:283
-#: ../plugins/chromakeyhsv/chromakey.C:526 ../plugins/gradient/gradient.C:500
+#: ../plugins/chromakey/chromakey.C:283 ../plugins/chromakeyhsv/chromakey.C:526
+#: ../plugins/gradient/gradient.C:500
 msgid "Inner color"
 msgstr "Внутр. цвет"
 
@@ -4976,11 +4981,11 @@ msgstr "Света"
 msgid "Saturation:"
 msgstr "Насыщенность:"
 
-#: ../plugins/color3way/color3waywindow.C:644
+#: ../plugins/color3way/color3waywindow.C:645
 msgid "Copy to all"
 msgstr "Копировать на все"
 
-#: ../plugins/color3way/color3waywindow.C:669
+#: ../plugins/color3way/color3waywindow.C:670
 #: ../plugins/colorbalance/colorbalancewindow.C:170
 msgid "White balance"
 msgstr "Баланс белого"
@@ -5120,7 +5125,7 @@ msgid "Trigger"
 msgstr "Триггер"
 
 #: ../plugins/compressor/compressor.C:1377
-#: ../plugins/synthesizer/synthesizer.C:1064
+#: ../plugins/synthesizer/synthesizer.C:1066
 msgid "Maximum"
 msgstr "Максимум"
 
@@ -5228,8 +5233,7 @@ msgstr "Обмен полей (временной)"
 msgid "Delay audio"
 msgstr "Задержка звука"
 
-#: ../plugins/delayaudio/delayaudio.C:205
-#: ../plugins/delayvideo/delayvideo.C:92
+#: ../plugins/delayaudio/delayaudio.C:205 ../plugins/delayvideo/delayvideo.C:92
 msgid "Delay seconds:"
 msgstr "Задержка в секундах:"
 
@@ -5453,11 +5457,11 @@ msgstr "Усиление"
 msgid "Gamma"
 msgstr "Гамма"
 
-#: ../plugins/gamma/gammawindow.C:57
+#: ../plugins/gamma/gammawindow.C:56
 msgid "Maximum:"
 msgstr "Максимум"
 
-#: ../plugins/gamma/gammawindow.C:75
+#: ../plugins/gamma/gammawindow.C:74
 msgid "Gamma:"
 msgstr "Гамма"
 
@@ -5868,7 +5872,7 @@ msgstr "Расчёт:"
 
 #: ../plugins/motion/motionwindow.C:489
 msgid "Add (loaded) offset from tracked frame"
-msgstr ""
+msgstr "Добавить (загруз. с /tmp) сдвиг от отслеж. кадра"
 
 #: ../plugins/motion/motionwindow.C:510
 msgid "Track translation"
@@ -5906,53 +5910,52 @@ msgstr "Верх"
 msgid "Bottom"
 msgstr "Низ"
 
-#: ../plugins/motion/motionwindow.C:874 ../plugins/motion/motionwindow.C:886
+#: ../plugins/motion/motionwindow.C:874 ../plugins/motion/motionwindow.C:888
 msgid "Track Subpixel"
 msgstr "Субпиксельное отслеживание"
 
-#: ../plugins/motion/motionwindow.C:875 ../plugins/motion/motionwindow.C:889
+#: ../plugins/motion/motionwindow.C:875 ../plugins/motion/motionwindow.C:891
 msgid "Track Pixel"
 msgstr "Пиксельное отслеживание"
 
-#: ../plugins/motion/motionwindow.C:876 ../plugins/motion/motionwindow.C:892
+#: ../plugins/motion/motionwindow.C:876 ../plugins/motion/motionwindow.C:894
 msgid "Stabilize Subpixel"
 msgstr "Субпиксельное стабилизирование"
 
-#: ../plugins/motion/motionwindow.C:877 ../plugins/motion/motionwindow.C:895
+#: ../plugins/motion/motionwindow.C:877 ../plugins/motion/motionwindow.C:897
 msgid "Stabilize Pixel"
 msgstr "Пиксельное стабилизирование"
 
-#: ../plugins/motion/motionwindow.C:946 ../plugins/motion/motionwindow.C:957
+#: ../plugins/motion/motionwindow.C:948 ../plugins/motion/motionwindow.C:961
 msgid "Don't Calculate"
 msgstr "Не рассчитывать"
 
-#: ../plugins/motion/motionwindow.C:947 ../plugins/motion/motionwindow.C:960
+#: ../plugins/motion/motionwindow.C:949 ../plugins/motion/motionwindow.C:964
 msgid "Recalculate"
 msgstr "Пересчитывать"
 
-#: ../plugins/motion/motionwindow.C:948 ../plugins/motion/motionwindow.C:963
+#: ../plugins/motion/motionwindow.C:950 ../plugins/motion/motionwindow.C:967
 msgid "Save coords to /tmp"
 msgstr "Сохранить координаты в /tmp"
 
-#: ../plugins/motion/motionwindow.C:949 ../plugins/motion/motionwindow.C:966
+#: ../plugins/motion/motionwindow.C:951 ../plugins/motion/motionwindow.C:970
 msgid "Load coords from /tmp"
 msgstr "Загрузить координаты из /tmp"
 
-#: ../plugins/motion/motionwindow.C:1024
-#: ../plugins/sharpen/sharpenwindow.C:119
+#: ../plugins/motion/motionwindow.C:1030 ../plugins/sharpen/sharpenwindow.C:119
 msgid "Horizontal only"
 msgstr "Только по горизонтали"
 
-#: ../plugins/motion/motionwindow.C:1025
+#: ../plugins/motion/motionwindow.C:1031
 msgid "Vertical only"
 msgstr "Только по вертикали"
 
-#: ../plugins/motion/motionwindow.C:1026
+#: ../plugins/motion/motionwindow.C:1032
 msgid "Both"
 msgstr "Оба направления"
 
 #: ../plugins/normalize/normalize.C:58
-#: ../plugins/synthesizer/synthesizer.C:1085
+#: ../plugins/synthesizer/synthesizer.C:1087
 msgid "Normalize"
 msgstr "Нормализация"
 
@@ -6017,13 +6020,13 @@ msgid "Qual"
 msgstr "Ширина"
 
 #: ../plugins/parametric/parametric.C:377
-#: ../plugins/synthesizer/synthesizer.C:485
-#: ../plugins/synthesizer/synthesizer.C:543
+#: ../plugins/synthesizer/synthesizer.C:487
+#: ../plugins/synthesizer/synthesizer.C:545
 msgid "Level"
 msgstr "Уровень"
 
 #: ../plugins/parametric/parametric.C:387
-#: ../plugins/synthesizer/synthesizer.C:534
+#: ../plugins/synthesizer/synthesizer.C:536
 msgid "Wetness:"
 msgstr "Обработка:"
 
@@ -6146,11 +6149,11 @@ msgstr "Время реверберации (мсек.)"
 
 #: ../plugins/reverb/reverbwindow.C:68
 msgid "Start band for lowpass:"
-msgstr ""
+msgstr "Нач. частота среза"
 
 #: ../plugins/reverb/reverbwindow.C:70
 msgid "End band for lowpass:"
-msgstr ""
+msgstr "Конеч. част. среза"
 
 #: ../plugins/reverseaudio/reverseaudio.C:179
 msgid "Reverse audio"
@@ -6389,113 +6392,113 @@ msgstr "100%"
 msgid "Synthesizer"
 msgstr "Синтезатор"
 
-#: ../plugins/synthesizer/synthesizer.C:486
-#: ../plugins/synthesizer/synthesizer.C:545
+#: ../plugins/synthesizer/synthesizer.C:488
+#: ../plugins/synthesizer/synthesizer.C:547
 msgid "Phase"
 msgstr "Фаза"
 
-#: ../plugins/synthesizer/synthesizer.C:487
-#: ../plugins/synthesizer/synthesizer.C:547
+#: ../plugins/synthesizer/synthesizer.C:489
+#: ../plugins/synthesizer/synthesizer.C:549
 msgid "Harmonic"
 msgstr "Гармоника"
 
-#: ../plugins/synthesizer/synthesizer.C:508
+#: ../plugins/synthesizer/synthesizer.C:510
 msgid "Waveform"
 msgstr "График сигнала"
 
-#: ../plugins/synthesizer/synthesizer.C:510
+#: ../plugins/synthesizer/synthesizer.C:512
 msgid "Wave Function"
 msgstr "Форма сигнала"
 
-#: ../plugins/synthesizer/synthesizer.C:525
+#: ../plugins/synthesizer/synthesizer.C:527
 msgid "Base Frequency:"
 msgstr "Базовая частота"
 
-#: ../plugins/synthesizer/synthesizer.C:640
+#: ../plugins/synthesizer/synthesizer.C:642
 #, c-format
 msgid "DC"
 msgstr "DC"
 
 #. add_item(new SynthWaveFormItem(synth, _("DC"), DC));
-#: ../plugins/synthesizer/synthesizer.C:641
-#: ../plugins/synthesizer/synthesizer.C:894
-#: ../plugins/synthesizer/synthesizer.C:1190
-#: ../plugins/synthesizer/synthesizer.C:1260
+#: ../plugins/synthesizer/synthesizer.C:643
+#: ../plugins/synthesizer/synthesizer.C:896
+#: ../plugins/synthesizer/synthesizer.C:1192
+#: ../plugins/synthesizer/synthesizer.C:1262
 #, c-format
 msgid "Sine"
 msgstr "Синус"
 
-#: ../plugins/synthesizer/synthesizer.C:642
-#: ../plugins/synthesizer/synthesizer.C:895
+#: ../plugins/synthesizer/synthesizer.C:644
+#: ../plugins/synthesizer/synthesizer.C:897
 #, c-format
 msgid "Sawtooth"
 msgstr "Пила"
 
-#: ../plugins/synthesizer/synthesizer.C:643
-#: ../plugins/synthesizer/synthesizer.C:896
+#: ../plugins/synthesizer/synthesizer.C:645
+#: ../plugins/synthesizer/synthesizer.C:898
 #, c-format
 msgid "Square"
 msgstr "Квадрат"
 
-#: ../plugins/synthesizer/synthesizer.C:644
-#: ../plugins/synthesizer/synthesizer.C:897
+#: ../plugins/synthesizer/synthesizer.C:646
+#: ../plugins/synthesizer/synthesizer.C:899
 #, c-format
 msgid "Triangle"
 msgstr "Треугольник"
 
-#: ../plugins/synthesizer/synthesizer.C:645
-#: ../plugins/synthesizer/synthesizer.C:898
+#: ../plugins/synthesizer/synthesizer.C:647
+#: ../plugins/synthesizer/synthesizer.C:900
 #, c-format
 msgid "Pulse"
 msgstr "Импульс"
 
-#: ../plugins/synthesizer/synthesizer.C:646
-#: ../plugins/synthesizer/synthesizer.C:899
+#: ../plugins/synthesizer/synthesizer.C:648
+#: ../plugins/synthesizer/synthesizer.C:901
 #, c-format
 msgid "Noise"
 msgstr "Шум"
 
-#: ../plugins/synthesizer/synthesizer.C:769
+#: ../plugins/synthesizer/synthesizer.C:771
 msgid "Add"
 msgstr "Добавить"
 
-#: ../plugins/synthesizer/synthesizer.C:1042
-#: ../plugins/synthesizer/synthesizer.C:1239
+#: ../plugins/synthesizer/synthesizer.C:1044
+#: ../plugins/synthesizer/synthesizer.C:1241
 msgid "Zero"
 msgstr "Нуль"
 
-#: ../plugins/synthesizer/synthesizer.C:1122
+#: ../plugins/synthesizer/synthesizer.C:1124
 msgid "Slope"
 msgstr "Спад"
 
-#: ../plugins/synthesizer/synthesizer.C:1146
-#: ../plugins/synthesizer/synthesizer.C:1284
-#: ../plugins/synthesizer/synthesizer.C:1310
+#: ../plugins/synthesizer/synthesizer.C:1148
+#: ../plugins/synthesizer/synthesizer.C:1286
+#: ../plugins/synthesizer/synthesizer.C:1312
 msgid "Random"
 msgstr "Произвольно"
 
-#: ../plugins/synthesizer/synthesizer.C:1168
-#: ../plugins/synthesizer/synthesizer.C:1217
+#: ../plugins/synthesizer/synthesizer.C:1170
+#: ../plugins/synthesizer/synthesizer.C:1219
 msgid "Invert"
 msgstr "Инверсия"
 
-#: ../plugins/synthesizer/synthesizer.C:1332
+#: ../plugins/synthesizer/synthesizer.C:1334
 msgid "Enumerate"
 msgstr "Натуральные числа"
 
-#: ../plugins/synthesizer/synthesizer.C:1353
+#: ../plugins/synthesizer/synthesizer.C:1355
 msgid "Even"
 msgstr "Чётные"
 
-#: ../plugins/synthesizer/synthesizer.C:1377
+#: ../plugins/synthesizer/synthesizer.C:1379
 msgid "Odd"
 msgstr "Нечётные"
 
-#: ../plugins/synthesizer/synthesizer.C:1396
+#: ../plugins/synthesizer/synthesizer.C:1398
 msgid "Fibonnacci"
 msgstr "Числа Фибоначчи"
 
-#: ../plugins/synthesizer/synthesizer.C:1421
+#: ../plugins/synthesizer/synthesizer.C:1423
 msgid "Prime"
 msgstr "Простые числа"
 
