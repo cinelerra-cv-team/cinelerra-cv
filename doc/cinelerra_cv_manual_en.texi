@@ -15,7 +15,7 @@
 @documentencoding UTF-8
 @settitle Cinelerra CV Manual
 @afourpaper
-@set EDITION 1.70.EN
+@set EDITION 1.71.EN
 @set VERSION 2.3
 
 @finalout
@@ -28,7 +28,7 @@
 @author Cinelerra CV Team
 @page
 @vskip 0pt plus 1filll
-Copyright @copyright{} 2003, 2004, 2005, 2006 - 2009, 2024 - 2025 'Secrets of CInelerra', by Adam Williams - Heroine Virtual Ltd.
+Copyright @copyright{} 2003, 2004, 2005, 2006 - 2009, 2024 - 2025 'Secrets of Cinelerra', by Adam Williams - Heroine Virtual Ltd.
 
 Copyright @copyright{} 2003 - 2025 Cinelerra-CV Team.@*
 
@@ -70,6 +70,7 @@ St, Fifth Floor, Boston, MA 02110, USA@.
 * Viewer window::
 * Resources window::
 * Sound level meters window::
+* Overlays window::
 * Transport controls::
 * Timebar::
 * Realtime effects::
@@ -2238,17 +2239,20 @@ This is the same as Quicktime with MPEG-4 Audio as the audio codec.
 @cindex Still images, loading
 
 You can load still images on video tracks just like you do for any video file.@*
-Supported file formats are mainly: PNG, TIF, TGA or JPG, EXR, raw digital camera images.
+Supported file formats are mainly: PNG, TIF, TGA or JPG, EXR.
 
 When loaded on the timeline, by default the image takes up one frame in length.
+I.e. it is imported as a single frame, so thin to be hardly visible.@*
 To view the image, zoom in time (@key{down arrow}) on the timeline so you can
 see the single frame. @*
 To extend the length of the image, drag its boundaries just as you would do with
 regular video media. @*
 You can drag the boundaries of a still image as much as you want.
 Images in Cinelerra have the ability to be dragged to an infinite length.@*
-Cinelerra lets you define the initial duration of the loaded images. The parameter
-is set in the @b{Images} section of the @b{Settings->Preferences->Recording window}.@*
+Or (better) reload your image after having set the duration it is going to have on the timeline.
+Cinelerra lets you define the initial duration of the loaded images.@*
+The parameter is set in the @b{Images} section of the @b{Settings->Preferences window->Recording tab}.@*
+Check the option "Import images with a duration of … seconds" and enter the desired length.
 
 Unless your original material comes from a digital source (like a digital photo
 camera), the first thing you have to do before you can use it is to somehow
@@ -4283,7 +4287,10 @@ The polygon is automatically closed. Knowing which point is the 1st point is ess
 animating masks, so the 1st point is always drawn filled in while other points are drawn
 as an outline. While it is not the conventional Bezier curve behavior, this masking
 interface performs in realtime what the effect of the mask is going to be.
-Creating each point of the mask expands a rubber band curve.
+Creating each point of the mask expands a rubber band curve.@*
+@b{Note:} You can have only one number of points (per mask) for the entire track.
+A number of points is not a keyframable attribute.@*
+I.e. you can't add a point, because you need one more, by creating/adjusting a keyframe and later on the track remove it again by creating/adjusting a keyframe.
 
 Once points are defined, they can be moved by @b{CTRL-dragging} in the vicinity
 of the corner.
@@ -4327,7 +4334,11 @@ the mask causes video to appear and everything outside the mask to disappear.
 The @b{value} of the mask determines how extreme the multiplication or subtraction
 is.  In subtraction mode, higher values subtract more alpha.  In multiplication mode,
 higher values make the region in the mask brighter while the region outside the mask
-is always hidden.
+is always hidden.@*
+@b{Note:} Cinelerra-CV does not interpolate the value of mask. The "Value" doesn't get interpolated between the keyframes.
+If you created two mask-keyframes: the first with mask-value=0, the second with mask-value=100, the "Value" stays 0 as long as it reaches
+keyframe#2, then it jumps to 100.
+But you can always place a identical unmasked copy of your clip on a track above and fade over to this if you don't need the mask anymore.
 
 @center @image{manual_images_en/composite_mask_value}
 @center @b{Mask value}
@@ -4350,7 +4361,7 @@ creates softer edges but takes longer to render.
 @center @image{manual_images_en/compositor_feather,120mm}
 @center @b{Feather parameter}
 
-Note: The OpenGL mask renderer is of low quality and only suitable as a preview for
+@b{Note:} The OpenGL mask renderer is of low quality and only suitable as a preview for
 initial work. For fine-tuning of masks (with large feather values) OpenGL should
 be switched off and the software renderer be used.
 
@@ -4361,6 +4372,47 @@ activated merely by @b{CTRL-clicking} near it without moving the pointer.  Once
 a point is activated, @b{Delete} deletes it and @b{x, y} allow repositioning by
 numeric entry.
 
+How to make a mask copy from a track to another ?@*
+
+@itemize @bullet
+@item 0. Make sure you have (only) Mask keyframes turned on (in the View menu)
+@item 1. Arm the source track only
+@item 2. The Keyframes menu ->Copy keyframes (Shift-C)
+@item 3. Arm the destination track only
+@item 4. The Keyframes menu->Paste keyframes (Shift-V)
+@end itemize
+
+@b{How to make Cinelerra-CV keep one mask shape/size (let say a mask in the shape of
+a square for frames e.g. N0 -  N10), and another mask shape/size (a triangle) for frames e.g. N11 -  N20 ?}@*
+
+You have to use mask keyframes. Enable automatic keyframe mode by enabling the automatic keyframe toggle "Generate keyframes while tweaking".
+This causes the creation of a new keyframe every time you tweak the parameters of the Mask tool.@*
+Make sure that mask keyframes are actually displayed. Go into the Program --> the View menu and turn on the Mask keyframes.
+This makes  the Mask parameter parameter visible before performing a change.@*
+Alternatively, there is a small options/toggles window called "Overlays", which you can show via the Program --> the "Window" menu (its called "Show overlays").
+In this window, make sure the toggle for "Mask" is set.@*
+Now, you should see a green symbol at every mask keframe location right at your video on the timeline.
+
+If you want to have a constant shape of your mask and an abrupt change to a different shape/size
+then you must place keyframes on subsequent frames: A0---A10 B11---B20.@*
+You must have A-keyframes at frames N-0 and N-10 where you defined a square.
+You must have B-keyframes at frames N-11 and N-20 where you defined another shape/size (a triangle).@*
+The A keyframes define one shape (a square), the Bs a different shape (a triangle).
+
+If you want to make Cinelerra change the shape/size smoothly until it arrives at the shape that the B-keyframe at frame N-11 defines (i.e. from a square to a triangle),@*
+don't create the A-keyframe at frame N-10.
+
+Warning! A and B cannot have different number of mask points!
+If you need that, then you have to use separate masks, and switch the "Value" of one to 0, the other to 100.
+
+@b{Can I move a mask in time, or define the end/start point of masks ?}@*
+
+Yes. Turn on "Generate keyframes while tweaking", then select a different frame on the timeline.
+Now you can adjust the points. Between the keyframes the points will be interpolated.@*
+Also leaving the keyframe toggle on, you can move the points in the mask to
+follow the place where they are supposed to be over.@*
+Then cinelerra will do the animation for you (placing them while the movie is being played).
+
 @c cincvdoc_node_number_125
 @node Cropping
 @subsection Cropping
@@ -4370,7 +4422,8 @@ Cropping reduces the visible picture area of the whole project.@*
 It changes the values of the output dimensions (width and height in pixels)
 and the X Y values of the projector in a single operation. @*
 Since it changes project settings it affects all the tracks for their
-entire duration and it is not keyframable.
+entire duration and it is not keyframable.@*
+Note: The Crop tool is keyframable in the Cinelerra-CVE fork.
 
 Enable the @image{manual_images_intl/crop,4.33mm} crop toggle and the
 @image{manual_images_intl/toolwindow,2.67mm} tool window in the @b{compositor
@@ -4711,6 +4764,16 @@ when sent to a sound card or file.
 
 The visible range of the sound level meters is configurable in
 @b{settings->preferences->interface} (@xref{Interface}.)
+
+@c cincvdoc_node_number_367
+@node Overlays window
+@chapter Overlays window
+@cindex Overlays window
+
+The Overlays window can be brought up from the Window menu.@*
+It allows you to toggle on and off various parts of the timeline display (plugin autos, mask keyframes, asset name, ... ).@*
+Every option in the View menu is available here.@*
+When parameters are selected, they are drawn on the timeline over the tracks they apply to.
 
 @c cincvdoc_node_number_134
 @node Transport controls
@@ -7482,8 +7545,8 @@ Text options can only be applied to all the text as a whole. If you want your
 title text formatted with a mixture of fonts, sizes, styles, alignments etc. you
 need to use multiple tile effects.
 
-The title effect supports keyframes only for @b{Justify} and @b{Text}, with
-no interpolation.@*
+The Title effect supports keyframes only for @b{Justify} and @b{Text}, with
+no interpolation. The Title plugin does not interpolate any of the settings.@*
 To add subtitles to your movie can set a single title effect and then define keyframes.
 If you enable the automatic keyframes toggle @image{manual_images_intl/autokeyframe},
 a new keyframe is created each time you edit the text. Check @b{View -> Plugin autos}
@@ -7499,6 +7562,11 @@ and insert other realtime video effects just under the title effect or/and use
 camera and projector. Thanks to keyframing you can animate your title and make it
 change position, size, colour, transparency, texture, shape over time.
 
+A tip for using the Title effect.@*
+To smooth out the sharp edges of the titles, put all titles in a separate track and
+at the bottom of the effects stack add the Blur effect with small (1-2pix) radius.@*
+The only drawback is that Blur makes playback slower so for editing set it to "Off" and for rendering to "On".
+
 For improving playback performances of titles with effects, you can reduce the size
 of the dedicated track. Right click on the track and select @b{Resize track...}.
 Enter the smallest resolution that still keeps the title visible. For moving your title
@@ -7510,7 +7578,7 @@ and projector or add effects.
 
 The titler input is limited to 1023 characters. Titles longer than 1023 characters
 will be accepted by the software, but they will likely cause lock-ups. See
-@uref{http://bugs.cinelerra.org/show_bug.cgi?id=155|bug 155} to know more.
+@uref{https://web.archive.org/web/20121029031951/http://bugs.cinelerra.org/ticket/155|here} to know more.
 
 @menu
 * Adding fonts to the titler:: How to add fonts to the titler
@@ -8169,7 +8237,7 @@ keyframes to the default one is a very convenient technique for creating dynamic
 changes.
 
 In Cinelerra, there are keyframes for almost every compositing parameter and
-effect parameter. The fade, mute, mode, pan, mask, speed, camera, projector, transition, or effect data for a track is all stored in keyframes.@*
+effect parameter. The fade, mute, overlay mode, pan, mask, camera, projector, transition, or effect data for a track is all stored in keyframes.@*
 Parameters can be graphically represented in many forms: curves, toggles, modes, masks,
 and so on.@*
 The relative keyframe can be represented on the timeline as a little square on a
@@ -8183,7 +8251,37 @@ A faster way to toggle multiple parameters types is to bring up @b{Window -> Sho
 This window allows toggling of every parameter in the view menu. When parameters
 are selected, they are drawn on the timeline over the tracks they apply to.
 
-How to handle the different types of keyframes is described here.
+@b{Let's dive a bit deeper into the deafult keyframe feature.}@*
+The whole concept of deafult keyframe is rather low-level and probably you'd need to understand it (technically)
+in order to use it effectively.@*
+Or, to put it a in a somewhat provocative manner: it's a "geek feature".
+
+In Cinelerra, keyframes always are effective "from now on to the future".
+They set the value at some time point and this value is in effect for all time points to the right of that
+keyframe -- unless there is another keyframe at a later time point which supersedes the former.
+Or, to put it the other way round: for any given point in time, you'll have to look to the *left* (to earlier times) to determine
+the keyframe in effect here. And this keyframe's setting dictates the automation value in question (fade, pan, camera, projector, mask, plug-in settings).
+
+Probably you've guessed it by now: when there wasn't any keyframe defined for that track and that value yet, then the system magically
+"invents" a default keyframe sitting at t = 0, and fills in the default value of that automation setting for that keyframe.
+
+Now, the real complexity gets in with the "generate keyframes when tweaking" toggle. Yet unfortunately, this toggle is the key to working effectively
+with Cinelerra's keyframes. And there is no "best" setting.
+
+When it is ON, then each tweaking of a parameter generates a new keyframe,
+or adjusts the keyframe which sits exactly at the current playback position.
+When it is OFF, then tweaking of a parameters never generates new keyframes,
+but adjusts the *relevant* keyframe for the current position, which is the
+next to the left. If there isn't any keyframe, you adjust the default keyframe.
+
+So basically, the default keyframe allows us to have a global setting for the
+whole track, and still be able to add keyframing and automation later on
+for some segment of the track. And, since we're able to copy / paste keyframes,
+we need a means to copy from / to that default setting too. Otherwise, it would
+be possible to get into a dead end, and you would be forced to set a keyframe at
+t = 0 manually, e.g. after pasting some segment of keyframes from another track.@*
+
+How to handle the different types of keyframes is described below.
 
 @menu
 * Curve keyframes::
@@ -8214,10 +8312,16 @@ vertically, the horizontal movement is purely for legibility and is not used in
 the curve value.
 
 You may remember that The Gimp and the Compositing masks all use @key{SHIFT} to
-select control points so why does the timeline use @key{CTRL}?  When you
-@b{SHIFT-drag} on a timeline curve, the keyframe snaps to the value of either
-the next or previous keyframe, depending on which exists.  This lets you set a
-constant curve value without having to copy the next or previous keyframe.
+select control points so why does the timeline use @key{CTRL}?@*
+When you @b{SHIFT-drag} on a timeline curve, the keyframe snaps to the neighboring value of either
+the next or previous keyframe, depending on which exists.
+Just Shift-click on a curve keyframe to snap it to the neighboring values.
+This lets you set a constant curve value without having to copy the next or previous keyframe.
+
+@b{A tip.}@*
+If you're keyframing the fade, you can click on the fader in the patch bay, then use the arrow keys (vertical and horizontal) to
+adjust it up and down.@*
+If you have "Generate keyframes while tweaking" set to on, then a keyframe will be created as you adjust the fade up and down.
 
 @menu
 * Navigating curve keyframes::
@@ -8265,7 +8369,7 @@ insertion point.  This is not just to look cool.  The faders themselves can set
 keyframes in automatic keyframe mode.  Automatic keyframe mode is usually more
 useful than dragging curves.
 
-Enable automatic keyframe mode by enabling the automatic keyframe toggle
+Enable automatic keyframe mode by enabling the automatic keyframe toggle "Generate keyframes while tweaking"
 @image{manual_images_intl/autokeyframe}.  In automatic keyframe mode, every time you tweak
 a key-framable parameter it creates a keyframe on the timeline.  Since
 automatic keyframes affect many parameters, it is best enabled just before you
@@ -8277,7 +8381,7 @@ is generated is under the insertion point.  If the timeline is playing back
 during a tweak, several automatic keyframes will be generated as you change the
 parameter.
 
-When automatic keyframe mode is disabled, a similarly strange thing happens.
+When automatic keyframe mode is disabled, a similarly thing happens.
 Adjusting a parameter adjusts the keyframe immediately preceding the insertion
 point.  If two fade keyframes exist and the insertion point is between them,
 changing the fader changes the first keyframe.
@@ -8286,12 +8390,11 @@ There are many parameters which can only be keyframed in automatic keyframe
 mode.  These are parameters for which curves would take up too much space on
 the track or which can not be represented easily by a curve.
 
-Effects are only key-framable in automatic mode because of the number of
-parameters in each individual effect.
+Effects, masks, pan are only key-framable in automatic mode because of the number of
+parameters in each individual effect. Overlay modes are only keyframable in automatic mode.
 
-Camera and projector translation can only be keyframed in automatic keyframe
-mode while camera and projector zoom can be keyframed with curves.  It is here
-that we conclude the discussion of compositing, since compositing is highly
+Camera and projector translation and zoom can be keyframed in automatic keyframe mode as well as with curves.
+It is here that we conclude the discussion of compositing, since compositing is highly
 dependant on the ability to change over time.
 
 @c cincvdoc_node_number_246
@@ -8300,52 +8403,47 @@ dependant on the ability to change over time.
 @cindex Compositor keyframes
 @cindex Keyframes, compositor
 
-Camera and projector translation is represented by two parameters: x and y.
-Therefore it is cumbersome to adjust with curves.  Cinelerra solves this
-problem by relying on automatic keyframes.  With a video track loaded, move the
-insertion point to the beginning of the track and enable automatic keyframe
-mode.
+Camera and projector automation is represented by three parameters (curves): X, Y, Z.
+It is usually cumbersome to adjust camera & projector with curves.
+Cinelerra solves this problem by relying on automatic keyframes. The compositor window
+allows direct entry of keyframes by dragging the image. With a video track loaded, move
+the insertion point to the beginning of the track and enable automatic keyframe mode.@*
 
-Move the projector slightly in the compositor window to create a keyframe.
-Then go forward several seconds.  Move the projector a long distance to create
-another keyframe and emphasize motion.  This creates a second projector box in
-the compositor, with a line joining the two boxes.  The joining line is the
-motion path.  If you create more keyframes, more boxes are created.  Once all
-the desired keyframes are created, disable automatic keyframe mode.
+@b{Note:} Edits in the compositor window only affect the 1st recordable track.
 
-Now when scrubbing around with the compositor window's slider, the video
-projection moves over time.  At any point between two keyframes, the motion
-path is red for all time before the insertion point and green for all time
-after the insertion point.  It is debatable if this is a very useful feature
-but it makes you feel good to know what keyframe is going to be affected by the
-next projector tweak.
+Turn on "Adjust projector automation" to enable the projector tool in the Compositor window.@*
+Clicking on the button "Show tool info" on the Compositor shows the box that reports the current keyframe's X, Y,
+and zoom positions and allows you to enter exact values.
 
-Click-drag when automatic keyframes are off to adjust the preceding keyframe.
-If you are halfway between two keyframes, the first projector box is adjusted
-while the second one stays the same.  Furthermore, the video does not appear to
-move in step with the first keyframe.  This is because halfway between two
-keyframes the projector translation is interpolated.  In order to set the
-second keyframe you will need to scrub after the second keyframe.
+Move the projector slightly in the compositor window to create a keyframe for X & Y translation on the X & Y curves.
+Then go forward several seconds.@*
+Move the projector a long distance to create another keyframe on the X & Y curves.@*
+Shift drag to zoom & create a keyframe on the Z curve.@*
+Clicking the justification buttons in the projector tool similarly create keyframes.
+Selecting reset projector in the video output’s context menu generates centered keyframes for X, Y, Z.@*
+Once all the desired keyframes are created, disable automatic keyframe mode (otherwise you may create
+much confusion in your project).
 
-By default the motion path is a straight line, but it can be curved with
-control points.  @b{CTRL-drag} to set either the in or out control point of the
+Click to the button "Fit all autos to dysplay" (Alt-f) to adapt the curve amplitude to the track height.
+Now when scrubbing around with the compositor window’s slider between times on the timeline,
+the video projection moves over time. The video projection will interpolate between the keyframes.
+
+Click-drag the video output in the compositor window when automatic keyframes are off to adjust the preceding keyframe.
+If you are between two keyframes, dragging adjusts adjusts the previous keyframe while the second one stays the same.
+Furthermore, the video does not appear to move in step with the first keyframe. This is because halfway between two keyframes
+the projector translation is interpolated. I.e. if the insertion point is between keyframes, it won’t appear to track the drag operation
+because the position at the insertion point is interpolated between 2 keyframes. In order to set the second keyframe you will need
+to scrub after the second keyframe.
+
+The camera & projector tools perform the same operations on keyframes.@*
+When editing the camera translation & zoom, the behavior of the camera is the same. Camera automation is normally used for still photo panning.
+
+By default, the motion paths created by camera & projector are a straight line, but they can be converted to bezier curves via the keyframe menus.
+The motion paths can be curved with control points.  @b{CTRL-drag} to set either the in or out control point of the
 preceding keyframe.  Once again, we depart from The Gimp because @key{SHIFT} is
 already used for zoom.  After the in or out control points are extrapolated
 from the keyframe, @b{CTRL-dragging} anywhere in the video adjusts the nearest
-control point.  A control point can be out of view entirely yet still
-controllable.
-
-When editing the camera translation, the behavior of the camera boxes is
-slightly different.  Camera automation is normally used for still photo
-panning.  The current camera box does not move during a drag, but if multiple
-keyframes are set, every camera box except the current keyframe appears to
-move.  This is because the camera display shows every other camera position
-relative to the current one.
-
-The situation becomes more intuitive if you bend the motion path between two
-keyframes and scrub between the two keyframes.  The division between red and
-green, the current position between the keyframes, is always centered while the
-camera boxes move.
+control point.  A control point can be out of view entirely yet still controllable.
 
 @c cincvdoc_node_number_247
 @node Editing keyframes
@@ -8396,6 +8494,22 @@ Finally, there is a convenient way to delete keyframes besides selecting a
 region and calling @b{keyframes->clear keyframes}.  Merely click-drag a
 keyframe before its preceding keyframe or after its following keyframe on the
 track.This is the only way you can simultaneously delete keyframes on ganged tracks.
+
+@b{Keyframe context menu}@*
+Right clicking on a keyframe or a rubber band curve provides a context menu with the same operations as the keyframe menu.
+The difference is the context menu affects just 1 keyframe at a time. This can be faster than arming tracks & selecting data types to show in the view menu.@*
+
+Is there a way to transfer camera/projector automation, i.e. the corresponding keyframes, from one project to another for reuse ?@*
+Let's say we'd like to transfer a nice and fancy fade between two tracks to a different project?@*
+No problems.
+@itemize @bullet
+@item 0. Start two instances of cinelerra, load a project in each one.
+@item 1. Select region in source
+@item 2. Shift-C (Keyframes->Copy Keyframes)
+@item 3. Click at starting point in destination
+@item 4. Shift-V (Keyframes->Paste Keyframes)@*
+Make sure you have the right tracks armed!
+@end itemize
 
 @c cincvdoc_node_number_248
 @node Capturing media
@@ -9590,6 +9704,7 @@ uses.
 * HDV 1080i editing using proxy files::
 * Adding subtitles::
 * Creating DVD video from Lower Quality Footage::
+* How to pixelate a particular area of an image::
 @end menu
 
 @c cincvdoc_node_number_270
@@ -10723,6 +10838,38 @@ With a small amount of experimentation, you should be able to import lower-quali
 video into Cinelerra, process it and render out to DVD-quality video and end up with
 the best overall quality that will look as good as possible on the greatest possible
 range of DVD players and TVs. Good luck!
+
+@c cincvdoc_node_number_366
+@node How to pixelate a particular area of an image
+@section How to pixelate a particular area of an image
+@cindex How to pixelate a particular area of an image
+
+Sometimes you need to need to do some pixelating on certain areas of a video. For example,
+to block out someones face or a license plate.@*
+Use the Downsample effect and the Mask tool to accomplish this.@*
+
+@itemize @bullet
+@item Create a video track.
+@item Create a second video track below the existing one and copy the clip(s) into it.
+@item  Add the Downsample video effect to the lower of the two tracks.
+@item  Arm the upper track and disarm all the others.
+@item Go into the Compositor and create a mask around the bit that you want to pixellate.
+@item Set the mask mode to 'Subtract alpha' and put the 'Value' right up to
+100.  Now the pixellated lower track should be showing through in the mask.
+@item Adjust the downsample parameters to get the level of pixellation that you want.
+@end itemize
+
+@b{Note:} your mask is applying to the entire length of the track though.@*
+Is there a way to get it to only apply to a specific part of the track?
+No problems.@*
+Turn on "Generate Keyframes while tweaking". Turn on Mask keyframes in the View menu.@*
+Keyframe the mask's Value to 0 at the start of the track, then to 1 whenever you want it to be active, then back to 0 when you want it to
+deactivate again.@*
+The value slider bar of the Mask tool is what sets the keyframe on the timeline.
+Just went back and took it down to 0 and then set corresponding keyframes at the end of that section of the video.@*
+Use autokeyframing to animate the boundary of the mask so that it follows the object to be pixellated.
+
+@xref{ Masks} for a detailed explanation.
 
 @c cincvdoc_node_number_293
 @node Troubleshooting

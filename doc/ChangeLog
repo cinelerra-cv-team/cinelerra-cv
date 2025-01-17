@@ -1,4 +1,21 @@
-05.01.2024 Igor Vladimirsky <sitelve@gmail.com>
+17.01.2025 Igor Vladimirsky <sitelve@gmail.com>
+    *1.71 EN
+     Note: some info was ported from the updated HV-manual and from cv-mail-archive.
+    - Add more info to @node Masks (subs. 8.2.2)
+    - Add a note (the Crop tool is keyframable in Cin-CVE) to @node Cropping (subs. 8.2.3)
+    - Add more info to @node Loading still images (subs. 5.1.3.1). Remove 'raw digital camera images' support info.
+    - Create & add info to @c cincvdoc_node_number_366 How to pixelate a particular area of an image (sect. 22 Tips-> subs. 22.15).
+    - Create & add info to @c cincvdoc_node_number_367 @node Overlays window (sect. 12)
+       ! Nota bene: @c cincvdoc_node_number_367 is the latest node_number in *1.71 EN.
+    - Update & add info to @node Automatic keyframes (sect. 19.3)
+    - Update & add info to @node Compositor keyframes (sect. 19.4). Remove obsoleted info.
+         Some information was older than ancient artifacts from Mesopotamia.
+    - Update & add info to @node Editing keyframes (sect. 19.5)
+    - Add more info to @node Keyframing (sect. 19) (an explanations for default kfr. written by H.Vosseler was ported from the mail-archive).
+    - Add more info/a tip to @node Curve keyframes (subs. 19.1)
+    - Add a tip to @node Title (sect. 15.4.56)
+
+05.01.2025 Igor Vladimirsky <sitelve@gmail.com>
     * 1.70 EN
     - Add more info to @node Chroma key (HSV) (subs. 14.4.7)
     - Fix some links
@@ -6,13 +23,11 @@
     - Updated copyright years in EN manual.
 
 04.05.2024 Igor Vladimirsky <sitelve@gmail.com>
-
     * 1.69 EN
     - Change /.bcast to /.cinelerra-cv
     - Add more info about Saturation (Min/Offset) to @node Chroma key (HSV) (subs. 14.4.7)
 
 01.03.2024 Igor Vladimirsky <sitelve@gmail.com>
-
     * 1.68 EN
     - Add a note to @node Realtime effects (sect. 14)
           (How to drag several effects at once from the Resources to the timeline)
@@ -35,7 +50,6 @@
 
 
 10.01.2024 Igor Vladimirsky <sitelve@gmail.com>
-
     * 1.67 EN
     -Add more info to @node Video attributes (subs. 4.4 Video attributes)
     - Add @xref{Gradient} to @node Video attributes
@@ -51,8 +65,8 @@
     - Add a note about Blur to @node Chroma key (subs. 14.4.6)
     - Add more info to @node Motion blur (subs. 14.4.36)
 
-08.01.2024 Igor Vladimirsky <sitelve@gmail.com>
 
+08.01.2024 Igor Vladimirsky <sitelve@gmail.com>
     * 1.66 EN
     - Update edition number.
     - Update a link to the Raffa's glossary in the "Miscellaneous links" node. (subs. 1.7)
@@ -123,8 +137,8 @@
     - Add @cindex Fullscreen/windowed, @cindex Close source to the "Viewer window" node (subs. 9).
     - Add more items (Close source and Fullscreen/windowed) to the "Viewer window" node (subs. 9).
 
-25.11.2023 Igor Vladimirsky <sitelve@gmail.com>
 
+25.11.2023 Igor Vladimirsky <sitelve@gmail.com>
     * 1.65 EN
     Chapter 1: Introduction
     - Updated edition number.
@@ -171,8 +185,8 @@
          "Adding subtitles" (subs. 21.13)
          "Creating DVD video from Lower Quality Footage" (subs. 21.14)
 
-2023-11-20 Igor Vladimirsky <sitelve@gmail.com>
 
+2023-11-20 Igor Vladimirsky <sitelve@gmail.com>
     * 1.64 EN
     Updated copyright years in EN manual.
     Changed Documentation coordinator in EN manual.
@@ -180,6 +194,7 @@
     Updated edition number of EN manual.
     Updated the link to the CV-ML in doc/TRANSLATIONS.
     Changed the encoding of cinelerra_cv_manual_en.texi from ISO-8859-1 to UTF-8.
+
 
 2016-02-14 Nicola Ferralis <feranick@hotmail.com>
 
