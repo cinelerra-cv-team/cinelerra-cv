@@ -1,19 +1,36 @@
+18.01.2025 Igor Vladimirsky <sitelve@gmail.com>
+    *1.72 EN
+-- Minor reorganization due to the new chapter 'Other windows' created in *1.71 EN
+	-- Replace the item 'Sound level meters window' with the 'Other windows' item in @ifnottex @c cincvdoc_node_number_1
+	-- Remove the Overlays window:: item from @ifnottex @c cincvdoc_node_number_1
+	-- Change
+         @c cincvdoc_node_number_367 @node Overlays window @chapter .. @cindex Overlays window ..
+         to @c cincvdoc_node_number_368 @node Overlays window @section .. @cindex Overlays window ..
+	-- Change
+         @c cincvdoc_node_number_133 @node Sound level meters window @chapter .. @cindex ..
+          to @c cincvdoc_node_number_367 Sound level meters window @section .. @cindex ..
+	-- Re-create @c cincvdoc_node_number_133 @node with a new name Other windows @chapter Other windows @cindex Other windows
+	-- Create @menu in @c cincvdoc_node_number_133 @node Other windows
+    -- The chapter and section numbers in the previous entry of doc/Changelog have been adjusted to reflect the reorganization.
+          This is for better orientation and navigation.
+
 17.01.2025 Igor Vladimirsky <sitelve@gmail.com>
     *1.71 EN
      Note: some info was ported from the updated HV-manual and from cv-mail-archive.
     - Add more info to @node Masks (subs. 8.2.2)
     - Add a note (the Crop tool is keyframable in Cin-CVE) to @node Cropping (subs. 8.2.3)
     - Add more info to @node Loading still images (subs. 5.1.3.1). Remove 'raw digital camera images' support info.
-    - Create & add info to @c cincvdoc_node_number_366 How to pixelate a particular area of an image (sect. 22 Tips-> subs. 22.15).
-    - Create & add info to @c cincvdoc_node_number_367 @node Overlays window (sect. 12)
+    - Create & add info to @c cincvdoc_node_number_366 How to pixelate a particular area of an image (sect. 21 Tips-> subs. 21.15).
+    - Add the Overlays window item to @ifnottex @c cincvdoc_node_number_1
+    - Create & add info to @c cincvdoc_node_number_367 @node Overlays window (sect. 11.2)
        ! Nota bene: @c cincvdoc_node_number_367 is the latest node_number in *1.71 EN.
-    - Update & add info to @node Automatic keyframes (sect. 19.3)
-    - Update & add info to @node Compositor keyframes (sect. 19.4). Remove obsoleted info.
+    - Update & add info to @node Automatic keyframes (sect. 18.3)
+    - Update & add info to @node Compositor keyframes (sect. 18.4). Remove obsoleted info.
          Some information was older than ancient artifacts from Mesopotamia.
-    - Update & add info to @node Editing keyframes (sect. 19.5)
-    - Add more info to @node Keyframing (sect. 19) (an explanations for default kfr. written by H.Vosseler was ported from the mail-archive).
-    - Add more info/a tip to @node Curve keyframes (subs. 19.1)
-    - Add a tip to @node Title (sect. 15.4.56)
+    - Update & add info to @node Editing keyframes (sect. 18.5)
+    - Add more info to @node Keyframing (sect. 18) (an explanations for default kfr. written by H.Vosseler was ported from the mail-archive).
+    - Add more info/a tip to @node Curve keyframes (subs. 18.1)
+    - Add a tip to @node Title (sect. 14.4.56)
 
 05.01.2025 Igor Vladimirsky <sitelve@gmail.com>
     * 1.70 EN

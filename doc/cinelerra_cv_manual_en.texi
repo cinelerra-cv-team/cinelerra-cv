@@ -15,7 +15,7 @@
 @documentencoding UTF-8
 @settitle Cinelerra CV Manual
 @afourpaper
-@set EDITION 1.71.EN
+@set EDITION 1.71-1 EN
 @set VERSION 2.3
 
 @finalout
@@ -69,8 +69,7 @@ St, Fifth Floor, Boston, MA 02110, USA@.
 * Compositor window::
 * Viewer window::
 * Resources window::
-* Sound level meters window::
-* Overlays window::
+* Other windows::
 * Transport controls::
 * Timebar::
 * Realtime effects::
@@ -4723,8 +4722,18 @@ appear, then click on Info.
 @center @b{The asset info window}
 
 @c cincvdoc_node_number_133
+@node Other windows
+@chapter Other windows
+@cindex Other windows
+
+@menu
+* Sound level meters window::
+* Overlays window::
+@end menu
+
+@c cincvdoc_node_number_367
 @node Sound level meters window
-@chapter Sound level meters window
+@section Sound level meters window
 @cindex Sound level meters window
 
 An additional window, the @b{levels window} can be brought up from the
@@ -4765,9 +4774,9 @@ when sent to a sound card or file.
 The visible range of the sound level meters is configurable in
 @b{settings->preferences->interface} (@xref{Interface}.)
 
-@c cincvdoc_node_number_367
+@c cincvdoc_node_number_368
 @node Overlays window
-@chapter Overlays window
+@section Overlays window
 @cindex Overlays window
 
 The Overlays window can be brought up from the Window menu.@*
