@@ -15,7 +15,7 @@
 @documentencoding UTF-8
 @settitle Cinelerra CV Manual
 @afourpaper
-@set EDITION 1.71-1 EN
+@set EDITION 1.72 EN
 @set VERSION 2.3
 
 @finalout
@@ -2531,8 +2531,11 @@ FIXME
 All data that you work with in Cinelerra is acquired either by @b{recording
 from a device} or by @b{loading from disk}.  This section describes loading.@*
 The loading and playing of files is just as you would expect.  Just go to
-@b{file->Load Files}, select a file for loading, and click @b{Ok}.  Depending on
-the setting of the Insertion Strategy list box, your file will be either loaded
+@b{File->Load Files}, navigate through your directories using the buttons on the top right,
+select a file for loading, and click @b{Ok}.@*
+
+
+Depending on the setting of the Insertion Strategy list box, your file will be either loaded
 on the Resources Media window or directly on the Program window. In this last
 case, click the forward play button and it should start playing, regardless of
 whether a progress bar has appeared.
@@ -2581,6 +2584,8 @@ Same as replace current project, except that if multiple files are selected, Cin
 will concatenate the tracks of each file, inserting different source files in the
 same set of tracks, one after another, in alphanumeric order, starting at 0.
 New resources are created in the Resources Window, replacing the current ones.
+Select a bunch of mp3 files and Replace current project and concatenate tracks
+in the insertion strategy to create a song playlist.
 
 @item @b{Append in new tracks}@*
 The current project is not deleted and new tracks are created for the source,
@@ -2623,7 +2628,13 @@ additional file.  Go to another file and select it while holding down
 @key{SHIFT}.  This selects every intervening file.  This behavior is available
 in most list box.@*
 Use this method and the @b{Concatenate to existing tracks} insertion strategy
-to create an images slideshow or a song playlist.
+to create an images slideshow or a song playlist.@*
+The icons on the top right will help you to go up a directory, refresh the files listed, delete files, display files as text or icons.
+If you pose the mouse pointer over an icon, a tooltip will pop up as a reminder.@*
+The behavior of SHIFT and CTRL changes depending on if the files are displayed as text or icons.@*
+In text mode SHIFT-clicking on media files extends the number of highlighted selections.@*
+In text mode CTRL-clicking on media files selects additional files one at a time.@*
+In icon mode SHIFT-clicking or CTRL-clicking selects media files one at a time.
 
 @c cincvdoc_node_number_80
 @node Loading files from the command prompt
@@ -2800,7 +2811,20 @@ contains options affecting each track.
 Under the @b{Window} menu, you will find options that affect the main windows.
 @b{Default positions} repositions all the windows to a 4 screen editing
 configuration.  On dual headed displays, the @b{Default positions} operation
-fills only one monitor with windows.
+fills only one monitor with windows.@*
+
+At the bottom of the program window is the @b{Status bar}.@*
+The status bar provides running status and expected times for running operations:
+
+@itemize @bullet
+@item @b{Status message}@*
+A text message bar (here showing "Welcome to Cinelerra") to indicate the current activity being processed by Cinelerra.
+When rendering it provides a running time and an estimated time for the completion of the process.
+@item @b{Progress bar}@*
+When processing, this horizontal bar fills up according to the percentage of task completion. (here showing 0%)
+@item @b{Cancel button}@*
+Clicking on this button (x) aborts the current process. (TIP: usefull to cancel long rendering processes).
+@end itemize
 
 @c cincvdoc_node_number_87
 @node Navigating the program window
@@ -2882,6 +2906,17 @@ Use the @key{HOME} and @key{END} keys to instantly go to the beginning or end
 of the timeline.  In @b{I-beam} mode, hold down @key{SHIFT} while pressing
 @key{HOME} or @key{END} in order to select the region of the timeline between the
 insertion point and the key pressed.
+
+@b{Selected Area Readout}@*
+This is represented by the three boxes at the bottom right of the Automation range maximum adjuster.@*
+When on the Cut and Paste Editing mode, this digital read out shows the exact beginning point, ending point and total length of the selected area.@*
+It allows you to enter exact values into these start/length/end position textboxes to create frame-precise selections.
+
+@itemize @bullet
+@item Left - Start Time of your selected area.
+@item Center - Area Length of your selected area.
+@item Right - End Time of your selected area.
+@end itemize
 
 @c cincvdoc_node_number_352
 @node The zoom panel
@@ -3025,11 +3060,6 @@ frames.  When editing audio you will want to align to samples.  Select your
 preference by using @b{settings->align cursor on frames}.@*
 @xref{Cut and paste editing}.
 
-@anchor{r943_r944_editing_modes}@b{Note:} Cinelerra CV revisions 943 and 944
-(SVN checkouts from 19 to 21 October 2006) had no editing modes buttons.
-"Copy and paste" and "Drag and drop" editing modes were merged into one,
-shift key being differentiation between them.  This is the case of the Gentoo ebuild
-media-video/cinelerra-cvs-20061020.
 
 @c cincvdoc_node_number_93
 @node The in/out points
@@ -3515,7 +3545,7 @@ In the viewer window, define a clip out of your movie file:@*
 @b{out point button}.
 @end itemize
 
-The two points should now appear on the timebar and define a clip.@*
+The two points should now appear on the timebar and define a clip. @xref{Viewer window}.@*
 There are several things you can do with the clip now:
 
 @itemize @bullet
@@ -3626,8 +3656,8 @@ insertion possible.
 You can also drag multiple files from the resource window. When dropped in the
 timeline they are concatenated.@*
 The way of selecting multiple files to drag changes depending on if the resources
-are displayed as text or as icons. To change the display mode right click inside
-the media list and select either @b{Display icons} or @b{Display text}.@*
+are displayed as text or as icons.@*
+To change the display mode right click inside the media list and select either @b{Display icons} or @b{Display text}.@*
 When displaying text in the resource window @key{CTRL-clicking} on media files
 selects additional files one at a time; @key{SHIFT-clicking} on media files extends
 the number of highlighted selections.@*
@@ -4260,7 +4290,7 @@ and housewives are other mask uses.
 The order of the compositing pipeline affects what can be done with masks.
 Mainly, masks are performed on the temporary after effects and before the
 projector.  This means multiple tracks can be bounced to a masked track and
-projected with the same mask.
+projected with the same mask. Click on the 'Apply mask before plugins' checkbox to apply a mask before effects.
 
 Our compositing pipeline graph now has a masking stage.  There are 8 possible
 masks per track.  Each mask is defined separately, although they each perform
@@ -4643,7 +4673,7 @@ Before you can play any media, you first must load it on the viewer.
 To load media into the viewer:
 @enumerate 1
 @item Open the @b{resources manager} window and select the @b{asset manager} or
-the @b{clip manager} folder.
+the @b{clip manager} folder (the Media Tab or the Clip Tab of the Resources Window).
 @item Drag a file from the @b{asset manager} or the @b{clip manager} to the
 viewer
 
@@ -4675,11 +4705,44 @@ Select this menu item (windowed) again to undo full screen mode.
 When displaying media, the viewer uses the project's defined output size format
 settings, not the original assets format.  You can change the project's output
 to match the asset's format using the @b{match project size} menu option in the
-@b{asset manager}.
+@b{asset manager} (the Media Tab of the Resources Window).
 
 In here you will scrub around source media and clips, selecting regions to paste
 into the project.  Operations done in the viewer affect a temporary EDL or a
 clip but not the timeline.
+
+Media Clips are a convinient way of pre-selecting and organizing your raw media files into neat "clips" with title and descriptions.@*
+This tutorial shows you how to create a media clip from the Viewer in four easy steps:
+
+@itemize @bullet
+@item @b{Selecting your raw media}
+@itemize @minus
+@item Open ResourcesManager window and select the AssetManager folder.
+@item Open the viewer
+@item Drag a file from the AssetManager to the viewer
+@item Play the media on the viewer and find a segment you want to clip.
+@end itemize
+@item @b{Selecting the area you wish to turn into a clip}
+@itemize @minus
+@item Move the slider to the begining of the area you want to make into a clip
+@item Set the in point by pressing the In point button
+@item Move the slider to the end of the area you want to make into a clip
+@item Set the out point by pressing the Out point button
+@item After you are done, your timebar will look like the selected area marked by the " [ ] " In/Out points.
+@end itemize
+@item @b{Creating the clip}@*
+@itemize @minus
+@item Create the clip by pressing the Clip button.
+@item At the clip's dialog box, fill in the title and comments for your clip.
+@item Press OK to finish.
+@end itemize
+@item @b{Verifing that your clip got created}
+@itemize @minus
+@item Go to the Media folder (the Asset Manager)
+@item Select the Clip folder from the left options
+@item Verify that your clip is there. (if you double click on it, it will load on the Viewer)
+@end itemize
+@end itemize
 
 @c cincvdoc_node_number_131
 @node Resources window
@@ -4702,24 +4765,50 @@ window.  Management of resource allocation is also performed here.
 
 The resource window is divided into two areas.  One area lists folders and
 another area lists folder contents.  Going into the folder list and clicking on
-a folder updates the contents area with the contents of that folder.
+a folder updates the contents area with the contents of that folder.@*
+The Clip Tab (folder) stores all the clips created on your program.
+The folder offers the exact same behaviour as the Asset Manager (see below), but you get to choose from a list of clips rather than raw files.
+You can edit the titles and comments of your clips in the Clips folder. Right click on a clip out of media asset and select 'Info...'.@*
+The Media Tab (Asset Manager) lists all loaded media in your project.@*
 
 @center @image{manual_images_intl/resources_audio_effects,60mm}
 @center @b{The resources window}
 
 The folder and contents can be displayed as icons or text.
 
-@b{Right clicking} in the folder or contents area brings up a menu containing
-formatting options.  Select @b{Display text} to display a text listing.  Select
-@b{Sort items} to sort the contents of the folder alphabetically.
+@b{Right clicking} on any white space in the folder or contents area brings up a menu containing
+formatting options.@*
+Select @b{Display text} to display a text listing.
+Depending on this "view mode" assets will appear on the screen either as text labels or icons representing assets.@*
+@b{Display Icons} will display a small image of the first video frame on the asset, this feature can be very convenient when looking for files.@*
+
+Select @b{Sort items} to sort the contents of the folder alphabetically, based on their original file name.
 
 The @b{asset info window} displays detailed information about the selected
-media file.  To access it, go to the asset manager folder and right click on
+media file.  To access it, go to the asset manager folder (the Media Tab of the Resources Window) and right click on
 the label or icon of the file you are interested on.  An asset menu will
 appear, then click on Info.
 
 @center @image{manual_images_intl/asset_info,50mm}
 @center @b{The asset info window}
+
+@b{Let us consider in more detail the Asset's Menu}@*
+Right-Clicking on any "asset" offers the following menu:
+
+@itemize @bullet
+@item @b{Display Text/Icons Toggle} — Same as described above.
+@item @b{Info} — Displays the media Asset Info window, with detailed information about the selected file (described above).
+@item @b{Sort items} — Same as described above.
+@item @b{Rebuild index} — Rebuild index files (for more info about index files look at Preferences -> Interface)
+@item @b{View} — Load the selected file on the Viewer window for display. (TIP: Double clicking on any asset icon provides the same result)
+@item @b{Paste} — Pastes the selected file on the first active track of it's type on the program window (timeline).
+@item @b{Match project size} — Adjusts the Output Size of your project to match the dimensions of this asset.
+@item @b{Match frame rate} — Adjusts the frame rate of your project to match the frame rate of this asset.
+@item @b{Remove from project} — Removes the file from the project, but it does not affects the original media on your system.@*
+(TIP: You can always reload the assets a later time from their same location on the disk.)
+@item @b{Remove from disk} — Removes the selected file from the system disk. Caution: this choice will completly delete the file from your system's disk.
+@end itemize
+
 
 @c cincvdoc_node_number_133
 @node Other windows
@@ -4783,6 +4872,32 @@ The Overlays window can be brought up from the Window menu.@*
 It allows you to toggle on and off various parts of the timeline display (plugin autos, mask keyframes, asset name, ... ).@*
 Every option in the View menu is available here.@*
 When parameters are selected, they are drawn on the timeline over the tracks they apply to.
+
+@itemize @bullet
+@item @b{Show assets} - It is On by default.
+By default, the video assets are visible on the timeline. As soon as you place a piece of video on a video track, small pictures appear in the timeline, representing the video contents. Also, a sound graph appears in the audio tracks. Drawing timeline takes resources. Disabling showing assets makes the program more responsive.
+@item @b{Show titles} - If enabled, the audio/video tracks will show the name of the source file at the top of the segment on the track.
+@item @b{Show transitions}  - If enabled, transitions are shown on the MediaTracks as transition icons between two media segments.
+@item @b{Fade} - If enabled, the fade level is shown as a horizontal white line on audio & video tracks. The Fade line represents an amplitude envelope.
+@item @b{Mute} - If enabled, the blue line appears on audio & video tracks. Indicates if the track is muted (on top) or not (on bottom).
+@item @b{Mode} - If enabled, keyframes of blending modes are shown as icons on the tracks. This gives us some visual indicator that a current blend mode has been changed.@*
+Automatic keyframe mode should be enabled. Enable automatic keyframe mode by enabling the automatic keyframe toggle "Generate keyframes while tweaking".
+@item @b{Pan} - This refers to automatic audio track panning.
+If a user changes a position of the audio output among the speaker arrangement, an icon appears on the audio track.
+With the Pan autos you can influence the position of the audio track in the stereo panorama. Automatic keyframe mode should be enabled.
+@item @b{Plugin Autos} (Keyframes) - Plugin Autos refers to keyframing of plugins. Indicates changes on a plugin, shown on the plugin bar. If enabled, you should see a "key" symbol at every keframe location right at your plugin. Automatic keyframe mode should be enabled.
+@item @b{Mask} - If enabled, you should see a green symbol at every mask keframe location right at your video on the timeline. Automatic keyframe mode should be enabled.
+
+The following toggles refer to the Camera and Projector automation lines. Camera and projector automation is represented by three parameters (curves): for X, Y, Z axes respectively.
+
+@item @b{Camera X} - the red line (X axis) - the horizontal translation of the track.
+@item @b{Camera Y} - the green line (Y axis) - the vertical translation of the track.
+@item @b{Camera Z} - the blue line (Z axis) - the zoom in/out translation of the track.
+
+@item @b{Projector X} - the red line (X axis) - the horizontal translation of the track.
+@item @b{Projector Y} - the green line (Y axis) - the vertical translation of the track.
+@item @b{Projector Z} - The blue line (Z axis) - the zoom in/out translation of the track.
+@end itemize
 
 @c cincvdoc_node_number_134
 @node Transport controls
@@ -5775,7 +5890,7 @@ Unlike the Min Saturation parameter, Saturation Offset should change the Hue Tol
 Saturation Offset is similar to Min Saturation. The difference is that you are not controlling the position of a line where the key kicks in but are instead shifting the entire wedge in and out from the center. Hopefully the Saturation Offset parameter will get fixed.
 
 @item @b{Check what it looks like}@*
-The checkbox 'Show Mask' displays the key generated by the effect, making it easier to spot problem areas. At this stage, your mask should be pretty clean. Toggle Show Mask to check what it looks like and examine problem areas of the key while making adjustments, it should be OK. If not, repeat steps 1 to 4 to get a better key. The rest of the controls are useful to smear the mask to help compositing later on. They will help you to make your key look much cleaner.
+The 'Show Mask' checkbox displays the key generated by the effect, making it easier to spot problem areas. At this stage, your mask should be pretty clean. Toggle Show Mask to check what it looks like and examine problem areas of the key while making adjustments, it should be OK. If not, repeat steps 1 to 4 to get a better key. The rest of the controls are useful to smear the mask to help compositing later on. They will help you to make your key look much cleaner.
 
 @item @b{Adjust the slope} (In Slope, Out Slope)@*
 For now, the mask is a full on / full off mask that can be really harsh and not necessarily what you are looking for. In Slope and Out Slope will help you to smooth that key.@*
@@ -6278,7 +6393,7 @@ inverse telecine with a decimate effect.
 Also called invert video, it is a method of reversing the colors of a video
 track.
 
-The three parameters refer to channels (Red, Blue, Green, Alpha)
+The four parameters refer to channels (Red, Blue, Green, Alpha).
 
 @c cincvdoc_node_number_191
 @node Lens
@@ -7392,7 +7507,7 @@ An intensity value of 0 produces no displacement.
 Only the value of 255 (maximum intensity) produces the maximum time displacement. All other values produce time displacements of less than the Time Range (see below).
 That is, brighter pixels cause a larger shift and darker pixels cause a smaller shift. White pixels fully apply the given Time Range (see below) and black pixels cause no shift at all.
 
-Check the checkbox @b{Show grayscale for tuning} to show/tune a grayscale map.
+Check the @b{Show grayscale for tuning} checkbox to show/tune a grayscale map.
 When checked, the plugin shows a linear or radial grayscale shape that lets you see brightness levels more easily, to examine problem areas of the displacement while making adjustments, and to predict how pixels will be displaced.
 
 
@@ -7426,7 +7541,7 @@ In this mode, the effect distorts an image by shifting pixels across time based 
 That is, the displacement is determined from the alpha values of pixels.
 In this mode, you don't need to share the effect to another track.
 
-Check the checkbox @b{Show grayscale for tuning} to show the temporal displacement map.
+Check the @b{Show grayscale for tuning} checkbox to show the temporal displacement map.
 The map is generated ((on the main track (the track the effect is applied to)) based on the alpha values of pixels of the original image on the main track.
 The map generated in this mode is a black-white image where opaque areas of the original image are displayed in white, transparent areas of the original image are displayed in black.
 The intermediate alpha values of transparency are also taken into account. The ones are displayed as shades of gray.@*
@@ -7479,12 +7594,12 @@ In the pull-down menu of the @b{As timefront use} item, you can select from the 
 @itemize @bullet
 @item @b{Intensity}@*
 In this case, the effect distorts an image by shifting pixels across time based on the gray level intensity (luminance) values of pixels in the temporal displacement map (the track with the shared effect). As a temp. displ. map, you can use an opaque black-and-white graphic (a grayscale image).@*
-Check the checkbox @b{Show grayscale for tuning} to show the map.
+Check the @b{Show grayscale for tuning} checkbox to show the map.
 If checked, the plugin displays the image used as the map (a grayscale image on the track with the shared effect) as a gradient (a grayscale image) with banding. The intermediate values (shades) are also taken into account. The calculation occurs in the same way as described above.
 
 @item @b{Alpha mask}@*
 In this case, the effect distorts an image by shifting pixels across time based on alpha values of pixels in the temporal displacement map (the track with the shared effect). As a temp. displ. map, you can use a title, a graphic (logo), a video that contains an Alpha channel.@*
-Check the checkbox @b{Show grayscale for tuning} to show the map.
+Check the @b{Show grayscale for tuning} checkbox to show the map.
 If checked, the plugin displays the image used as the map (an alpha mask image on the track with the shared effect) as a gradient (a grayscale image) with banding, where white represents opaque areas of the original image, and black represents transparent areas of the original image. The intermediate values (partially transparent pixels) are also taken into account. The ones are displayed as shades of gray.
 The calculation occurs in the same way as described above.
 @end itemize
@@ -8274,7 +8389,7 @@ the keyframe in effect here. And this keyframe's setting dictates the automation
 Probably you've guessed it by now: when there wasn't any keyframe defined for that track and that value yet, then the system magically
 "invents" a default keyframe sitting at t = 0, and fills in the default value of that automation setting for that keyframe.
 
-Now, the real complexity gets in with the "generate keyframes when tweaking" toggle. Yet unfortunately, this toggle is the key to working effectively
+Now, the real complexity gets in with the "Generate keyframes while tweaking" toggle. Yet unfortunately, this toggle is the key to working effectively
 with Cinelerra's keyframes. And there is no "best" setting.
 
 When it is ON, then each tweaking of a parameter generates a new keyframe,

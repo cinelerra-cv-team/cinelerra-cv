@@ -1,5 +1,20 @@
-18.01.2025 Igor Vladimirsky <sitelve@gmail.com>
+23.01.2025 Igor Vladimirsky <sitelve@gmail.com>
     *1.72 EN
+       Note: Some info was ported from
+          https://web.archive.org/web/20050215063905/http://www.ftconsult.com/twiki/bin/view/Cinelerra/WebIndex
+          This was long overdue, but better late than never, right? :-D
+	- Add more info to @node Overlays window (sect 11.2)
+	- Add info (how-to create a clip) to @node Viewer window (chapter 9)
+    - Add more info to @node Resources window (chapter 10)
+	- Add info to @node Loading files (subs 5.2.2)
+	- Add info about status bar to @node Program window (chapter 6)
+	- Remove obsoleted info about CinCV revisions 943 and 944 from @node Editing modes (subs 6.1.6)
+	- Add @xref{Viewer window} to @node Two screen editing (subs 7.7)
+	- Add info about 'Selected Area Readout' to @node Track navigation (subs 6.1.2)
+
+
+18.01.2025 Igor Vladimirsky <sitelve@gmail.com>
+    *1.71-1 EN
 -- Minor reorganization due to the new chapter 'Other windows' created in *1.71 EN
 	-- Replace the item 'Sound level meters window' with the 'Other windows' item in @ifnottex @c cincvdoc_node_number_1
 	-- Remove the Overlays window:: item from @ifnottex @c cincvdoc_node_number_1
@@ -13,6 +28,7 @@
 	-- Create @menu in @c cincvdoc_node_number_133 @node Other windows
     -- The chapter and section numbers in the previous entry of doc/Changelog have been adjusted to reflect the reorganization.
           This is for better orientation and navigation.
+
 
 17.01.2025 Igor Vladimirsky <sitelve@gmail.com>
     *1.71 EN
@@ -31,6 +47,7 @@
     - Add more info to @node Keyframing (sect. 18) (an explanations for default kfr. written by H.Vosseler was ported from the mail-archive).
     - Add more info/a tip to @node Curve keyframes (subs. 18.1)
     - Add a tip to @node Title (sect. 14.4.56)
+
 
 05.01.2025 Igor Vladimirsky <sitelve@gmail.com>
     * 1.70 EN
